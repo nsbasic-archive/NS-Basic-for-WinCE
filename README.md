@@ -57,11 +57,9 @@ Feel free to look at the code, try to run it and have fun.
 
 Go ahead and open issues - I won't be fixing any of them. 
 Seriously, it's 12 years since I've looked at the source. 
-I have no idea how to get the [Embedded Visual Basic](https://en.wikipedia.org/wiki/Embedded_Visual_Basic) - you'll need that to compile it.
+I have no idea how to get [Embedded Visual Basic](https://en.wikipedia.org/wiki/Embedded_Visual_Basic) - you'll need that to compile the device code.
 
-There are a number of documents with no extension. These are probably in [WordPerfect](https://en.wikipedia.org/wiki/WordPerfect) format.
-
-NS BASIC for Newton was released in 1998 and was developed until 2009 when it was clear that Microsoft had no more interest in Windows CE.
+NS BASIC/CE was released in 1998 and was developed until 2009 when it was clear that Microsoft had no more interest in Windows CE.
 
 George Henne
 
