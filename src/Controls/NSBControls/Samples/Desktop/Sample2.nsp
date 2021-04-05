@@ -1,0 +1,3 @@
+Dim AppEXEName: AppEXEName = "Sample2"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\ComCtl\ComCtl\Samples\Desktop\Sample2.nsd"
+

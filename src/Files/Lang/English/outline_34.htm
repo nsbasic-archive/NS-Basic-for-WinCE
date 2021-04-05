@@ -1,0 +1,138 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_34_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_34_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>ERASE                                                                  Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ERASE</span></font> <i><span
+style='font-style:italic;'>arrays</span></i></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ERASE reinitializes fixed-size arrays, and releases memory
+allocated for dynamic-array storage. The required component, <i><span style='font-style:italic;'>arrays</span></i>, is a comma separated list of one or more array
+variables.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM ERASE Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'ERASE reinitializes arrays</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Children(3)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Children(0) = &quot;Eric&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Children(1) = &quot;Kenny&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Children(2) = &quot;Kyle&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Children(3) = &quot;Stan&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PrintArray Children, 4</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ERASE Children</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PrintArray Children, 4</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>FUNCTION PrintArray(arr, elements)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  DIM i</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  FOR i
+= 1 to elements</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;#&quot; &amp; i</span></font>&amp;&quot;:&quot;,&quot;(&quot;&amp;arr(i-1)&amp;&quot;)&quot;</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  NEXT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END FUNCTION</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#1:    (Eric)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#2:    (Kenny)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#3:    (Kyle)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#4:    (Stan)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#1:    ()</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#2:    ()</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#3:    ()</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>#4:    ()</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DIM, ARRAY</span></font></p>
+
+</div>
+
+</body>
+
+</html>

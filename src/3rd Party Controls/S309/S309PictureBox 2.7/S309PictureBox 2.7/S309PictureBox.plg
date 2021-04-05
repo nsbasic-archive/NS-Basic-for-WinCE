@@ -1,0 +1,219 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: S309PictureBox - Win32 (WCE MIPS) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Mips/S309PictureBox.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.odl""
+Creating command line "rc.exe /l 0x409 /r /fo"Intermediate/S309PictureBox.res" /i "Mips" /d "MIPS" /d "_MIPS_" /d UNDER_CE=200 /d _WIN32_WCE=200 /d "H/PC Ver. 2.00" /d "UNICODE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB46.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "NDEBUG" /D "MIPS" /D "_MIPS_" /D UNDER_CE=200 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox.pch" /Yu"stdafx.h" /Fo"Intermediate/" /QMRWCE /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxPpg.cpp"
+]
+Creating command line "clmips.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB46.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB47.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "NDEBUG" /D "MIPS" /D "_MIPS_" /D UNDER_CE=200 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox.pch" /Yc"stdafx.h" /Fo"Intermediate/" /QMRWCE /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\StdAfx.cpp"
+]
+Creating command line "clmips.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB47.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB48.tmp" with contents
+[
+imgdecmp.lib /nologo /entry:"_DllMainCRTStartup" /base:"0x10000000" /dll /incremental:no /pdb:"Mips/S309PictureBox.pdb" /machine:MIPS /def:".\S309PictureBox.def" /out:"Mips/S309PictureBox.ocx" /implib:"Mips/S309PictureBox.lib" /subsystem:windowsce,2.0 /STACK:65536,4096 
+.\Intermediate\S309PictureBox.obj
+.\Intermediate\S309PictureBoxCtl.obj
+.\Intermediate\S309PictureBoxPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309PictureBox.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB48.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309PictureBox.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309PictureBox.cpp
+S309PictureBoxCtl.cpp
+S309PictureBoxPpg.cpp
+Generating Code...
+Linking...
+   Creating library Mips/S309PictureBox.lib and object Mips/S309PictureBox.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB4F.bat" with contents
+[
+@echo off
+mkdir  ".\Mips HPC"
+del /q ".\Mips HPC\*.*"
+xcopy ".\Mips\*.*" ".\Mips HPC\"
+del /q ".\Mips\*.*"
+rmdir ".\Mips"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB4F.bat"
+
+A subdirectory or file .\Mips HPC already exists.
+.\Mips\S309PictureBox.exp
+.\Mips\S309PictureBox.lib
+.\Mips\S309PictureBox.ocx
+.\Mips\S309PictureBox.tlb
+4 File(s) copied
+
+
+
+
+<h3>Results</h3>
+S309PictureBox.ocx - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: S309PictureBox - Win32 (WCE SH3) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "SH3/S309PictureBox.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.odl""
+Creating command line "rc.exe /l 0x409 /r /fo"Intermediate/S309PictureBox.res" /i "SH3" /d "SHx" /d "SH3" /d "_SH3_" /d UNDER_CE=200 /d _WIN32_WCE=200 /d "H/PC Ver. 2.00" /d "UNICODE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB50.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "NDEBUG" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=200 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox.pch" /Yu"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxPpg.cpp"
+]
+Creating command line "shcl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB50.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB51.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "NDEBUG" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=200 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox.pch" /Yc"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\StdAfx.cpp"
+]
+Creating command line "shcl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB51.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB52.tmp" with contents
+[
+imgdecmp.lib /nologo /entry:"_DllMainCRTStartup" /base:"0x10000000" /dll /incremental:no /pdb:"SH3/S309PictureBox.pdb" /machine:SH3 /def:".\S309PictureBox.def" /out:"SH3/S309PictureBox.ocx" /implib:"SH3/S309PictureBox.lib" /subsystem:windowsce,2.0 /STACK:65536,4096 
+.\Intermediate\S309PictureBox.obj
+.\Intermediate\S309PictureBoxCtl.obj
+.\Intermediate\S309PictureBoxPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309PictureBox.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB52.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309PictureBox.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309PictureBox.cpp
+S309PictureBoxCtl.cpp
+S309PictureBoxPpg.cpp
+Generating Code...
+Linking...
+   Creating library SH3/S309PictureBox.lib and object SH3/S309PictureBox.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB59.bat" with contents
+[
+@echo off
+mkdir  ".\SH3 HPC"
+del /q ".\SH3 HPC\*.*"
+xcopy ".\SH3\*.*" ".\SH3 HPC\"
+del /q ".\SH3\*.*"
+rmdir ".\SH3"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB59.bat"
+
+A subdirectory or file .\SH3 HPC already exists.
+.\SH3\S309PictureBox.exp
+.\SH3\S309PictureBox.lib
+.\SH3\S309PictureBox.ocx
+.\SH3\S309PictureBox.tlb
+4 File(s) copied
+
+
+
+
+<h3>Results</h3>
+S309PictureBox.ocx - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: S309PictureBox - Win32 (WCE x86em) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Emu/S309PictureBox.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.odl""
+Creating command line "rc.exe /l 0x409 /fo"Intermediate/S309PictureBox.res" /i "Emu" /d UNDER_CE=200 /d "UNICODE" /d "_UNICODE" /d "WIN32" /d "STRICT" /d _WIN32_WCE=200 /d "H/PC Ver. 2.00" /d "_WIN32_WCE_EMULATION" /d "INTERNATIONAL" /d "USA" /d "INTLMSG_CODEPAGE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB5A.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D UNDER_CE=200 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "NDEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox.pch" /Yu"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxPpg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB5A.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB5B.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D UNDER_CE=200 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "NDEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox.pch" /Yc"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB5B.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB5C.tmp" with contents
+[
+imgdecmp.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /dll /incremental:no /pdb:"Emu/S309PictureBox.pdb" /machine:I386 /def:".\S309PictureBox.def" /out:"Emu/S309PictureBox.ocx" /implib:"Emu/S309PictureBox.lib" /windowsce:emulation 
+.\Intermediate\S309PictureBox.obj
+.\Intermediate\S309PictureBoxCtl.obj
+.\Intermediate\S309PictureBoxPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309PictureBox.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB5C.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309PictureBox.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309PictureBox.cpp
+S309PictureBoxCtl.cpp
+S309PictureBoxPpg.cpp
+Generating Code...
+Linking...
+   Creating library Emu/S309PictureBox.lib and object Emu/S309PictureBox.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB63.bat" with contents
+[
+@echo off
+mkdir  ".\Emu HPC"
+del /q ".\Emu HPC\*.*"
+xcopy ".\Emu\*.*" ".\Emu HPC\"
+del /q ".\Emu\*.*"
+rmdir ".\Emu"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSPB63.bat"
+
+A subdirectory or file .\Emu HPC already exists.
+.\Emu\S309PictureBox.exp
+.\Emu\S309PictureBox.lib
+.\Emu\S309PictureBox.ocx
+.\Emu\S309PictureBox.tlb
+4 File(s) copied
+
+
+
+<h3>Results</h3>
+S309PictureBox.ocx - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

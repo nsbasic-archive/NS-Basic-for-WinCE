@@ -1,0 +1,212 @@
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 29: Working with Classes</TITLE>
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+<base href="http://www.nsbasic.com/ce/info/technotes">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+  <TR>
+		
+    <TD WIDTH="17%" VALIGN="TOP"> 
+      <P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103>
+    	</TD>
+    <TD WIDTH="83%" VALIGN="TOP">
+      <h2>Tech Note 29: Working with Classes</h2>
+	  <h3>August 19, 2006</h3>
+      		  
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+		</h5>
+	</TD>
+	</TR>
+</TABLE><br>
+<i>Contributed by Ricardo Carraretto</i>
+<HR>
+<p>VBScript supports the concept of objects and allows us to define classes and 
+create instances, however it does not support the concepts of inheritance or 
+polymorphism. Because of this rescriction, it is known as <i>Object Based</i> 
+rather than fully <i>Object Oriented</i>. Despite this restriction, it is 
+possible to simulate some level of inheritance using a technique called 
+delegation which will be presented in the topics below. 
+
+<H3>1. Defining Classes</H3>
+
+A class is defined in VBScript using the Class statement, like this: 
+
+<pre>
+Class Foo
+
+   Private FooAttribute
+
+   Public Sub FooSub()
+      MsgBox "Foo.FooSub"
+   End Sub
+
+   Public Function FooFunction()
+      MsgBox "Foo.FooFuncion"
+      FooFunction = "value"
+   End Function
+
+End Class
+</pre>
+
+This defines a new class called <i>Foo</i> with an attribute called 
+<i>FooAttribute</i>. Since it was declared using the keyword <i>Private</i>, it 
+ will only be visible to the methods inside the class. If you want to make an 
+ attribute accessible outside the class, consider using the keyword 
+ <i>Public</i>. 
+
+It is good programming practice to keep attributes as <i>Private</i> and use 
+<i>Properties</i> to access them. This would allow the data to be checked before
+being set or read.
+
+<h3>2. Creating Instances</h3>
+
+To create an object instance in VBScript we need to use both <i>Set</i> and 
+<i>New</i> keywords. It is also good practice to declare the variables with the 
+<i>Dim</i> keyword as required by <i>Option Explicit</i>. 
+
+<pre>
+Dim objFoo
+Set objFoo = New Foo
+</pre>
+
+This creates an instance of the class declared in the previous section and 
+assigns it to the <i>objFoo</i> variable. 
+
+<h3>3. Sending Messages</h3>
+
+Messages are sent to instances using the dot notation. 
+
+<pre>
+Dim myValue
+objFoo.FooSub()
+myValue = objFoo.FooFunction()
+MsgBox "myValue = " & myValue
+</pre>
+
+The two methods declared in the class definition are called, in the first case 
+there is no return value(a <i>Sub</i>), in the second we assign the return to 
+the variable <i>myValue</i> (a <i>Function</i>). 
+
+<h3>3. Properties</h3>
+
+One good way to use the data hiding and checking attributes values is 
+the <i>Property</i> concept: 
+
+<pre>
+Class Foo
+
+   Private i_FooAttribute
+
+   Public Property Let FooAttribute(byVal Param1)
+      ( ... code to check attribute value compliance ... )
+      i_FooAttribute = Param1
+   End Property
+   
+   Public Property Get FooAttribute
+      ( ... code to format attribute output ... )
+      FooAttribute = i_FooAttribute
+   End Property
+   
+End Class
+</pre>
+
+<h3>5. Inheritance and Polymorphism</h3>
+
+VBScript as a language does not provide any inheritance mechanism nor any 
+mechanism for polymorphism. However it is possible to have some kind of 
+inheritance by using a technique called delegation. This simply means that we 
+define an attribute of the sub class to be an instance of the theoretical parent
+ class. We then define a method for all of the "inherited" methods which simply 
+ calls (or delegates to), in turn, the method of the parent instance. Let's 
+ subclass <i>Foo</i> as defined above: 
+
+<pre>
+Class SubFoo
+
+   Private parent
+
+   Private Sub Class_Initialize()
+      Set parent = New Foo
+   End Sub
+
+   Public Sub FooSub()
+      parent.FooSub
+   End Sub
+
+   Public Function FooFunction()
+      FooFunction = parent.FooFunction
+   End Function
+
+   Public Sub SubFooSub
+      MsgBox "This is unique to the SubFoo class"
+   End Sub
+
+End Class
+
+Dim objSubFoo, value
+Set objSubFoo = New SubFoo
+objSubFoo.FooSub
+value = objSubFoo.FooFunction
+objSubFoo.SubFooSub
+MsgBox "Value = " & CStr(value)
+</pre>
+
+The catch is the link made between the attribute parent and the "parent class". 
+This is automatically done when an object of class SubFoo is instantiated, 
+because of SubFoo's constructor, defined by the special private method 
+<i>Class_Initialize</i>. The constructor and destructor concepts are shown 
+below. 
+
+<h3>6. Constructors and Destructors</h3>
+
+VBScript provides support for the constructor concept through the 
+<i>Class_Initialize</i> method. This method is private, allows no parameters and 
+ is called automatically when a new instance of the class is 
+ created. A call to the <i>New</i> keyword calls the <i>Class_Initialize</i> 
+ method, if it exist.
+
+<p>We can use a <i>Function</i> as a workaround to the parameters restrictions 
+on <i>Class_Initialize</i>:
+
+<pre>
+Function NewFoo(Param1, Param2, ...)
+  Dim myFoo
+  myFoo = New Foo
+  myFoo.attr1 = Param1
+  myFoo.attr2 = Param2
+  ( ... additional initialization steps ... )
+  Set NewFoo = myFoo
+End Function
+</pre>
+
+<p> To have a method automatically called when and object is destructed, use 
+the <i>Class_Terminate()</i> method:
+
+<pre>
+Class Foo
+
+  ( ... class code ... )
+
+  Sub Class_Terminate()
+    ( ... cleanup code ... )
+  End Sub
+
+End Class
+</pre>
+
+<h3>7. Conclusion</h3>
+
+Working with classes can dramatically improve the application development cycle,
+as it becomes possible to encapsulate data and the logic to handle this data in 
+the same container.
+
+<p>Despite the lack of support on inheritance and polymorphism, the rest of OO 
+support is very stable and it will provide whole new world to write complex 
+applications in NS Basic/CE. 
+</BODY>
+</HTML>

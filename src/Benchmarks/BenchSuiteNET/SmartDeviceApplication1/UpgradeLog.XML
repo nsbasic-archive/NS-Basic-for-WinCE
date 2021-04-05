@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SmartDeviceApplication1">
+</Property><Property Name="Solution File" Value="E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\SmartDeviceApplication1.sln">
+</Property><Property Name="User Options File" Value="E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\SmartDeviceApplication1.suo">
+</Property><Property Name="Date" Value="Thursday, July 09, 2009">
+</Property><Property Name="Time" Value="13:59 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="SmartDeviceApplication1.sln" Description="File successfully backed up as E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\Backup\SmartDeviceApplication1.sln">
+</Event><Event ErrorLevel="0" Project="" Source="SmartDeviceApplication1.suo" Description="File successfully backed up as E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\Backup\SmartDeviceApplication1.suo">
+</Event><Event ErrorLevel="0" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\SmartDeviceApplication1.vbdproj" Description="Project file successfully backed up as E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\Backup\SmartDeviceApplication1\SmartDeviceApplication1.vbdproj">
+</Event><Event ErrorLevel="0" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\SmartDeviceApplication1.vbdproj.user" Description="Project user file successfully backed up as E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\Backup\SmartDeviceApplication1\SmartDeviceApplication1.vbdproj.user">
+</Event><Event ErrorLevel="0" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\AssemblyInfo.vb" Description="File successfully backed up as E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\Backup\SmartDeviceApplication1\AssemblyInfo.vb">
+</Event><Event ErrorLevel="0" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\Form1.vb" Description="File successfully backed up as E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\Backup\SmartDeviceApplication1\Form1.vb">
+</Event><Event ErrorLevel="0" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\Form1.resx" Description="File successfully backed up as E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\Backup\SmartDeviceApplication1\Form1.resx">
+</Event><Event ErrorLevel="0" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\SmartDeviceApplication1.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\SmartDeviceApplication1.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="SmartDeviceApplication1.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="SmartDeviceApplication1.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SmartDeviceApplication1" Source="SmartDeviceApplication1\SmartDeviceApplication1.vbproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

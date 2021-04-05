@@ -1,0 +1,255 @@
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 31: e-PocketSetup Express (Obsolete)</TITLE>
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+  <TR>
+		
+    <TD WIDTH="17%" VALIGN="TOP"> 
+      <P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103>
+    	</TD>
+    <TD WIDTH="83%" VALIGN="TOP">
+      <h2>Tech Note 31: e-PocketSetup Express (obsolete)</h2>
+	  <h3>November 27, 2008</h3>
+      		  
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+		</h5>
+	</TD>
+	</TR>
+</TABLE>
+<HR>
+
+<p><b>Important: </b>The owners of e-PocketSetup made the following statement on November 26, 2008:
+
+<p><pre>"Allegro Wireless Canada Inc. (Allegro) purchased all rights to the
+intellectual property of e-pocketsetup from its owner in 2007.  As such,
+Allegro did not purchase the company nor its liabilities or obligations.
+Any sales that transpired post February 2007 directly with Allegro have
+been supported and will continue to be supported by Allegro.  However,
+sales not done through Allegro are considered to be the liability of the
+selling entity, as Allegro was not involved in any way."
+ 
+If any of your customers contact you, please continue to tell them to
+direct their inquires to our email address <a href="mailto:orders&copy; allegrowireless.com" target="_top">orders&copy; allegrowireless.com</a>.</pre>
+
+<p>If you need to reinstall e-PocketSetup and you bought the product before February, 2007, Allegro will not be able to help you. joespan123 has kindly <a href="#reinstall">provided a workaround</a>.
+
+<hr>
+<p>e-PocketSetup is probably the best tool to create installers for Windows CE currently available. It's powerful, it has unique features for NS Basic users and is continually improving. It also works well for desktop apps: the NS Basic/CE installer is built using it. e-PocketSetup is a commercial product. 
+
+<p>ePocketSetup Express is sufficient for most NS Basic/CE applications. e-PocketSetup Express is an simple and quick tool to create, manage and deploy single-platform setup projects for Windows Mobile. Easy to use, it was designed for all developers that want to create modern and sophisticated setups without needing to distribute all-packages-in-one setup programs or customize the interface and setup actions.
+
+<p>In this Tech Note, we will give you the information you need to set up an installer for a typical NS Basic project. e-PocketSetup has many additional features: please consult the documentation of the product for more information.
+
+<p>To save space, we'll refer to e-PocketSetup Express as ePSX from now on.
+
+<H3>1. Getting Started</H3>
+
+Start by making a list of all the files you want to install. It will be easier if you put them into a single directory or directory structure. Make sure you include any dll or ocx controls you have added to your project. If you are distributing the control to other people, you should also have a text file with your licence agreement.
+
+<p>Start ePSX. You'll see this screen:<br><br>
+
+<img src="images/TN16a.gif" alt="">
+
+<h3>2. Project Settings</h3>
+
+Choose Main Information, under Project Settings.
+
+<ul>
+	<li>Software Name: give the name of your program. </li>
+	<li>Company Name: The name of your company. Keep this short: it needs to fit in the Remove Programs screen. For example, use "NSB" instead of "NS Basic Corporation". If the company name is too long, ActiveSync will actually have problems (the exact limit is unknown.) </li>
+	<li>Software Version: The version number of the current build. You'll have change this when you do a new version.</li>
+	<li>Description: A description. This is mostly for documentation purposes - it will not appear to the user except during installation.</li>
+	<li>Installation Directory: Usually the default is correct here.</li>
+	<li>Licence Agreement: The path to the text file with your License Agreement.</li>
+</ul>
+
+
+<img src="images/TN16b.gif" alt="">
+
+<p>You can further customize your installer by going into Setup Messages, Setup Appearance and Setup Dialogs. For a simple installer, there is no need to do so.
+
+<h3>3. NSBasic Settings</h3>
+
+Next, choose "NSBasic Settings" under Setup. It will guide you through filling in the rest of the information needed to create your installer. After you are done, you can edit the selections you made by using the other options under Setup, such as "Windows Mobile Settings", or select "Next" in the toolbar at the top of the screen.
+
+<ul>
+	<li>Compiled File: The name of your .nsb file. It will contain all the modules, so you don't need to add them to the project separately.</li>
+	<li>Custom Icon: Use this if you want to have a custom icon. It needs to be a .ico file. It needs to have a 16x16 and a 32x32 image. The images can be 16 bit or 32 bit: both images need to have the same bit depth.</li>
+	<li>NSBasic Version: What version of NS Basic/CE are you using? This is usually the latest version you have installed on your system. ePSX comes with several versions of the NS Basic runtime files. However, there could be a newer version. ePSX uses the standard NS Basic/CE Runtime CAB files, saved in the folder \program files\e-PocketSetup Express 4\Data\NSBasic\. If you want to use a newer runtime, copy its cab file to this folder.</li>
+	<li>NSBasic Platform: What devices are you targetting? The most common settings is "Pocket PC 2003 (or later)", which will work on all Pocket PC 2003 and Windows Mobile 5 Pocket PC devices. If you want to create a single installer that will work on multiple platforms, or need to support a device type not listed here, you will need to use the full version of e-PocketSetup.</li>
+	<li>Use the Custom Icon with NSBasic compiled file: Check this if you want e-PocketSetup to use your custom icon for your app. This feature is different than using NS Basic/CE's EXE file feature, which lets you create an exe file with an icon.</li>
+	<li>Install NSBasic Runtimes: This will normally be checked. If it is, ePSX will include the NS Basic runtime files into the installer. Otherwise, the appropriate runtime will have to installed to the device as well. <p>e-PocketSetup Express comes with a copy of the NS Basic runtime installer which is put into \Program Files\e-PocketSetup Express\Data\NSBasic\(rev)\(filename).Cab. If you are using the current version of NS Basic/CE, it is likely that a newer version of the runtimes exist. You need to copy these into this folder.
+	<p>To get the CAB files out of the latest version of Runtime.ppc.exe (or other installer), run it. This will unpack the CAB files and put them into \Program Files\Microsoft ActiveSync\Runtime (or the name of other installer). Copy these files over the ones in e-PocketSetup.
+	<p>The runtime that is installed the same as Runtime.ppc.exe: it does not install any additional controls your program may use. You can add these in Step 5.</li>
+</ul>
+
+<img src="images/TN16c.gif" alt="" align=center>
+
+<h3>4. Windows Mobile Settings</h3>
+
+In this screen, we tell ePSX which CPU types we will be targetting. You only need to set up information for the Platform you specified in NSBasic Settings. If your Platform is "Pocket PC 2003 (or later)", you do not need to do anything in this panel: the default is to create the installer for ARM processors. Do not check off X86 (Emulator). It is not used by NS Basic/CE.<br><br>
+
+<img src="images/TN16d.gif" alt="" align=center>
+
+<h3>5. Additional Files</h3>
+
+Use this panel to tell eEPX about other files you need to install. It automatically adds your application to the Installation Directory you specified. If you are not installing any other files, you can click on Next to go to the next step.
+
+<p>If your app has additional files, such a group of images, you can right click on %InstallDir% and add a subfolder. Add your files to this subfolder.<br><br>
+<img src="images/TN16e.gif" alt="" align=center>
+
+<p>If you have controls (.dll or .ocx) files you need to install, put them in \Windows. After you have added them, right click on the filename and select File Properties. You'll see this window:
+
+<ul>
+	<li>Source File: The pathname to the control.</li>
+	<li>File Name: The name of the file on the device. This will default to the filename,</li>
+	<li>Copy Type: "Copy Newer" will copy the control to the device if it does not exist already, or if it is newer than what is currently installed.</li>
+	<li>Shared File: Normally checked for controls. Other apps may be using the same control.</li>
+	<li>ActiveX File: Normally checked for controls. This will automatically register the control so it can be used by NS Basic/CE programs.</li>
+</ul>
+
+<img src="images/TN16f.gif" alt="" align=center>
+
+<h3>6. Additional Packages</h3>
+
+Use this panel to add additional CAB files. This won't be necessary for most projects.<br><br>
+
+<img src="images/TN16g.gif" alt="" align=center>
+
+<h3>7. Runtimes</h3>
+
+Skip this window - nothing needs to be entered here.<br><br>
+<img src="images/TN16h.gif" alt="" align=center>
+
+<h3>8. Shortcuts</h3>
+
+Your application will be installed to the directory \Program Files\%InstallationDirectory%\appname on your device. To make it easy to access from the Start menu, we need to put a shortcut to it. ePSX sets up this shortcut automatically.<br><br>
+<img src="images/TN16i.gif" alt="" align=center>
+
+<h3>9. Registry Entries</h3>
+
+This window lets you set up registry entries for your application. Once again, most NS Basic/CE apps will not need to do anything here.<br><br>
+<img src="images/TN16j.gif" alt="" align=center>
+
+<h3>10. Build Information</h3>
+
+We're almost done. Just a bit more information to enter about how the installer will be built.
+
+<ul>
+	<li>Output Directory: What directory should the installer that gets created be placed in?</li>
+	<li>Build Mode: The default, "(generates the CAB files and the setup program)" is the normal choice here: it will create an exe program that does the installation.</li>
+	<li>Delete files after calling ActiveSync: When the setup runs, it unpacks the CAB files and puts them in a folder in \Program Files\ActiveSync. If you would like the files deleted after the installation, check this.</li>
+	<li>Include Uninstaller: This is a good idea - it makes sure the installer also installs an uninstaller.</li>
+</ul>
+<img src="images/TN16k.gif" alt="" align=center>
+
+<h3>11. Generate Setup</h3>
+
+We're done! Click on Generate Setup and the setup file is created. The file EPS Demo.exe is our installer. It has also created EPS Demo_WM5_StrongArm.cab, which is only needed for installing without ActiveSync (for example, from a card).<br><br>
+<img src="images/TN16l.gif" alt="" align=center>
+
+<h3>12. Test the Setup</h3>
+
+To run the installer you have just created, click on the .exe file that was created and follow the instructions on the screen. You can now go back and tweak any of the settings and recreate the installer until it is just right.
+
+<h3>Additional Notes</h3>
+
+<b>Multiple Shortcuts</b>
+
+<p>From Mike Trainor: 
+<p>The wizard only allows for one shortcut, but if another is needed, simply create the shortcut on your Pocket PC. Copy the file from \windows\start menu folder to your desktop. Then add it to the list of files to be installed by epocketsetup with the destintation being \windows\start menu.
+
+<p><b><a name="reinstall">How to reinstall e-PocketSetup</b>
+
+<p>From joespan123:
+
+<p>For those lucky people who actually did purchase a copy of
+ePocketSetup you may come into trouble if you ever have to re-install
+the application on your computer if you ever have to rebuild your PC.
+
+<p>ePocketSetup registration and purchase of a license worked as follows:
+
+<p>1) You install the trial software say "eps4_trial_v4.1.0.1.exe". This
+was cobbled and would fail to work after a time period.
+
+<p>2) You had to purchase a license to turn the trial software into a
+valid install.
+
+<p>3) Once you made the purchase you had to download and run a file
+called "regwizard_v4.1.0.1.exe". You also recieved a license file with
+Name, Company and Registration key.
+
+<p>4) This "regwizard_v4.1.0.1.exe" when run gives you the option to
+"Activate by Internet" or "Activate by Email".
+
+<p>5) You then enter in the supplied Name, Company and Registration key
+provided in step 3.
+
+<p>6) When you enter the license details, the "regwizard_v4.1.0.1.exe"
+will contact ePocketSetup and verify your license.
+
+<p>7) Once your license details are verified, "regwizard_v4.1.0.1.exe"
+will proceed to install files to turn the ePocketSetup from a trial
+software to a registered software.
+
+<p>8) Once step 7 is complete you will have a regisitered ePocketSetup
+installed on your PC.
+
+
+<p>Now given the ePocketSetup website and the author is unavailable you
+will be stuck if you need to re-install the software. You will not be
+able to run the "regwizard_v4.1.0.1.exe" to authenticate your license.
+
+
+<p>Here is the way to save yourself from this predicament.
+
+<p>When ePocketSetup succefully authenticates your license it installs
+all the files required to turn the software from trial to registered.
+
+<p>There are numerous files installed but the one file that is installed
+that really counts is the actual ePocketSetup executable. This is
+"SetupMgr.exe".
+
+<p>To actually use the following method to restore ePocketSetup onto a PC
+that has been rebuilt you first need to satify:
+
+<p>a) Have the original "eps4_trial_v4.1.0.1.exe" trial software. This is
+required to be installed as it may well install required DLL's into
+the windows system32 directory and other places.
+
+<p>b) Have ePocketSetup fully installed and functional on the PC and you
+must have a licensed version.
+
+<p>To make a backup of the installation do the following:
+
+<p>1) Keep the "eps4_trial_v4.1.0.1.exe" install
+
+<p>2) Zip up the "C:\Program Files\e-PocketSetup 4" install folder.
+
+<p>3) Using RegEdit, backup the following registry entries:
+
+<p>   [HKEY_CURRENT_USER\Software\MB]
+
+
+<p>Now do the following to restore the backup:
+
+<p>1) Install "eps4_trial_v4.1.0.1.exe"
+
+<p>2) Overwrite the "C:\Program Files\e-PocketSetup 4" with the backed up
+copy.
+
+<p>3) Install the saved registry entry "[HKEY_CURRENT_USER\Software\MB]".
+This will also contain your license key.
+
+
+</BODY>
+</HTML>
+  
+  
+  

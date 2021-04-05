@@ -1,0 +1,127 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_100_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_100_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>REPLACE                                                               Function</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>REPLACE</span></font>(<i><span style='font-style:italic;'>target</span></i>,
+<i><span style='font-style:italic;'>find</span></i>, <i><span style='font-style:italic;'>source</span></i>[,
+<i><span style='font-style:italic;'>start</span></i>[, <i><span style='font-style:italic;'>count</span></i>[,
+<i><span style='font-style:italic;'>compare</span></i>]]])</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>REPLACE returns a string which has had one substring replaced
+by another a specified number of times. The required parameter, <i><span style='font-style:italic;'>target</span></i>, is a string expression containing the substring to
+replace. The required parameter, <i><span
+style='font-style:italic;'>find</span></i>, is the
+string expression to be replaced. The required parameter, <i><span style='font-style:italic;'>source</span></i>,
+is the string expression used as the replacement. The optional parameter, <i><span style='font-style:italic;'>start</span></i>, is a numeric expression that specifies the starting
+position of the search within the target string; if <i><span style='font-style:italic;'>start</span></i>
+is not provided, the search defaults to 1, which represents the first character
+position. The optional parameter, <i><span
+style='font-style:italic;'>count</span></i>, is a
+numeric expression that specifies the number of substitutions to perform; if <i><span style='font-style:italic;'>count</span></i> is not provided -1 is used and all possible
+substitutions are made. The optional parameter, <i><span style='font-style:italic;'>compare</span></i>,
+is used to specify the type of search performed. See the Filter function for
+values.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM REPLACE Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'REPLACE performs string substitutions</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Message, Ride</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Message = &quot;Good morning, class.&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT Message</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Message = REPLACE(Message,
+&quot;morning&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;afternoon&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT Message</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Ride = &quot;big Al's big boat ride&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Ride = REPLACE(Ride, &quot;big&quot;,
+&quot;Big&quot;, 1, 1)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT Ride</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Good morning, class.</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Good afternoon, class.</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Big Al's big boat ride</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+</div>
+
+</body>
+
+</html>

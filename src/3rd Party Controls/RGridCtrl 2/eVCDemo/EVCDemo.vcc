@@ -1,0 +1,52 @@
+; CLW file contains information for the MFC ClassWizard
+
+[General Info]
+Version=1
+LastClass=CEVCDemoDlg
+LastTemplate=CDialog
+NewFileInclude1=#include "stdafx.h"
+NewFileInclude2=#include "EVCDemo.h"
+
+ClassCount=2
+Class1=CEVCDemoApp
+Class2=CEVCDemoDlg
+
+ResourceCount=4
+Resource2=IDR_MAINFRAME
+Resource3=IDD_EVCDEMO_DIALOG
+Resource4=IDD_EVCDEMO_DIALOG (English (U.S.))
+
+[CLS:CEVCDemoApp]
+Type=0
+HeaderFile=EVCDemo.h
+ImplementationFile=EVCDemo.cpp
+Filter=N
+
+[CLS:CEVCDemoDlg]
+Type=0
+HeaderFile=EVCDemoDlg.h
+ImplementationFile=EVCDemoDlg.cpp
+Filter=D
+LastObject=CEVCDemoDlg
+BaseClass=CDialog
+VirtualFilter=dWC
+
+
+[DLG:IDD_EVCDEMO_DIALOG]
+Type=1
+ControlCount=3
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC,static,1342308352
+Class=CEVCDemoDlg
+
+[DLG:IDD_EVCDEMO_DIALOG (English (U.S.))]
+Type=1
+Class=CEVCDemoDlg
+ControlCount=5
+Control1=IDC_GRID,{058E370E-6141-4E41-8B95-846EE04BB303},1342242816
+Control2=IDC_ADD,button,1342242816
+Control3=IDC_REMOVE,button,1342242816
+Control4=IDC_VALUE,edit,1350631552
+Control5=IDC_WORDWRAP,button,1342242819
+

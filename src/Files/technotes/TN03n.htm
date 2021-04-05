@@ -1,0 +1,445 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 03n: Using TabStrip</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h2>Tech Note 03n
+	  : Using the TabStrip and ImageList Controls</h2>
+	  <h3>March 12, 2003</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr>
+
+<blockquote>
+  <p>For more information on this control, see Microsoft's 
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">documentation</A>.
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<H4>The information and samples used in this note are kindly contributed by Borut Lunder of Slovenia. The code and necessary files are in the <A HREF="http://nsbasic.com/ce/support/downloads.html">downloads directory</A>.</H4>
+<P>The TabStrip control allows you to format a screen with tabs across the top. Tapping each tab brings up a different screen. 
+
+<P>The ImageList control allows you to place an icon on the tabs of the TabStrip control. 
+
+<h3>How to run the sample</h3>
+Move the files Gauger.nsb and Copy.nsb to the \BASIC Samples folder on your device using ActiveSync. Run them as usual. Note that the samples are formatted for an HPC screen, which is wider than a Pocket PC.
+
+<H3>Sample Code Listing</H3>
+<PRE>REM Gauger for Windows CE 1.10
+REM Author: Borut Lunder, MD, Slovenia
+REM Use the same decimal symbol as set in Control Panels/Regional Settings
+REM Demonstration of Tabstrip control
+
+option explicit
+dim meter,liter,square,titlebar,filemenu,helpmenu,lok,mok,wok,eok,weight
+addobject "cetabstrip.tabstrip.1","tab1",10,10,output.width-20,output.height-20
+addobject "ceimagelist.imagelistctrl.1","imagelist"
+titlebar=array("File","Help")
+setmenu "titlebar",titlebar
+FileMenu=array("Exit")
+setmenu "File",FileMenu
+HelpMenu=array("About")
+setmenu "Help",HelpMenu
+imagelist.imagewidth=16
+imagelist.imageheight=16
+imagelist.add "\basic samples\copy.bmp"
+tab1.imagelist=imagelist.himagelist
+tab1.fontsize=10
+tab1.tabwidthstyle=2
+tab1.style=0
+tab1.tabs.add 1,,"Length"
+tab1.tabs.add 2,,"Extent"
+tab1.tabs.add 3,,"Measure"
+tab1.tabs.add 4,,"Weight"
+tab1.tabs.remove 5
+addobject "textbox","lpic3",output.width/2,110,100,18
+addobject "textbox","lpic2",output.width/2,60,100,18
+addobject "textbox","lpic1",output.width/8,110,100,18
+addobject "textbox","lpic",output.width/8,60,100,18
+addobject "textbox","epic3",output.width/2,110,100,18
+epic3.hide
+addobject "textbox","epic2",output.width/2,60,100,18
+epic2.hide
+addobject "textbox","epic1",output.width/8,110,100,18
+epic1.hide
+addobject "textbox","epic",output.width/8,60,100,18
+epic.hide
+addobject "textbox","mpic3",output.width/2,110,100,18
+mpic3.hide
+addobject "textbox","mpic2",output.width/2,60,100,18
+mpic2.hide
+addobject "textbox","mpic1",output.width/8,110,100,18
+mpic1.hide
+addobject "textbox","mpic",output.width/8,60,100,18
+mpic.hide
+addobject "textbox","wpic3",output.width/2,110,100,18
+wpic3.hide
+addobject "textbox","wpic2",output.width/2,60,100,18
+wpic2.hide
+addobject "textbox","wpic1",output.width/8,110,100,18
+wpic1.hide
+addobject "textbox","wpic",output.width/8,60,100,18
+wpic.hide
+lpic.caption=0
+lpic1.caption=0
+lpic2.caption=0
+lpic3.caption=0
+epic.caption=0
+epic1.caption=0
+epic2.caption=0
+epic3.caption=0
+wpic.caption=0
+wpic1.caption=0
+wpic2.caption=0
+wpic3.caption=0
+mpic.caption=0
+mpic1.caption=0
+mpic2.caption=0
+mpic3.caption=0
+lpic.setfocus
+lok=1
+mok=1
+wok=1
+eok=1
+addObject "picturebox","L7",output.width/8+110,60,60,68
+addObject "picturebox","L8",output.width/2+110,60,50,68
+call inch
+sub lpic_gotfocus
+  lok=1
+end sub
+sub lpic1_gotfocus
+  lok=2
+end sub
+sub lpic2_gotfocus
+  lok=3
+end sub
+sub lpic3_gotfocus
+  lok=4
+end sub
+sub epic_gotfocus
+  eok=1
+end sub
+sub epic1_gotfocus
+  eok=2
+end sub
+sub epic2_gotfocus
+  eok=3
+end sub
+sub epic3_gotfocus
+  eok=4
+end sub
+sub mpic_gotfocus
+  mok=1
+end sub
+sub mpic1_gotfocus
+  mok=2
+end sub
+sub mpic2_gotfocus
+  mok=3
+end sub
+sub mpic3_gotfocus
+  mok=4
+end sub
+sub wpic_gotfocus
+  wok=1
+end sub
+sub wpic1_gotfocus
+  wok=2
+end sub
+sub wpic2_gotfocus
+  wok=3
+end sub
+sub wpic3_gotfocus
+  wok=4
+end sub
+sub wpic_change
+  on error resume next
+  if wok=1 then
+    weight=wpic.caption
+    wpic1.text=weight/1000
+    wpic2.text=weight*35.27
+    wpic3.text=weight*2.205
+  end if
+end sub
+sub wpic1_change
+  on error resume next
+  if wok=2 then
+    weight=wpic1.caption
+    wpic.text=weight*1000
+    wpic2.text=weight*35270
+    wpic3.text=weight*2205
+  end if
+end sub
+sub wpic2_change
+  on error resume next
+  if wok=3 then
+    weight=wpic2.caption
+    wpic.text=weight*0.02835
+    wpic1.text=weight*0.00002835
+    wpic3.text=weight*0.0625
+  end if
+end sub
+sub wpic3_change
+  on error resume next
+  if wok=4 then
+    weight=wpic3.caption
+    wpic.text=weight*0.453
+    wpic1.text=weight*0.000454
+    wpic2.text=weight*16
+  end if
+end sub
+sub lpic1_change
+  on error resume next
+  if lok=2 then
+    meter=lpic1.caption
+    lpic.text=meter*1000
+    lpic2.text=meter*39370
+    lpic3.text=meter*3281
+  end if
+end sub
+sub lpic_change
+  on error resume next
+  if lok=1 then
+    meter=lpic.caption
+    lpic1.text=meter/1000
+    lpic2.text=meter*39.37
+    lpic3.text=meter*3.281
+  end if
+end sub
+sub lpic2_change
+  on error resume next
+  if lok=3 then
+    meter=lpic2.caption
+    lpic.text=meter*0.0254
+    lpic1.text=meter*0.0000254
+    lpic3.text=meter*0.0833375
+  end if
+end sub
+sub lpic3_change
+  on error resume next
+  if lok=4 then
+    meter=lpic3.caption
+    lpic.text=meter*0.3048
+    lpic1.text=meter*0.0003048
+    lpic2.text=meter*12
+  end if
+end sub
+sub mpic_change
+  on error resume next
+  if mok=1 then
+    liter=mpic.caption
+    mpic1.text=liter*0.001
+    mpic2.text=liter*3.785
+    mpic3.text=liter*158.9
+  end if
+end sub
+sub mpic1_change
+  on error resume next
+  if mok=2 then
+    liter=mpic1.caption
+    mpic.text=liter/1000
+    mpic2.text=liter*0.0002642
+    mpic3.text=liter*0.000006292
+  end if
+end sub
+sub mpic2_change
+  on error resume next
+  if mok=3 then
+    liter=mpic2.caption
+    mpic.text=liter*3.785
+    mpic1.text=liter*3785
+    mpic3.text=liter*0.02381
+  end if
+end sub
+sub mpic3_change
+  on error resume next
+  if mok=4 then
+    liter=mpic3.caption
+    mpic.text=liter*158.9
+    mpic1.text=liter*15890
+    mpic2.text=liter*41.99
+  end if
+end sub
+sub epic_change
+  on error resume next
+  if eok=1 then
+    square=epic.caption
+    epic1.text=square*0.0929
+    epic2.text=square*100
+    epic3.text=square*4047
+  end if
+end sub
+sub epic1_change
+  on error resume next
+  if eok=2 then
+    square=epic1.caption
+    epic.text=square*0.0929
+    epic2.text=square*0.000929
+    epic3.text=square*0.00002296
+  end if
+end sub
+sub epic2_change
+  on error resume next
+  if eok=3 then
+    square=epic2.caption
+    epic.text=square*100
+    epic1.text=square*1076
+    epic3.text=square*0.02471
+  end if
+end sub
+sub epic3_change
+  on error resume next
+  if eok=4 then
+    square=epic3.caption
+    epic.text=square*4047
+    epic1.text=square*43560
+    epic2.text=square*40.47
+  end if
+end sub
+sub tab1_click()
+  select case tab1.selecteditem.caption
+  case "Length"
+    lpic.setfocus
+    call inch
+    lpic.show
+    lpic1.show
+    lpic2.show
+    lpic3.show
+    epic.hide
+    epic1.hide
+    epic2.hide
+    epic3.hide
+    mpic.hide
+    mpic1.hide
+    mpic2.hide
+    mpic3.hide
+    wpic.hide
+    wpic1.hide
+    wpic2.hide
+    wpic3.hide
+  case "Extent"
+    epic.setfocus
+    call extent
+    lpic.hide
+    lpic1.hide
+    lpic2.hide
+    lpic3.hide
+    epic.show
+    epic1.show
+    epic2.show
+    epic3.show
+    mpic.hide
+    mpic1.hide
+    mpic2.hide
+    mpic3.hide
+    wpic.hide
+    wpic1.hide
+    wpic2.hide
+    wpic3.hide
+  case "Measure"
+    mpic.setfocus
+    call barel
+    lpic.hide
+    lpic1.hide
+    lpic2.hide
+    lpic3.hide
+    epic.hide
+    epic1.hide
+    epic2.hide
+    epic3.hide
+    mpic.show
+    mpic1.show
+    mpic2.show
+    mpic3.show
+    wpic.hide
+    wpic1.hide
+    wpic2.hide
+    wpic3.hide
+  case "Weight"
+    wpic.setfocus
+    call weight1
+    lpic.hide
+    lpic1.hide
+    lpic2.hide
+    lpic3.hide
+    epic.show
+    epic1.show
+    epic2.show
+    epic3.show
+    mpic.hide
+    mpic1.hide
+    mpic2.hide
+    mpic3.hide
+    wpic.show
+    wpic1.show
+    wpic2.show
+    wpic3.show
+  end select
+end sub
+sub About_click()
+  msgbox " Author: Borut Lunder, MD" &amp; chr(13) &amp; " e-mail: borut.lunder&copy; astamedica.si"  &amp; chr(13) &amp; " Slovenska 9a, 1000 Ljubljana"
+&amp;chr(13) &amp;" Slovenia - Europe",257," Gauger for Windows CE 1.10 "
+end sub
+sub Exit_click()
+  bye
+end sub
+function barel
+  L7.cls
+  L8.cls
+  L7.drawtext "litre"
+  L7.drawtext ""
+  L7.drawtext ""
+  L7.drawtext "cubic"
+  L8.drawtext "gallon"
+  L8.drawtext ""
+  L8.drawtext ""
+  L8.drawtext "barel"
+end function
+function inch
+  L7.cls
+  L8.cls
+  L7.drawtext "meter"
+  L7.drawtext ""
+  L7.drawtext ""
+  L7.drawtext "kilometer"
+  L8.drawtext "inch"
+  L8.drawtext ""
+  L8.drawtext ""
+  L8.drawtext "feet"
+end function
+function Extent
+  L7.cls
+  L8.cls
+  L7.drawtext "sq.meter"
+  L7.drawtext ""
+  L7.drawtext ""
+  L7.drawtext "sq.feet"
+  L8.drawtext "are"
+  L8.drawtext ""
+  L8.drawtext ""
+  L8.drawtext "acre"
+end function
+function weight1
+  L7.cls
+  L8.cls
+  L7.drawtext "kilogram"
+  L7.drawtext ""
+  L7.drawtext ""
+  L7.drawtext "tone"
+  L8.drawtext "ounce"
+  L8.drawtext ""
+  L8.drawtext ""
+  L8.drawtext "pound"
+end function</PRE>
+<P>&nbsp;</P></BODY>
+</HTML>

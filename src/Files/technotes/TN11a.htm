@@ -1,0 +1,331 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 11a: NS Basic Controls Overview</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h1>Tech Note 11a: NS Basic Controls Overview</h1>
+	  <h3>May 02, 2006
+	  </h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- #include file="includes/header.htm" -->  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <h1>NS BASIC Controls</h1>
+            <hr>
+            <p>NS BASIC Controls implements set of controls and helper classes.
+            Together they enable the NSBasic developers to use a number of Windows Common
+            Controls in their projects. The library will grow in time including
+            more controls of this category. This documentation will be updated
+            accordingly.</p>
+            <p>When a new version is published you can just replace the
+            library's DLL in your application distributives. The backward
+            compatibility between the versions is preserved and only new
+            features and controls are added with each new version. Check for
+            more general information in the FAQ.</p>
+            <h2>1. The library contents</h2>
+            <table border="0" width="100%" bgcolor="#808000" cellspacing="1">
+              <tr>
+                <th width="50%" bgcolor="#FFFFE1" nowrap>Insertable (visual)
+                  Controls</th>
+                <th width="50%" bgcolor="#FFFFE1" nowrap>Helper ActiveX objects.</th>
+              </tr>
+              <tr>
+                <td width="50%" bgcolor="#FFFFE1" valign="top" align="center">These
+                  are the ActiveX controls you would want to put onto your
+                  forms. Usually you should put them in the NSBasic IDE's
+                  toolbox and then place them on the forms on which they will be
+                  used.&nbsp;&nbsp;</td>
+                <td width="50%" bgcolor="#FFFFE1" valign="top" align="center">These
+                  are creatable ActiveX objects which have no visual appearance
+                  of their own at run time. They are used by the visual controls
+                  in this library to maintain certain common data. Most often <b><font color="#FF0000">you
+                  do not need to create them directly</font></b> because the
+                  visual controls create them automatically and enable you work
+                  with them as if they are integral part of the control
+                  itself (<a href="faq.htm#HelperObjects">see faq</a>).</td>
+              </tr>
+              <tr>
+                <td width="50%" bgcolor="#FFFFFF" valign="top">
+              <p><img border="0" src="images/obj.gif" width="16" height="16">   <a href="TN12.htm"><b>NSListView</b></a></p>
+                <p><b>ProgID: NSBasic.comctl.ListView<br>
+                ClassID: </b><b>{F7A4DFE2-C262-457E-B0C5-B4789D02988D}</b><b><br>
+                Create example:&nbsp;<br>
+ AddObject &quot;NSBasic.comctl.ListView&quot;,
+                &quot;NSListView1&quot;, 312, 0, 328, 456, Form1</b></p>
+                  <p><b>Note: </b>It is more convenient to put it into the
+                  toolbox of the IDE first and then place it on the forms.<br>
+                  &nbsp;</p>
+                  <p>&nbsp;</td>
+                <td width="50%" bgcolor="#FFFFFF" valign="top"><img border="0" src="images/obj.gif" width="16" height="16">
+                  <b><a href="TN11.htm">NSBImageList</a></b>
+                  <p><b>ProgID: NSBasic.comctl.ImageList<br>
+                  ClassID: {E4FD27CF-BA94-452F-A486-82CFA4D09868}<br>
+                  Create example:&nbsp;<br>
+                  AddObject &quot;NSBasic.comctl.ImageList&quot;,
+                  &quot;MyImageList1&quot;</b></p>
+                  <p><img border="0" src="images/obj.gif" width="16" height="16"> <a href="TN11b.htm"><b>NSFont</b></a></p>
+                  <p><b>ProgID: NSBasic.comctl.NSFont<br>
+                  ClassID: {07679CF2-323B-46A7-87CB-A8DC600BC4BE}<br>
+                  Create example:<br>
+                  AddObject &quot;NSBasic.comctl.NSFont&quot;,
+                  &quot;MyFont1&quot;</b></td>
+              </tr>
+            </table>
+            <p><b><a name="addtotoolbox">How to add a control to the toolbox
+            manually</a>: </b>Make sure
+            that the Windows desktop&nbsp; version of control's DLL (NSBControls.dll)
+            is installed/registered on your desktop/notebook computer.&nbsp; Open the ActiveX
+            Control manager dialog box from the tool menu, browse for the DLL
+            and add it. Note that for the both NSBasic development environments
+            (Desktop and CE) the desktop version of the DLL is used at design
+            time. The
+            specific version for the device is needed only when the application
+            is deployed. This is so, because the IDE uses only the registration
+            information of the DLL and may need to query it for some information
+            while you are developing the application on the desktop.</p>
+            <h2>2. NS BASIC Controls <a name="FAQ"> FAQ</a></h2>
+      <p><b>Q: Why put many controls in single DLL instead of putting each control in separate DLL?</b></p>
+      <blockquote>
+      <p>A: Most of the controls in this library are complex and thus require
+      common helper objects and facilities. Having them all in a single DLL
+      makes the integration of all those objects easier and minimizes the impact
+      over the performance. For example&nbsp; NSBImageList objects are used by
+      the NSListView control but they are also used by the NSTreeView control.
+      Having separate DLL for each control will require implementation of image
+      list in each of them and make it harder to share the same object
+      between different kind of controls. When in single DLL the objects have
+      the opportunity to create such objects directly and not through the
+      standard COM API routines thus avoiding the ned to dig into the registry each time an object
+      is created. Obviously in case of extensive usage of certain objects this
+      improves the performance drastically. The DLL may be a bit bigger than
+      usual but over a third of its size is occupied by code common to all the
+      controls. Therefore splitting the controls in separate DLL-s will cause
+      noticeable size overhead if more than one control is needed in any
+      particular project.&nbsp;&nbsp; </p>
+      </blockquote>
+      <p><b><a name="HelperObjects">Q: How do the helper objects become integral
+      parts of the controls?</a></b></p>
+      <blockquote>
+      <p>A:&nbsp; Let's illustrate this with the NSBImageList object. The
+      NSListView control needs 3 such objects - one for each: the big item
+      icons, small item icons and the column headings. When created NSListView
+      implicitly creates 3 empty image lists - one for each purpose and exposes
+      them through these properties:</p>
+        <ul>
+          <li><b>Icons</b> - the big icons</li>
+          <li><b>SmallIcons</b> - the small icons and the icons in report view
+            (both for items and subitems)</li>
+          <li><b>ColumnHeaderIcons</b> - the icons for the column headings.</li>
+        </ul>
+        <p>Thus when you need to load some images to display in the&nbsp; NSListView you do not need to create an NSBImageList
+        object. Instead you
+        address the already existing object through the property that exposes it
+        to you:</p>
+        <p><font color="#006600">NSListView1.Icons.LoadBitmap &quot;\myimages.bmp&quot;</font></p>
+        <p>will load images into the big icons image list of the control. You
+        can also change the sizes the same way:</p>
+        <p><font color="#006600">' Note that usually this is done before loading any
+        images,&nbsp;<br>
+        ' because when the size changes all the existing images are deleted.<br>
+        NSListView1.Icons.Width = 48<br>
+        NSListView1.Icons.Height = 48</font></p>
+        <p>So, effectively you can consider the image list integral part of the
+        control. In the NSListView there are 3 such integral parts and you can
+        manage them through the corresponding property.</p>
+        <p>Is it possible to replace such an object in the control? Yes! You can
+        create a NSBImageList separately or get it from another object on the
+        form and assign it to the control. Suppose we have two list views on the
+        same form:</p>
+        <p><font color="#006600">Set NSListView2.SmallIcons = NSListView1.SmallIcons</font></p>
+        <p>will assign the small icons image list from the first list view
+        control to the second and both list views will share the same object.
+        This is especially helpful when you want to use the same set of images
+        in different controls.</p>
+        <p>Creating object such as NSBImageList explicitly is rarely needed. One
+        of the cases in which it would make sense is a scenario in which you are
+        adding control dynamically to the form. In such case you may want to
+        have the images already prepared before adding the new control(s).
+        However, this is extremely untypical.</p>
+      </blockquote>
+        <p><b>Q: What are these Tag properties for?</b></p>
+            <blockquote>
+              <p>Almost all the objects in the NS BASIC Controls library has
+              this property. The application can save in it whatever it wants
+              and then access it later. This means that you can assign to a Tag
+              property a simple value (such as string) or Set an object - it is
+              up to you. Further this Tag can be used to tag an element in a
+              control or help the application recognize the element in some
+              convenient way. The Tag can be used for many purposes, but we will
+              try to emphasize two of the most interesting ones:</p>
+              <p><b>Handling events:</b> A good example is the NSListView
+              control. Its events carry single argument - a NSListViewEvent
+              object which has several properties that can be empty or filled
+              with something. That something is the control's element or elements
+              relevant to the event.&nbsp; Thus handling the vent you can access
+              an element relevant to it directly. For example:</p>
+              <p><font color="#006600">Sub NSListView1_OnClick(e)<br>
+              &nbsp; e.Item.Text = &quot;I have been clicked!&quot;<br>
+              End Sub</font></p>
+              <p>This code changes the text of the clicked item to &quot;I have
+              been clicked!&quot;. In this sample code there is no indexing -
+              the item that&nbsp; have been clicked is in the event object and
+              you can work with it directly regardless of its index in the control.
+              In the real world the items carry some meaning and very often the
+              application needs to establish a relation between the item and
+              other data. For example if the items represent the rows from the
+              result returned by a database query you may want to
+              &quot;attach&quot; each row to its item. Lets illustrate this with
+              an example. Assume you have SQLite COM or SQLite3 COM database
+              opened (the db variable holds the DB connection object):</p>
+              <p><font color="#006600">Set res = db.Execute(&quot;SELECT * FROM
+              T&quot;)<br>
+              For Each row In res<br>
+              &nbsp;&nbsp; Set itm = NSListView1.ListItems.Add(,,row(&quot;FIRST_NAME&quot;))<br>
+              &nbsp;&nbsp; Set itm.Tag = row<br>
+              Next</font></p>
+              <p>In this code we add one item for each row in the result of the
+              query. For brevity we only assign a text to each item (no icons or
+              other goodies). Then we also assign the row to the Tag property of
+              the item. Thus we have each row attached to its item. Visually the
+              item uses one of the fields from the result as a text label, but
+              internally we keep a reference to the entire row and we can access it through the
+              Tag property whenever we want. When we would want to do so? Again
+              when handling events, but also we may want to do the same when we
+              do something else - such as enumerating the items, searching for
+              items and then access the DB row for each found item and so on.
+              Most clear is the event handling case (lets use OnClick again):</p>
+              <p><font color="#006600">Sub NSListView1_OnClick(e)<br>
+              &nbsp; Dim s<br>
+              &nbsp; s = &quot;&quot;<br>
+              &nbsp; For I = 1 To e.Item.Tag.Count<br>
+              &nbsp;&nbsp;&nbsp; s = s &amp; e.Item.Tag.Key(I) &amp;
+              &quot;=&quot; &amp; e.Item.Tag(I) &amp; vbCrLf<br>
+              &nbsp; Next<br>
+              &nbsp; MsgBox s<br>
+              End Sub</font></p>
+              <p>We simply show a message box with all the fields in the row in
+              Name=Value format. Note that we know that the Tag contains a row
+              from the previously extracted data from the DB, thus we can use
+              over it the Count property to see how many fields are there and
+              the Key property to get the name for each field.&nbsp;</p>
+              <p>Obviously without the Tag property in the above example we will
+              need to make complex and sometimes risky calculations to identify
+              the row that corresponds to an item.&nbsp; Why risky? Imagine the
+              application decides to add items generated the same way for
+              another query, not removing the already existing items first. Then
+              we have two data sets and many items which may have been sorted
+              visually before we access them again. The index of an item will be
+              of no use after all the visual sorting - no index to row relation is preserved and
+              remember we have two datasets used, so which one corresponds to a
+              particular item... With the tags the data is attached to the item
+              and we have everything at hand.</p>
+              <p><b>Sorting and searching: </b>This applies to some objects only
+              (such as Item and SubItem in the NSListView control). The
+              NSListView.FindItems method and the sorting functions of this
+              control support search/sort by text or <b>Tag</b>. Very often the
+              application would need to show the user one text and keep in the
+              background another data that is more convenient for processing.
+              The best examples are scenarios in which you want to show the user
+              values marked with measurement units. For example file size
+              rounded to KBytes or MBytes as appropriate for each individual
+              value, or another example weight - again some values will be
+              rounded to grams other to kilograms and so on. The texts shown to
+              the user are not numbers and cannot be sorted or searched as such
+              without complicated string parsing - specific for each individual
+              similar scenario. Sorting them as texts will be ridiculous 1g and
+              1kg will appear both smaller than 2g and 2kg which is not exactly
+              true. So, the simplest solution is to save convenient numeric or
+              text value in the Tag property of each item/subitem and then
+              search/sort over the contents of the Tag properties and not the
+              texts - which remain only visual labels for human
+              consumption.&nbsp;</p>
+              <p>What if we want to combine both - keep for example entire row
+              of data (as in the example above) and also use the Tag-s for
+              sorting/searching. Is it possible? Almost always - yes! When the
+              sorting and the searching functions use the Tag properties of the
+              elements in the control they do not require the Tag property to
+              contain plain string or a number. Instead you may have an object
+              there (an entire row of data for example) which have default
+              property that returns text or numeric value (as appropriate for
+              the sort or search you want to perform). In the case with the
+              SQLite COM/SQLite3 COM the results are packed using VarDictionary
+              objects from newObjects ActiveX Pack1. Thus each row is a
+              VarDictionary object which is actually a general purpose
+              collection/dictionary object and can be configured to behave the
+              way you want it. For the purposes of this example we want the
+              default property of such a row of data to return something
+              sensible. Lets modify the code from the above example a little:</p>
+              <p><font color="#006600">Set res = db.Execute(&quot;SELECT * FROM
+              T&quot;)<br>
+              For Each row In res<br>
+              &nbsp;&nbsp; Set itm = NSListView1.ListItems.Add(,,row(&quot;FIRST_NAME&quot;))<br>
+              &nbsp;&nbsp; row.Root = row(&quot;LAST_NAME&quot;)<br>
+              &nbsp;&nbsp; Set itm.Tag = row<br>
+              Next</font></p>
+              <p>The VarDictionary's Root property specifies what default value
+              should be returned by the object when it is queried for its
+              default property without index (when index is used the indexed
+              element is returned). Thus by assigning the value of a specific
+              field to it we ensure that the sorts or the searches in the
+              NSListView controls will be done over the text in that field. Remember how we want to have one text shown to the user and
+              another actually used for sorting - we achieved that (frankly in a
+              bit weird way in this example) - the item shows the FIRST_NAME,
+              but any sorts using the Tag property will occur over the LAST_NAME.&nbsp;<br>
+              <br>
+              <b>Conclusion:</b> The Tag properties are powerful way to create
+              relations between visible elements and data managed by the
+              application internally. They enable the developer to avoid complex
+              index calculations and can be used to tune the behavior of some
+              controls according to the actual meaning of the information and
+              not its human readable representation. While it is hard to
+              estimate it exactly in
+              a typical application Tag based implementation would require at
+              least 2-3
+              times less code than index based data to visual elements relation
+              implementation. And note that this means that by choosing
+              appropriate values for the Tag-s you are free to perform whatever
+              visual operations you want without losing the relation with the
+              internal data&nbsp; - this enables you to provide more user
+              friendly features without concern about the rest of the work the
+              application does.</p>
+            </blockquote>
+            <h2>3. Supported platforms and compatibility </h2>
+            <p>The library is available as single DLL named: <b>NSBControls.dll.</b> </p>
+            <p>All the ActiveX controls in this library look the same way to the application on each platform. The actual functionality is virtually the same on both
+            desktop and Windows CE/CE.NET devices. There are only a couple of tiny cosmetic
+            differences that does not concern the controls' behavior (see the
+            notes in the page of the corresponding control). </p>
+            <p>&nbsp; </p>
+            <p>&nbsp; </p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- #include file="includes/footer.htm" -->
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+VERSION 5.00
+Object = "{25C953A7-5464-11D1-A714-00AA0044064C}#1.0#0"; "MSCEFile.dll"
+Begin VB.Form Form1 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "Form1"
+   ClientHeight    =   3660
+   ClientLeft      =   60
+   ClientTop       =   840
+   ClientWidth     =   3480
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3660
+   ScaleWidth      =   3480
+   ShowOK          =   -1  'True
+   Begin FILECTLCtl.File File 
+      Left            =   2760
+      Top             =   2160
+      _cx             =   1000
+      _cy             =   1000
+   End
+   Begin VBCE.TextBox T2 
+      Height          =   735
+      Left            =   120
+      TabIndex        =   8
+      Top             =   2760
+      Width           =   3255
+      _cx             =   5741
+      _cy             =   1296
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   500
+      MultiLine       =   -1  'True
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.TextBox T1 
+      Height          =   375
+      Left            =   120
+      TabIndex        =   7
+      Top             =   2280
+      Width           =   975
+      _cx             =   1720
+      _cy             =   661
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.TextBox ScreenTest 
+      Height          =   375
+      Left            =   2160
+      TabIndex        =   6
+      Top             =   1680
+      Width           =   1215
+      _cx             =   2143
+      _cy             =   661
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.TextBox FileTest 
+      Height          =   375
+      Left            =   2160
+      TabIndex        =   5
+      Top             =   1080
+      Width           =   1215
+      _cx             =   2143
+      _cy             =   661
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.TextBox CpuTest 
+      Height          =   375
+      Left            =   2160
+      TabIndex        =   4
+      Top             =   480
+      Width           =   1215
+      _cx             =   2143
+      _cy             =   661
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.Label Label1 
+      Height          =   255
+      Left            =   2160
+      TabIndex        =   3
+      Top             =   120
+      Width           =   1095
+      _cx             =   1931
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Per Second"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.CommandButton Command3 
+      Height          =   375
+      Left            =   360
+      TabIndex        =   2
+      Top             =   1680
+      Width           =   1335
+      _cx             =   2355
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "Screen Test"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.CommandButton Command2 
+      Height          =   375
+      Left            =   360
+      TabIndex        =   1
+      Top             =   1080
+      Width           =   1335
+      _cx             =   2355
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "File I/O Test"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.CommandButton Command1 
+      Height          =   375
+      Left            =   360
+      TabIndex        =   0
+      Top             =   480
+      Width           =   1335
+      _cx             =   2355
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "CPU Test"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+End
+Attribute VB_Name = "Form1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+Private Sub Command1_Click()
+Dim limit, counter
+limit = DateAdd("S", 10, Now)
+counter = 0
+CpuTest.Text = "running..."
+Do Until Now > limit
+  counter = counter + 1
+Loop
+CpuTest.Text = Int(counter / 10 + 0.5)
+
+End Sub
+
+Private Sub Command2_Click()
+Dim limit, counter, rec, i
+limit = DateAdd("S", 10, Now)
+counter = 0
+FileTest.Text = "running..."
+
+'write out 1000 records
+File.Open "BenchSuite.txt", 4, 3, 3, 1000
+rec = "12345678901234567890"
+rec = rec & rec & rec & rec & rec
+For i = 1 To 1000
+  File.Put rec, i
+Next
+
+'See how many random reads you can do in remaining time
+Do Until Now > limit
+  File.Get rec, Int(1 + Rnd() * 1000)
+  counter = counter + 1
+Loop
+
+FileTest.Text = Int(counter / 10 + 0.5)
+File.Close
+
+End Sub
+Private Sub Command3_click()
+Dim limit, counter, i
+limit = DateAdd("S", 10, Now)
+counter = 0
+ScreenTest.Text = "running..."
+Do Until Now > limit
+  T1.Visible = True
+  T2.Visible = True
+  T1.Text = counter
+  T2.Text = "Problems worthy of attack" & vbCrLf & "Prove their worth by hitting back!"
+  T1.Visible = False
+  T2.Visible = False
+  counter = counter + 1
+Loop
+ScreenTest.Text = Int(counter / 10 + 0.5)
+
+End Sub
+Private Sub Form_OKClick()
+    App.End
+End Sub

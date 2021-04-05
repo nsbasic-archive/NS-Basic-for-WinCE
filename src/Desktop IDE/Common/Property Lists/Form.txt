@@ -1,0 +1,9 @@
+Form
+BackColor
+ForeColor
+FontName
+FontSize
+FontBold
+FontItalic
+FontStrikethru
+FontUnderline

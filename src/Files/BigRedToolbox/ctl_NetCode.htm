@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>NetCode Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;NetCode Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/netcode.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The NetCode control can be used to encode or decode files or strings. 
+
+UUEncode, MIME's Base64 and Quoted-Printable,
+as well as URL encoding formats are currently supported.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+NetCode's operation is controlled by assigning a value to the <b>Action</b> property. 
+The encoding format is specified by the <b>Format</b> property.  The binary data, or
+the name of the file containing binary data, is specified by the <b>DecodedData</b>
+property and the encoded data or filename is specified by the <b>EncodedData</b>
+property.  The <b>FileName</b> property may be used to override the default file names
+or to specify a directory during uuencoding.  After uudecoding, the <b>FileName</b>
+property contains the fully specified file name of the decoded file.<P>Understanding Encoding/Decoding<P>Most of mail systems use only 7 bits to transmit messages.  A binary file such as an
+archive or a non-plain text formatted file produced from a text processor should
+be first encoded in 7 bit code before email transfer.<P>Decoding is the inverse process: creation of the original file from the encoded data. 
+Encoded data are often split over several files because of the size limit placed on
+the email message.  Each message is preceded by information about splitting and also the
+mail header.  NetCode supports this case in both directions:<P>- during encoding setting the <b>MaxFileSize</b> property to the maximum size of a message
+body instructs NetCode to split the encoded data over several files.  Multiple filenames
+can be specified by using question marks "?".<P>- during decoding, the body messages can be saved in separate files named namexxx.ext
+where xxx is a numeral starting at 000 and ext is ".uue", ".b16", or ".q_p" according to
+<b>Format</b>.  This multiple filename should be given to <b>EncodedData</b>.  While uudecoding,
+if the <b>IntelliCode</b> property is set to True, NetCode tries to filter the data that
+don't belong to the pure uuencoded data (also the mail header).
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls the operation of NetCode.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DecodedData.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Filename of the decoded data or the decoded data itself.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EncodedData.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Filename of the encoded data or the encoded data itself.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">FileCnt.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Shows the number of encoded files the control has read from or written into.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">FileName.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The destination filename for the encoded data.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Format.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Shows the type of encoding to be used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">IntelliCode.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls whether NetCode should try to interpret several concatenated messages while uudecoding.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MaxFileSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+When decoding, controls whether encoded data should be split into several files and gives the maximum allowed size for these files.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Overwrite.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls whether created file(s) should overwrite already existing file(s).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ProgressStep.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls the granularity at which the Progress event is fired.  Values 0-100.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Progress.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Occurs when PercentDone of the input is read.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

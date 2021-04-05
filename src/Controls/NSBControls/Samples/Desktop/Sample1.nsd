@@ -1,0 +1,256 @@
+Sub Form1_Load
+    NSListView1.Icons.Width = 32
+    NSListView1.Icons.Height = 32
+    NSListView1.Icons.LoadBitmap "bigicons1.bmp"
+    NSListView1.SmallIcons.Width = 16
+    NSListView1.SmallIcons.Height = 16
+    NSListView1.SmallIcons.LoadBitmap "smallicons1.bmp"
+    NSListView1.ColumnHeaderIcons.Width = 16
+    NSListView1.ColumnHeaderIcons.Height = 16
+    NSListView1.ColumnHeaderIcons.LoadBitmap "smallicons2.bmp"
+    NSListView1.SubItemImages = True
+    NSListView1.AllowColumnReorder = True
+    NSListView1.UpdateIcons
+    NSListView1.Checkboxes = True
+    NSListView1.View = 1
+    ' Create some items to play with
+    Dim I
+    For I = 1 To 42
+      Randomize
+      NSListView1.ListItems.Add , , "Row " & I, Int(8 * Rnd) + 1
+    Next
+    ' Add 4 columns - press Add Random Subitems one or more times
+    ' To add some data in the columns
+    NSListView1.ColumnHeaders.Add , , "A",50, , 1
+    NSListView1.ColumnHeaders.Add , , "B",50, , 2
+    NSListView1.ColumnHeaders.Add , , "C",50, , 3
+    NSListView1.ColumnHeaders.Add , , "D",50, , 4
+    
+    NSListView1.HideSelection = False
+End Sub
+
+Sub ChangeView_Click
+   ' Rotates through the views
+   Dim v
+   v = NSListView1.View
+   If v >= 3 Then v = 0 Else v = v + 1
+   NSListView1.View = v      
+End Sub
+
+Sub CommandButton1_Click
+   Dim J, o, Itm
+    For Each Itm In NSListView1.ListItems
+        Randomize
+        J = Int(4 * Rnd) + 1
+        Set o = Itm.SubItems.Item(CLng(J))
+        ' To illustrate the use of the Tag property in
+        ' sorting we put a pure number in the Tags
+        ' and numbers or KBytes in the Text. The KBytes
+        ' are in form ##k and thus are not numeric values.
+        ' To show human readable information and keep sortable
+        ' numbers we use both Tag and Text - keeping in the
+        ' Tag the internal actual data.
+        o.Tag = CLng(Int(100 * Rnd) + 1)
+        If KBytes.Value Then
+            o.Text = o.Tag & "k"
+        Else
+            o.Text = o.Tag
+        End If
+        
+    Next
+End Sub
+
+Sub CommandButton2_Click
+   Dim s
+   Dim I
+   Dim citems
+   Dim ss
+   s = ""
+   For I = 1 To 4
+      Set citems = NSListView1.ColumnHeaders.Item(I).ColumnItems
+      ss = 0
+      For Each itm In citems
+         On Error Resume Next
+         ' The OnError protects us from Type mismatch where the item/subitem
+         ' contains non-number value
+         If ExcludeChecked.Value Then
+            If Not itm.ListItem.Checked Then ss = ss + CLng(itm.Text)
+         Else
+            ss = ss + CLng(itm.Text)
+         End If
+      Next
+      s = s & ss & ","
+   Next
+   TextBox1.Text = s
+End Sub
+Sub NSListView1_OnColumnClick(e)
+   ' Invoke sorting
+    Dim s
+    NSListView1.SortKey = e.Column.Index
+    If NSListView1.SortOrder = 0 Then
+        NSListView1.SortOrder = 1
+    Else
+        NSListView1.SortOrder = 0
+    End If
+    NSListView1.Sorted = True
+End Sub
+
+Sub CommandButton3_Click
+   NSListView1.Icons.LoadBitmap "bigicons2.bmp"
+   NSListView1.SmallIcons.LoadBitmap "smallicons2.bmp"
+End Sub
+AddObject "TextBox", "TextBox", 0, 0, 0, 0
+
+Sub CheckBox1_Click
+   Dim I
+   For Each c In NSListView1.ColumnHeaders
+      If CheckBox1.Value Then 
+         c.SortType = 1 
+      Else 
+         c.SortType = 0
+      End If
+   Next
+End Sub
+Sub FindItems_Click
+   Dim result,partial,I
+   NSListView1.UnSelectAll
+   If PartialFind.Value Then partial = 1
+   Set result = NSListView1.FindItems(FindWhat.Text,FindSubItems.Value,False,partial)
+   Label2.Caption = "Found: " & result.Count
+   For Each I In result
+      I.ListItem.Selected = True
+   Next
+End Sub
+
+Sub CheckBox2_Click
+   Dim I
+   For Each c In NSListView1.ColumnHeaders
+      If CheckBox1.Value Then 
+         c.SortType = 3 
+      Else 
+         c.SortType = 0
+      End If
+   Next
+End Sub
+Sub CommandButton4_Click
+   NSListView1.UnSelectAll
+End Sub
+
+
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Sample1"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\ComCtl\ComCtl\Samples\Desktop\Sample1.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.comctl.ListView.1", "NSListView1", 312, 0, 328, 456, Form1
+      '--------
+      AddObject "CommandButton", "CommandButton1", 56, 0, 152, 24, Form1
+      CommandButton1.Caption = "Add random subitems"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "ChangeView", 0, 0, 56, 24, Form1
+      ChangeView.Caption = "View"
+      ChangeView.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 8, 32, 80, 24, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Column sums:"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox1", 88, 32, 168, 24, Form1
+      TextBox1.BackColor = 16777215
+      TextBox1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton2", 256, 32, 48, 24, Form1
+      CommandButton2.Caption = "Calc"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "ExcludeChecked", 88, 64, 216, 16, Form1
+      ExcludeChecked.BackColor = 12632256
+      ExcludeChecked.Caption = "Exclude checked"
+      ExcludeChecked.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton3", 0, 424, 112, 24, Form1
+      CommandButton3.Caption = "Load more icons"
+      CommandButton3.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "CheckBox1", 8, 96, 232, 24, Form1
+      CheckBox1.BackColor = 12632256
+      CheckBox1.Caption = "Sort as numbers"
+      CheckBox1.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "FindWhat", 0, 160, 88, 24, Form1
+      FindWhat.BackColor = 16777215
+      FindWhat.FontSize =  8.25
+      FindWhat.Text = "20"
+      '--------
+      AddObject "CommandButton", "FindItems", 96, 160, 108, 21, Form1
+      FindItems.Caption = "Find"
+      FindItems.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "FindSubItems", 8, 192, 160, 24, Form1
+      FindSubItems.BackColor = 12632256
+      FindSubItems.Caption = "Look in the subitems too"
+      FindSubItems.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 72, 240, 232, 24, Form1
+      Label2.BackColor = 12632256
+      Label2.BorderStyle = 1
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label3", 8, 240, 56, 21, Form1
+      Label3.BackColor = 12632256
+      Label3.Caption = "Last find:"
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "PartialFind", 8, 216, 79, 21, Form1
+      PartialFind.BackColor = 12632256
+      PartialFind.Caption = "Partial"
+      PartialFind.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "KBytes", 216, 0, 79, 21, Form1
+      KBytes.BackColor = 12632256
+      KBytes.Caption = "KBytes"
+      KBytes.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "CheckBox2", 8, 120, 216, 24, Form1
+      CheckBox2.BackColor = 12632256
+      CheckBox2.Caption = "As numbers by Tag"
+      CheckBox2.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton4", 8, 272, 108, 21, Form1
+      CommandButton4.Caption = "Unselect all"
+      CommandButton4.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

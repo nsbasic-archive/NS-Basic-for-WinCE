@@ -1,0 +1,86 @@
+// S309HotKey.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (S309HotKey.tlb) that will become a resource in
+// S309HotKey.ocx.
+
+#include <olectl.h>
+
+[ uuid(95299E18-49EF-11D3-AE2E-00608CC1DD62), version(1.3),
+  helpfile("S309HotKey.hlp"),
+  helpstring("S309HotKey ActiveX Control module"),
+  control ]
+library S309HOTKEYLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CS309HotKeyCtrl
+
+	[ uuid(95299E19-49EF-11D3-AE2E-00608CC1DD62),
+	  helpstring("Dispatch interface for S309HotKey Control"), hidden ]
+	dispinterface _DS309HotKey
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CS309HotKeyCtrl)
+			[id(1)] short EnumKey;
+			[id(2)] boolean EnumAlt;
+			[id(3)] boolean EnumWindows;
+			[id(4)] boolean EnumShift;
+			[id(5)] boolean EnumControl;
+			[id(6)] VARIANT Tag;
+			[id(7)] short VersionMajor;
+			[id(8)] short VersionMinor;
+			[id(9)] short Version;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CS309HotKeyCtrl)
+			[id(10)] boolean Register(short nKey, boolean bAlt, boolean bControl, boolean bShift, boolean bWindows);
+			[id(11)] boolean Unregister(short nKey, boolean bAlt, boolean bControl, boolean bShift, boolean bWindows);
+			[id(12)] boolean UnregisterAll();
+			[id(13)] boolean EnumFirst();
+			[id(14)] boolean EnumNext();
+			[id(15)] void KeyboardEvent(short VirtualKey, short ScanCode, long dwFlags, long dwExtraInfo);
+			[id(16)] void MouseEvent(long dwFlags, long dwX, long dwY, long dwData, long dwExtraInfo);
+			[id(17)] short GetAsyncKeyState(short VirtualKey);
+			[id(18)] short GetKeyState(short VirtualKey);
+			//}}AFX_ODL_METHOD
+	};
+
+	//  Event dispatch interface for CS309HotKeyCtrl
+
+	[ uuid(95299E1A-49EF-11D3-AE2E-00608CC1DD62),
+	  helpstring("Event interface for S309HotKey Control") ]
+	dispinterface _DS309HotKeyEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CS309HotKeyCtrl)
+			[id(1)] void HotKeyDown(short nKey, boolean bAlt, boolean bControl, boolean bShift, boolean bWindows);
+			[id(2)] void HotKeyUp(short nKey, boolean bAlt, boolean bControl, boolean bShift, boolean bWindows);
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CS309HotKeyCtrl
+
+	[ uuid(95299E1B-49EF-11D3-AE2E-00608CC1DD62),
+	  helpstring("S309HotKey Control"), control ]
+	coclass S309HotKey
+	{
+		[default] dispinterface _DS309HotKey;
+		[default, source] dispinterface _DS309HotKeyEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

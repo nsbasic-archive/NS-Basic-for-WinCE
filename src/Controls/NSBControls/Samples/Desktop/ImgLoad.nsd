@@ -1,0 +1,93 @@
+Dim SysDir
+Sub Form1_Load
+   AddObject "NSBasic.ComDlg", "dlg"
+   SysDir = "J:\Windows\System32\"
+End Sub
+
+Sub CommandButton1_Click
+   Dim n, I
+   Dim nOldCount 
+   nOldCount = NSListView1.Icons.Count
+   dlg.Reset "File"
+   dlg.DialogTitle = "Select module"
+   dlg.Filter = "PE files|*.dll;*.exe;*.ocx|All files|*.*"
+   If dlg.ShowOpen Then
+      n = NSListView1.Icons.LoadResource(dlg.FileName,CLng(ResId.Text),1)   
+      For I = nOldCount + 1 To NSListView1.Icons.Count
+         NSListView1.ListItems.Add , , "Icon " & CLng(ResId.Text) & " from " & dlg.FileTitle, I
+      Next
+   End If
+End Sub
+
+Sub CommandButton2_Click
+   Dim n, I
+   Dim nOldCount 
+   nOldCount = NSListView1.Icons.Count
+   dlg.Reset "File"
+   dlg.DialogTitle = "Select module"
+   dlg.Filter = "PE files|*.dll;*.exe;*.ocx|All files|*.*"
+   If dlg.ShowOpen Then
+      n = NSListView1.Icons.LoadResource(dlg.FileName,CLng(ResId.Text),0)   
+      For I = nOldCount + 1 To NSListView1.Icons.Count
+         NSListView1.ListItems.Add , , "Bitmap " & CLng(ResId.Text) & " from " & dlg.FileTitle, I
+      Next
+   End If
+End Sub
+
+
+
+
+'*** Begin Generated Code ***
+
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.comctl.ListView.1", "NSListView1", 16, 128, 592, 296, Form1
+      '--------
+      AddObject "TextBox", "ResId", 16, 16, 40, 24, Form1
+      ResId.BackColor = 16777215
+      ResId.FontSize =  8.25
+      ResId.Text = "1"
+      '--------
+      AddObject "CommandButton", "CommandButton1", 64, 16, 168, 24, Form1
+      CommandButton1.Caption = "Load icon by Resource ID"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton2", 240, 16, 168, 24, Form1
+      CommandButton2.Caption = "Load bitmap by Resource ID"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 16, 56, 592, 24, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Browse for an EXE, DLL or OCX, be sure to specify the correct resource ID"
+      Label1.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***
+

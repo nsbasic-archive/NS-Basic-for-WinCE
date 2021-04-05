@@ -1,0 +1,3 @@
+Dim AppEXEName: AppEXEName = "ListView"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\ComCtl\ComCtl\Tests\NSBListView1\ListView.nsd"
+

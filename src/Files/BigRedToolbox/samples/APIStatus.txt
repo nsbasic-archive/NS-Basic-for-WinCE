@@ -1,0 +1,92 @@
+' Demonstration of the memory, storage and power status functions
+' Written by Mark Gamber using NS Basic
+
+' AC Status flags
+fACOffline = 0
+fACOnline = 1
+fACUnknown = 255
+
+' Battery / Backup battery status flags
+fBattHigh = 1
+fBattLow = 2
+fBattCritical = 4
+fBattCharging = 8
+fBattNoBatt = 128
+fBattUnknown = 255
+
+addobject "MGCEWin32.API",  "API", 0, 0, 0, 0
+addobject "Label", "MemID", 10, 10, 60, 20
+addobject "ComboBox", "MemList", 70, 10, 120, 80
+addobject "CommandButton", "MemDisp", 192, 10, 100, 20
+addobject "Label", "StoID", 10, 40, 60, 20
+addobject "ComboBox", "StoList", 70, 40, 120, 80
+addobject "CommandButton", "StoDisp", 192, 40, 100, 20
+addobject "Label", "PwrID", 10, 70, 60, 20
+addobject "ComboBox", "PwrList", 70, 70, 120, 80
+addobject "CommandButton", "PwrDisp", 192, 70, 100, 20
+
+MemList.Style = 2
+MemList.AddItem "Total Physical"
+MemList.AddItem "Avail Physical"
+MemList.AddItem "Total Pagefile"
+MemList.AddItem "Avail Pagefile"
+MemList.AddItem "Total Virtual"
+MemList.AddItem "Avail Virtual"
+MemList.AddItem "Memory Load"
+MemDisp.Caption = "Display"
+MemID.Caption = "Memory:"
+
+StoList.Style = 2
+StoList.AddItem "Store Size"
+StoList.AddItem "Store Free"
+StoDisp.Caption = "Display"
+StoID.Caption = "Store:"
+
+PwrList.Style = 2
+PwrList.AddItem "AC Status"
+PwrList.AddItem "Battery Flag"
+PwrList.AddItem "Batt Percent"
+PwrList.AddItem "Batt Life"
+PwrList.AddItem "Batt Full Life"
+PwrList.AddItem "Backup Flag"
+PwrList.AddItem "Backup Percent"
+PwrList.AddItem "Backup Life"
+PwrList.AddItem "Backup Full Life"
+PwrDisp.Caption = "Display"
+PwrID.Caption = "Power:"
+
+sub MemDisp_Click
+   if MemList.Text = "" then exit sub
+   if MemList.Text = "Total Physical" then val = 0
+   if MemList.Text = "Avail Physical" then val = 1
+   if MemList.Text = "Total Pagefile" then val = 2
+   if MemList.Text = "Avail Pagefile" then val = 3
+   if MemList.Text = "Total Virtual" then val = 4
+   if MemList.Text = "Avail Virtual" then val = 5
+   if MemList.Text = "Memory Load" then val = 6
+   MsgBox API.GetMemoryStatus( val )
+end sub
+
+sub StoDisp_Click
+   if StoList.Text = "" then exit sub
+   if StoList.Text = "Store Size" then val = 0
+   if StoList.Text = "Store Free" then val = 1
+   MsgBox API.GetStorageStatus( val )
+end sub
+
+sub PwrDisp_Click
+   if PwrList.Text = "" then exit sub
+   if PwrList.Text = "AC Status" then val = 0
+   if PwrList.Text = "Battery Flag" then val = 1
+   if PwrList.Text = "Batt Percent" then val = 2
+   if PwrList.Text = "Batt Life" then val = 3
+   if PwrList.Text = "Batt Full Life" then val = 4
+   if PwrList.Text = "Backup Flag" then val = 5
+   if PwrList.Text = "Backup Percent" then val = 6
+   if PwrList.Text = "Backup Life" then val = 7
+   if PwrList.Text = "Backup Full Life" then val = 8
+   MsgBox API.GetPowerStatus( val )
+end sub
+
+
+

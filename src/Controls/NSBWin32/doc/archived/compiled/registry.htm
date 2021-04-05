@@ -1,0 +1,231 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="Registry,Value,Key,Path,Name,Version,ValueType,GetPathName,CreatePath,DeletePath,DeleteValue,UseRawBinary,HexWithSpaces,ReturnEmptyForEnumEnd">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/">
+<title>Registry object</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Win32 objects</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">Registry object</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\registry.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>Provides access to the system registry. The object is designed to
+            represent a &quot;current key&quot;. I.e. you can think of the
+            Registry object as attached to the registry key specified by the Key
+            and Path properties. When you work with values the Name property
+            &quot;attaches&quot; the object to the desired value.</p>
+            <p>The object allows enumeration of registry keys, but this features
+            are is not
+            implemented as collections that can be enumerated with For Each
+            statements. The reasons are two - compatibility with the previous
+            version of this object and the fact that the sub-keys enumerated can
+            be too many. Depending on the usage this may lead to allocation of
+            huge amount of system resources for a simple operation. See
+            GetPathName and GetValueName for more information on how to
+            enumerate keys and values.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Key</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Key = value<br>
+                  variable = object.Key</td>
+                <td bgcolor="#FFFFFF" valign="top">
+                  <pre>Sets the registry branch. Common constants:
+Const HKEY_CLASSES_ROOT = &amp;H0
+Const HKEY_CURRENT_USER = &amp;H1
+Const HKEY_LOCAL_MACHINE = &amp;H2
+Const HKEY_USERS = &amp;H3
+Const HKEY_PERFORMANCE_DATA = &amp;H4
+Const HKEY_CURRENT_CONFIG = &amp;H5
+Const HKEY_DYN_DATA = &amp;H6</pre>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Path</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Path = value<br>
+                  variable = object.Path</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/gets the key path name</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Value</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Value = value<br>
+                  variable = object.Value</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/gets the value for the
+                  value with the specified Name (see Name).<br>
+                  <b>Default property.</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Name</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Name = value<br>
+                  variable = object.Name</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the name of the
+                  current value in the current key.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable =
+                  object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  ValueType</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ValueType =
+                  value<br>
+                  variable = object.ValueType</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the type of the
+                  registry value type. When a value is assigned to the Value
+                  property it is converted internally to this type. Common
+                  constants:
+                  <pre>Const REG_SZ = 1
+Const REG_EXPAND_SZ = 2
+Const REG_BINARY = 3
+Const REG_DWORD = 4
+Const REG_DWORD_LITTLE_ENDIAN = 4
+Const REG_DWORD_BIG_ENDIAN = 5
+Const REG_LINK = 6
+Const REG_MULTI_SZ = 7</pre>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetPathName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>enum_path =
+                  object.GetPathName(nKey)</td>
+                <td bgcolor="#FFFFFF" valign="top">Call with nKey = 0 and then
+                  increment nKey to enumerate the sub-keys in the current key.
+                  When there are no more keys an error will occur. If you do not
+                  want On Error statements an empty key name will be returned if
+                  you set the ReturnEmptyForEnumEnd to true.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetValueName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>enum_val =
+                  object.GetPathName(nVal)</td>
+                <td bgcolor="#FFFFFF" valign="top">Call with nVal = 0 and then
+                  increment nVal to enumerate the values in the current key.
+                  When there are no more values an error will occur. If you do
+                  not want On Error statements an empty key name will be
+                  returned if you set the ReturnEmptyForEnumEnd to true.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  CreatePath</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object..CreatePath()</td>
+                <td bgcolor="#FFFFFF" valign="top">Creates a registry key
+                  specified by the Path property with the in the registry branch
+                  specified by the Key property.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  DeletePath</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.DeletePath</td>
+                <td bgcolor="#FFFFFF" valign="top">Deletes the registry key
+                  specified by the Path property with the in the registry branch
+                  specified by the Key property.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  DeleteValue</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.DeleteValue</td>
+                <td bgcolor="#FFFFFF" valign="top">Deletes the value specified
+                  by the Name property from the current key (the key is
+                  determined by the Key and the Path properties).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#C0C0C0" valign="top" colspan="3" nowrap><b>Advanced
+                  features</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  UseRawBinary</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.UseRawBinary =
+                  bool_val<br>
+                  variable = object.UseRawBinary&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Default is false.<br>
+                  If set to true the Value property will return binary data
+                  instead of hex decimal textual representation of binary data
+                  for binary (REG_BINARY) values. Useful when you want to pass
+                  the data to a database or another object that requires binary
+                  data (VT_ARRAY | VT_UI1).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  HexWithSpaces</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HexWithSpaces =
+                  bool_val<br>
+                  variable = object.HexWithSpaces&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Default is false.<br>
+                  When the Value property returns the value of a binary value (REG_BINARY),
+                  by default it returns is as hex-decimal string. Id this
+                  property is set to true spaces between the bytes will be
+                  inserted.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  ReturnEmptyForEnumEnd</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ReturnEmptyForEnumEnd
+                  = bool_val<br>
+                  variable = object.ReturnEmptyForEnumEnd&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Default is false.<br>
+                  GetPathName and GetValueName by default generate an error
+                  which can be intercepted with OnError statement when there are
+                  no more keys/values to enumerate. Setting this property to
+                  true changes this behavior and they return empty strings
+                  instead of generating an error.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2005 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\registry.htm-->
+
+</table>
+
+</body>
+
+</html>

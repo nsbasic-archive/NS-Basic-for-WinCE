@@ -1,0 +1,64 @@
+// S309Timer.odl : type library source for ActiveX Control project.
+
+#include <olectl.h>
+
+[ uuid(0C993DA3-484A-11D3-AE2D-00608CC1DD62), version(1.5),
+  helpfile("S309Timer.hlp"),
+  helpstring("S309Timer ActiveX Control module"),
+  control ]
+library S309TIMERLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	[ uuid(0C993DA6-484A-11D3-AE2D-00608CC1DD62),
+	  helpstring("Dispatch interface for S309Timer Control"), hidden ]
+	dispinterface _DS309Timer
+	{
+		properties:
+			//{{AFX_ODL_PROP(CS309TimerCtrl)
+			[id(1)] boolean Enabled;
+			[id(2)] long Count;
+			[id(3)] long Interval;
+			[id(4)] short VersionMajor;
+			[id(5)] short VersionMinor;
+			[id(0)] long _Interval;
+			[id(6)] VARIANT Tag;
+			[id(7)] long Version;
+			[id(8), nonbrowsable] long IdleTimeoutBattery;
+			[id(9), nonbrowsable] long IdleTimeoutExternal;
+			[id(10)] boolean IdleTimeoutResetEnabled;
+			[id(11)] long IdleTimeoutInterval;
+			[id(12), nonbrowsable] boolean OnBatteryPower;
+			//}}AFX_ODL_PROP
+
+		methods:
+			//{{AFX_ODL_METHOD(CS309TimerCtrl)
+			//}}AFX_ODL_METHOD
+	};
+
+	[ uuid(0C993DA7-484A-11D3-AE2D-00608CC1DD62),
+	  helpstring("Event interface for S309Timer Control") ]
+	dispinterface _DS309TimerEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			//{{AFX_ODL_EVENT(CS309TimerCtrl)
+			[id(1)] void Timer();
+			//}}AFX_ODL_EVENT
+	};
+
+	[ uuid(0C8F5328-BC6A-11D2-AE1A-00608CC01367),
+	  helpstring("S309Timer Control"), control ]
+	coclass S309Timer
+	{
+		[default] dispinterface _DS309Timer;
+		[default, source] dispinterface _DS309TimerEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

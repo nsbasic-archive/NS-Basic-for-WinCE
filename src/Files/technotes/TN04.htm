@@ -1,0 +1,1409 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="Keywords" content="Creation,Prog IDs,Compatibility,Common dialogs">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 04: Common Dialog Control</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+
+	  <h2>Tech Note 04: Common Dialog Control</h2>
+	  <h3>January 3, 2007</h3>
+	  <p>Documented version: 1.0.1</b>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<hr>
+
+
+<OL>
+	<LI><a href="#overview">Overview</a><br>
+	<LI><a href="#cenotes">Special Note on Pocket PC Devices</a><br>
+	<LI><a href="#comdlg">Common Dialog Reference</a><br>
+	<LI><a href="#comdlgflags">Common Dialog Flags<br></a>
+	<LI><a href="#Help">Help Files and PegHelp Usage Example<br></a>
+	<LI><a href="#Version">Version History</a><br>
+</OL>
+
+<h2><A NAME="overview">1. Overview</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            NSBasic Common Dialogs ActiveX (ComDlg) control provides access to some of
+            the system defined common dialog boxes. These are
+            file open/save dialog, color choosing dialog, and font choosing
+            dialog.
+            <p>The NSBComDlg ActiveX control is implemented in manner similar
+            to the Microsoft's common dialog ActiveX control. It is almost fully compatible with existing code that uses that
+            control. NSBasic's
+            ComDlg control provides a number of features that allow the
+            developer to write better readable code, easily access additional
+            features and avoid mistakes.&nbsp;</p>
+            <h3>Creation</h3>
+            <p>The object can be created explicitly using this code:</p>
+            <blockquote>
+              <p><img border="0" src="images/obj.gif" width="16" height="16">  
+              <b><a href="#comdlg">ComDlg</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.ComDlg<br>
+                ClassID: {9DF344D4-66FB-4660-A569-AC8586CFE9FF}<br>
+                Create example: AddObject &quot;NSBasic.ComDlg&quot;,
+                &quot;MyComDlg&quot;</b></p>
+              </blockquote>
+              <blockquote>
+                <p><b>See also: <a href="#comdlgflags">ComDlgFlags</a>
+                object</b>which is non-creatable. It is returned by the
+                ComDlg.<a href="#comdlgflags">Flags</a> property and provides both low-level and high-level
+                flags access.</p>
+              </blockquote>
+            </blockquote>
+            <p>Alternatively you can add its DLL to the NSBasic toolbox and
+            place a ComDlg control on a form. We recommend the second way, because
+            it gives the object access to the form object, thus allowing it to
+            create modal dialog boxes.&nbsp;</p>
+            <p><b>How to add the control to the toolbox manually: </b>Make sure
+            that the Windows desktop&nbsp; version of control's DLL (NSBComDlg.dll)
+            is installed/registered on your machine.&nbsp; Open the ActiveX
+            Control manager dialog box from the tool menu, browse for the DLL
+            and add it. Note that for the both NSBasic development environments
+            (Desktop and CE) the desktop version of the DLL is used. The
+            specific version for the device is needed only when the application
+            is deployed. This is so, because the IDE uses only the registration
+            information for the DLL.&nbsp;</p>
+            <h3>Architecture</h3>
+            <p>The same ComDlg object controls/shows all the supported system
+            common dialogs. This means that you can show any of these dialogs
+            using the same object. The settings specific to a certain common
+            dialog affect only its appearance, thus the application does not
+            usually need separate instance for each dialog type it shows. Still,
+            it is up to you to determine what is best in your particular case -
+            sometimes it may be easier to create one ComDlg object for showing
+            file open dialogs, one for font selection and so on. In other cases
+            it is more convenient to use a single instance of the object to show
+            all the needed dialogs.</p>
+            <p>The ComDlg object provides the <b><a href="#Reset">Reset</a></b>
+            method which provides a simple way to initialize and configure the
+            object with the most common settings for a certain common dialog
+            type.&nbsp;</p>
+            <p>See more details on the <a href="#comdlg">ComDlg</a>'s page.</p>
+            <h3>Typical usage</h3>
+            <p>The typical usage of the ComDlg object follows a simple pattern
+            for all the dialog types it supports. The example lines below are
+            for file open dialog, but the sequence of actions is the same for
+            all the dialog types.</p>
+            <p>Usually the first step is to reset the object for a the dialog
+            you are about to show:<br>
+            <b>NSComDlg1.Reset &quot;File&quot;&nbsp;</b></p>
+            <p>Then some flags are set to configure the dialog appearance and
+            features:<br>
+            <b>NSComDlg1.Flags.MultiSelect = True '&nbsp; We will accept
+            multiple files<br>
+            NSComDlg1.Flags.NoChangeDir = True&nbsp;<br>
+            ... some other flags ...</b></p>
+            <p>Set the initial values - initialize the dialog.<br>
+            <b>NSComDlg1.InitDir = &quot;C:\mydir&quot;<br>
+            NSComDlg1.DialogTitle = &quot;Select SQL queries&quot;<br>
+            NSComDlg1.Filter = &quot;SQL files|*.sql|Text files|*.txt|All
+            files|*.*&quot;<br>
+            ... more settings - as needed ...</b></p>
+            <p>Show the dialog<br>
+            <b>If </b><b>Not NSComDlg1.ShowOpen Then<br>
+            </b>&nbsp;&nbsp;&nbsp; ' Action is cancelled - usually this means
+            skip the operation<br>
+            <b>Else<br>
+            </b>&nbsp;&nbsp;&nbsp; ' Obtain and use the user selection<br>
+            &nbsp;&nbsp;&nbsp; <b>For Each sqlFile In NSComDlg1.FileNames<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>' Do something with
+            each file, for the sake of the example let show them in message
+            boxes<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>MsgBox
+            NSComDlg1.InitDir &amp; &quot;\&quot; &amp; sqlFile</i><br>
+            &nbsp;&nbsp;&nbsp; Next</b><br>
+            <b>End If</b></p>
+            <p>In the reality you may want to show the dialog multiple times
+            with the last settings. In such case you would want to call Reset,
+            set the desired flags only once and then show the dialog when
+            needed. This can be done by putting the one-time code in the
+            Form.Load for example and the rest in the methods in which the
+            dialog must be shown. The initial values of the object properties
+            are different case - you may want or not want to set them every time
+            you show the dialog. It is also possible that you would want to keep
+            most of them constant and change only some. In the above example you
+            may want to have the dialog title set to the same text always and
+            different directory for each dialog invocation. Separate the
+            initialization code as appropriate considering the flow of the code
+            execution in your application.</p>
+            <h3>Supported platforms and compatibility </h3>
+            <p>The library is available as single DLL named: <b>NSBComDlg.dll.</b> </p>
+            <p>The ActiveX looks for the application the same way on each
+            platform, but the actual functionality depends on the system. This
+            is because it shows system defined standard dialogs. On some
+            platforms some of them may not be available. In such case the
+            corresponding method that show the dialog would return False or
+            raise error depending on the value of the <a href="#CancelError"> CancelError</a> property. Thus
+            on platforms where certain dialog is not provided by the system the
+            object will behave as if the user always cancels the dialog. </p>
+            <p>Aside of the system common dialogs existence the implementation
+            of the common dialogs differs on each platform. This is caused
+            mostly because of platform specifics. Therefore some flags may have
+            no effect on certain platform - see the <a href="#comdlgflags">ComDlgFlags</a>
+            object for details. </p>
+            <p>Here is the list of the currently supported platforms with some
+            notes about the system common dialogs availability. If you want to
+            use the same code for all the platforms it is highly recommended to
+            review the list and determine the effect of the platform differences
+            over the application. </p>
+            <table border="0" width="100%" bgcolor="#808000" cellspacing="1">
+              <tr>
+                <th valign="top" nowrap><font color="#FFFFFF">Platform(s)</font></th>
+                <th valign="top" nowrap><font color="#FFFFFF">Notes</font></th>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Windows desktop/tablet/laptop</td>
+                <td valign="top" bgcolor="#FFFFFF">All the dialogs are available
+                  to the full extent of their features.&nbsp;</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Palm-sized PC</td>
+                <td valign="top" bgcolor="#FFFFFF">The Font selection dialog (<a href="#ShowFont">ShowFont</a>)
+                  may not be available. The file open/save dialog provides
+                  access only to certain directories*. Color dialog does not
+                  support extended panel**.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Handheld PC (Pro and 2000)</td>
+                <td valign="top" bgcolor="#FFFFFF">All the dialogs are
+                  available. Some minor features may not be available for some
+                  dialogs.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Pocket PC (incl. 2002, 2003
+                  and later)</td>
+                <td valign="top" bgcolor="#FFFFFF">On Pocket PC 2000 (the oldest
+                  one - very rare today) the Font dialog may not be
+                  available***. The Color dialog (Choose color) does not support
+                  the extended panel. The file open/save dialogs allow access
+                  only to certain directories*.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Windows CE.NET version 4 and
+                  later based devices (tablets, media devices etc.)</td>
+                <td valign="top" bgcolor="#FFFFFF">The functionality is
+                  virtually equivalent to the Windows desktop except for some
+                  layout differences.</td>
+              </tr>
+            </table>
+            <p>* - The practice came from the world of the Palm devices. In
+            order to ensure that inexperienced users wont get lost on the device
+            the open/save dialogs and even alternative implementations (from MFC
+            for instance) allow on these devices the user to open save files
+            only in the &quot;My Documents&quot; directory, its first level
+            subdirectories and the root and the first level sub-directories of
+            the memory cards. This usually good enough because the files the
+            application saves/loads are usually wanted in these locations. An
+            alternative implementation may be provided in future versions of the
+            control - your feedback is welcome. See <a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/COMDLG/prj/doc/#cenotes">Pocket
+            PC notes</a> for detailed explanation of the Pocket PC behavior
+            specifics. </p>
+            <p>** - The color selection dialog on Pocket PC based devices is
+            more simplistic than on the desktops and CE devices with bigger
+            screens. For instance it has no free-color selection panel. </p>
+            <p>*** - Font dialog is not listed in the Pocket PC SDK's header
+            files. In the reality it is available on virtually all of the
+            existing Pocket PC and later device. The control will show it if it
+            is implemented. You may expect problems only on the first Pocket PC
+            devices (2000 edition) which are mostly extinct and rarely
+            considered as targets by the projects today. The Font dialog on
+            Pocket PC is rather simplistic - it has no font preview, looks a
+            little bare-boned, but it works fine. </p>
+            <h3>Troubleshooting </h3>
+            <p><b>File open/save dialog</b>.&nbsp; </p>
+            <blockquote>
+              <p>The dialog does not show. Make sure you set the <a href="#FileName"> FileName</a>
+              property to an empty string or valid file name (not necessarily
+              existing - just syntactically correct). Check the flags you use
+              and clear those that are not needed and any flags that may
+              conflict with each other. </p>
+              <p>No files are shown in the file list (especially on Pocket PC).
+              Make sure you have a non-empty filter. See <a href="#Filter">Filter</a>
+              property for more details. </p>
+            </blockquote>
+            <p><b>Font dialog</b> </p>
+            <blockquote>
+              <p>The dialog does not show on a certain device. The device may
+              have an OS version that does not implement the dialog. If this
+              happens only on a device with Pocket PC 2000 or earlier OS version
+              you can be certain that this is the case. </p>
+              <p>No fonts or not all fonts are listed. See if you have at least
+              one of the <b><a href="#ScalableOnly">ScreenFonts, PrinterFonts</a>
+              </b>flags set to True. See also the other flags that concern the
+              font types enabled for selection. </p>
+            </blockquote>
+            <p>&nbsp; </p>
+            <p>&nbsp; </p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+<h2><A NAME="cenotes">2. Special Note on Pocket PC Devices</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <font SIZE="2">In PocketPC (all versions) and the Pocket PC ancestor
+            (Palm-Sized PC) the standard file open/save dialogs are designed in
+            a way inspired by the Palm OS. Perhaps some people in Microsoft
+            already regret this, but it is a fact and we need to cope with it.
+            <p><b>FILE OPEN DIALOG</b></p>
+            <p>So, the file open dialog (unlike in the desktop and full CE
+            version) is more like a filtered search and not a single directory
+            view. Thus you have a directory filter, and file type filter (in
+            open file) and a list of files.</p>
+            <p>The file list contains all the files with the selected file
+            extension in a 1-level directory on all the storage devices. Note
+            that for the internal storage the dialog uses &quot;My
+            Documents&quot; as a root directory and not the device root
+            directory. Thus from the FILE OPEN dialog perspective you have these
+            storage devices:</p>
+            <p><b>\My Documents<br>
+            \Memory Card1<br>
+            \Memory Card2<br>
+            ... etc ...</b></p>
+            <p>Of course the names of the memory cards varies from device to
+            device.</p>
+            <p>The dialog can show files only in these locations and in 1-st
+            level subdirectories in them.</font> <font SIZE="2">As the directory
+            combo box (by itself) specifies a filter and not a complete location
+            it may contain only a name and not a full path. Thus</p>
+            <p><b>NSBComDlg1.InitDir = &quot;\Some card\somedir&quot;<br>
+            </b>is <b><font color="#FF0000"> invalid</font></b> and will be
+            ignored or may cause strange results on some versions of the OS, but<br>
+            <b>NSBComDlg1.InitDir = &quot;somedir&quot;<br>
+            </b>is valid and will initialize the directory filter with &quot;somedir&quot;
+            and the files in</p>
+            <p><b>\My Documents\somedir<br>
+            \Memory card1\somedir<br>
+            ... etc ..</b></p>
+            <p>will be listed. Of course that directory should exist in one or
+            more of these locations.</p>
+            <p><b>FILE SAVE DIALOG</b></p>
+            <p>In this dialog there are 3 filters:</p>
+            <p>1. Folder (directory)<br>
+            2 .File type<br>
+            3. Location (meaning in fact storage card/device)</p>
+            <p>InitDir is of no use here, it is even treated a bit incorrectly
+            by the system. Thus you should use FileName property to initialize
+            the dialog:</p>
+            <p>
+            <b>NSComDlg1.FileName = &quot;\Storage device\Directory\filename.ext&quot;<br>
+            </b>or
+            <b><br>
+            NSComDlg1.FileName = &quot;\My Documents\\filename.ext&quot;<br>
+            </b>or
+            <b><br>
+            NSComDlg1.FileName = &quot;\Storage device\filename.ext&quot;</b></p>
+            <p>I.e. you must specify a full path name. The file name at the end
+            may be whatever you want - treat it as a proposed file name for
+            example.&nbsp;</p>
+            <p>You cannot omit any of the path parts without risking strange
+            behavior on some Pocket PC OS versions. Furthermore on some
+            occasions the system gets confused if the proposed file name is only
+            one character long - so propose a descriptive file name to the user
+            when OpenSave is invoked and no prior save operation has been
+            performed (from which you may keep the last name under which the
+            file has been saved).&nbsp;</p>
+            <p><b>The IsPocketPC property.</b></p>
+            <p>The NSComDlg object provides a property named IsPocketPC which
+            returns True if the platform on which the application runs is a
+            Pocket PC. Using it you can implement different behavior for Pocket
+            PC and other platforms thus making the code reusable regardless of
+            the platform. The only other way is to use only the FileName
+            property for initialization and specify full path name in it. In
+            this case only the Open file dialog on Pocket PC will not initialize
+            with any specific directory which seems to be the acceptable
+            sacrifice if the aim is single code to serve all the platforms.</p>
+            <p><b>CONCLUSION</b></p>
+            <p>The NSBASIC Common Dialogs control makes use of the system
+            provided standard dialog boxes and does not implement them.
+            Therefore it reflects the system behavior and all the mentioned
+            specifics are the same no matter how you use the corresponding
+            dialogs - from NSBasic or from C for example.
+            </font>
+ 			<font SIZE="2">Unfortunately the limitations of the File open/save dialogs on
+            Pocket PC make it nearly impossible to use the same code as on a
+            desktop or on a full scale Windows CE device (such as HPC or a
+            tablet). An implementation of own file dialogs has been considered,
+            but there are two reasons to provide this control in this form:&nbsp;
+            </font>
+            </p>
+            <p> <font SIZE="2">1. The Pocket PC users are already familiar with this
+            behavior which is also exerted by some alternative dialog
+            implementations from Microsoft (for instance applications built
+            using MFC use file view with similar limitations - see pocket word
+            and excel for example). Therefore, no matter how you feel about
+            these dialogs they are already a standard and the applications
+            designed for regular users should use them to keep the user within
+            the realm he/she already knows.
+            </font>
+            </p>
+            <p><font size="2">2. The control provides almost the same methods
+            and properties as the former Microsoft Common Dialogs control thus
+            making applications porting easier.</font></p>
+            <p><font size="2">Any other implementation we may provide in future
+            will be alternative choice, but not a replacement for this control
+            (because of the above reasons).</font></p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+<h2></a><A NAME="comdlg">3. Common Dialog Reference</h2>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>Through the NSBComDlg object you can show certain system defined
+            common dialog boxes, such as open/save file, color selection and
+            font selection. The same instance of the object can be used to show
+            each of these dialogs at one time or another - it is not necessary
+            to create separate instances for each dialog type. Of course if the
+            developer prefers separate object instance for each dialog he/she
+            can create separate objects and use them as necessary.</p>
+            <p>Because the same object shows all the dialog boxes its properties
+            have effect on certain dialog boxes only. For example the FileName
+            does not affect the color and font selection dialog boxes, on the
+            other hand the Color property has effect on both color and font
+            selection dialog boxes because they both enable the user to specify
+            a color. Thus, the fact that you use single object for all the
+            dialogs does not mean that their settings will mix up. On the
+            contrary it is even possible to share a few common settings and help
+            the user a bit.</p>
+            <p>When created the object is passive. A dialog is shown only when
+            you call one of the ShowXXXX methods:<br>
+            ShowOpen - to show the file open dialog<br>
+            ShowSave - to show the file save dialog<br>
+            ShowColor - to show the color selection dialog<br>
+            ShowFont - to show the font selection dialog.</p>
+            <p>When called the methods does not return until the dialog box is
+            closed by the user either by clicking the OK/Open/Save or the Cancel
+            button.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top"><b>Name</b></th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="FileName">FileName</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.FileName = value<br>
+                  variable = object.FileName</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Specifies the file
+                  name for the file open/save dialog boxes.&nbsp;<br>
+                  <b>For single selection</b> (default) file open and save
+                  dialogs it contains the full path name of the file after the
+                  dialog is closed. Before calling the ShowOpen/ShowSave you can
+                  set this property thus initializing the dialog with a
+                  selection that the user can simply confirm. The path of the
+                  file name also specifies the initial directory in which the
+                  dialog will open. When the user makes a selection and closes
+                  the dialog the property contains the user selection&nbsp;
+                  Alternatively you can use the InitDir property to specify an
+                  initial directory in which the open/save dialog will open -
+                  you are free to use any of the both techniques.<br>
+                  <b>For multi-selection file open dialog boxes</b> (see also
+                  Flags.MultiSelect) you can set the property the same way as in
+                  the previous case before calling ShowOpen, but after the user
+                  selects one or more files and the method returns the property
+                  will contain the list of the selected files separated with the
+                  | character. The first entry will be the path of the directory
+                  in which the files are and each of the next entries specifies
+                  a file name without a path. For example you may have this
+                  value:<br>
+                  C:\mypath|file1.txt|file2.txt<br>
+                  In case of multi-select file open you can use instead the more
+                  convenient <a href="#FileNames"><b>FileNames</b></a>
+                  collection to read the user selection.<br>
+                  See also <b><a href="#cenotes">Pocket PC notes</a></b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  DialogTitle</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.DialogTitle =
+                  value<br>
+                  variable = object.DialogTitle</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Puts/Gets the string
+                  displayed in the dialog title of the file open/save dialog
+                  boxes. Has no effect over the other dialogs. When empty the
+                  system default title is displayed (usually Open file/Save
+                  file).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="Filter">Filter</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Filter = value<br>
+                  variable = object.Filter</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Puts/Gets the list of
+                  the file filters. The value must be formed as pairs
+                  name|filter. For example you can set this filter:<br>
+                  <b>Text files|*.txt;*.text|HTML files|*.htm;*html|All
+                  files|*.*</b><br>
+                  which provides 3 different filters which will be displayed in
+                  the open/save file dialog box.<br>
+                  The default value is &quot;All Files|*.*&quot;.<br>
+                  <i><font color="#000080">
+                  Note that on Pocket PC devices</font></i> you must have a valid filter in
+                  order the dialog to do any useful work. Without a filter on Pocket
+                  PC the dialog will stay empty enabling the user only to click cancel.
+                  This is because of the specific behavior of the Pocket PC
+                  implementation which searches a number of directories some of
+                  which may be on slow flash memory cards. The default filter
+                  (*.*) guarantees that the dialog will work fine with the
+                  default settings, but it is recommended to set more specific
+                  filters in order to speed up the search that is performed each
+                  time an open/save dialog is displayed on a Pocket PC
+                  device.&nbsp;<br>
+                  See also the <b><a href="#FilterIndex">FilterIndex</a></b>
+                  property.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="DefaultExt">DefaultExt</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.DefaultExt =
+                  value<br>
+                  variable = object.DefaultExt</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Puts/Gets the default
+                  extension that is assigned to the file name entered by the
+                  user if he/she fails to specify an extension explicitly.<br>
+                  Usually the more complex applications determine one of many
+                  possible file extensions over the file type/format. For
+                  example the Filter and the FilterIndex properties can be used
+                  to enable the user to select a file format for a picture.
+                  Depending on the user selection the application can decide
+                  what kind of file to save and no single file extension would
+                  be of any use for the application. However, most applications
+                  do not need/support multiple file formats and a default
+                  extension can save a few lines of code that would be needed
+                  otherwise to ensure that the file has a correct name.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  InitDir</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.InitDir = value<br>
+                  variable = object.InitDir</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Enables you to
+                  specify the initial directory in which file open/save dialog
+                  will open.<br>
+                  Usually this property is not used. The full path and a file
+                  name you can set in the FileName property will give the dialog
+                  enough information to determine the initial directory with the
+                  additional benefit that you can both specify a default (or for
+                  example previous) file name and the directory in a single
+                  string which is also used in the file open/save operations in
+                  your application. Still sometimes it may be convenient to
+                  specify the initial directory separately - in such case you
+                  can use this property.<br>
+                  See also <b><a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/COMDLG/prj/doc/#cenotes">Pocket
+                  PC notes</a></b>&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="Color">Color</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Color = value<br>
+                  variable = object.Color</td>
+                <td bgcolor="#FFFFFF" valign="top">RGB color value as long
+                  integer. Puts/Gets the initial color or the selected color.
+                  Affects the color selection dialog (ShowColor) and the font
+                  selection dialog box (ShowFont).&nbsp;<br>
+                  <b>Color dialog</b> - if you set it before calling ShowColor
+                  it will set the initial color in the color selection dialog if
+                  the <b>Flags.RGBInit</b> is set to true. After the user
+                  selects a color it contains the selected color.<br>
+                  <b>Font dialog</b> - The dialog enables color selection id the
+                  <b>Flags.Effects</b> is set to true. Otherwise the property
+                  has no effect. On return the user selection is contained.
+                  Before ShowFont you can specify initial color.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  <p align="left"><b><img border="0" src="images/obj.gif" width="16" height="16">
+                  <a href="#comdlgflags" name="Flags">Flags</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Set of = object.Flags<br>
+                  object.Flags.Value = some_flags<br>
+                  object.Flags = some_flags<br>
+                  object.Flags.&lt;flag_property&gt; = True | False<br>
+                  variable = object.Flags.&lt;flag_property&gt;&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Object. Enables you to
+                  specify or query certain features of the dialog boxes. All the
+                  features are flags that enable/disable something or reflect
+                  some details about the user selection. The object has a set of
+                  Boolean properties that allow you to set/get each flag. See
+                  the <a href="#comdlgflags">Flags object's reference</a>.&nbsp;
+                  <p>This object has also a default property (named Value) that
+                  allows advanced users to put/get flags by combining them with
+                  bit-wise OR. Thus you can refer to the Flags in a way similar
+                  to a long integer property if you prefer to specify the
+                  features this way. Furthermore this allows you to set/get
+                  flags not explicitly supported by the object as separate
+                  properties. This may come handy in newer OS versions where you
+                  can access new OS features with a version of the object
+                  compiled for an older OS version. We strongly recommend you to
+                  use the Boolean properties exposed by the object instead -
+                  they hide the potentially problematic features.&nbsp;&nbsp;
+                  Consult MSDN for more information.&nbsp;&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FontName</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Puts/gets the font
+                  face name. Affects the Font dialog only (ShowFont). By setting
+                  this property before calling ShowFont you define the initial
+                  face name displayed by the dialog. After the user makes a
+                  selection and the ShowFont returns it contains the font face
+                  name selected by the user.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FontBold</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean. Specifies if the
+                  font is Bold. Affects font dialog only (ShowFont). Before
+                  calling ShowFont it specifies the initial value, after the
+                  user makes a selection it contains the user selection.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FontItalic</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean. Specifies if the
+                  font is Italic. Affects font dialog only (ShowFont). Before
+                  calling ShowFont it specifies the initial value, after the
+                  user makes a selection it contains the user selection.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FontStrikeThru</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean. Specifies if the
+                  font is striked out. Affects font dialog only (ShowFont).
+                  Before calling ShowFont it specifies the initial value, after
+                  the user makes a selection it contains the user selection.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FontUnderLine</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean. Specifies if the
+                  font is underlined. Affects font dialog only (ShowFont).
+                  Before calling ShowFont it specifies the initial value, after
+                  the user makes a selection it contains the user selection.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="Min">Min</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap rowspan="2">object.Min
+                  = value<br>
+                  variable = object.Min</td>
+                <td bgcolor="#FFFFFF" valign="top" rowspan="2">Long integer.
+                  Specify the minimal and the maximal font point size the font
+                  dialog will enable the user to select. Has effect only if <b>Flags.LimitSize</b>
+                  is true. By default the dialog restricts the font size from 8
+                  to 72 points. You can change this limit using these properties
+                  and the Flags.LimitSize.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="Max">Max</a></b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="CancelError">CancelError</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.CancelError =
+                  value<br>
+                  variable = object.CancelError&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean. Default is false. If
+                  set to true the ShowXXXX methods will cause &quot;Action
+                  cancelled&quot; error if the user cancels the dialog.
+                  Otherwise they return false. If you prefer On Error Resume
+                  Next techniques instead of If.. Then checks set it to True.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="FilterIndex">FilterIndex</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.FilterIndex =
+                  value<br>
+                  variable = object.FilterIndex&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Long integer. Works together
+                  with the <a href="#Filter">Filter</a> property. Before calling
+                  ShowOpen or ShowSave it enables you to specify the initial
+                  filter index shown in the dialog. After the user makes a
+                  selection it reflects the filter selected by the user. This is
+                  most often used to allow the user select one from many file
+                  formats/types. Checking the index provides a very simple and
+                  convenient way to determine the user selected file type/format
+                  and the file location in a single step.<br>
+                  The index is 1-based.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FontSize</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.FontSize =
+                  value<br>
+                  variable = object.FontSize</td>
+                <td bgcolor="#FFFFFF" valign="top">Double. Puts/Gets the fonts
+                  size. Affects the Font dialog only. On init it specifies the
+                  initial font size, after ShowFont it specifies the user
+                  selection.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FileTitle</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.FileTitle =
+                  value<br>
+                  variable = object.FileTitle</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Specifies the file
+                  name only. Currently (in version 1.0) this depends on the
+                  system implementation of the file open/save dialog. Most
+                  platforms fill this field <b>only when ShowOpen returns</b>.
+                  The field contains the file name only without the full path.
+                  The applications should not count on any other usage of this
+                  property no matter if a test shows that it is filled under
+                  other circumstances - this may be specific to the OS version
+                  you use.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Charset</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Charset = value<br>
+                  variable = object.Charset&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Long integer. Specifies the
+                  charset for the font. Applies to the font dialog only (ShowFont).
+                  Before calling ShowFont specifies the initial charset, after
+                  ShowFont contains the user selection. Here are the well-known
+                  charset constants:<br>
+                  ANSI_CHARSET = 0<br>
+ DEFAULT_CHARSET = 1 ' Matches the system settings<br>
+ SYMBOL_CHARSET = 2 ' for symbol fonts only<br>
+ SHIFTJIS_CHARSET = 128<br>
+ HANGEUL_CHARSET = 129<br>
+ HANGUL_CHARSET = 129<br>
+ GB2312_CHARSET = 134<br>
+ CHINESEBIG5_CHARSET = 136<br>
+ OEM_CHARSET = 255<br>
+ JOHAB_CHARSET = 130<br>
+ HEBREW_CHARSET = 177<br>
+ ARABIC_CHARSET = 178<br>
+ GREEK_CHARSET = 161<br>
+ TURKISH_CHARSET = 162<br>
+ VIETNAMESE_CHARSET = 163<br>
+ THAI_CHARSET = 222<br>
+ EASTEUROPE_CHARSET = 238<br>
+ RUSSIAN_CHARSET = 204<br>
+ MAC_CHARSET =77<br>
+ BALTIC_CHARSET = 186<br>
+                  &nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="Action">Action</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Action = value<br>
+                  variable = object.Action&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">String/Number. The values are
+                  the same as the dialog type in the <a href="#Reset">Reset</a>
+                  method. Setting the property does not reset the object,
+                  instead it only declares that the application is going to use
+                  it for the specified dialog type. This has the following
+                  effect:
+                  <p>When you set the dialog flags as value (See <a href="#Flags">Flags</a>)
+                  only the flags for the specified dialog type are affected.
+                  Thus for instance:<br>
+                  object.Flags.Value = OFN_ALLOWMULTISELECT Or _<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OFN_HIDEREADONLY<br>
+                  will apply only to the file dialog flags, if you invoke
+                  another dialog it will show with whatever flags has been set
+                  for it before you have changed the Action property.<br>
+                  This does not affect the Boolean flag properties of the Flags
+                  object - they are all dialog specific and the dialog type for
+                  which they apply is known implicitly.</p>
+                  <p>The Action property is actually useful only when you want
+                  to both reuse the object for different dialogs and set flags
+                  directly - as a long integer value composed with Or operators
+                  and not using the Flags object's Boolean properties.</p>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  CustomColors</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.CustomColors(I)
+                  = value<br>
+                  variable = object.CustomColors(I)</td>
+                <td bgcolor="#FFFFFF" valign="top">Indexed property, color
+                  values. The index must be between 0 and 15. This property
+                  allows you put/get the 16 custom colors the Color dialog (ShowColor)
+                  presents to the user. On Pocket PC the user is not allowed to
+                  change/set them, on most of the other platforms the user can
+                  save his/her selections there. If you want to preserve the
+                  custom colors you should save all the 16 values.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/collection.gif" width="16" height="16">
+                  <a name="FileNames">FileNames</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable =
+                  object.FileNames(I)<br>
+                  For Each I In object.FileNames<br>
+                  namesCount = object.FileNames.Count</td>
+                <td bgcolor="#FFFFFF" valign="top">Collection. Can be used only
+                  with file open dialog (ShowOpen) when the dialog is configured
+                  to allow the user to select multiple files. In this case it is
+                  easier to use this collection instead of splitting the value
+                  of the FileName property in order to get the file names.<br>
+                  The collection contains the file names only (without path).
+                  The path you can obtain from the InitDir property.<br>
+                  See also <a href="#MultiSelect">Flags.MultiSelect</a>.<br>
+                  <b>On Pocket PC multiselect is not supported.</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="HelpCommand">HelpCommand<br>
+                  </a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HelpCommand =
+                  cmd<br>
+                  cmd = object.HelpCommand<b>&nbsp;</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Long Integer. Specifies the
+                  help command to be executed when ShowHelp is invoked. The
+                  supported commands are:
+                  <p><b>&amp;H01 - Context help. </b>Shows help for the
+                  specified context. On Windows CE the topic specified by the <b><i>HelpContext</i></b>
+                  property is shown. On desktop (see <b>&amp;H08</b>) displays
+                  the topic specified by the HelpContext property (for help
+                  files created with Help Workshop prior to 4.0).</p>
+                  <p><b>&amp;H08 - Context popup</b>. Shows help for the
+                  specified context in the HelpContext property in a pop-up
+                  window. (desktop only).</p>
+                  <p><b>&amp;H03 - Help index/contents. </b>Shows the main page
+                  of the help file.</p>
+                  <p><b>&amp;H09 - Force file</b>. Forces the help file
+                  specified by the <b><i>HelpFile</i></b> property to be shown.
+                  (desktop only)</p>
+                  <p><b>&amp;H04 - Help on help</b>. Displays the help about the
+                  Windows help system. (desktop only).</p>
+                  <p><b>&amp;H101 - Keyword</b>. Displays help for the keyword
+                  specified by the <b><i>HelpKey</i></b> property. (desktop
+                  only).</p>
+                  <p><b>&amp;H105 - Partial keyword</b>. Displays help topic by
+                  partially specified keyword in the <b><i>HelpKey</i></b>
+                  property. (desktop only).</p>
+                  <p><b>&amp;H02 - Quit</b>. Closes the help. (desktop only)<br>
+                  &nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="HelpKey">HelpKey<br>
+                  </a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HelpKey = s<br>
+                  s = object.HelpKey&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">String. Has no effect on
+                  Windows CE. Specifies the help keyword (pr partial keyword)
+                  for HelpCommand &amp;H101 and &amp;H105.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="HelpContext">HelpContext<br>
+                  </a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HelpContext =
+                  ctx<br>
+                  ctx = object.HelpContext&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">On desktop integer (the ID of
+                  the topic) should be specified, on Windows CE a string (the
+                  name of the topic) must be specified. See HelpCommand &amp;H01
+                  and &amp;H08</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="HelpFile">HelpFile<br>
+                  </a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HelpFile = f<br>
+                  f = object.HelpFile</td>
+                <td bgcolor="#FFFFFF" valign="top">String. The path to the help
+                  file to be displayed. Note that the safest way is to specify
+                  the full path to the file.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  <a name="ShowOpen">ShowOpen</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowOpen</td>
+                <td bgcolor="#FFFFFF" valign="top">Shows the file open dialog.
+                  The method does not return until the user makes a selection or
+                  presses cancel. When cancelled the method returns False,
+                  otherwise it returns True. If the <a href="#CancelError">CancelError</a>
+                  property is set to True instead of returning False the method
+                  generates an error.&nbsp;<b>See also <a href="#cenotes">Pocket
+                  PC notes</a>.</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  <a name="ShowSave">ShowSave</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowSave</td>
+                <td bgcolor="#FFFFFF" valign="top">Shows the file save dialog.
+                  The method does not return until the user makes a selection or
+                  presses cancel. When cancelled the method returns False,
+                  otherwise it returns True. If the <a href="#CancelError">CancelError</a>
+                  property is set to True instead of returning False the method
+                  generates an error.&nbsp;<b>See also <a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/COMDLG/prj/doc/#cenotes">Pocket
+                  PC notes</a>.</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  <a name="ShowColor">ShowColor</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowColor</td>
+                <td bgcolor="#FFFFFF" valign="top">Shows the color selection
+                  dialog. The method does not return until the user makes a
+                  selection or presses cancel. When cancelled the method returns
+                  False, otherwise it returns True. If the <a href="#CancelError">CancelError</a>
+                  property is set to True instead of returning False the method
+                  generates an error.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  <a name="ShowFont">ShowFont</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowFont</td>
+                <td bgcolor="#FFFFFF" valign="top">Shows the font selection
+                  dialog. The method does not return until the user makes a
+                  selection or presses cancel. When cancelled the method returns
+                  False, otherwise it returns True. If the <a href="#CancelError">CancelError</a>
+                  property is set to True instead of returning False the method
+                  generates an error.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  <a name="ShowHelp">ShowHelp</a><br>
+                  </b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowHelp</td>
+                <td bgcolor="#FFFFFF" valign="top">Invokes the help system (WinHelp
+                  on desktop, PegHelp on Windows CE). The actual operation that
+                  will be performed depends on the current values of the <b><i><a href="#HelpFile">HelpFile</a></i></b>,
+                  <b><i><a href="#HelpCommand">HelpCommand</a></i></b>, <b><i><a href="#HelpCommand">HelpContext</a></i></b>
+                  and <b><i><a href="#HelpKey">HelpKey</a></i></b> properties.
+                  See their descriptions for details.
+                  <p>Note that the help systems on the desktop and Windows CE
+                  devices are very different. Even if you use the very basic
+                  help features there will be differences in the desktop and the
+                  Windows CE versions of your application.&nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  <a name="Reset">Reset</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Reset dlgType</td>
+                <td bgcolor="#FFFFFF" valign="top">Resets/Initializes the object
+                  to the best suitable state for the dialog type specified.
+                  dlgType can be integer or a string containing a keyword
+                  recognized by the object - use whatever you prefer. The values
+                  are:
+                  <p>1 or &quot;File&quot; - File open/save dialog<br>
+                  2 or &quot;Color&quot; - Choose color dialog<br>
+                  3 or &quot;Font&quot; - Font selection dialog.</p>
+                  <p>The method does not change any of the properties and flags
+                  that are not used by the specified dialog type. However, any
+                  call to this method resets the CancelError to its default
+                  value - False. The method also sets the value of the <a href="#Action">Action</a>
+                  property to the dlgType specified (see Action for more
+                  details).</p>
+                  <p>If unsure about the state of the object you can always call
+                  this method before starting to fill the properties of the
+                  object and showing a dialog box. This may be especially useful
+                  when you are using the same object to show the same dialog
+                  type for different purposes. A good example is using open file
+                  for import and typical file open operation. A property value
+                  set for one of the operations may cause the dialog to look or
+                  behave strangely when you show it for the other operation if
+                  you forget to change it. Resetting the object will help you
+                  identify such omissions earlier.</p>
+                  <p>Note that on Pocket PC the default initialization for file
+                  save dialog is inappropriate - see <a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/COMDLG/prj/doc/#cenotes">Pocket
+                  PC notes</a> for more details.</p>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  <b>IsPocketPC</b></td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable =
+                  object.IsPocketPC</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean. Returns True if the
+                  device is a Pocket PC (any version). See <a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/COMDLG/prj/doc/#cenotes">Pocket
+                  PC notes</a> &nbsp;
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+<h2><A NAME="comdlgflags">4. Common Dialog Flags</h2>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>This object is accessible through the NSComDlg.Flags property.
+            Typically you should use it for example like this:</p>
+            <p><b>comdlg_object.Flags.MultiSelect = True<br>
+            ' Which configures the file dialog to allow multi-selection.</b></p>
+            <p>The object provides a set of Boolean properties each controlling
+            a single flag (option) for a certain dialog type. By using them you
+            do not need to combine flag values or import/define constants for
+            these flags (like the MS Common Dialogs control).&nbsp;</p>
+            <h3>Boolean Properties reference</h3>
+            <p>Each of the properties listed below is Boolean and read/write.
+            Each of them corresponds to a single flag (option) for a given
+            dialog type. The properties are listed by the dialog type they
+            affect. Note that most flags specify options about the dialog boxes,
+            but there are a few that indicate specifics of the user selection
+            after the dialog closes (marked in Blue) .&nbsp;</p>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top"><b>Name</b></th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <th bgcolor="#CCFFCC" valign="top" nowrap colspan="2">Open/Save
+                  file dialog</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="MultiSelect">MultiSelect</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top">Default: False<br>
+                  If set to True the open file dialog allows multiple selection
+                  and returns the list of the selected files - see <a href="#FileName">ComDlg.FileName</a>
+                  and <a href="#FileNames">ComDlg.FileNames</a>.<br>
+                  <b>Not supported on Pocket PC and most Windows CE devices.</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  CreatePrompt</b></td>
+                <td bgcolor="#FFFFFF" valign="top">For file save dialog displays
+                  a prompt if the user enters a non-existent file name.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  FileMustExist</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Allows the user to select
+                  only existing files.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  <b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  HelpButton</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Displays the help button on
+                  the dialog. No effect on Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  HideReadOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Hides the <b>Read</b> <b>Only</b>
+                  check box. No effect on Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  NoChangeDir</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Restores the current
+                  directory to its original value if the user changed the
+                  directory while searching for files. Not supported on Windows
+                  CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  NoDereferenceLinks</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Allow selection of the
+                  shortcut files themselves instead of the files to which they
+                  point to.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <font color="#0000FF">NoReadOnlyReturn</font></b></td>
+                <td bgcolor="#FFFFFF" valign="top">After ShowOpen indicates that
+                  <b>Read only</b> checkbox has not been checked by the user.
+                  Not supported on Windows CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  NoValidate</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Perform no validation of the
+                  entered file name. If set to True you should use only the
+                  FileName property after the ShowOpen/ShowSave returns. The
+                  returned file name may contain invalid characters, for this
+                  flag allows this. No effect on Windows CE (the names are
+                  always checked)</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  OverwritePrompt</b></td>
+                <td bgcolor="#FFFFFF" valign="top">ShowSave will show message
+                  box asking the user if he/she really wants to overwrite the
+                  selected file if the user chooses/enters a name of an existing
+                  file.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  PathMustExist</b></td>
+                <td bgcolor="#FFFFFF" valign="top">If the user types path and a
+                  file name in the dialog and the path does not exist a warning
+                  message is shown.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  ShareAware</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Ignore sharing violation. If
+                  this flag is not set the user is not allowed to select a file
+                  which is locked. Not supported on Windows CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <font color="#0000FF">ReadOnly</font></b></td>
+                <td bgcolor="#FFFFFF" valign="top">Controls the <b>Read only</b>
+                  check box. After return indicates the stat in which it has
+                  been left by the user. Not supported on Windows CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  <font color="#0000FF">ExtensionDifferent</font></b></td>
+                <td bgcolor="#FFFFFF" valign="top">If the <b><a href="#DefaultExt">
+                  DefaultExt</a> </b>is not empty this flag indicates after
+                  ShowSave that the user has typed file extension different from
+                  the extension specified by that property.&nbsp;</td>
+              </tr>
+              <tr>
+                <th bgcolor="#CCFFCC" valign="top" nowrap colspan="2">Color
+                  dialog</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><b>FullOpen</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Causes the dialog to open
+                  with the advanced options shown (free color selection). Does
+                  not have effect on Pocket PC 2003 and earlier.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><b>PreventFullOpen</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Disables the button that
+                  opens the advanced options. No effect on Pocket PC 2003 and
+                  earlier.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  RGBInit</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Use the <b><a href="#Color">Color</a></b>
+                  property to initialize the dialog. If the flag is not set the
+                  dialog is not initialized from the current value of the Color
+                  property.</td>
+              </tr>
+              <tr>
+                <th bgcolor="#CCFFCC" valign="top" nowrap colspan="2">Font
+                  dialog</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><b>ANSIOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show ANSI fonts only
+                  (obsolete - included for backward compatibility).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><b>Effects</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show the controls for effects
+                  selection (strike thru, color etc.)&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><b>FixedPitchOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show fixed pitch fonts only.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  ForceFontExist</b></td>
+                <td bgcolor="#FFFFFF" valign="top">The font must exist. The user
+                  is not allowed to type a face name of non-existent font. If
+                  not set the closest substitution is selected by the system.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  LimitSize</b></td>
+                <td bgcolor="#FFFFFF" valign="top">If set to True the dialog
+                  will show only the font sizes between the values of the <a href="#Max">Min
+                  and Max</a> properties.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><b>NoFaceSel</b></td>
+                <td bgcolor="#FFFFFF" valign="top">No initial face selection is
+                  shown in the dialog (the FontName can still be valid and
+                  non-empty, but it is not initially selected when the dialog
+                  opens).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  NoSimulations</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Forbids font simulations to
+                  be made by the GDI.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  NoSizeSel</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Hide the size selection
+                  controls on the dialog.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  NoStyleSel</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Hide the style selection
+                  controls on the dialog.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  NoVectorFonts</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show no vector fonts in the
+                  list.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="ScalableOnly">ScalableOnly</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top">List only fonts that are
+                  scalable.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  <a name="ScreenFonts">ScreenFonts</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top">List screen fonts.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  TTOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">List true type fonts only.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><b>WYSIWYG</b></td>
+                <td bgcolor="#FFFFFF" valign="top">List only WYSIWYG fonts
+                  (these are in first place fonts available for the both screen
+                  and the printer).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  </b><a name="PrinterFonts"><b>PrinterFonts</b></a></td>
+                <td bgcolor="#FFFFFF" valign="top">List printer fonts.</td>
+              </tr>
+            </table>
+            <h3>Advanced usage</h3>
+            <p>If you prefer to use combined flag constants you can assign all
+            the flags composed this way through the Value property of the
+            object. The object has also two helper methods that can be used to
+            bring it in well-known state. They are also intended for this kind
+            of usage. If you want to use the Boolean properties there is no need
+            to ever use the Value property or the Methods in the following
+            table.</p>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th valign="top" nowrap>Name</th>
+                <th valign="top" nowrap>Syntax</th>
+                <th valign="top" nowrap>Description</th>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF" nowrap><b><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Value
+                  </b></td>
+                <td valign="top" bgcolor="#FFFFFF" nowrap>comdlg_object.Flags.Value
+                  = value<br>
+                  comdlg_object.Flags = value<br>
+                  variable = comdlg_object.Flags.Value</td>
+                <td valign="top" bgcolor="#FFFFFF">Long integer, default
+                  property. Thanks to the fact that this is default property
+                  flags combined in long integer value can be assigned
+                  syntactically just like with the Microsoft Common Dialogs
+                  ActiveX. The property puts/gets the flags for the dialog type
+                  specified by the <a href="#Action">NSComDlg.Action</a>
+                  property. If you want to set the flags for all the dialogs at
+                  once (very unlikely) set the Action to 0. Note that due to the
+                  differences between the platforms and the fact that Microsoft
+                  no longer supports their common dialog ActiveX the flags that
+                  have worked on earlier OS versions may cause different
+                  behavior on new OS versions. To be on the safe side it is
+                  recommended to carefully check MSDN or use the properties
+                  listed above.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  SetDefaults</b></td>
+                <td valign="top" bgcolor="#FFFFFF" nowrap>comdlg_object.Flags.SetDefaults</td>
+                <td valign="top" bgcolor="#FFFFFF">Sets the flags for all the
+                  dialog types to their default values.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF" nowrap><b><img border="0" src="images/method.gif" width="17" height="16">
+                  Clear</b></td>
+                <td valign="top" bgcolor="#FFFFFF" nowrap>comdlg_object.Flags.Clear</td>
+                <td valign="top" bgcolor="#FFFFFF">Clears all the flags for all
+                  the dialog types. Use with caution! In many cases the common
+                  dialogs require at least one or two flags in order to do
+                  something useful - make sure you are setting new flags after
+                  calling the Clear method.</td>
+              </tr>
+            </table>
+            <p><b>General notes for developers who set flags directly</b> (e.g.
+                  comdlg_object.Flags = &amp;H&lt;someflag&gt; Or
+            &amp;H&lt;someflag2&gt; ...). Note that the Font and the Color
+            dialogs do not initialize from the specified data unless a special
+            flag is specified. To avoid confusion the control automatically adds
+            this flag when flags are assigned directly, thus relieving you from
+            the need to specify it explicitly.
+            
+<h2>5. <a name="Help">Help </a> Files and PegHelp Usage Example</h2>
+
+<p>This example shows both how to construct a help for your
+application and how to invoke it. The files are in \Program Files\NSBasic\CE\Samples\NSBComDlg.PegHelp.zip.
+
+<h4>1. Creating the Help File</h4>
+
+Help consists of one or more HTML files. The files are generally regular HTML 3.2 files, but there are some tags that add functionality and some specifics:
+
+<ul>
+	<li><pre>&lt;META HTTP-EQUIV="Htm-Help" CONTENT="NSBHelpExample.htm#Main_Contents"&gt;</pre>
+    This tag defines an entry in the main system contents menu. The system is
+    responsible for parsing the installed help files and check for this META
+    tag. To make the sytem parse the file, see "Link creation" below.
+    
+	<li><pre>&lt;KEYWORD VALUE="nsbkeyword1;nsbkeyword2" TITLE="Topic 1" 
+	HREF="NSBHelpExample.htm#topic1"&gt;</pre>
+    Put as many as you want such tags thus connecting keywords with specific topics in
+    the same HTML file. This will enable the Search function in the CE Help to find them
+    
+	<li><pre>&lt;!-- PegHelp --&gt;&lt;BR&gt;</pre>
+    Put this tag after the heading (immediately after the BODY tag) and after each topic
+    in your help files. This enables the PegHelp show separate topics from the file and enables
+    you to put all or at least more topics in single file and then show them as if they are
+    in spearate files. If you have any experience in WML (WAP) this is very similar to the
+    deck in WML - i.e. the tag above separates "cards" in a "deck".
+    So, Each topic in your help file is between &lt;!-- PegHelp --&gt; tags
+    
+	<li><pre>&lt;A NAME="Main_Contents"&gt;&lt;/A&gt;</pre>
+    Assign this bookmark name to the topic that contains the general contents of
+    all your help files.
+    
+	<li><pre>&lt;A NAME="topic1"&gt;&lt;/A&gt;</pre>
+    Put a bookmark with the topic's bookmark name nearly the beginning of each
+    topic
+    
+	<li><pre>&lt;A HREF="NSBHelpExample.htm#Main_Contents"&gt;Contents&lt;/A&gt;&lt;BR&gt;</pre>
+    When using links use the file name and the bookmark name of the topic to which the
+    link leads.
+</ul>
+    
+<h4>2. Creating the Link</h4>
+
+The link is actually a text file with a full path to your help file. The only special
+thing is that you must specify the number of the characters in the path specified
+immediately before it - like this:
+
+<pre>27#\Windows\NSBHelpExample.htm</pre>
+
+To make this link work copy it in \Windows\Help.
+The link file must have a .lnk extension. To avoid problems the file
+in the example is with .lnk.txt extension - remove the .txt part after
+copying to the device's \Windows\Help
+
+
+<h4>3. Running the example</h4>
+
+<ul>
+	<li>Copy the NSBHelpExample.htm in the \Windows directory</li>
+	<li>Copy the NSBasic PegHelp Usage Example.lnk.txt to \Windows\Help and remove the .txt extension fom it.</li>
+	<li>Compile and run (or make the exe and copy it whereever you want on the device) the example.</li>
+</ul>
+   
+    The 3 first buttons show topics following the Microsoft's guidelines
+    
+    The 4-th button "Open without a bookmark" demonstrates what would happen
+    if you use link without a bookmark - everything is shown and this may not be
+    what you actually want. Still in small help systems this may be useful - just
+    do not forget to design the file(s) in a manner that will display nice in the
+    both ways - single topic and everything at once.
+    
+<h4>4. Notes on invoking help</h4>
+
+Notice the HelpCommand property. When it is set to 01 (Which is default) you need
+to specify a topic's bookmark name in the HelpContext property. Failing to do so
+will cause error (cannot find the help file) when you use the ShowHelp method.
+
+<p>If you want to go by without bookmarks you must set the HelpCommand to something 
+else. It is recommended to use 0 in order to avoid any future problems if the
+future versions of Windows CE begin to support more different commands.
+
+<p>This behavior (defaulting to 01 - which requires a bookmark) have been choosen
+according to the guidelines in MSDN. It is intended to stimulate a kind of usage
+in which the information is displayed in relatively small topics and not as huge
+help files through which the user would need to scroll in order to find what he/she
+looks for.            <h2>6. <a name="Version">Version</a> History</h2>
+            <p>Version 1.0.1
+            <blockquote>
+            <p>- Help support added (See <a href="#ShowHelp">ShowHelp</a>)<br>
+            - Fixed a problem with MultiSelect open file dialog box on Windows
+            2000. Symptoms: Windows 2000 gets confused if the buffer for the
+            files list is too big and only one file is selected in a
+            multi-select file open dialog box. Fix: The buffer size has been
+            lowered.<br>
+            <i><b>Known problems:<br>
+            </b></i>On WM5 the font dialog may appear incorrectly in landscape
+            mode. This is a problem in Windows Mobile OS - the system's template
+            for the dialog seems to be from the handheld pc and does not fit the
+            size of the screen of the Pocket PC devices.
+            </blockquote>
+            <p>Version 1.0 - the initial version 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+</body>
+
+</html>

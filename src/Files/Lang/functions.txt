@@ -1,0 +1,120 @@
+This is the master list of functions used in CodeMax for NS Basic/CE and Desktop.
+How to add to CodeSense:
+1. Paste into column 2 of a spreadsheet.
+2. In column 1, number the items starting from 100 (101, 102, etc).
+3. Save as tab delimited text \nsbce\files\lang\functions.tab.txt
+4. Open functions.tab.txt in BBEdit. Replace all quotes with nothing, and "\r" with "\r ".
+4. Paste into StrTable_English.txt
+
+Abs(number) 'returns the absolute value of Number
+AddObject ObjectID, varName, [left, top, left, width, [parent]] 'add an object named VarName
+Array(expression list) 'create an array from a list of elements
+Asc(string) 'return the ASCII value of a character
+Atn(number) 'return the arc tangent 
+CBool(exp) 'Convert to Boolean
+CByte(exp) 'Convert to Byte type
+CCur(exp) 'Convert to Currency type
+CDate(exp) 'Convert to Date type
+CDbl(exp) 'Convert to Double
+Chr(number) 'Convert number to character
+CInt(exp) 'Convert to Integer
+CLng(exp) "Convert to Long
+Cos(exp) 'Return Cosine of exp
+CreateObject(ObjectID) 'Create an Object
+CSng(exp) 'Convert to Single 
+CStr(exp) 'Convert to String
+Date 'Returns the current system date
+DateAdd(interval, number, date) 'Add number (defined by interval) to date. See Language Ref for Interval values.
+DateDiff(interval,d1,day2[,1stdayofwk[, 1stwkofyr]]) 'Return interval between dates. See Language Ref for Interval values.
+DatePart(interval, day[, 1stdayofwk[, 1stwkofyr]]) 'Return part of current date. See Language Ref for Interval values.
+DateSerial(year, month, day) 'Returns a Date variable from numeric values
+DateValue(date) 'Returns a Date variable from a date string.
+Day(date) 'Returns day (1-31) from a Date variable.
+Eval(string) 'Returns result of executing string
+Execute(string) 'Executes string
+ExecuteFile(string) 'Executes text file
+Exp(number) 'returns e raised to the value of number.
+Filter(stringarray, value[, include[, compare]]) 'Returns an array of strings. See Language Reference.
+Fix(number) 'Returns whole number portion of number.
+FormatCurrency(exp[, fractionaldigits[, leadingdigit[, parensfornegative[, groupdigits]]]]) 'Returns string. See Language Ref.
+FormatDateTime(date[, formatname]) 'Returns string. See Language Ref.
+FormatNumber(exp[, fractionaldigits[, leadingdigit[, parensfornegative[, groupdigits]]]]) 'Returns string. See Language Ref.
+FormatPercent(exp[, fractionaldigits[, leadingdigit[,parensfornegative[,groupdigits]]]])Hex(number) 'Returns string. See Language Ref.
+GetObject(pathname, class) 'open a pathname as an object 
+GetRef(functionName) 'returns reference to a function
+Hex(number) 'returns hex value as string
+Hour(time) 'Return hour portion (0-23) of time.
+InputBox(prmpt[, title[, default[, x[, y]]]]) 'Display an input box and return input.
+InStr([start, ]string1, string2[, compare]) 'Find one string inside another.
+InStrRev(string1, string2[, start[, compare]]) 'Find one string inside another. Start search at end.
+Int(number) 'Return integer portion of number
+IsArray(exp) 'Is exp an Array?
+IsDate(exp) 'Is exp a Date?
+IsEmpty(exp) 'Is exp Empty?
+IsNull(exp) 'Is exp Null?
+IsNumeric(exp) 'Is exp a number?
+IsObject(exp) 'Is exp an Object?
+Join(stringarray[, delimiter])  'Combine an array of strings into a single string, separated by Delimiter.
+LBound(array[, dimension]) 'Return lower bound of array.
+LCase(string) 'Converts string to lower case
+Left(string, length) 'Returns length characters from left of string.
+LeftB(string, length) 'Returns length bytes from left of string.
+Len({string | variable}) 'Returns number of characters in string.
+LenB({string | variable}) 'Returns number of bytes in string.
+LoadPicture(filename) 'Returns a picture object
+Log(number) 'Returns the natural log of number.
+LTrim(string) 'Returns string without leading spaces
+Mid(string, start[, length]) 'Return Length characters starting at position Start in String.
+MidB(string, start[, length]) 'Return Length bytes starting at position Start in String.
+Minute(time) 'Return the minutes portion (0-59) of time.
+Month(date) 'Return the month portion (1-12) of date.
+MonthName(date[, abbreviate]) 'Return month name of date.
+MsgBox(prompt[, buttons[, title]]) 'Put up a message box. See Language Reference for Buttons.
+Oct(number) 'Return number converted to an octal string.
+Replace(target, find, source[, strt[, count[, comp]]]) 'Replace one string with a another.
+RGB(red, green, blue) 'returns RGB value. Colors are 0-255.
+Right(string, length) 'Returns the Right characters of String.
+RightB(string, length) 'Returns the Right bytes of String.
+Rnd[(number)] 'Returns a random single precision number between 0 and 1.
+Round(number[, fractionalDigits]) 'Returns Number rounded to the nearest fractionalDigits.
+RTrim(string) 'Returns String with trailing spaces removed.
+Second(time) 'Returns seconds portion (0-59) of time.
+SetLocale(LocaleID) 'sets geographic locale. See Microsoft docs for locale values.
+SetMenu(menuString[||menuKey], menuList) 'sets current menu .
+SetParent(child, parent) 'sets the parent of a child object.
+Sgn(number) 'Returns sign of number (-1, 0, or 1).
+ShellExecute(verb, file[, parms]) 'Executes another program. Verb is Open or Print.
+Sin(number) 'Return the sine of Number.
+Sleep(number) 'Stop all processing for Number of milliseconds.
+Space(number) 'Returns of string of Number spaces.
+Split(string[, delimiter[, count[, compare]]]) 'Returns an array of strings from a string.
+Sqr(number) 'Returns the square root of Number.
+StrComp(string1,string2[, compare]) 'Compares 2 strings. See Language Reference for more info.
+String(number, character) 'Returns a string of Number Characters.
+StrReverse(string) 'Returns the reverse of String.
+Tan(number) 'Returns the tangent of Number.
+TimeSerial(hour, minute, second) 'Returns a Time variable computed from parameters.
+TimeValue(string) 'Returns a Time variable from String.
+Trim(string) 'Returns string with leading and trailing spaces removed.
+TypeName(variable) 'Returns the variable type name of Variable in a string.
+UBound(array[, dimension]) 'Returns upper bound of array.
+UCase(string) 'Converts string to lower case.
+VarType(variable) 'Returns the variable type name of Variable as a number.
+Weekday(date[, firstdayofweek]) 'Returns the integer value of day of week.
+WeekdayName(number[, abbrev[, 1stdayofwk]) 'Returns the name of the day of the week.
+Year(date) 'Returns the year portion of the date.
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+
+  

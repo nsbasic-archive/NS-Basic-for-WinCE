@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309Timer Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309Timer.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+addobject "S309.Timer.1","Timer1",0,0  ' 
+
+timer1.interval = 1000
+timer1.enabled = true
+
+sub timer1_timer()
+  print now
+end sub
+</PRE>
+</body>
+</html>

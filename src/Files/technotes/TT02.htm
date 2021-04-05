@@ -1,0 +1,247 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 02: Multiple Forms</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" alt="" src="images/BigIcon.GIF" width="86" border="0"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 02: Multiple Forms</h2>
+      <h3>February 01, 2010</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	  <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p></td></tr></table>
+<hr>
+
+<h2>Purpose </h2>The purpose of this tutorial is to help learn a few more NS 
+Basic/CE programming techniques. You should complete Tutorial #1 before 
+beginning this tutorial. In this tutorial, the techniques of using multiple 
+forms will be covered. 
+<h2>Description of the Program </h2>The program to be developed has two forms. 
+Form #1 allows the user to enter a birth date and name. Form #2 shows the values 
+of the previously entered birth date and name plus it tells on what day of the 
+week the birth date occurred. There is a button on each form that will switch
+between forms.
+<h2>Program Development </h2>
+<h4>1. Startup</h4>
+<ul>
+  <li>Start NS Basic/CE from the Start menu. 
+  <li>At the initial screen select Standard in the New Project dialog box and 
+  click OK</li></ul>
+<h4>2. Modify the First Form's Parameters </h4>
+<ul>
+  <li>You should now see a blank form with the title "Form1" 
+  <li>Select the form in the Project Explorer by clicking on it. 
+  <li>In the Properties window, change the Name to  
+  "My Form 1"</li>           
+  </ul>
+<p align="center"><img height="662" alt="" src="images/TT02.1.gif" width="547" border="0"> 
+<h4>3. Create Objects for Form 1</h4>Add a date selector for the birth date: 
+<ul>
+  <li>Click on the Date object in the Toolbox (calendar icon). 
+  <li>Move the cursor to the form where you want the object to appear and click 
+  the left mouse button. 
+  <li>Click on the object to select it. 
+  <li>Set the Name in the Properties window to "selDate" 
+  <li>Use the mouse to expand the size of Date object horizontally (about twice 
+  its current size) and reposition on the form. </li></ul>Add a label for entering 
+the birth date: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Move the cursor to the form where you want the object to appear and click 
+  the left mouse button. 
+  <li>In the Properties window, change the Name to "lblDate 
+  <li>Change the Caption to "Enter your birth date" 
+  <li>Change FontBold to True 
+  <li>Click on the object to select it. 
+  <li>Use the mouse to expand the size of the label to display the text all on 
+  the same line and reposition on the form.</li></ul>Add a text box to enter the 
+user's name: 
+<ul>
+  <li>Click on the TextBox object in the Toolbox ("ab" icon) 
+  <li>Move the cursor to the form and click the left mouse button to place the 
+object on the form 
+  <li>Click on the object to select it. 
+  <li>In the Properties window, change the Name to "txtName" 
+  <li>Scroll down in the Properties Window and change Text to "Enter your name 
+  here" 
+  <li>Use the mouse to expand the size of the TextBox to display the text all on 
+  the same line and reposition on the form. </li></ul>Add a button to transfer to 
+Form 2: 
+<ul>
+  <li>Select the CommandButton object in the Toolbox (blank rectangle box). 
+  <li>Place it on the form and click on it to select it. 
+  <li>In the Properties window, change the Name to "cmdShow" 
+  <li>In the Properties window, change the Caption to "Show the Day of the Week" 
+
+  <li>Use the mouse to expand the size of the CommandButton to display the text 
+  all on the same line and reposition on the form. </li></ul>Name and save 
+the project: 
+<ul>
+  <li>Select File from the menu at the top and select Save Project 
+  <li>Select/create a folder and save the project as <i>MyProject02.nsb</i></li></ul>
+<p align="center"><img height="662" alt="" src="images/TT02.2.gif" width="547" border="0"> 
+
+<h4>5. Create the Second Form </h4>
+<ul>
+  <li>Select "Project" from the top main menu 
+  <li>Select "Add Form" from the menu 
+  <li>In the Properties window, set the Name to "My Form 2"</li>           
+  </ul>
+  
+<h4>6. Create Objects for Form 2 </h4>Add a text label before the birthday: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form and click on it to select. 
+  <li>In the Properties window, change the Name to "lblBirthday 
+  <li>In the Properties window, change the Caption to "Birthday =" </li></ul>
+  Add a field where the birthday will be shown: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form to the right of the last label and select it 
+  <li>In the Properties Window, change the Name to "lblDateField" 
+  <li>In the Properties window, change the Caption to "Date"  
+  <li>Expand the label to hold the date</li></ul>
+  Add a text label before the name: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form and click on it to select. 
+  <li>In the Properties window, change the Name to "lblName 
+  <li>In the Properties window, change the Caption to "Name =" </li></ul>
+  Add a field where the name will be shown: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form to the right of the last label and select it 
+  <li>In the Properties Window, change the Name to "lblNameField" 
+  <li>In the Properties window, change the Caption to "Name" </li></ul>Add a 
+text label before the day-of-the-week: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form and select it 
+  <li>In the Properties window, change the Name to "lblDayWeek 
+  <li>In the Properties windows, change the Caption to "Day of the week 
+="</li></ul>Add a field where the day-of-the-week will be shown: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form and select it 
+  <li>In the Properties window, change the Name to "lblDayField" 
+  <li>In the Properties window, change the Caption to "DayWeek" </li></ul>Add a button to transfer back to Form  1: 
+<ul>
+  <li>Select the CommandButton object in the Toolbox (blank rectangle box)
+  <li>Place it on the form and select it 
+  <li>In the Properties window, change the Name to "cmdGoBack 
+  <li>In the Properties window, change the Caption to "Go Back"  
+  <li>Use the mouse to expand the size of the CommandButton to display the text 
+  all on the same line and reposition on the form. </li></ul>
+<p align="center"><img height="662" alt="" src="images/TT02.3.gif" width="547" border="0">
+<p>We have completed the visual design of our program so now it's time to add code 
+to make it do something. 
+<h4>7. Enter Code on Form 1 to Transfer to Form 2</h4>When the user taps on the 
+"Show the Day of the Week" button, we want Form 2 to appear. 
+<ul>
+  <li>Right click on My_Form_1 in the Project Explorer and select "View Object" 
+  <li>Double click the CommandButton ("Show the Day of the Week") 
+  <li>Enter these lines of code after the SUB line:
+   <pre>  My_Form_1_Hide
+  My_Form_2_Show </pre></li></ul>The two lines are used to hide form 1 (unloads 
+the form) and show form 2 (loads the form). No further action is required. 
+NS Basic/CE automatically displays the program's first form (My_Form_1) at the 
+start of program execution. 
+<h4>8. Enter Code for Form 2 Objects </h4>We need to add code that will execute 
+when Form 2 loads. 
+<ul>
+  <li>Right click on My_Form_2 in the Project Explorer and select "View Object" 
+  <li>Double click on an empty area in form 2 to bring up the Code 
+  Window (you should see "Sub My_Form_2_Load") 
+  <li>Enter these lines of code after the SUB line: </li></ul>
+  <pre>  lblDateField.Text = FormatDateTime(selDate.Date,2)
+  lblNameField.Text = txtName.Text
+  lblDayField.Text = WeekDayName( DatePart("w",selDate.Date)) </pre>This 
+routine is called when the user clicks the Form 1 button which cause Form 2 to 
+load. This code transfers the date and name from the first form to the second 
+form. It also computes the day of the week from the date selected by the user. 
+The <strong>FormatDateTime</strong>   
+                
+            statement converts the 
+Date and Time value to a short date string for displaying on the form.<br>
+<h4>9. Enter Code on Form 2 to Transfer to Form 1 </h4>When the user taps on the 
+"Go Back" button, we want Form 1 to reappear. 
+<ul>
+  <li>Right click on My_Form_2 in the Project Explorer and select "View Object" 
+  <li>Double click on the button ("Go Back") to bring up the Code Window 
+  <li>Enter these lines of code after the SUB line: </li></ul>
+  <pre>  My_Form_2_Hide
+  My_Form_1_Show </pre>
+  This code hides Form 2 and shows (loads) Form 1. 
+<h4>10. Finishing the Code</h4>Finish up the code for this project by entering the 
+following lines of code at the top of the code page (before the first SUB line): 
+<pre>  Option Explicit
+  ShowOKButton TRUE </pre>
+  The two lines are located outside the subroutine and 
+executes when the program first loads. The  <strong>Option Explicit</strong>  is 
+used to force explicit declarations of all variables. This means all variables 
+used in the program must be defined with a  <strong>DIM</strong>  statement before 
+they are used. It helps to catch mistyped variable names and should be included 
+in every program you write.<br><br>The <strong>ShowOKButton TRUE</strong>  
+           only applies to NS Basic/CE 
+programs and places a OK button in place of the X button in the 
+menubar of the output window. Tapping the X button minimizes the output window 
+but doesn't stop the program. Tapping the OK button closes the output window 
+and the program exits. The OK button is useful especially during program debugging because 
+it allows the program to be closed so an updated version can be tested. Without 
+the OK button the program will need to be shut down manually 
+before an updated version can be tested. (You shut 
+down running programs on PPC devices by 
+Start-&gt;Settings-&gt;System-&gt;Memory-&gt;Running Programs and 
+selecting the program and Stop or Stop All.) This statement can also be used 
+on NS Basic/Desktop programs if the code is shared with /CE (the statement is a 
+no-op on the Desktop).
+
+  <p>Your code should look like the following:</p>
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True    ' Used for /CE, no-op for /Desktop
+
+Sub cmdShow_Click
+   My_Form_1_Hide
+   My_Form_2_Show
+End Sub
+
+Sub My_Form_2_Load
+   lblDateField.Text = FormatDateTime(selDate.Date,2)
+   lblNameField.Text = txtName.Text
+   lblDayField.Text = WeekDayName( DatePart("W",selDate.Date) )
+End Sub
+
+Sub cmdGoBack_Click
+   My_Form_2_Hide
+   My_Form_1_Show
+End Sub
+</pre></blockquote>
+
+<p align="center"><img src="images/TT02.4.gif" width="509" height="387" alt="" border="0" align="">
+<ul>
+  <li>Close the Code Window. 
+  <li>Save the Project </li></ul>
+<h2>Testing the Project </h2>
+Now we are ready to test the project. You can either download and run the program
+on a CE device or on the Microsoft Device Emulator. 
+<ul>
+  <li>Start ActiveSync if its not already running
+  <li>Select Start from the Run menu. </li></ul>
+  Any errors will appear in a message box on the CE device/emulator.
+  The message box displays the error and line number where the error occurred.
+  Errors must be corrected and Start repeated until there are no more errors.<br><br>       
+           Congratulations !! You have now written your second NS Basic/CE program. 
+
+<p align="center"><img height="489" alt="" src="images/TT02.5.gif" width="304" border="0"> 
+ <img src="images/TT02.6.gif" width="311" height="490" alt="" border="0" align="">
+          
+</body>
+
+</html>

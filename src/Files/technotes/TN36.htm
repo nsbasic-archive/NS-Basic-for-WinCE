@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<TITLE>Tech Note 36: Scrolling Grids</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 36: Scrolling Forms</h2>
+	  <h5>
+      <H3>April 12, 2008</H3>
+      <H5>© 2010 NS BASIC Corporation. All rights reserved.</H5></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+<i>Contributed by <A HREF="mailto:cdvs&copy; charter.net" TARGET="_top">Charl Van Schoick</A> Software Developer</i>
+
+<P>Using the Frame object, it's easy to create forms that scroll hortizonally and/or vertically in NS Basic/CE. 
+
+<P><BR>
+
+<p><IMG SRC="images/TN32a.gif" ALT="sample" WIDTH="240" HEIGHT="320">
+<IMG SRC="images/TN32b.gif" ALT="sample" WIDTH="240" HEIGHT="320"></p>
+
+<P><B>The Code:</B>
+
+<PRE>
+ShowOKButton true
+
+Output.scalemode=3 'start IDE alternate 
+AddObject "Frame","Frame1",0,0,229,258 
+AddObject "VScrollbar","VS1",230,0,10,258 
+AddObject "HScrollBar","HS1",0,258,230,10 
+h=0 
+v=0 
+
+Sub Main 
+ Frame1.width=432 'whatever >230 
+ Frame1.height=409 'whatever >178 
+ Frame1.move 0,-8 'adjust for caption 
+ 'start visual generation for demo 
+ q=chr(34) 
+ For x=0 to 19 
+  execute("AddObject " & q & "label" & q & "," & q & "lbl" & x & q & "," & x*20+2 & "," & x*20+9 & ",49,19,Frame1") 
+  execute("lbl" & x & ".caption=" & q & x & q) 
+  execute("lbl" & x & ".borderstyle=1") 
+  Next 'end visual generation for demo 
+ End Sub 
+
+Sub VS1_Change
+ v=(VS1.Value-1)*vs1.height
+ v=int(v/20)*20+8 'smoothing
+ If v>frame1.height-vs1.height Then v=frame1.height-vs1.height
+ If v<8 Then v=8
+ Frame1.Move -h, -v
+ HS1.move 0,HS1.top
+End Sub
+
+Sub HS1_Change
+ h=(HS1.Value-1)*HS1.width
+ h= int(h/20)*20 'smoothing
+ If h>frame1.width-HS1.width Then h= frame1.width-HS1.width
+ If h<0 Then h=0
+ Frame1.Move -h, -v
+End Sub
+
+</PRE>
+<P><A HREF="mailto:cdvs&copy; charter.net" TARGET="_top">Charl Van Schoick</A> Software Developer. </P></BODY></HTML>

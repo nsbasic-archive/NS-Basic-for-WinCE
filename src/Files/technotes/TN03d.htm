@@ -1,0 +1,601 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>TN03d: WinSock</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=5>
+	  <h2>Tech Note 03d: WinSock </h2>
+	  </FONT></B>
+	  <h3><B><FONT FACE="Helvetica">September 15, 2007
+</FONT><FONT FACE="Helvetica" SIZE=4>	  
+	  </FONT></B>
+	  </h3>
+	  <h5><b><font face="Helvetica">© 2010 NS BASIC Corporation. All rights reserved.
+</font></b></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<blockquote>
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">
+There is additional documentation on Microsoft's website.</A>.
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>NS Basic/CE allows you to access the internet using Microsoft's standard WinSock object. Make sure it is installed on your Windows CE device and that it is properly set up in the Registry.  See <A HREF="TN01.htm">Tech Note 01</A> for more information on how to load this module onto your system.</P>
+
+<P>Before using winsock, you need to initialize it using the following command:</P>
+<CODE><P>addObject "winsock"</P>
+</CODE><P>&nbsp;</P>
+
+<h4>Notes</H4>
+
+<p>These are notes submitted by users. We have not verified these are true on all cases.
+
+1.  "I've been trying to get the MS WINSOCK control to work correctly.  It 
+stops receiving incoming message after the first one.  So I 
+downloaded IP*Works 5 (I own version 4) and installed the ocx on my 
+iPAQ 3955.  I changed the Object name, method names, and parameters 
+and it worked the first time!!!
+
+<p>One thing that I find really cool, is that when the PocketPC is 
+connected on the USB port, the connection is treated as a TCP 
+connection.  So I can connect to TCP port servers on my NT/2000 
+machines and exchange data using a USB connection, a network card, or 
+an RF card without changing a line of code.  Very nice.  I can 
+utilize the PocketPC as an intelligent client.  I have TCP servers 
+that interact with Access, SQL Server and Oracle databases.  This 
+allows multi-tier developement without the overhead of MS's libraries 
+and complex technology." 
+
+<p>2. Using Winsock on a WiFi connection:<br>
+"Even if the IP address of the system you are connecting to has nothing to do with the internet, winsock.connect needs a connection to a DNS server to figure this out (or an 80 second delay).
+
+I guess this is a MS issue, perhaps they could re-write the winsock to
+try local addresses prior to querying a DNS server."
+
+<p>3. Using Winsock when a connection has not been established:<br>
+"When working with a phone connection or WiFi, a Connection needs to be established before Winsock will work. Follow Microsoft's or your carrier's instructions for setting up the Connection in Settings...System...Communications...Connections. You can establish the connection using the sample code in "Establishing a Connection" below."
+
+<B><FONT FACE="Helvetica"><P>Properties</P></font></B>
+<P>Properties either set or return values. The syntax is</P>
+<pre>Winsock.bytesReceived 'get the number of bytes received</P>
+</pre><H4>&nbsp;</H4>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>BytesReceived</TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets the number of bytes in the receive buffer</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>LocalHostName </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets the string name of the local host</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>LocalIP </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets IP address in the form "255.255.255.255"</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>LocalPort GetData </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets/sets the local port. Use 0 to grab a random one.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Protocol</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets/sets Protocol. 0=TCP, 2=IRDA</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>RemoteHost</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets/sets remote host name</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>RemoteHostIP</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets/sets remote host IP address</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>RemotePort</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets/sets remote port to connect to. 80 is webserver. See complete list in Appendix A.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>SocketHandle</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets socket handle used to communication with Winsock layer</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>State</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>0-closed<BR>
+1-open<BR>
+2-listening<BR>
+7-connected<BR>
+9-error</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ServiceName</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Gets/sets name of service</TD>
+</TR>
+</TABLE>
+
+<H4>&nbsp;</H4>
+<FONT FACE="Helvetica"><H4>Methods</H4>
+</FONT><P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>Accept</TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Accepts an incoming connection (from ConnectionRequest event)</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Close</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Close the connection. Returns number of errors</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Connect</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Established connection. Returns 0 if successful</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>GetData</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Returns current block of data.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Listen</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Creates a socket and puts it into listen mode</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>SendData(data)</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Sends data to a remote computer</TD>
+</TR>
+</TABLE>
+
+<H4>&nbsp;</H4>
+<FONT FACE="Helvetica"><H4>Events</H4>
+</FONT><P>Events cause subroutines in your program to be called, if they exist. You should name the subroutine <CODE>&lt;objectName&gt;_eventName</CODE>.</P>
+<P>For example, to capture clicks in the Output Object, you will need</P>
+<CODE><P>&#9;sub winsock_dataArrival<BR>
+&#9;'your code to handle a data arriving<BR>
+&#9;end sub</P>
+</CODE><P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>Close</TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Connection closed by remote computer. Do a local close method.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ConnectionRequest </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Remote computer request connection. Sets RemoteHostIP, RemoteHost</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>DataArrival(n)</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Data has been received. n is how many.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Error(e)</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Error code. See Appendix B for listing</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>SendComplete</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Sent when SendData completes</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>SendProgress(b,r)</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>While data is being sent. B=bytes sent, r- bytes remaining</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<FONT FACE="Helvetica"><H4>Remarks </H4>
+</FONT><P>The Transfer Control Protocol (TCP) allows you to create and maintain a connection to a remote computer. Using the connection, the computers can exchange data.</P>
+<P>Client applications need to know the server computer's name or IP address (RemoteHost property), as well as the port (RemotePort property) on which it will be listening. Invoke the Connect method to make the connection.</P>
+<P>Server applications need to set the port (LocalPort property) on which to listen, and invoke the Listen method. When the client requests a connection, the ConnectionRequest event is sent. Invoke the Accept method within the ConnectionRequest event to complete the connection.</P>
+<P>Once a connection has been made, either computer can send and receive data. Use the SendData method to send data. Whenever data is received, the DataArrival event occurs. Use the GetData method within your DataArrival subroutine to retrieve the data.</P>
+<B><FONT FACE="Helvetica" SIZE=4><P>Sample</P>
+</font></B><CODE><PRE>rem show a simple retrieval of a web page
+addobject "winsock.winsock.1","winsock"
+winsock.remotehost="www.nsbasic.com"
+winsock.remoteport=80
+winsock.connect
+strData="GET http://www.nsbasic.com/ce/PR/pr.981012.html" &amp; vbCrLf &amp; vbCrLf
+print strData
+winsock.sendData strData
+
+sub winsock_DataArrival(byval bytesTotal)
+  dim rdata
+  print "data arrival"
+  winsock.getData rData
+  print rData
+  if winsock.state = 8 then
+     winsock.close
+  End if.
+end sub
+
+sub winsock_error(code, desc)
+  print "winsock error:" &amp; code &amp; " " &amp; description
+end sub</PRE>
+</CODE><P>&nbsp;</P>
+<B><FONT FACE="Helvetica" SIZE=4><P>Appendix A: List of Standard Port Numbers</P>
+</font></B><CODE><PRE>
+tcpmux          1/tcp                           # TCP port multiplexer 
+(RFC1078)
+echo            7/tcp
+echo            7/udp
+discard         9/tcp           sink null
+discard         9/udp           sink null
+systat          11/tcp          users
+daytime         13/tcp
+daytime         13/udp
+netstat         15/tcp
+qotd            17/tcp          quote
+chargen         19/tcp          ttytst source
+chargen         19/udp          ttytst source
+ftp             21/tcp
+telnet          23/tcp
+smtp            25/tcp          mail
+time            37/tcp          timserver
+time            37/udp          timserver
+rlp             39/udp          resource        # resource location
+nameserver      42/tcp          name            # IEN 116
+whois           43/tcp          nicname
+domain          53/tcp          nameserver      # name-domain server
+domain          53/udp          nameserver
+mtp             57/tcp                          # deprecated
+bootps          67/udp          bootp           # bootp server
+bootpc          68/udp                          # bootp client
+tftp            69/udp
+gopher          70/tcp
+rje             77/tcp          netrjs
+finger          79/tcp
+link            87/tcp          ttylink
+webserver       80/tcp
+supdup          95/tcp
+hostnames       101/tcp         hostname        # usually from sri-nic
+tsap            102/tcp                         # part of ISODE.
+pop2            109/tcp                         # old pop port
+pop             110/tcp         pop3 postoffice
+sunrpc          111/tcp
+sunrpc          111/udp
+ident           113/tcp         auth tap authentication
+sftp            115/tcp
+uucp-path       117/tcp
+nntp            119/tcp         readnews untp   # USENET News Transfer 
+Protocol
+ntp             123/udp         ntpd
+imap            143/tcp
+snmp            161/udp                         # network time protocol
+snmp-trap       162/udp
+smux            199/tcp</PRE>
+</CODE><P>&nbsp;</P>
+<B><FONT FACE="Helvetica" SIZE=4><P>Appendix B: Error codes returned by ERROR event</P>
+</font></B><P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<P>sckOutOfMemory</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">7</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Out of memory.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckInvalidPropertyValue</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">380</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The property value is invalid.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckGetNotSupported</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">394</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The property cannot be read.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckSetNotSupported</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">383</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The property is read only.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckBadState</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">40006</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Wrong protocol or connection state for the requested transaction or request.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckInvalidArg</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">40014</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The argument passed to a function was not in the correct format or in the specified range.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckSuccess</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">40017</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Successful.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckUnsupported</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">40018</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Unsupported variant type.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckInvalidOp</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">40020</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Invalid operation at current state.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckOutOfRange</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">40021</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Argument is out of range.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckWrongProtocol</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">40026</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Wrong protocol for the requested transaction or request.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckOpCanceled</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">1004</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The operation was canceled.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckInvalidArgument</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10014</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The requested address is a broadcast address, but flag is not set.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckWouldBlock</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10035</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Socket is non blocking and the specified operation will block.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckInProgress</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10036</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>A blocking Winsock operation in progress.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckAlreadyComplete</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10037</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The operation is completed. No blocking operation in progress.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNotSocket</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10038</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The descriptor is not a socket.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckMsgTooBig</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10040</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The datagram is too large to fit into the buffer and is truncated.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckPortNotSupported</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10043</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The specified port is not supported.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckAddressInUse</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10048</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Address in use.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckAddressNotAvailable</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10049</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Address not available from the local machine.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNetworkSubsystemFailed</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10050</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Network subsystem failed.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNetworkUnreachable</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10051</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The network cannot be reached from this host at this time.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNetReset</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10052</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Connection has timed out when SO_KEEPALIVE is set.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckConnectAborted</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">11053</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Connection is aborted due to timeout or other failure.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckConnectionReset</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10054</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>The connection is reset by remote side.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNoBufferSpace</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10055</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>No buffer space is available.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckAlreadyConnected</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10056</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Socket is already connected.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNotConnected</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10057</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Socket is not connected.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckSocketShutdown</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10058</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Socket has been shut down.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckTimedout</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10060</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Socket has been shut down.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckConnectionRefused</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10061</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Connection is forcefully rejected.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNotInitialized</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">10093</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>WinsockInit should be called first.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckHostNotFound</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">11001</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Authoritative answer:Host not found.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckHostNotFoundTryAgain</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">11002</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Non Authoritative answer: Host not found.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNonRecoverableError</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">11003</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Non recoverable errors.</TD>
+</TR>
+<TR><TD WIDTH="34%" VALIGN="TOP">
+<CODE><P>sckNoData</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P ALIGN="RIGHT">11004</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Valid name, no data record of requested type.</TD>
+</TR>
+</TABLE>
+
+<h3>Establishing a Connection</h3>
+When working with a phone connection or WiFi, a Connection needs to be established before Winsock will work.   Follow Microsoft's or your carrier's instructions for setting up the Connection in Settings...System...Communications...Connections. <p>This code assumes you have set up the connection.
+
+<pre>
+ShowOKButton true
+
+Declare "Function ConnMgrMapURL Lib ""Cellcore.dll"" (ByVal URL as string, byRef Guid() as Long, byVal Index as Long) as Integer"
+Declare "Function ConnMgrEstablishConnectionSync lib ""cellcore.dll"" (byRef ConnectionInfo() as long, byRef Connection as long, byVal Timeout as long, byRef Status as long) as Integer"
+Const S_OK = 0
+Const CONNMGR_PARAM_GUIDDESTNET = &h1 
+Const CONNMGR_FLAG_PROXY_HTTP = &h1
+Const CONNMGR_PRIORITY_USERINTERACTIVE = &h08000 
+Const CONNMGR_STATUS_CONNECTED = &H10
+
+'This is a CONNMGR_CONNECTIONINFO structure. See MSDN for details
+Dim ConnectionInfo(15)
+For i=0 To 15
+  ConnectionInfo(i)=CLng(0)
+Next
+ConnectionInfo(0)=CLng(16*4)                             'cbSize
+ConnectionInfo(1)=CLng(CONNMGR_PARAM_GUIDDESTNET)        'dwParams
+ConnectionInfo(2)=CLng(CONNMGR_FLAG_PROXY_HTTP)          'dwFlags
+ConnectionInfo(3)=CLng(CONNMGR_PRIORITY_USERINTERACTIVE) 'dwPriority
+
+'This is a destination netword GUID
+Dim Guid(3)
+i=CLng(0)
+res=ConnMgrMapURL("http://www.nsbasic.com/", Guid, i)
+If res<>S_OK Then
+  MsgBox "Error in ConnMapURL " & res
+End If
+'MsgBox guid(0) & vbCrLf & guid(1) & vbCrLf & guid(2) & vbCrLf & guid(3)
+
+'Copy the result of ConnMgrMapUrl into the structure
+For i=0 To 3
+  ConnectionInfo(6+i)=CLng(guid(i))
+Next
+Connection=CLng(0)
+timeout=CLng(60000) '60 seconds
+status=CLng(0)
+res=ConnMgrEstablishConnectionSync(ConnectionInfo, Connection, timeout, status)
+MsgBox "res:" &  res & vbCrLf & "Connection:" & connection & vbCrLf & "Status: " & Hex(status)
+</pre>
+<P>&nbsp;</P></BODY>
+</HTML>

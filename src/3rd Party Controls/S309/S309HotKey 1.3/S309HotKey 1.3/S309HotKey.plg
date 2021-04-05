@@ -1,0 +1,361 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: S309HotKey - Win32 (WCE MIPS) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Mips/S309HotKey.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.odl""
+Creating command line "rc.exe /l 0x409 /r /fo"Intermediate/S309HotKey.res" /i "Mips" /d "MIPS" /d "_MIPS_" /d UNDER_CE=211 /d _WIN32_WCE=211 /d "H/PC Pro 2.11" /d "UNICODE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1D5.tmp" with contents
+[
+/nologo /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "MIPS" /D "_MIPS_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yu"stdafx.h" /Fo"Intermediate/" /QMRWCE /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyPpg.cpp"
+]
+Creating command line "clmips.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1D5.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1D6.tmp" with contents
+[
+/nologo /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "MIPS" /D "_MIPS_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yc"stdafx.h" /Fo"Intermediate/" /QMRWCE /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\StdAfx.cpp"
+]
+Creating command line "clmips.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1D6.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1D7.tmp" with contents
+[
+/nologo /entry:"_DllMainCRTStartup" /base:"0x10000000" /dll /incremental:no /pdb:"Mips/S309HotKey.pdb" /machine:MIPS /def:".\S309HotKey.def" /out:"Mips/S309HotKey.ocx" /implib:"Mips/S309HotKey.lib" /subsystem:windowsce,2.11 /STACK:65536,4096 
+.\Intermediate\S309HotKey.obj
+.\Intermediate\S309HotKeyCtl.obj
+.\Intermediate\S309HotKeyPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309HotKey.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1D7.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309HotKey.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309HotKey.cpp
+S309HotKeyCtl.cpp
+S309HotKeyPpg.cpp
+Generating Code...
+Linking...
+   Creating library Mips/S309HotKey.lib and object Mips/S309HotKey.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1DE.bat" with contents
+[
+@echo off
+mkdir  ".\Mips HPCPRO"
+del /q ".\Mips HPCPRO\*.*"
+xcopy ".\Mips\*.*" ".\Mips HPCPRO\"
+del /q ".\Mips\*.*"
+rmdir ".\Mips"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1DE.bat"
+
+A subdirectory or file .\Mips HPCPRO already exists.
+.\Mips\S309HotKey.exp
+.\Mips\S309HotKey.lib
+.\Mips\S309HotKey.ocx
+.\Mips\S309HotKey.tlb
+4 File(s) copied
+
+
+
+
+<h3>Results</h3>
+S309HotKey.ocx - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: S309HotKey - Win32 (WCE SH4) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Sh4/S309HotKey.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.odl""
+Creating command line "rc.exe /l 0x409 /r /fo"Intermediate/S309HotKey.res" /i "Sh4" /d "SHx" /d "SH4" /d "_SH4_" /d UNDER_CE=211 /d _WIN32_WCE=211 /d "H/PC Pro 2.11" /d "UNICODE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1DF.tmp" with contents
+[
+/nologo /Qsh4 /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yu"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyPpg.cpp"
+]
+Creating command line "shcl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1DF.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E0.tmp" with contents
+[
+/nologo /Qsh4 /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yc"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\StdAfx.cpp"
+]
+Creating command line "shcl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E0.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E1.tmp" with contents
+[
+/nologo /entry:"_DllMainCRTStartup" /base:"0x10000000" /align:"4096" /dll /incremental:no /pdb:"Sh4/S309HotKey.pdb" /machine:SH4 /def:".\S309HotKey.def" /out:"Sh4/S309HotKey.ocx" /implib:"Sh4/S309HotKey.lib" /subsystem:windowsce,2.11 /STACK:65536,4096 
+.\Intermediate\S309HotKey.obj
+.\Intermediate\S309HotKeyCtl.obj
+.\Intermediate\S309HotKeyPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309HotKey.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E1.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309HotKey.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309HotKey.cpp
+S309HotKeyCtl.cpp
+S309HotKeyPpg.cpp
+Generating Code...
+Linking...
+   Creating library Sh4/S309HotKey.lib and object Sh4/S309HotKey.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E8.bat" with contents
+[
+@echo off
+mkdir  ".\Sh4 HPCPRO"
+del /q ".\Sh4 HPCPRO\*.*"
+xcopy ".\Sh4\*.*" ".\Sh4 HPCPRO\"
+del /q ".\Sh4\*.*"
+rmdir ".\Sh4"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E8.bat"
+
+A subdirectory or file .\Sh4 HPCPRO already exists.
+.\Sh4\S309HotKey.exp
+.\Sh4\S309HotKey.lib
+.\Sh4\S309HotKey.ocx
+.\Sh4\S309HotKey.tlb
+4 File(s) copied
+
+
+
+
+<h3>Results</h3>
+S309HotKey.ocx - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: S309HotKey - Win32 (WCE SH3) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Sh3/S309HotKey.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.odl""
+Creating command line "rc.exe /l 0x409 /r /fo"Intermediate/S309HotKey.res" /i "Sh3" /d "SHx" /d "SH3" /d "_SH3_" /d UNDER_CE=211 /d _WIN32_WCE=211 /d "H/PC Pro 2.11" /d "UNICODE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E9.tmp" with contents
+[
+/nologo /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yu"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyPpg.cpp"
+]
+Creating command line "shcl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1E9.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1EA.tmp" with contents
+[
+/nologo /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yc"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\StdAfx.cpp"
+]
+Creating command line "shcl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1EA.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1EB.tmp" with contents
+[
+/nologo /entry:"_DllMainCRTStartup" /base:"0x10000000" /dll /incremental:no /pdb:"Sh3/S309HotKey.pdb" /machine:SH3 /def:".\S309HotKey.def" /out:"Sh3/S309HotKey.ocx" /implib:"Sh3/S309HotKey.lib" /subsystem:windowsce,2.11 /STACK:65536,4096 
+.\Intermediate\S309HotKey.obj
+.\Intermediate\S309HotKeyCtl.obj
+.\Intermediate\S309HotKeyPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309HotKey.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1EB.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309HotKey.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309HotKey.cpp
+S309HotKeyCtl.cpp
+S309HotKeyPpg.cpp
+Generating Code...
+Linking...
+   Creating library Sh3/S309HotKey.lib and object Sh3/S309HotKey.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F2.bat" with contents
+[
+@echo off
+mkdir  ".\Sh3 HPCPRO"
+del /q ".\Sh3 HPCPRO\*.*"
+xcopy ".\Sh3\*.*" ".\Sh3 HPCPRO\"
+del /q ".\Sh3\*.*"
+rmdir ".\Sh3"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F2.bat"
+
+A subdirectory or file .\Sh3 HPCPRO already exists.
+.\Sh3\S309HotKey.exp
+.\Sh3\S309HotKey.lib
+.\Sh3\S309HotKey.ocx
+.\Sh3\S309HotKey.tlb
+4 File(s) copied
+
+
+
+
+<h3>Results</h3>
+S309HotKey.ocx - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: S309HotKey - Win32 (WCE ARM) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Arm/S309HotKey.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.odl""
+Creating command line "rc.exe /l 0x409 /r /fo"Intermediate/S309HotKey.res" /i "Arm" /d "ARM" /d "_ARM_" /d UNDER_CE=211 /d _WIN32_WCE=211 /d "H/PC Pro 2.11" /d "UNICODE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F3.tmp" with contents
+[
+/nologo /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "ARM" /D "_ARM_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yu"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyPpg.cpp"
+]
+Creating command line "clarm.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F3.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F4.tmp" with contents
+[
+/nologo /MC /W3 /O2 /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "NDEBUG" /D "ARM" /D "_ARM_" /D UNDER_CE=211 /D "UNICODE" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yc"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\StdAfx.cpp"
+]
+Creating command line "clarm.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F4.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F5.tmp" with contents
+[
+/nologo /entry:"_DllMainCRTStartup" /base:"0x10000000" /align:"4096" /dll /incremental:no /pdb:"Arm/S309HotKey.pdb" /machine:ARM /def:".\S309HotKey.def" /out:"Arm/S309HotKey.ocx" /implib:"Arm/S309HotKey.lib" /subsystem:windowsce,2.11 /STACK:65536,4096 
+.\Intermediate\S309HotKey.obj
+.\Intermediate\S309HotKeyCtl.obj
+.\Intermediate\S309HotKeyPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309HotKey.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1F5.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309HotKey.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309HotKey.cpp
+S309HotKeyCtl.cpp
+S309HotKeyPpg.cpp
+Generating Code...
+Linking...
+   Creating library Arm/S309HotKey.lib and object Arm/S309HotKey.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1FE.bat" with contents
+[
+@echo off
+mkdir  ".\Arm HPCPRO"
+del /q ".\Arm HPCPRO\*.*"
+xcopy ".\Arm\*.*" ".\Arm HPCPRO\"
+del /q ".\Arm\*.*"
+rmdir ".\Arm"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1FE.bat"
+
+A subdirectory or file .\Arm HPCPRO already exists.
+.\Arm\S309HotKey.exp
+.\Arm\S309HotKey.lib
+.\Arm\S309HotKey.ocx
+.\Arm\S309HotKey.tlb
+4 File(s) copied
+
+
+
+
+<h3>Results</h3>
+S309HotKey.ocx - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: S309HotKey - Win32 (WCE x86em) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Emu/S309HotKey.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.odl""
+Creating command line "rc.exe /l 0x409 /fo"Intermediate/S309HotKey.res" /i "Emu" /d UNDER_CE=211 /d "UNICODE" /d "_UNICODE" /d "WIN32" /d "STRICT" /d _WIN32_WCE=211 /d "H/PC Pro 2.11" /d "_WIN32_WCE_EMULATION" /d "INTERNATIONAL" /d "USA" /d "INTLMSG_CODEPAGE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1FF.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D UNDER_CE=211 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "NDEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yu"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKey.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309HotKey\S309HotKeyPpg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP1FF.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP200.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D UNDER_CE=211 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "NDEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309HotKey.pch" /Yc"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309HotKey\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP200.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP201.tmp" with contents
+[
+/nologo /stack:0x10000,0x1000 /subsystem:windows /dll /incremental:no /pdb:"Emu/S309HotKey.pdb" /machine:I386 /def:".\S309HotKey.def" /out:"Emu/S309HotKey.ocx" /implib:"Emu/S309HotKey.lib" /windowsce:emulation 
+.\Intermediate\S309HotKey.obj
+.\Intermediate\S309HotKeyCtl.obj
+.\Intermediate\S309HotKeyPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309HotKey.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP201.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309HotKey.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309HotKey.cpp
+S309HotKeyCtl.cpp
+S309HotKeyPpg.cpp
+Generating Code...
+Linking...
+   Creating library Emu/S309HotKey.lib and object Emu/S309HotKey.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP20A.bat" with contents
+[
+@echo off
+mkdir  ".\Emu HPCPRO"
+del /q ".\Emu HPCPRO\*.*"
+xcopy ".\Emu\*.*" ".\Emu HPCPRO\"
+del /q ".\Emu\*.*"
+rmdir ".\Emu"
+del /q ".\Intermediate\*.*"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP20A.bat"
+
+A subdirectory or file .\Emu HPCPRO already exists.
+.\Emu\S309HotKey.exp
+.\Emu\S309HotKey.lib
+.\Emu\S309HotKey.ocx
+.\Emu\S309HotKey.tlb
+4 File(s) copied
+
+
+
+<h3>Results</h3>
+S309HotKey.ocx - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="Creation,Prog IDs,Compatibility,Common controls">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/Common controls/.">
+<title>NS BASIC Controls</title>
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- #include file="includes/header.htm" -->  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <h1>NSFont ActiveX</h1>
+            <p>Part of NS <a href="NSBControls.htm">BASIC Controls</a>.</p>
+      <h2>1. Overview</h2>
+            <p>The NSFont control is not a visual object. It is a standard storage for
+            font settings used by the visual controls in the library. Like the
+            image lists you rarely need to create it directly. The controls that
+            use one or more NSFont objects create them implicitly and expose
+            them to the application through their properties. From that point
+            further you just change the properties of the exposed font as
+            needed. For example to make the font bold in a list view control you
+            simply need to do this:</p>
+            <p><font color="#006600">NSListView1.Font.Bold = True</font></p>
+            <p>Of course, it is possible and sometimes more convenient to create
+            a NSFont object initialize it and then assign to the corresponding
+            property of a control. For example you may have two list views on a
+            form and you want to set up them with the same font.</p>
+            <p><font color="#006600">' Somewhere the font is created<br>
+            AddObject &quot;NSBasic.comctl.NSFont&quot;,&quot;MyFont&quot;</font></p>
+            <p><font color="#006600">' The font is changed/initialized - for
+            example you may provide the user with a font selection dialog<br>
+            ' for the sake of the example lets do something simple:<br>
+            MyFont.Size = 8<br>
+            MyFont = &quot;Tahoma&quot;<br>
+            MyFont.Italic = True</font></p>
+            <p><font color="#006600">' Then assign the same font to the two list
+            views on the form:<br>
+            Set NSListView1.Font = MyFont<br>
+            Set NSListView2.Font = MyFont</font></p>
+            <p>This enables the developer to choose how to work with the fonts -
+            think of them as of a grouped font related properties - all
+            accessible as objet.Font.&lt;font_property&gt; or construct font
+            setting separately and then assign them to the controls that need
+            them.</p>
+      <h2>2. Members reference</h2>
+            <h3>NSFont object</h3>
+      <p>For example the object can be accessed like this:</p>
+      <blockquote>
+        <p><b>Set fnt = NSListView1.Font</b><br>
+        or<br>
+        <b>AddObject &quot;NSBasic.comctl.Font&quot;,&quot;NSFont&quot;<br>
+        </b>or manipulated as par of the object to which it applies<br>
+        object.<b>Font.Bold = True<br>
+        </b>
+        </p>
+      </blockquote>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td width="33%" nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td width="33%" nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td width="34%"><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th width="100%" colspan="3" nowrap bgcolor="#FFFFCC">&nbsp;</th>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="../docchm/img/prop_rw.gif" width="36" height="14">
+            Bold</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>object.Bold = b<br>
+            b = object.Bold&nbsp;</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="../docchm/img/prop_rw.gif" width="36" height="14">
+            Charset</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>object.Charset =
+            v<br>
+            v = object.Charset&nbsp;</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="../docchm/img/prop_rw.gif" width="36" height="14">
+            Italic</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>object.Italic =
+            b<br>
+            b = object.Italic</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="../docchm/img/prop_rw.gif" width="36" height="14">
+            Name</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>object.Name =
+            fontname<br>
+            fname = object.Name</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="../docchm/img/prop_rw.gif" width="36" height="14">
+            Size</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>object.Size = v<br>
+            v = object.Size&nbsp;</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="../docchm/img/prop_rw.gif" width="36" height="14">
+            Strikethru</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>object.Strikethru
+            = b<br>
+            b = object.Strikethru</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="../docchm/img/prop_rw.gif" width="36" height="14">
+            Underline</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>object.Underline
+            = b<br>
+            b = object.Underline</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">&nbsp;</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            <p>&nbsp; </p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- #include file="includes/footer.htm" -->
+</table>
+
+</body>
+
+</html>

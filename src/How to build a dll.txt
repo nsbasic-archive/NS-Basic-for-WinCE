@@ -1,0 +1,27 @@
+This recipe works with evc3 or evc4.
+Use this to create a dll project where you have the files already
+and just want to create a new project.
+
+ 1. Start eVC.
+ 2. File...New
+ 3. Choose WCE Dynamic-Link Library.
+ 4. Set Project Name to nscepicturebox
+ 5. Set location to where you want the project folder to go.
+ 6. click OK.
+ 7. What kind of DLL would you like to create? An empty Windows CE DLL project.
+ 8. click Finish.
+ 9. click OK.
+10. Project...Add to Project...Files
+11. Navigate to src folder
+12. Chose files of type All
+13. Select all files and click OK.
+14. In Project Explorer, go to FileView.
+15. Delete random names that are not in any folder, starting with RC*
+16. Project...Settings
+17. Choose Settings for 'All Configurations'
+18. Under the "Settings For", choose nscepicturebox.
+19. Change Microsoft Foundation Classes to 'Use MFC in a Shared DLL"
+20. Save Workspace and exit.
+21. Rename project folder to evc3.
+22. Restart evc3 and load project.
+23. Click F7. It should compile without errors, just 1 or 2 warnings.

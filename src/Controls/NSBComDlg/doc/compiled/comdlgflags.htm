@@ -1,0 +1,366 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="Flags,MultiSelect,CreatePrompt,ExtensionDifferent,FileMustExist,HelpButton,HideReadOnly,NoChangeDir,NoDereferenceLinks,NoReadOnlyReturn,NoValidate,OverwritePrompt,PathMustExist,ReadOnly,ShareAware,FullOpen,PreventFullOpen,RGBInit,ANSIOnly,Effects,FixedPitchOnly,ForceFontExist,LimitSize,NoFaceSel,NoSimulations,NoSizeSel,NoStyleSel,NoVectorFonts,ScalableOnly,ScreenFonts,TTOnly,WYSIWYG,SetDefaults,PrinterFonts,Value">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/Common dialogs/Flags/.">
+<title>ComDlgFlags object</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Common Dialogs ActiveX</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">ComDlgFlags object</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\doc\\comdlgflags.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>This object is accessible through the NSComDlg.Flags property.
+            Typically you should use it for example like this:</p>
+            <p><b>comdlg_object.Flags.MultiSelect = True<br>
+            ' Which configures the file dialog to allow multi-selection.</b></p>
+            <p>The object provides a set of Boolean properties each controlling
+            a single flag (option) for a certain dialog type. By using them you
+            do not need to combine flag values or import/define constants for
+            these flags (like the MS Common Dialogs control).&nbsp;</p>
+            <h3>Boolean Properties reference</h3>
+            <p>Each of the properties listed below is Boolean and read/write.
+            Each of them corresponds to a single flag (option) for a given
+            dialog type. The properties are listed by the dialog type they
+            affect. Note that most flags specify options about the dialog boxes,
+            but there are a few that indicate specifics of the user selection
+            after the dialog closes (marked in Blue) .&nbsp;</p>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top"><b>Name</b></th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <th bgcolor="#CCFFCC" valign="top" nowrap colspan="2">Open/Save
+                  file dialog</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  <a name="MultiSelect">MultiSelect</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top">Default: False<br>
+                  If set to True the open file dialog allows multiple selection
+                  and returns the list of the selected files - see <a href="comdlg.htm#FileName">ComDlg.FileName</a>
+                  and <a href="comdlg.htm#FileNames">ComDlg.FileNames</a>.<br>
+                  <b>Not supported on Pocket PC and most Windows CE devices.</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  CreatePrompt</b></td>
+                <td bgcolor="#FFFFFF" valign="top">For file save dialog displays
+                  a prompt if the user enters a non-existent file name.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  FileMustExist</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Allows the user to select
+                  only existing files.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  <b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  HelpButton</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Displays the help button on
+                  the dialog. No effect on Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  HideReadOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Hides the <b>Read</b> <b>Only</b>
+                  check box. No effect on Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  NoChangeDir</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Restores the current
+                  directory to its original value if the user changed the
+                  directory while searching for files. Not supported on Windows
+                  CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  NoDereferenceLinks</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Allow selection of the
+                  shortcut files themselves instead of the files to which they
+                  point to.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  <font color="#0000FF">NoReadOnlyReturn</font></b></td>
+                <td bgcolor="#FFFFFF" valign="top">After ShowOpen indicates that
+                  <b>Read only</b> checkbox has not been checked by the user.
+                  Not supported on Windows CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  NoValidate</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Perform no validation of the
+                  entered file name. If set to True you should use only the
+                  FileName property after the ShowOpen/ShowSave returns. The
+                  returned file name may contain invalid characters, for this
+                  flag allows this. No effect on Windows CE (the names are
+                  always checked)</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  OverwritePrompt</b></td>
+                <td bgcolor="#FFFFFF" valign="top">ShowSave will show message
+                  box asking the user if he/she really wants to overwrite the
+                  selected file if the user chooses/enters a name of an existing
+                  file.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  PathMustExist</b></td>
+                <td bgcolor="#FFFFFF" valign="top">If the user types path and a
+                  file name in the dialog and the path does not exist a warning
+                  message is shown.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  ShareAware</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Ignore sharing violation. If
+                  this flag is not set the user is not allowed to select a file
+                  which is locked. Not supported on Windows CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  <font color="#0000FF">ReadOnly</font></b></td>
+                <td bgcolor="#FFFFFF" valign="top">Controls the <b>Read only</b>
+                  check box. After return indicates the stat in which it has
+                  been left by the user. Not supported on Windows CE/Pocket PC.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  <font color="#0000FF">ExtensionDifferent</font></b></td>
+                <td bgcolor="#FFFFFF" valign="top">If the <b><a href="comdlg.htm#DefaultExt">
+                  DefaultExt</a> </b>is not empty this flag indicates after
+                  ShowSave that the user has typed file extension different from
+                  the extension specified by that property.&nbsp;</td>
+              </tr>
+              <tr>
+                <th bgcolor="#CCFFCC" valign="top" nowrap colspan="2">Color
+                  dialog</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><b>FullOpen</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Causes the dialog to open
+                  with the advanced options shown (free color selection). Does
+                  not have effect on Pocket PC 2003 and earlier.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><b>PreventFullOpen</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Disables the button that
+                  opens the advanced options. No effect on Pocket PC 2003 and
+                  earlier.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  RGBInit</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Use the <b><a href="comdlg.htm#Color">Color</a></b>
+                  property to initialize the dialog. If the flag is not set the
+                  dialog is not initialized from the current value of the Color
+                  property.</td>
+              </tr>
+              <tr>
+                <th bgcolor="#CCFFCC" valign="top" nowrap colspan="2">Font
+                  dialog</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><b>ANSIOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show ANSI fonts only
+                  (obsolete - included for backward compatibility).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><b>Effects</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show the controls for effects
+                  selection (strike thru, color etc.)&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><b>FixedPitchOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show fixed pitch fonts only.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  ForceFontExist</b></td>
+                <td bgcolor="#FFFFFF" valign="top">The font must exist. The user
+                  is not allowed to type a face name of non-existent font. If
+                  not set the closest substitution is selected by the system.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  LimitSize</b></td>
+                <td bgcolor="#FFFFFF" valign="top">If set to True the dialog
+                  will show only the font sizes between the values of the <a href="comdlg.htm#Max">Min
+                  and Max</a> properties.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><b>NoFaceSel</b></td>
+                <td bgcolor="#FFFFFF" valign="top">No initial face selection is
+                  shown in the dialog (the FontName can still be valid and
+                  non-empty, but it is not initially selected when the dialog
+                  opens).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  NoSimulations</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Forbids font simulations to
+                  be made by the GDI.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  NoSizeSel</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Hide the size selection
+                  controls on the dialog.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  NoStyleSel</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Hide the style selection
+                  controls on the dialog.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  NoVectorFonts</b></td>
+                <td bgcolor="#FFFFFF" valign="top">Show no vector fonts in the
+                  list.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  <a name="ScalableOnly">ScalableOnly</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top">List only fonts that are
+                  scalable.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  <a name="ScreenFonts">ScreenFonts</a></b></td>
+                <td bgcolor="#FFFFFF" valign="top">List screen fonts.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  TTOnly</b></td>
+                <td bgcolor="#FFFFFF" valign="top">List true type fonts only.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><b>WYSIWYG</b></td>
+                <td bgcolor="#FFFFFF" valign="top">List only WYSIWYG fonts
+                  (these are in first place fonts available for the both screen
+                  and the printer).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  </b><a name="PrinterFonts"><b>PrinterFonts</b></a></td>
+                <td bgcolor="#FFFFFF" valign="top">List printer fonts.</td>
+              </tr>
+            </table>
+            <h3>Advanced usage</h3>
+            <p>If you prefer to use combined flag constants you can assign all
+            the flags composed this way through the Value property of the
+            object. The object has also two helper methods that can be used to
+            bring it in well-known state. They are also intended for this kind
+            of usage. If you want to use the Boolean properties there is no need
+            to ever use the Value property or the Methods in the following
+            table.</p>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th valign="top" nowrap>Name</th>
+                <th valign="top" nowrap>Syntax</th>
+                <th valign="top" nowrap>Description</th>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF" nowrap><b><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Value
+                  </b></td>
+                <td valign="top" bgcolor="#FFFFFF" nowrap>comdlg_object.Flags.Value
+                  = value<br>
+                  comdlg_object.Flags = value<br>
+                  variable = comdlg_object.Flags.Value</td>
+                <td valign="top" bgcolor="#FFFFFF">Long integer, default
+                  property. Thanks to the fact that this is default property
+                  flags combined in long integer value can be assigned
+                  syntactically just like with the Microsoft Common Dialogs
+                  ActiveX. The property puts/gets the flags for the dialog type
+                  specified by the <a href="comdlg.htm#Action">NSComDlg.Action</a>
+                  property. If you want to set the flags for all the dialogs at
+                  once (very unlikely) set the Action to 0. Note that due to the
+                  differences between the platforms and the fact that Microsoft
+                  no longer supports their common dialog ActiveX the flags that
+                  have worked on earlier OS versions may cause different
+                  behavior on new OS versions. To be on the safe side it is
+                  recommended to carefully check MSDN or use the properties
+                  listed above.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF" nowrap><b><img border="0" src="img/method.gif" width="17" height="16">
+                  SetDefaults</b></td>
+                <td valign="top" bgcolor="#FFFFFF" nowrap>comdlg_object.Flags.SetDefaults</td>
+                <td valign="top" bgcolor="#FFFFFF">Sets the flags for all the
+                  dialog types to their default values.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF" nowrap><b><img border="0" src="img/method.gif" width="17" height="16">
+                  Clear</b></td>
+                <td valign="top" bgcolor="#FFFFFF" nowrap>comdlg_object.Flags.Clear</td>
+                <td valign="top" bgcolor="#FFFFFF">Clears all the flags for all
+                  the dialog types. Use with caution! In many cases the common
+                  dialogs require at least one or two flags in order to do
+                  something useful - make sure you are setting new flags after
+                  calling the Clear method.</td>
+              </tr>
+            </table>
+            <p><b>General notes for developers who set flags directly</b> (e.g.
+                  comdlg_object.Flags = &amp;H&lt;someflag&gt; Or
+            &amp;H&lt;someflag2&gt; ...). Note that the Font and the Color
+            dialogs do not initialize from the specified data unless a special
+            flag is specified. To avoid confusion the control automatically adds
+            this flag when flags are assigned directly, thus relieving you from
+            the need to specify it explicitly.
+            <p>&nbsp;
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2006 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\doc\\comdlgflags.htm-->
+
+</table>
+
+</body>
+
+</html>

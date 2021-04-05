@@ -1,0 +1,11 @@
+Dim AppBuildStamp: AppBuildStamp="12/2/2009 11:29:13 AM"
+Dim AppEXEName: AppEXEName = "HTMLview"
+Dim AppPath: AppPath = "E:\NSBCE8\Files\Samples\HTMLview.nsb"
+Project.AddModule "main", ".\HTMLview.nsb"
+Project.AddResourceFile "clock",".\clock.gif","3","False","False","0"
+Project.DirToInclude = ""
+Project.EULA = ""
+Project.HiRes = True
+Project.icon = ""
+Project.InstallDir = ""
+Project.ReadMe = ""

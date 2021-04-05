@@ -1,0 +1,7 @@
+Dim AppEXEName: AppEXEName = "SMS Send"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\SMS Send.nsb"
+Project.AddModule "main", ".\SMS Send.nsb"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

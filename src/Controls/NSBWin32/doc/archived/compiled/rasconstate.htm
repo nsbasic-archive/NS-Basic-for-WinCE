@@ -1,0 +1,146 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="RASConState,State,ErrorNumber,DeviceType,DeviceName,Refresh">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/RAS object/RASEntry object/">
+<title>RASConState object</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Win32 objects</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">RASConState object</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\rasconstate.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>Applies to: <a href="rasentry.htm">RASEntry<br>
+            </a>Obtained from RASEntry.Status property. When queried from the
+            property the RASEntry object synchronizes the state information for
+            the RAS entry it represents and the returned RASConState object is
+            guaranteed to reflect the current state of the entry. This means it
+            is best to obtain fresh RASConState object from the RASEntry.Status
+            property each time you want to query its state. Using the Refresh
+            method will refresh the state information but only until the current
+            connection is active (if the entry is connected). If the entry has
+            been disconnected and reconnected again the Refresh method will no
+            longer do any useful work - you will need to obtain new RASConState
+            object from the RASEntry of interest. Thus the Refresh method is an
+            useful&nbsp; helper only for phases in which you need to follow a
+            dialing process you have just invoked.</p>
+            <p>You can use the DeviceType/DeviceName as alternative (to
+            RASEntry.IsActive) indicators that a connection is actually in
+            progress. They have non-empty values only if the entry is
+            connected/connecting.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_w.GIF" width="16" height="14">
+                  State</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.State</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the state of the
+                  connection (if connected). Common constants returned:<br>
+                  RASCS_OpenPort<b> = </b>0<b><br>
+                  </b>RASCS_PortOpened = 1<b><br>
+                  </b>RASCS_ConnectDevice = 2<b><br>
+                  </b>RASCS_DeviceConnected = 3<b><br>
+                  </b>RASCS_AllDevicesConnected = 4<b><br>
+                  </b>RASCS_Authenticate<b> = </b>5<b><br>
+                  </b>RASCS_AuthNotify = 6<b><br>
+                  </b>RASCS_AuthRetry = 7<b><br>
+                  </b>RASCS_AuthCallback = 8<b><br>
+                  </b>RASCS_AuthChangePassword = 9<b><br>
+                  </b>RASCS_AuthProject = 10<b><br>
+                  </b>RASCS_AuthLinkSpeed<b> = </b>11<b><br>
+                  </b>RASCS_AuthAck = 12<b><br>
+                  </b>RASCS_ReAuthenticate<b> = </b>13<b><br>
+                  </b>RASCS_Authenticated = 14<b><br>
+                  </b>RASCS_PrepareForCallback =15<b><br>
+                  </b>RASCS_WaitForModemReset = 16<b><br>
+                  </b>RASCS_WaitForCallback = 17<b><br>
+                  </b>RASCS_Projected = 18<b><br>
+                  </b>Note that some OS versions support more values. Consult
+                  MSDN for extended information about the possible values for
+                  the OS version you work with.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_w.GIF" width="16" height="14">
+                  ErrorNumber</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.ErrorNumber</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the error number &gt;
+                  0 (if error has occurred). If you are interested in displaying
+                  particular error messages you can obtain the RAS error list
+                  from raserror.h file from MS Visual C include directory. There
+                  are over 150 different error messages listed in it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_w.GIF" width="16" height="14">
+                  DeviceType</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.DeviceType</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a string representing
+                  the device type used for the connection (if
+                  connected/connecting - empty otherwise).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_w.GIF" width="16" height="14">
+                  DeviceName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.DeviceName</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a string representing
+                  the device name used for the connection (if
+                  connected/connecting - empty otherwise).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  Refresh</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Refresh()</td>
+                <td bgcolor="#FFFFFF" valign="top">Refreshes the status
+                  information (see the notes above).</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2005 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\rasconstate.htm-->
+
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+VERSION 5.00
+Object = "{F7DEA2C9-BA8F-446E-A292-B4840F3BD661}#1.0#0"; "mscemenubar.dll"
+Begin VB.Form Main 
+   Appearance      =   0  'Flat
+   AutoRedraw      =   -1  'True
+   BackColor       =   &H80000005&
+   Caption         =   "Main Form"
+   ClientHeight    =   3120
+   ClientLeft      =   60
+   ClientTop       =   840
+   ClientWidth     =   3015
+   ControlBox      =   -1  'True
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3120
+   ScaleWidth      =   3015
+   ShowOK          =   -1  'True
+   Begin MenuBarLib.MenuBar MenuBar 
+      Left            =   0
+      Top             =   0
+      _cx             =   1720
+      _cy             =   661
+      Enabled         =   -1  'True
+      NewButton       =   -1  'True
+   End
+End
+Attribute VB_Name = "Main"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+' Variables
+' The File Menu
+Private mnuFile As MenuBarMenu
+' The Help Menu
+Private mnuHelp As MenuBarMenu
+
+
+Private Sub Form_Load()
+      setupMenu()
+End Sub
+
+Private Sub Form_OKClick()
+    App.End
+End Sub
+
+
+Private Sub Form_Unload(Cancel As Integer)
+
+End Sub
+
+
+Private Sub setupMenu()
+    'Set this at design time in the properties sheet
+    'menuBar.NewButton = False
+'   Set up a reference to the File Menu object
+    Set mnuFile = MenuBar.Controls.AddMenu("File", "mnuFile")
+'   Begin adding menu items to the File menu
+    mnuFile.Items.Add 1, "mnuFileSystemInfo", "System Info"
+    mnuFile.Items.Add 2, "mnuFileLedTest", "LED Test"
+    mnuFile.Items.Add 3, "mnuFileBeeperTest", "Beeper Test"
+    mnuFile.Items.Add 4, "mnuFileBeeperTest2", "Beeper Test 2"
+    mnuFile.Items.Add 5, "mnuFilePortTest", "Docking Port Test"
+    mnuFile.Items.Add 6, "mnuFileScannerTest", "Scanner Test"
+    mnuFile.Items.Add 7, "mnuFileScannerConfig", "Scanner Config"
+    mnuFile.Items.Add 8, "mnuFileBacklightTest", "Backlight Test"
+    mnuFile.Items.Add 9, "mnuFileSerialPorts", "Serial Ports"
+    mnuFile.Items.Add 10, "mnuFilePowerManagement", "Power Management"
+    mnuFile.Items.Add 11, "mnuFileDisplayInfo", "Display Info"
+    mnuFile.Items.Add 12, "mnuFileDockTetherEvent", "Dock/Tether Event"
+    mnuFile.Items.Add 13, "mnuFileNSAPICheck", "NS API Check"
+    mnuFile.Items.Add 14, "mnuFileKeyboard", "Keyboard"
+    mnuFile.Items.Add 15, "mnuFileNdis", "Radio 812.11"
+    mnuFile.Items.Add 16, "mnuFileGSM", "Radio GSM"
+    mnuFile.Items.Add 17, "mnuFilExit", "Exit"
+     
+    
+'   Set up a reference to the Help Menu object
+    Set mnuHelp = MenuBar.Controls.AddMenu("Help", "mnuHelp")
+'   Begin adding menu items to the Help menu
+    mnuHelp.Items.Add 1, "mnuHelpAbout", "About"
+End Sub
+
+
+Private Sub menuBar_MenuClick(ByVal Item As MenuBarLib.Item)
+    ' React to a menu selection
+    Select Case Item.Key
+        Case "mnuFileSystemInfo"
+              SystemForm.Show
+        Case "mnuFilePortTest"
+              Dock_Tether.Show
+        Case "mnuFileScannerTest"
+              ScannerTest.Show
+        Case "mnuFileLedTest"
+            Indicators.Show
+        Case "mnuFileKeyboard"
+              KeyboardForm.Show
+        Case "mnuFileBeeperTest"
+              TestBeeper
+        Case "mnuFileBeeperTest2"
+              BeeperTest.Show
+        Case "mnuFilePowerManagement"
+              powerMan.Show
+        Case "mnuFileBacklightTest"
+              backlight.Show
+        Case "mnuFileNdis"
+              NdisForm.Show
+              
+        Case "mnuFileExit"
+            ' End the program
+            App.End
+        Case "mnuHelpAbout"
+            MsgBox "MenuBar Example 1.0", vbOKOnly, "About"
+    End Select
+End Sub
+
+Private Sub TestBeeper()
+    Set PeripheralsObject = CreateObject("peripheralsX.Peripherals") ' create the control
+    Dim frequency As Integer
+    
+    
+    PeripheralsObject.PlayTone 1000, 500, 0
+    Sleep (1000)
+    For frequency = 800 To 3000 Step 1000
+            PeripheralsObject.PlayTone frequency, 1000, 0
+            Sleep (1000)
+    Next
+    
+    
+End Sub
+
+Private Sub TestNotSupportedAPI()
+    
+End Sub
+
+
+

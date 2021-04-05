@@ -1,0 +1,149 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_58_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_58_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>IF...THEN...ELSE                                                 Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>IF <i><span
+style='font-style:italic;'>condition</span></i> THEN <i><span style='font-style:italic;'>statements</span></i> [ELSE <i><span
+style='font-style:italic;'>elsestatements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>IF <i><span
+style='font-style:italic;'>condition</span></i> THEN</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>[ELSEIF <i><span
+style='font-style:italic;'>condition-n</span></i>
+THEN</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>elseifstatements</span></i>]]...</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>[ELSE</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>elsestatements</span></i>]]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>END IF</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>IF...THEN...ELSE</span></font> is used to conditionally execute a group of
+statements. The required component, <i><span
+style='font-style:italic;'>condition</span></i>, can
+be any expression that evaluates to TRUE or FALSE. If used inline with no else
+clause, the <i><span style='font-style:italic;'>statements</span></i> component is required,
+otherwise, the <i><span style='font-style:
+italic;'>statements</span></i> component is optional.
+If <i><span style='font-style:italic;'>condition</span></i> evaluates to TRUE or non-zero,
+any existing <i><span style='font-style:
+italic;'>statements</span></i> are executed, if <i><span style='font-style:italic;'>condition</span></i> evaluates to FALSE or zero, execution branches to
+the next existing ELSEIFclause to evaluate <i><span style='font-style:italic;'>condition-n</span></i>,ortotheELSE clause if it is included. </p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>To execute multiple statements inline, the statements must be
+separated by a colon (:). If an inline statement consists of a lone procedure
+call with no arguments, the procedure must be called with empty parenthesis.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM IF...THEN...ELSE Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'IF...THEN...ELSE performs conditional
+execution</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Who</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>IF TRUE THEN PRINT &quot;TRUE&quot; ELSE
+PRINT &quot;FALSE&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>IF Who = &quot;Al&quot; THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       PRINT
+&quot;Big Al&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ELSEIF Who = &quot;Alien&quot; THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       PRINT
+&quot;Alien Probe&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END IF</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>TRUE</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SELECT CASE</span></font></p>
+
+</div>
+
+</body>
+
+</html>

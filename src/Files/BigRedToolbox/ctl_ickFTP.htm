@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>ickFTP Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;ickFTP Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/ickftp.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The FTP component can be used to transfer files to and from FTP servers
+using the FTP Protocol.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The FTP component uses Microsoft's Win32 Internet API
+to implement a generic FTP client.  It can make use of the standard settings
+in the client PC for proxy servers as well as Internet Explorer's cache. 
+The <b>UseCache</b>, <b>ProxyServer</b>, and <b>ProxyBypass</b> properties control
+their use.<P>The first step in using the component is specifying the <b>RemoteHost</b>,
+<b>User</b> and <b>Password</b> properties.  The file to upload to, download from,
+or list is given by the <b>RemoteFile</b> property.  The file to download to
+or upload from is specified by <b>LocalFile</b>.  The current path in the server
+is specified by the <b>RemotePath</b> property.  The <b>Passive</b> property
+is especially useful if the client is behind a firewall which inhibits
+incoming connections to higher ports.<P>The component operates by setting appropriate values to the <b>Action</b>
+property.  If <b>LocalFile</b> is set to something other than an empty
+string, then files are received in <b>LocalFile</b>, otherwise the data
+is received through the <b>Transfer</b> event.  <b>StartTransfer</b> and
+<b>EndTransfer</b> events are fired at the beginning and end of transmission.<P>You can get the received data also from the <b>ReceiveBuffer</b> property
+if you set <b>ReceiveBufferSize</b> accordingly.  These properties are
+especially useful if you cannot handle events in your programming
+environment.<P>The <b>Status</b> event traces the interaction between the client and the
+server (the FTP Protocol Interface connection).<P>Formatted directory listings are received through the <b>DirList</b> event. <P>This component requires the Microsoft WinInet support libraries to be present
+in the host computer.
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+An action code for the component.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">AltFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The new name for RemoteFile when Action is set to Rename.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LastReply.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The last reply from the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to a local file for download/upload.  If the file exists, it is overwritten.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Passive.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls whether to direct the server into passive mode especially if behind a firewall.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Password.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The password to login with.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ProxyBypass.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Names or IP addresses of the hosts to be accessed directly (optional).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ProxyServer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Name or IP address of one or more proxy servers (optional).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ReceiveBuffer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+A buffer with the incoming data of a transfer if ReceiveBufferSize is non-zero.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ReceiveBufferSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls whether the received data is given in ReceiveBuffer and denotes its size.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemoteFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the remote file for uploading/downloading.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemoteHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The domain name or IP address of the FTP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemotePath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The current path in the FTP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemotePort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The port for the FTP service (default is 21).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TransferMode.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The transfer mode (ASCII or Binary).  If left at Default, the initial server mode will be used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">UseCache.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Make use of cache when transferring files, listing directories, etc.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">User.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The user id to login as.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinInetVersion.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Shows the version of the WinInet libraries.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DirList.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a directory entry is received ('LIST' actions).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EndTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a file completes downloading/uploading.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Status.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Informs about the actions taken by the component while connecting to the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">StartTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a file starts downloading/uploading.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Transfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired during file download/upload.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

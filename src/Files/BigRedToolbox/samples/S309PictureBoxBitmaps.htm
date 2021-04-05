@@ -1,0 +1,173 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309PictureBoxBitmaps Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309PictureBoxBitmap1.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<IMG SRC="images/S309PictureBoxBitmap2.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+option explicit
+
+const S309_STD_ENABLE = 1
+const S309_STD_DISABLE = -1
+const S309_VIEW_ENABLE = 2
+const S309_VIEW_DISABLE = -2
+
+const STD_CUT = 0
+const STD_COPY = 1
+const STD_PASTE = 2
+const STD_UNDO = 3
+const STD_REDOW = 4
+const STD_DELETE = 5
+const STD_FILENEW = 6
+const STD_FILEOPEN = 7
+const STD_FILESAVE = 8
+const STD_PRINTPRE = 9
+const STD_PROPERTIES = 10
+const STD_HELP = 11
+const STD_FIND = 12
+const STD_REPLACE = 13
+const STD_PRINT = 14
+
+const VIEW_LARGEICONS = 0
+const VIEW_SMALLICONS = 1
+const VIEW_LIST = 2
+const VIEW_DETAILS = 3
+const VIEW_SORTNAME = 4
+const VIEW_SORTSIZE = 5
+const VIEW_SORTDATE = 6
+const VIEW_SORTTYPE = 7
+const VIEW_PARENTFOLDER = 8
+const VIEW_NETCONNECT = 9
+const VIEW_NETDISCONNECT = 10
+const VIEW_NEWFOLDER = 11
+
+dim picButton(200), number, index, Top, Left, bNewRow, Menu, gstrTitle, gstrURL
+
+dim gbNoWaste
+gbNoWaste =false ' set to true to use all screen space
+
+gstrTitle = "S309PictureBox Common Bitmaps Example"
+gstrURL = "http://members.xoom.com/S309"
+Menu = array("&File||File",gstrTitle,"|",gstrURL)
+setmenu "TitleBar",menu
+Menu = array("E&xit||mnuFileExit")
+setmenu "File", Menu
+
+if (Output.Width mod 2) = 1 then
+ Output.Move 0, 0, (Output.ScaleX(Output.Width + 1, 3,1)), (Output.ScaleY(Output.Height, 3, 1))
+end if    
+
+output.backcolor=vbgreen
+updatescreen
+
+addobject "S309.PictureBox.1","picHidden",1,1,1,1
+pichidden.autosize = true
+picHidden.borderstyle = 1
+picHidden.appearance = 0
+picHidden.hide
+
+bNewrow = false
+if gbNoWaste then
+  top = 0
+  left = 0
+else
+  top = 46
+  left = 1
+end if 
+  
+bNewrow = false
+for index = 0 to 14
+  DisplayButtons 1, index
+next 
+bNewrow = true
+for index = 0 to 14
+  DisplayButtons -1, index
+next 
+bNewrow = true
+for index = 0 to 11
+  DisplayButtons 2, index
+next 
+bNewrow = true
+for index = 0 to 11
+  DisplayButtons -2, index
+next 
+
+if not gbNoWaste then
+  output.drawtext string(10," ") & "Click On A Bitmap"
+  output.drawtext string(10," ") & "For Properties"
+end if
+
+sub mnuFileExit_Click()
+  bye
+end sub
+
+sub DisplayButtons(byval CommonBitmapType, byval CommonBitmapID)
+  dim count, name, index, msg
+  if bnewrow then
+    bnewrow = false
+    top = top + 20 + space()
+    left = space()
+  end if  
+  number = number + 1
+  if (left + 20) > output.width then
+    left = space()
+    top =  top + 20 + space()
+  end if  
+  name = "button" & cstr(number)
+  addobject "S309.PictureBox.1", name, left, top, 1, 1
+  execute " set picButton(" & cstr(number) & ") = " & name
+  picButton(number).autosize = true
+  picButton(number).borderstyle = 1
+  picButton(number).appearance = 1
+  picButton(number).CommonBitmapType = CommonBitmapType
+  picButton(number).CommonBitmapID = CommonBitmapID
+  picButton(number).show
+  execute "sub " & name & "_click()" & vbcrlf & "  picClick(" & number &")" & vbcrlf & "end sub"
+  updatescreen
+  left = left + 20 + space()
+end sub    
+sub picClick(byval number)
+  picHidden.Resize = True
+  picHidden.ResizeHeight = (picButton(number).Height * 2)
+  picHidden.ResizeWidth = (picButton(number).Width * 2)
+  picHidden.AutoSize = picButton(number).AutoSize
+  picHidden.BorderStyle = picButton(number).BorderStyle
+  picHidden.Appearance = picButton(number).Appearance
+  picHidden.CommonBitmapType = picButton(number).CommonBitmapType
+  picHidden.CommonBitmapID = picButton(number).CommonBitmapID
+'  msgbox "gbNoWaste=" & cstr(gbNoWaste)
+  if not gbNoWaste then
+    picHidden.show
+    picHidden.zorder 0
+    picHidden.refresh
+  end if  
+  call picHidden_Click() 
+end sub
+sub picHidden_Click()
+  dim msg
+  msg = ".Appearance=" & cstr(picHidden.Appearance) & vbcrlf
+  msg = msg & ".AutoSize=" & cstr(picHidden.AutoSize) & vbcrlf
+  msg = msg & ".BorderStyle=" & cstr(picHidden.BorderStyle) & vbcrlf
+  msg = msg & ".CommonBitmapType=" & cstr(picHidden.CommonBitmapType) & vbcrlf
+  msg = msg & ".CommonBitmapID=" & cstr(picHidden.CommonBitmapID) 
+  msgbox msg, vbINFORMATION,"Properties for Bitmap"
+end sub
+function Max(n1, n2)
+  if n1 > n2 then
+    Max = n1
+  else
+    Max = n2
+  end if    
+end function
+function Space()
+  if gbNoWaste then
+    Space = 0
+  else
+    Space = 1
+  end if    
+end function
+</PRE>
+</body>
+</html>

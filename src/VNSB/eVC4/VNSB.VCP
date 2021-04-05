@@ -1,0 +1,1540 @@
+# Microsoft eMbedded Visual Tools Project File - Name="VNSB" - Package Owner=<4>
+# Microsoft eMbedded Visual Tools Generated Build File, Format Version 6.02
+# ** DO NOT EDIT **
+
+# TARGTYPE "Win32 (WCE ARMV4) Application" 0xa301
+# TARGTYPE "Win32 (WCE ARMV4I) Application" 0xa501
+# TARGTYPE "Win32 (WCE emulator) Application" 0xa601
+# TARGTYPE "Win32 (WCE MIPSII) Application" 0xa101
+
+CFG=VNSB - Win32 (WCE emulator) Debug
+!MESSAGE This is not a valid makefile. To build this project using NMAKE,
+!MESSAGE use the Export Makefile command and run
+!MESSAGE 
+!MESSAGE NMAKE /f "VNSB.VCN".
+!MESSAGE 
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
+!MESSAGE 
+!MESSAGE NMAKE /f "VNSB.VCN" CFG="VNSB - Win32 (WCE emulator) Debug"
+!MESSAGE 
+!MESSAGE Possible choices for configuration are:
+!MESSAGE 
+!MESSAGE "VNSB - Win32 (WCE emulator) Release" (based on "Win32 (WCE emulator) Application")
+!MESSAGE "VNSB - Win32 (WCE emulator) Debug" (based on "Win32 (WCE emulator) Application")
+!MESSAGE "VNSB - Win32 (WCE ARMV4I) Release" (based on "Win32 (WCE ARMV4I) Application")
+!MESSAGE "VNSB - Win32 (WCE ARMV4I) Debug" (based on "Win32 (WCE ARMV4I) Application")
+!MESSAGE "VNSB - Win32 (WCE ARMV4) Release" (based on "Win32 (WCE ARMV4) Application")
+!MESSAGE "VNSB - Win32 (WCE ARMV4) Debug" (based on "Win32 (WCE ARMV4) Application")
+!MESSAGE "VNSB - Win32 (WCE MIPSII) Release" (based on "Win32 (WCE MIPSII) Application")
+!MESSAGE 
+
+# Begin Project
+# PROP AllowPerConfigDependencies 0
+# PROP Scc_ProjName ""
+# PROP Scc_LocalPath ""
+# PROP ATL_Project 2
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+# PROP BASE Use_MFC 2
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "emulatorRel"
+# PROP BASE Intermediate_Dir "emulatorRel"
+# PROP BASE CPU_ID "{32E52003-403E-442D-BE48-DE10F8C6131D}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 2
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "emulatorRel"
+# PROP Intermediate_Dir "emulatorRel"
+# PROP CPU_ID "{32E52003-403E-442D-BE48-DE10F8C6131D}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /d "_AFXDLL" /r
+# ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /d "_AFXDLL" /r
+CPP=cl.exe
+# ADD BASE CPP /nologo /W3 /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_WIN32_WCE_CEPC" /D "_AFXDLL" /Yu"stdafx.h" /Gs8192 /GF /O2 /c
+# ADD CPP /nologo /W3 /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_WIN32_WCE_CEPC" /D "_AFXDLL" /Gs8192 /GF /O2 /c
+# SUBTRACT CPP /YX /Yc /Yu
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /subsystem:$(CESubsystem) /MACHINE:IX86
+# ADD LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /subsystem:$(CESubsystem) /MACHINE:IX86
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+# PROP BASE Use_MFC 2
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "emulatorDbg"
+# PROP BASE Intermediate_Dir "emulatorDbg"
+# PROP BASE CPU_ID "{32E52003-403E-442D-BE48-DE10F8C6131D}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 2
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "emulatorDbg"
+# PROP Intermediate_Dir "emulatorDbg"
+# PROP CPU_ID "{32E52003-403E-442D-BE48-DE10F8C6131D}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /d "_AFXDLL" /r
+# ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /d "_AFXDLL" /r
+CPP=cl.exe
+# ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "_WIN32_WCE_CEPC" /D "_AFXDLL" /Yu"stdafx.h" /Gs8192 /GF /c
+# ADD CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "_WIN32_WCE_CEPC" /D "_AFXDLL" /Gs8192 /GF /c
+# SUBTRACT CPP /YX /Yc /Yu
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /debug /subsystem:$(CESubsystem) /MACHINE:IX86
+# ADD LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /debug /subsystem:$(CESubsystem) /MACHINE:IX86
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+# PROP BASE Use_MFC 2
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ARMV4IRel"
+# PROP BASE Intermediate_Dir "ARMV4IRel"
+# PROP BASE CPU_ID "{DC70F430-E78B-494F-A9D5-62ADC56443B8}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 2
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "ARMV4IRel"
+# PROP Intermediate_Dir "ARMV4IRel"
+# PROP CPU_ID "{DC70F430-E78B-494F-A9D5-62ADC56443B8}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "THUMB" /d "_THUMB_" /d "ARM" /d "_ARM_" /d "ARMV4I" /d "_AFXDLL" /r
+# ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "THUMB" /d "_THUMB_" /d "ARM" /d "_ARM_" /d "ARMV4I" /d "_AFXDLL" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /D "ARM" /D "_ARM_" /D "ARMV4I" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_AFXDLL" /Yu"stdafx.h" /QRarch4T /QRinterwork-return /O2 /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /D "ARM" /D "_ARM_" /D "ARMV4I" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_AFXDLL" /QRarch4T /QRinterwork-return /O2 /M$(CECrtMT) /c
+# SUBTRACT CPP /YX /Yc /Yu
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /subsystem:$(CESubsystem) /MACHINE:THUMB
+# ADD LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /subsystem:$(CESubsystem) /MACHINE:THUMB
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+# PROP BASE Use_MFC 2
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "ARMV4IDbg"
+# PROP BASE Intermediate_Dir "ARMV4IDbg"
+# PROP BASE CPU_ID "{DC70F430-E78B-494F-A9D5-62ADC56443B8}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 2
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "ARMV4IDbg"
+# PROP Intermediate_Dir "ARMV4IDbg"
+# PROP CPU_ID "{DC70F430-E78B-494F-A9D5-62ADC56443B8}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "THUMB" /d "_THUMB_" /d "ARM" /d "_ARM_" /d "ARMV4I" /d "_AFXDLL" /r
+# ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "THUMB" /d "_THUMB_" /d "ARM" /d "_ARM_" /d "ARMV4I" /d "_AFXDLL" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "ARM" /D "_ARM_" /D "ARMV4I" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /Yu"stdafx.h" /QRarch4T /QRinterwork-return /M$(CECrtMTDebug) /c
+# ADD CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "ARM" /D "_ARM_" /D "ARMV4I" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /QRarch4T /QRinterwork-return /M$(CECrtMTDebug) /c
+# SUBTRACT CPP /YX /Yc /Yu
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /debug /subsystem:$(CESubsystem) /MACHINE:THUMB
+# ADD LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /debug /subsystem:$(CESubsystem) /MACHINE:THUMB
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+# PROP BASE Use_MFC 2
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ARMV4Rel"
+# PROP BASE Intermediate_Dir "ARMV4Rel"
+# PROP BASE CPU_ID "{ECBEA43D-CD7B-4852-AD55-D4227B5D624B}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 2
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "ARMV4Rel"
+# PROP Intermediate_Dir "ARMV4Rel"
+# PROP CPU_ID "{ECBEA43D-CD7B-4852-AD55-D4227B5D624B}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "NDEBUG" /d "UNICODE" /d "_UNICODE" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /d "ARMV4" /d "_AFXDLL" /r
+# ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "NDEBUG" /d "UNICODE" /d "_UNICODE" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /d "ARMV4" /d "_AFXDLL" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /D "ARM" /D "_ARM_" /D "ARMV4" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_AFXDLL" /Yu"stdafx.h" /O2 /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /D "ARM" /D "_ARM_" /D "ARMV4" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_AFXDLL" /O2 /M$(CECrtMT) /c
+# SUBTRACT CPP /YX /Yc /Yu
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+# PROP BASE Use_MFC 2
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "ARMV4Dbg"
+# PROP BASE Intermediate_Dir "ARMV4Dbg"
+# PROP BASE CPU_ID "{ECBEA43D-CD7B-4852-AD55-D4227B5D624B}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 2
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "ARMV4Dbg"
+# PROP Intermediate_Dir "ARMV4Dbg"
+# PROP CPU_ID "{ECBEA43D-CD7B-4852-AD55-D4227B5D624B}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "DEBUG" /d "UNICODE" /d "_UNICODE" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /d "ARMV4" /d "_AFXDLL" /r
+# ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "DEBUG" /d "UNICODE" /d "_UNICODE" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /d "ARMV4" /d "_AFXDLL" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "ARM" /D "_ARM_" /D "ARMV4" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /Yu"stdafx.h" /M$(CECrtMTDebug) /c
+# ADD CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "ARM" /D "_ARM_" /D "ARMV4" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /M$(CECrtMTDebug) /c
+# SUBTRACT CPP /YX /Yc /Yu
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /debug /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /debug /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+# PROP BASE Use_MFC 2
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "MIPSIIRel"
+# PROP BASE Intermediate_Dir "MIPSIIRel"
+# PROP BASE CPU_ID "{ECBEA43D-CD7B-4852-AD55-D4227B5D624B}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 2
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "MIPSIIRel"
+# PROP Intermediate_Dir "MIPSIIRel"
+# PROP CPU_ID "{ECBEA43D-CD7B-4852-AD55-D4227B5D624B}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /d "R4000" /d "MIPSII" /d "_AFXDLL" /r
+# ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /d "R4000" /d "MIPSII" /d "_AFXDLL" /r
+CPP=clmips.exe
+# ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D "R4000" /D "MIPSII" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_AFXDLL" /O2 /M$(CECrtMT) /c
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D "R4000" /D "MIPSII" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_AFXDLL" /O2 /M$(CECrtMT) /c
+# SUBTRACT CPP /YX /Yc /Yu
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096"
+# SUBTRACT LINK32 /pdb:none
+
+!ENDIF 
+
+# Begin Target
+
+# Name "VNSB - Win32 (WCE emulator) Release"
+# Name "VNSB - Win32 (WCE emulator) Debug"
+# Name "VNSB - Win32 (WCE ARMV4I) Release"
+# Name "VNSB - Win32 (WCE ARMV4I) Debug"
+# Name "VNSB - Win32 (WCE ARMV4) Release"
+# Name "VNSB - Win32 (WCE ARMV4) Debug"
+# Name "VNSB - Win32 (WCE MIPSII) Release"
+# Begin Group "Source Files"
+
+# PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+# Begin Source File
+
+SOURCE=..\Source\CodeDlg.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_CODED=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_CODED=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_CODED=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_CODED=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_CODED=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_CODED=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_CODED=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\ComObjectDlg.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_COMOB=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_COMOB=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_COMOB=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_COMOB=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_COMOB=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_COMOB=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_COMOB=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\MainFrm.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_MAINF=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_MAINF=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_MAINF=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_MAINF=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_MAINF=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_MAINF=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_MAINF=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\MenuEditorDlg.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_MENUE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_MENUE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_MENUE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_MENUE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_MENUE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_MENUE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_MENUE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\NSBForm.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_NSBFO=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_NSBFO=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_NSBFO=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_NSBFO=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_NSBFO=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_NSBFO=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_NSBFO=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\NSBFormObjectView.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_NSBFOR=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_NSBFOR=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_NSBFOR=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_NSBFOR=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_NSBFOR=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_NSBFOR=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_NSBFOR=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\PropEditorDlg.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_PROPE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_PROPE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_PROPE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_PROPE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_PROPE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_PROPE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_PROPE=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\SelectObjectDlg.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_SELEC=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_SELEC=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_SELEC=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_SELEC=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_SELEC=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_SELEC=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_SELEC=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\StdAfx.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_STDAF=\
+	"..\Source\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_STDAF=\
+	"..\Source\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_STDAF=\
+	"..\Source\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_STDAF=\
+	"..\Source\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_STDAF=\
+	"..\Source\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_STDAF=\
+	"..\Source\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_STDAF=\
+	"..\Source\StdAfx.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSB.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_VNSB_=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_VNSB_=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_VNSB_=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_VNSB_=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_VNSB_=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_VNSB_=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_VNSB_=\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSB.rc
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSBDlg.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_VNSBD=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_VNSBD=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_VNSBD=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_VNSBD=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_VNSBD=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_VNSBD=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_VNSBD=\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSBDoc.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_VNSBDO=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	"..\Source\VNSBDoc.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_VNSBDO=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	"..\Source\VNSBDoc.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_VNSBDO=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	"..\Source\VNSBDoc.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_VNSBDO=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	"..\Source\VNSBDoc.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_VNSBDO=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	"..\Source\VNSBDoc.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_VNSBDO=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	"..\Source\VNSBDoc.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_VNSBDO=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\MainFrm.h"\
+	"..\Source\MenuEditorDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDlg.h"\
+	"..\Source\VNSBDoc.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSBView.cpp
+
+!IF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Release"
+
+DEP_CPP_VNSBV=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE emulator) Debug"
+
+DEP_CPP_VNSBV=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Release"
+
+DEP_CPP_VNSBV=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4I) Debug"
+
+DEP_CPP_VNSBV=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Release"
+
+DEP_CPP_VNSBV=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE ARMV4) Debug"
+
+DEP_CPP_VNSBV=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ELSEIF  "$(CFG)" == "VNSB - Win32 (WCE MIPSII) Release"
+
+DEP_CPP_VNSBV=\
+	"..\Source\CodeDlg.h"\
+	"..\Source\ComObjectDlg.h"\
+	"..\Source\NSBForm.h"\
+	"..\Source\NSBFormObjectView.h"\
+	"..\Source\NSBObjects.h"\
+	"..\Source\PropEditorDlg.h"\
+	"..\Source\SelectObjectDlg.h"\
+	"..\Source\StdAfx.h"\
+	"..\Source\VNSB.h"\
+	"..\Source\VNSBDoc.h"\
+	"..\Source\VNSBView.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# End Group
+# Begin Group "Header Files"
+
+# PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=..\Source\CodeDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\ComObjectDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\MainFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\MenuEditorDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\NSBForm.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\NSBFormObjectView.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\NSBObjects.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\PropEditorDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Resource.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\SelectObjectDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSB.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSBDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSBDoc.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\VNSBView.h
+# End Source File
+# End Group
+# Begin Group "Resource Files"
+
+# PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+# Begin Source File
+
+SOURCE=..\Source\res\backgrou.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\res\Cmdbar.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\res\VNSB.ico
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\res\VNSB.rc2
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\ReadMe.txt
+# End Source File
+# End Target
+# End Project

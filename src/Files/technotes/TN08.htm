@@ -1,0 +1,725 @@
+<HTML>
+<HEAD>
+<TITLE>TN08: File Control</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 08: File Control</h2>
+	  <h5>
+      <H3>April 02, 2008</H3>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<p>This control is used to read and write files. It is included with NS Basic. The information in the document is for the most part copied from the official <a href="http://www.newobjects.com/pages/ndl/ndl.asp?file=StoragesAndFiles/SFStream.htm"> documentation</a> on NewObject's website. For further information, please refer to the official documentation. The information on this page is copyright ZmeY soft and published with their permission.
+
+<p>Background: This control replaces the MSCEFile control in NS Basic/CE and the FileSystemObject (FSO) in NS Basic/Desktop. Code written using this control is interoperable between both NS Basic products.
+
+<p>The File I/O Control is used to read and write data in files. It is useful for files where entire records are read or written in string or binary format. If you would like to read and write your records as separate fields, have a look at <a href="TN08a.htm" target="_top">Tech Note 8a "File I/O with Fields"</a>.
+
+<p>The methods and properties documented here are a subset of the full capabilities of this control. To see the rest of the features, look at the full documentation from NewObjects. The features not included here will still work well with NS Basic, but are for advanced users.
+
+<p>Comma separated files (csv) can be easily handled by this control. Use the ReadText function to read in the entire record, then do a Split(record, ",") function to break it into its array of variables.
+
+<p>Before any of the items below can be used, the file needs to be opened. Do this using the <a href="TN09.htm#OpenFile.htm" target="_top">OpenFile</a> method in the <a href="TN09.htm" target="_top">File System Control</a>.
+
+<p><b>Installation:</b> This control requires that NewObjectsPack1.dll be installed and registered.<br>
+<p><b>Creation:</b> <pre>AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.<a href="TN09.htm#OpenFile.htm" target="_top">OpenFile</a>("C:\MyFile.txt")</pre>
+        
+  <table border="0" cellspacing="1">
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36" height="14"></td>
+              <td valign="top" align="left"><a href="#Size.htm"><b>Size</b></a></td>
+              <td valign="top" align="left">Size of the file</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36" height="14"></td>
+              <td valign="top" align="left"><a href="#Pos.htm"><b>Pos</b></a></td>
+              <td valign="top" align="left">Position in the file (in bytes)</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36" height="14"></td>
+              <td valign="top" align="left"><a href="#textLineSeparator.htm"><b>textLineSeparator</b></a></td>
+              <td valign="top" align="left">Text line separator (defaults to the
+                windows standard)</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36" height="14"></td>
+              <td valign="top" align="left"><a href="#unicodeText.htm"><b>unicodeText</b></a></td>
+              <td valign="top" align="left">Text access as UNICODE (True) or
+                ANSI (False). Default is ANSI</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36" height="14"></td>
+              <td valign="top" align="left"><a href="#codePage.htm"><b>codePage</b></a></td>
+              <td valign="top" align="left">If unicodeText is False this
+                specifies the code page used for text conversion.&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36" height="14"></td>
+              <td valign="top" align="left"><a href="#EOS.htm"><b>EOS</b></a></td>
+              <td valign="top" align="left">Becomes True if the end of file is
+                reached</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36" height="14"></td>
+              <td valign="top" align="left"><a href="#maxTextBuff.htm"><b>maxTextBuff</b></a></td>
+              <td valign="top" align="left">Maximum buffer size for the text
+                lines.&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/prop_r.GIF" width="17" height="14"></td>
+              <td valign="top" align="left"><a href="#stats.htm"><b>stats</b></a></td>
+              <td valign="top" align="left">Gets the file information (name,
+                size, times etc.)</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#ReadBin.htm"><b>ReadBin</b></a></td>
+              <td valign="top" align="left">Reads binary data and returns it as
+                array of bytes packed in a variant.</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#WriteBin.htm"><b>WriteBin</b></a></td>
+              <td valign="top" align="left">Writes binary data</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#Seek.htm"><b>Seek</b></a></td>
+              <td valign="top" align="left">Changes/obtains the current position
+                in the File.</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#CopyTo.htm"><b>CopyTo</b></a></td>
+              <td valign="top" align="left">Copies from this file to another.</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#ReadText.htm"><b>ReadText</b></a></td>
+              <td valign="top" align="left">Reads text from the file (line,
+                specified number of characters or the entire file)</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#WriteText.htm"><b>WriteText</b></a></td>
+              <td valign="top" align="left">Writes text to the File.</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#Close.htm"><b>Close</b></a></td>
+              <td valign="top" align="left">Releases/closes the File.</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><b><a href="#Find.htm">Find</a></b></td>
+              <td valign="top" align="left">Binary
+          search through the file beginning from the current position.</td>
+            </tr>
+          </table>
+          
+<HR noshade size="1"><A Name="Size.htm">
+<H4>Size</h4>
+<p>Returns the size of the file or resizes it.
+          The size is in bytes.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.Size<br>
+          File.Size = newSize</p>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>When read the property returns the total size of the file in
+          bytes. Writing the property allows the application to truncate or
+          enlarge the File.</p>
+        </blockquote>        
+        
+<HR noshade size="1"><A Name="Pos.htm">
+<H4>Pos</h4>
+<p>Gets/sets the absolute position of the File.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.Pos<br>
+          File.Pos = variable</p>
+          <p>Position 1 or more: the byte index in the
+          File.&nbsp;</p>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>If positioned beyond the end the file is automatically enlarged.</p>
+          <p>The Seek method provides extended navigation tasks.</p>
+        </blockquote>
+        <p><strong>See also:</strong>  <a href="#Seek.htm">Seek</a>  
+
+<HR noshade size="1"><A Name="textLineSeparator.htm">
+<H4>textLineSeparator</h4>
+<p>Defines the text line separator. This allows the
+          <a href="#ReadText.htm">ReadText</a> method to recognize the
+          lines in text files and <a href="#WriteText.htm">WriteText</a>
+          to write correct lines when called with <b>1</b> option.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>File.textLineSeparator = variable<br>
+          variable = File.textLineSeparator</p>
+          <p>The default value is the Windows default line separator - <code>vbCrLf</code>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>The separator can be used in different ways depending on the option
+          used with the <a href="#ReadText.htm">ReadText</a> and <a href="#WriteText.htm">WriteText</a>
+          methods. See their options for more information.&nbsp;</p>
+          <p>The line delimiter cannot exceed 16 characters.</p>
+        </blockquote>
+        
+<HR noshade size="1"><A Name="unicodeText.htm">
+<H4>unicodeText</h4>
+<p>Set/get Unicode text manipulation option for the File. This option tells the File object how to read and write text.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>File.unicodeText = boolean<br>
+          variable = File.unicodeText</p>
+          <p>The default value is False (Ansi).
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote><p>If the property is true all the text methods will use unicode when reading or writing. If False, the text will be converted using the code page specified by the CodePage property.</blockquote>
+
+<HR noshade size="1"><A Name="codePage.htm">
+<H4>codePage</H4>
+          <p>Specifies the code page used for text operations
+          when  configured to use ANSI text.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>File.codePage = value<br>
+          variable = File.codePage</p>
+          <p>Default is: cpAnsi (ANSI code page)</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <pre>
+    Const   cpAnsi                  =   0   ' ANSI code page&nbsp;
+    Const   cpOem                   =   1   ' OEM code page
+    Const   cpMac                   =   2   ' MAC code page
+    Const   cpSymbol                =   42  ' Symbol code page
+    
+    'Specific code pages - if they are not installed on the system conversions will fail
+    Const   cpThai                  =   874
+    Const   cpJapanese              =   932
+    Const   cpChinese               =   936
+    Const   cpKorean                =   949
+    Const   cpChinese2              =   950
+    Const   cpEasternEuropean       =   1250
+    Const   cpCyrillic              =   1251
+    Const   cpWestern               =   1252
+    Const   cpGreek                 =   1253
+    Const   cpTurkish               =   1254
+    Const   cpHebrew                =   1255
+    Const   cpArabic                =   1256
+    Const   cpBaltic                =   1257</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>Code page specifies how the text is converted from/to ANSI
+          characters (more precisely UNICODE to/from multibyte conversions).</p>
+        </blockquote>
+        <p><strong>See also:</strong>  <a href="#ReadText.htm">ReadText</a>.
+
+<HR noshade size="1"><A Name="EOS.htm">
+<H4>EOS</H4> 
+<p>Indicates it the end of the file is reached.&nbsp;</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.EOS</p>
+          <p>True value means the current position is at or after the end of
+          File.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+' Open exiting text file
+' Read it line by line
+While Not File.EOS
+  MsgBox File.ReadText(-3)
+Wend</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>Pay attention to the methods that change the file position. The file position is
+          changed by: <a href="#ReadText.htm">ReadText</a>, <a href="#WriteText.htm">WriteText</a>,
+          <a href="#WriteBin.htm">WriteBin</a>, <a href="#ReadBin.htm">ReadBin</a>,
+          <a href="#Pos.htm">Pos</a>, <a href="#Seek.htm">Seek</a>.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="maxTextBuff.htm">
+<H4>maxTextBuff</H4>
+<p>Specifies the maximum size of the internal
+          buffer used for text operations (mostly the read operations).</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>File.maxTextBuff = value<br>
+          variable = File.maxTextBuff</p>
+          <p>Positive number (in bytes). Default is 1048576
+          bytes (1 meg).</p>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>Usually 1 megabyte buffer will be enough for reading lines or other
+          portions of the file as text. If you expect bigger portions to be
+          read/written at once set this property to a greater value.&nbsp;&nbsp;</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="stats.htm">
+<H4>stats</H4>
+<p>Returns info object for the File.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>Set info = File.stats</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre class="sample">
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+Set info = File.stats
+MsgBox &quot;Last accessed: &quot; &amp; info.Accessed
+MsgBox &quot;Last modified: &quot; &amp; info.Modified</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+         The members of info are:
+ <UL>
+	 <LI>info.name - Name of the file or storage 
+ 	 <LI>info.Type - Type of the File. 
+ 	 <LI>info.Size - Size of the file 
+ 	 <LI>info.Modified - Last modified time 
+ 	 <LI>info.Created - Created time 
+ 	 <LI>info.Accessed - Last accessed time 
+ 	 <LI>info.Mode - Supported open modes 
+ 	 <LI>info.valid - Is the object valid
+ </UL></blockquote>
+
+<HR noshade size="1"><A Name="ReadBin.htm">
+<H4>ReadBin</H4>
+<p>Reads the number of bytes specified. </p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.ReadBin(bytes)</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>bytes - integer number specifying the number of bytes to read.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre class="sample">
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+bin = File.ReadBin(100)
+' Reads 100 bytes from the file</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>The bytes read are packed in a VARIANT binary array (VT_ARRAY | VT_UI1). The
+          result can be passed to any property or method expecting binary data. You can pass the
+          result directly to the <a href="#WriteBin.htm">WriteBin</a> method.</p>
+          <p>If the end of file is reached during the read operation the number of the bytes
+          returned will be less than the number of bytes requested.</p>
+		  </blockquote>
+		  
+<HR noshade size="1"><A Name="WriteBin.htm">
+<h4>WriteBin</h4>
+<p>Writes binary data to the File.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.WriteBin(data)</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>data - The data to write to the File. As usual in all
+          similar methods the binary data is expected to be array of bytes (i.e.
+          VT_ARRAY | VT_UI1).</p>
+          <p>returned value - the number of bytes written to the File.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+nBytes = File.WriteBin(someBinaryData)
+File.Close</pre></blockquote>
+
+<HR noshade size="1"><A Name="Seek.htm">
+<H4>Seek</H4>
+<p>Implements navigation through the file (more extended than the functionality
+          supplied by the <a href="#Pos.htm">Pos</a> property)</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.Seek( position, origin)</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>position - positive or negative numeric value - the position
+          to navigate to</p>
+          <p>origin - a constant, specifies how to calculate the physical
+          position over the supplied position parameter. The constants are:</p>
+          <table border="0">
+            <tr>
+              <td valign="top">0</td>
+              <td valign="top">Position must be positive and
+                specifies the file position (in bytes) calculated from the
+                beginning of the File.&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">1</td>
+              <td valign="top">Position can be positive or negative.
+                The file position is moved forward (positive) or backwards
+                (negative) from the current file position.&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">2</td>
+              <td valign="top">Calculated from the end of File.
+                Positive values will enlarge the file size.&nbsp;</td>
+            </tr>
+          </table>
+        <p>returned value: The resulting absolute position of the
+        File.&nbsp;</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+File.Seek(10,0)
+' Going to the 10-th byte in the file
+MsgBox File.ReadText(5)
+' Read 5 characters
+' Skipping 10 more bytes after the last read character
+pos = File.Seek(10,1)
+' pos contains the absolute resulting position</pre>
+</blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>The control supports files no greater than 2GB in size.</p>
+          <p>Note that using the file with <a href="SFRecord.htm">SFRecord</a>
+          object bound allows you to navigate the file through the SFRecord
+          object (with record based positioning instead of byte based). However
+          using the Seek method may give you advanced options - to skip some
+          non-standard records or work with files/files which contain records
+          and other data in some of its parts.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="CopyTo.htm">
+<H4>CopyTo</H4> 
+<p>Copies the entire file or portion of it to the target File.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.CopyTo( file, cbBytes)</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>file - the Target File.</p>
+          <p>cbBytes - Bytes to copy to the target File.</p>
+          <p>returned value: The actual number of bytes copied.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File1 = FS.OpenFile("C:\MyFile1.txt")
+Set File2 = FS.OpenFile("C:\MyFile2.txt")
+File1.Pos = 100
+n = File1.CopyTo(File2,100)
+' Copies 100 bytes beginning from the 100-th byte in the
+' source File.</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>This method can be used for fast transfer of data between different
+          files.</p>
+          <p>Used to copy files from different storages - for example file to
+          a file in an OLE file etc.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="ReadText.htm">
+<H4>ReadText</H4> <p>Reads
+          text from the file (from the current position).</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.ReadText(numChars)</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p><numChars - Number of characters to read or a special
+          constant:<br>
+          <i>positive number</i> - the specified number of characters will be
+          read.<br>
+          <i>negative numbers</i> have special meaning:<br>
+          -2 - The entire file (or remaining portion of it
+          depending on the current position) is read as single string<br>
+          -1 - One line of text is read. The text line is
+          assumed to end with the line separator as it is specified by the <a href="#textLineSeparator.htm">textLineSeparator</a>
+          property.<br>
+          -3 - Advanced version of the previous (-1). This
+          reads one line but applies more heuristic logic - recommended if you
+          work with text files created by unknown operating system (e.g. the
+          line separator can be different). See remarks.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+' Open exiting text file
+' Read 10 characters
+MsgBox File.ReadText(10)
+' Read one line (non-heuristic)
+MsgBox File.ReadText(-1)
+' Read one line (heuristic)
+MsgBox File.ReadText(-3)
+' Read the remaining file as whole
+MsgBox File.ReadText(-2)</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>The text is assumed UNICODE or ANSI depending on the <a href="#unicodeText.htm">unicodeText</a>
+          property.</p>
+          <p>When <b>-1 (cReadLine) constant </b>is used the line is assumed to
+          end with the line separator exatcly as it is specified in the <a href="#textLineSeparator.htm">textLineSeparator</a>
+          property. Other combinations will not be recognized. However this
+          option does not require file to be seekable (see <a href="#Seek.htm">Seek</a>)
+          and can be used on any file object - external or built-in.</p>
+          <p>When <b>-3 (cReadLineAny)</b> is used the file should be seekable
+          and the end of line is detected more carefully. The line is assumed to
+          end with <i>any of the characters</i> in the string specified by the <a href="#textLineSeparator.htm">textLineSeparator</a>
+          property. It is assumed that the line separator may contain more
+          characters but there are no duplicated characters in it. The method
+          automatically skips the rest of the delimiter using this rule and
+          positions there. Method is proved to work correctly with all the
+          popular text files (MAC, UNIX, Windows). The default setting for the <a href="#textLineSeparator.htm">textLineSeparator</a>
+          is good text files coming from MAC, UNIX, Windows.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="WriteText.htm">
+<H4>WriteText</H4><p>Writes
+          string to the file at the current position and remains after the
+          last character written.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>File.WriteText string [, option]</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>string - The string to write to the file</p>
+          <p>option - Defines how the text will be written:<br>
+          0 (default) - just write the string &quot;as is&quot;<br>
+          1 - Write the string and place &quot;new line&quot; separator after
+          it.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+' Write the string
+File.WriteText &quot;Hello &quot;
+' Write the rest of the string and place end-of-line
+File.WriteText &quot;world!&quot;,1
+</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>The string will be written using ANSI or UNICODE depending on the <a href="#unicodeText.htm">unicodeText</a>
+          property. The line seprator is specified by the <a href="#textLineSeparator.htm">textLineSeparator</a>
+          property.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="Close.htm">
+<h4>Close</h4><p>Releases the
+        file attached to the File.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>File.Close</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>none</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.txt")
+bin = File.ReadBin(100)
+File.Close</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote></blockquote>
+
+<HR noshade size="1"><A Name="Find.htm">
+<H4>Find </H4>Binary
+          search through the file beginning from the current position.
+          The binary nature of the Find method means it supports text search
+          as well.</p>
+          <p>This methods allows the application to pass complex data as search
+          patterns. The data is converted to binary sequence of bytes and
+          the actual search is performed. If several alternative sequences
+          are to be searched the method can be instructed to search for any of
+          them (but they must have the same length). See the remarks for
+          details.</p>
+          <p>Despite the complex features supported by the method there are
+          simple and complex ways to use it. You can choose what suits your
+          needs best.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = File.Find(what [, flags [, chunkSize]])</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+          <blockquote>
+            <p>what - What to search for. A variant parameter that
+            accepts almost any possible value and converts it to binary
+            sequence. See the remarks for detailed description.</p>
+            <p>flags - optional, default is 0. How to perform the search.
+            Appropriate combinations of the following flags can be specified.<br>
+            0 - After search position on the beginning of the found
+            sequence or stay at the end of file if nothing has been found.<br>
+            1 - After the search return the original position in the
+            file - where the search began (even on unsuccessful search).&nbsp;<br>
+            2 - After the search stay after the found sequence. If
+            nothing is found then stay at the end of File.<br>
+            4 - Find any of the specified chunks. If specified the
+            chunkSize parameter is taken into account if not specified it will be
+            ignored.&nbsp;</p>
+            <p>chunkSize - optional, default is 0. Takes effect only if
+            4 is specified in the flags parameter. In this case the byte
+            sequence which is result of conversion of the <i>what</i> parameter
+            to binary is separated into chunks with length <i>chunkSize</i>
+            bytes and each chunk is searched separately. If one of them is found
+            the method returns its position. Note that if the size is specified
+            so that the last chunk is smaller than the others this last chunk will be ignored.
+            </p>
+            <p>returns: the position in the file if successful or -1 if
+            unsuccessful (nothing found).&nbsp;</p>
+          </blockquote>
+        <h4>Examples:</h4>
+          <blockquote>
+        <p>Search for the short integer values of 6. It will appear (on x86
+        based Windows systems) as 00 06 in the binary File.</p>
+        <pre>Dim main,strm
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.bin")
+
+Do 
+    pos = File.Find(CInt(6),&amp;H02)
+    If pos &gt;= 0 Then
+        MsgBox &quot;Found at Pos = [&quot; &amp; pos &amp; &quot;]&lt;BR&gt;&quot;
+    End If
+Loop Until pos &lt; 0</pre>
+        <p>Search for something more complicated - two textual parts with and
+        binary data between them. For simplicity we search two words - first is
+        at the end of line the second must be in the beginning of the next line
+        in a text File. But this technique can be used for any sequence.</p>
+        <pre>Dim main,File
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.bin")
+
+Dim a(3)
+
+a(0) = &quot;First&quot;
+a(1) = CByte(AscB(vbCr))
+a(2) = CByte(AscB(vbLf))
+a(3) = &quot;Second&quot;
+
+Do 
+    pos = File.Find(a,2)
+    If pos &gt;= 0 Then
+        MsgBox &quot;Found at Pos = [&quot; &amp; pos &amp; &quot;]&lt;BR&gt;&quot;
+    End If
+Loop Until pos &lt; 0</pre>
+        <p>This piece of code will search for all the occurrences of the words
+        &quot;Cat&quot; and &quot;Dog&quot; in the File. File can be a text file
+        or some kind of binary File.</p>
+        <pre>Dim main,File
+AddObject "newObjects.utilctls.SFMain", "FS"
+Set File = FS.OpenFile("C:\MyFile.bin")
+
+Do 
+    pos = File.Find(&quot;CatDog&quot;,&amp;4,3)
+    If pos &gt;= 0 Then
+        MsgBox &quot;Found at Pos = [&quot; &amp; pos &amp; &quot;]&lt;BR&gt;&quot;
+        File.Pos = File.Pos + 1
+    End If
+Loop Until pos &lt; 0</pre>
+          </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <i>what</I> parameter: The application can pass basic variant
+          types (as numeric values or string) and arrays of them. The data
+          contained in the parameter is converted into binary sequence of bytes.
+          Thus if you pass a binary data it will be used &quot;as is&quot;. If
+          string is passed it will be converted as the <a href="#unicodeText.htm">unicodeText</a>
+          and <a href="#codePage.htm">codePage</a> specify and the
+          result will be treated as sequence of bytes. In case of strings the
+          terminating <i>null </i>character is ignored (this is a binary search
+          method we cannot rely on no preliminary assumption how the strings are
+          recorded in it or you can search partial string etc.). The array
+          passed may contain variants in turn (but not other arrays). This is
+          probably the most useful form for the scripts - it allows you to pass
+          different values which will be converted properly and concatenated
+          into single binary sequence used further.</p>
+          <p>Note that <b>objects cannot be passed</b> to the method through the
+          <i>what</i> parameter! There is no way to determine how to convert
+          them - thus their default property cannot be resolved. So when using
+          values contained in objects (and most likely in their default
+          properties) the application is responsible to convert them to basic
+          values. In NS Basic this can be done by using the CLng, CByte, CStr
+          and the other conversion functions.</p>
+          <p>If you are feeling confused by the above requirement consider one
+          example situation - an object with a default property which will
+          return a number, for example 7. Converting it to string and then
+          passing it to this method will result in one byte containing the ASCII
+          code of the character '7' (or two bytes in UNICODE mode), but if you
+          convert it to long integer first (using CLng function) it will result
+          in 4 bytes sequence. Thus the resulting binary sequence searched will
+          be different. This illustrates why there is no way to resolve the
+          default properties of the objects in the method itself.</p>
+          <p><b>How the non-string values are converted?</b>&nbsp; They are used
+          as they appear in the memory. If you need complete control on each
+          byte pass array of bytes or array of variants where the important
+          bytes are carefully converted to VT_BYTE subtype by using CByte.&nbsp;</p>
+          <p><b>What will happen if you pass array of several strings?</b> All
+          the strings will be converted and concatenated. Then depending on the
+          flags if chunks are used the result will be separated in chunks or
+          searched as whole if <i>chunks</i>&nbsp; feature is not used.&nbsp;</p>
+          <p><b>Mixing strings with other data</b>. If you are searching for a
+          byte sequence that consist of&nbsp; textual parts and binary parts -
+          you can describe it by creating an array where the text parts are
+          strings and the non-string parts are represented by elements holding
+          numeric data (bytes for example). This allows the scripting
+          application to specify any possible byte sequence even if the script
+          language itself is not capable of doing so.</p>
+          <p>It is recommended to use bytes and strings mostly. Do not forget
+          that the longer numeric values can be represented in different manner
+          in the File. For example a short integer value (two bytes) can be
+          represented as the high byte first or contrary its low byte can be
+          first in the memory representation. This depends on how and where the
+          file has been created. Therefore using non-byte numeric values
+          requires you to consider their representation in the memory and
+          evaluate if it is possible the file to contain them in an unexpected
+          form.</p>
+          <p>String searches are always case sensitive.</p>
+        </blockquote>
+
+</body>
+</html>
+

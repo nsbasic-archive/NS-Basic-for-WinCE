@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>FTP Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;FTP Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/ftp.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The FTP control can be used to transfer files to and from FTP servers
+using the FTP Protocol.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The FTP control implements a standard FTP client as specified in RFC 959
+and RFC 1579.<P>The first step in using the control is specifying the <b>RemoteHost</b>,
+<b>User</b> and <b>Password</b>.  The file to upload to or download from is
+given by the <b>RemoteFile</b> property.  The file to download to or upload
+from is specified by <b>LocalFile</b>.  The current path in the server is
+specified by the <b>RemotePath</b> property.  The <b>Passive</b> property
+is especially useful if the client is behind a firewall which inhibits
+incoming connections to higher ports.<P>The control operates by setting appropriate values to the <b>Action</b>
+property.  If <b>LocalFile</b> is set to something other than an empty
+string, then files are received in <b>LocalFile</b>, otherwise the data
+is received through the <b>Transfer</b> event.  <b>StartTransfer</b> and
+<b>EndTransfer</b> are fired at the beginning and end of transmission.<P>The <b>PITrail</b> event traces the interaction between the client and the
+server (the FTP Protocol Interface connection).<P>Directory listings are received through the <b>DirList</b> event.<P>This control requires a Winsock 1.1 compliant TCP/IP stack.  This means
+that the Winsock stack installed in the system must have a version of at
+least 1.1.  In particular, Windows 95, 98, and NT machines with Winsock 2.0
+are fully supported.
+ 
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+An action code for the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">AltFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The new name for RemoteFile when Action is set to Rename.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Command.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Can be used to send additional commands directly to the FTP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LastReply.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The last reply from the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to a local file for download/upload.  If the file exists, it is overwritten.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the local host.  When connected, the IP address of the interface through which the connection was made.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Passive.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls whether to direct the server into passive mode especially if behind a firewall.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Password.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The password to login with.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemoteFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the remote file for uploading/downloading.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemoteHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The domain name or IP address of the FTP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemotePath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The current path in the FTP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemotePort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The port for the FTP service (default is 21).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SocketHandle.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The handle of the main socket used by the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">StartByte.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The byte index in RemoteFile and LocalFile where to start the transmission.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TransferMode.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The transfer mode (ASCII or Binary).  If the value is 0 (default), the initial server mode will be used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">User.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The user id to login as.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifying information about the loaded Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockLoaded.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Loads and unloads Winsock on demand.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxDatagramSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size in bytes of the largest UDP datagram that can be sent or received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxSockets.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Maximum number of sockets available to a single process.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockPath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to the Winsock DLL used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The status of the Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DirList.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a directory entry is received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EndTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a file completes downloading/uploading.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Error.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Information about errors during data delivery.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PITrail.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Traces the commands sent to the ftp server, and the respective replies.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">StartTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a file starts downloading/uploading.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Transfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired during file download/upload.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

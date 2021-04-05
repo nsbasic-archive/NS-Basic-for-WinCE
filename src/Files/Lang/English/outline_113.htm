@@ -1,0 +1,104 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_113_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_113_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>SET                                                                       Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SET</span></font> <i><span
+style='font-style:italic;'>objectvariable</span></i>
+= {<i><span style='font-style:italic;'>objectexpression</span></i> | NOTHING}</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SET is used to assign an object reference to a variable. The
+required component, <i><span
+style='font-style:italic;'>objectvariable</span></i>,
+is a variable that follows standard variable naming conventions. The required
+component, <i><span style='font-style:italic;'>objectexpression</span></i>, is the name of an
+object, a variable containing an object reference, or FUNCTION call that
+returns an object. The optional keyword, NOTHING, removes the association
+between <i><span style='font-style:italic;'>objectvariable</span></i> and any given object.
+When an object has no variables which reference it, the system and memory
+resources allocated to it are released.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM SET Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'SET assigns objects to variables</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM ButtonRef</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ADDOBJECT &quot;Picturebox&quot;,</span></font>&quot;Button&quot;,0,0,10,10</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SET ButtonRef = Button</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>IS</span></font></p>
+
+</div>
+
+</body>
+
+</html>

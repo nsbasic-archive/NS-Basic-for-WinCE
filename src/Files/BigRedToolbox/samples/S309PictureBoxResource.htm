@@ -1,0 +1,194 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309PictureBoxResource Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309PictureBoxResource1.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<IMG SRC="images/S309PictureBoxResource2.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+option explicit
+dim picButton(200), number, Top, Left, bNewRow, maxrowheight, Menu, gstrTitle, gstrURL
+
+dim gbNoWaste
+gbNoWaste =false ' set to true to use all screen space
+
+gstrTitle = "S309PictureBox Bitmap Resource Example"
+gstrURL = "http://members.xoom.com/S309"
+Menu = array("&File||File",gstrTitle,"|",gstrURL)
+setmenu "TitleBar",menu
+Menu = array("E&xit||mnuFileExit")
+setmenu "File", Menu
+
+if (Output.Width mod 2) = 1 then
+ Output.Move 0, 0, (Output.ScaleX(Output.Width + 1, 3,1)), (Output.ScaleY(Output.Height, 3, 1))
+end if    
+output.backcolor=vbgreen
+updatescreen
+
+addobject "S309.PictureBox.1","picHidden",1,1,1,1
+pichidden.autosize = true
+picHidden.hide
+
+bNewrow = false
+if gbNoWaste then
+  top = 0
+  left = 0
+else
+  top = 44
+  left = 1
+end if 
+  
+DisplayButtons "CommCtrl.dll",140, 16
+DisplayButtons "CommCtrl.dll",142, 16
+DisplayButtons "pimres.dll",0, 16
+DisplayButtons "ppv_res.dll",0, 16
+DisplayButtons "pwd_res.dll",133, 16
+DisplayButtons "pxl_res.dll",122, 16
+DisplayButtons "VoiceCtl.dll",128, 16
+DisplayButtons "pwd_res.dll",135, 15
+DisplayButtons "pxl_res.dll",124, 15
+DisplayButtons "office.dll",0, 0
+DisplayButtons "main.cpl",305, 0
+DisplayButtons "main.cpl",306, 0
+DisplayButtons "main.cpl",307, 0
+DisplayButtons "main.cpl",308, 0
+DisplayButtons "sounds.cpl",317,0
+DisplayButtons "sounds.cpl",318, 0
+DisplayButtons "sounds.cpl",319, 0
+DisplayButtons "sounds.cpl",320, 0
+DisplayButtons "sounds.cpl",322, 0
+DisplayButtons "mscecomdlg.dll",1, 0
+DisplayButtons "mscecomdlg.dll",205, 0
+DisplayButtons "mscecomm.dll",202, 0
+DisplayButtons "mscefile.dll",204, 0
+DisplayButtons "mscefile.dll",205, 0
+DisplayButtons "mscegrid.dll",201, 0
+DisplayButtons "msceimagelist.dll",201, 0
+DisplayButtons "mscelistview.dll",201, 0
+DisplayButtons "mscepicture.dll",201, 0
+DisplayButtons "mscetabstrip.dll",214, 0
+DisplayButtons "mscetreeview.dll",201, 0
+DisplayButtons "mscewinsock.dll",201, 0
+DisplayButtons "pwd_res.dll",107, 16
+DisplayButtons "pwd_res.dll",134, 16
+DisplayButtons "power.cpl",401, 0
+DisplayButtons "power.cpl",400, 0
+DisplayButtons "power.cpl",423, 0
+DisplayButtons "VoiceCtl.dll",175, 0
+DisplayButtons "msceimagelist.dll",202, 0
+DisplayButtons "screen.cpl",306, 0
+DisplayButtons "screen.cpl",308, 0
+DisplayButtons "screen.cpl",318, 0
+DisplayButtons "screen.cpl",319, 0
+DisplayButtons "system.cpl",306, 0
+DisplayButtons "intl.cpl",213, 0
+
+if not gbNoWaste then
+  output.drawtext string(10," ") & "Click On A Bitmap"
+  output.drawtext string(10," ") & "For Properties"
+end if
+
+sub mnuFileExit_Click()
+  bye
+end sub
+sub DisplayButtons(byval strResourceFile, byval resourceID, byval width)
+  dim count, name, index, msg
+  picHidden.ResourceFile = strResourceFile
+  picHidden.ResourceBitmapID = resourceID
+  if picHidden.imageloaded then
+    if width = 0 then
+      width = pichidden.imagewidth
+    end if  
+    count = (picHidden.imagewidth \ width) - 1
+    if bnewrow and (maxrowheight <> 0) then
+      bnewrow = false
+      top = top + maxrowheight + 2 + space()
+      left = space()
+      maxrowheight = 0
+    end if  
+    for index = 0 to count
+      number = number + 1
+      if (left + (width + 2)) > output.width then
+        left = space()
+        top =  top + maxrowheight + 2 + space()
+        maxrowheight = 0
+      end if  
+      maxrowheight = max(maxrowheight, pichidden.imageheight)
+      name = "button" & cstr(number)
+      addobject "S309.PictureBox.1", name, left, top, 1, 1
+      execute " set picButton(" & cstr(number) & ") = " & name
+      picButton(number).autosize = true
+      picButton(number).borderstyle = 1
+      if (index = 0) and (width = picHidden.imagewidth) then
+      else
+        picButton(number).clip = true
+        picButton(number).cliptop = 0
+        picButton(number).clipLeft =index * 16
+        picButton(number).clipWidth = width
+        picButton(number).clipHeight = pichidden.imageheight
+      end if  
+      picButton(number).ResourceFile = strResourceFile
+      picButton(number).ResourceBitmapID =  resourceID
+      execute "sub " & name & "_click()" & vbcrlf & "  picClick(" & number &")" & vbcrlf & "end sub"
+      updatescreen
+      left = left + width + 2 + space()
+    next  
+  end if  
+end sub    
+sub picClick(byval number)
+  picButton(number).refresh
+  if ((picButton(number).Height * 2) <= output.height) and ((picButton(number).Width * 2) <= output.width) then
+    picHidden.Resize = True
+    picHidden.ResizeHeight = (picButton(number).Height * 2)
+    picHidden.ResizeWidth = (picButton(number).Width * 2)
+  else
+    picHidden.Resize = False  
+  end if  
+  picHidden.AutoSize = picButton(number).AutoSize
+  picHidden.BorderStyle = picButton(number).BorderStyle
+  picHidden.Clip = picButton(number).Clip
+  picHidden.ClipHeight = picButton(number).ClipHeight
+  picHidden.ClipLeft = picButton(number).ClipLeft
+  picHidden.ClipTop = picButton(number).ClipTop
+  picHidden.ClipWidth = picButton(number).ClipWidth
+  picHidden.ResourceFile = picButton(number).ResourceFile
+  picHidden.ResourceBitmapID = picButton(number).ResourceBitmapID 
+  if not gbNoWaste then
+    picHidden.show
+    picHidden.zorder 0
+  end if  
+  call picHidden_Click() 
+end sub
+sub picHidden_Click()
+  dim msg
+  msg = ".AutoSize=" & cstr(picHidden.AutoSize) & vbcrlf
+  msg = msg & ".BorderStyle=" & cstr(picHidden.BorderStyle) & vbcrlf
+  if picHidden.Clip then
+    msg = msg & ".Clip=" & cstr(picHidden.Clip) & vbcrlf
+    msg = msg & ".ClipHeight=" & cstr(picHidden.ClipHeight) & vbcrlf
+    msg = msg & ".ClipLeft=" & cstr(picHidden.ClipLeft) & vbcrlf
+    msg = msg & ".ClipTop=" & cstr(picHidden.ClipTop) & vbcrlf
+    msg = msg & ".ClipWidth=" & cstr(picHidden.ClipWidth) & vbcrlf
+  end if  
+  msg = msg & ".ResourceFile=" & cstr(picHidden.ResourceFile) & vbcrlf
+  msg = msg & ".ResourceBitmapID=" & cstr(picHidden.ResourceBitmapID) 
+  msgbox msg, vbINFORMATION,"Properties for Bitmap"
+end sub
+function Max(n1, n2)
+  if n1 > n2 then
+    Max = n1
+  else
+    Max = n2
+  end if    
+end function
+function Space()
+  if gbNoWaste then
+    Space = 0
+  else
+    Space = 1
+  end if    
+end function
+</PRE>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="win32,Windows API,Creation,Prog IDs,Compatibility">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/.">
+<title>Win32 components overview</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Win32 objects</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">Win32 components overview</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\start.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            NSBasic Win32 components provide access to various useful OS
+            features for the NSBasic applications. Currently (version 2.0.1) the following
+            objects are included in this library:
+            <blockquote>
+              <p><img border="0" src="img/obj.gif" width="16" height="16"> <b><a href="timer.htm">Timer
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.Timer<br>
+                ClassID: {ACE050A1-EEF9-435B-8D29-0D676727188B}<br>
+                Create example: AddObject &quot;NSBasic.win32.Timer&quot;,
+                MyTimer</b></p>
+              </blockquote>
+              <p><img border="0" src="img/obj.gif" width="16" height="16"> <b><a href="tray.htm">Tray
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.Tray<br>
+                ClassID: {5334D155-E526-4A1D-B03F-86B112DC8D3A}<br>
+                Create example: AddObject &quot;</b><b>NSBasic.win32.Tray</b><b>&quot;,
+                MyTray</b></p>
+              </blockquote>
+              <p><img border="0" src="img/obj.gif" width="16" height="16"> <b><a href="registry.htm">Registry
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.Registry<br>
+                ClassID: {602E25DA-DBE7-4358-A542-1DFEC6793443}<br>
+                Create example: AddObject &quot;NSBasic.win32.Registry&quot;,
+                MyRegistry</b></p>
+              </blockquote>
+              <p><img border="0" src="img/obj.gif" width="16" height="16"> <b><a href="ras.htm">RAS
+              Object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.RAS<br>
+                ClassID: {38CE02DD-7A75-4077-A1A8-DEC520CD618A}<br>
+                Create example: AddObject &quot;NSBasic.win32.RAS&quot;, MyRas</b></p>
+                <p><b>See also: <a href="rasentry.htm">RASEntry object</a> </b>and<b>
+                <a href="rasconstate.htm">RASConState object</a> </b>which are
+                non-creatable. They are obtained from the RAS object (See Entry,
+                Connections, Entries) and RASEntry.Status respectively</p>
+              </blockquote>
+              <p><img border="0" src="img/obj.gif" width="16" height="16"> <b><a href="api.htm">API
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.api<br>
+                ClassID: {9217A3CE-4560-45D0-853C-F4CBCAD694C4}<br>
+                Create example: AddObject &quot;NSBasic.win32.api&quot;, MyApi</b></p>
+                <p><b>See also:</b> <b><a href="ptrect.htm">PtOrRect object</a> </b>which
+                is used by some routines that return/accept point or
+                rectangle.&nbsp;</p>
+              </blockquote>
+            </blockquote>
+                <h3>Creation notes</h3>
+                <p>To use a particular object you need to add it to your
+                application. For example:<br>
+                <b>AddObject &quot;NSBasic.win32.RAS&quot;, &quot;ras&quot;<br>
+                </b>later in the code you use it like this, for example:<br>
+                <b>Set connections = ras.Connections</b></p>
+            <p>In other words you use the ProgID of the object to create it and
+            you specify a name of your choice for the created object.</p>
+                <p>For the most objects the best place to use the AddObject
+                statement is the FormX_Load. However, objects like the Registry
+                for instance are often used only in some specific parts of the
+                application which are not always executed. In such case you can
+                add the object in the routine that begins the task that needs
+                the object and thus save some memory when the object is not
+                needed.</p>
+            <p>The Tray and the Timer object have important events without which
+            their usage is almost meaningless. This makes FormX_Load the best
+            place for their creation.&nbsp;&nbsp; </p>
+            <h3>Supported platforms </h3>
+            <p>The library is available as single DLL named: <b>NSBasicWin32ax.dll</b> </p>
+            <p>Builds are available for: Windows NT4/2000/XP/2003/Vista and
+            later, Palm-sized PC, Handheld PC (all versions), Pocket PC, Pocket
+            PC 2002, 2003/SE, 2005 (WM5) and later, MS Smartphone 2003/WM5 and
+            later, custom CE.NET 4.0 or later based devices. </p>
+            <h3>Compatibility with the old version - MGCEWin32 library. </h3>
+            <p>This library is a reincarnation of the Mark Gamber's MGCEWin32
+            library, written anew from scratch only following the interface
+            layout of the MGCEWin32 library as far as possible. All the
+            creatable objects have a property named Version which return the
+            class version as Major * 100 + Minor. For example 201 is returned
+            for version 2.01. The legacy MGCEWin32 library classes have this
+            property as well and it returns 10X. If you are porting code that
+            uses MGCEWin32 library you can use this property to resolve
+            compatibility issues. Alternatively you can change the code to use
+            the new version and re-pack the application with the new DLL. </p>
+            <p>NSBasicWin32 is almost fully compatible with the older MGCEWin32
+            on usage syntax level, but there are some differences and additions.
+            Some of the changes were needed in order to correct some problems in
+            the old version, others were made in order to improve the usage and
+            implement new features. Still, about 90% of the methods and
+            properties are the same or defined with optional arguments in such
+            manner that will permit old code to run without changes. Major
+            differences can be found only in the RAS object which in contrast to
+            the old version is now a root object of a hierarchy of objects that
+            allow more convenient work with RAS phonebook entries. </p>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2005 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\start.htm-->
+
+</table>
+
+</body>
+
+</html>

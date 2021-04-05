@@ -1,0 +1,78 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: S309Hotkey - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Desktop/S309Hotkey.tlb" /mktyplib203 /win32 "W:\ActiveX\S309HotKey\S309Hotkey.odl""
+Creating command line "rc.exe /l 0x409 /fo"Intermediate/S309Hotkey.res" /i "Desktop" /d "NDEBUG" /d "_AFXDLL" "W:\ActiveX\S309HotKey\S309Hotkey.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP135.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Fp"Intermediate/S309Hotkey_win32.pch" /Yu"stdafx.h" /Fo"Intermediate/" /Fd"Intermediate/" /FD /c 
+"W:\ActiveX\S309HotKey\S309Hotkey.cpp"
+"W:\ActiveX\S309HotKey\S309HotkeyCtl.cpp"
+"W:\ActiveX\S309HotKey\S309HotkeyPpg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP135.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP136.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Fp"Intermediate/S309Hotkey_win32.pch" /Yc"stdafx.h" /Fo"Intermediate/" /Fd"Intermediate/" /FD /c 
+"W:\ActiveX\S309HotKey\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP136.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP137.tmp" with contents
+[
+/nologo /subsystem:windows /dll /incremental:no /pdb:"Desktop/S309HotKey.pdb" /machine:I386 /def:".\S309Hotkey.def" /out:"Desktop/S309HotKey.ocx" /implib:"Desktop/S309HotKey.lib" 
+.\Intermediate\S309Hotkey.obj
+.\Intermediate\S309HotkeyCtl.obj
+.\Intermediate\S309HotkeyPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309Hotkey.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP137.tmp"
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP138.bat" with contents
+[
+@echo off
+regsvr32 /s /c ".\Desktop\S309HotKey.ocx"
+echo regsvr32 exec. time > ".\Desktop\regsvr32.trg"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP138.bat"
+Creating Type Library...
+Processing W:\ActiveX\S309HotKey\S309Hotkey.odl
+S309Hotkey.odl
+Processing C:\Program Files\Microsoft SDK\include\oaidl.idl
+oaidl.idl
+Processing C:\Program Files\Microsoft SDK\include\objidl.idl
+objidl.idl
+Processing C:\Program Files\Microsoft SDK\include\unknwn.idl
+unknwn.idl
+Processing C:\Program Files\Microsoft SDK\include\wtypes.idl
+wtypes.idl
+Processing C:\Program Files\Microsoft SDK\include\basetsd.h
+basetsd.h
+Processing C:\Program Files\Microsoft SDK\include\guiddef.h
+guiddef.h
+Processing C:\Program Files\Microsoft SDK\include\oaidl.acf
+oaidl.acf
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309Hotkey.cpp
+S309HotkeyCtl.cpp
+S309HotkeyPpg.cpp
+Generating Code...
+Linking...
+   Creating library Desktop/S309HotKey.lib and object Desktop/S309HotKey.exp
+<h3>Output Window</h3>
+Registering ActiveX Control...
+
+
+
+<h3>Results</h3>
+S309HotKey.ocx - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

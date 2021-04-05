@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>RASTest Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/RASTest.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+
+' Simple RAS test by Mark Gamber
+
+addobject "MGCEWin32.RAS", "ras"
+addobject "Label", "lbl1", 2, 2, 80, 20
+addobject "Combobox", "connlist", 84, 2, 160, 80
+addobject "Label", "lbl2", 2, 29, 80, 20
+addobject "Textbox", "username", 84, 28, 160, 18
+addobject "Label", "lbl3", 2, 51, 80, 20
+addobject "Textbox", "password", 84, 50, 160, 18
+addobject "Label", "lbl4", 2, 73, 80, 20
+addobject "Textbox", "domain", 84, 72, 160, 18
+addobject "CommandButton", "action", 90, 94, 80, 20
+
+lbl1.BackColor = output.BackColor
+lbl2.BackColor = output.BackColor
+lbl3.BackColor = output.BackColor
+lbl4.BackColor = output.BackColor
+action.BackColor = output.BackColor
+lbl1.Caption = "Entry:"
+lbl2.Caption = "Username:"
+lbl3.Caption = "Password:"
+lbl4.Caption = "Domain:"
+action.Caption = "Connect"
+connlist.style = 2
+
+dim connID           ' Use this to hold the connection ID
+connID = 0           ' Initialize to "not connected"
+
+a = ras.AllEntries                           ' Get an array of all possible connections
+if TypeName( a ) <> "Empty" then   ' If the array isn't empty
+   for i = 1 to UBound( a )                ' Loop through each item in the array
+      connlist.AddItem( a( i ) )           ' And add each name to the combobox
+   next
+   set a = Nothing
+end if
+
+sub form_Close                              ' Hang up if connected when the form is closed
+   if connID <> 0 then ras.Disconnect connID
+end sub
+
+sub action_Click
+   if action.Caption = "Disconnect" then   ' If already connected...
+      ras.Disconnect connID                    ' Disconnect
+      connID = 0                                     ' Initialize connect ID to "not connected"
+      action.Caption = "Connect"
+      exit sub
+   end if
+   
+   i = connlist.ListIndex                          ' If not connected, get index of selected combobox item
+   if i < 0 then                                        ' Whine if no selection was made
+      MsgBox "You must specify a connect before continuing"
+      exit sub
+   end if
+   ras.Clear                                           ' Wipe out any existing property values
+   ras.EntryName = connlist.Text           ' Set connection name
+                                                           ' Set username, password and domain if they are used
+   if len( username.text ) > 0 then ras.UserName = username.text
+   if len( password.text ) > 0 then ras.Password = password.text
+   if len( domain.text ) > 0 then ras.Domain = domain.text
+   on error resume next
+   connID = ras.Connect                        ' Attempt connection, saving ID if it works
+   if Err then                                         ' If it doesn't work, tell the user
+      MsgBox "An error occurred attempting to connect to " & ras.EntryName
+   else
+      action.Caption = "Disconnect"         ' Otherwise, allow user to disconnect
+   end if
+   on error goto 0
+end sub
+

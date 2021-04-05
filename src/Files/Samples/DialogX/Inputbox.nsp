@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "Inputbox"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\DialogX\Inputbox.nsb"
+Project.AddModule "main", ".\Inputbox.nsb"
+Project.AddResourceFile "DialogX","{controls}\DialogX.ocx","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

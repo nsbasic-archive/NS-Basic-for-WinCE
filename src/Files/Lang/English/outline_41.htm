@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_41_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_41_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>EXIT                                                                      Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXIT</span></font> DO</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXIT FOR</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXIT FUNCTION</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXIT SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXIT terminates the execution of a block of code in a
+DO...LOOP, FOR...NEXT, FOR EACH...NEXT, FUNCTION, or SUB. When used to exit a
+loop, either DO...LOOP, FOR...NEXT, or FOR EACH...NEXT, execution continues
+with the first statement after the loop; if the loop is nested inside another
+loop, control is transferred to the loop outside the loop where the EXIT is
+encountered. When used to exit a FUNCTION or SUB procedure, execution continues
+with the first statement after the statement which called the procedure.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM EXIT Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'EXIT terminates loops and procedures</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM i</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>FOR i = 1 to 10</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  IF i
+&gt; 1 THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+EXIT FOR</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  END
+IF</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+&quot;Attempting to do nothing&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+DoNothing</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>NEXT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;Done&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB DoNothing</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  EXIT
+SUB</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+&quot;This statement is never executed&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Attempting to do nothing</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Done</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FOR...NEXT, DO...LOOP, FUNCTION, PROPERTY, SUB</span></font></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>TreeEx2 Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/TreeEx2.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' Simple treeview example by Mark Gamber using NS Basic
+' Don't forget to copy the images to the root directory
+' before running this program!
+
+addobject "MGCETreeView.TreeView", "Tree", 4, 4, 200, 100
+addobject "Listbox", "Stat", 4, 106, 200, 80
+
+Stat.Sorted = FALSE
+Stat.Scrollbars = 2
+ListItemCount = 0
+
+Tree.AddImage "\smimg1.bmp"
+Tree.AddImage "\smimg2.bmp"
+
+Tree.AddContextItem "Item 1"
+Tree.AddContextItem "Item 2"
+Tree.AddContextItem "-"
+Tree.AddContextItem "Item 3"
+
+Tree.UseImages = TRUE
+Tree.UseSelectedImages = TRUE
+Tree.AllowEdit = TRUE
+Tree.AllowEventAsDefault = TRUE
+
+topItem  = Tree.AddItem( 0, 0, "Test", 0, 1, 2 )
+subItem = Tree.AddItem( topItem, 0, "Second One", 1 )
+subItem = Tree.AddItem( topItem, subItem, "Third One", 2 )
+subItem = Tree.AddItem( topItem, subItem, "Fourth One", 3 )
+subItem = Tree.AddItem( topItem, subItem, "Fifth One", 4 )
+
+topItem = Tree.AddItem( 0, topItem, "Test 2", 0, 1, 2 )
+subItem = Tree.AddItem( topItem, 0, "Second One", 1 )
+subItem = Tree.AddItem( topItem, subItem, "Third One", 2 )
+subItem = Tree.AddItem( topItem, subItem, "Fourth One", 3 )
+subItem = Tree.AddItem( topItem, subItem, "Fifth One", 4 )
+
+sub Tree_Expanding( item )
+   if Tree.ItemText( item ) = "Test 2" then
+      Tree.AllowEvent = FALSE
+      Stat.AddItem Tree.ItemText( item ) & " cannot expand"
+   else
+      Stat.AddItem Tree.ItemText( item ) & " wants to expand"
+   end if
+   Stat.ListIndex = ListItemCount
+   ListItemCount = ListItemCount + 1
+end sub
+
+sub Tree_Expanded( item )
+   s = Tree.ItemText( item )
+   Stat.AddItem s & " expanded"
+   Stat.ListIndex = ListItemCount
+   ListItemCount = ListItemCount + 1
+end sub
+
+sub Tree_Collapsed( item )
+   s = Tree.ItemText( item )
+   Stat.AddItem s & " collapsed"
+   Stat.ListIndex = ListItemCount
+   ListItemCount = ListItemCount + 1
+end sub
+
+sub Tree_Changed( oldItem, newItem )
+   if oldItem > 0 then
+      s = Tree.ItemText( oldItem )
+   else
+      s = "Nothing"
+   end if
+   t = Tree.ItemText( newItem )
+   Stat.AddItem "Moved from " & s & " to " & t
+   Stat.ListIndex = ListItemCount
+   ListItemCount = ListItemCount + 1
+end sub
+
+sub Tree_Keypress( key )
+'   Stat.AddItem "Key " & Chr( key ) & " pressed"
+'   Stat.ListIndex = ListItemCount
+'   ListItemCount = ListItemCount + 1
+end sub
+
+sub Tree_StartEdit( item )
+   if Tree.ItemText( item ) = "Test 2" then
+      Tree.AllowEvent = FALSE
+      Stat.AddItem Tree.ItemText( item ) & " cannot change"
+   else
+      Stat.AddItem Tree.ItemText( item ) & " to be changed"
+   end if
+   Stat.ListIndex = ListItemCount
+   ListItemCount = ListItemCount + 1
+end sub
+
+sub Tree_EndEdit( item, newText )
+   Stat.AddItem Tree.ItemText( item ) & " now " & newText
+   Stat.ListIndex = ListItemCount
+   ListItemCount = ListItemCount + 1
+end sub
+
+sub Tree_ContextMenu( item, text )
+    if item <> 0 then
+      MsgBox text, vbOKOnly, Tree.ItemText( item )
+   else
+      MsgBox text, vbOKOnly, "No item"
+   end if
+end sub
+</PRE>
+</body>
+</html>
+

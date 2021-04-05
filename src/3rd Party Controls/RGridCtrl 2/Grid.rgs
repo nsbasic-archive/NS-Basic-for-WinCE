@@ -1,0 +1,33 @@
+HKCR
+{
+	RGridCtrl.Grid.1 = s 'Resco Grid Control 1.2'
+	{
+		CLSID = s '{058E370E-6141-4E41-8B95-846EE04BB303}'
+	}
+	RGridCtrl.Grid = s 'Resco Grid Control 1.2'
+	{
+		CLSID = s '{058E370E-6141-4E41-8B95-846EE04BB303}'
+		CurVer = s 'Resco.GridCtrl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {058E370E-6141-4E41-8B95-846EE04BB303} = s 'Resco Grid Control 1.2'
+		{
+			ProgID = s 'Resco.GridCtrl.1'
+			VersionIndependentProgID = s 'Resco.GridCtrl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 101'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{E66AF347-1732-4395-A64E-5FB8F6659701}'
+			'Version' = s '1.2'
+		}
+	}
+}

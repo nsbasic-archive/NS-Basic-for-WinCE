@@ -1,0 +1,44 @@
+; VCC file contains information for the MFC ClassWizard
+
+[General Info]
+Version=1
+LastClass=CNSCEPictureBoxCtrl
+LastTemplate=CDialog
+NewFileInclude1=#include "stdafx.h"
+NewFileInclude2=#include "NSCEPictureBox.h"
+CDK=Y
+
+ClassCount=2
+Class1=CNSCEPictureBoxCtrl
+Class2=CNSCEPictureBoxPropPage
+
+ResourceCount=1
+Resource1=IDD_ABOUTBOX_NSCEPICTUREBOX
+LastPage=0
+
+[CLS:CNSCEPictureBoxCtrl]
+Type=0
+HeaderFile=NSCEPictureBoxCtl.h
+ImplementationFile=NSCEPictureBoxCtl.cpp
+Filter=W
+
+[CLS:CNSCEPictureBoxPropPage]
+Type=0
+HeaderFile=NSCEPictureBoxPpg.h
+ImplementationFile=NSCEPictureBoxPpg.cpp
+Filter=D
+
+[DLG:IDD_ABOUTBOX_NSCEPICTUREBOX]
+Type=1
+ControlCount=4
+Control1=IDC_STATIC,static,1342177283
+Control2=IDC_STATIC,static,1342308352
+Control3=IDC_STATIC,static,1342308352
+Control4=IDOK,button,1342373889
+Class=?
+
+[DLG:IDD_PROPPAGE_NSCEPICTUREBOX]
+Type=1
+ControlCount=0
+Class=CNSCEPictureBoxPropPage
+

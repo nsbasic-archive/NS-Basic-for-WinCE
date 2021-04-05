@@ -1,0 +1,108 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 02: Controls Overview</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=5>
+	  <h2>Tech Note 02: Controls Overview</h2>
+	  <h3>July 26, 2007</h3>
+	  </FONT><FONT FACE="Helvetica" SIZE=4>
+	  <P>&nbsp;</P>
+	  </FONT><FONT FACE="Helvetica" SIZE=2>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	  </font></B></TD>
+</TR>
+</TABLE>
+<hr>
+
+<P>NS BASIC/CE allows you to use external routines called ActiveX Controls with your programs. They are available from Microsoft, NS BASIC Corporation and from third parties. New ones can be developed easily by someone who know how to use eMbedded Visual C++.
+
+<p>For information on writing ActiveX controls, see <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnce30/html/activex30.asp">How to Write and User
+ActiveX controls for Windows CE 3.0</a>.
+
+
+<H3>Microsoft's Standard ActiveX Controls</H3>
+<P>The installation procedure for NS Basic/CE installs and registers the complete set of Microsoft ActiveX controls for Windows CE, if they are not yet already in ROM.
+
+<P>Once the control is installed on your WinCE device, use the addObject 
+statement to create an object from the control. For details on using each control, consult the documentation for that control in the Technotes. Microsoft also has documentation as part of the embedded Visual Basic toolkit, which can be downloaded from Microsoft's website.
+
+<P>We would like to report that all the ActiveX controls work perfectly, but such is not the case. However, we think they are valuable additions to the environment and they have been greatly improved in the December '98 update. The updated objects are installed by NS Basic/CE 2.0 and higher.
+
+<p>Microsoft's ActiveX controls are documented in other Tech Notes. There is additional information on Microsoft's <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">website</A>.
+
+<p>There are also a number of third party controls that replace the Microsoft ones. They are less buggy and have many additional features.
+
+<H3>Visual Basic for CE Redistributables Kit (VBCERK) 1.0</H3>
+<P>This is an archive of the standard ActiveX controls from Microsoft. You may redistribute them with your application. The files are organized by CPU type and do not have installers: you need to either create an installer, or move the files to the \Windows folder on your device using the ActiveSync Explorer.</P>
+
+<H3>How to register a control on an HPC, HPC Pro or HPC 2000</H3>
+
+<ul>
+	
+  <li>On the Wince device, tap Start...Run...
+	<CODE><br>
+	regsvrce.exe &lt;moduleName&gt;.dll
+	</CODE><br>where <CODE>&lt;moduleName&gt;</CODE> is the name of the module you just copied.</li>
+</ul>
+
+<H3>How to register controls on Palm-size devices:</H3>
+
+<UL COMPACT>
+	<LI>Bring up the on screen keyboard.
+	<LI>Tap on the task bar on the bottom
+	<LI>Enter run23 on the keyboard.
+	<LI>An Open dialog box will appear and you can type the regsvrce.exe command.
+</UL>
+
+<H3>How to register controls on a Pocket PC:</H3>
+
+<UL COMPACT>
+	<LI>Go to the Today screen 
+	<LI>Push in the Action button on the side or bottom front of the unit. 
+	<LI>Hold your pen down on the date in the top right corner 
+	<LI>An Open dialog box will appear and you can type the regsvrce.exe command.
+</UL>
+
+
+
+<H3>How to register controls from NS Basic/CE</H3>
+
+<P>Often, the easiest way to register a control is to do so from NS Basic/CE itself. Use NS Basic/CE's SHELLEXECUTE command. 
+<p><code>SHELLEXECUTE "open","regsvrce.exe","NSCEPictureBox.ocx"</code>
+
+<h3>How to add a third party ActiveX control to your program</h3>
+
+NS Basic/CE makes it easy to use controls from third parties. Most any well behaved ActiveX control written for Windows CE will work. Use the AddObject statement (see the Handbook for more information) to add the control to a project.
+
+<p>The first argument of AddObject is the ClassID of the control. This is not the same as the filename. It is the name that it appears under in the Windows CE registry in HKEY_CLASSES_ROOT. You can get this name from the author of the control, or by looking at the registry using a tool such as the Registry Editor that comes with embedded Visual Basic. if there is a desktop version of the control, do not assume that the Windows CE ClassID is the same.
+
+<P>You can also examine the registry using a tool like the Remote Registry Edition, available here: <br>
+<a href="http://www.soft32.com/download_158680.html" target="_top">http://www.soft32.com/download_158680.html</a><br>
+(if you find another good registry editor, let us know!)
+
+<p>If the object is visual or generates events, the last 4 arguments of AddObject (the bounds) must be supplied.
+<h3>How to put third party controls inside Frame
+</h3>
+<p>If the ActiveX control you want to use doesn't support some behaviors such as showing/hiding itself,  you can put the object inside the Frame control. And then methods applied to the frame will be automatically applied to the object. To make the third party control a child of the frame, assign the frame's HWND to the object's parent HWND. The <a href="http://www.nsbasic.com/ce/info/BigRedToolbox/MGCEWin32.htm">MGCEWin32</a> control is very useful to do this:
+<pre>    lWnd = API.WindowFromPoint(x,y)          ' API as MGCEWin32
+    lChild = API.GetWindow(lWnd, WINDOWNER)
+
+    API.WindowParent(lChild) = Frame.hWnd    ' assign frame's hWnd
+</pre>
+<p>lChild may be acquired by other combinations of MGCEWin32 functions.
+<h3>List of Active X controls for NS Basic/CE</h3>
+<ul>
+  <li>See <a href="../controls/">a list of intrinsic and third party controls</a> page</li>
+  <li>See <a href="TN02a.htm">Tech Note 01a</a> for Active X controls that work with NS Basic/CE</li>
+</ul>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

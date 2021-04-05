@@ -1,0 +1,171 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ListView Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/ListView.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+' Demonstration of the MGCELView object by Mark Gamber
+' Written using NS Basic. Don't forget to copy the image
+' files from the doc directory to the device root ("\")
+' before running this program if you want to see them!
+
+' View property values
+lvIcon = 0
+lvReport = 1
+lvSmallIcon = 2
+lvList = 3
+
+' ImageLists values
+lvSmallImages = 1
+lvLargeImages = 2
+lvHeaderImages = 4
+
+' Selection values
+lvMultipleSelection = 0
+lvSingleSelection = 1
+lvSelectOnFocus = 0
+lvAlwaysSelect = 1
+
+' Sort values
+lvSortAscending = 1
+lvSortDescending = -1
+lvNoSort = 0
+
+' Add and initialize listview control
+addobject "MGCEListView.ListView", "LView", 10, 10, 303, 160
+addobject "Label", "Label", 10, 170, 400, 18
+
+LView.Border = 1                                          ' We want a border
+LView.View = lvReport                                   ' Start out in report view
+LView.Selection = lvMultipleSelection             ' Allow multiple selections
+LView.SelectionDisplay = lvAlwaysSelect       ' Always display selection
+LView.Sort = lvSortAscending                        ' Sort in ascending order
+LView.EditItems = 1                                      ' Allow user to edit items
+
+' Add some images to the listview image lists
+LView.AddSmImage "\smimg1.bmp"                ' Add a couple small images
+LView.AddSmImage "\smimg2.bmp"
+LView.AddLgImage "\lgimg1.bmp"                   ' Add a couple large images
+LView.AddLgImage "\lgimg2.bmp"
+
+' Specify that we want to use small and large images plus images on the header
+LView.ImageLists = lvSmallImages + lvLargeImages + lvHeaderImages
+
+' Add three columns, each 100 pixels wide with no image
+LView.InsertColumn 1, "Column 1", 100, 0
+LView.InsertColumn 2, "Column 2", 100, 0
+LView.InsertColumn 3, "Column 3", 100, 0
+
+LView.InsertItem 1, "Item 1", 1, 0          ' Add a listview item
+LView.SetItem 1, 2, "Subitem 1", 1, 0   ' Add two subitems to the item
+LView.SetItem 1, 3, "Subitem 2", 2, 0
+LView.InsertItem 2, "Item 2", 1, 0          ' Add a second item
+LView.SetItem 2, 2, "Subitem 1", 0, 0
+LView.SetItem 2, 3, "Subitem 2", 0, 0
+LView.InsertItem 3, "Item 3", 2, 0          ' And a third
+LView.SetItem 3, 2, "Subitem 1", 0, 0
+LView.SetItem 3, 3, "Subitem 2", 0, 0   ' Should have a 3x3 grid now
+
+'  Display the different views
+MsgBox "This is the Report View"
+LView.View = lvIcon
+MsgBox "Now it's the Icon View"
+LView.View = lvSmallIcon
+MsgBox "And the Small Icon view"
+LView.View = lvList
+MsgBox "And finally the List View"
+LView.View = lvReport
+
+' Show checkboxes
+LView.Checkboxes = 1
+MsgBox "With Checkboxes"
+LView.Checkboxes = 0
+
+' Show gridlines
+LView.GridLines = 1
+MsgBox "With Grid Lines"
+LView.GridLines = 0
+
+' Enable full row selection
+LView.FullRowSelect = 1
+MsgBox "Full row selection is enabled"
+
+MsgBox "There are " & CStr( LView.Count ) & " items in the object (not including subitems)"
+
+LView.Select( 1 ) = 1
+MsgBox "The first item has been selected"
+
+LView.Select( 2 ) = 1
+MsgBox "And now the second item (note: multiple selection is ON)"
+MsgBox "Which means " & CStr( LView.SelectedCount ) & " items are selected"
+
+LView.Select( 1 ) = 0
+LView.Select( 2 ) = 0
+
+LView.BackColor = ( 255 * 256 ) + 255
+LView.TextColor = 128 * 65536
+MsgBox "Can you take blue text on yellow?"
+LView.BackColor = ( 255 * 65536 ) + ( 255 * 256 ) + 255
+LView.TextColor = 0
+MsgBox "Neither can I"
+
+MsgBox "Column 1 is " & CStr( LView.ColumnWidth( 1 ) ) & " pixels wide"
+LView.ColumnWidth( 1 ) = 80
+MsgBox "Now it's " & CStr( LView.ColumnWidth( 1 ) ) & " pixels wide"
+
+LView.SetColumn 1, "New Text", 80, 0
+ColOrder  = LView.ColumnOrder
+iCols = UBound( ColOrder )
+s = "There are " & CStr( iCols ) & " columns in the order of "
+for i = 1 to iCols
+   s = s & ColOrder( i )
+   if i <> iCols then s = s & ","
+next
+MsgBox s
+
+ColOrder = Array( 3, 2, 1 )
+LView.ColumnOrder = ColOrder
+MsgBox "And now they're in the order of 3,2,1"
+
+ColOrder = Array( 1, 2, 3 )
+LView.ColumnOrder = ColOrder
+MsgBox "And Back to 1, 2, 3"
+
+i = LView.FindText( 1, "Item 2" )
+MsgBox "'Item 2' found as position " & CStr( i )
+
+sub LView_ColumnClick( iCol )
+   MsgBox "Column " & CStr( iCol ) & " was clicked"
+end sub
+
+sub LView_ItemActivate( iItem, iSubItem )
+   MsgBox "Item " & CStr( iSubItem ) & " in row " & CStr( iItem ) & " was double-clicked"
+end sub
+
+sub  LView_ItemClick( iItem, iSubItem )
+   s = LView.ItemText( iItem, iSubItem )
+   i = LView.ItemImage( iItem, iSubItem )
+   v = LView.ItemValue( iItem, iSubItem )
+   o = "Item:" & CStr( iItem ) & ", Subitem:" & CStr( iSubItem )
+   o = o & ", Image:" & CStr( i ) & ", Value:" & CStr( v ) & ", Text:" & s
+   Label.Caption = o
+end sub
+
+sub LView_EndEdit( iItem, iSubItem, sText )
+   if sText <> "" then
+      MsgBox "Item " & CStr( iSubItem ) & " in row " & CStr( iItem ) & " wants to be " & sText
+      LView.ItemText( iItem, iSubItem ) = sText
+   else
+      MsgBox "The edit either had no change or was cancelled"
+   end if
+end sub
+
+sub LView_Keypress( lKey )
+   MsgBox "Key " & Chr( lKey ) & " was pressed"
+   LView.SetFocus
+end sub
+</PRE>
+</body>
+</html>

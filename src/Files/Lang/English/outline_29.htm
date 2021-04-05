@@ -1,0 +1,154 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_29_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_29_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>DECLARE                                                            Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DECLARE</span></font><span style='line-height:115%'> &quot;Sub </span><i><font face=Courier-Oblique><span
+style='line-height:115%;font-family:Courier-Oblique;font-style:italic;'>name</span></font></i><span
+style='line-height:115%'> Lib &quot;&quot;</span><i><font face=Courier-Oblique><span
+style='line-height:115%;font-family:Courier-Oblique;font-style:italic;'>libname</span></font></i><span
+style='line-height:115%'>&quot;&quot; [Alias
+&quot;&quot;</span><i><font
+face=Courier-Oblique><span style='line-height:115%;
+font-family:Courier-Oblique;font-style:italic;'>aliasname</span></font></i><span style='
+line-height:115%'>&quot;&quot;] [([</span><i><font
+face=Courier-Oblique><span style='line-height:115%;
+font-family:Courier-Oblique;font-style:italic;'>arglist</span></font></i><span style='
+line-height:115%'>])]&quot;</span></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;line-height:115%'>Declare &quot;Function </span></font><i><font face=Courier-Oblique><span
+style='line-height:115%;font-family:Courier-Oblique;font-style:italic;'>name</span></font></i><span
+style='line-height:115%'> Lib &quot;&quot;</span><i><font face=Courier-Oblique><span
+style='line-height:115%;font-family:Courier-Oblique;font-style:italic;'>libname</span></font></i><span
+style='line-height:115%'>&quot;&quot; [Alias
+&quot;&quot;</span><i><font
+face=Courier-Oblique><span style='line-height:115%;
+font-family:Courier-Oblique;font-style:italic;'>aliasname</span></font></i><span style='
+line-height:115%'>&quot;&quot;] [([</span><i><font
+face=Courier-Oblique><span style='line-height:115%;
+font-family:Courier-Oblique;font-style:italic;'>arglist</span></font></i><span style='
+line-height:115%'>])] [As </span><i><font
+face=Courier-Oblique><span style='line-height:115%;
+font-family:Courier-Oblique;font-style:italic;'>type</span></font></i><span style='
+line-height:115%'>]&quot;</span></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Declare an API function for use. </span></font><span
+style='line-height:115%'>The </span><i><font face=Verdana-Italic><span
+style='line-height:115%;font-family:Verdana-Italic;font-style:italic;'>name</span></font></i><span
+style='line-height:115%'> is the name of the function
+to use as a function or subroutine in an NS Basic program. When this internal
+name within the DLL is different, use the Alias clause giving the internal name
+of the function. This is useful when an internal name conflicts with a keyword.
+The </span><i><font face=Verdana-Italic><span
+style='line-height:115%;font-family:Verdana-Italic;font-style:italic;'>libname</span></font></i><span
+style='line-height:115%'> is the name of the DLL
+library. It may be a full pathname to the DLL or a partial pathname or single
+file name, in which case the system searches for the DLL. Most normal DLLs will
+be stored in </span>the \Windows<span style='
+line-height:115%'> directory, in which case the path name can be omitted, and
+the system will find it quickly. See the Tech Note on Declare for additional
+documentation.</span></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;
+line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>Rem Get storage info on device</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>Dim lpAvailable, lpTotalBytes, lpTotalFree</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>Declare &quot;Function GetDiskFreeSpaceExW Lib
+&quot;&quot;Coredll&quot;&quot; (_</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>  ByVal
+lpDirectoryName As String, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>  ByRef
+lpFreeBytesAvailable As Long, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>  ByRef
+lpTotalNumberOfBytes As Long, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>  ByRef
+lpTotalNumberOfFreeBytes As Long) _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>  As Boolean&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>res = GetDiskFreeSpaceExW(&quot;e:&quot;, _ </span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>  lpAvailable,
+lpTotalBytes, lpTotalFree)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>MsgBox &quot;Available: &quot; &amp; lpAvailable </span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;
+line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Available: 123,000,004</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+</div>
+
+</body>
+
+</html>

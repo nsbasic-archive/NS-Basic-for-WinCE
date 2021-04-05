@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>POP Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;POP Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/pop.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The POP control is used retrieve electronic mail from Internet Post Office servers (POP).
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The POP control implements a standard internet post office (POP3) client
+as specified in RFC 1725.<P>The control is driven by a few key properties and the <b>Action</b> property. 
+To connect to a <b>MailServer</b> first set the appropriate <b>User</b> and
+<b>Password</b> and then connect by setting <b>Action</b> to 'Connect'. 
+Upon successful connection to the <b>MailServer</b>, the number of waiting
+messages is shown by the <b>MessageCount</b> property.  A message is selected
+by setting the <b>MessageNumber</b> property to a number between 1 and
+<b>MessageCount</b> (inclusive).  Then, message text and/or headers are
+received by setting <b>Action</b> to the appropriate value.<P>The message text is received through the <b>Transfer</b> event, whereas the
+message headers are received through the <b>Header</b> event.  The body of the message
+is also saved in the file specified by the <b>LocalFile</b> property. <b>StartTransfer</b>
+and <b>EndTransfer</b> events are fired at the beginning and end of message transmission. 
+The <b>PITrail</b> event provides a trace of the interaction between the
+client and server (excluding message transfers).<P>This control requires a Winsock 1.1 compliant TCP/IP stack.  This means
+that the Winsock stack installed in the system must have a version of at
+least 1.1.  In particular, Windows 95, 98, and NT machines with Winsock 2.0
+are fully supported.
+ 
+
+
+
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+An action code for the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Command.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Can be used to send additional commands directly to the POP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LastReply.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The last reply from the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to a local file for downloading the message body.  If the file exists, it is overwritten. (optional)</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the local host.  When connected, the IP address of the interface through which the connection was made.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MailPort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The server port for POP (default 110).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MailServer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name or address of a mail server (internet post office server).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MaxLineLength.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The maximum expected length for message lines.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MaxLines.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The maximum number of message lines beside headers to retrieve.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageCount.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The number of messages waiting in the mailbox.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageNumber.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Current (selected) message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The size in bytes of the current message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Password.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The password for the mailbox user.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SocketHandle.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The handle of the main socket used by the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TotalSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Cumulative size in bytes of messages in the mailbox (including headers).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">User.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The user id for the mailbox.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifying information about the loaded Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockLoaded.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Loads and unloads Winsock on demand.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxDatagramSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size in bytes of the largest UDP datagram that can be sent or received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxSockets.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Maximum number of sockets available to a single process.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockPath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to the Winsock DLL used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The status of the Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EndTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when the message completes transferring.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Error.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Information about errors during data delivery.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Header.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired for every message header being retrieved.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PITrail.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Traces the commands sent to the mail server, and the respective replies.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">StartTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when the message starts transferring.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Transfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired while the message gets transferred from MailServer.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

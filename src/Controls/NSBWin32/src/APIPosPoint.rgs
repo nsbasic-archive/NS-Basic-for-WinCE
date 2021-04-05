@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.win32.APIPosPoint.1 = s 'NSBAsic APIPosPoint Class'
+	{
+		CLSID = s '{B98C4618-BB8B-40C1-9B6B-CDE95B2CA62F}'
+	}
+	NSBasic.win32.APIPosPoint = s 'NSBAsic APIPosPoint Class'
+	{
+		CLSID = s '{B98C4618-BB8B-40C1-9B6B-CDE95B2CA62F}'
+		CurVer = s 'NSBasic.win32.APIPosPoint.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {B98C4618-BB8B-40C1-9B6B-CDE95B2CA62F} = s 'NSBAsic APIPosPoint Class'
+		{
+			ProgID = s 'NSBasic.win32.APIPosPoint.1'
+			VersionIndependentProgID = s 'NSBasic.win32.APIPosPoint'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F1072A90-2DF5-49BC-BDFB-2B604FDB9598}'
+		}
+	}
+}

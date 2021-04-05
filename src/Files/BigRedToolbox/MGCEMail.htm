@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Mail Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128><D>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCEMail</P>
+</FONT><FONT FACE="Arial"><P>Access the Mail files</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>October 24, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT><D>
+<R>
+</TABLE>
+<HR>
+MGCEMail - Windows CE Custom Control Object<BR>
+Written by Mark Gamber, October 1999<BR><BR>
+
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+
+<HR>
+
+MGCEMail provides mail store access to Windows CE applications capable of making use of COM oriented controls such as NS Basic. Included in this package are:
+
+<UL COMPACT>
+	<LI>MGCEMail control
+	<LI>Documentation and demonstration program.
+</UL>
+<HR>
+
+<H4>Object Creation</H4>
+	<p><code>AddObject "MGCEMail.Mail", "Name"</code>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/MailTest.htm">MailTest</A> - Demo of Mail functions
+</UL>
+
+<HR>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+
+<TABLE>
+	<TR>
+		<TD>AllFolders</TD> <TD>A read-only property which returns an array of folder identification numbers. These numbers are only meaningful to the mail store.<br><p><code>arrFolders = Mail.AllFolders</code></TD>
+	</TR>
+	<TR>
+		<TD>AllServices</TD> <TD>AllServices is a read-only property that returns an array of service names.
+Passive services such as "Windows CE Inbox Service" are not included. If
+there are no direct services (non-passive), AllServices will throw an error which is easily trapped with On Error Resume Next.<br><p><code>arrServices = Mail.AllServices</code></TD>
+	</TR>
+	<TR>
+		<TD>BCC</TD> <TD>Set and retrieve blind CC addresses attached to a message.<br><p><code>Mail.BCC = "blindCC@whatever.com" sBCC = Mail.BCC</code></TD>
+	</TR>
+	<TR>
+		<TD>CC</TD> <TD>Set and retrieve CC addresses attached to a message.<br><p><code>Mail.CC = "tosomeoneelse@whatever.com" sCC = Mail.CC</code></TD>
+	</TR>
+	<TR>
+		<TD>Date</TD> <TD>Set and retrieve the date attached to a message.<br><p><code>Mail.Date = Now() d = Mail.Date</code></TD>
+	</TR>
+	<TR>
+		<TD>Error</TD> <TD>Retrieve the last error code from the mail subsystem. This is a read-only property.<br><p><code>iErr = Mail.Error</code></TD>
+	</TR>
+	<TR>
+		<TD>ErrorMsg</TD> <TD>Retrieve the last error in the form of a descriptive string from the mail subsystem using this read-only property.<br><p><code>MsgBox Mail.ErrorMsg</code></TD>
+	</TR>
+	<TR>
+		<TD>Folder</TD> <TD>Set and retrieve the current folder in use. A folder is identified by its numeric value as returned by the AllFolders property. There are also "stock" folders which exist on all devices and have fixed identifiers. These are:<br><p><code>Inbox: 254 Output: 253 Sent: 252<BR>Mail.Folder = 254<br>cFolder = Mail.Folder</code></TD>
+	</TR>
+	<TR>
+		<TD>FolderMessages</TD> <TD>A read-only property which returns an array of numeric identifiers, one for each message contained within a folder. Set the Folder property before calling this property to determine from which folder to retrieve message IDs.<br><p><code>arrMessages = Mail.FolderMessages</code></TD>
+	</TR>
+	<TR>
+		<TD>FolderName</TD> <TD>Retrieve the name of a folder based on its identifier using this read-only property.<br><p><code>sName = Mail.FolderName( 254 )</code></TD>
+	</TR>
+	<TR>
+		<TD>Message</TD> <TD>Set and retrieve the body of a message.<br><p><code>Mail.Message = "Mail text goes here." s = Mail.Message</code></TD>
+	</TR>
+	<TR>
+		<TD>Recipient</TD> <TD>Set and retrieve addresses of recipients attached to a message.<br><p><code>Mail.Recipient = "sendto@whatever.com" sSendTo = Mail.Recipient</code></TD>
+	</TR>
+	<TR>
+		<TD>Sender</TD> <TD>Set and retrieve the address of a message's sender.<br><p><code>Mail.Sender = "fromme@whatever.com" sSender = Mail.Sender</code></TD>
+	</TR>
+	<TR>
+		<TD>Service</TD> <TD>Set and retrieve the name of a mail service through which a message is sent. Valid service names may be obtained by calling the AllServices property.<br><p><code>Mail.Service = sServices( 0 )</code></TD>
+	</TR>
+	<TR>
+		<TD>Subject</TD> <TD>Set and retrieve the subject line attached to a message.<br><p><code>Mail.Subject = "Better living through employee theft!" <BR>sSubj = Mail.Subject</code></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Retrieve the version of the MGCEMail object.<br><p><code>v = Mail.Version</code></TD>
+	</TR>
+</TABLE>
+
+<HR>
+
+<h4>Methods</h4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Clear</TD> <TD>Initializes the Sender, Recipient, CC, BCC, Subject, Message, Service and Folder properties.<br><p><code>Mail.Clear</code></TD>
+	</TR>
+	<TR>
+		<TD>Close</TD> <TD>Closes an open mail object.<br><p><code>Mail.Close</code></TD>
+	</TR>
+	<TR>
+		<TD>CreateFolder</TD> <TD>CreateFolder creates a new folder in the message store. The return value is the numeric identifier of the newly created folder.<br><p><code>iID = Mail.CreateFolder( "New Folder" )</code></TD>
+	</TR>
+	<TR>
+		<TD>DeleteFolder</TD> <TD>DeleteFolder removes a folder from the message store, the folder identified by its numeric identifier. Note that you cannot delete system folders such as Inbox and Outbox.<br><p><code>Mail.DeleteFolder 0</code></TD>
+	</TR>
+	<TR>
+		<TD>DeleteMessage</TD> <TD>Remove a message from the message store, the message identified by its numeric identifier.<br><p><code>Mail.DeleteMessage arraymsg( i )</code></TD>
+	</TR>
+	<TR>
+		<TD>Move</TD> <TD>Move a message to a folder. The message is identified by its numeric identifier and the target folder is identified by setting the Folder property before calling the Move method.<br><p><code>Mail.Move 253</code></TD>
+	</TR>
+	<TR>
+		<TD>Open</TD> <TD>Open the mail object. This is required before performing any other operation on the message store.<br><p><code>Mail.Open</code></TD>
+	</TR>
+	<TR>
+		<TD>ReadMessage</TD> <TD>ReadMessage obtains various header data items and the message body from a message and sets the Sender, Recipient, CC, BCC, Subject, Message, Service and Folder properties based on the read message. Use these properties to obtain the message data after calling ReadMessage. The message to read is identified by its numeric identifier as returned by the FolderMessages property.<br><p><code>Mail.ReadMessage arrMsgs( i )</code></TD>
+	</TR>
+	<TR>
+		<TD>WriteMessage</TD> <TD>This method takes the Sender, Recipient, CC, BCC, Subject, Message, Folder and Service properties and constructs a message from that data. Unused properties are not included in the message. The finished message is added to the folder identified by the Folder property and the return value of this method is the ID of the newly created message. Note that writing a message does not mean the message is actually sent anywhere, only that it is added to the mail store.<br><p><code>iID = Mail.WriteMessage</code></TD>
+	</TR>
+</TABLE>
+
+<HR>
+
+<H4>Events</h4>
+	MGCEMail does not support events.
+
+<HR>
+<H4>Change Log</H4>
+
+
+</BODY>
+</HTML>

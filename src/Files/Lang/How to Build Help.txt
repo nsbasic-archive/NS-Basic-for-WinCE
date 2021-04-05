@@ -1,0 +1,17 @@
+Building CHMfile:
+	1. Start Word
+	   	-load Docs file
+ 		-Select Section 1-4 and 6
+		-remove all page breaks
+		-accept all changes
+		-save as English.doc in \Files\Help\English 
+		-Make sure the file is closed on the Mac
+		-Replace style Normal with  Manual Body
+	2. Run DOC2CHM. Use all defaults.
+	3. Test the results
+
+for old help:
+
+	To build Chinese version: (not tested with DOC2CHM)
+	Do Select all, change font to PMingLui
+	After step 5, change Styles "Normal" and "Heading 4" to use font PMingLui.

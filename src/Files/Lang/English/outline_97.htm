@@ -1,0 +1,138 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_97_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_97_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>RANDOMIZE                                                        Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>RANDOMIZE</span></font> [<i><span
+style='font-style:italic;'>number</span></i>]</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>RANDOMIZE initializes the random-number generator. The
+optional parameter, <i><span
+style='font-style:italic;'>number</span></i>, is any
+valid numeric expression that is used as a seed for the RND function. If number
+is omitted, the value of the system timer is used as the seed value. To repeat
+a random-number sequence, call RND with a negative argument, then call
+RANDOMIZE with a numeric argument; calling RANDOMIZE alone with the same value
+for number will not repeat a sequence.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM RANDOMIZE Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'RANDOMIZE initialize random-number</span></font>generator</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>RANDOMIZE</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Random</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>RANDOMIZE 44</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Random</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>RND -1</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>RANDOMIZE 169</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Random</span></font></p>
+
+<p class=code><font size=1 face="Courier New">&nbsp;</font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB Random</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  DIM
+Ret</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  RET =
+&quot;&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  FOR i
+= 1 to 4</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    RET
+= RET &amp; INT((RND * 1000) + 1) &amp; &quot; &quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  NEXT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+&quot;Four random numbers:&quot;, RET</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Four random numbers:8 912 43 537</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Four random numbers:33 6 430 51</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Four random numbers:36 6 192 54</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>RND</span></font></p>
+
+</div>
+
+</body>
+
+</html>

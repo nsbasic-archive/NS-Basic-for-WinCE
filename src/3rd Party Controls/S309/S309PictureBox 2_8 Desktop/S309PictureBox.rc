@@ -1,0 +1,246 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""S309PictureBox.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,8,4,1
+ PRODUCTVERSION 2,8,4,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "http://nsbasic.com/s309\0"
+            VALUE "CompanyName", "Software 309\0"
+            VALUE "FileDescription", "Software 309 PictureBox 2.8\0"
+            VALUE "FileVersion", "2, 8, 4, 1\0"
+            VALUE "InternalName", "S309PictureBox\0"
+            VALUE "LegalCopyright", "Copyright (C) 1999-2003, Software 309\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OLESelfRegister", "\0"
+            VALUE "OriginalFilename", "S309PICTUREBOX208.OCX\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Software 309 PictureBox 2.8\0"
+            VALUE "ProductVersion", "2, 8, 4, 1\0"
+            VALUE "SpecialBuild", "Beta Version Expires June 30, 2003\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ABOUTDLL            ICON    DISCARDABLE     "S309PictureBox.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_S309PICTUREBOX      BITMAP  DISCARDABLE     "S309PictureBoxCtl.bmp"
+#ifdef UNDER_CE
+#ifdef WIN32_PLATFORM_PSPC
+#if _WIN32_WCE > 211
+IDB_JOKER               BITMAP  DISCARDABLE     "JokerPocketPC.bmp"
+IDB_BLANK               BITMAP  DISCARDABLE     "BlankCardPocketPC.bmp"
+IDB_BLANKFACE           BITMAP  DISCARDABLE     "BlankCardPocketPC.bmp"
+IDB_SUIT1               BITMAP  DISCARDABLE     "Suit1PocketPC.bmp"
+IDB_SUIT2               BITMAP  DISCARDABLE     "Suit2PocketPC.bmp"
+IDB_SUIT3               BITMAP  DISCARDABLE     "Suit3PocketPC.bmp"
+IDB_SUIT4               BITMAP  DISCARDABLE     "Suit4PocketPC.bmp"
+IDB_WILD2               BITMAP  DISCARDABLE     "Wild2PPC.bmp"
+#else // _WIN32_WCE > 211
+IDB_JOKER               BITMAP  DISCARDABLE     "JokerPPC.bmp"
+IDB_BLANK               BITMAP  DISCARDABLE     "BlankCardPPC.bmp"
+IDB_BLANKFACE           BITMAP  DISCARDABLE     "BlankCardPPC.bmp"
+IDB_SUIT1               BITMAP  DISCARDABLE     "Suit1PPC.bmp"
+IDB_SUIT2               BITMAP  DISCARDABLE     "Suit2PPC.bmp"
+IDB_SUIT3               BITMAP  DISCARDABLE     "Suit3PPC.bmp"
+IDB_SUIT4               BITMAP  DISCARDABLE     "Suit4PPC.bmp"
+IDB_WILD2               BITMAP  DISCARDABLE     "Wild2PPC.bmp"
+#endif // _WIN32_WCE > 211
+#else // WIN32_PLATFORM_PSPC
+IDB_JOKER               BITMAP  DISCARDABLE     "JokerHPC.bmp"
+IDB_BLANK               BITMAP  DISCARDABLE     "BlankCardHPC.bmp"
+IDB_BLANKFACE           BITMAP  DISCARDABLE     "BlankFaceCardHPC.bmp"
+IDB_SUIT1               BITMAP  DISCARDABLE     "Suit1HPC.bmp"
+IDB_SUIT2               BITMAP  DISCARDABLE     "Suit2HPC.bmp"
+IDB_SUIT3               BITMAP  DISCARDABLE     "Suit3HPC.bmp"
+IDB_SUIT4               BITMAP  DISCARDABLE     "Suit4HPC.bmp"
+IDB_WILD0               BITMAP  DISCARDABLE     "Wild0.bmp"
+IDB_WILD1               BITMAP  DISCARDABLE     "Wild1.bmp"
+IDB_WILD2               BITMAP  DISCARDABLE     "Wild2HPC.bmp"
+#if _WIN32_WCE > 210
+IDB_ROCKET              BITMAP  DISCARDABLE     "card61a.bmp"
+#endif // _WIN32_WCE > 210
+#endif // WIN32_PLATFORM_PSPC
+#else // UNDER_CE
+IDB_JOKER               BITMAP  DISCARDABLE     "Joker.bmp"
+IDB_BLANK               BITMAP  DISCARDABLE     "BlankCard.bmp"
+IDB_BLANKFACE           BITMAP  DISCARDABLE     "BlankFaceCard.bmp"
+IDB_SUIT1               BITMAP  DISCARDABLE     "Suit1.bmp"
+IDB_SUIT2               BITMAP  DISCARDABLE     "Suit2.bmp"
+IDB_SUIT3               BITMAP  DISCARDABLE     "Suit3.bmp"
+IDB_SUIT4               BITMAP  DISCARDABLE     "Suit4.bmp"
+IDB_WILD0               BITMAP  DISCARDABLE     "Wild0.bmp"
+IDB_WILD1               BITMAP  DISCARDABLE     "Wild1.bmp"
+IDB_WILD2               BITMAP  DISCARDABLE     "Wild2.bmp"
+#endif // UNDER_CE
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX_S309PICTUREBOX DIALOG DISCARDABLE  0, 0, 150, 52
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About S309PictureBox Control"
+FONT 8, "Tahoma"
+BEGIN
+    LTEXT           "Software 309 PictureBox 2.8",IDC_STATIC,10,10,
+                    130,8
+    LTEXT           "Copyright (C) 1999-2003, Software 309",IDC_STATIC,10,18,
+                    130,8
+    LTEXT           "All Rights Reserved.",IDC_STATIC,10,26,130,8
+    LTEXT           "http://nsbasic.com/s309",IDC_STATIC,10,34,130,8
+END
+
+IDD_PROPPAGE_S309PICTUREBOX DIALOG DISCARDABLE  0, 0, 150, 28
+STYLE WS_CHILD
+FONT 8, "Tahoma"
+BEGIN
+    LTEXT           "Sorry, No Property Page.",IDC_STATIC,10,10,130,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX_S309PICTUREBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+        RIGHTMARGIN, 140
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 42
+    END
+
+    IDD_PROPPAGE_S309PICTUREBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+        RIGHTMARGIN, 140
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 18
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_S309PICTUREBOX      "Software 309 PictureBox 2.8"
+    IDS_S309PICTUREBOX_PPG  "Software 309 PictureBox 2.8 Property Page"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_S309PICTUREBOX_PPG_CAPTION "General"
+    IDS_STRINGVALUEOUTOFRANGE "Value out of range."
+    IDS_STRINGSETNOTVALID "Set not valid in design mode."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "S309PictureBox.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

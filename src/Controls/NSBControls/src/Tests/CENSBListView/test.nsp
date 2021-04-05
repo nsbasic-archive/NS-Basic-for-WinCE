@@ -1,0 +1,3 @@
+Dim AppEXEName: AppEXEName = "test"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\ComCtl\ComCtl\Tests\CENSBListView\test.nsb"
+Project.AddModule "main", "G:\WORKS\WindowsNT\atl\NSBasic\ComCtl\ComCtl\Tests\CENSBListView\test.nsb"

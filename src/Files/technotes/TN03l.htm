@@ -1,0 +1,803 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 03l: Accessing Pocket Outlook Databases</TITLE>
+<link rel="stylesheet" href="/style2.css">
+
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="82%" VALIGN="TOP">
+	  <h2>Tech Note 03l: Accessing Pocket Outlook Files 
+</h2>
+	  <h3>September 08, 2007</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr>
+
+<P>IMPORTANT: Support for accessing the Pocket Outlook Object Model from ActiveX was officially dropped in Windows CE 4.0. However, it continued to to work until part way through Windows CE 5.0. The highest version of PimStore.dll that works appears to be 5.01.14847. As of this time, there is no workaround. Possibilities are to use the DECLARE statement to call the API functions directly or to create a DLL wrapper that can be called from NS Basic/CE. 
+
+
+<P>&nbsp;</P>
+<P>Using the Pocket Outlook Object Model (POOM) from Microsoft, it's easy to read and write to the built in databases for
+<ul>
+	<li>Tasks</li>
+	<li>Appointments</li>
+	<li>Contacts</li>
+	<li>Cities (read only)</li>
+</ul>
+<P>You need to <A HREF="http://support.microsoft.com/default.aspx?scid=kb;EN-US;q265771">download the complete documentation and files</A> from Microsoft's website. In this Tech Note, we'll give you a summary of what you need to know to use POOM from NS Basic/CE. The documentation provided by Microsoft is written from the viewpoint of a Visual C++ programmer. You will find that doing the same functions from NS Basic/CE is much easier!</P>
+
+<B><P>Installation</P>
+</B><P>If your device doesn't already have the files in ROM, you will need to move the appropriate version of <CODE>PIMStore_xxx.dll</CODE> from the release files to your device and rename it to <CODE>PIMstore.dll</CODE>. After that, it will need to be registered. </P>
+<P>On HPC and HPC Pro devices, tap [start]...[run], then enter the command</P>
+<CODE><P>regsvrce.exe \windows\pimstore.dll</P>
+</CODE><P>You should get a message back that it has been registered successfully.</P>
+<B><P>Basic Principles</P>
+</B><P>POOM is an object, much like the other objects NS Basic/CE uses. The major difference is that in addition to having properties and methods, it also has objects within it. The main object has 4 objects inside it. Each one is called a Folder Object. The Folder Objects are Tasks, Appointments, Contacts, and Cities. The <CODE>getDefaultFolder</CODE> method is used to get a Folder Object.</P>
+<P>Each of the Folder Objects has properties and methods (like any object) and an object called <CODE>Items</CODE> within it. The <CODE>Items</CODE> object has a property called <CODE>count</CODE>, which says how many individual items there are, and an array of those items which is an collection object called <CODE>Items</CODE>.</P>
+<P>These items are the actual data. Each of these items is an object. For example, each name in Contacts is an object, referenced in the <CODE>Items</CODE> array. The values for the item are stored as properties: for example, <CODE>lastname</CODE>, <CODE>title</CODE> and <CODE>Birthday</CODE> are all properties of a Contact Item Object.</P>
+<P>To sum up, there are 4 levels of objects set up as a hierarchy:</P>
+<P>1. POOM Object (<CODE>IPOutlookApp</CODE>)</P>
+<P>2. Folder Objects: Tasks, Appointments, Contacts, Cities (<CODE>IFolder</CODE>)</P>
+<P>3. Items Object: An array with each Item (<CODE>IPOutlookItemCollection</CODE>)</P>
+<P>4. Item Object (<CODE>ICity</CODE>, <CODE>IContact</CODE>, <CODE>ITask</CODE> or <CODE>IAppointment)</code></P>
+<P><B>Hint:</b> if you have an object and you wonder what kind it is, do <CODE>typename(<I>object</I>)</CODE>. It will return its type, something like <CODE>ICity</CODE> or <CODE>IFolder</CODE>.)</P>
+<B><P>&nbsp;</P>
+<P>1. POOM Object (IPOutlookApp)</P>
+</B><P>You create the POOM object using the <CODE>AddObject</CODE> statement as follows:</P>
+<P><CODE>addobject "pocketOutlook.application","pol"<BR>
+pol.logon<BR>
+</code><FONT FACE="Courier" SIZE=2>set tasks=pol.getdefaultfolder(13)<BR>
+</FONT><CODE>'do your processing here<BR>
+pol.logoff</code></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=5 WIDTH=478>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<B><P>Name</B></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<B><P>Type</B></TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<B><P>Notes</B></TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Version</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>The current version of POOM</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>CurrentCityIndex</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>0 or 1, depending on whether the user is in the home or visiting city.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>HomeCity.name</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>The home city.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>VisitingCity.name</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>The visiting city.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>OutlookCompatible</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P><CODE>TRUE</code> if synched with Outlook, <CODE>FALSE</CODE> if synched with Schedule+.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>GetDefaultFolder(n)</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>returns the selected object. Values for N are:<BR>
+   9 Calendar<BR>
+ 10 Contacts<BR>
+ 13 Tasks<BR>
+101 Cities</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Logon</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>logs user on to POOM. This is required before you can do anything.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Logoff</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>logs user off. This has to be done at the end of your program. If you fail to do this, you will get an out of memory error next time you run the program. Quitting the BASIC environment will clear this.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><P>2. Folder Objects (Ifolder)</P>
+</B><P>This object is used to get the collection of items.</P>
+<CODE><P>set taskItems=tasks.items</P></CODE>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=5 WIDTH=478>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<B><P>Name</B></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<B><P>Type</B></TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<B><P>Notes</B></TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Items</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>Gets the Items Object collection.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><P>3. Items Object: (IPOutlookItemCollection)</P>
+</B><P>This object is used to access the individual items. The items are different objects, depending on the folder they come from. They are <CODE>ICity</CODE>, <CODE>IContact</CODE>, <CODE>ITask</CODE> and <CODE>IAppointment</CODE>.</P>
+<CODE><P>for i=1 to taskItems.count<BR>
+  set taskItem=taskItems.item(i)<BR>
+  print taskItem.subject<BR>
+next</P>
+</CODE><P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=5 WIDTH=478>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<B><P>Name</B></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<B><P>Type</B></TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<B><P>Notes</B></TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Item(i)</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>returns element i of the Items Object</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Count</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>the number of items in the Items Object</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>IncludeRecurrances</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>property</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>Appointments only. Include all recurrances of this item? Could be infinite!</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Add</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>create a new item. Does not get kept until you do a Save</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Remove(i)</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>remove item i</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Sort</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>See Micosoft docs</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Find</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>See Micosoft docs</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>FindNext</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>See Micosoft docs</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Save</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>save the current item</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Delete</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>delete the current item</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Copy</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>make a copy of the current item</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>Display</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>method</TD>
+<TD WIDTH="61%" VALIGN="TOP">
+<P>display the current item</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><P>4a. Item Object: ICity</P>
+</B><CODE><P>The ICity Object has the following properties:</P>
+<P>Print cityItem.airportcode<BR>
+CityItem.areaCode="416"</P>
+<P>&nbsp;</P></CODE>
+<TABLE BORDER CELLSPACING=2 CELLPADDING=5 WIDTH=387>
+<TR><TD WIDTH="48%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Property</TD>
+<TD WIDTH="52%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Type</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>AirportCode</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>AreaCode</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Country</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>CountryPhoneCode</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>InROM</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean (read only)</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Latitude</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Longitude</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Name</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>TimezoneIndex</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><P>4b. Item Object: IContact</P></B>
+<TABLE BORDER CELLSPACING=2 CELLPADDING=5 WIDTH=387>
+<TR><TD WIDTH="48%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Property</TD>
+<TD WIDTH="52%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Type</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Anniversary</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Date</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>AssistantName</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>AssistantTelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Birthday</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Date</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Body</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Business2TelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusinessAddressCity</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusinessAddressCountry</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusinessAddressPostalCode</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusinessAddressState</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusinessAddressStreet</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusinessFaxNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusinessTelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>CarTelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Categories</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Children</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>CompanyName</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Department</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Email1Address</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Email2Address</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Email3Address</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>FileAs</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>FirstName</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Home2TelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>HomeAddressCity</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>HomeAddressCountry</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>HomeAddressPostalCode</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>HomeAddressState</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>HomeAddressStreet</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>HomeFaxNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>HomeTelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>JobTitle</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String&#9;</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>LastName</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>MiddleName</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>MobileTelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>OfficeLocation</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>OtherAddressCity</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>OtherAddressCountry</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>OtherAddressPostalCode</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>OtherAddressState</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>OtherAddressStreet</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>PagerNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>RadioTelephoneNumber</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Spouse</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Suffix</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Title</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>WebPage</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+</TABLE>
+
+<H4>&nbsp;</H4>
+<H4>4C. Item Object: ITask</H4>
+<P>Check Microsoft's docs for information on ITask specific methods.</P>
+<TABLE BORDER CELLSPACING=2 CELLPADDING=5 WIDTH=387>
+<TR><TD WIDTH="48%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Property</TD>
+<TD WIDTH="52%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Type</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP" HEIGHT=22>
+<P>Body</TD>
+<TD WIDTH="52%" VALIGN="TOP" HEIGHT=22>
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Categories</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Complete</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>DateCompleted </TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Date read only</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>DueDate</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Date</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Importance</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long (0,1,2)</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>IsRecurring </TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean read only</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP" HEIGHT=16>
+<I><P>ReminderOptions</I></TD>
+<TD WIDTH="52%" VALIGN="TOP" HEIGHT=16>
+<P>long</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>ReminderSet</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>ReminderSoundFile</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP" HEIGHT=22>
+<P>ReminderTime</TD>
+<TD WIDTH="52%" VALIGN="TOP" HEIGHT=22>
+<P>Date</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Sensitivity</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long (0 or 2)</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>StartDate</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Date</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Subject</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>TeamTask</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><P>&nbsp;</P>
+<P>4D. Item Object: IAppointment</P>
+</B><P>Check Microsoft documentation for IAppointment specific methods.</P>
+<TABLE BORDER CELLSPACING=2 CELLPADDING=5 WIDTH=387>
+<TR><TD WIDTH="48%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Property</TD>
+<TD WIDTH="52%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P>Type</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Subject</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Location</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Categories</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Start</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Date</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Duration</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>End</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Date</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>AllDayEvent</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>IsRecurring </TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean read only</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>MeetingStatus </TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Long read only</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Sensitivity</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>0=Normal, 1=Private</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>BusyStatus</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>0=Free, 1=Tentative, 2=Busy, 3=OutOfOffice</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>ReminderSet</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Boolean</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>ReminderSoundFile</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<I><P>ReminderOptions</I></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>ReminderMinutesBeforeStart</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>long</TD>
+</TR>
+<TR><TD WIDTH="48%" VALIGN="TOP">
+<P>Body</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+</TABLE>
+
+<B><P>&nbsp;</P>
+</B><P>&nbsp;</P>
+<H4>Sample Code&nbsp;</H4>
+<PRE>REM Demonstrate use of Pocket Outlook
+addobject "pocketoutlook.application","pol"
+pol.logon()
+on error resume next
+print "Poom Version:" &amp; pol.version
+print "Current City:" &amp; pol.currentCityIndex
+print "Home City:" &amp; pol.HomeCity.name
+print "Visiting City:" &amp; pol.VisitingCity.name
+print "Partnered with Outlook? " &amp; pol.outlookCompatible
+
+'get tasks
+set tasks=pol.getdefaultfolder(13)
+set taskItems=tasks.items
+print "Tasks (" &amp; taskItems.count &amp; ")"
+
+for i=1 to taskItems.count
+  set taskItem=taskItems.item(i)
+  print taskItem.subject
+next
+
+'create a new task
+set newTask=taskItems.add
+print typename(newtask)
+newTask.subject="New task created by NS Basic/CE"
+newTask.save
+
+'get contacts
+set contacts=pol.getdefaultfolder(10)
+set contactItems=contacts.items
+print "Contacts (" &amp; contactItems.count &amp; ")"
+
+for i=1 to contactItems.count
+  set contactItem=contactItems.item(i)
+  print contactItem.lastname
+next
+
+'get appointments
+set appointments=pol.getdefaultfolder(9)
+set appointmentItems=appointments.items
+print "Appointments (" &amp; appointmentItems.count &amp; ")"
+
+for i=1 to appointmentItems.count
+  set appointmentItem=appointmentItems.item(i)
+  print appointmentItem.subject
+next
+
+'get cities
+set cities=pol.getdefaultfolder(101)
+set cityItems=cities.items
+print "Cities (" &amp; cityItems.count &amp; ")"
+
+for i=1 to 10
+  set cityItem=cityItems.item(i)
+  print cityItem.name
+next
+
+pol.logoff
+
+</PRE><CODE>
+<P>&nbsp;</P>
+</CODE>
+</BODY>
+</HTML>

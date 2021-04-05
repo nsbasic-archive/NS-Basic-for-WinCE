@@ -1,0 +1,145 @@
+--------------------Resource 201-----------------------
+
+Dim ***NSBasicForm***_Temp
+Sub ***NSBasicForm***_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(***NSBasicForm***_Temp) Then
+      AddObject "Frame", "***NSBasicForm***_Form", 0, 0, Output.Width, Output.Height
+      ***NSBasicForm***_Form.Visible = False
+      ***NSBasicForm***_Form.BackColor = ***NSBasicFormColor***
+      AddObject "PictureBox", "***NSBasicForm***", 0, 0, 0, 0, ***NSBasicForm***_Form
+      ***NSBasicForm***.BorderStyle = 0
+      ***NSBasicForm***.Move 0, 0, ***NSBasicForm***_Form.Width * 15, ***NSBasicForm***_Form.Height * 15
+      Set ***NSBasicForm***_Temp = ***NSBasicForm***
+      ***NSBasicForm***_Form.Caption = "***NSBasicForm***"
+***NSBasicForm.Output***   
+***NSBasicForm.Load***   End If
+   On Error Goto 0
+   ***NSBasicForm***_Form.Visible = True
+   callIfExists("***NSBasicForm***_Load")
+End Sub  '***NSBasicForm***_Show
+
+Sub ***NSBasicForm***_Hide
+   If IsEmpty(***NSBasicForm***_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   ***NSBasicForm***_Form.Visible = False
+   CallIfExists("***NSBasicForm***_Unload")
+End Sub  '***NSBasicForm***_Hide
+
+
+
+--------------------Resource 202-----------------------
+
+
+
+Dim ***NSBasicForm***_Temp
+Sub ***NSBasicForm***_Show
+   ***NSBasicForm***_ShowMenu
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(***NSBasicForm***_Temp) Then
+      AddObject "Frame", "***NSBasicForm***_Form", 0, 0, Output.Width, Output.Height
+      ***NSBasicForm***_Form.BackColor = ***NSBasicFormColor***
+      AddObject "PictureBox", "***NSBasicForm***", 0, 0, 0, 0, ***NSBasicForm***_Form
+      ***NSBasicForm***.BorderStyle = 0
+      ***NSBasicForm***.Move 0, 0, ***NSBasicForm***_Form.Width * 15, ***NSBasicForm***_Form.Height * 15
+      Set ***NSBasicForm***_Temp = ***NSBasicForm***
+      ***NSBasicForm***_Form.Caption = "***NSBasicForm***"
+***NSBasicForm.Output***
+***NSBasicForm.Load***   End If
+   On Error Goto 0
+   ***NSBasicForm***_Form.Visible = True
+   CallIfExists("***NSBasicForm***_Load")
+End Sub  '***NSBasicForm***_Show
+
+Sub ***NSBasicForm***_Hide
+   If IsEmpty(***NSBasicForm***_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   ***NSBasicForm***_Form.Visible = False
+   CallIfExists("***NSBasicForm***_Unload")
+End Sub  '***NSBasicForm***_Hide
+
+Sub ***NSBasicForm***_ShowMenu
+***NSBasicForm.ShowMenu***End Sub  '***NSBasicForm***_ShowMenu
+
+
+
+
+--------------------Resource 301-----------------------
+
+
+
+Dim ***NSBasicForm***_Temp
+Sub ***NSBasicForm***_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(***NSBasicForm***_Temp) Then
+***NSBasicForm.Output***      Set ***NSBasicForm***_Temp = ***NSBasicForm***
+
+***NSBasicForm.Load***   End If
+   On Error Goto 0
+   ***NSBasicForm***.Visible = True
+   CallIfExists("***NSBasicForm***_Load")
+End Sub  '***NSBasicForm***_Show
+
+Sub ***NSBasicForm***_Hide
+   If Not IsObject(***NSBasicForm***_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   ***NSBasicForm***.Visible = False
+   CallIfExists("***NSBasicForm***_Unload")
+End Sub  '***NSBasicForm***_Hide
+
+
+
+
+
+
+--------------------Resource 302-----------------------
+
+
+Dim ***NSBasicForm***_Temp
+Sub ***NSBasicForm***_Show
+   ***NSBasicForm***_ShowMenu
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(***NSBasicForm***_Temp) Then
+***NSBasicForm.Output***      Set ***NSBasicForm***_Temp = ***NSBasicForm***
+
+***NSBasicForm.Load***   End If
+   On Error Goto 0
+   ***NSBasicForm***.Visible = True
+   CallIfExists("***NSBasicForm***_Load")
+End Sub  '***NSBasicForm***_Show
+
+Sub ***NSBasicForm***_Hide
+   If Not IsObject(***NSBasicForm***_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   ***NSBasicForm***.Visible = False
+   CallIfExists("***NSBasicForm***_Unload")
+End Sub  '***NSBasicForm***_Hide
+
+Sub ***NSBasicForm***_ShowMenu
+***NSBasicForm.ShowMenu***End Sub  '***NSBasicForm***_ShowMenu
+
+

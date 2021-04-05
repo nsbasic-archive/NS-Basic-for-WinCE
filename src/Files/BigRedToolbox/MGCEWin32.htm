@@ -1,0 +1,707 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>MGCEWin32 Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCEWin32</P>
+</FONT><FONT FACE="Arial"><P>A collection of handy system calls, including the Registry, the clipboard, the icon tray, timer and much more.</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>December 13, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+MGCEWin32 - Windows CE Custom Control Objects<BR>
+Written by Mark Gamber, October 1999<BR><BR>
+
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+<HR>
+<P>MGCEWin32 provides four separate controls for Windows CE applications capable of
+making use of COM oriented controls such as NS Basic. Included in this package are:
+
+<UL COMPACT>
+	<LI><A HREF="MGCEWin32.htm#Tray">Tray Image control</A>
+	<LI><A HREF="MGCEWin32.htm#Registry">Registry control</A>
+	<LI><A HREF="MGCEWin32.htm#API">API control</A>
+	<LI><A HREF="MGCEWin32.htm#Timer">Timer Control</A>
+	<LI><A HREF="MGCEWin32.htm#RAS">RAS Control</A>
+</UL>
+
+<H4>Installation</H4>
+
+<P>Connect your Windows CE device to your desktop using ActiveSync. On the desktop, run the program MGCEWin32.exe. Follow the instructions on the screen to complete the installation. All four controls will be installed and registered automatically. 
+<HR>
+
+<A NAME="API"></A>
+<H2>API Control</H2>
+
+<P>There are hundreds of available functions in the Win32 API as implemented on
+Windows CE devices. Unfortunately, none of them are directly available from Basic.
+Visual Basic can access the functions using the "declare" statement, but it's not
+terribly intuitive and other brands of Basic may not be able to access the API at
+all. While it is impractical to provide access to every API function available, it
+is practical to provide access to the most commonly used and useful functions in
+the Win32 API which is what this object does. In addition, Windows CE sends messages
+to applications when certain system-wide changes or events take place. The API
+control catches these messages and turns them into events your application can
+handle if it so chooses. Note that the object does not attempt to protect the
+system from errant programming, so be careful when using this control!
+
+<P>The number of possible flags, options and messages available to even the limited
+subset of functions this object supports is large enough that this document does
+not list them, nor does it provide a tutorial of the Win32 API and its use. If
+you are not familiar with the Win32 API, it is strongly suggested that you do NOT
+use this object until you have become familiar with the API and the calls supported
+by this object. While its extremely unlikely that physical damage could occur to
+your device by using the API, it can't be ruled out and it is entirely possible to
+lock up a device, requiring a cold reset, using the API. You have been warned and
+have already agreed, by installing the object, that you accept full responsibility
+for the use of this object and may not hold the object's author or any distributor
+of the object liable for any loss or damage brought about by the use of the object.
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEWin32.API", "Name"</CODE>
+	
+<H4>Samples</H4>
+<UL COMPACT>
+	<LI><A HREF="samples/APIEvent.txt">APIEvent</A> - Capture desktop color change event
+	<LI><A HREF="samples/APIMisc.txt">APIMisc</A> - Run through a number of API features in no particular order
+	<LI><A HREF="samples/APIShell.txt">APIShell</A> - Demo special folder and shortcut operations
+	<LI><A HREF="samples/APIStatus.txt">APIStatus</A> - Demo memory, storage and power status functions
+</UL>
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" VALIGN=TOP>
+	<TR>
+		<TD>Capture</TD>
+		<TD>Set and retrieve the window handle that has captured input focus. See the ReleaseCapture method to release input capture once it has been set.<BR><CODE>API.Capture = lWnd<BR>lWnd = API.Capture</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ClassName</TD>
+		<TD>Read only. ClassName retrieves the text name of a specified window's class.<BR><CODE>MsgBox API.ClassName( lWnd )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ClipText</TD>
+		<TD>Set and retrieve plain text to and from the system clipboard.<BR><CODE>API.ClipText = "Add something to the clipboard"<BR>sText = API.ClipText</CODE></TD>
+	</TR>
+	<TR>
+		<TD>CursorPos</TD>
+		<TD>Retrieve the X,Y coordinates of the cursor when the cursor was last used. This property returns an array of two values, the first being the horizontal position and the second being the vertical position.<BR><CODE>	aPos = API.CursorPos<BR>
+	x = aPos( 1 )<BR>
+	y = aPos( 2 )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>EnableKeyboard</TD>
+		<TD>TRUE enables the device keyboard, FALSE disables the device keyboard.<BR><CODE>API.EnableKeyboard = FALSE<BR>iKeyStatus = API.EnableKeyboard</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Focus</TD>
+		<TD>Set and retrieve the window handle with input focus.<BR><CODE>API.Focus = lWnd<BR>lWnd = API.Focus</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ForegroundWindow</TD>
+		<TD>Set and retrieve the current foreground window.<BR><CODE>API.ForegroundWindow = lWnd<BR>lWnd = API.ForegroundWindow</CODE></TD>
+	</TR>
+	<TR>
+		<TD>GetShortcutTarget</TD>
+		<TD>Read only. You may retrieve the file a shortcut points to using this property.<BR><CODE>s = API.GetShortcutTarget "My Link.lnk"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>GetWindow</TD>
+		<TD>Read only. This property retrieves the handle of a window based on a window specified and a relationship flag. These flags are:
+	<CODE><UL COMPACT>
+		<LI>WNDFIRST (0): Retrieve the first peer window of the window specified.
+		<LI>WNDLAST (1): Retrieve the last peer window of the window specified.
+		<LI>WNDNEXT (2): Retrieve the next peer window of the window specified.
+		<LI>WNDPREV (3): Retrieve the previous peer window of the window specified.
+		<LI>WNDOWNER (4): Retrieve the owner (parent) of the specified window.
+		<LI>WNDCHILD (5): Retrieve the first child window of the window specified.
+		</UL></CODE>
+		<CODE>lChild = API.GetWindow( lWnd, WNDCHILD )</CODE>
+	</TR>
+	<TR>
+		<TD>LocalTime</TD>
+		<TD>Set and retrieve the current time and date according to the locale specified by the Windows CE device.<BR>
+<CODE>d = API.LocalTime<BR>
+	API.LocalTime = Now</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SystemColor</TD>
+		<TD>Set and retrieve RGB color values for system components. Note: Changes made using this property are temporary and are not maintained when a device is restarted. SystemColor flags are:
+		<CODE><UL COMPACT>
+			<LI>colorScrollBar: 0
+			<LI>colorBackground: 1
+			<LI>colorActiveCaption: 2
+			<LI>colorInactiveCaption: 3
+			<LI>colorMenu: 4
+			<LI>colorWindow: 5
+			<LI>colorWindowFrame: 6
+			<LI>colorMenuText: 7
+			<LI>colorWindowText: 8
+			<LI>colorCaptionText: 9
+			<LI>colorActiveBorder: 10
+			<LI>colorInactiveBorder: 11
+			<LI>colorAppWorkspace: 12
+			<LI>colorHighlight: 13
+			<LI>colorHighlightText: 14
+			<LI>colorBtnFace: 15
+			<L1>colorBtnShadow: 16
+			<LI>colorGrayText: 17
+			<LI>colorBtnText: 18
+			<LI>colorInactiveCaptionText: 
+			<LI>colorBtnHighlight: 20
+			<LI>color3DDKShadow: 21
+			<LI>color3DLight: 22
+			<LI>colorInfoText: 23
+			<LI>colorInfoBK: 24
+			</UL></CODE>
+			<CODE>clr = API.SystemColor( colorWindow )<BR>
+			API.SystemColor( colorBackground ) = (128 * 65536 )</CODE></TD></TR>
+		<TR><TD>SystemParameters</TD>
+		<TD>This property sets and retrieves various system-wide values which may or may not be supported by a given version of Windows CE. Values supported by the control are:
+		<CODE><UL COMPACT>
+			<LI>spWorkArea: 0
+			<LI>spWakupIdleTimeout: 1
+			<LI>spExternalIdleTimeout: 2
+			<LI>spBatteryIdleTimeout: 3
+			<LI>spPlatformType: 4
+			<LI>spOEMInfo: 5
+			</UL></CODE>
+		The first four values are numeric, the last two are strings and read only.<BR><BR>
+		<CODE>iTurnOffTime = API.SystemParameters( spBatteryIdleTimeout )
+		API.SystemParameters( spBatteryIdleTimeout ) = 180  ' 3 minutes</CODE></TD></TR>
+<TR><TD>SystemVersion</TD>
+		<TD>Retrieves the version of Windows CE. The upper 2 bytes of the returned value is the major version number and the lower 2 bytes of the value is the minor version number.<BR><BR>
+		<CODE>version = API.SystemVersion</CODE></TD>
+		</TR>
+	<TR>
+		<TD>SystemTime</TD>
+		<TD>Set and retrieve the system time and date. Note that the time is specified in Universal Coordinated Time (UTC).<BR>
+<CODE>d = API.SystemTime<BR>
+	API.SystemTime = Now</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Ticks</TD>
+		<TD>Retrives the number of milliseconds that have elapsed since Windows CE was started.<BR>
+<CODE>i = API.Ticks/CODE></TD>
+	</TR>
+<TR><TD>TopMost</TD>
+		<TD>The TopMost property sets and retrieves a window handle with topmost or "Stay On Top" status. TRUE sets a window to topmost status, FALSE sets the window to normal (not topmost) status.<BR><BR>
+		<CODE>API.TopMost( lWnd ) = TRUE<BR>iStatus = API.TopMost( lWnd )</CODE></TD>
+		</TR>
+		<TR><TD>WindowLong</TD>
+		<TD>Set and retrieve long values applied to windows. This may be used to examine and alter window styles and custom data.<BR>
+		<CODE>	i = API.WindowLong( lWnd, -16 )  ' Get window style<BR>
+	API.WindowLong( lWnd, -16 ) = WS_CAPTION  ' Apply caption to style
+</CODE></TD>
+	</TR>
+		<TR><TD>WindowParent</TD>
+		<TD>Set and retrieve the parent of a specified window.<BR>
+		<CODE>API.WindowParent( lChild ) = lNewParent<BR>
+	lParent = API.WindowParent( lWnd )</CODE></TD>
+	</TR>
+	<TR>
+		<TR><TD>WindowText</TD>
+		<TD>Set and retrive the text displayed by a window caption. For most windows, this is the text that appears in a caption bar. For other windows, such as edit controls, this is the text that appears within the window itself.<BR<BR>
+		<CODE>API.WindowText( lWnd ) = "Main Window"<BR>sCaption = API.WindowText( lWnd ) </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" VALIGN=TOP>
+	<TR>
+		<TD>AddToRecent</TD> <TD>This method creates a link to a specified file in the "Recently used" folder. On most devices, this is the "My Documents" folder.<BR><BR><CODE>API.AddToRecent "\somefile.txt"</code></TD>
+	</TR>
+	<TR>
+		<TD>ChildWindowFromPoint</TD> <TD>Given the handle of a window and screen coordinate, in pixels, this method will return the handle (if any) of a window at that coordinate which is a child of the specified window.<BR><BR><CODE>lChild = API.ChildWindowFromPoint lWnd, xPos, yPos</code></TD>
+	</TR>
+	<TR>
+		<TD>CreateShortcut</TD> <TD>Create a shortcut to a specified file on the device.<BR><BR><CODE>API.CreateShortcut sShortcutFilename, "\windows"  ' Shortcut to Windows dir</code></TD>
+	</TR>
+	<TR>
+		<TD>FindWindow</TD> <TD>Returns the handle of a window identified by its caption text. This will not find child windows, only top level windows.<BR><BR><CODE>lWnd = API.FindWindow "apitest.nsb"</code></TD>
+	</TR>
+	<TR>
+		<TD>FindWindowByClass</TD> <TD>Returns the handle of a window identified by its class name. This will not find child windows, only top level windows.<BR><BR><CODE>lWnd = API.FindWindowByClass "MyWndClass"</code></TD>
+	</TR>
+	<TR>
+		<TD>GetAsyncKeyState</TD> <TD>Retrieve the state of a keyboard key since the last time this method was called.<BR><BR><CODE>iKeyState = API.GetAsyncKeyState( 32 )   ' Check on spacebar</code></TD>
+	</TR>
+	<TR>
+		<TD>GetMemoryStatus</TD> <TD>Use this method to retrieve one of several available memory status values. Method options are:<code>
+	<UL COMPACT>
+	<LI>memTotalPhysical: 0
+	<LI>memAvailPhysical: 1
+	<LI>memTotalPagefile: 2
+	<LI>memAvailPagefile: 3
+	<LI>memTotalVirtual: 4
+	<LI>memAvailVirtual: 5
+	<LI>memLoadPercent: 6
+</UL>
+
+			iMemLoad = API.GetMemoryStatus( memLoadPercent )</code></TD>
+	</TR>
+	<TR>
+		<TD>GetPowerStatus</TD> <TD>This method retrieves one of several power (AC, Battery, etc) status values which may or may not be supported on a given Windows CE device. Flags include:
+	<code>	<UL COMPACT>
+	<LI>AC Status: 0
+	<LI>Battery Flag: 1
+	<LI>Battery Percent: 2
+	<LI>Battery Life: 3
+	<LI>Battery Full Life: 4
+	<LI>Backup Flag: 5
+	<LI>Backup Percent: 6
+	<LI>Backup Life: 7
+	<LI>Backup Full Life: 8<br>
+	AC Status return values:
+	<LI>ACOffline: 0
+	<LI>ACOnline: 1
+	<LI>ACUnknown: 255<br>
+	Battery Flag / Backup Flag return values:
+	<LI>BatteryHigh: 1
+	<LI>BatteryLow: 2
+	<LI>BatteryCritical: 4
+	<LI>BatteryCharging: 8
+	<LI>NoBattery: 128
+	<LI>BatteryUnknown: 255
+</UL>
+
+			iBatteryStatus = API.GetPowerStatus( 0 )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>GetSpecialFolder</TD> <TD>This method retrieves the path of a "special folder", such as Favorites, Desktop and Controls. Most devices support most of the possible flags, most they are not all supported on all devices and will return an empty string (""). Flags include:
+		<code>	<UL COMPACT>
+	<LI>sfDesktop: 0
+	<LI>sfPrograms: 2
+	<LI>sfControls: 3
+	<LI>sfPrinters: 4
+	<LI>sfPersonal: 5
+	<LI>sfFavorites: 6
+	<LI>sfStartup: 7
+	<LI>sfRecent: 8
+	<LI>sfSendTo: 9
+	<LI>sfRecycler: 10
+	<LI>sfStartMenu: 11
+	<LI>sfDesktopDir: 16
+	<LI>sfDrives: 17
+	<LI>sfNetwork: 18
+	<LI>sfNetHood: 19
+	<LI>sfFonts: 20
+	<LI>sfTemplates: 21
+	</UL>
+		sPath = API.GetSpecialFolder( sfDesktop )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>GetStorageStatus</TD> <TD>Retrieve the memory status of program storage. Flags include:
+		<code>	<UL COMPACT>
+		<LI>Storage Total Size: 0
+		<LI>Storage Free Size: 1
+		</UL>
+	iBytesFree = API.GetStorageStatus( 1 )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>PostMessage</TD> <TD>This method posts a message to a window.<BR><BR><CODE>iReturnVal = API.PostMessage( lWnd, msg, wParam, lParam )</code></TD>
+	</TR>
+	<TR>
+		<TD>ReleaseCapture</TD> <TD>Release input capture. If input capture was not set, nothing happens.<BR><BR><CODE>API.ReleaseCapture</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SendKeys</TD> <TD>Send keystrokes to whatever window has input focus at the time this method is called. Shift, Control and Alt keystrokes causes the control to toggle an internal flag. When any of these three keys are sent, the flag is set and all keystrokes following are sent as though the Shift, Control or Alt key is being pressed at the same time. When sent again, the flag is reset and following keystrokes are sent as though the Shift, Control or Alt key is NOT pressed at the same time. This continues through the string of keys passed to this method. A second parameter determines if "key clicks" are used and should be set to TRUE for silent operation or FALSE for key clicks.<br><br><code>API.SendKeys Chr(16) & "T" & Chr(16) & "est", FALSE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SendMessage</TD> <TD>Sends a message to a window. Since SendMessage can pass numeric values or strings, this method is used to send a numeric (32 bit) value with the message.<BR><BR><CODE>iReturnVal = API.SendMessage( lWnd, msg, wParam, lParam )</code></TD>
+	</TR>
+	<TR>
+		<TD>SendMessageText</TD> <TD>This method also sends a message to a window. Unlike SendMessage, the last parameter of this method is a string which is sent with the message.<BR><BR><CODE>iRetVal = API.SendMessageText( lWnd, msg, wParam, "Item text" )</code></TD>
+	</TR>
+	<TR>
+		<TD>showWindow</TD> <TD>A window may be hidden, displayed, minimized and otherwise using this method. Note the lowercase "s" in showWindow is not a typo! Flags include:
+		<code>	<UL COMPACT>
+	<LI>swHide: 0
+	<LI>swShowNormal: 1
+	<LI>swShowNoActivate:4
+	<LI>swShow: 5
+	<LI>swMinimize: 6
+	<LI>swShowMaximized: 11
+	<LI>swMaximize: 12
+	<LI>swRestore: 13
+</UL>
+
+		API.showWindow lWnd, swHide</code></TD>
+	</TR>
+	<TR>
+		<TD>WindowFromPoint</TD> <TD>This method will find a top level window at a specified screen coordinate and return its handle, if any.<BR><BR><CODE>lWnd = API.WindowFromPoint( xPos, yPos )</CODE></TD>
+	</TR>
+</TABLE>
+
+
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" VALIGN=TOP>
+	<TR>
+		<TD>ColorChange</TD> <TD>This event is triggered when an application changes a system wide color.
+		<PRE>
+sub API_ColorChange
+	MsgBox "Something changed a system color"
+end sub</PRE></TD>
+	</TR>
+	<TR>
+		<TD>FontChange</TD> <TD>This event is triggered when an application adds or removes a font resource.
+		<PRE>
+sub API_FontChange
+	MsgBox "A font has been added or removed"
+end sub
+		</PRE></TD>
+	</TR>
+	<TR>
+		<TD>Hibernate</TD> <TD>When the device begins to run low on resources, a hibernate message is sent to all running applications. It is the job of the applications to lower their memory usage by freeing unneeded resources or, if possible, closing.
+		<PRE>
+sub API_Hibernate
+	MsgBox "Uh oh...something bad is about to happen"
+end sub
+		</PRE></TD>
+	</TR>
+	<TR>
+		<TD>PaletteChange</TD> <TD>When an applicate changes the system color palette, this event is fired, allowing a program alter its own color palette if it needs to do so.
+		<PRE>
+sub API_PaletteChange
+	MsgBox "The system color palette has been changed"
+end sub
+		</PRE></TD>
+	</TR>
+	<TR>
+		<TD>SettingsChange</TD> <TD>SystemParameters can get and retrieve various system settings and this event notifies a program when one of those settings has been changed. The value passed to this event is a flag which may be used with SystemParameters in order to retrieve the new value of the setting that was changed.
+		<PRE>
+sub API_SettingsChange( flag )
+	val = API.SystemParameters( flag )
+end sub
+		</PRE></TD>
+	</TR>
+</TABLE>
+<hr>
+
+<A NAME="Tray"></A>
+<H2>Tray Image Control</H2>
+
+The Tray Image control provides access to the system tray from Basic and allows you to add images to, removes images from and modify existing images on the system tray. The Tray Image control supports the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEWin32.Tray", "Name"</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Tray.htm">Tray</A> - Demo of Tray image functions
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Value</TD> <TD>The Value property is what actually adds, removes and modifies tray images. The image to display is identified by its position in the control's image list. To remove an image from the tray, use zero. To add or modify an image, specify an image number. If an image is not displayed in the tray, one is added.<br><br><CODE>Tray.Value = 1<br>iCurImage = Tray.Value</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>AddImage</TD> <TD>The Tray object maintains a list of images, each image identified by the morder in which it was added. The first image added using the AddImage method is image one and so on. Only valid Windows bitmaps are accepted by the tray object and 16 color images are recommended.<br><br><CODE>Tray.AddImage "\smimg1.bmp"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RemoveImage</TD> <TD>You may remove images from the image list at any time by specifying the number of the image to remove, starting with one for the first image added to the object.<br><br><CODE>Tray.RemoveImage 1</CODE></TD>
+	</TR>
+</TABLE>
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Click   </TD> <TD>When a tray image created by the object is tapped, the Click event is fired, passing along the number of the image currently displayed. A basic event handler can catch and make use of this event.
+		<PRE>
+sub Tray_Click( image )
+	MsgBox "You tapped image #" & CStr( image )
+end sub</PRE></TD>
+	</TR>
+</TABLE>
+<HR>
+
+<A NAME="Registry"></A>
+<H2>Registry Control</H2>
+
+The Registry control provides a very flexible way to access the Windows CE registry from Basic. The registry control DOES NOT attempt to protect the registry from errant programming, however, so exercise caution when modifying the registry. The Registry Control supports the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEWin32.Registry", "Name"</CODE>
+
+H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Registry.txt">Registry</A> - Demo of registry functions
+	<LI><A HREF="samples/CETweak.htm">CETweak</A> - Tweak some Window CE appearances via the registry
+</UL>
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+	<TR>
+		<TD>Key</TD> <TD>The Key property sets and retrieves the "base key" from which path operations take place. There are four valid key values:
+		<CODE><UL COMPACT>
+	<LI>CLASSES_ROOT: 0
+	<LI>CURRENT_USER: 1
+	<LI>LOCAL_MACHINE: 2
+	<LI>USERS: 3
+	</UL>
+		Registry.Key = 1<br>
+		iCurKey = Registry.Key</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Path</TD> <TD>Use the Path property to set and retrieve the current path into the registry. This value is combined with the Key property to make a full path into a specified section of the registry.<br><br>
+		<code>Registry.Path = "Software\MyApp"<br>
+		sPath = Registry.Path</code></TD>
+	</TR>
+	<TR>
+		<TD>Name</TD> <TD>The Name property identifies a value name in the registry. If the value does not exist when reading from the registry, an error occurs and may be trapped by using the "on error resume next" line to prevent the error from stopping the program and using the "Err.Number" variable to determine if an error occurred. When writing to the registry and the value doesn't exist, it is created as a type specified by the ValueType property.<br><br>
+		<code>Registry.Name = "MyData"<br>
+		sName = Registry.Name</code></TD>
+	</TR>
+	<TR>
+		<TD>ValueType</TD> <TD>Set and retrieve the type of value currently being read or written from or to the registry. Four types are supported by the registry object including:
+	<UL COMPACT>
+	<LI>REG_SZ (1): Text string
+	<LI>REG_BINARY (3): Binary data
+	<LI>REG_DWORD (4): 32 bit numeric value
+	<LI>REG_MULTI_SZ (7): An array of text strings
+	</UL>
+	Various implementations of Basic may or may not support single byte binary data manipulation. To ensure that the data may be used from within Basic, Binary data is written and read as a string of hexidecimal data. When the Key, Path and Name properties combine to point to an existing value, that value's data type may be obtained by reading this property.
+	<br><br><code>Registry.ValueType = 4<br>
+	ValType = Registry.ValueType</code></TD>
+	</TR>
+	<TR>
+		<TD>Value</TD> <TD>Set and retrieve data to and from the registry using the Value property. You must set the Key, Path and Name properties before reading or writing from or to the registry usng this property. Because registry data comes in many forms (text, numeric, array and binary formats), the Value property does automatic conversion when possible. It cannot convert any type to Binary or Array values, not can it convert Binary or Array values to any type.
+<pre>
+Registry.ValueType = REG_DWORD
+Registry.Value = "32"      ' This will convert to the number 32
+Registry.ValueType = REG_SZ
+Registry.Value = 150       ' This will convert to the string "150"
+Registry.ValueType = REG_BINARY
+Registry.Value = "FFFF00FF0A0B0C0D"  ' Add a binary value
+Registry.ValueType = REG_MULTI_SZ  ' Add a string array
+a = Array( 2, 3, "Four", 5 )       ' Numbers will convert to strings
+Registry.Value = a
+a = Registry.Value    ' When reading an array, you can
+if Registry.ValueType = REG_MULTI_SZ then ' determine the number of
+	iItem = UBound( a )        ' items read by using UBound()
+end if
+</pre>
+<td></TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+	<TR>
+		<TD>CreatePath</TD> <TD>The current Key and Path properties are combined to form a path into the registry. Set these two properties and call CreatePath to create a new path. If the path already exists, it is not modified by this method.<br><br><code>Registry.Key = CURRENT_USER<br>Registry.Path = "Software\Test"<br>Registry.CreatePath</code></TD>
+	</TR>
+	<TR>
+		<TD>DeletePath</TD> <TD>Set the current Key and Path properties, then call the DeletePath method to remove a path from the registry.<br><br><code>Registry.Key = CURRENT_USER<br>Registry.Path = "Software\Test"<br>Registry.DeletePath</code></TD>
+	</TR>
+	<TR>
+		<TD>DeleteValue</TD> <TD>You may set the Key, Path and Name properties and then call the DeleteValue method to remove a value from the registry.<br><br><code>Registry.Key = CURRENT_USER<br>Registry.Path = "Software\Test"<br>Registry.Name = "TestVal"<br>Registry.DeleteValue</code></TD>
+	</TR>
+	<TR>
+		<TD>GetPathName</TD> <TD>This method is used to find paths connected to a path specified by the Key and Path properties. For example, if the "CURRENT_USER\Software\Test" path has three paths within it, the may be found by calling this method and starting with one, adding one to the value passed to the method each time it is called until an error occurs.
+		<pre>
+on error resume next
+Registry.Key = CURRENT_USER
+Registry.Path = "Software\Test"
+iNum = 1
+while Err.Number = 0
+	MsgBox Registry.GetPathName( iNum )
+	iNum = iNum + 1
+wend</pre></TD>
+	</TR>
+	<TR>
+		<TD>GetValueName</TD> <TD>Similar to the GetPathName method except this method hunts for and returns value names. The first value is found by specifying one and following values are found by increasing the number passed to the method with each call until an error occurs.
+		<pre>
+on error resume next
+Registry.Key = CURRENT_USER
+Registry.Path = "Software\Test"
+iNum = 1
+while Err.Number = 0
+	MsgBox Registry.GetValueName( iNum )
+	iNum = iNum + 1
+wend</pre></TD>
+	</TR>
+</TABLE>
+
+
+
+<H4>Events</H4>
+	The registry object does not support any events.
+<hr>
+
+<A NAME="Timer"></A>
+<H2>Timer Control</H2>
+
+	The Timer control is a very simple object you may use to send events to an
+application on regular intervals. The Timer Control supports the following
+properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEWin32.Timer", "Name"</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Timer.htm">Timer</A> - Demo of Timer functions
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+	<TR>
+		<TD>Interval</TD> <TD>The number of milliseconds to wait between events. Interval ranges from one to 2147483647.<br><br><code>Timer.Interval = 1000<br>i = Timer.Interval<code></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+	<TR>
+		<TD>Start</TD> <TD>Call the Start method to start the timer. If the Interval property was set properly, the application will begin to receive events. Note that starting the timer itself is not an event. The first event occurs after the first specified interval. <br><br><code>Timer.Start</code></TD>
+	</TR>
+	<TR>
+		<TD>Stop</TD> <TD>The Stop method stops a running timer. If there is no running timer when Stop is called, nothing happens.<br><br><code>Timer.Stop</code></TD>
+	</TR>
+</TABLE>
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+	<TR>
+		<TD>Interval</TD> <TD>The Interval event is triggered when the number of milliseconds specified by the Interval property has passed. The application will receive this event until the timer is stopped or the application is closed.
+		<pre>
+sub Timer_Interval	
+	Listbox.AddItem "Interval fired"
+end sub</pre</TD>
+	</TR>
+</TABLE>
+<HR>
+
+<A NAME="RAS"></A>
+<H2>RAS Control</H2>
+
+The RAS Control provides access to the remote access API, allowing programs capable of using the object to dial a remote network, hang up a connection, set logon parameters and maintain connections. The RAS control supports the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEWin32.RAS", "name"</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/RAStest.htm">RAStest</A> - Demo of RAS functions
+</UL>
+
+
+<H4>Properties</H4>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+	<TR>
+		<TD>AllConnections</TD> <TD>Retrieves an array of open connections. If there are no open connections, an empty array is returned. Each item in the array is a 32 bit number which identifies a connection.<P><code>a = RAS.AllConnections</code></TD>
+	</TR>
+	<TR>
+		<TD>AllEntries</TD> <TD>Retrieves an array of remote access connection names. If there are no names available, an empty array is returned. Each array entry is a string which identifies a connection.<P><code>aNames = RAS.AllEntries</code></TD>
+	</TR>
+	<TR>
+		<TD>ConnectionStatus</TD> <TD>Retrieve the current state of a connection as a bit field. The connection is identified by a 32 bit value passed to the property. Possible status bits include:<P><code>status = RAS.ConnectionStatus( connID )</code></TD>
+	</TR>
+	<TR>
+		<TD>Domain</TD> <TD>Set and retrieve a domain name to apply to a remote connection.<P><code>sDomain = RAS.Domain <BR>RAS.Domain = "DEVGROUP"</code></TD>
+	</TR>
+	<TR>
+		<TD>EntryName</TD> <TD>Set and retrieve the name of a connection to dial.<P><code>RAS.EntryName = "WrkServer" <BR>sName = RAS.EntryName</code></TD>
+	</TR>
+	<TR>
+		<TD>Password</TD> <TD>Set and retrieve a password used to log into a connection.<P><code>RAS.Password = "tritium" <BR>sPwd = RAS.Password</code></TD>
+	</TR>
+	<TR>
+		<TD>PhoneNumber</TD> <TD>Set and retrieve a phone number to dial in order to establish a connection. If this property is used, the EntryName property must be cleared ("") and vice versa.<P><code>RAS.PhoneNumber = "555-1212" <BR>sNum = RAS.PhoneNumber</code></TD>
+	</TR>
+	<TR>
+		<TD>UserName</TD> <TD>Set and retrieve a user name used to log into a connection.<P><code>RAS.UserName = "howard" <BR>sName = RAS.UserName</code></TD>
+	</TR>
+	<TR>
+		<TD>Validate</TD> <TD>Determine if a connection name is valid. An error occurs is an invalid or existing entry name is passed to this property.<P><code>iValid = RAS.Validate( "New Entry" )</code></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Retrieve the version of the RAS object.<P><code>v = RAS.Version</code></TD>
+	</TR>
+</TABLE>
+
+
+<H4>Methods</H4>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1">
+	<TR>
+		<TD>Clear</TD> <TD>Removes all data from the Domain, EntryName, Password, PhoneNumber, UserName and Password properties.<P><code>RAS.Clear</code></TD>
+	</TR>
+	<TR>
+		<TD>Connect</TD> <TD>This method attempts to connect to a server with data applied using the Domain, EntryName, Password, PhoneNumber, UserName and Password properties. If a valid connection is established, a 32 bit connection identifier is returned by the method. This value may be later used to disconnect.<P><code>iConnID = RAS.Connect</code></TD>
+	</TR>
+	<TR>
+		<TD>DeleteEntry</TD> <TD>Remove an entry from the device phone book. The entry is identified by name.<P><code>RAS.DeleteEntry "New Entry"</code></TD>
+	</TR>
+	<TR>
+		<TD>Disconnect</TD> <TD>Hang up a current connection, the connection identified by a 32 bit value assigned by the Connect method or the AllConnections property.<P><code>RAS.Disconnect iConnID</code></TD>
+	</TR>
+	<TR>
+		<TD>GetDialParams</TD> <TD>The properties associated with a remote access entry may be obtained by specifying the name using the EntryName property and calling the GetDialParams method. The Domain, Password, PhoneNumber and UserName properties are updated with the entry data.<P><code>RAS.EntryName = "Work Server"<BR>RAS.GetDialParams</code></TD>
+	</TR>
+	<TR>
+		<TD>RenameEntry</TD> <TD>Rename a remote access entry name.<P><code>RAS.RenameEntry "OldName", "New Name"</code></TD>
+	</TR>
+	<TR>
+		<TD>SetDialParams</TD> <TD>After setting the EntryName, Domain, Password, PhoneNumber and UserName properties, call SetDialParams to save those properties.<P><code>RAS.SetDialParams</code></TD>
+	</TR>
+</TABLE>
+	
+<H4>Events</H4>
+
+The RAS object does not support events.
+
+<HR>
+<H4>Change Log</H4>
+<P>10/24/99: Added RAS object
+<P>10/24/99: API Object: added cursorPos and SystemVersion properties
+<P>11/5/99: API Object: WindowLong added, example for showWindow corrected.
+<P>12/13/99: API Object: added LocalTime, SystemTime, Ticks and WindowParent properties
+
+</BODY>
+</HTML>

@@ -1,0 +1,197 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_110_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_110_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>SELECT CASE                                                     Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SELECT CASE</span></font> <i><span
+style='font-style:italic;'>testexpression</span></i></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [CASE <i><span style='font-style:italic;'>expressionlistA</span></i></span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                                [<i><span style='font-style:italic;'>statementsA</span></i>]]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [CASE <i><span style='font-style:italic;'>expressionlistB</span></i></span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                                [<i><span style='font-style:italic;'>statementsB</span></i>]]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [CASE <i><span style='font-style:italic;'>expressionlistC</span></i></span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                                [<i><span style='font-style:italic;'>statementsC</span></i>]]...</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [CASE ELSE</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                                [<i><span style='font-style:italic;'>elsestatements</span></i>]]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>END SELECT</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SELECT CASE evaluates a test expression, to conditionally
+execute one of several groups of statements. An <i><span style='font-style:italic;'>expressionlistN</span></i>
+component is required for every optional CASE clause inside of SELECT CASE. The
+optional component, <i><span
+style='font-style:italic;'>statementsN</span></i> is
+the group of statements to be executed when <i><span
+style='font-style:italic;'>testexpression</span></i>
+matches any expression in a <i><span
+style='font-style:italic;'>expressionlistN</span></i>.
+Inside a CASE clause, statements are executed up to the next CASE clause or
+END&nbsp;SELECT; after all statements in a CASE clause are executed, execution
+continues with the next statement after END&nbsp;SELECT. If <i><span style='font-style:italic;'>testexpression</span></i> doesn't match any expression in any of the <i><span style='font-style:italic;'>expressionlists</span></i> and CASE&nbsp;ELSE is included, <i><span style='font-style:italic;'>elsestatements</span></i> are executed. If CASE&nbsp;ELSE is not
+included and <i><span style='font-style:
+italic;'>testexpression</span></i> doesn't match any
+expression in any of the <i><span
+style='font-style:italic;'>expressionlists</span></i>,
+execution continues with the next statement after END&nbsp;SELECT.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM SELECT CASE Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'SELECT CASE performs conditional execution</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>CheckHat(&quot;Blue&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>CheckHat(&quot;Orange&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB CheckHat(Hat)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+SELECT CASE Hat</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+&quot;Blue&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Kyle's hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+&quot;Green&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Stan's hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+&quot;Cyan&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Eric's hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+&quot;Orange&quot;, &quot;Hood&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Kenny's hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+&quot;White&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Chef's hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+&quot;Striped&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Mr. Hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+&quot;Christmas&quot;, &quot;Santa&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Mr. Hankey's hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  CASE
+ELSE</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Unknown Hat&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  END
+SELECT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Kyle's hat</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Kenny's hat</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>IF...THEN...ELSE</span></font></p>
+
+</div>
+
+</body>
+
+</html>

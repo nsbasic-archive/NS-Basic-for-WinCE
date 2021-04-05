@@ -1,0 +1,205 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_129_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_129_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>SUB                                                                      Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SUB</span></font> <i><span
+style='font-style:italic;'>procedurename</span></i>[(<i><span style='font-style:italic;'>arglist</span></i>)]</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [EXIT
+SUB]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SUB declares a procedure, <i><span
+style='font-style:italic;'>procdurename</span></i>,
+that executes <i><span style='font-style:
+italic;'>statements</span></i>, with <i><span style='font-style:italic;'>arglist</span></i> as parameters, with no return value. The required
+parameter, <i><span style='font-style:italic;'>procedurename</span></i>, is used to call the
+procedure, and must follow standard variable naming conventions. The optional
+parameter list, <i><span style='font-style:
+italic;'>arglist</span></i>, is a comma separated
+list of variables that are passed to the procedure when it is called. The
+optional component, <i><span
+style='font-style:italic;'>statements</span></i>,
+will be executed as the body of the procedure. Any number of optional EXIT SUB
+statements can be used to exit the procedure.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Each member of <i><span
+style='font-style:italic;'>arglist</span></i> is an
+argument passed to the procedure, as declared below:</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>[BYVAL | BYREF] <i><span
+style='font-style:italic;'>varname</span></i>[()]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>The optional keyword, BYVAL, specifies that a copy of the
+variable be passed into the procedure, making its value outside the procedure
+unmodifiable by the procedure. The optional keyword, BYREF, specifies that the
+address of the variable be passed into the procedure, making its value outside
+the procedure modifiable by the procedure. By default, parameters are passed in
+BYREF.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>A FUNCTION procedure will be called as a SUB procedure if the
+return value is not stored in a variable or used in an expression.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>A SUB procedure called with zero or one arguments may be
+called with empty parenthesis or the single argument in parenthesis. NS
+Basic/CE treats a single expression enclosed in parenthesis as a single
+expression, not a one-element argument list.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM SUB Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'SUB declares a procedure</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM PriceA, PriceB</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PrintMenu &quot;Wednesday&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PriceA = 53</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PriceB = 44</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Sort PriceA, PriceB </span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;Lowest Price:&quot;, PriceA</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB PrintMenu(day)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  IF
+day = &quot;Wednesday&quot; THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;Wednesday is Salisbury Steak day&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  END
+IF</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB Sort(BYREF x, BYREF y)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  DIM
+Temp</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  IF x
+&gt; y THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+Temp = y</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    y =
+x</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    x =
+Temp</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    EXIT
+SUB</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  ELSE</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+Temp = x</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    x =
+y</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    y =
+Temp</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  END
+IF</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Wednesday is Salisbury Steak day</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Lowest Price:44</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>CALL, FUNCTION</span></font></p>
+
+</div>
+
+</body>
+
+</html>

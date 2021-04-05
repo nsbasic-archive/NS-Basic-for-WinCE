@@ -1,0 +1,253 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>NS Basic/CE Tutorial 2</title>
+</head>
+<font face=verdana size=2>
+
+<body bgcolor="#ffffff">
+<table cellspacing=0 border=0 width=478>
+  <tr> 
+    <td width="22%" valign="TOP"> 
+      <p><img src="images/BigIcon.GIF" width=86 height=103> 
+    </td>
+    <td width="78%" valign="TOP"> 
+      <h2><b>NS Basic/CE </b><b>Tutorial #2: </b></h2>
+      <h2>A program with multiple Forms</h2>
+      <p> <font face="verdana" size="2"><b> <br>
+        </b></font></p>
+      <p><font face="verdana" size="2"><b>© 2010 NS BASIC Corporation. All rights reserved.</b></font> 
+    </td>
+  </tr>
+</table>
+
+<h3>Purpose </h3>
+<p>The purpose of this tutorial is to help learn a few more 
+  NS Basic/CE programming techniques. You should complete Tutorial #1 before 
+  beginning this tutorial. In this tutorial, the techniques of using multiple 
+  forms will be covered. </p>
+<h3>Description of the Program </h3>
+<p>The program to be developed has two forms. Form #1 allows 
+  the user to enter a birthdate and name. Form #2 shows the values of the previously 
+  entered birthdate and name plus it tells on what day of the week the birthdate 
+  occurred. </p>
+<h3>Program Development </h3>
+<h4>1. Startup</h4>
+<ul>
+  <li>Start NS Basic/CE Desktop IDE from the Start menu.</li>
+  <li>At the initial 
+    screen select Standard Project </li>
+</ul>
+<h4>2. Modify the First Form's Parameters </h4>
+<ul>
+  <li>You should 
+    now see a blank form with the title &quot;Form1&quot; </li>
+  <li>Select the 
+    form in the Project Explorer by clicking on it. </li>
+  <li>In the Properties 
+    Window, change the Name to&nbsp; &quot;MyForm1&quot; </li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut21.gif" width="242" height="271"> 
+</p>
+
+<h4>3. Create objects for Form 1</h4>
+<ul>
+  <li>Click on the Date object in the Toolbox. </li>
+  <li>Move the 
+    cursor to the form where you want the object to appear and click the left 
+    mouse button. </li>
+  <li>Click on 
+    the object to select it. </li>
+  <li>Set the Name to "dateBirth3"</li>
+</ul>
+<p>Add a TextBox to enter the user's name: </p>
+<ul>
+  <li>Click on 
+    the TextBox object in the Toolbox (looks like &quot;ab&quot;) </li>
+  <li>Click the 
+    left mouse button to place the TextBox object on the form </li>
+  <li>Click on the object to select it. </li>
+  <li>In the Properties Window, change the Name to &quot;textName1&quot; </li>
+  <li>In the Properties Window. enter &quot;Enter Your Name&quot; as the Text. </li>
+</ul>
+<p>Add a CommandButton to transfer to Form 2 </p>
+<ul>
+  <li>Select the CommandButton object in the Toolbox. </li>
+  <li>Place it 
+    on the form and click on it to select it. </li>
+  <li>In the Properties 
+    Window. enter &quot;Show the Day of the Week&quot; as the Caption.</li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut22.gif" width="260" height="365"> 
+</p>
+
+<h4>4. Create the Second Form </h4>
+<ul>
+  <li>Select &quot;Project&quot; 
+    from the top main menu </li>
+  <li>Select &quot;Add 
+    Form&quot; from the menu </li>
+  <li>In the Properties 
+    Window, set the Name to &quot;MyForm2&quot; </li>
+</ul>
+
+<h4>5. Create objects for Form 2 </h4>
+<p>Add a Label before the birthday textbox: </p>
+<ul>
+  <li>Select the 
+    Label (&quot;A&quot;) object from the Toolbox </li>
+  <li>Place on 
+    the form and click on it to select.. </li>
+  <li>In the Properties 
+    Window, enter &quot;Birthday =&quot; as the caption. </li>
+</ul>
+<p>Add a TextBox where the birthday will be shown: </p>
+<ul>
+  <li>Select the TextBox object from the Toolbox </li>
+  <li>Place on 
+    the form and select it </li>
+  <li>In the Properties 
+    Window, change the Name to &quot;textDate2&quot; </li>
+</ul>
+<p>Add a Label before the name : </p>
+<ul>
+  <li>Select the 
+    label object from the Toolbox </li>
+  <li>Place on 
+    the form and select it </li>
+  <li>In the Properties 
+    Window, enter &quot;Name =&quot; as the caption </li>
+</ul>
+<p>Add a TextBox where the name will be shown: </p>
+<ul>
+  <li>Select the TextBox object from the Toolbox </li>
+  <li>Place on 
+    the form and select it </li>
+  <li>In the Properties 
+    Window, change the name to &quot;textName2&quot; </li>
+</ul>
+<p>Add a Label before the day-of-the-week: </p>
+<ul>
+  <li>Select the 
+    label object from the Toolbox </li>
+  <li>Place on 
+    the form and select it </li>
+  <li>In the Properties 
+    Windows, enter &quot;Day-of-week =&quot; as the Label </li>
+</ul>
+<p>Add a TextBox where the day-of-week will be shown: </p>
+<ul>
+  <li>Select the TextBox object from the Toolbox </li>
+  <li>Place on 
+    the form and select it </li>
+  <li>In the Properties 
+    Window, change the name to &quot;textDayName&quot; </li>
+</ul>
+<p>Add a button to allow transfer back to form # 1: </p>
+<ul>
+  <li>Select the CommandButton object from the Toolbox </li>
+  <li>Place it 
+    on the form and select it </li>
+  <li>In the Properties 
+    Window, enter &quot;Go Back&quot; as the Caption</li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut23.gif" width="260" height="365"> 
+</p>
+
+
+<p><h4>6. Code to transfer to Form 2 </h4></p>
+<p>When the user taps on the &quot;Show the Day of the Week&quot; 
+  button, we want Form 2 to appear. </p>
+<ul>
+  <li>Go back to Form 1 by double clicking on MyForm1 in the Project Explorer.
+  <li>Double click on the "Show Day of Week" button to bring up its Code Window.</li>
+  <li>Enter these lines of code after the SUB line: </li>
+</ul>
+<pre>
+	MyForm1_Hide
+	MyForm2_Show
+</pre>
+<ul>
+  <li>Close the code window. </li>
+</ul>
+<p>This code hides the objects on Form 1 and displays the objects on Form 2.
+
+<p><h4>7. Provide Code for Form 2 Objects</h4> </p>
+<ul>
+  <li>Double click on MyForm2 in the Project Explorer to go to Form 2.</li>
+</ul>
+<p>Supply code to be executed after the form is drawn </p>
+<ul>
+  <li>Double click any part of the form which doesn't have an object underneath
+    to open the code window. </li>
+  <li>Enter these 
+    lines of code after the SUB MyForm2_2_Load line </li>
+</ul>
+<pre>
+	textName2.text = textName1.text
+	textDate2.text = dateBirth3.text
+	textDayName.text = WeekDayName(WeekDay(textDate2.text))
+</pre>
+<ul>
+  <li>Close the Code Window. </li>
+</ul>
+<p>This code fills in form's TextBoxes with values before the 
+  device displays the form to the user. </p>
+<ul>
+  <li>It sets the 
+    TextBox on the form that contains the user's name to the value from the textbox on Form 1.</li>
+  <li>It sets the 
+    TextBox on the form which contains the birthday to the value from date picker on Form 1. This is the value entered on Form 1 by the user using the 
+    date popup routine. </li>
+  <li>It sets the 
+    TextBox on the form that contains the Day-of-week. It does this by using the function
+    WeekDay to create a number from 1 to 7, passing the value to the function
+    WeekDayName to get the string representation of the day of week, and supplying it as input 
+    the birthday in MyDate. </li>
+</ul>
+
+<p><h4>8. Supply code for the Go Back button to go back to Form 1</h4></p>
+<ul>
+  <li>Double click 
+    on the button to bring up the Code Window </li>
+  <li>Enter this 
+    code after the SUB line </li>
+</ul>
+<pre>
+	MyForm2_Hide
+	MyForm1_Show
+</pre>
+<ul>
+  <li>Close the 
+    Code Window. </li>
+</ul>
+<p>When this button is selected, the program will just cause 
+  Form 1 to re-appear and the user can try another date. </p>
+<ul>
+  <li>Save the 
+    Project </li>
+</ul>
+<p>Save the project as MyProject.nsb in a directory you like.&nbsp; 
+  All form definitions, form objects, all code, and other project info are saved 
+  into the one project file. </p>
+<p>12. Generate the downloadable device file</p>
+<ul>
+  <li>Select Start from the Run menu. </li>
+</ul>
+<p>If you have any errors, an error message will appear and 
+  the code window will appear with the section of code where the error occurred 
+  highlighted. Errors must be corrected and Compile repeated until there are no 
+  more errors. </p>
+<p>The file must be downloaded to the CE device to execute your project. </p>
+<p>Congratulations !! You have now written your second NS Basic/CE program. </p>
+<h3>Testing The Project </h3>
+<ul>
+  <li>Make sure your device is connected via ActiveSync</li>
+  <li>Click Start from the Run menu.</li>
+  <li>After the ActiveSync completes, your program should begin execution.</li>
+</ul>
+</body>
+
+</html>

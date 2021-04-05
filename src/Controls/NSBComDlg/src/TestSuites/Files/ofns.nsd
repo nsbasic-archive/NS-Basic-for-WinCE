@@ -1,0 +1,124 @@
+Sub CommandButton1_Click
+   NSComDlg1.Action = "File"
+   NSComDlg1.Flags.SetDefaults
+   NSComDlg1.Flags.MultiSelect = True
+   ' Clearing the file name or putting a valid file name
+   ' before showing the dialog box is important.
+   ' Incorrect non-empty file name will cause error.
+   NSComDlg1.FileName = ""
+   NSComDlg1.InitDir = TextInitDir.Text
+   NSComDlg1.Filter = TextFilter.Text
+   NSComDlg1.DialogTitle = TextDialogTitle.Text
+   ListBox1.Clear
+   Dim files
+   If NSComDlg1.ShowOpen Then
+      Set files = NSComDlg1.FileNames
+      MsgBox "Files=" & NSComDlg1.FileName
+      For Each I In files
+         ListBox1.AddItem I
+      Next
+      TextInitDir.Text = NSComDlg1.InitDir
+      TextFilterIndex.Caption = NSComDlg1.FilterIndex      
+   End If
+End Sub
+
+
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "ofns"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\src\TestSuites\OFNs\ofns.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.win32.ComDlg.1", "NSComDlg1", 16, 16, 82, 21, Form1
+      '--------
+      AddObject "ListBox", "ListBox1", 8, 72, 624, 173, Form1
+      ListBox1.BackColor = 16777215
+      ListBox1.FontSize =  8.25
+      ListBox1.Sorted = False
+      '--------
+      AddObject "CommandButton", "CommandButton1", 16, 16, 108, 21, Form1
+      CommandButton1.Caption = "Open multiple"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 8, 48, 240, 16, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Selected files"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextInitDir", 160, 256, 336, 24, Form1
+      TextInitDir.BackColor = 16777215
+      TextInitDir.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 8, 256, 136, 24, Form1
+      Label2.BackColor = 12632256
+      Label2.Caption = "InitDir:"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label3", 8, 288, 136, 24, Form1
+      Label3.BackColor = 12632256
+      Label3.Caption = "FileTitle:"
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextFileTitle", 160, 288, 336, 24, Form1
+      TextFileTitle.BackColor = 16777215
+      TextFileTitle.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label4", 8, 320, 136, 24, Form1
+      Label4.BackColor = 12632256
+      Label4.Caption = "Filter:"
+      Label4.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextFilter", 160, 320, 336, 24, Form1
+      TextFilter.BackColor = 16777215
+      TextFilter.FontSize =  8.25
+      TextFilter.Text = "Text files|*.txt|HTML files|*.htm;*.htmlAll files|*.*"
+      '--------
+      AddObject "Label", "Label5", 8, 352, 136, 24, Form1
+      Label5.BackColor = 12632256
+      Label5.Caption = "FilterIndex:"
+      Label5.FontSize =  8.25
+      '--------
+      AddObject "Label", "TextFilterIndex", 160, 352, 56, 21, Form1
+      TextFilterIndex.BackColor = 12632256
+      TextFilterIndex.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label6", 8, 384, 136, 24, Form1
+      Label6.BackColor = 12632256
+      Label6.Caption = "DialogTitle:"
+      Label6.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextDialogTitle", 160, 376, 336, 24, Form1
+      TextDialogTitle.BackColor = 16777215
+      TextDialogTitle.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

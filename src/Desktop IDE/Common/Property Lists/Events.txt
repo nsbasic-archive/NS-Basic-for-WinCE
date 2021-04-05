@@ -1,0 +1,42 @@
+TextBox
+_Click
+_Change
+_DblClick
+_GotFocus
+ListBox
+_Click
+_Change
+_DblClick
+_GotFocus
+ComboBox
+_Click
+_Change
+_GotFocus
+_DropDown
+Date
+_Click
+_Change
+_DropDown
+_GotFocus
+Time
+_Click
+_Change
+_DropDown
+_GotFocus
+CheckBox
+_Click
+_Change
+_GotFocus
+OptionButton
+_Click
+_Change
+_GotFocus
+Label
+_Click
+PictureBox
+_Click
+_MouseDown(b, s, x, y)
+_MouseMove(b, s, x, y)
+_MouseUp(b, s, x, y)
+CommandButton
+_Click

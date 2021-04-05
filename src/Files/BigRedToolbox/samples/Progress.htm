@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Progress Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Progress.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' Progress bar demo by Mark Gamber using NS Basic
+
+addobject "MGCEBarsNPops.Progress", "Prog", 10, 40, 100, 20
+addobject "MGCEBarsNPops.Scrollbar", "HBar", 10, 10, 100, 20
+addobject "CommandButton", "Step", 10, 70, 100, 20
+
+Prog.Min = 0
+Prog.Max = 100
+Prog.Value = 0
+Prog.Step = 10
+Step.Caption = "Step Progress"
+
+sub HBar_Change( value )
+   HBar.Value = value
+   Prog.Value = value  ' Set progress value to scrollbar value
+end sub
+
+sub Step_Click
+   Prog.DoStep         ' auto-step progress bar
+end sub
+</PRE>
+</body>
+</html>

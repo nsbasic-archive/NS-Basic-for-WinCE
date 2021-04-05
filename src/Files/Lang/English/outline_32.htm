@@ -1,0 +1,190 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_32_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_32_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>DO...LOOP                                                           Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DO [WHILE | UNTIL <i><span
+style='font-style:italic;'>condition</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>  [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>  [EXIT DO]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>  [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>LOOP</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>or</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DO</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>  [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>  [EXIT DO]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>  [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>LOOP [WHILE | UNTIL <i><span
+style='font-style:italic;'>condition</span></i>]</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DO...LOOP</span></font> repeats a block of <i><span style='font-style:italic;'>statements</span></i>
+WHILE a given condition is TRUE, or UNTIL a given condition becomes TRUE. The
+required component, <i><span
+style='font-style:italic;'>condition</span></i>, is
+any expression that can be evaluated as TRUE or FALSE. The optional component, <i><span style='font-style:italic;'>statements</span></i>, are the statements executed during the body of
+the loop. Any number of optional EXIT DO statements can be used to exit a loop
+before it is finished. DO...LOOP statements can be nested, and any EXIT DO
+statements in a nested loop transfer execution to one level above the loop
+where the EXIT DO occurs.</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Placing the WHILE/UNTIL clause directly after DO causes <i><span style='font-style:italic;'>condition</span></i> to be evaluated before the first loop is executed,
+if <i><span style='font-style:italic;'>condition</span></i> is FALSE <i><span style='font-style:italic;'>statements</span></i>
+are never executed; placing the WHILE/UNTIL clause after LOOP causes the body
+of the loop to be executed before condition is evaluated, <i><span style='font-style:italic;'>statements</span></i>
+will always be executed, at least once.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM DO...LOOP Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'DO...LOOP repeats a block of statements</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Counter</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Counter = 1</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Loop that prints 1 to 5</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DO WHILE Counter &lt; 6</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+&quot;DO WHILE...LOOP:&quot;, Counter</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+Counter = Counter + 1</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>LOOP</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Infinite loop that uses EXIT DO to</span></font>terminate</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Counter = 1000</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DO</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+&quot;Infinite Loop:&quot;, Counter</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  IF
+Counter &gt;= 1000000 THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+EXIT DO</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+Counter = Counter * 10</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>LOOP</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DO WHILE...LOOP:     1</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DO WHILE...LOOP:     2</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DO WHILE...LOOP:     3</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DO WHILE...LOOP:     4</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DO WHILE...LOOP:     5</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Infinite Loop:       1000</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Infinite Loop:       10000</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Infinite Loop:       100000</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Infinite Loop:       1000000</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXIT, FOR EACH...NEXT, FOR...NEXT, WHILE...WEND</span></font></p>
+
+</div>
+
+</body>
+
+</html>

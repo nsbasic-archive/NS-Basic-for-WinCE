@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "06 FileIO_1"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\Tutorials\06 FileIO_1.nsb"
+Project.AddModule "main", ".\06 FileIO_1.nsb"
+Project.AddResourceFile "newObjectsPack1","{controls}\newObjectsPack1.dll","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

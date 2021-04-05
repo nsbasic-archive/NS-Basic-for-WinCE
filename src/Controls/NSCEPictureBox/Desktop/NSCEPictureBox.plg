@@ -1,0 +1,57 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: NSCEPictureBox - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP2B1.tmp" with contents
+[
+version.lib wininet.lib Msimg32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/NSCEPictureBox.pdb" /machine:I386 /def:"..\src\NSCEPictureBox.def" /out:"Release/NSCEPictureBox.ocx" /implib:"Release/NSCEPictureBox.lib" 
+.\Release\file_ver.obj
+.\Release\NSCEBitmap.obj
+.\Release\NSCEPictureBox.obj
+.\Release\NSCEPictureBoxCtl.obj
+.\Release\NSCEPictureBoxPpg.obj
+.\Release\Res.obj
+.\Release\StdAfx.obj
+.\Release\UrlImage.obj
+.\Release\UrlImageData.obj
+.\Release\NSCEPictureBox.res
+]
+Creating command line "link.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP2B1.tmp"
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP2B2.bat" with contents
+[
+@echo off
+regsvr32 /s /c ".\Release\NSCEPictureBox.ocx"
+echo regsvr32 exec. time > ".\Release\regsvr32.trg"
+]
+Creating command line "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP2B2.bat"
+Linking...
+   Creating library Release/NSCEPictureBox.lib and object Release/NSCEPictureBox.exp
+<h3>Output Window</h3>
+Registering ActiveX Control...
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP2B6.tmp" with contents
+[
+/nologo /o"Release/NSCEPictureBox.bsc" 
+.\Release\file_ver.sbr
+.\Release\NSCEBitmap.sbr
+.\Release\NSCEPictureBox.sbr
+.\Release\NSCEPictureBoxCtl.sbr
+.\Release\NSCEPictureBoxPpg.sbr
+.\Release\Res.sbr
+.\Release\StdAfx.sbr
+.\Release\UrlImage.sbr
+.\Release\UrlImageData.sbr]
+Creating command line "bscmake.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP2B6.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+NSCEPictureBox.ocx - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

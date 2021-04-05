@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Popup Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Popup.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+addobject "MGCEBarsNPops.PopupMenu", "Menu", 0, 0, 0, 0
+addobject "CommandButton", "ShowMenu", 10, 10, 80, 20
+ShowMenu.Caption = "Show Menu"
+
+Menu.Add "&Item 1"
+Menu.Add "I&tem 2"
+Menu.Add "It&em 3"
+Menu.Add "Ite&m 4"
+Menu.Add "-"
+Menu.Add "Cancel"
+Menu.Enabled( 4 ) = FALSE
+
+sub ShowMenu_Click
+   Menu.Show 0, 60, 20
+end sub
+
+sub Menu_Click( text )
+   if text = "Cancel" then exit sub
+   MsgBox text & " was selected"
+end sub
+</PRE>
+</body>
+</html>
+

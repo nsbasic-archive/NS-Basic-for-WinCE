@@ -1,0 +1,22 @@
+File Name
+Text
+	User Source
+		Constants
+		Variable Declarations
+		Default Code
+		Other Routines
+	Form Source
+		Form 1								[CNSBForm]
+			Form Properties
+            Form Name
+				Form Size
+				Form Colors
+			Form Objects
+				Object 1						[CNSBFormObject]
+					Object Name
+					Object Type
+					Object Properties
+					Object Script?
+				Object N
+			Form Menu						[CNSBFormMenu]
+		Form N

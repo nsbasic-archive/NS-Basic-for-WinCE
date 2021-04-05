@@ -1,0 +1,207 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 07: Using TCP/IP to Check Email</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 07: Using TCP/IP to Check Email</h2>
+      <h3>September 20, 2009</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+      <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p> 
+ 	</td></tr></table>
+<hr>
+
+<h3>Contents:</h3>
+<ol>
+    <li><a href="#Intro">Introduction</a></li>
+    <li><a href="#How">How is it Done?</a></li>
+    <li><a href="#Form">Creating the Form</a></li>
+    <li><a href="#Coding">Adding the Code</a></li>
+    <li><a href="#Testing">Testing the Program</a></li>	
+</ol>
+
+<a name="Intro"></a><h2>Introduction</h2>
+
+<p>The purpose of this tutorial is to demonstrate adding networking functionality
+to your NS Basic/CE programs. You should have completed Tutorial #1
+before beginning this tutorial. </p>
+
+<p>The program to be developed uses the NewObjects ActiveX Net Stream
+control to open a socket and connect with an email server. Then using the
+NewObjects Storage and File control to send and received data from the
+server.</p>
+
+<a name="How"></a><h2>How is it Done?</h2>
+<p>Including network support in your application starts as simply as adding NewObjects ActiveX control as a resource to your program. Select Project > Add Resource, then select newObjectsPack1.dll.</p>
+  
+<p>(For a complete reference on the methods above, make sure you read the <a href="http://www.nsbasic.com/desktop/info/technotes/TN06.htm">
+Tech Note 06: Communications - TCP/IP and IRDA</a> and
+ <a href="http://www.nsbasic.com/desktop/info/technotes/TN08.htm">
+ Tech Note 08: File I/O Control - SFStream</a>)</p>
+
+<p>Working with TCP/IP protocols is similar to reading/writing files from
+the file system. There are basically three steps used to talk to a server:</p>
+<ol type ="1">
+  <li>First you have to open it (socket), </li>
+  <li>Then you send commands and read data to/from it, </li>
+  <li>and finally you close it (socket).</li>
+</ol>
+
+<p>Because you are dealing with a remote system and not a local file, you have 
+  a "<font color="#ff0000">timeout</font>" feature. It simply means 
+  that if your application does not hear from the remote machine for a specified 
+  period of time it will give up. </p>
+<p>You must also specify to which service you want to connect in that remote machine, 
+  and that's the concept behind "<font color="#ff0000">port</font>". 
+  Different ports provides different services, for instance, </p>
+<ul>
+  <li>Webserver usually listens on port 80, </li>
+  <li>Mail server accepts messages for delivery on port 25 (SMTP service), 
+    and </li>
+  <li>Email client connects on the server's port 110 to retrieve your mail 
+    using the POP3 protocol. </li>
+</ul>
+
+<a name="Form"></a><h2>Creating the Form</h2>
+<p>Start a new "Standard" project and save it as <i>HttpPop3.nsb</i></p>
+
+Create the following controls on the form:
+<ul>
+  <li>Create a TextBox and call it "txtMsg". Change Multiline to True.
+  Change Scrollbars to 3 (both vertical and horizontal). Delete the 
+  field after the Text property.</li>
+  <li>Create a CommandButton and call it "cmdFetch". Change the Caption
+  to "Fetch".</li>
+</ul>
+  
+<p>The form should look like the following:</p>
+<p align="center"><img src="images/TT07.1.gif" width="553" height="661" alt="" border="0" align="">
+
+<a name="Coding"></a><h2>Adding the Code</h2>
+<p>In this project will simply connect to a pop3 server, send username and password, 
+  and display the result to the STAT command (it should tell how many messages 
+  you have).</p>
+
+<p>Enter the following code in the Code Window (you can copy and paste
+this code):</p>
+
+<p align="center"><textarea name="textfield" cols="80" rows="20" wrap="OFF">
+Option Explicit
+ShowOKButton True 'for CE
+
+Dim ConnectCount
+AddObject "newObjects.net.NSMain", "NSMain"
+AddObject "newObjects.utilctls.SFStream","conn"
+
+Sub cmdFetch_Click
+	Dim Host, addr, socket, s
+	
+	Host = "pop.mail.yahoo.com"
+    Set addr = nsMain.GetHost(Host)
+    txtMsg.Text = "Connecting to: " & Host & vbCrLf
+    
+    addr.Port = 110 ' POP3 SSL port  (normal 110)
+    Set socket = nsMain.NewSocket
+    
+    If Not socket.Socket Then
+        txtMsg.Text= "Socket Error: " & socket.lastError & vbCrLf & txtMsg.Text
+        Exit Sub
+    End If
+      
+    If Not socket.Connect(addr) Then
+        txtMsg.Text= "Connect Error: " & socket.lastError & vbCrLf & txtMsg.Text
+        Exit Sub
+    End If
+           
+    conn.SetStream socket
+
+    s = conn.ReadText(-1)
+    txtMsg.text = vbCrLf  & "Resp: " & s & vbCrLf & txtMsg.text
+
+	txtMsg.text = "Sending user name ..." & vbCrLf & txtMsg.text
+    conn.WriteText "user myname" & vbCrLf
+    
+    s = conn.ReadText(-1)
+    txtMsg.text = vbCrLf  & "Resp: " & s & vbCrLf & txtMsg.text
+
+	txtMsg.text = "Sending password ..." & vbCrLf & txtMsg.text
+    conn.WriteText "pass abcxyz" & vbCrLf
+
+    s = conn.ReadText(-1)
+    txtMsg.text = vbCrLf  & "Resp: " & s & vbCrLf & txtMsg.text
+    
+    txtMsg.text = "Sending STAT ..." & vbCrLf & txtMsg.text
+    conn.WriteText "stat" & vbCrLf
+
+    s = conn.ReadText(-1)
+    txtMsg.text = vbCrLf  & "Resp: " & s & vbCrLf & txtMsg.text
+            
+    txtMsg.Text= "Done." & vbCrLf & txtMsg.Text
+    socket.Close
+End Sub
+</textarea>
+  
+<p align="center"><img src="images/TT07.2.gif" width="576" height="707" alt="" border="0" align="">
+
+<p>Now let's analyze the code, line by line:</p>
+<ul>
+  <li>Lines 4 and 5 define the Net Stream object (NSMain) and the
+  Storage and File object (SFStream).</li>
+  <li>Lines 10 and 11 define our incoming email server address (URL)
+  and gets the IP address of the server (calling GetHost).</li>
+  <li>On line 15 we open the connection to "server" on port 110.</li>
+  <li>Line 27 initializes the Socket connection for reading and writing. 
+  <li>Line 29 waits for a response from the server (read a line of data)</li>
+  <li>On line 33 we are sending the user name to the server and waiting for a 
+    response on line 35. There must be a space between "user" and the
+	name. For Yahoo, if the user is abc&copy; yahoo.com, the user would be "abc".</li>
+  <li>On line 39 we are sending the password to the server and waiting for a 
+    response on line 41. There must be a space between "pass" and the password.</li>
+  <li>On line 45 we are sending the STAT command to the server and waiting for a 
+    response on line 48.</li>		
+  <li>The Socket is closed on line 51. </li>
+</ul>
+<p>This is what is called a chat-style connection. You send something and wait 
+  for a response. That's how the POP3 server works: </p>
+<ul>
+  <li>you connect and it greets you</li>
+  <li>you send your username, and it says either "ok" or that something 
+    is wrong</li>
+  <li>you send your password and it will say if you are logged in, or if your 
+    password is not correct. </li>
+</ul>
+<p>You can tell if the response is a success or an error on POP3 protocol by looking 
+  at the first character of the response line: a <font color="#00ff33">plus</font> 
+  means it was accepted, a <font color="#ff0000">minus</font> means there was 
+  a problem. </p>
+  
+<p>Of course this is a very simple example to get you started. A real application 
+  would have functions to get lines and to send lines, and also check if the password 
+  was accepted, parse the STAT result lines to display only the number of messages 
+  and not the entire ugly line, and even retrieve the header of each message and 
+  display the sender, subject and date of all the emails, and much more.</p>
+
+  
+<a name="Testing"></a><h2>Testing the Program</h2>
+<p>Press F5 to save and start the program. Your results should look similar 
+to the image below if you entered the proper email server address and a valid
+user name and password. The response from your email server may look a 
+little different but you should see "+OK" as a response for every command
+sent. The message text box shows the program's progress and the responses.
+The "+OK 3675" in the last response is the number of emails on the server
+(I know, it's on my to-do list).</p>
+
+<p align="center"><img src="images/TT07.3.gif" width="311" height="488" alt="" border="0" align="">
+
+</BODY>
+</HTML>
+  
+  
+  

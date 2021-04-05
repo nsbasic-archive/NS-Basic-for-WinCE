@@ -1,0 +1,274 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%Provider%
+CESignature="$Windows CE$"
+
+[CEStrings]
+AppName = "VBScript"
+InstallDir = "\Windows"
+
+; Create a HPC2000 specific CAB files
+[CEDevice.HPC2000_ARM]
+ProcessorType = 2577; StrongArm processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 3.00
+VersionMax = 3.99
+
+[CEDevice.HPC2000_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 3.00
+VersionMax = 3.99
+
+; Create a HPCPRO specific CAB files
+[CEDevice.HPCPRO_ARM]
+ProcessorType = 2577; StrongArm processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.HPCPRO_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.HPCPRO_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.HPCPRO_SH4]
+ProcessorType = 10005; SH4 processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+; Create a HPC specific CAB files
+[CEDevice.HPC_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="Palm PC"
+VersionMin = 2.00
+VersionMax = 2.00
+
+[CEDevice.HPC_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="Palm PC"
+VersionMin = 2.00
+VersionMax = 2.00
+
+; Create a PPC specific CAB files
+[CEDevice.PPC_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="HPC","Jupiter"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.PPC_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="HPC","Jupiter"
+VersionMin = 2.11
+VersionMax = 2.99
+
+; Create a PocketPC specific CAB files
+[CEDevice.PocketPC_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="HPC","Jupiter","Galileo"
+VersionMin = 3.00
+VersionMax = 100.0
+
+[CEDevice.PocketPC_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="HPC","Jupiter","Galileo"
+VersionMin = 3.00
+VersionMax = 100.0
+
+[CEDevice.PocketPC_ARM]
+ProcessorType = 2577; StrongArm processors
+UnsupportedPlatforms="HPC","Jupiter","Galileo"
+VersionMin = 3.00
+VersionMax = 3.99
+
+[CEDevice.PocketPC4_ARM]
+ProcessorType = 2577; StrongArm processors
+VersionMin = 4.2
+VersionMax = 100.0
+BuildMax = 0xe0000000
+
+[CEDevice.HPC_1824]
+ProcessorType = 1824; Windows CE 4.1 42ARMi devices (Sigmarion III)
+UnsupportedPlatforms="PocketPC"
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_2336]
+ProcessorType = 2336; Windows CE 4.2 42ARMV4T devices (Advantech, Handera)
+UnsupportedPlatforms="PocketPC"
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_2577]
+ProcessorType = 2577; Windows CE 4.2 42ARMV4 devices (NetbookPro, Workabout Pro, MobilePro)
+UnsupportedPlatforms="PocketPC"
+VersionMin = 4.0
+VersionMax = 100.0
+
+
+[SourceDisksNames]
+1 = , "Common Files",, ..\
+
+[SourceDisksNames.HPC2000_ARM]
+2 =, "ARM files",, ..\Binaries\HPC2000\ARM
+[SourceDisksNames.HPC2000_MIPS]
+2 =, "MIPS files",, ..\Binaries\HPC2000\MIPS
+
+[SourceDisksNames.HPCPRO_ARM]
+2 =, "ARM files",, ..\Binaries\HPCPRO\ARM
+[SourceDisksNames.HPCPRO_MIPS]
+2 =, "MIPS files",, ..\Binaries\HPCPRO\MIPS
+[SourceDisksNames.HPCPRO_SH3]
+2 =, "SH3 files",, ..\Binaries\HPCPRO\SH3
+[SourceDisksNames.HPCPRO_SH4]
+2 =, "SH4 files",, ..\Binaries\HPCPRO\SH4
+
+[SourceDisksNames.HPC_MIPS]
+2 =, "MIPS files",, ..\Binaries\HPC\MIPS
+[SourceDisksNames.HPC_SH3]
+2 =, "SH3 files",, ..\Binaries\HPC\SH3
+
+[SourceDisksNames.PPC_MIPS]
+2 =, "MIPS files",, ..\Binaries\PPC\MIPS
+[SourceDisksNames.PPC_SH3]
+2 =, "SH3 files",, ..\Binaries\PPC\SH3
+
+[SourceDisksNames.PocketPC_MIPS]
+2 =, "MIPS files",, ..\Binaries\PocketPC\MIPS
+[SourceDisksNames.PocketPC_SH3]
+2 =, "SH3 files",, ..\Binaries\PocketPC\SH3
+[SourceDisksNames.PocketPC_ARM]
+2 =, "ARM files",, ..\Binaries\PocketPC\ARM
+
+[SourceDisksNames.PocketPC4_ARM]
+2 =, "ARM files",, ..\Binaries\PocketPC\ARM
+
+[SourceDisksNames.HPC_1824]
+2 =, "HPC 1824 files",, ..\Binaries\HPC_1824
+[SourceDisksNames.HPC_2336]
+2 =, "HPC 2577 files",, ..\Binaries\HPC_2577
+[SourceDisksNames.HPC_2577]
+2 =, "HPC 2577 files",, ..\Binaries\HPC_2577
+
+
+; CPU-independent source files...
+[SourceDisksFiles]
+
+; CPU-specific source files...
+VBScript.dll = 2
+
+[DefaultInstall]
+AddReg = AddRegistry.All
+CopyFiles = Files.Windows
+
+[DefaultInstall.HPCPRO_ARM]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPCPRO_MIPS]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPCPRO_SH3]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPCPRO_SH4]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPC_MIPS]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPC_SH3]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.PPC_MIPS]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.PPC_SH3]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.PocketPC_MIPS]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.PocketPC_SH3]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.PocketPC_ARM]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPC2000_MIPS]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPC2000_ARM]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.PocketPC4_ARM]
+;CESelfRegister=VBScript.dll
+AddReg=AddRegistry.HPC_2577
+
+
+[DefaultInstall.HPC_1824]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPC_2336]
+CESelfRegister=VBScript.dll
+
+[DefaultInstall.HPC_2577]
+;CESelfRegister=VBScript.dll
+AddReg=AddRegistry.HPC_2577
+
+; Ouput directories for files & shortcuts
+[DestinationDirs]
+Files.Windows = 	0,%CE2%
+
+; Install into \Windows
+[Files.Windows]
+"VBScript.dll",,,0x20000000  'CopyFlg_No_Date_Dialog: do not copy if target file is newer
+
+
+; Create document associations...
+[AddRegistry.All]
+
+[AddRegistry.HPC_2577]
+;This is needed for VBScript.dll on the Symbol MC3000, which does not register properly
+HKCR, "CLSID","{B54F3742-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language Authoring"
+HKCR, "CLSID","{B54F3741-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language"
+
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32", "ThreadingModel", 0, "both" ;VBScript
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript"
+
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript Author"
+
+HKCR, "VBS", "Default", 0, "VB Script Language"
+HKCR, "VBS\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBS Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBS Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS Author\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript", "Default", 0, "VB Script Language"
+HKCR, "VBScript\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBScript Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript Author\OLEScript","Default", 0, "(value not set)"
+; Misc. strings...
+[Strings]
+Provider = "NSB"

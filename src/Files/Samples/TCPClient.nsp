@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "TCPClient"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\TCPClient.nsb"
+Project.AddModule "main", ".\TCPClient.nsb"
+Project.AddResourceFile "MSCEWinSock","{controls}\MSCEWinSock.dll","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

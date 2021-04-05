@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "FindDialog"
+Dim AppPath: AppPath = "E:\NSBCE8\Files\Samples\DialogX\FindDialog.nsb"
+Project.AddModule "main", ".\FindDialog.nsb"
+Project.AddResourceFile "DialogX","{controls}\DialogX.ocx","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

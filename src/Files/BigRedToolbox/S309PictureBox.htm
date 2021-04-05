@@ -1,0 +1,1588 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309PictureBox Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>S309PictureBox</P>
+</FONT><FONT FACE="Arial"><P>A powerful implementation of PictureBox.</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>September 27, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+Written by Terry Myhrer, September 1999<BR><BR>
+
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+<HR>
+
+<body bgcolor="#FFFFFF">
+
+<p>The S309PictureBox.ocx <font color="#FF0000">Version 1.8</font>
+provides a PictureBox ActiveX control that can:
+
+<ul>
+  <li>Display Bitmap (bmp and 2bp), Gif, Jpeg,&nbsp;and XBM image files.</li>
+  <li>Display bitmap resources from resource files, including common bitmaps
+    such as FileOpen and FileClose.</li>
+  <li>Capture and display an image of the physical screen.</li>
+  <li>Save an image as a bitmap file.</li>
+  <li>Display and animate playing cards like the ones used in the Solitaire
+    game provided with Windows CE. </li>
+  <li>Clip, Invert colors, Mirror, Resize,Rotate, and Scroll an image.</li>
+  <li>Display any image with a transparent color.</li>
+  <li>Provide access to individual pixels in the image.</li>
+  <li>Specify colors using RGB or QBColor notation.</li>
+  <li>Overlay one image on top of another.</li>
+  <li>Draw lines, rectangles, circles, polygons, and round rectangles.</li>
+  <li>Change the color depth of an image.</li>
+  <li>Refresh the Desktop Wallpaper.</li>
+  <li>Better support for drawing, See DrawMouseMoveLineEx.</li>
+  <li>Better support for 64K color displays.</li>
+</ul>
+
+<p>The S309PictureBox maintains the picture being displayed as an image,
+which is not necessarily the same width and/or height as the S309PictureBox. You can have
+the S309PictureBox automatically size itself to the width and height of the image or have
+the image stretched or shrunk to the size of the S309PictureBox when displayed. All
+drawing and pixel manipulation is done on the image.</p>
+
+<p>This is a beta control and will expire on November 1, 1999</p>
+
+<H4>Object Creation</H4>
+<CODE>addobject "s309.picturebox.1","btnSelect",5,5,20,20</CODE>
+
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/S309PictureBox.htm">PictureBox</A> - Demo of picture manipulation
+	<LI><A HREF="samples/S309PictureBoxBitMaps.htm">BitMaps</A> - Display system bitmap images
+	<LI><A HREF="samples/S309PictureBoxCapture.htm">Capture</A> - Copy part of display to another
+	<LI><A HREF="samples/S309PictureBoxDrawing.htm">Drawing</A> - Demo draw functions
+	<LI><A HREF="samples/S309PictureBoxPlayingCard.htm">PlayingCard</A> - Demo playing card functions
+	<LI><A HREF="samples/S309PictureBoxResource.htm">Resource</A> - Display system resource images
+	<LI><A HREF="samples/S309PyramidSolitaire.htm">PyramidSolitare</A> - The classic card game!
+</UL>
+
+
+
+<div align="center"><center>
+
+<table border="2" cellpadding="5" frame="BOX">
+  <tr>
+    <th colspan="3"><font color="#0080FF"><big><strong>Properties</strong></big></font></th>
+  </tr>
+  <tr>
+    <td><font color="#0080FF"><strong>Name</strong></font></td>
+    <td><font color="#0080FF"><strong>Values</strong></font></td>
+    <td><font color="#0080FF"><strong>Description</strong></font></td>
+  </tr>
+  <tr>
+    <td><strong>AnimationAvailable</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Returns True if animation is available for the image displayed. <strong><font
+    color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>AnimationInterval</strong></td>
+    <td><em><strong>0</strong>-65535</em></td>
+    <td>Sets or returns a value indicating whether the PictureBox will animate the image
+    displayed with the <strong>PlayingCard</strong> property The <strong>AnimationInterval</strong>
+    is in milliseconds.Setting the <strong>AnimationInterval</strong> property to a value
+    greater than 0 will enable the animation. 1000=one second.<em> Currently only available
+    with the <strong>PlayingCard</strong></em> <em>property set to 62 (<font color="#000000">Haunted
+    Castle</font>), 63(<font color="#000000">Bubbling Fish</font>), 64 (<font color="#000000">Cheating
+    Hand</font>), 65(<font color="#000000">Helpful Robot</font>), with the <strong>WildCard</strong>
+    property set to True, or with the <strong>PlayingCard</strong></em> <em>property set to
+    any of the face cards or 53 (the Joker).</em></td>
+  </tr>
+  <tr>
+    <td><strong>Appearance</strong></td>
+    <td><em>-2, -1,<strong> 0</strong>, 1, 2</em></td>
+    <td>Sets or returns a value indicating the appearance of the PictureBox. <em>The <strong>Appearance</strong>
+    property has no effect if <strong>BorderStyle</strong> property is not set to 1.</em><div
+    align="center"><center><table border="1">
+      <tr>
+        <td colspan="2" rowspan="2"><font color="#0080FF">Interactions between<strong> BorderStyle</strong>
+        and <strong>Appearance</strong> properties.</font></td>
+        <td colspan="2" align="center"><font color="#0080FF"><strong>BorderStyle</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center">0</td>
+        <td align="center">1</td>
+      </tr>
+      <tr>
+        <td rowspan="5" align="center"><font color="#0080FF"><strong>Appearance</strong></font></td>
+        <td align="center">2</td>
+        <td>No Border</td>
+        <td>3D Raised Border (Tiles)</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td>No Border</td>
+        <td>3D Raised Border (Soft)</td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td>No Border</td>
+        <td>Single Line Border</td>
+      </tr>
+      <tr>
+        <td align="center">-1</td>
+        <td>No Border</td>
+        <td>3D Sunken Border (Soft)</td>
+      </tr>
+      <tr>
+        <td align="center">-2</td>
+        <td>No Border</td>
+        <td>3D Sunken Border (Tiles)</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>AutoRefresh</strong></td>
+    <td><em><strong>True</strong>|False</em></td>
+    <td>Sets or returns a value indicating whether the PictureBox will automatically refresh
+    after image manipulation.</td>
+  </tr>
+  <tr>
+    <td><strong>AutoSize</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Sets or returns a value indicating whether the PictureBox will automatically change to
+    the size of the image being displayed.</td>
+  </tr>
+  <tr>
+    <td><strong>BackColor</strong></td>
+    <td><em>color</em></td>
+    <td>Sets or returns the background color of the PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>BitmapOnClipboard</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Returns True if there is a bitmap image on the clipboard. <strong><font
+    color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>BorderStyle</strong></td>
+    <td><em><strong>0</strong>, 1</em></td>
+    <td>Sets or returns a value indicating the border style of the PictureBox.Can be used with
+    the <strong>Appearance</strong> property to display 3D borders.<div align="center"><center><table
+    border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>BorderStyle</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td>No Border</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td>Single line border</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>Center</strong></td>
+    <td><em><strong>0</strong>, 1, 2, 3</em></td>
+    <td>Sets or returns a value indicating whether the PictureBox will automatically center
+    the image being displayed in the PictureBox.<div align="center"><center><table border="1">
+      <tr>
+        <td><font color="#0080FF"><strong>Center</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>Horizontally</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>Vertically</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td align="center">No</td>
+        <td align="center">No</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td align="center">Yes</td>
+        <td align="center">No</td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td align="center">No</td>
+        <td align="center">Yes</td>
+      </tr>
+      <tr>
+        <td align="center">3</td>
+        <td align="center">Yes</td>
+        <td align="center">Yes</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>Clip</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Sets or returns a value indicating whether the image should be clipped when it is
+    loaded when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+    ResourceBitmapID</strong> properties. Only a portion of the image is kept and it is not
+    resized. Used with the <strong>ClipHeigh</strong>t, <strong>ClipLeft</strong>, <strong>ClipTop</strong>,
+    and <strong>ClipWidth</strong> <strong>FillColor</strong> properties. You can increase the
+    size of the overall image without resizing the existing image. The new area not covered by
+    the clipped existing image will be filled with the color in the <strong>FillColor</strong>
+    property.</td>
+  </tr>
+  <tr>
+    <td><strong>ClipHeight</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from top edge of original image to bottom edge of
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipLeft</strong>,
+    <strong>ClipTop</strong>, and <strong>ClipWidth</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>ClipLeft</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from left edge of original image to left edge of
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipHeigh</strong>t,<strong>
+    ClipTop</strong>, and <strong>ClipWidth</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>ClipTop</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from top edge of original image to top edge of
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipHeigh</strong>t,<strong>
+    ClipLeft</strong>, and <strong>ClipWidth</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>ClipWidth</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from left edge of original image to right edge of
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipHeigh</strong>t,<strong>
+    ClipLeft</strong>,&nbsp; and <strong>ClipTop</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>CommonBitmapID</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns a value indicating which Common Controls Bitmap should or is being
+    shown. <em>Set <strong>CommonBitmapType</strong> property before setting <strong>CommonBitmapID</strong>
+    property. Setting this property will cause the image to be loaded and displayed in the
+    PictureBox.</em><div align="center"><center><table border="1" callpadding="5" frame="Box">
+      <tr>
+        <th><font color="#0080FF">CommonBitmapID</font></th>
+        <th colspan="2"><font color="#0080FF">CommonBitmapType</font></th>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center"><font color="#0080FF"><strong>-1 or 1</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>-2 or 2</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center">&nbsp;</td>
+        <td align="center" colspan="2"><font color="#0080FF"><strong>Bitmap Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>-1</strong> <strong><font color="#FF0000">(Read Only)</font></strong></td>
+        <td>No Bitmap</td>
+        <td>No Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">0</td>
+        <td>Cut Bitmap</td>
+        <td>Large Icons Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td>Copy Bitmap</td>
+        <td>Small Icons Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td>Paste Bitmap</td>
+        <td>List Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">3</td>
+        <td>Undo Bitmap</td>
+        <td>Details Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">4</td>
+        <td>Redo Bitmap</td>
+        <td>Sort By Name Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">5</td>
+        <td>Delete Bitmap</td>
+        <td>Sort By Size Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">6</td>
+        <td>File New Bitmap</td>
+        <td>Sort By Date Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">7</td>
+        <td>File Open Bitmap</td>
+        <td>Sort By Type Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">8</td>
+        <td>File Save Bitmap</td>
+        <td>Parent Folder Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">9</td>
+        <td>Print Preview Bitmap</td>
+        <td>Net Connect Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">10</td>
+        <td>Properties Bitmap</td>
+        <td>Net Disconnect Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">11</td>
+        <td>Help Bitmap</td>
+        <td>New Folder Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">12</td>
+        <td>Find Bitmap</td>
+        <td><em>Illegal value</em></td>
+      </tr>
+      <tr>
+        <td align="center">13</td>
+        <td>Replace Bitmap</td>
+        <td><em>Illegal value</em></td>
+      </tr>
+      <tr>
+        <td align="center">14</td>
+        <td>Print Bitmap</td>
+        <td><em>Illegal value</em></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>CommonBitmapType</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns a value indicating which Type Common Controls bitmap should or is
+    being shown. <em>Set <strong>CommonBitmapType</strong> property before setting <strong>CommonBitmapID</strong>
+    property.</em><div align="center"><center><table border="1">
+      <tr>
+        <th><font color="#0080FF">CommonBitmapType</font></th>
+        <th><font color="#0080FF">Description</font></th>
+      </tr>
+      <tr>
+        <td align="center">-2</td>
+        <td>Disabled View Bitmaps</td>
+      </tr>
+      <tr>
+        <td align="center">-1</td>
+        <td>Disabled Standard Bitmaps</td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td>No Bitmap</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td>Enabled Standard Bitmaps</td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td>Enabled View Bitmaps</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>FillColor</strong></td>
+    <td><em>color</em></td>
+    <td>Sets or returns the fill color to be used when manipulating an image in the
+    PictureBox. This property defaults to the color white.</td>
+  </tr>
+  <tr>
+    <td><strong>FillStyle</strong></td>
+    <td><em><strong>0</strong>, 1</em></td>
+    <td>Sets or returns the fill style to be used when manipulating an image in the
+    PictureBox.<div align="center"><center><table border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>FillStyle</strong></font></td>
+        <td><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td>Solid - Will be filled in the color in the <strong>FillColor</strong> property.</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td>Transparent - the background will show through.</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>hBitmap</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the HBITMAP of the image. This should only be used to set the hBitmap
+    property of one S309PictureBox to the hBitmap property of another S309PictureBox. This is
+    used to copy the image from one S309PictureBox to another S309PictureBox. <em>Setting this
+    property will cause the image to be loaded and displayed in the PictureBox.</em></td>
+  </tr>
+  <tr>
+    <td><strong>Height</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from the top edge to the bottom edge of the
+    PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>ImageBitsPerPixel</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns a value indicating the number of bits per pixel (color depth) of the
+    image<em>. </em><div align="center"><center><table border="1">
+      <tr>
+        <td width="50%" align="center"><font color="#0080FF"><strong>Bits Per Pixel</strong></font></td>
+        <td width="50%" align="center"><font color="#0080FF"><strong>Number Of Colors</strong></font></td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">1</td>
+        <td width="50%" align="center">2</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">2</td>
+        <td width="50%" align="center">4</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">4</td>
+        <td width="50%" align="center">16</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">8</td>
+        <td width="50%" align="center">256</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">16</td>
+        <td width="50%" align="center">65,535</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">24</td>
+        <td width="50%" align="center">16,777,216</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>ImageHeight</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns the height of the image from the file.<strong><font color="#FF0000"> (Read
+    Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>ImageLoadBitsPerPixel</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns a value indicating the number of bits per pixel (color depth) of the
+    image to use when <font color="#000000">loading images with the <strong>Picture</strong>
+    property. (</font>If<strong> ImageLoadBufferSize = 0</strong>, <strong>ImageLoadBitsPerPixel</strong>
+    might be ignored.)<div align="center"><center><table border="1">
+      <tr>
+        <td width="50%" align="center"><font color="#0080FF"><strong>Bits Per Pixel</strong></font></td>
+        <td width="50%" align="center"><font color="#0080FF"><strong>Number Of Colors</strong></font></td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">1</td>
+        <td width="50%" align="center">2</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">2</td>
+        <td width="50%" align="center">4</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">4</td>
+        <td width="50%" align="center">16</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">8</td>
+        <td width="50%" align="center">256</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">16</td>
+        <td width="50%" align="center">65,535</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">24</td>
+        <td width="50%" align="center">16,777,216</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>ImageLoadBufferSize</strong></td>
+    <td><em>integer</em></td>
+    <td><font color="#000000">Returns or sets the buffer size used when loading an image with
+    the <strong>Picture</strong> property. (Default: </font><strong>ImageLoadBufferSize = 0</strong>,
+    which will use the height and width from the file instead of <strong>ImageLoadMaxHeight </strong>and
+    <strong>ImageLoadMaxWidth</strong> properties and will attempt to use the bits per pixel
+    value from the file instead of <strong>ImageLoadBitsPerPixel</strong> property when
+    loading images with the <strong>Picture</strong> property.</td>
+  </tr>
+  <tr>
+    <td><strong>ImageLoaded</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Returns True if the PictureBox currently has an image loaded.<em> </em><strong><font
+    color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>ImageLoadMaxHeight</strong></td>
+    <td><em>integer</em></td>
+    <td><font color="#000000">Return or sets the maximum image height when loading images with
+    the <strong>Picture</strong> property. (</font>If<strong> ImageLoadBufferSize = 0</strong>,
+    <strong>ImageLoadMaxHeight</strong> will be ignored.)</td>
+  </tr>
+  <tr>
+    <td><strong>ImageLoadMaxWidth</strong></td>
+    <td><em>integer</em></td>
+    <td><font color="#000000">Return or sets the maximum image width when loading images with
+    the <strong>Picture</strong> property.(</font>If<strong> ImageLoadBufferSize = 0</strong>,
+    <strong>ImageLoadMaxWidth</strong> will be ignored.)</td>
+  </tr>
+  <tr>
+    <td><strong>ImageWidth</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns the width of the image from the file.<strong><font color="#FF0000"> (Read
+    Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Invert</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Sets or returns a value indicating whether the colors of the image will be inverted
+    when loaded into the PictureBox when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+    ResourceBitmapID</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>Left</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from the left edge of the output window to the
+    left edge of the PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>Mirror</strong></td>
+    <td><em><strong>0</strong>, 1, 2, 3</em></td>
+    <td>Sets or returns a value indicating whether the picture will be mirrored in the
+    PictureBox when loading the image with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+    ResourceBitmapID</strong> properties or the <strong>MirrorImage</strong> method.<div
+    align="center"><center><table border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>Mirror</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>Horizontally</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>Vertically</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td align="center">No</td>
+        <td align="center">No</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td align="center">Yes</td>
+        <td align="center">No</td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td align="center">No</td>
+        <td align="center">Yes</td>
+      </tr>
+      <tr>
+        <td align="center">3</td>
+        <td align="center">Yes</td>
+        <td align="center">Yes</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>MouseMovePoints</strong></td>
+    <td><em>0, 1, <strong>2</strong></em></td>
+    <td>Sets or returns the mode of dealing with extra mouse move points.<br>
+    <div align="center"><center><table border="1">
+      <tr>
+        <td align="center"><font color="#0080FF">MouseMovePoints</font></td>
+        <td align="center"><font color="#0080FF">Description</font></td>
+      </tr>
+      <tr>
+        <td align="center">0</td>
+        <td align="center">Do not capture or use extra mouse move points. <em>This option takes
+        the fewest CPU cycles.</em></td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td align="center">Capture extra mouse move points and send them through the <strong>MouseDown</strong>
+        event.<em>This option takes the most CPU cycles.</em></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>2</strong></td>
+        <td align="center">Capture extra mouse move points and make them available to <strong>DrawMouseMoveLines</strong>,
+        &nbsp; <strong>DrawMouseMoveLinesEx</strong>, and <strong>GetMouseMovePoint</strong>
+        methods, but do not send them through the <strong>MouseMove</strong> event.<em> This
+        option is the best trade off between CPU cycles and amount of detail in drawing.</em></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>MouseMovePointsCount</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns the number of mouse move points stored for the <strong>DrawMouseMoveLines</strong>,
+    &nbsp; <strong>DrawMouseMoveLinesEx</strong>, and <strong>GetMouseMovePoint</strong>
+    methods. <strong><font color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td><em>string</em></td>
+    <td>Returns the name of the PictureBox. <strong><font color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Overlay</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Sets or returns a value indicating whether the image being loaded should be overlaid
+    on the existing image when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+    ResourceBitmapID</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>OverlayLeft</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from left edge of original image to left edge of
+    new image. Used with the <strong>Overlay </strong>and<strong> OverlayTop</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>OverlayTop</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from top edge of original image to top edge of
+    new image. Used with the <strong>Overlay </strong>and<strong> OverlayLeft</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>OverlayTransparentColor</strong></td>
+    <td><em><strong>-1, </strong>color</em></td>
+    <td>Returns or sets the color to be used as a transparent color when overlaying the image.
+    No transparent color will be used if this property is set to -1.</td>
+  </tr>
+  <tr>
+    <td><strong>PenStyle</strong></td>
+    <td><em>0, <strong>1</strong>, 2</em></td>
+    <td>Sets or returns the pen style to be used when drawing a line with a width of 1. If the
+    <strong>DrawWidth</strong> property&nbsp; &gt; 1 then the <strong>PenStyle</strong>
+    property is assumed to be 1.<div align="center"><center><table border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>PenStyle</strong></font></td>
+        <td><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center">0</td>
+        <td>No Line</td>
+      </tr>
+      <tr>
+        <td align="center"><strong>1</strong></td>
+        <td>Solid Line</td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td>Dash Line</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>PenFillStyle</strong></td>
+    <td><em>0, <strong>1</strong></em></td>
+    <td>Sets or returns the pen fill style to be used when manipulating an image in the
+    PictureBox and the <strong>PenStyle</strong> property =&nbsp; 2.<div align="center"><center><table
+    border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>PenFillStyle</strong></font></td>
+        <td><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center">0</td>
+        <td>Solid - Will be filled in the color in the <strong>BackColor</strong> property.</td>
+      </tr>
+      <tr>
+        <td align="center"><strong>1</strong></td>
+        <td>Transparent - the background will show through.</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>Picture</strong></td>
+    <td><em>string</em></td>
+    <td>Set or Returns a string with name of image file.<br>
+    <em>Setting this property will cause the image to be loaded and displayed in the
+    PictureBox.</em></td>
+  </tr>
+  <tr>
+    <td><strong>Pixel(<em>x</em>, <em>y</em>)</strong></td>
+    <td><em>color</em></td>
+    <td>Set or returns the color of the pixel in the image at the position specified by <strong><em>x</em></strong>
+    and <strong><em>y</em></strong>. <strong>Note</strong>: The <strong><em>x</em></strong>
+    and <em><strong>y</strong></em> are coordinates on the image which may or may not
+    correspond to the coordinates of the PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>PlayingCard</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the numeric id of a playing card to display. <em>Setting this property
+    will cause the image to be loaded and displayed in the PictureBox.</em><div align="center"><center><table
+    border="1" width="693">
+      <tr>
+        <td align="center" width="82"><font color="#0080FF"><strong>PlayingCard</strong></font></td>
+        <td align="center" width="242"><font color="#0080FF"><strong>Description</strong></font></td>
+        <td align="center" width="183"><font color="#0080FF"><strong>AnimationAvailable HPC</strong></font></td>
+        <td align="center" width="162"><font color="#0080FF"><strong>AnimationAvailable PPC</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center" width="82">1-13</td>
+        <td width="242">Ace through King of Clubs</td>
+        <td width="183">True (Jack, Queen, and King)</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">14-26</td>
+        <td width="242">Ace through King of Diamonds</td>
+        <td width="183">True (Jack, Queen, and King)</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">27-39</td>
+        <td width="242">Ace through King of Hearts</td>
+        <td width="183">True (Jack, Queen, and King)</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">40-52</td>
+        <td width="242">Ace through King of Spades</td>
+        <td width="183">True (Jack, Queen, and King)</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">53</td>
+        <td width="242">Joker</td>
+        <td width="183">True</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">54</td>
+        <td width="242">Blank card</td>
+        <td width="183">False</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">55</td>
+        <td width="242">Blank face card</td>
+        <td width="183">False</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">56-59</td>
+        <td width="242">Suit cards <br>
+        (Clubs, Diamonds, Hearts, Spades)</td>
+        <td width="183">False</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">61</td>
+        <td width="242">WIN32_WCE Horse card back (HPC)<br>
+        Rocket Ship (HPC PRO)<br>
+        Dragon card back (PPC)</td>
+        <td width="183">False</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">62</td>
+        <td width="242"><font color="#000000">Haunted Castle</font> card back (HPC)<br>
+        Pyramid card back (PPC)</td>
+        <td width="183">True</td>
+        <td width="162">True</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">63</td>
+        <td width="242"><font color="#000000">Bubbling Fish</font> card back (HPC)<br>
+        ? card back (PPC)</td>
+        <td width="183">True</td>
+        <td width="162">True</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">64</td>
+        <td width="242"><font color="#000000">Cheating Hand</font> card back</td>
+        <td width="183">True</td>
+        <td width="162">True</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">65</td>
+        <td width="242"><font color="#000000">Helpful Robot</font> card back (HPC)<br>
+        Clover card back (PPC)</td>
+        <td width="183">True</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">66</td>
+        <td width="242">Sailboat card back</td>
+        <td width="183">False</td>
+        <td width="162">True</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">78</td>
+        <td width="242">O card</td>
+        <td width="183">False</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">79</td>
+        <td width="242">X card</td>
+        <td width="183">False</td>
+        <td width="162">False</td>
+      </tr>
+      <tr>
+        <td align="center" width="82">80</td>
+        <td width="242">Ghost card</td>
+        <td width="183">False</td>
+        <td width="162">False</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>Resize</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Sets or returns a value indicating the whether the image will be resized (stretched or
+    shrunk) when loading the image with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+    ResourceBitmapID</strong> properties.Used with the <strong>ResizeHeigh</strong>t and <strong>ResizeWidth</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>ResizeHeight</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the number of pixels from top edge to bottom edge of the resized
+    image.Used with the <strong>ResizeImage </strong>method, <strong>Resize </strong>and <strong>ResizeWidth</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>ResizeWidth</strong></td>
+    <td><em>integer</em></td>
+    <td>Set or returns the number of pixels from left edge to right edge of the resized
+    image.Used with the <strong>ResizeImage </strong>method, <strong>Resize </strong>and <strong>ResizeHeight</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>ResourceBitmapID</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns the numeric resource id of a bitmap in an executable to display.<br>
+    <em>Set the <strong>ResourceFile</strong> property before setting this property. Setting
+    this property will cause the image to be loaded and displayed in the PictureBox.</em></td>
+  </tr>
+  <tr>
+    <td><strong>ResourceFile</strong></td>
+    <td><em>string</em></td>
+    <td>Sets or returns a string with name of resource file (.dll, .ocx, .cpl, etc...) in
+    which to get the bitmap resource from. <em>Set the <strong>ResourceBitmapID</strong>
+    property after setting this property.</em></td>
+  </tr>
+  <tr>
+    <td><strong>ResourceFileLoaded</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Returns a value indicating the whether a resource file has been successfully loaded. <em>Set
+    the <strong>ResourceBitmapID</strong> property before reading this property. </em><strong><font
+    color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Rotate</strong></td>
+    <td><em><strong>0</strong>, 90, 180, 270</em></td>
+    <td>Sets or returns a value indicating the rotation of the picture in the PictureBox when
+    loading the image with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+    ResourceBitmapID</strong> properties or the <strong>RotateImage</strong> method.<div
+    align="center"><center><table border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>Rotate</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td>No rotation will be done</td>
+      </tr>
+      <tr>
+        <td align="center">90</td>
+        <td>Rotate image 90 degrees clockwise</td>
+      </tr>
+      <tr>
+        <td align="center">180</td>
+        <td>Rotate image 180 degrees clockwise</td>
+      </tr>
+      <tr>
+        <td align="center">270</td>
+        <td>Rotate image 270 degrees clockwise</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>ScaleMode</strong></td>
+    <td><strong><em>3</em></strong></td>
+    <td>Sets or returns a value indicating the Scale Mode of the PictureBox. Currently only
+    Scale Mode 3 is supported..</td>
+  </tr>
+  <tr>
+    <td><strong>ScreenBitsPerPixel</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns a value indicating the number of bit per pixel (color depth) of the physical
+    screen<em>. </em><strong><font color="#FF0000">(Read Only)</font></strong><div
+    align="center"><center><table border="1">
+      <tr>
+        <td width="50%" align="center"><font color="#0080FF"><strong>Bits Per Pixel</strong></font></td>
+        <td width="50%" align="center"><font color="#0080FF"><strong>Number Of Colors</strong></font></td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">1</td>
+        <td width="50%" align="center">2</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">2</td>
+        <td width="50%" align="center">4</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">4</td>
+        <td width="50%" align="center">16</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">8</td>
+        <td width="50%" align="center">256</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">16</td>
+        <td width="50%" align="center">65,535</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">24</td>
+        <td width="50%" align="center">16,777,216</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>ScreenHeight</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns a value indicating the number of pixels from the top edge to the bottom edge
+    of the physical screen<em>. </em><strong><font color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>ScreenLeft</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns the number of pixels from left edge of the physical screen to left edge of the
+    PictureBox. <strong><font color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>ScreenTop</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns the number of pixels from top edge of the physical screen to top edge of the
+    PictureBox.<em> </em><strong><font color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>ScreenWidth</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns a value indicating the number of pixels from the left edge to the right edge
+    of the physical screen.<em>. </em><strong><font color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Scroll</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Sets or returns a value indicating whether the image should be scrolled when it is
+    loaded when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+    ResourceBitmapID</strong> properties. Used with the <strong>ScrollX</strong> and <strong>ScrollY</strong>
+    properties. </td>
+  </tr>
+  <tr>
+    <td><strong>ScrollX</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns a value indicating the number of pixels to scroll the image horizontally.<em>.
+    </em>Used with the <strong>Scroll</strong> and <strong>ScrollY</strong> properties and the
+    <strong>ScrollImage </strong>method.</td>
+  </tr>
+  <tr>
+    <td><strong>ScrollY</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns a value indicating the number of pixels to scroll the image vertically.<em>.</em>
+    Used with the <strong>Scroll</strong> and <strong>ScrollX</strong> properties and the <strong>ScrollImage
+    </strong>method.</td>
+  </tr>
+  <tr>
+    <td><strong>Stretch</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Sets or returns a value indicating whether the PictureBox will stretch (or shrink) the
+    display of the image to the size of the PictureBox. This will not change the size of the
+    image, but will strecth or shrink the display of it.</td>
+  </tr>
+  <tr>
+    <td><strong>Tag</strong></td>
+    <td><em>variant</em></td>
+    <td>User defined.</td>
+  </tr>
+  <tr>
+    <td><strong>Top</strong></td>
+    <td><em>integer</em></td>
+    <td>Set or returns the number of pixels from the top edge of the output window to the top
+    edge of the PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>TransparentColor</strong></td>
+    <td><em><strong>-1, </strong>color</em></td>
+    <td>Returns or sets the color to be used as a transparent color when displaying the image.
+    No transparent color will be used if this property is set to -1.</td>
+  </tr>
+  <tr>
+    <td><strong>VersionMajor</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns the major version of the S309PictureBox<em> </em><strong><font color="#FF0000">(Read
+    Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>VersionMinor</strong></td>
+    <td><em>integer</em></td>
+    <td>Returns the minor version of the S309PictureBox.<em> </em><strong><font
+    color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Visible</strong></td>
+    <td><em><strong>True</strong>|False</em></td>
+    <td>Sets or returns value indicating whether the PictureBox is visible.</td>
+  </tr>
+  <tr>
+    <td><strong>WaitCursor</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Set or returns a value indicating whether the PictureBox will display a Wait Cursor
+    while loading, mirroring, saving, or rotating the image.</td>
+  </tr>
+  <tr>
+    <td><strong>Width</strong></td>
+    <td><em>integer</em></td>
+    <td>Set or returns the number of pixels from the left edge to the right edge of the
+    PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>WildCard</strong></td>
+    <td><em>integer</em></td>
+    <td>Sets or returns a value indicating whether a &quot;WILD&quot; indicator should appear
+    on the image. <em>This a intended to be used with the images displayed with the <strong>PlayingCard</strong>
+    property. The indicator can be animated with the <strong>AnimationInterval</strong>
+    property.</em><div align="center"><center><table border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>WildCard</strong></font></td>
+        <td align="center"><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center"><strong>0</strong></td>
+        <td>No indicator</td>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td>Horizontal Indicators</td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td>Vertical Indicators</td>
+      </tr>
+      <tr>
+        <td align="center">3</td>
+        <td>Center Indicator</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <th colspan="3"><font color="#0080FF"><big><strong>Events</strong></big></font></th>
+  </tr>
+  <tr>
+    <td><font color="#0080FF"><strong>Name</strong></font></td>
+    <td>&nbsp;</td>
+    <td><font color="#0080FF"><strong>Description</strong></font></td>
+  </tr>
+  <tr>
+    <td><strong>Click</strong></td>
+    <td>&nbsp;</td>
+    <td>Standard Click event.</td>
+  </tr>
+  <tr>
+    <td><strong>DblClick</strong></td>
+    <td>&nbsp;</td>
+    <td>Standard Double Click event.</td>
+  </tr>
+  <tr>
+    <td><strong>GotFocus<br>
+    GotFocusX</strong></td>
+    <td>&nbsp;</td>
+    <td>Standard GotFocus event. Use GotFocusX in NS Basic</td>
+  </tr>
+  <tr>
+    <td><strong>LostFocus<br>
+    LostFocusX</strong></td>
+    <td>&nbsp;</td>
+    <td>Standard LostFocus event.Use LostFocusX in NS Basic.</td>
+  </tr>
+  <tr>
+    <td><strong>MouseDown</strong></td>
+    <td><em>button, shift, x, y</em></td>
+    <td>PictureBox is contacted with stylus or input device.</td>
+  </tr>
+  <tr>
+    <td><strong>MouseMove</strong></td>
+    <td><em>button, shift, x, y</em></td>
+    <td>Stylus or input device is moved while in contact with the PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>MouseUp</strong></td>
+    <td><em>button, shift, x, y</em></td>
+    <td>Stylus is lifted from PictureBox, or input device breaks contact with PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>VBCEAutoSize</strong></td>
+    <td><em>width, height</em></td>
+    <td>Called when the PictureBox control needs to resize itself and VBCE container will not
+    let it. The <strong>Width</strong> and <strong>Height</strong> properties of the
+    PictureBox control should be set in this event.</td>
+  </tr>
+  <tr>
+    <th colspan="3"><font color="#0080FF"><big><strong>Methods</strong></big></font></th>
+  </tr>
+  <tr>
+    <td><font color="#0080FF"><strong>Name</strong></font></td>
+    <td><font color="#0080FF"><strong>Parameter(s)</strong></font></td>
+    <td><font color="#0080FF"><strong>Description</strong></font></td>
+  </tr>
+  <tr>
+    <td><strong>AboutBox</strong></td>
+    <td>&nbsp;</td>
+    <td>Displays the About Box for the PictureBox control.</td>
+  </tr>
+  <tr>
+    <td><strong>Animate</strong></td>
+    <td>&nbsp;</td>
+    <td>Does the animation of the image if the<strong> AnimationAvailable</strong> property is
+    set to True..</td>
+  </tr>
+  <tr>
+    <td><strong>CaptureScreen</strong></td>
+    <td>&nbsp;</td>
+    <td>Loads a copy of the physical screen into the image and displays it in the PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>ClipImage</strong></td>
+    <td>&nbsp;</td>
+    <td>Clips the image that is displayed in the PictureBox control using the <strong>ClipHeigh</strong>t,
+    <strong>ClipLeft</strong>, <strong>ClipTop</strong>, <strong>ClipWidth</strong>, and <strong>FillColor</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>Cls</strong></td>
+    <td>&nbsp;</td>
+    <td>Clears the image from the PictureBox control.</td>
+  </tr>
+  <tr>
+    <td><strong>Copy</strong></td>
+    <td>&nbsp;</td>
+    <td>Copies the image from the PictureBox control to the clipboard. Returns True if an
+    image was copied.</td>
+  </tr>
+  <tr>
+    <td><strong>CreateImage</strong></td>
+    <td><em>width</em>, <em>height</em></td>
+    <td>Creates an image of the specified size and of the color specified in the <strong>FillColor</strong>
+    property.</td>
+  </tr>
+  <tr>
+    <td><strong>DrawCircle</strong></td>
+    <td><em>x, y, radius, color, aspectratio</em></td>
+    <td>Draws a circle centered on <strong>x</strong>, <strong>y</strong> with a radius of <strong>radius</strong>
+    and the aspect ratio of <strong>aspectratio</strong>.&nbsp; Set <strong>aspectratio</strong>
+    to 1 for a normal circle. The circle is drawn with color <strong>color</strong> and filled
+    in with the <strong>FillColor</strong> property. Used with <strong>FillStyle</strong>, <strong>FillColor</strong>,
+    <strong>PenStyle</strong>, and <strong>PenFillStyle</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>DrawLine</strong></td>
+    <td><em>fromX, fromY, toX, toY, color</em></td>
+    <td>Draws a line from (<em>fromX</em>, <em>fromY</em>) to (<em>toX</em>, <em>toY</em>)
+    with <em>color. </em>Use <strong>DrawRoundRect</strong> with arcwidth = 0 and archeight =
+    0 to draw a box.</td>
+  </tr>
+  <tr>
+    <td><strong>DrawMouseMoveLine</strong></td>
+    <td><em>color</em></td>
+    <td>Draws a line using the mouse move points with <em>color.</em></td>
+  </tr>
+  <tr>
+    <td><strong>DrawMouseMoveLineEx</strong></td>
+    <td><em>fromX, fromY, toX, toY, color</em></td>
+    <td>Draws a line from (<em>fromX</em>, <em>fromY</em>) to the mouse move points stored to
+    (<em>toX</em>, <em>toY</em>) with <em>color. </em></td>
+  </tr>
+  <tr>
+    <td><strong>DrawPoint</strong></td>
+    <td><em>x, y, color</em></td>
+    <td>Draws a pixel at <strong>x</strong>, <strong>y</strong> with color <strong>color</strong>.
+    This is the same as <strong>Pixel</strong>(x,y) = color</td>
+  </tr>
+  <tr>
+    <td><strong>DrawPolygon</strong></td>
+    <td><em>points, color</em></td>
+    <td>Draws a polygon of <strong>points</strong> vertices connected by straight lines. The
+    polygon is drawn with color <strong>color</strong> and filled in with the <strong>FillColor</strong>
+    property. The<strong> points</strong> can be from 2 to 20. The polygon is closed
+    automatically by drawing a line from the last vertex to the first. Used with <strong>FillStyle</strong>,
+    <strong>FillColor</strong>, <strong>PenStyle</strong>, and <strong>PenFillStyle</strong>
+    properties and <strong>SetPointArray</strong> method.</td>
+  </tr>
+  <tr>
+    <td><strong>DrawPolyLines</strong></td>
+    <td><em>points, color</em></td>
+    <td>Draws a series of line by connecting the specified number of <strong>points</strong>.
+    The lines are drawn with color <strong>color</strong>.&nbsp; The<strong> points</strong>
+    can be from 2 to 20. Used with <strong>FillStyle</strong>, <strong>FillColor</strong>, <strong>PenStyle</strong>,
+    and <strong>PenFillStyle</strong> properties and <strong>SetPointArray</strong> method.</td>
+  </tr>
+  <tr>
+    <td><strong>DrawRoundRect</strong></td>
+    <td><em>left, top, right, bottom, arcwidth, archeight, color</em></td>
+    <td>Draws a rectangle with color <strong>color</strong> bounded by<strong> left</strong>, <strong>top</strong>
+    and <strong>right</strong>, <strong>bottom</strong> with rounded corners of <strong>arcwidth</strong>
+    width and <strong>archeight </strong>height. Setting <strong>arcwidth</strong> and <strong>archeight</strong>
+    to 0 will draw a normal rectangle. The round rectangle is drawn with color <strong>color</strong>
+    and filled in with the <strong>FillColor</strong> property. Used with <strong>FillStyle</strong>,
+    <strong>FillColor</strong>, <strong>PenStyle</strong>, and <strong>PenFillStyle</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>GetMouseMovePoint</strong></td>
+    <td><em>point, x, y</em></td>
+    <td>Returns the <em>x</em> and <em>y</em> coordinates of <em>point. Point </em>can be from
+    0 to the value return from the <strong>MouseMovePoints</strong> property - 1.</td>
+  </tr>
+  <tr>
+    <td><strong>IntensityBlue</strong></td>
+    <td><em>color</em></td>
+    <td>Returns the blue intensity from a color.</td>
+  </tr>
+  <tr>
+    <td><strong>IntensityGreen</strong></td>
+    <td><em>color</em></td>
+    <td>Returns the green intensity from a color.</td>
+  </tr>
+  <tr>
+    <td><strong>IntensityRed</strong></td>
+    <td><em>color</em></td>
+    <td>Returns the red intensity from a color.</td>
+  </tr>
+  <tr>
+    <td><strong>InvertImage</strong></td>
+    <td>&nbsp;</td>
+    <td>Inverts the colors of the image that is displayed in the PictureBox.</td>
+  </tr>
+  <tr>
+    <td><strong>MirrorImage</strong></td>
+    <td>&nbsp;</td>
+    <td>Mirrors the image that is displayed in the PictureBox using the <strong>Mirror</strong>
+    property setting.</td>
+  </tr>
+  <tr>
+    <td><strong>Hide</strong></td>
+    <td>&nbsp;</td>
+    <td>Hides the PictureBox and sets the <strong>Visible</strong> property to False.</td>
+  </tr>
+  <tr>
+    <td><strong>Move</strong></td>
+    <td><em>left, top, width, height</em></td>
+    <td>Move the PictureBox to new <strong>left</strong> and <strong>top</strong> location and
+    resizing to <strong>width</strong> and <strong>height</strong>..</td>
+  </tr>
+  <tr>
+    <td><strong>Paste</strong></td>
+    <td>&nbsp;</td>
+    <td>Copies the image from the clipboard to the PictureBox control. Returns True if an
+    image was pasted.</td>
+  </tr>
+  <tr>
+    <td><strong>QBColor</strong></td>
+    <td><em>colorcode</em></td>
+    <td>Returns a color based on the <em><strong>colorcode</strong></em>&nbsp; used by earlier
+    versions of Basic.<div align="center"><center><table border="1">
+      <tr>
+        <td width="50%" align="center"><font color="#0080FF"><strong>ColorCode</strong></font></td>
+        <td width="50%"><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">0</td>
+        <td width="50%">Black</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">1</td>
+        <td width="50%">Blue</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">2</td>
+        <td width="50%">Green</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">3</td>
+        <td width="50%">Cyan</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">4</td>
+        <td width="50%">Red</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">5</td>
+        <td width="50%">Magenta</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">6</td>
+        <td width="50%">Yellow</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">7</td>
+        <td width="50%">White</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">8</td>
+        <td width="50%">Gray</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">9</td>
+        <td width="50%">Light Blue</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">10</td>
+        <td width="50%">Light Green</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">11</td>
+        <td width="50%">Light Cyan</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">12</td>
+        <td width="50%">Light Red</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">13</td>
+        <td width="50%">Light Magenta</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">14</td>
+        <td width="50%">Light Yellow</td>
+      </tr>
+      <tr>
+        <td width="50%" align="center">15</td>
+        <td width="50%">Bright White</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>Refresh</strong></td>
+    <td>&nbsp;</td>
+    <td>Redraws the image in the PictureBox control..</td>
+  </tr>
+  <tr>
+    <td><strong>RefreshDesktopWallpaper</strong></td>
+    <td>&nbsp;</td>
+    <td>Causes the Desktop to redraw the wallpaper.</td>
+  </tr>
+  <tr>
+    <td><strong>ReleaseCapture</strong></td>
+    <td>&nbsp;</td>
+    <td>Deactivates the PictureBox to receive the all mouse input. </td>
+  </tr>
+  <tr>
+    <td><strong>ResizeImage</strong></td>
+    <td>&nbsp;</td>
+    <td>Resizes the image in the PictureBox control using the <strong>ResizeHeight</strong>
+    and <strong>ResizeWidth</strong> properties.</td>
+  </tr>
+  <tr>
+    <td><strong>RGB</strong></td>
+    <td><em>red</em>, <em>green</em>, <em>blue</em></td>
+    <td>Returns a color comprised of the <em><strong>red</strong></em>, <em><strong>green</strong></em>,
+    and <em><strong>blue</strong></em> intensities.</td>
+  </tr>
+  <tr>
+    <td><strong>RotateImage</strong></td>
+    <td>&nbsp;</td>
+    <td>Rotates the image that is displayed in the PictureBox using the <strong>Rotate</strong>
+    property setting.</td>
+  </tr>
+  <tr>
+    <td><strong>SaveImageToFile</strong></td>
+    <td><em>filename, filetype</em></td>
+    <td>Save the image in the PictureBox as a .bmp file to the <em>filename</em> specified.<em>
+    Filename is a string, filetype is an integer. The path specified in the filename <strong>MUST</strong>
+    already exist. Returns True if the file was saved, otherwise returns False.</em><div
+    align="center"><center><table border="1">
+      <tr>
+        <td align="center"><strong><font color="#0080FF">filetype</font></strong></td>
+        <td align="center"><strong><font color="#0080FF">Description</font></strong></td>
+        <td align="center"><strong><font color="#0080FF">Extension That Should Be Used</font></strong></td>
+      </tr>
+      <tr>
+        <td align="center"><font color="#000000">0</font></td>
+        <td align="center"><font color="#000000">Bitmap </font></td>
+        <td align="center"><font color="#000000">.bmp</font></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>ScrollImage</strong></td>
+    <td>&nbsp;</td>
+    <td>Scrolls the image in the PictureBox using the <strong>ScrollX</strong> and <strong>ScrollY</strong>
+    properties.</td>
+  </tr>
+  <tr>
+    <td><strong>SetCapture</strong></td>
+    <td>&nbsp;</td>
+    <td>Activates the PictureBox to receive the all mouse input. </td>
+  </tr>
+  <tr>
+    <td><strong>SetFocus</strong></td>
+    <td>&nbsp;</td>
+    <td>Activates the PictureBox to receive the focus. </td>
+  </tr>
+  <tr>
+    <td><strong>SetPointArray</strong></td>
+    <td>index, x, y</td>
+    <td>Sets the pointarray <strong>index</strong> to <strong>x</strong> and <strong>y</strong>.
+    Used with the <strong>DrawPolyLines</strong> and <strong>DrawPolygon</strong> methods. The<strong>
+    index</strong> can be from 1 to 20.</td>
+  </tr>
+  <tr>
+    <td><strong>Show</strong></td>
+    <td>&nbsp;</td>
+    <td>Makes the PictureBox visible and sets the <strong>Visible</strong> property to True.</td>
+  </tr>
+  <tr>
+    <td><strong>ZOrder</strong></td>
+    <td><em>position</em></td>
+    <td>Places the PictureBox control at the front or back of the z-order.<div align="center"><center><table
+    border="1">
+      <tr>
+        <td align="center" rowspan="2"><font color="#0080FF"><strong>ZOrder Position</strong></font></td>
+        <td align="center">0</td>
+        <td align="center">PictureBox will be placed at the front of the z-order</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>PictureBox will be placed at the back of the z-order.<em>Unfortunately, using <strong>ZOrder
+        1</strong> with NS Basic, the PictureBox is placed behind the output window.</em></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+</center></div>
+
+<p><big><big><strong>Files Included</strong></big></big></p>
+
+<p>S309PictureBox.ocx - the ActiveX control</p>
+
+<p>Files Included in the Documentation Zip file<br>
+<br>
+S309PictureBox.html - the documentation (this file).<br>
+<br>
+Files Included in the NS Basic Samples Zip file<br>
+<br>
+S309PictureBox.nsb - sample program using S309PictureBox ActiveX control.<br>
+S309PictureBox Bitmap Resource.nsb - sample program using S309PictureBox ActiveX control
+to display bitmaps from resource files (some in ROM). <br>
+S309PictureBox Common Bitmap.nsb - sample program using S309PictureBox ActiveX control to
+display common bitmaps ( All in ROM). <br>
+S309PictureBox PlayingCard.nsb - sample program using S309PictureBox ActiveX control to
+display Playing Cards.<br>
+S309PictureBox Capture Control.nsb - sample program using S309PictureBox ActiveX control
+to capture the contents of another control.<br>
+S309PictureBox Drawing.nsb - sample program using some of the drawing methods.<br>
+S309 Pyramid Solitaire.nsb - a pyramid solitaire game.</p>
+
+<p><big><big><strong>Installation of PictureBox ActiveX control on Windows CE</strong></big></big></p>
+
+<p>Transfer the ocx file for your processor to the \Windows directory</p>
+
+<p>Register the control on Windows CE by doing:</p>
+
+<p>Start - Run - regsvrce \Windows\S309PictureBox.ocx</p>
+
+<p>You should get &quot;DllRegisterServer in \Windows\S309PictureBox.ocx Succeeded.&quot;</p>
+
+<H4>How to register objects on Palm-size devices:</H4>
+
+<UL COMPACT>
+	<LI>Bring up the on screen keyboard.
+	<LI>Tap on the task bar on the bottom
+	<LI>Enter run23 on the keyboard.
+	<LI>An Open dialog box will appear and you can type the regsvrce.exe command.
+</UL>
+
+<P>- or -
+
+<P>Use NS Basic/CE's SHELLEXECUTE command. There's an example in the 
+Handbook.
+
+<p><big><big><strong>Installation of PictureBox ActiveX control on the Desktop</strong></big></big></p>
+
+<p>Transfer the desktop version of the S309Picturebox.ocx to the c:\Windows\system32
+directory</p>
+
+<p>Register the control on the desktop by doing:</p>
+
+<p>Start - Run - regsvr32 c:\Windows\system32\S309PictureBox.ocx</p>
+
+<p>You should get &quot;DllRegisterServer in c:\Windows\system32\S309PictureBox.ocx
+Succeeded.&quot;</p>
+
+<p>To use the desktop control with VBCE you need to do the following:</p>
+<font SIZE="2">
+
+<p></font><font size="3">select &quot;Control Manager&quot; from &quot;Windows CE&quot;
+menu</p>
+
+<p>select the correct device by clicking on it once</p>
+
+<p>select &quot;Add New Control&quot; from the &quot;control&quot; menu</p>
+
+<p>find the desktop control (</font>c:\Windows\system32\S309PictureBox.ocx<font size="3">)
+and click on it.</font></p>
+
+<p><big><big><strong>Using the PictureBox ActiveX control in NS Basic</strong></big></big></p>
+
+<p><font color="#0080FF">AddObject &quot;S309.PictureBox.1&quot;, &quot;picControl&quot;,
+xpos, ypos, width, height<br>
+picControl.Picture = &quot;\Windows\Honey.2bp&quot;</font></p>
+
+<p>&quot;picControl&quot; can be any name<br>
+xpos is the x-coord<br>
+ypos is the y-coord<br>
+width is the width of the control<br>
+height is the height of the control<br>
+</p>
+
+<p><big><big><strong>Using the PictureBox ActiveX control in NS Basic to do a screen
+capture and save it to a file.</strong></big></big></p>
+
+<p><font color="#0080FF">AddObject &quot;S309.PictureBox.1&quot;, &quot;picControl&quot;,
+0,0,0,0<br>
+picControl.CaptureScreen<br>
+picControl.SaveImageToFile &quot;\Screen Capture.bmp&quot;,0</font></p>
+
+<p><big><big>The latest version of the S309PictureBox ActiveX control can be found <a
+href="http://members.xoom.com/S309">here</a>.</big></big></p>
+</body>
+</html>

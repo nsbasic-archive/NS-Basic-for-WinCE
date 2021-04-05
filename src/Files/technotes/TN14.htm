@@ -1,0 +1,226 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>TN14: Phone Control</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=582>
+<TR><TD WIDTH="103" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+<TD WIDTH="475" VALIGN="TOP">
+	  <h2>Tech Note 14: Phone Control</h2>
+	  <h3>April 13, 2009</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+<P>Using the phone control, it is possible to initiate 
+cellular phone calls and to review the incoming and outgoing call log. 
+
+<P>In order to use the the NSBasic Phone control in your program, use the following command:</P>
+<CODE><P>   AddObject "NSBasic.Phone.1", &quot;phone&quot;, 0, 0, 0, 0</code>
+
+<p>The Phone Control must be installed and registered on your device. See <A HREF="TN01.htm">Tech Note 01</A> for more information on how to load this module onto your system. The standard NS Basic installers do not register the control automatically: before you use it for the first time, execute the command<pre>
+ShellExecute("open","regsvrce","NSBPhone.ocx"</pre></P>
+
+<H3>Methods</H3>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=645><FONT FACE="Helvetica">
+<TR><TD WIDTH="107" VALIGN="TOP">
+<code>Method</code></TD>
+<TD WIDTH="272" VALIGN="TOP">
+Parameters</TD>
+<TD WIDTH="248" VALIGN="TOP">
+Description</TD>
+</TR>
+</font><TR><FONT FACE="Helvetica"><TD WIDTH="107" VALIGN="TOP">
+<P><code>MakeCall</code></TD>
+  </font>
+  <TD WIDTH="272" VALIGN="TOP">
+
+PhoneNumber (string)<br>
+
+CalledParty (string)<br>
+
+PromptBefore (boolean</TD>
+<TD WIDTH="248" VALIGN="TOP">
+<P>Places a call to the&nbsp; phone number and party, with the option to delay 
+the call while prompting the user</TD>
+</TR>
+<TR><TD WIDTH="107" VALIGN="TOP">
+<P><code>CallLogCount</code></TD>
+<TD WIDTH="272" VALIGN="TOP">
+<i>None</i></TD>
+<TD WIDTH="248" VALIGN="TOP">
+<P>Returns the total number of entries in the call log. If the call log is empty, an very large number is returned.</TD>
+</TR>
+<TR><TD WIDTH="107" VALIGN="TOP">
+<P><code>CallLogEntry</code></TD>
+  
+  <TD WIDTH="272" VALIGN="TOP">
+EntryNumber (integer, 
+1 through CallLogCount)</TD>
+<TD WIDTH="248" VALIGN="TOP">
+<P>This points the control to a specific log entry. Use the properties listed 
+below to get information about a given entry.</TD>
+</TR>
+</TABLE>
+
+<h3>Properties</h3>
+
+<P>All of the properties in the NSBPhone control are read-only and are used to 
+access members of a call log entry. Before the properties can be retrieved, a 
+successful call to CallLogEntry must be made. The syntax is</P>
+<blockquote>
+<P><i>value = object.property</i></P>
+</blockquote>
+<TABLE BORDER CELLSPACING=1 WIDTH=646>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<code>Property</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+Description</TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLECallerIDType <br>
+&nbsp;</code><P>&nbsp;</TD>
+<TD WIDTH="513" VALIGN="TOP">
+Caller ID information is:<blockquote>
+  <p><font face="Courier New">0 = Unavailable<br>
+  1 = Blocked<br>
+  2 = Available</font></p>
+</blockquote>
+  </TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<CODE><P>CLEConnected</CODE></TD>
+<TD WIDTH="513" VALIGN="TOP">
+<P>Did the outgoing call connect?<blockquote>
+<P><font face="Courier New">True = Connected<br>
+False = Busy/No answer</font></blockquote>
+  </TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<CODE><P>CLEEnd</CODE></TD>
+<TD WIDTH="513" VALIGN="TOP">
+The time the call ended.</TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLEEnded</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+How was the call ended?<blockquote>
+  		<p><font face="Courier New">True = Voluntarily<br>
+  False = Dropped </font></p>
+</blockquote>
+  </TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLEIOM</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+<P>Incoming/Outgoing/Missed:<blockquote>
+<P><font face="Courier New">&quot;i&quot; = Incoming<br>
+&quot;o&quot; = Outgoing<br>
+&quot;m&quot; = Missed</font></blockquote>
+  </TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLEName</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+The name associated with the call.</TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLENameType</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+The name type associated with the call:<blockquote>
+  <p><font face="Courier New">&quot;w&quot; = Work<br>
+  &quot;h&quot; = Home</font></p>
+</blockquote>
+  </TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLENote</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+<P>The file name of the Notes file associated with the call (if a Notes file 
+exists).</TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLENumber</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+<P>The phone number associated with the call.</TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLEOutgoing</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+<P>Was the call outgoing?<blockquote>
+<P><font face="Courier New">True/False</font></blockquote>
+  </TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<P><code>CLERoam</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+Was the call made while roaming?<blockquote>
+  <p><font face="Courier New">True/False</font></p>
+</blockquote>
+  </TD>
+</TR>
+<TR><TD WIDTH="120" VALIGN="TOP">
+<code>CLEStart</code></TD>
+<TD WIDTH="513" VALIGN="TOP">
+The time the call started.</TD>
+</TR>
+</TABLE>
+
+<h3>Sample</h3>
+
+
+<pre>'NSBPhone example
+'
+'Add the NSBasic Phone control
+AddObject &quot;NSBasic.Phone.1&quot;, &quot;phone&quot;, 0,0,0,0
+
+'Add a labeled text box for phone number entry
+AddObject &quot;Label&quot;, &quot;lblNumber&quot;, 5,5,110,16
+lblNumber.Caption = &quot;Phone Number:&quot;
+lblNumber.BackColor = Output.BackColor
+AddObject &quot;TextBox&quot;, &quot;txtNumber&quot;, 5,25,160,20
+
+'Add a labeled text box for callee name entry
+AddObject &quot;Label&quot;, &quot;lblName&quot;, 5,50,110,16
+lblName.Caption = &quot;Name:&quot;
+lblName.BackColor = Output.BackColor
+AddObject &quot;TextBox&quot;, &quot;txtName&quot;, 5,70,160,20
+
+'Add a button to initiate the call
+AddObject &quot;CommandButton&quot;, &quot;btnDial&quot;, 170,25,65,65
+btnDial.Text = &quot;Dial&quot;
+
+'Use a grid object to represent some info from the call log
+AddObject &quot;Grid&quot;, &quot;grdLog&quot;, 5,95,230,170
+grdLog.Redraw = False
+grdLog.Rows = phone.CallLogCount
+grdLog.Cols = 5
+grdLog.ColWidth(0) = 180
+grdLog.ColWidth(1) = 1650
+grdLog.ColWidth(2) = 1650
+grdLog.ColWidth(3) = 1200
+grdLog.ColWidth(4) = 1500
+For i = 1 To phone.CallLogCount
+   phone.CallLogEntry i
+   grdLog.TextMatrix(i-1, 0) = phone.CLEIOM
+   grdLog.TextMatrix(i-1, 1) = phone.CLEStart
+   grdLog.TextMatrix(i-1, 2) = phone.CLEEnd
+   grdLog.TextMatrix(i-1, 3) = phone.CLENumber
+   grdLog.TextMatrix(i-1, 4) = phone.CLEName
+Next
+grdLog.Redraw = True
+
+'When the button is tapped, make the call, but don't prompt before dialing
+Sub btnDial_Click
+   phone.MakeCall txtNumber.Text, txtName.Text, False
+End Sub</pre>
+
+</BODY>
+</HTML>

@@ -1,0 +1,273 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>NS Basic/CE Tutorial 1</title>
+</head>
+<font face="Verdana" size=2>
+
+<body bgcolor="#ffffff">
+<table cellspacing=0 border=0 width=478>
+  <tr>
+    <td width="22%" valign="TOP"> 
+      <p><img src="images/BigIcon.GIF" width=86 height=103>
+    </td>
+    <td width="78%" valign="TOP"> 
+      <h2><b>NS Basic/CE </b><b>Tutorial #1: </b></h2>
+      <h2><b>A Simple Program</b></h2>
+      <p> <font face="Verdana" size="2"><b> <br>
+        </b></font></p>
+      <p><font face="Verdana" size="2"><b>© 2010 NS BASIC Corporation. All rights reserved.</b></font>
+    </td>
+  </tr>
+</table>
+
+<h3>Purpose </h3>
+<p>The purpose of this tutorial is to demonstrate how a simple 
+  program is created using NS Basic/CE. You should have NS Basic/CE Desktop IDE installed 
+  before beginning this tutorial.</p>
+<h3>Description of the Program </h3>
+<p>The program to be developed will display a form with a button 
+  on it. When the user taps the button, the program responds with the message</p>
+<p>&nbsp;&quot;Hello--Welcome to NS Basic/CE&quot;</p>
+<h3>Program Development </h3>
+<p>1. Startup</p>
+<ul>
+  <li>Start NS Basic/CE Desktop IDE from the Start menu.</li>
+  <li>At the initial screen select Standard Project</li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut00.gif" width="593" height="479"></p>
+<p>2. Modify Form Properties</p>
+<ul>
+  <li>You should 
+    now see a blank screen with the title &quot;Form1&quot;</li>
+  <li>Select the 
+    form in the Project Explorer by clicking on it.</li>
+  <li>In Properties, 
+    change Name to &quot;Hello&quot;</li>
+</ul>
+<p>3. Add a button to the form</p>
+<ul>
+  <li>Select CommandButton in the Toolbox by left clicking on it</li>
+  <li>Move the 
+    cursor to the desired location within the CE Screen</li>
+  <li>Click the 
+    left mouse button to place the button object on the screen</li>
+</ul>
+<p>Change the button's text:</p>
+<ul>
+  <li>Click on 
+    the new button in the CE Screen</li>
+  <li>In the Properties 
+    window, change Caption to Tap Here</li>
+</ul>
+<p>Resize the button:</p>
+<ul>
+  <li>Select the 
+    button by left clicking on it</li>
+  <li>Position 
+    the mouse cursor to any resize marker around the button</li>
+  <li>Depress the 
+    left mouse button and drag the object to a different size</li>
+  <li>Release the 
+    left mouse button to stop the action</li>
+</ul>
+<p>Relocate the button on the screen:</p>
+<ul>
+  <li>Select the 
+    button by left clicking on it</li>
+  <li>Position 
+    the mouse cursor to the middle of the button</li>
+  <li>Depress the 
+    left mouse button and drag the object to some other screen location</li>
+  <li>Release the 
+    left mouse button to stop the action</li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut01.gif" width="260" height="366"></p>
+<p>4. Add commands to be executed when the button is tapped</p>
+<ul>
+  <li>Double click 
+    on the button</li>
+  <li>A code window 
+    will appear with some code statements already supplied for you</li>
+  <li>Position 
+    the cursor to the line below the SUB statement</li>
+  <li>Enter the 
+    following command
+    <p>MsgBox &quot;Hello -- Welcome to NS Basic/CE&quot; </p>
+  </li>
+</ul>
+<p align="center">&nbsp;<img border="0" src="images/ceTut02.gif" width="480" height="183"> 
+</p>
+<ul>
+  <li>Close the 
+    code window.</li>
+</ul>
+<p>5. Save the Project</p>
+<ul>
+  <li>Select &quot;File&quot; 
+    from the top main menu</li>
+  <li>Select &quot;Save 
+    project&quot; and save your program as HelloPgm.nsb. You can save it
+    anywhere you like.</li>
+  <li>All form 
+    definitions, form objects, all code, and other project info are saved into 
+    the one project file.</li>
+</ul>
+
+
+<p>Congratulations! You have now written your first NS Basic/CE 
+  program.</p>
+<h3>Testing The Project</h3>
+
+<ul>
+  <li>Make sure your device is connected via ActiveSync</li>
+  <li>Click Start from the Run menu.</li>
+  <li>After the ActiveSync completes, your program should begin execution.</li>
+</ul>
+
+<p>Before you can load your program to test it again, you will have to close it on the device. This isn't as obvious as it looks on a Pocket PC device. The "X" button on the top right corner is actually a minimize button, not a close button, following the rules for all Pocket PC apps.
+<p>The easiest to actually close the app is use Settings... System... Memory... Active Programs to stop it before downloading the new one. There are also freeware apps, like Magic Button, that allow you to do this from the Taskbar.
+
+<h3>Extending the Tutorial</h3>
+<p>Let's explore some further features of NS Basic/CE. We'll 
+  do this by modifying your first program to be more complicated. </p>
+<p>Exit NS Basic/CE Desktop IDE by choosing File and Exit from the menu.</p>
+<h3>Restart</h3>
+<ul>
+  <li>Restart NS Basic/CE Desktop IDE from the Start menu.</li>
+  <li>The first 
+    screen will list recent projects you have worked on, so that you may easily 
+    pick one for modification.</li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut05.gif" width="435" height="383"></p>
+<ul>
+  <li>Select the 
+    HelloPgm project by clicking on it.</li>
+  <li>The project 
+    will load into the IDE and show you the project as you last left it.</li>
+</ul>
+<h3>Revision: Change the message </h3>
+<ul>
+  <li>Double click 
+    on the button to bring up the code window.</li>
+  <li>Enter the 
+    following code after the SUB statement</li>
+</ul>
+<pre>
+	Dim today
+	today = Date</pre>
+<ul>
+  <li>Change the 
+    MsgBox statement to be</li>
+</ul>
+<pre>
+	MsgBox &quot;Today is &quot; &amp; today</pre>
+<p align="center">&nbsp;<img border="0" src="images/ceTut06.gif" width="390" height="184"> 
+</p>
+<ul>
+  <li>Close the 
+    code window.</li>
+  <li>Start.</li>
+  <li>Test using download as done earlier in the tutorial.</li>
+  <li>When you 
+    run, the message displayed should be 
+    <p>Today is yyyy/mm/dd </p>
+    <p>where today's date replaces yyyy/mm/dd</p>
+  </li>
+</ul>
+<h3>Revision: Add code at program startup</h3>
+<ul>
+  <li>In the Form Window, double click anywhere on the form (not on an object). The code window will appear.</li>
+  <li>After the 
+    Sub Hello_Load line, enter this command:</li>
+</ul>
+<pre>
+	msgbox &quot;HelloPgm will continue when you tap on OK&quot;</pre>
+<p align="center"><img border="0" src="images/ceTut07.gif" width="529" height="189"> 
+</p>
+<ul>
+  <li>Close the code window. </li>
+</ul>
+<p>This code will be executed when the form is loaded. 
+  The program displays the message and waits until the user taps on the OK button 
+</p>
+<ul>
+  <li>Start the program. </li>
+</ul>
+<h3>Revision: Update a TextBox in your program</h3>
+<p>This change will add a TextBox which shows the time-of-day. 
+  Another button will be added to cause the time to be updated with the latest 
+  time. </p>
+<p>Add a TextBox to the form to be used to display the time of 
+  day</p>
+<ul>
+  <li>Select the TextBox object from the Toolbox by clicking on it. The TextBox object looks like 
+    &quot;ab&quot;.</li>
+  <li>Move the 
+    cursor to the desired screen location and left click to place the TextBox object.</li>
+  <li>Select the 
+    object by left clicking on it.</li>
+  <li>In the Properties 
+    Window, change the TextBox's Name to &quot;fldTime&quot;</li>
+  <li>Resize the 
+    object as needed.</li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut08.gif" width="262" height="366"> 
+</p>
+<p>Add code to fill in the time-of-day when the form displays</p>
+<ul>
+  <li>Double click on the form in the Form Window.</li>
+ 
+  <li>Enter the following code after the SUB line</li>
+</ul>
+<pre>
+	dim t
+	t = Now
+	fldTime.text = t</pre>
+<p align="center">&nbsp;<img border="0" src="images/ceTut09.gif" width="418" height="207"> 
+</p>
+<ul>
+  <li>Close the 
+    code window. </li>
+</ul>
+<p>This code will set the time of day into the TextBox object 
+  &quot;fldTime&quot; just after the device displays the form to the user. 
+  The statement</p>
+<pre>
+	t = Now</pre>
+<p>gets the current time and stores it in the time variable 
+  &quot;t&quot;.&nbsp; </p>
+<p>Add a button to redraw the form so that the latest time appears</p>
+<ul>
+  <li>Select the 
+    button object in the toolbox</li>
+  <li>Place it 
+    on the Form Window with a left click</li>
+  <li>Select the 
+    object</li>
+  <li>In the Properties Window, enter &quot;Update the Time&quot; as the button's
+    Caption</li>
+  <li>Resize object 
+    as needed.</li>
+</ul>
+<p>Add code to the button to cause the redraw</p>
+<ul>
+  <li>Double click 
+    on the button</li>
+  <li>Enter the 
+    following statement after the SUB line</li>
+</ul>
+<pre>
+	Hello_Load</pre>
+<ul>
+  <li>Close the 
+    code window</li>
+  <li>This will call the Hello_Load subroutine to update the time in the fldTime
+    TextBox.</li>
+  <li>Start your app to test it.</li>
+</ul>
+<p align="center"><img border="0" src="images/ceTut10.gif" width="282" height="381"></p>
+</body>
+
+</html>

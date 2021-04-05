@@ -1,0 +1,1 @@
+Welcome to the installer for ImgLoad from ImgLoadCo. Follow the instructions on the device to complete the installation.

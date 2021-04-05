@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.ComDlgFlags.1 = s 'NSBasic ComDlgFlags Class'
+	{
+		CLSID = s '{772336BC-25F1-4EC5-A79C-605960D277E6}'
+	}
+	NSBasic.ComDlgFlags = s 'NSBasic ComDlgFlags Class'
+	{
+		CLSID = s '{772336BC-25F1-4EC5-A79C-605960D277E6}'
+		CurVer = s 'NSBasic.ComDlgFlags.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {772336BC-25F1-4EC5-A79C-605960D277E6} = s 'NSBasic ComDlgFlags Class'
+		{
+			ProgID = s 'NSBasic.ComDlgFlags.1'
+			VersionIndependentProgID = s 'NSBasic.ComDlgFlags'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{6A6D1995-8DDD-4262-8C6A-126F176C1362}'
+		}
+	}
+}

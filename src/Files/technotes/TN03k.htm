@@ -1,0 +1,414 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 03k: Using PictureBox </TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h1>Tech Note 03k: Using PictureBox </h1>
+	  <h3>Jan 2, 2007
+	  </h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<blockquote>
+  There is additional <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">documentation</A> on Microsoft's site.
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>The PictureBox control can be used for a lot more than just displaying pictures. Yes, it can be used to display a .bmp file. But it also supports drawing shapes such as lines and circles, can display text and can detect events such as taps. Picturebox is installed as part of your initial setup of NS Basic/CE. There is no need to install anything extra to use it.</P>
+<P>The standard output from your program goes to an object called "Output". In the following examples, we'll demonstrate the various properties, methods and events using the Output Object.</P>
+<P>You can also create your own PictureBox objects. These float above the Output Object. Use a command such as</P>
+<P><CODE>addObject "picturebox.picturebox","pic",0,0,50,50</CODE></P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica" SIZE=4><P>Notes and Quirks</P>
+</font></B><P>1. If you want to set the fontsize, set the fontname first.</P>
+<P>2. The cls function resets the properties - including things like your font.</P>
+<P>3. You need to do a cls to clear the old value before calling DrawText.</P>
+<P>4. The default scalemode for pictureboxes is Twips. To change it to pixels, do scalemode=3.</P>
+<P>5. Always create your grid object first, including before the Visual Designer code. Otherwise, events coming from the grid object will be lost.
+<p>6. On Pocket PC devices, if you have trouble making a Picturebox larger than 100x100, set either the width or height explicitly, and it will be redrawn properly:
+<pre>AddObject "Picturebox.PictureBox", "PictureBox1", 0, 100, 240, 180
+Set Form1(2) = PictureBox1
+Form1(2).width=240
+Form1(2).height=180
+</pre>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>The PictureBox properties, methods, and events listed in the following tables are supported.</P>
+<B><FONT FACE="Helvetica"><P>Properties</P>
+</font></B><P>Properties either set or return values. The syntax is</P>
+<CODE><P>msgbox pic.backcolor 'display the current backcolor</P>
+<P>pic.fontsize=10 'set the fontsize to 10</P>
+</CODE><P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<P>Name</TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Description </TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>BackColor </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Color. Integer from 0 to 16,777,215. See color constants.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>BorderStyle </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>0 none, 1 single line border</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>DrawWidth </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Line width for draw methods</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FillColor </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Color, used to fill shapes, circles or boxes.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FillStyle </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>0 solid, 1 transparent</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FontBold </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>True/False.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FontItalic </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>True/False. </TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FontName </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>String</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FontSize </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>In points.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FontStrikethru </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>True/False.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FontTransparent </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>True/False. Do background graphics show through?</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>FontUnderline</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>True/False.</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ForeColor </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>color</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Height </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Height of object</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Left </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Left edge of object</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Picture </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>String with name of .bmp file</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ScaleHeight </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Units for height using custom scale</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ScaleLeft </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Left edge of object, to scale</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ScaleMode </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>0 user defined<BR>
+1 Twips (1440 dpi)<BR>
+2 Points (72dpi)<BR>
+3 Pixels<BR>
+4 Characters. Horizontal 1=120 twips, vertical=240 twips)<BR>
+5 inches<BR>
+6 millimeters<BR>
+7 centimeters</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ScaleTop </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>returns top of current object</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>ScaleWidth </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Units for width using custom scale</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Tag</CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Use this for whatever you like</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Top </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>Top of the object</TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<CODE><P>Width </CODE></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P>width of the object</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>Methods</P>
+</font></B><P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<P>Name</TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<P>Arguments</TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>Cls </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>no args</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>clears text and graphics.</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>DrawCircle </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>x,y,radius[,color][,aspectRatio]</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>DrawLine </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>x1,y1,x2,y2[,color][,box],[,fill]</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Box is true/false.</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>DrawPicture </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>picture,x1,y1[,width,height1,x2, y2,width,height2,rasterop]</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>DrawPoint </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>x,y[,color]</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>DrawText</CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>text</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Draws on next line on object. Cannot be positioned.</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>Move&#9;</CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>x,y[,width,height]</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Moves object to new x,y</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>Refresh</CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>&#9;&#9;&#9;&#9;&#9;</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Redraws the object</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>ScaleX</CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>width, fromScale, toScale</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Converts scale of width.</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>ScaleY </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>height, fromScale, toScale</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Converts scale of height.</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>SetScale </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>x1,y1,x2,y2</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>Use to change scale</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>TextHeight</CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>text</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>returns height of text. Embedded CR's OK.</TD>
+</TR>
+<TR><TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>TextWidth </CODE></TD>
+<TD WIDTH="48%" VALIGN="TOP">
+<CODE><P>text.</CODE></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P>returns width of widest line.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>Events</P>
+</font></B><P>&nbsp;</P>
+<P>Events cause subroutines in your program to be called, if they exist. You should name the subroutine <CODE>&lt;objectName&gt;_eventName</CODE>.</P>
+<P>For example, to capture clicks in the Output Object, you will need</P>
+<CODE><P>&#9;sub output_click<BR>
+&#9;'your code to handle a click<BR>
+&#9;end sub</P>
+</CODE><P>&#9;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<P>Name </TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<P>Arguments </TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>Change </CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Called when object changes.</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>Click&#9;</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Called when object is tapped.</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>DblClick</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Called when object is double tapped.</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>KeyDown</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<CODE><P>keyCode, shift</CODE></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Shift=1, 2=CTRL, 4=ALT</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>KeyPress </CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<CODE><P>keyCode</CODE></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>KeyUp&#9;</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<CODE><P>keyCode, shift. </CODE></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Shift=1, 2=CTRL, 4=ALT</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>MouseDown&#9;</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<CODE><P>button, shift, x, y</CODE></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>MouseMove&#9;</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<CODE><P>button, shift, x, y</CODE></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>MouseUp</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<CODE><P>button, shift, x, y</CODE></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>Resize&#9;&#9;</CODE></TD>
+<TD WIDTH="32%" VALIGN="TOP">
+<CODE><P>height, widget.</CODE></TD>
+<TD WIDTH="52%" VALIGN="TOP">
+<P>Called when object minimized/max/resumed</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>Sample Code</P>
+</font></B><P><IMG SRC="images/TN07.GIF" WIDTH=431 HEIGHT=125></P>
+<P>&nbsp;</P>
+<CODE><PRE>rem Play around with some picturebox functions
+
+output.backcolor=vbwhite
+output.scalemode=3
+output.drawpicture "\windows\startup.bmp",300,0
+output.drawcircle 150,150,25
+output.drawcircle 250,100,25
+output.drawText "this is drawtext"
+output.drawText "this is some more drawtext"
+print
+print
+
+addObject "picturebox.picturebox","pic",200,0,50,50
+pic.borderstyle=1
+
+sub pic_click
+  print "pic click"
+  pic.move 1200,1200
+end sub
+
+sub output_click
+  print "click in Output" 
+end sub
+
+sub output_mousedown(button, shift, x, y)
+  print "mouse down: button:" &amp; button &amp; " Shift:" &amp;  shift &amp; " X:" &amp; x &amp; " Y:" &amp; y
+end sub</PRE></CODE></BODY>
+</HTML>

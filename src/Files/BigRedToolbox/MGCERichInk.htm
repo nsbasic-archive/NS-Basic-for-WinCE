@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>MGCERichInk Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128><D>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCERichInk</P>
+</FONT><FONT FACE="Arial"><P>A Rich Ink (Scratchpad) Control</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>October 24, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT><D>
+<R>
+</TABLE>
+<HR>
+MGCERichInk - Windows CE Custom Control Object<BR> 
+Written by Mark Gamber, October 1999<BR><BR>
+
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+
+<hr>
+
+MGCERichInk provides a rich ink (scratchpad) control to Windows CE applications
+capable of making use of COM oriented controls such as NS Basic. Included in this
+package are:
+
+<UL COMPACT>
+	<LI>MGCERichInk object
+	<LI>Documentation and demonstration programs.
+</UL>
+
+<hr>
+
+<h4>Object Creation</h4>
+	AddObject "MGCERichInk.RichInk", "Name", x, y, xsize, ysize
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Inkpad.htm">Inkpad</A> - Demo of Inkpad functions
+</UL>
+
+<hr>
+
+<h4>Properties</h4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Border</TD> <TD>Set and retrieve the control border state. False (zero) removes a border and True (non-zero) displays a border around the control.<P><code>RInk.Border = True hasBorder = RInk.Border</code></TD>
+	</TR>
+	<TR>
+		<TD>Data</TD> <TD>Set and retrieve binary data which makes up the contents of the control.<P><code>Dim a<br>a = RInk.Data RInk.Data = a</code></TD>
+	</TR>
+	<TR>
+		<TD>Mode</TD> <TD>Set and retrieve the control's display mode. True (non-zero) sets the control into graphical mode and False (zero) puts the control into text mode. Note that the Clear property automatically sets the control into Text mode.<P><code>RInk.Mode = True   ' Go to graphical mode iMode = RInk.Mode</code></TD>
+	</TR>
+	<TR>
+		<TD>Tabstop</TD> <TD>Set and retrieve the tabstop state of the control. If set to True (non-zero), the control is included in the form tab order. When False (zero), the control is not added to the form tab order.<P><code>RInk.Tabstop = False bTab = RInk.Tabstop</code></TD>
+	</TR>
+	<TR>
+		<TD>Toolbar</TD> <TD>Set and retrieve the state of the control's toolbar. Set to True (non-zero) to display the toolbar and False (zero) to remove the toolbar. By default, the toolbar is enabled.<P><code>RInk.Toolbar = False bToolbar = RInk.Toolbar</code></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Read-only property used to determine the version of this control.<P><code>v = RInk.Version</code></TD>
+	</TR>
+</TABLE>
+
+<hr>
+
+<h4>Methods</h4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Clear</TD> <TD>Clear removes all data from the control and sets the control into Text mode. The toolbar is unaffected by Clear.<P><code>RInk.Clear</code></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>The Hide method removes the control from the display.<P><code>RInk.Hide</code></TD>
+	</TR>
+	<TR>
+		<TD>LoadData</TD> <TD>The LoadData method loads RichInk data from a specified filename. The file contents are also known as a "PWI" or "Pocket Word Ink" type of type.<P><code>RInk.LoadData "filename.ext"</code></TD>
+	</TR>
+	<TR>
+		<TD>SaveData</TD> <TD>SaveData saves the contents of the control to a specified file. A second parameter determines the action to take if the specified file already exists. If a specified file exists and the parameter is set to ZERO, the file is not written over and the control throws an error. If set to a non-zero number, the existing file is written over with the current control contents and no error occurs unless the file could not be created for another reason.<P><code>RInk.SaveData "Signature.ink", 1   ' Overwrite existing file</code></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>Forces the input focus to the control.<P><code>RInk.SetFocus</code></TD>
+	</TR>
+	<TR>
+		<TD>Show</TD> <TD>Displays the rich ink control if it is hidden.<P><code>RInk.Show</code></TD>
+	</TR>
+</TABLE>
+
+<hr>
+
+<h4>Events</h4>
+
+	The Rich Ink control does not support events.
+
+
+<HR>
+<H4>Change Log</H4>
+
+
+</BODY>
+</HTML>

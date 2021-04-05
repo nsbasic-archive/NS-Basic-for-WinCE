@@ -1,0 +1,457 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>MGCBarNPops Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCEBarsNPops</P>
+</FONT><FONT FACE="Arial"><P>Popup, Progress, Scrollbar, Trackbar and VUMeter Controls</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>October 23, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR SIZE=5>
+MGCEBarsNPops - Windows CE Custom Control Objects<BR>
+Written by Mark Gamber, October 1999<BR><BR>
+
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+
+<HR SIZE=5>
+
+MGCEBarsNPops provides five separate controls for Windows CE applications capable of making use of COM oriented controls such as NS Basic. Included in this package are:
+
+<UL COMPACT>
+	<LI><A HREF="MGCEBarsNPops.htm#scrollbar">Vertical and Horizontal Scrollbar controls</A>
+	<LI><A HREF="MGCEBarsNPops.htm#trackbar">Vertical and Horizontal Trackbars controls</A>
+	<LI><A HREF="MGCEBarsNPops.htm#vumeter">Vertical and Horizontal "VU Meter" controls</A>
+	<LI><A HREF="MGCEBarsNPops.htm#progress">Progress Bar control</A>
+	<LI><A HREF="MGCEBarsNPops.htm#popup">Popup Menu control</A>
+	<LI><A HREF="MGCEBarsNPops.htm#statusbar">StatusBar control</A>
+</UL>
+<H4>Installation</H4>
+
+<P>Connect your Windows CE device to your desktop using ActiveSync. On the desktop, run the program MGCEBarsNPop.exe. Follow the instructions on the screen to complete the installation. All five of the controls will be installed and registered automatically. 
+
+<HR SIZE=5>
+
+<A NAME="scrollbar"></A>
+<H2>Scrollbar Controls</H2>
+<IMG SRC="images/ScrollbarDetail.JPG" ALT="scrollbar" WIDTH="122" HEIGHT="125">
+<P>MGCEBarsNPops provides access to the standard Windows CE scrollbars, both horizontal and vertical. The size of the control determines the type of control displayed by an application. If the control is wider than it is tall, a horizontal scrollbar is displayed and if taller than it is wide, a vertical scrollbar is created. This may be changed at runtime but there is a practical ratio if you change the orientation. If this ratio is exceeded, the object will appear as a "blob" on the window without displaying the scrollbar components. The scrollbar controls support the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEBarsNPops.Scrollbar", "Name", x, y, xsize, ysize</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Scrollbars.htm">Scrollbars</A> - Demo of Scrollbar functions
+	<LI><A HREF="samples/VUMeter.htm">VUMeter</A> - Demo of Scrollbar and VUMeter functions
+	<LI><A HREF="samples/Progress.htm">Progress</A> - Demo of Scrollbar and Progress bar functions
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Enabled</TD> <TD>Set Enable to TRUE (non-zero) to enable a scrollbar or FALSE (zero) to disable a scrollbar. The scrollbars are enabled by default.<P><CODE>HScroll.Enabled = FALSE<BR>iEnabled = VScroll.Enabled</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Orientation</TD> <TD>The orientation of a scrollbar is initially determined by the size of a scrollbar when it is created. If a scrollbar is wider than it is tall, a horizontal scrollbar is created and if taller than it is wide, a vertical scrollbar is created. You may change this default orientation using this property although there is a practical ratio. When this ratio is exceeded, the object will appear as a "blob" without the actual scrollbar. Setting this property to one forces a vertical scrollbar, setting the property to zero forces a horizontal scrollbar. <P><CODE>HScroll.Orientation = 0<BR> iOrient = HScroll.Orientation</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Min</TD> <TD>determines the minimum value used by the scrollbar. The default value for Min is zero.<P><CODE>iMin = HScroll.Min<BR> VScroll.Min = 0</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Max</TD> <TD>Max determines the maximum value used by the scrollbar. The default value for Max is 100.<P><CODE>iMax = HScroll.Max<BR> HScroll.Max = 200 </CODE></TD>
+	</TR>
+	<TR>
+		<TD>PageSize</TD> <TD>There are three ways to change a scrollbar's position. Tapping the arrows at either of the scrollbar changes the position value by one. Sliding the thumb changes the value by a random amount which is tracked by the scrollbar. Tapping the area between the arrows changes the position by an amount determined by the PageSize setting. The default value for PageSize is ten.<P><CODE>iPage = HScroll.PageSize HScroll.PageSize = 20</CODE><BR></TD>
+	</TR>
+	<TR>
+		<TD>Style</TD> <TD>Set and retrieve the Style property which determines how the edge of the control is displayed. This is different from the Border property. Styles include:<BR><CODE>
+<UL COMPACT>
+	<LI> 0: No edge
+	<LI> 1: "Sunken" edge
+	<LI> 2: "Raised" edge
+</UL>
+HScroll.Style = 2<BR> iStyle = HScroll.Style</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Tabstop</TD> <TD>When set to TRUE (non-zero), the scrollbar is accessable via the tab key. FALSE removes the scrollbar from the tab order.<P><CODE>VScroll.Tabstop = TRUE<BR> isTabbable = VScroll.Tabstop</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+	<TR>
+		<TD>Value</TD> <TD>Value determines the current position of the scrollbar within the range set by Min and Max. The default value for Value is zero. Changing the value of Value changes the scrollbar thumb.<P><CODE>iCurVal = VScroll.Value<BR> VScroll.Val = iCurVal</CODE></TD>
+	</TR>
+</TABLE>
+
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Show</TD> <TD>Call this method to make a scrollbar visible.<P><CODE>HScroll.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>Call the Hide method to hide a scrollbar.<P><CODE>HScroll.Hide</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>Call the SetFocus method to set input focus to a scrollbar.<P><CODE>VScroll.SetFocus</CODE></TD>
+	</TR>
+</TABLE>
+
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Change(Value)</TD> <TD>When any part of the scrollbar is tapped upon, a new value is calculated internally and sent to the application as a Change event. The new value is not actually applied to the scrollbar by default and it is up to you to update the scrollbar with the new value or not, depending on your application.<P><CODE>sub Scroll_Change( value )<BR> Scroll.Value = value<BR> end sub</CODE></TD>
+	</TR>
+</TABLE>
+
+<HR SIZE=5>
+
+<A NAME="trackbar"></A>
+<H2>Trackbar Controls</H2>
+<IMG SRC="images/TrackbarDetail.JPG" ALT="" WIDTH="131" HEIGHT="128">
+<P>MGCEBarsNPops provides access to the Trackbar common control, both horizontal and vertical, the type determined by the size of the control when created. If a trackbar is wider than it is tall, a horizontal control is created and if taller than it is wide, a vertical control is created. The trackbar controls support the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEBarsNPops.Trackbar", "Name", x, y, xsize, ysize</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Trackbars.htm">Trackbars</A> - Demo of Trackbar functions
+</UL>
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Min</TD> <TD>Min determines the minimum value used by the trackbar. The default value for Min is zero.<P><CODE>iMin = HTrack.Min<BR> VTrack.Min = 0 </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Max</TD> <TD>determines the maximum value used by the trackbar. The default value for Max is 100.<P><CODE>iMax = HTrack.Max<BR> HTrack.Max = 200 </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Value</TD> <TD>Value determines the current position of the trackbar within the range set by Min and Max. The default value for Value is zero. Changing the value of Value changes the trackbar pointer.<P><CODE>iCurVla = VTrack.Value<BR> VTrack.Value = iCurVal</CODE></TD>
+	</TR>
+	<TR>
+		<TD>LineSize</TD> <TD>The trackbar Pos value may be changed using the up/down arrows and PageUp/PageDown keys. LineSize determines how much to change the value when the arrow keys are used. The default value for LineSize is one.<P><CODE>VTrack.LineSize = 1<BR> iLineSize = Trackbar.LineSize </CODE></TD>
+	</TR>
+	<TR>
+		<TD>PageSize</TD> <TD>PageSize determines how much to change the value when PageUp/PageDown is pressed on the keyboard. The default value for PageSize is ten.<P><CODE>HTrack.PageSize = 5<BR> i = HTrack.PageSize </CODE></TD>
+	</TR>
+	<TR>
+		<TD>TickFreq</TD> <TD>"Ticks" are small "dots" displayed by a trackbar and are used along with the pointer to determine the current value of the trackbar. The default value of TickFreq is ten, displaying a dot every 10 units.<P><CODE>Trackbar.TickFreq = 20<BR> iTickFreq = Trackbar.TickFreq </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Ticks</TD> <TD>Ticks may be enabled by setting this property to TRUE (non-zero) and removed by setting it to FALSE (zero). Ticks are enabled by default.<P><CODE>Trackbar.Ticks = FALSE<BR> iHasTicks = Trackbar.Ticks</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Orientation</TD> <TD>The type of trackbar created is determined by the size of the trackbar. If the trackbar is wider than it is tall, a horizontal trackbar is displayed and if taller than it is wide, a vertical trackbar is displayed. You may change this by setting the Orientation property at run-time. TRUE (non-zero) forces a vertical trackbar and FALSE (zero) forces a horizontal trackbar.<P><CODE>HTrack.Orientation = FALSE<BR> iType = Trackbar.Orientation </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Enabled</TD> <TD>Set this property to TRUE (non-zero) to enable a trackbar or FALSE (zero) to disable a trackbar. By default, trackbars are enabled when created.<P><CODE>HTrackbar.Enabled = FALSE<BR> iEnabled = VTrack.Enabled</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Style</TD> <TD>Set and retrieve the Style property which determines how the edge of the control is displayed. This is different from the Border property. Styles include: <CODE>
+<UL COMPACT>
+	<LI> 0: No edge
+	<LI> 1: "Sunken" edge
+	<LI> 2: "Raised" edge
+</UL>
+HTrackbar.Style = 2<BR> iStyle = HTrackbar.Style</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Show</TD> <TD>Call this method to make a trackbar visible.<P><CODE>HTrack.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>Call the Hide method to hide a trackbar.<P><CODE>HTrack.Hide</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>Call the SetFocus method to set input focus to a trackbar.<P><CODE>VTrack.SetFocus</CODE></TD>
+	</TR>
+</TABLE>
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Change(value)</TD> <TD>When any part of the trackbar is tapped upon, a new value is calculated internally and sent to the application as a Change event. Unlike scrollbars, the trackbar display is updated internally and you do not have to set the new value.<P><CODE>sub HTrack_Change( value )<BR> iNewValue = value<BR> end sub </CODE></TD>
+	</TR>
+</TABLE>
+<HR SIZE=5>
+
+<A NAME="vumeter"></A>
+<H2>VU Meter Controls</H2>
+<IMG SRC="images/VUmeterDetail.JPG" ALT="" WIDTH="124" HEIGHT="102">
+<P>MGCEBarsNPops provides a horizontal and vertical segmented "meter", similar to the Progress Bar. Unlike the progress bar, both orientations are supported, all segments fit within the bounds of the control and two colors are used in the control display, one for the area less than the current value and one for the area more than the current value. The type of meter created is determined by the size of the control when created. If wider than it is tall, a horizontal meter is created and if taller than it is wide, a vertical meter is created. The VU Meter control supports the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEBarsNPops.VUMeter", "Name", x, y, xsize, ysize</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/VUMeter.htm">VUMeter</A> - Demo of VUMeter functions
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Min</TD> <TD>Minimum value of the meter control. The default value of Min is zero.<P><CODE>iMin = VU.Min<BR> VUMeter.Min = 0 </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Max</TD> <TD>Maximum value of the meter control. The default value of Max is 100.<P><CODE>iMax = VUMeter.Max<BR> VU.Max = 200</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Value</TD> <TD>Current value of the meter control. The default of Value is zero.<P><CODE>iPos = VUMeter.Value<BR> VUMeter.Value = 35 </CODE></TD>
+	</TR>
+	<TR>
+		<TD>LowColor</TD> <TD>The area between Min and Value are displayed using the LowColor RGB value. The LowColor default value is 0 (black).<P><CODE>VUMeter.LowColor = 128<BR> iLowColor = VUMeter.LowColor </CODE></TD>
+	</TR>
+	<TR>
+		<TD>HighColor</TD> <TD>The area between Value and Max are displayed using the HighColor RGB value. The HighColor default value is 8421504 (dark gray).<P><CODE>VU.HighColor = 255<BR> iHighColor = VUMeter.HighColor </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Segments</TD> <TD>The control is divided in a number of segments, appearing as an "LED VU Meter". The number of segments are determined by the Segments property and the default for Segments is ten.<P><CODE>VUMeter.Segments = 20<BR> iSeg = VU.Segments </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Orientation</TD> <TD>The type of control created depends on the size of the control. If it is wider than it is tall, a horizontal control is created and if taller than it is wide, a vertical control is created. You may change this by forcing the control to horizontal by setting Orientation to FALSE (zero) or to vertical by setting it to TRUE (non-zero).<P><CODE>VUMeter.Orientation = TRUE<BR> iOrient = VUMeter.Orientation</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Show</TD> <TD>The Show method displays the control.<P><CODE>VUMeter.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>The Hide method hides the control.<P><CODE>VUMeter.Hide</CODE></TD>
+	</TR>
+</TABLE>
+
+
+<H4>Events</H4>
+The VU Meter does not provide any events.
+
+<HR SIZE=5>
+
+<A NAME="progress"></A>
+<H2>Progress Control</H2>
+<IMG SRC="images/ProgressDetail.JPG" ALT="" WIDTH="102" HEIGHT="21">
+<P>MGCEBarsNPops provides access to the standard Windows CE Progress control. Windows CE only supports horizontal progress bars. MGCEBarsNPops supports the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEBarsNPops.Progress", "Name", 0, 0, 0, 0</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Progress.htm">Progress</A> - Demo of Progress bar functions
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Min</TD> <TD>Minimum value of the progress bar. The default value is zero.<P><CODE>Prog.Min = 0<BR> iMin = Prog.Min</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Max</TD> <TD>Maximum value of the progress bar. The default value is 100.<P><CODE>Prog.Max = 200<BR> iMax = Prog.Max</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Value</TD> <TD>Current position of the progress bar. Value must be within the range set by Min and Max and the default value is zero.<P><CODE>Prog.Value = 25<BR> iValue = Prog.Value </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Smooth</TD> <TD>By default, the progress bar has a segmented display. You may select between a segmented and smooth (non-segmented) display by setting the Smooth property. TRUE (non-zero) sets the control to a smooth display and FALSE (zero) sets the control to a segmented display.<P><CODE>ProgBar.Smooth = TRUE<BR> iSeg = ProgBar.Smooth</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Step</TD> <TD>The progress bar value may be changed either directly via the Value property or internally using the DoStep method. When using the DoStep method, the amount of change is determined by the value of Step. The default value of Step is ten.<P><CODE>ProgBar.Step = 25<BR> iStepAmt = ProgBar.Step </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Border</TD> <TD>Set Border to TRUE (non-zero) to display a border around the control or FALSE (zero) to eliminate the border.<P><CODE>ProgBar.Border = TRUE<BR> iBorder = ProgBar.Border</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Style</TD> <TD>Set and retrieve the Style property which determines how the edge of the control is displayed. This is different from the Border property. Styles include: <CODE>
+<UL COMPACT>
+	<LI> 0: No edge
+	<LI> 1: "Sunken" edge
+	<LI> 2: "Raised" edge
+</UL>
+ProgBar.Style = 2<BR> iStyle = ProgBar.Style</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>DoStep</TD> <TD>Call DoStep to increase the value of the Value property by the amount specified by the Step property.<P><CODE>ProgBar.DoStep</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Show</TD> <TD>The Show method causes the control to display.<P><CODE>ProgBar.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>The Hide method causes the control to disappear.<P><CODE>ProgBar.Hide</CODE></TD>
+	</TR>
+</TABLE>
+
+
+<H4>Events</H4>
+	The progress bar does not support any events.
+
+<HR SIZE=5>
+
+<A NAME="popup"></A>
+<H2>Popup Menu Control</H2>
+<IMG SRC="images/PopupDetail.JPG" ALT="" WIDTH="78" HEIGHT="111">
+<P>MGCEBarsNPops provides a popup menu to applications. Unlike the standard menu of an application, a popup menu is normally not displayed and may be displayed anywhere on the screen at any time under program control. The popup menu control supports the following properties, methods and events:
+
+
+<H4>Object Creation</H4>
+	<CODE>addobject "MGCEBarsNPops.PopupMenu", "Name", 0, 0, 0, 0</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/Popup.htm">Popup</A> - Demo of Popup box functions
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Checked</TD> <TD>You may check, uncheck and retrieve checked status of a menu item using this property. When set to TRUE (non-zero), a menu item is checked and FALSE removes the checkbox, if any. A menu item must be specified and starts at one (1).<P><CODE>iChecked = Menu.Checked( 3 )<BR> Menu.Checked( 2 ) = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Enabled</TD> <TD>The Enabled property sets and retrieves the enabled state of a given menu item. TRUE (non-zero) enables a menu item while FALSE (zero) disables the item. Menu items start with item one (1).<P><CODE>iEnabled = Menu.Enabled( 1 )<BR> Menu.Enabled( 3 ) = FALSE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Add</TD> <TD>The Add method adds an item to the popup menu. The new item is added to the bottom (end) of the menu. If a string begins with a dash (-), a separator bar is added to the menu.<P> <CODE> Menu.Add "&Item 1"<BR> Menu.Add "-"          ' Add a separator bar after "Item 1"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Remove</TD> <TD>The Remove method removes an item from a popup menu, one (1) being the first item in a menu.<P><CODE>Menu.Remove 3</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RemoveAll</TD> <TD>Remove all items from a menu using this method.<P><CODE>Menu.RemoveAll</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Show</TD> <TD>The Show method displays a popup menu of a specified type and at a specified location on the screen. Flags used with Show are:<CODE>
+<UL COMPACT>
+	<LI> pmLeft = 0    ' Left align the menu
+	<LI> pmCenter = 4   ' Center align the menu
+	<LI> pmRight = 8    ' Right align the menu
+	<LI> pmTop = 0      ' Top align the menu
+	<LI> pmVCenter = 16 ' Vertically center the menu
+	<LI> pmBottom = 32  ' Bottom align the menu
+</UL>
+ </CODE><P>You may use any combination of the Left/Center/Right and Top/VCenter/Bottom flags. The menu automatically disappears when something on the screen is tapped, whether on or off the menu itself.<P><CODE>Menu.Show pmLeft + pmTop, iXpos, iYpos</CODE></TD>
+	</TR>
+</TABLE>
+
+
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Click(menutext)</TD> <TD>The calling program will receive a Click event from the Popup Menu control when a menu item is tapped by the user and provides the text of the selected item. If something else onscreen is tapped while the menu is displayed, the menu is dismissed without firing this event.<P><CODE>sub Menu_Click( text )<BR> if text = "Cancel" then exit sub<BR> end sub</CODE></TD>
+	</TR>
+</TABLE>
+
+<A NAME="statusbar"></A>
+<H2>StatusBar Control</H2>
+<IMG SRC="images/StatusBarDetail.JPG" ALT="" WIDTH="240" HEIGHT="20">
+<P>The StatusBar Control provides access to the Windows CE StatusBar as commonly found at the bottom of application windows.
+
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "MGCEBarsNPopos.StatusBar", "Name", x, y, xsize, ysize</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/StatusBar.htm">Statusbar</A> - Demo of StatusBar functions
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Sections</TD> <TD>	A status bar may contain more than one section, each having its own size and text. The Sections property sets and retrieves an array of values used to determine the width of each section.<P><CODE>secArray = Array( 100, 100, 150 )  ' Three sections<BR>
+	statusbar.Sections = secArray      ' Apply sections to status bar<BR>
+	set secArray = Nothing             ' Kill off array<BR><BR>
+
+	secArray = statusbar.Sections
+</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Caption</TD> <TD>Each section of a status bar contains a caption. The Caption property sets and retrieves that caption from a specific section.<P><CODE>	statusbar.Caption( 1 ) = "First Section"<BR>
+	sCaption = statusbar.Caption( 2 )
+</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Return the current version of this control as an integer</TD>
+	</TR>
+</TABLE>
+
+
+<H4>Methods</H4>
+
+The StatusBar object has no methods.
+
+
+<H4>Events</H4>
+
+The StatusBar object has no methods.
+
+
+<HR>
+<H4>Change Log</H4>
+<P>10/23/99: Added StatusBar object
+
+
+</BODY>
+</HTML>

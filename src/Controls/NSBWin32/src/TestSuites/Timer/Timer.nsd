@@ -1,0 +1,115 @@
+Sub Form1_Load
+   TextBox1.Text = 0
+   AddObject "NSBasic.win32.Timer","MyTimer"
+   MyTimer.Interval = 2000
+End Sub
+Sub MyTimer_OnTimer(sender)
+   TextBox1.Text = CLng(TextBox1.Text) + 1
+   TextBox4.Text = sender.Tag
+End Sub
+
+Sub CommandButton4_Click
+   MyTimer.Interval = CLng(TextBox3.Text)
+End Sub
+
+Sub CommandButton3_Click
+   MyTimer.Tag = TextBox2.Text
+End Sub
+
+Sub CommandButton1_Click
+   MyTimer.Start()
+End Sub
+
+Sub CommandButton2_Click
+   MyTimer.Stop()
+End Sub
+
+Sub CommandButton5_Click
+   TextBox3.Text = MyTimer.Interval   
+End Sub
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Timer"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\prj\Desk\TestSuites\Timer\Timer.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "CommandButton", "CommandButton1", 8, 8, 108, 21, Form1
+      CommandButton1.Caption = "Start timer"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton2", 8, 40, 108, 21, Form1
+      CommandButton2.Caption = "Stop timer"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox1", 448, 32, 69, 21, Form1
+      TextBox1.BackColor = 16777215
+      TextBox1.FontSize =  8.25
+      TextBox1.Text = "TextBox1"
+      '--------
+      AddObject "Label", "Label1", 312, 32, 124, 20, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Timer intervals"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox2", 128, 72, 128, 24, Form1
+      TextBox2.BackColor = 16777215
+      TextBox2.FontSize =  8.25
+      TextBox2.Text = "Some tag value"
+      '--------
+      AddObject "CommandButton", "CommandButton3", 8, 72, 108, 21, Form1
+      CommandButton3.Caption = "Set tag"
+      CommandButton3.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton4", 8, 112, 108, 21, Form1
+      CommandButton4.Caption = "Set interval"
+      CommandButton4.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox3", 144, 120, 69, 21, Form1
+      TextBox3.BackColor = 16777215
+      TextBox3.FontSize =  8.25
+      TextBox3.Text = "2000"
+      '--------
+      AddObject "Label", "Label2", 312, 64, 56, 21, Form1
+      Label2.BackColor = 12632256
+      Label2.Caption = "Tag:"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox4", 448, 64, 160, 24, Form1
+      TextBox4.BackColor = 16777215
+      TextBox4.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton5", 208, 112, 108, 21, Form1
+      CommandButton5.Caption = "Get interval"
+      CommandButton5.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

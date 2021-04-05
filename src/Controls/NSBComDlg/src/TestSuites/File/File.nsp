@@ -1,0 +1,3 @@
+Dim AppEXEName: AppEXEName = "File"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\src\TestSuites\File\File.nsd"
+

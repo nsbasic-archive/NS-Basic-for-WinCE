@@ -1,0 +1,544 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 03f: Financial Functions</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 CELLPADDING=5 WIDTH=550>
+<TR>
+	<TD WIDTH="20%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="80%" VALIGN="TOP">
+	  <h2>Tech Note 03f: Financial Functions </h2>
+	  <h3>March 12, 2003</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr size="1" noshade>
+
+<blockquote>
+  <p>For more information on this control, see Microsoft's 
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">documentation</A>.
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>NS Basic/CE has a set of functions for financial calculations. These are contained in the Finance object, which has to be initialized using an addobject function. The Finance object is built into the ROM of some Windows CE, and does not always have to be downloaded to be used.</P>
+
+<PRE>addObject("finance")
+payments=finance.NPer(0.1/12, -500, 12000)
+msgbox payments
+</Pre><P>&nbsp;</P>
+On EmCE, use CreateObject instead (works on device as well):
+<pre>set finance=createObject("pVBFinFunc.pvbFinFunc")</pre><br><br>
+<TABLE BORDER CELLSPACING=1 WIDTH=441>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>Method </TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>DDB(cost, salvage, life, period, factor)</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the depreciation of an asset for a specific time period using the double declining balance method, or some other method that you specify.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>FV(rate, nper, pmt[, pv[, type]]) </TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the future value of an annuity based on periodic, fixed payments and a fixed interest rate.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>IPmt(rate, per, nper, pv, fv, type)</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the interest payment for a given period of an annuity based on periodic, fixed payments and a fixed interest rate.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>IRR(values[, guess])</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the internal rate of return for a series of periodic cash flows (payments and receipts).</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>MIRR(values, finance_rate, reinvest_rate)</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the modified internal rate of return for a series of periodic cash flows (payments and receipts).</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>NPer(rate, pmt, pv[, fv[, type]])</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the number of periods for an annuity based on periodic, fixed payments and a fixed interest rate.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>NPV(rate, values)</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the net present value of an investment based on a series of periodic cash flows (payments and receipts) and a discount rate.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>Pmt(rate, nper, pv[, fv[, type]])</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the payment for an annuity based on periodic, fixed payments and a fixed interest rate.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>PPmt(rate, per, nper, pv, type)</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the principal payment for a given period of an annuity based on periodic, fixed payments and a fixed interest rate.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>PV(rate, nper, pmt[, fv[, type]])</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the present value of an annuity based on periodic, fixed payments to be paid in the future, and a fixed interest rate.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>Rate(nper, pmt, pv[, fv[, type[, guess]]])</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the interest rate per period for an annuity.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>SLN(cost, salvage, life)</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the straight line depreciation of an asset for a single period.</TD>
+</TR>
+<TR><TD WIDTH="47%" VALIGN="TOP">
+<P>SYD(cost, salvage, life, period)</TD>
+<TD WIDTH="53%" VALIGN="TOP">
+<P>Returns the sum of years' digits depreciation of an asset for a specified period.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>DDB(cost, salvage, life, period, factor)</P>
+</font></B><P>Specifies the depreciation of an asset for a specific time period using the double-declining balance method, or some other method that you specify.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<P>Cost </TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Required. Sets initial cost of the asset.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<P>Salvage </TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Required. Sets value of the asset at the end of its useful life.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<P>Life</TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Required. Sets length of useful life of the asset.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<P>Period</TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Required. Sets period for which asset depreciation is calculated.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<P>Factor</TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Required. Sets rate at which the balance declines.</TD>
+</TR>
+</TABLE>
+
+<P>The double declining balance method computes depreciation at an accelerated rate. Depreciation is highest in the first period and decreases in successive periods. The life and period arguments must be expressed in the same units. For example, if life is given in months, period must also be given in months. All arguments must be positive numbers.</P>
+<P>The DDB function uses the following formula to calculate depreciation for a given period:</P>
+<P>Depreciation / period = ((cost &#136; salvage) * factor) / life</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>FV(rate, nper, pmt[, pv[, type]])</P>
+</font></B><P>Specifies the future value of an annuity based on periodic fixed payments and a fixed interest rate.</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Rate</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets interest rate per period. For example, if you obtain a boat loan at an annual percentage rate (APR) of 10 percent and make monthly payments, the rate per period is 0.1/12, or 0.0083.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>nper</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets total number of payment periods in the annuity. For example, if you make monthly payments on a four year boat loan, your loan has a total of 4 * 12 (or 48) payment periods.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Pmt</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets payment to be made each period. Payments usually contain principal and interest that does not change over the life of the annuity.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Pv</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Optional. Sets present value (or lump sum) of a series of future payments. For example, when you borrow money to buy a boat, the loan amount is the present value to the lender of the monthly boat payments you will make. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Optional. Sets when payments are due. Use 0 if payments are due at the end of the payment period, or use 1 if payments are due at the beginning of the period. If omitted, 0 is assumed.</TD>
+</TR>
+</TABLE>
+
+<P>An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).</P>
+<P>The rate and nper arguments must be calculated using payment periods expressed in the same units. For example, if rate is calculated using months, nper must also be calculated using months.</P>
+<P>For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>IPmt(rate, per, nper, pv, fv, type)</P>
+</font></B><P>Specifies the interest payment for a given period of an annuity based on periodic fixed payments and a fixed interest rate.&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Rate</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets interest rate per period. For example, if you obtain a boat loan at an annual percentage rate (APR) of 10 percent and make monthly payments, the rate per period is 0.1/12, or 0.0083.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>per</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets payment period in the range 1 through nper.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Nper</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets total number of payment periods in the annuity. For example, if you make monthly payments on a four year boat loan, your loan has a total of 4 * 12 (or 48) payment periods.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Pv</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets present value, or value today, of a series of future payments or receipts. For example, when you borrow money to buy a boat, the loan amount is the present value to the lender of the monthly boat payments you will make.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Fv</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets future value or cash balance you want after you have made the final payment. For example, the future value of a loan is $0 because that is its value after the final payment. However, if you want to save $50,000 over 18 years for your child's education, then $50,000 is the future value. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets when payments are due. Use 0 if payments are due at the end of the payment period, or use 1 if payments are due at the beginning of the period.</TD>
+</TR>
+</TABLE>
+
+<P>An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).</P>
+<P>The rate and nper arguments must be calculated using payment periods expressed in the same units. For example, if rate is calculated using months, nper must also be calculated using months.</P>
+<P>For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>IRR(values[, guess])</P>
+</font></B><P>Specifies the internal rate of return for a series of periodic cash flows (payments and receipts).</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Value</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Array of Sets cash flow values. The array must contain at least one negative value (a payment) and one positive value (a receipt).</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Guess</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Optional. Sets value you estimate will be returned by IRR. If omitted, guess is 0.1 (10 percent).</TD>
+</TR>
+</TABLE>
+
+<P>The internal rate of return is the interest rate received for an investment consisting of payments and receipts that occur at regular intervals.</P>
+<P>The IRR function uses the order of values within the array to interpret the order of payments and receipts. Be sure to enter your payment and receipt values in the correct sequence. The cash flow for each period does not have to be fixed, as it is for an annuity.</P>
+<P>IRR is calculated by iteration. Starting with the value of guess, IRR cycles through the calculation until the result is accurate to within 0.00001 percent. If IRR cannot find a result after 20 tries, it fails.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>MIRR(values, finance_rate, reinvest_rate)</P>
+</font></B><P>Specifies the modified internal rate of return for a series of periodic cash flows (payments and receipts).</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1>
+<TR><TD WIDTH=310 VALIGN="TOP" COLSPAN=2>
+<P></TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH=153 VALIGN="TOP">
+<P>Valuesfinance_rate</TD>
+<TD WIDTH=314 VALIGN="TOP" COLSPAN=2>
+<P>Required. Sets interest rate paid as the cost of financing.</TD>
+</TR>
+<TR><TD WIDTH=153 VALIGN="TOP">
+<P>reinvest_rate</TD>
+<TD WIDTH=314 VALIGN="TOP" COLSPAN=2>
+<P>Required. Sets interest rate received on gains from cash reinvestment.</TD>
+</TR>
+</TABLE>
+
+<P>The modified internal rate of return is the internal rate of return when payments and receipts are financed at different rates. The MIRR function takes into account both the cost of the investment (finance_rate) and the interest rate received on reinvestment of cash (reinvest_rate).</P>
+<P>The finance_rate and reinvest_rate arguments are percentages expressed as decimal values. For example, 12 percent is expressed as 0.12.</P>
+<P>The MIRR function uses the order of values within the array to interpret the order of payments and receipts. Be sure to enter your payment and receipt values in the correct sequence.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>NPer(rate, pmt, pv[, fv[, type]])</P>
+</font></B><P>Specifies the number of periods for an annuity based on periodic fixed payments and a fixed interest rate.</P>
+<P>Rate-Required. Sets interest rate per period. For example, if you obtain a boat loan at an annual percentage rate (APR) of 10 percent and make monthly payments, the rate per period is 0.1/12, or 0.0083.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Pmt</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Required. Sets payment to be made each period. Payments usually contain principal and interest that does not change over the life of the annuity.</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Pv</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Required. Sets present value, or value today, of a series of future payments or receipts. For example, when you borrow money to buy a boat, the loan amount is the present value to the lender of the monthly boat payments you will make.</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Fv</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Optional. Sets future value or cash balance you want after you have made the final payment. For example, the future value of a loan is $0 because that is its value after the final payment. However, if you want to save $50,000 over 18 years for your child's education, then $50,000 is the future value. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Optional. Sets when payments are due. Use 0 if payments are due at the end of the payment period, or use 1 if payments are due at the beginning of the period. If omitted, 0 is assumed.</TD>
+</TR>
+</TABLE>
+
+<P>An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).</P>
+<P>For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>NPV(rate, values)</P>
+</font></B><P>Specifies the net present value of an investment based on a series of periodic cash flows (payments and receipts) and a discount rate.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Rate</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets discount rate over the length of the period, expressed as a decimal.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Values</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Array of Sets cash flow values. The array must contain at least one negative value (a payment) and one positive value (a receipt).</TD>
+</TR>
+</TABLE>
+
+<P>The net present value of an investment is the current value of a future series of payments and receipts.</P>
+<P>The NPV function uses the order of values within the array to interpret the order of payments and receipts. Be sure to enter your payment and receipt values in the correct sequence.</P>
+<P>The NPV investment begins one period before the date of the first cash flow value and ends with the last cash flow value in the array.</P>
+<P>The net present value calculation is based on future cash flows. If your first cash flow occurs at the beginning of the first period, the first value must be added to the value returned by NPV and must not be included in the cash flow values of values().</P>
+<P>The NPV function is similar to the PV function (present value) except that the PV function allows cash flows to begin either at the end or the beginning of a period. Unlike the variable NPV cash flow values, PV cash flows must be fixed throughout the investment.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>Pmt(rate, nper, pv[, fv[, type]])</P>
+</font></B><P>Specifies the payment for an annuity based on periodic fixed payments and a fixed interest rate.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Rate</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Required. Sets interest rate per period. For example, if you obtain a boat loan at an annual percentage rate (APR) of 10 percent and make monthly payments, the rate per period is 0.1/12, or 0.0083.</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Nper</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Required. Sets total number of payment periods in the annuity. For example, if you make monthly payments on a four year boat loan, your loan has a total of 4 * 12 (or 48) payment periods.</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Pv</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Required. Sets present value (or lump sum) that a series of payments to be paid in the future is worth now. For example, when you borrow money to buy a boat, the loan amount is the present value to the lender of the monthly boat payments you will make.</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Fv</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Optional. Sets future value or cash balance you want after you made the final payment. For example, the future value of a loan is $0 because that is its value after the final payment. However, if you want to save $50,000 over 18 years for your child's education, then $50,000 is the future value. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P>Optional. Sets when payments are due. Use 0 if payments are due at the end of the payment period, or use 1 if payments are due at the beginning of the period. If omitted, 0 is assumed.</TD>
+</TR>
+</TABLE>
+
+<P>An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).</P>
+<P>The rate and nper arguments must be calculated using payment periods expressed in the same units. For example, if rate is calculated using months, nper must also be calculated using months.</P>
+<P>For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>PPmt(rate, per, nper, pv, type)</P>
+</font></B><P>Specifies the principal payment for a given period of an annuity based on periodic fixed payments and a fixed interest rate.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="10%" VALIGN="TOP">
+<P>Rate</TD>
+<TD WIDTH="90%" VALIGN="TOP">
+<P>Required. Sets interest rate per period. For example, if you obtain a boat loan at an annual percentage rate (APR) of 10 percent and make monthly payments, the rate per period is 0.1/12, or 0.0083.</TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP">
+<P>Per</TD>
+<TD WIDTH="90%" VALIGN="TOP">
+<P>Required. Sets payment period in the range 1 through nper.</TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP">
+<P>Nper</TD>
+<TD WIDTH="90%" VALIGN="TOP">
+<P>Required. Sets total number of payment periods in the annuity. For example, if you make monthly payments on a four year boat loan, your loan has a total of 4 * 12 (or 48) payment periods.</TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP">
+<P>Pv</TD>
+<TD WIDTH="90%" VALIGN="TOP">
+<P>Required. Sets present value, or value today, of a series of future payments or receipts. For example, when you borrow money to buy a boat, the loan amount is the present value to the lender of the monthly boat payments you will make.</TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP">
+<P>Fv</TD>
+<TD WIDTH="90%" VALIGN="TOP">
+<P>Optional. Sets future value or cash balance you want after you have made the final payment. For example, the future value of a loan is $0 because that is its value after the final payment. However, if you want to save $50,000 over 18 years for your child's education, then $50,000 is the future value. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="10%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="90%" VALIGN="TOP">
+<P>Required. Sets when payments are due. Use 0 if payments are due at the end of the payment period, or use 1 if payments are due at the beginning of the period. If omitted, 0 is assumed.</TD>
+</TR>
+</TABLE>
+
+<P>An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).</P>
+<P>The rate and nper arguments must be calculated using payment periods expressed in the same units. For example, if rate is calculated using months, nper must also be calculated using months.</P>
+<P>For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>PV(rate, nper, pmt[, fv[, type]])</P>
+</font></B><P>Specifies the present value of an annuity based on periodic fixed payments to be paid in the future and a fixed interest rate.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Rate</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets interest rate per period. For example, if you have a boat loan at an annual percentage rate (APR) of 10 percent and make monthly payments, the rate per period is 0.1/12, or 0.0083.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Nper</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets total number of payment periods in the annuity. For example, if you make monthly payments on a four year boat loan, your loan has a total of 4 * 12 (or 48) payment periods.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Pmt </TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Required. Sets payment to be made each period. Payments usually contain principal and interest that does not change over the life of the annuity.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Fv</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Optional. Sets future value or cash balance you want after you have made the final payment. For example, the future value of a loan is $0 because that is its value after the final payment. However, if you want to save $50,000 over 18 years for your child's education, then $50,000 is the future value. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="13%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="87%" VALIGN="TOP">
+<P>Optional. Sets when payments are due. Use 0 if payments are due at the end of the payment period, or use 1 if payments are due at the beginning of the period. If omitted, 0 is assumed.</TD>
+</TR>
+</TABLE>
+
+<P>An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).</P>
+<P>The rate and nper arguments must be calculated using payment periods expressed in the same units. For example, if rate is calculated using months, nper must also be calculated using months.</P>
+<P>For all arguments, cash paid out (such as deposits to savings) is by negative numbers; cash received (such as dividend checks) is represented by positive numbers.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>Rate(nper, pmt, pv[, fv[, type[, guess]]])</P>
+</font></B><P>Specifies the interest rate per period for an annuity.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Nper</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets total number of payment periods in the annuity. For example, if you make monthly payments on a four year boat loan, your loan has a total of 4 * 12 (or 48) payment periods.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Pmt</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets payment to be made each period. Payments usually contain principal and interest that does not change over the life of the annuity.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Pv</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets present value, or value today, of a series of future payments or receipts. For example, when you borrow money to buy a boat, the loan amount is the present value to the lender of the monthly boat payments you will make.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Fv</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Optional. Sets future value or cash balance you want after you make the final payment. For example, the future value of a loan is $0 because that is its value after the final payment. However, if you want to save $50,000 over 18 years for your child's education, then $50,000 is the future value. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Optional. Sets a number indicating when payments are due. Use 0 if payments are due at the end of the payment period, or use 1 if payments are due at the beginning of the period. If omitted, 0 is assumed.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Guess</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Optional. Sets value you estimate will be returned by the Rate function. If omitted, guess is 0.1 (10 percent).</TD>
+</TR>
+</TABLE>
+
+<P>An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).</P>
+<P>For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.</P>
+<P>Rate is calculated by iteration. Starting with the value of guess, the Rate function cycles through the calculation until the result is accurate to within 0.00001 percent. If Rate cannot find a result after 20 tries, it fails. If your guess is 10 percent and Rate fails, try a different value for guess.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>SLN(cost, salvage, life)</P>
+</font></B><P>Specifies the straight-line depreciation of an asset for a single period.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Cost</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets initial cost of the asset.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Salvage</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets value of the asset at the end of its useful life.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Life</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets length of the useful life of the asset.</TD>
+</TR>
+</TABLE>
+
+<P>The depreciation period must be expressed in the same unit as the life argument. All arguments must be positive numbers.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>SYD(cost, salvage, life, period)</P>
+</font></B><P>Specifies the sum-of-years' digits depreciation of an asset for a specified period.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Cost</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets initial cost of the asset.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Salvage</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets value of the asset at the end of its useful life.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Life</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets length of the useful life of the asset.</TD>
+</TR>
+<TR><TD WIDTH="12%" VALIGN="TOP">
+<P>Period</TD>
+<TD WIDTH="88%" VALIGN="TOP">
+<P>Required. Sets period for which asset depreciation is calculated.</TD>
+</TR>
+</TABLE>
+
+<P>The life and period arguments must be expressed in the same units. For example, if life is given in months, period must also be given in months. All arguments must be positive numbers. </P></BODY>
+</HTML>

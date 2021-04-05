@@ -1,0 +1,195 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_114_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_114_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>SETMENU                                                            Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SETMENU</span></font> &quot;<i><span
+style='font-style:italic;'>menustring</span></i>[||<i><span style='font-style:italic;'>menukey</span></i>]&quot;, <i><span
+style='font-style:italic;'>menulist</span></i></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SETMENU adds custom menus to the output window while a
+program is running. The required component, <i><span
+style='font-style:italic;'>menustring</span></i>, is
+the text that will be displayed in the menu item. The optional component, <i><span style='font-style:italic;'>menukey</span></i>, is the variable name that will be associated with
+the menu item. A <i><span style='font-style:
+italic;'>menukey</span></i> is separated from the <i><span style='font-style:italic;'>menustring</span></i> by two vertical bar characters(|), and should be
+used: to abbreviate a long <i><span
+style='font-style:italic;'>menustring</span></i>,
+when the <i><span style='font-style:italic;'>menustring</span></i> contains spaces or special
+characters, or to have multiple menu items with the same <i><span style='font-style:italic;'>menustring</span></i>.
+If no <i><span style='font-style:italic;'>menukey</span></i> is included, the value of <i><span style='font-style:italic;'>menustring</span></i> is used. The required component, <i><span style='font-style:italic;'>menulist</span></i>, is an array of string expressions that represent
+the <i><span style='font-style:italic;'>menukeys</span></i> of a submenu under a menu item.
+The <i><span style='font-style:italic;'>menukey</span></i> of the root menu of the output
+window is &quot;Titlebar.&quot;</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>When a menu item is selected, an event is sent to the
+program. To respond to the event, include a PUBLIC SUB procedure with the
+following syntax:</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&nbsp;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB menukey_click()</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       'Do
+something in response</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Any <i><span
+style='font-style:italic;'>menustring</span></i> that
+begins with a hyphen character (-) will be added to the menu as an unselectable
+separator. Separators do not support submenus.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SETMENU can be used to change menus dynamically. Any time
+SETMENU is called, the affected menus are updated in the output window. If a
+menu item is modified, all of its submenu items are cleared.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>To aid keyboard menu navigation, a character in a <i><span style='font-style:italic;'>menustring</span></i> may be underlined. Insert an ampersand character
+(&amp;) in the <i><span style='font-style:
+italic;'>menustring</span></i> before a character to
+have it underlined.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>To display a second column in a menu (i.e. to show keyboard
+accelerators), append a tab character (vbTAB) and the desired second column
+string to the <i><span style='font-style:
+italic;'>menustring</span></i>.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM SETMENU Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'SETMENU adds custom menus to output window</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Menu</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Menu = ARRAY(&quot;File&quot;,
+&quot;Edit&quot;, &quot;Help&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SETMENU &quot;Titlebar&quot;, Menu</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Menu = ARRAY(&quot;&amp;New&quot;</span></font>&amp;vbTAB&amp;&quot;Ctrl+n||New&quot;,_</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;&amp;Open&quot; &amp; vbTAB &amp; &quot;Ctrl+o||Open&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;&amp;Save&quot; &amp; vbTAB &amp; &quot;Ctrl+s||Save&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;-&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;&amp;Recent Files||Recent&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;-&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;E&amp;xit&quot; &amp; vbTAB &amp; &quot;Alt+F4||Exit&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SETMENU &quot;File&quot;, Menu</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Menu = ARRAY(&quot;&amp;1 File 1||RF1&quot;,
+_</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;&amp;2 File 2||RF2&quot;, &quot;&amp;3 File 3||RF3&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+&quot;&amp;4 File 4||RF4&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SETMENU &quot;Recent&quot;, Menu</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SETMENU &quot;Edit&quot;,
+ARRAY(&quot;Cut&quot;, &quot;Copy&quot;,</span></font>&quot;Paste&quot;)</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Menu = ARRAY(&quot;About SETMENU</span></font>Example...||ASE&quot;)</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SETMENU &quot;Help&quot;, Menu</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB New_Click()</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  'Open
+a new file</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB Open_Click()</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  'Open
+an existing file</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+</div>
+
+</body>
+
+</html>

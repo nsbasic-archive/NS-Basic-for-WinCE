@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "API.Sample1"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\NSBWin32\API.Sample1.nsb"
+Project.AddModule "main", ".\API.Sample1.nsb"
+Project.AddResourceFile "NSBWin32","{controls}\NSBWin32.dll","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

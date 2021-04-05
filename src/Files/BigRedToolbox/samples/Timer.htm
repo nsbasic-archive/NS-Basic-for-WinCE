@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Timer Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Timer.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+addobject "MGCEWin32.Timer",  "Timer", 0, 0, 0, 0
+addobject "CommandButton", "StartBtn", 10, 0, 60, 20
+addobject "CommandButton", "StopBtn", 70, 0, 60, 20
+addobject "Listbox", "TimeList", 10, 24, 120, 100
+
+TimeList.Sorted = 0
+StartBtn.Caption = "Start"
+StopBtn.Caption = "Stop"
+
+Timer.Interval = 1000
+
+SecondsRunning = 0
+
+sub Timer_Interval
+   SecondsRunning = SecondsRunning + 1
+   TimeList.AddItem "Running " & CStr( SecondsRunning ) & " secs"
+end sub
+
+sub StartBtn_Click
+   SecondsRunning = 0
+   TimeList.Clear
+   Timer.Start
+end sub
+
+sub StopBtn_Click
+   Timer.Stop
+end sub
+</PRE>
+</body>
+</html>
+

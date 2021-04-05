@@ -1,0 +1,684 @@
+1000	Datei
+1001	Neues Projekt
+1002	Projekt öffnen...
+1003	Projekt speichern
+1004	Projekt speichern als...
+1005	Speichern
+1006	Speichern als...
+1007	Alles speichern
+1008	Druckeinrichtung...
+1009	Drucken...
+1010	Ende
+1011	Bearbeiten
+1012	Rückgängig
+1013	Wiederholen
+1014	Ausschneiden
+1015	Kopieren
+1016	Einfügen
+1017	Löschen
+1018	Alles markieren
+1019	Suchen...
+1020	Weitersuchen
+1021	Ersetzen...
+1022	Gehe zu Zeile...
+1023	Ansicht
+1024	Werkzeugleiste
+1025	Statuszeile
+1026	Aktualisieren
+1027	Projekt
+1028	Formular einfügen
+1029	Menü einfügen
+1030	Bitmap einfügen
+1031	Startup Code
+1032	Termination Code
+1033	Hilfe Code
+1034	Make 
+1035	ActiveSync 
+1036	ActiveSync NS Basic Runtime
+1037	ActiveSync Shared Library
+1038	Eigenschaften...
+1039	Setze Zielprojekt
+1040	Format
+1041	Ausrichtung
+1042	Links
+1043	Center
+1044	Rechts
+1045	Oben
+1046	Mitte
+1047	Unten
+1048	am Gitter
+1049	gleiche Größe
+1050	Breite
+1051	Höhe
+1052	Beides
+1053	am Gitter ausrichten
+1054	Horizontaler Zwischenraum
+1055	Gleich
+1056	Vergrößern
+1057	Verkleinern
+1058	Zurück
+1059	Vertikaler Zwischenraum
+1064	Mitte des Formulars
+1065	Horizontal
+1066	Vertikal
+1067	Bestellen
+1068	nach oben
+1069	nach vorne
+1070	nach hinten
+1071	nach unten
+1072	Extras
+1073	Menüeditor
+1074	Optionen...
+1075	Fenster
+1076	Werkzeug
+1077	Eigenschaften Fenster
+1078	Kaskadieren
+1079	Horizontal teilen
+1080	Vertikal teilen
+1081	Fenster...
+1082	Hilfe
+1083	Register...
+1084	Sprachdefinition
+1085	NS Basic Website
+1086	Über NS Basic/CE...
+1087	Neu
+1088	Öffnen
+1089	Speichern
+1090	Drucken
+1091	Rückgängig
+1092	Wiederholen
+1093	Ausschneiden
+1094	Kopieren
+1095	Einfügen
+1096	Löschen
+1097	Suchen
+1098	Form einfügen
+1099	Bitmap einfügen
+1100	Modul einfügen
+1101	Compilieren 
+1102	Eigenschaften
+1103	Menüeditor
+1104	Über Projekt1
+1105	System Info...
+1106	OK
+1107	Warnung: ...
+1108	Version
+1109	Programm Titel
+1110	Beschreibung einfügen
+1111	Zurück
+1112	Vorwärts
+1113	Stop
+1114	Auffrischen
+1115	Home
+1116	Suchen
+1117	Adresse:
+1118	Project Explorer
+1119	Tech Notes
+1120	NS Basic/CE
+1121	Demoversion
+1122	Der einfachste Weg ein Window CE Gerät zu programmieren!
+1123	Kaufen
+1124	Demo Information
+1125	Suchen
+1126	Was suchen:
+1127	Ersetzen mit:
+1128	Suchen
+1129	Dieses Modul
+1130	Dieses Projekt
+1131	Markierten Text
+1132	nur ganze Wörter suchen
+1133	Groß-/Kleinschreibung
+1134	Weitersuchen
+1135	Abbrechen
+1136	Ersetzen
+1137	Alles ersetzen
+1138	Installieren
+1139	Abbrechen
+1141	Neu
+1142	Vorhanden
+1143	Letzte
+1144	Diese Meldung in Zukunft nicht anzeigen 
+1145	Öffnen
+1146	Abbrechen
+1147	Dateiname:
+1148	Dateityp:
+1149	Neues Projekt
+1150	Optionen
+1151	Globaler Pfad
+1152	Pfad zu Em CE
+1153	Browse
+1154	Öffne Em CE beim Starten
+1155	Wenn NS Basic startet
+1156	Frage nach Projekt 
+1157	Erzeuge StandardProjekt
+1158	Editoreinstellungen...
+1159	Normale Schriftart 
+1160	Zeichne einfache Textobjekte
+1161	Schriftart...
+1162	Am Gitter ausrichten
+1163	Gittergröße:
+1164	Vor dem Compilieren speichern
+1165	Compiliere in Fat App
+1166	Setze hohe Auflösung für HandEra
+1167	Nach dem Compilieren...
+1168	Sende an Em C&E
+1169	Run sofort
+1170	ActiveSync an Gerät
+1171	Warten
+1172	Browse
+1173	Beispiel
+1174	Projekt Explorer
+1175	Eigenschaften
+1176	Registrierung
+1177	Um die Vollversion und die vollständige Dokumentation zu erhalten, nehmen Sie bitte Kontakt zu NS BASIC über unsere Webseite www.nsbasic.com auf und folgen Sie den Anweisungen für die Registrierung des Prokuktes.
+1178	Seriennummer
+1179	nicht registrierte Demo
+1180	Wenn Sie eine Seriennummer erhalten haben, tragen Sie sie im Feld oben ein. Wenn Sie keine Seriennummer rechtmäßig erhalten haben, muß das Feld den Text "Unregistered Demo" enthalten. Siehe Lizenzvereinbarung für weitere Einzelheiten. 
+1181	Erweiterte Funktionen
+1182	Leerzeichen anzeigen
+1183	Kommentieren
+1184	Kommentar entfernen
+1185	Wiederholungszähler setzen
+1186	Befehl ausführen
+1202	Button
+1203	List
+1204	Label
+1205	Field
+1206	PushButton
+1207	Checkbox
+1208	Popup Trigger
+1209	Selector Trigger
+1210	Bitmap
+1211	Gadget
+1212	Repeating Button
+1213	Scrollbar
+1214	Graffiti Shift Indicator
+1215	Ausführen
+1216	Compile Optionen...                            
+1217	Download Runtime
+1218	Voreinstellungen...
+1219	Starte Em C&E
+1220	Start 
+1221	Zurück zum Start
+1222	Download Shared Library
+1223	Download 
+1224	Kopierschutz
+1301	Projekt Explorer
+1302	Eigenschaften
+1303	Suchen
+1304	Suchen/Ersetzen
+1305	The Big Red Toolbox
+1400	Version
+1401	NS Basic/CE
+1403	This computer program and its documentation are protected by copyright law and international treaties. Unauthorized reproduction, use or distribution of this program, or any portion of it, will result in severe civil and criminal penalties and will be prosocuted to the maximum extent possible under the law. Please see the License Agreement in the NS BASIC Handbook.
+1404	OK
+1405	System Info...
+1406	\ / : * ? " < > |
+1407	Ein gültiger Dateiname darf nicht folgende Zeichen enthalten: \ / : * ? " < > |
+1408	Ungültiger Eigenschaftswert
+1409	\a/a[a]a|a+a=a-a(a)a*a&a^a%a$a#a@a!a:a;a'a"a{a}a<a>a,a.a?a a`a~
+1410	Kein gültiger Objektname: 
+1411	Eine oder mehrere Schriftarten fehlen. Bitte NS BASIC/CE neu installieren.
+1412	Projekt wird nur mit mindestens einer Form compiliert 
+1413	Bitte Em CE einrichten.
+1414	Beim Einschalten Em CE starten?
+1440	Allgemein
+1441	Allgemeine Programm Optionen
+1442	Editor
+1443	Editor Optionen
+1444	&CE Bildschirm
+1445	CE Bildschirm Optionen
+1446	Compile/Download
+1447	Compile/Download Optionen
+1450	NSBasicText9
+1451	NSBasicText9B
+1452	NSBasicText12
+1453	NSBasicSymbol9
+1454	NSBasicSymbol11
+1455	NSBasicSymbol7
+1456	NSBasicLED
+1457	NSBasicText12B
+1500	Ansicht Objekt
+1501	Ansicht Code
+1502	Ansicht Einschaltcode
+1503	Ansicht Endecode
+1504	Ansicht Code
+1505	Objekt umbenennen
+1506	Ansicht Ereigniscode
+1507	Ansicht Hilfecode
+1508	Hinzufügen
+1509	Form
+1510	Menü
+1511	Bitmap
+1512	Neues Modul
+1513	Vorhandenes Modul...
+1514	Menubar hinzufügen
+1515	Dropdown hinzufügen
+1516	Neues Modul hinzufügen
+1517	Vorhandenes Modul hinzufügen...
+1518	Projekt schließen
+1519	Bitmap entfernen 
+1520	Modul entfernen
+1600	Menü Editor
+1601	nach oben bewegen
+1602	nach unten bewegen
+1603	Einfügen
+1604	Menübar hinzufügen
+1605	Dropdown hinzufügen
+1606	Dropdown hinzufügen
+1607	Löschen
+1608	nach oben bewegen
+1609	nach unten bewegen
+1610	Name:
+1611	Caption:
+1612	Proc Name:
+1613	Shortcut:
+1614	Menu Layout
+1618	Nächster
+1619	Abbrechen
+1620	Menüeintrag muß eine Aufschrift haben 
+1621	Edit Menüname
+1622	Neues Menü hinzufügen
+1623	Menünamen eingeben
+1624	Neues Menü hinzufügen
+1625	MenuBar Namen eingeben
+1626	Menü löschen
+1627	Soll dieses Menü gelöscht werden?
+1628	Dropdown Name eingeben
+1629	Neue MenuBar hinzufügen
+1630	Neue Dropdown hinzufügen
+2000	(None)
+2001	(Icon)
+2002	Projekt enthält keine Bitmap mit dieser ID
+2050	Ein Projekt mit diesem Namen ist bereits geöffnet 
+2051	Eine Datei mit diesem Namen existiert bereits. Überschreiben? 
+2052	Creator ID muß mindestens einen Großbuchstaben enthalten 
+2100	 ist bereits als Vorlageform dieses Projekts angegeben. Soll die Vorlageform geändert werden? 
+2150	Projekt hat bereits eine Form mit dem Namen:  
+2151	Art und Größe der Form werden nicht von NS Basic/CE unterstützt 
+2152	Modale Form ist nicht in NS Basic/CE verfügbar 
+2200	File>Load Image>Image Files (*.gif;*.jpg;*.bmp;*.ico;*.emf;*.wmf)|*.gif;*.jpg;*.bmp;*.ico;*.emf;*.wmf|All Files|*.*>bmp
+2250	Projekt hat bereits eine Bitmap mit dem Namen: 
+2300	File>Load Module>Modules (*.cod)|*.cod>cod
+2400	0 - Standard>1 - Standard Bold>2 - Large>3 - Symbol>4 - Symbol 11>5 - Symbol 7>6 - LED>7 - Large Bold
+2450	Projekt hat bereits ein Objekt mit dem Namen:  
+2550	Projekt hat keine Bitmap mit diesem Resource ID
+2551	Die Bitmap mit dieser Resource ID ist bereits im Gebrauch
+2700	Ein anderes Objekt auf dieser Form mit derselben Group ID ist bereits gewählt. Soll dieses Objekt dieselben Group ID erhalten?
+2701	Ein anderes Objekt auf dieser Form mit derselben Group ID ist bereits gewählt.  Soll dieses Objekt gewählt werden?
+2850	Max Characters muß größer als 0 sein
+2851	Ein field kann keine dynamische Größe annehmen, wenn eine scrollbar vorhanden ist. Soll die scrollbar entfernt werden? 
+2852	Ein field muß multiple lines haben, um eine scrollbar zu verwenden. Soll die Scrollbar entfernt werden?
+2950	Anzahl der sichtbaren items muß größer als null sein
+3050	Mindestwert muß kleiner als Maximalwert sein 
+3051	Wert muß zwischen Mindestwert und Maximalwert liegen 
+3100	List Resource Type ist nicht verfügbar in NS Basic/CE
+3101	Projekt entfernen
+3102	Form löschen
+3103	Fehler...
+3104	SUB oder FUNCTION header fehlt
+3105	Das einzige Statement das einem SELECT CASE folgen kann, ist das CASE Statement.
+3106	Erwarte eine numerische Variable oder eine numerische Konstante 
+3107	Erwarte eine Variable vom Typ STRING oder ein Stringliteral in Klammern. Term und Typ: 
+3108	Erforderliche Werte im subscript fehlen 
+3109	Ausdruck ist länger als 
+3110	subscript muß eine numerische Variable oder Konstante sein. 
+3111	Name vom subscript ist nicht definiert.
+3112	Erwarte einen gültigen LABEL Namen.
+3113	Erwarte einen gültigen subroutine oder function Namen.
+3114	Modul überschreitet zulässige Größe. 
+3115	Syntax error.
+3116	Compiled code überschreitet interne Puffergröße.
+3117	SUB oder FUNCTION nicht definiert: 
+3118	Label nicht definiert:
+3119	END SUB oder END FUNCTION statement fehlt.
+3120	Recht Klammer ohne offene linke Klammer gefunden. 
+3121	Linke Klammer fehlt nach function Namen.
+3122	Rechte Klammer fehlt am Ende vom function call fehlt.
+3123	 erfordert: 
+3124	 gefunden: 
+3125	Linke Klammer am Ende vom function call fehlt.
+3126	Rechte Klammer am Ende vom function call fehlt. 
+3127	Invalid table object Name
+3128	Finde kein Objekt mit dem Namen 
+3129	Ungültiger Object Name
+3130	Datenbankname kann nicht derselbe wie der Projektname sein.
+3131	Erwarte eine Datenbanknamen Variable 
+3132	Ungültiger TYPE Name
+3133	TYPE structures kann nicht als database keys benutzt werden.
+3134	Argument ist kein gültiger Variablenname oder Literal. 
+3135	Ungültiger Typ der Variable: 
+3136	Argument ist kein gültiger Variablenname oder Literal.
+3137	Ungültiger Typ der Variable:
+3138	Ungültiger Typ der Variable:
+3139	Argument ist kein gültiger Variablenname oder Literal.
+3140	Ungültiger Typ der Variable:
+3141	Ungültiger Typ der Variable:
+3142	Ungültiger Typ der Variable:
+3143	Argument ist kein gültiger Variablenname oder Literal.
+3144	Ungültiger Typ der Variable:
+3145	Ungültiger Typ der Variable:
+3146	Ungültiger Typ der Variable:
+3147	Ungültiger Typ der Variable:
+3148	Falsche Anzahl der Argumente der function
+3149	Objekt unterstützt nicht diese Methode oder Eigenschaft: 
+3150	Muß Zuweisung an ein Funktionsergebnis oder einem Variablennamen sein. 
+3151	Ein IF oder SELECT CASE Statement ist nicht mit END IF oder END SELECT beendet. 
+3152	Rechte Klammer fehlt: 
+3153	Unbekannter Befehl:
+3154	Kann nicht Konstanten verwenden auf der linken Seite von =.
+3155	Zuweisung von CTypeDef nur an CTypeDef
+3156	Zuweisung von CtypeDef variables nur an dieselbe Art von CDefTypeVariable.
+3157	Too many levels of subscripting
+3158	Too many levels of subscripting
+3159	Too many levels of subscripting
+3160	Too many levels of subscripting
+3161	Too many levels of subscripting
+3162	Linke und rechte Seite von = müssen von demselben Typ sein. 
+3163	ENDIF ohne IF gefunden
+3164	ENDWHILE ohne WHILE gefunden
+3165	EXIT SUB ist nicht in function erlaubt
+3166	EXIT FUNCTION ist nicht in  subroutine erlaubt
+3167	EXIT SUB ist nicht in  function erlaubt
+3168	IF Statement hat kein ENDIF Statement
+3169	EXIT FUNCTION ist nicht in subroutine erlaubt
+3170	IF Statement hat kein ENDIF Statement
+3171	Variable ist bereits definiert
+3172	TYPE Name ist bereits als Variable definiert 
+3173	TYPE Name ist bereits definiert.
+3174	Element vom TYPE structure ist doppelt vorhanden
+3175	TYPE Definitionen können nicht andere TYPE Variablen enthalten.
+3176	Doppelter library object name: 
+3177	Fehler beim Öffnen von library .INF file
+3178	Variable ist bereits definiert
+3179	Too many levels of subscripting
+3180	Kann nur DIM statement modifiers in numerischen Variablen verwenden.
+3181	Function Name ist derselbe wie subroutine oder function Name.
+3182	DEFINE nicht erforderlich und erzeugt einen Konflikt mit function Definition.
+3183	Function Typ muß mit AS definiert werden 
+3184	Vorherige SUB oder FUNCTION wurde nicht mit EXIT Statement beendet.
+3185	Function Name ist derselbe wie paragraph oder function Name.
+3186	Falsche Anzahl der Argumente 
+3187	Function muß mit AS definiert werden
+3188	Function Name zweimal definiert 
+3189	Vorherige SUB oder FUNCTION wurde nicht mit EXIT Statement beendet.
+3190	Subroutine Name ist derselbe wie paragraph oder function Name.
+3191	Subroutine Name zweimal definiert.
+3192	Falsche Anzahl der Argumente 
+3193	Kann nicht CALL und IF in derselben Zeile verwenden 
+3194	Subroutine Name ist derselbe wie paragraph Name oder function Name.
+3195	Falsche Anzahl der Argumente 
+3196	Zusätzliche Informationen am Ende vom Statement 
+3197	Kein gültiger Menüname. 
+3198	Statement zu komplex.
+3199	NEXT ohne FOR.
+3200	CASE ohne SELECT CASE.
+3201	CASE mit Wert kann nicht CASE ELSE folgen
+3202	CASE ohne gültigen dataname.
+3203	Statement zu komplex
+3204	END SELECT ohne SELECT CASE.
+3205	SELECT CASE hat keine CASE Statements
+3206	Can't stack IF statement on the same line.
+3207	IF Statement zu komplex.
+3208	Statement zu komplex.
+3209	Doppelter label.
+3210	NEXTFORM Name muß in Anführungszeichen stehen oder eine Stringvariable sein
+3211	Name der Form muß in Anführungszeichen stehen.
+3212	NEXTFORM referenziert unbekannte form: 
+3213	Kann diese Art von Objekt nicht neu zeichnen.
+3214	Table subscript muß numerisch sein
+3215	Transfer tables müssen von demselben Datatyp sein.
+3216	Label kann nicht gesetzt werden, bevor das Objekt angezeigt wurde.
+3217	Graffiti Shift Indicator kann nicht auf hide gesetzt werden.
+3218	text kann nicht gesetzt werden, bevor das Objekt angezeigt wurde.
+3219	Objekt unterstützt nicht diese Aktion. 
+3220	Zu viele levels of CTypeDef subscripting.
+3221	Modul zu groß.
+3222	Fehler beim Öffnen der .INF Datei.
+3223	Ungültige Methodendeklaration in der .INF Datei: 
+3224	Nicht genug arithmetische Arbeitsvariable. 
+3225	Nicht genug String Arbeitsvariable. 
+3226	nicht genug logische Arbeitsvariable. 
+3227	Compilierung wird fortgesetzt, war aber nicht erfolgreich.
+3228	Falsche IF Logik intern im Programm. 
+3229	Interner Compilerfehler - falschen Funktionscode gefunden: 
+3230	Compilieren...
+3231	Speichern...
+3232	Downloading... Halte laufendes Programm an...
+3233	Downloading...
+3234	Starte Programm...
+3235	Compilierungsfehler
+3236	Form hat mehr als einen Pushbutton derselben group ID zugewiesen. Nur ein Element der Group ID kann den Status Selected haben.
+3237	Ungültige Form Version: 
+3238	Ungültiges Einfügen: Form Version
+3239	Ungültige Menü version:
+3240	Ungültiges Einfügen: Menu Typ
+3241	Ungültiges Einfügen: Menu Version
+3242	Ungültiges Einfügen: Menubar Typ
+3243	Ungültiges Einfügen: Menubar Version
+3244	Ungültige Menubar version: 
+3245	Ungültiges Einfügen: Dropdown Typ
+3246	Ungültiges Einfügen: Dropdown Version
+3247	Ungültige Dropdown Version: 
+3248	Ungültiger Objekt Type 
+3249	Ungülitge Objekt Version: 
+3250	Ungültiges Einfügen: Objekt Typ
+3251	Ungültiges Einfügen: Objekt Version
+3252	Modul nicht gefunden: 
+3253	Projekt Name kann nicht double byte Zeichen enthalten.
+3254	Error: kann nicht Form Objekt erkennen: 
+3255	Ungültige Projekt Version: 
+3256	Kann Projekt nicht speichern. 
+3257	Kann Modul nicht finden: 
+3258	Ungültiger Objekt Typ: 
+3259	Fehler beim Laden von Projekt: 
+3260	Bitmap nicht gefunden: 
+3261	Soll die Titlebar verborgen werden?
+3262	Neuen form title eingeben
+3263	Glückwunsch! Sie haben jetzt eine voll lizensierte Version. 
+3264	Rückkehr zur unregistrierten Demoversion. Bitte die Seriennummer neu eingeben. 
+3265	Dieses ist eine Demoversion. Sie kann registriert werden. Bitte nehmen Sie Kontakt mit NS Basic für eine Registrierung auf. 
+3266	Soll die Bitmap entfernt werden? 
+3267	Ungültige Bitmap Version: 
+3268	Ungültiges Einfügen: Bitmap Typ
+3269	Ungültiges Einfügen: Bitmap Version
+3270	Ungültige Button Version: 
+3271	Ungültiges Einfügen: Button Type
+3272	Ungültiges Einfügen: Button Version
+3273	Ungültige CheckBox Version: 
+3274	Ungültiges Einfügen: Checkbox Typ
+3275	Ungültiges Einfügen: Checkbox Version
+3276	Ungültige PushButton version: 
+3277	Ungültiges Einfügen: PushButton Typ
+3278	Ungültiges Einfügen: PushButton Version
+3279	Ungültige Field Version: 
+3280	Ungültiges Einfügen: Field Typ
+3281	Ungültiges Einfügen: Field Version
+3282	Ungültige Gadget Version: 
+3283	Ungültiges Einfügen: Gadget Typ
+3284	Ungültiges Einfügen: Gadget Version
+3285	Ungültige Graffit Shift Indicator Version:
+3286	Ungültiges Einfügen: Shift Indicator Typ
+3287	Ungültiges Einfügen: Shoft Indicator Version
+3288	Ungültige Label Version: 
+3289	Ungültiges Einfügen: Label Typ
+3290	Ungültiges Einfügen: Label Version
+3291	Ungültige List Version: 
+3292	Ungültiges Einfügen: List Typ
+3293	Ungültiges Einfügen: List Version
+3294	Ungültige Popup Version: 
+3295	Ungültiges Einfügen: Popup Typ
+3296	Ungültiges Einfügen: Popup Version
+3297	Ungültige Repeater Version: 
+3298	Ungültiges Einfügen: Repeater Typ
+3299	Ungültiges Einfügen: Repeater Version
+3300	Ungültige Scrollbar Version: 
+3301	Ungültiges Einfügen: Scrollbar Typ
+3302	Ungültiges Einfügen: Scrollbar Version
+3303	Ungültige Selector Version: 
+3304	Ungültiges Einfügen: Selector Typ
+3305	Ungültiges Einfügen: Selector Version
+3306	Ende vom Suchbereich. Vom Anfang starten? 
+3307	Ungültige Bitmap File Version: 
+3308	Error: Bitmap hat zero bytes: 
+3309	Bitmap nicht gefunden: 
+3310	NS Basic/CE Demo Edition ist abgelaufen. Es ist Zeit eine Vollversion zu kaufen.
+3311	verbleibende Tage
+3312	Willkommen zu NS Basic/CE's Demonstration Edition!
+3313	Klicken Sie auf Kaufen für weitere Informationen oder um die neueste Version von NS Basic/CE mit vollem Support und 200seitigen Handbuch zu erhalten.
+3314	Hier ist die Vollversion von  NS Basic/CE mit einigen Einschränkungen:
+3315	1. die erzeugten Programme laufen nur 5 Tage. 
+3316	2. Programme können nur auf dem Desktop PC entwickelt werden, nicht auf dem Pocket PC. 
+3317	3. Diese Demoversion hat eine Laufzeit von nur 30 Tagen. 
+3318	4. Shared libraries sind nicht enthalten.
+3319	Lesen Sie alle freigegebenen Hinweise zu Ihrer Information, die Sie beim Starten erhalten. 
+3320	Suchtext nicht gefunden. 
+3321	Suchende erreicht 
+3322	Bitte wähle einen Usernamen. 
+3323	Programm wird auf das CE Gerät während der nächsten Synchronisation installiert. 
+3324	Kann keinen Usernamen für die Programminstallation finden. Installation abgebrochen. 
+3325	Kann keinen zugeordneten Browser finden. 
+3326	URL nicht vorhanden. Webseite nicht geöffnet. 
+3327	Projekt bereits geöffnet: 
+3328	Kann Projekt nicht öffnen: 
+3329	Speichern 
+3330	Projekt ist bereits geöffnet
+3331	Modul wurde geändert. Änderungen speichern? 
+3332	Download unvollständig
+3333	Kann Hilfe nicht anzeigen. 
+3334	Klick OK, wenn Reset ist beendet. 
+3335	Downloading... Copying...
+3336	Download to Em CE unvollständig.
+3337	Keine Downloadoptionen gewählt in Compile/Download Options 
+3338	Fehler vorhanden. Compilierung ist nicht vollständig. 
+3339	Em CE Pfadname ist nicht gültig.
+3340	Kann Programm nicht auf Em CE starten: 
+3341	Em CE antwortet nicht. Läuft das Programm?
+3342	Einige Compilierungsfehler...
+3343	Fertig zum Download zum CE Gerät oder Em CE
+3344	Compilierung vollständig.
+3345	Fehler vorhanden. Kein Download vom Programm. 
+3346	Starte NS Basic neu, um die neue Spracheinstellung zu sehen.
+3347	Bitmap Objekt hat eine ungültige Resource ID: 
+3348	MS Sans Serif
+3349	9
+3350	0
+3351	Variable table Überlauf. Anzahl der Variablen und Literale verringern. 
+3352	Tech Notes
+3353	Modul jetzt drucken?
+3354	CASE muß von einem String oder numerischen Literal oder einer einfachen Variable gefolgt werden. Berechnete Werte oder Funktionen sind nicht erlaubt. 
+3355	Resource hinzufügen
+3356	Resource entfernen
+3357	Resource hinzufügen
+3358	CE Files (*.prc;*.pdb;)|*.prc;*.pdb
+3359	Resource
+3360	Resource nicht gefunden: 
+3361	Fehler: Resource > 64k:
+3362	Dezimalstellen müssen mindestens um zwei geringer als die Länge sein. 
+3363	Form designer code wurde vom User verändert. 
+3364	Das Projekt muß gespeichert werden bevor es gestartet werden kann. 
+3365	Kann keine Verbindung zum Emulator herstellen. 
+3366	The Big Red Toolbox
+3367	Prüfe Device Install Path in Tools..Options. Kann nicht kopieren nach: 
+3368	ActiveSync nicht gefunden.
+3369	Programm wurde zum Gerät kopiert, kann aber nicht gestartet werden. Installiere NS Basic runtime. 
+3370	Start
+3371	Starte Em CE Emulator
+3372	ActiveSync Programm zum Gerät
+3373	Installationsprogramme...
+3374	
+3375	Starte Programm
+3376	On Emulator
+3377	ActiveSync zum Gerät
+3378	Automatisch ausführen
+3379	Gerät Installationspfad:
+3380	ActiveSync muß gestartet sein.
+3381	Installationsdatei nicht gefunden. Starte Datei manuell mit einem Klick: 
+3382	Kann Datei nicht öffnen: Datei ist verschlüsselt.
+3383	Seriennummer ist nicht eingegeben. 
+3384	NSBasic EmCE
+3385	Lade...
+3386	Reset
+3387	Optionen...
+3388	Über NS Basic EmCE...
+3389	Optionen
+3390	Windows CE Platform
+3391	Pocket PC
+3392	Handheld PC
+3393	Custom
+3394	Screen Size
+3395	Breite:
+3396	Höhe:
+3397	Menu Location
+3398	Oben
+3399	Unten
+3400	OK
+3401	Abbrechen
+3401	Anwenden
+3402	Version 
+3403	Ein Desktop Emulator für NS Basic/CE Programme.
+3404	Kann nicht mit IDE verbinden. Läuft ein anderes 
+3405 	Programm?
+3406	Fehler beim Hinzufügen vom Objekt. 
+3407	Fehler beim Verbindungsaufbau. 
+3408	Systeminformationen zur Zeit nicht verfügbar. 
+3409	Kein
+3410	\technotes\images\BigIcon.gif
+3411	Wie möchten Sie dieses Objekt nennen? 
+3412	Emulator muß gestartet sein.
+3413	Kopiere zum Gerät:
+3414	Ausführen: 
+3415	Kann keine TypeLib Informationen erhalten. Bitte neu installieren.
+3416	Menünamen können nur [A-Z, a-z, 0-9, _] enthalten, und müssen mit einem Buchstaben oder einem Unterstrich beginnen.
+3417	Menüeinträge müssen einen Namen haben. - für einen Trennstrich. 
+3418	Menüeintrag überschreitet Fläche 
+3419	Menu Parse Error: titlebar.
+3420	Kann Control nicht erzeugen:  
+3421	Form Faktor muß angegeben sein.
+3422	Form Faktor Breite muß größer als 0 sein. 
+3423	Form Faktor Höhe muß größer als 0 sein. 
+3424	NS Basic/CE neu installieren.
+3425	MNSBCodeMax_Initialize recall.
+3426	Bitte beenden und noch einmal versuchen. 
+3427	Kann Emulator nicht finden. bitte neu installieren. 
+3428	Fehler beim Laden vom Projekt. 
+3429	Nur dieses Modul drucken? 
+3430	Name:
+3431	Breite in Pixel:
+3432	Höhe in Pixel:
+3433	Menü oben:
+3434	Form Faktor:
+3435	Benutze IDE-Schriftart
+3436	&Virtual CE starten
+3437	Kann nicht V_Remote.exe auf dem Gerät starten. Wurde das Programm richtig installiert? 
+3438	Kann nicht v_ppc auf dem desktop starten. 
+3439	Sprache
+3440	Auf Gerät setzen
+3441	Gerät erfolgreich registriert
+3442	Registrierung des Geräts fehlgeschlagen. Läuft ActiveSync?
+3443	Programm wurde mit Demoversion von NS Basic/CE erzeugt.
+3444	Programmzeit überschritten
+3445	&Copy to Clipboard
+3446	&ActiveX Control Manager
+3447	ActiveX Control Manager
+3448	Konnte Eingabedatei nicht öffnen 
+3449	Konnte Ausgabedatei nicht öffnen 
+3450	AddScript: BeginUpdateResourceA failed.
+3451	AddScript: UpdateResourceA failed.
+3452	AddScript: Icon failed.
+3453	NS Basic/CE
+3454	Ma&ke
+3461	Unable to open 
+3462	Projektdatei beschädigt!
+3463	Fehler beim Speichern
+3464	Fehler beim Speichern der Projekteigenschaften 
+3465	Fehler beim Exportieren des Projekts 
+3466	Fehler beim Speichern der Projektdatei 
+3467	Folgende Dateien exportieren?
+3468	Bildschirmdimensionen
+3469	vor dem Ausführen speichern
+3470  Modul speichern als
+3471  Neues Projekt
+3472  Quelldatei für String Ressourcen nicht gefunden
+3473	Lese Mich!
+3474	Sprache

@@ -1,0 +1,5 @@
+This folder is used to hold add on tools for NS Basic.
+
+Put the executables into this folder. They will automatically appear in the Tools menu next time NS Basic is started.
+
+Tools from third parties are welcome!

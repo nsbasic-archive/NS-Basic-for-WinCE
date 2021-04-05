@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.util.MiniEnum.1 = s 'MiniEnum Class'
+	{
+		CLSID = s '{EF7E635B-8F0C-4EE1-B99D-E2A0C83A4763}'
+	}
+	NSBasic.util.MiniEnum = s 'MiniEnum Class'
+	{
+		CLSID = s '{EF7E635B-8F0C-4EE1-B99D-E2A0C83A4763}'
+		CurVer = s 'NSBasic.util.MiniEnum.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {EF7E635B-8F0C-4EE1-B99D-E2A0C83A4763} = s 'MiniEnum Class'
+		{
+			ProgID = s 'NSBasic.util.MiniEnum.1'
+			VersionIndependentProgID = s 'NSBasic.util.MiniEnum'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F1072A90-2DF5-49BC-BDFB-2B604FDB9598}'
+		}
+	}
+}

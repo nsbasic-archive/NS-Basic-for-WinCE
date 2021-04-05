@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Find Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Find.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+'
+'  Find.nsb
+'    by Marcus M. Darden 9/29/1999
+'
+' This script creates and displays a Find dialog, similar to what
+' you might find in a text editor, by calling OpenFindDlg.
+' A MSGBOX is used to display which button the user pressed
+' to close the dialog, and any relevant text is included.
+
+OPTION EXPLICIT
+DIM FindDlg
+
+SETMENU "TitleBar", ARRAY("&File")
+SETMENU "&File", ARRAY("E&xit||FileExit")
+SUB FileExit_Click : BYE : END SUB
+ADDOBJECT "CommandButton", "bFind", 5, 5, 70, 24
+bFind.Caption = "&Find"
+bFind.BackColor = &HC0C0C0&
+bFind.SetFocus
+SUB bFind_Click : OpenFindDlg : END SUB
+
+SUB OpenFindDlg
+  IF ISEMPTY(FindDlg) THEN
+    ADDOBJECT "NSBasic.DialogX.1", "FindDlg_", 0, 0
+    SET FindDlg = FindDlg_
+    FindDlg.Title = "Find" : FindDlg.CaptionOK = FALSE
+    FindDlg.Width = 125 : FindDlg.Height = 87 : FindDlg.FontSize = 9
+    FindDlg.AddObject "Label", "lFind", 3, 5, 25, 12
+    FindDlg.SetCaption "lFind", "Fi&nd"
+    FindDlg.AddObject "TextBox", "tFind", 30, 3, 92, 12
+    FindDlg.AddObject "Label", "lReplace", 3, 19, 25, 12
+    FindDlg.SetCaption "lReplace", "Re&place"
+    FindDlg.AddObject "TextBox", "tReplace", 30, 17, 92, 12
+    FindDlg.AddObject "OptionButton", "bSel", 8, 40, 40, 11
+    FindDlg.SetGroup "bSel", TRUE
+    FindDlg.SetCaption "bSel", "&Selection"
+    FindDlg.AddObject "OptionButton", "bUp", 8, 50, 30, 11
+    FindDlg.SetCaption "bUp", "&Up"
+    FindDlg.AddObject "OptionButton", "bDown", 8, 60, 30, 11
+    FindDlg.SetCaption "bDown", "&Down"
+    FindDlg.AddObject "OptionButton", "bAll", 8, 70, 30, 11
+    FindDlg.SetCaption "bAll", "&All"
+    FindDlg.AddObject "GroupBox", "gbSearch", 3, 31, 49, 53
+    FindDlg.SetCaption "gbSearch", "Search"
+    FindDlg.AddObject "CheckBox", "bCase", 60, 40, 55, 11
+    FindDlg.SetCaption "bCase", "&Case Sensitive"
+    FindDlg.AddObject "CheckBox", "bRepAll", 60, 50, 55, 11
+    FindDlg.SetCaption "bRepAll", "Replace A&ll"
+    FindDlg.AddObject "GroupBox", "gbOptions", 55, 31, 67, 33
+    FindDlg.SetCaption "gbOptions", "Options"
+    FindDlg.AddObject "CommandButton", "bFind", 55, 70, 33, 14
+    FindDlg.SetCaption "bFind", "&Find"
+    FindDlg.SetReturnValue "bFind", 1
+    FindDlg.AddObject "CommandButton", "bReplace", 89, 70, 33, 14
+    FindDlg.SetCaption "bReplace", "&Replace"
+    FindDlg.SetReturnValue "bReplace", 2
+    FindDlg.SetFocus "tFind"
+  END IF
+  SELECT CASE FindDlg.DoModal
+  CASE 1 : MSGBOX "Find: '" & FindDlg.GetCaption("tFind") & "'"
+  CASE 2
+    MSGBOX "Find: '" & FindDlg.GetCaption("tFind") & "'" & vbCRLF _
+    & "Replace: '" & FindDlg.GetCaption("tReplace") & "'"
+  CASE ELSE : MSGBOX "Cancel"
+  END SELECT
+  bFind.SetFocus
+END SUB  'OpenFindDlg
+
+</PRE>
+</body>
+</html>
+

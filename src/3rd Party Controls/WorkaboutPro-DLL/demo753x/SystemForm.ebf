@@ -1,0 +1,142 @@
+VERSION 5.00
+Object = "{6556ED95-9838-11D1-80AE-00C04FAD5EFB}#1.0#0"; "MSCEListView.dll"
+Begin VB.Form SystemForm 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "System Information"
+   ClientHeight    =   3930
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   3195
+   ControlBox      =   -1  'True
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3930
+   ScaleWidth      =   3195
+   Begin MSCELISTVIEWLibCtl.ListViewCtrl ListViewCtrl1 
+      Height          =   2895
+      Left            =   0
+      TabIndex        =   0
+      Top             =   0
+      Width           =   3135
+      FontBold        =   0   'False
+      FontItalic      =   0   'False
+      FontName        =   "Arial"
+      FontSize        =   8
+      FontStrikethrough=   0   'False
+      FontUnderline   =   0   'False
+      HideColumnHeaders=   0   'False
+      HideSelection   =   -1  'True
+      LabelEdit       =   0
+      LabelWrap       =   0   'False
+      MultiSelect     =   0   'False
+      Sorted          =   0   'False
+      SortKey         =   0
+      SortOrder       =   0
+      View            =   0
+   End
+   Begin VBCE.CommandButton Cancel 
+      Height          =   375
+      Left            =   720
+      TabIndex        =   1
+      Top             =   3360
+      Width           =   1095
+      _cx             =   1931
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "Cancel"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+End
+Attribute VB_Name = "SystemForm"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+Public m_ListhWnd As Long
+
+Private Sub Form_Load()
+   ' set up two column headers
+   ListViewCtrl1.View = lvwReport
+   ListViewCtrl1.ListItems.Clear
+   ListViewCtrl1.ColumnHeaders.Clear
+   
+   ' Add headers
+    ListViewCtrl1.ColumnHeaders.Add , , "Name"
+    ListViewCtrl1.ColumnHeaders.Add , , "Value"
+    Dim value As Variant
+    
+  
+    Set SystemObject = CreateObject("systemX.SystemInformation") ' create the control
+    
+    
+    ' Add values to the List from the properties exposed by the control
+    value = SystemObject.MachineUniqueIdentifier
+    AddListItem "MachineUniqueIdentifier", value
+    
+    value = SystemObject.MachineType
+    AddListItem "MachineType", value
+    
+    value = SystemObject.TotalPhysicalRAMSize
+    AddListItem "TotalPhysicalRAMSize", value
+    
+    value = SystemObject.FreeStorageMemorySize
+    AddListItem "FreeStorageMemorySize", value
+    
+    value = SystemObject.FreeProgramMemorySize
+    AddListItem "FreeProgramMemorySize", value
+    
+    value = SystemObject.UserSuppliedMachineType
+    AddListItem "UserSuppliedMachineType", value
+    
+    value = SystemObject.UserSuppliedMachineDescription
+    AddListItem "UserSuppliedMachineDescription", value
+    
+    value = SystemObject.OS
+    AddListItem "OS", value
+    
+    value = SystemObject.ProcessorName
+    AddListItem "Processor Name", value
+    
+    value = SystemObject.Language
+    AddListItem "Language", value
+    
+    value = SystemObject.ProcessorSpeed
+    AddListItem "Processor Speed", value
+    
+    value = SystemObject.FlashMemorySize
+    AddListItem "Flash Memory Size", value
+    
+    value = SystemObject.BootcodeVersion
+    AddListItem "Bootcode Version", value
+    
+    value = SystemObject.SoftwareVersion
+    AddListItem "Software Version", value
+    
+    
+    
+    
+End Sub
+
+
+Public Sub AddListItem(ItemText As String, value As String)
+    Dim MyItem As ListItem
+    
+    ' add the list item
+    Set MyItem = ListViewCtrl1.ListItems.Add(, , ItemText)
+    
+    ' set its subitems
+    MyItem.SubItems(1) = value
+    
+End Sub
+

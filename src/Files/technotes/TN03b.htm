@@ -1,0 +1,660 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 03b: Using Common Dialog Objects </TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 03b: Using Common Dialog Objects</h2>
+	  <h3>October 08, 2003</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<B><FONT FACE="Helvetica" SIZE=4>
+</font></B>
+<blockquote>
+  <p>For more information on this control, see Microsoft's 
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">documentation</A>.
+</blockquote><hr noshade size="1">
+<p></p>
+<P>The Common Dialog Objects are a set of objects supplied by Microsoft that can be used in NS BASIC/CE programs. They are included as part of the "ActiveX Control Objects 1.0" download, available at Microsoft's web site. See <A HREF="TN01.htm">Tech Note 01</A> for more information on how to load this module onto your system.</P>
+<P>For more information on loading the ActiveX Control Objects, go to <A HREF="TN01.htm">Tech Note 01</A>.</P>
+<P>The Common Dialog Objects are:</P>
+<ul>
+	<li>Color Picker</li>
+	<li>Font Picker</li>
+	<li>"Save As" dialog</li>
+	<li>"Select File" dialog</li>
+	<li>Show Help</li>
+</ul>
+
+<P>All of these are initialized by a single call:</P>
+<CODE><P>addObject "dialog"</P>
+</CODE><P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>1. The Color Picker</P>
+</font></B><P><IMG SRC="images/TN08color.GIF" WIDTH=431 HEIGHT=195></P>
+<P>Open the color picker with the command</P>
+<CODE><P>dialog.ShowColor</P>
+</CODE><P>&nbsp;</P>
+<P>The method is not supported for Palm-size PC's.</P>
+<P>The following properties can be set before calling:</P>
+<P>&nbsp;</P>
+<CODE><P>&#9;dialog.Color [= initial color] 'sets/returns the color </P>
+<P>&#9;dialog.CancelError = True &#9;'trigger error on cancel?</P>
+<P>&#9;dialog.Flags [= value] 'sets flags defining appearance</P>
+</CODE><P>&nbsp;</P>
+<P>The value for flags is as follows:</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="31%" VALIGN="TOP">
+<P>Constant</TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<P>Value</TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="31%" VALIGN="TOP">
+<CODE><P>cdCClFullOpen&#9;&#9;</CODE></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<CODE><P ALIGN="JUSTIFY">&amp;H2&#9;</CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Entire dialog box is displayed, including the Define Custom Colors section.</TD>
+</TR>
+<TR><TD WIDTH="31%" VALIGN="TOP">
+<CODE><P>cdlCCHelpButton &#9;</CODE></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<CODE><P ALIGN="JUSTIFY">&amp;H8 </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Causes the dialog box to display a Help button.</TD>
+</TR>
+<TR><TD WIDTH="31%" VALIGN="TOP">
+<CODE><P>cdlCCPreventFullOpen &#9;</CODE></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<CODE><P ALIGN="JUSTIFY">&amp;H4 </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Disables the Define Custom Colors command button and prevents the user from defining custom colors.</TD>
+</TR>
+<TR><TD WIDTH="31%" VALIGN="TOP">
+<CODE><P>cdlCCRGBInit &#9;</CODE></TD>
+<TD WIDTH="10%" VALIGN="TOP">
+<CODE><P ALIGN="JUSTIFY">&amp;H1 </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Sets the initial color value for the dialog box</TD>
+</TR>
+</TABLE>
+
+<P>.</P>
+<P>You can also define combination values by settingmore than one flag for a dialog box using the Or operator. For example:</P>
+<CODE><P>dialog.Flags = &amp;H10&amp; Or &amp;H200&amp;</P>
+</CODE><P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>2. The Font Picker</P>
+</font></B><P><IMG SRC="images/TN08font.GIF" WIDTH=379 HEIGHT=173></P>
+<P>Open the font picker with the command:</P>
+<CODE><P>Dialog.ShowFont</P>
+</CODE>
+
+<P>The following properties can be set before calling:</P>
+<CODE><P>&#9;Dialog.Max [=int] 'the maximum font size</P>
+<P>Dialog.Min [=int] 'the minimun font size</P>
+<P>Dialog.CancelError = True 'trgger error on cancel?</P>
+<P>Dialog.Flags [=value]</P>
+</CODE><P>&nbsp;</P>
+<P>The value for flags is as follows:</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=442>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<P>Constant</TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<P>Value</TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFANSIOnly </CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H400 </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Specifies that the dialog box allows only a selection of the fonts that use the Window character set. If this flag is set, the user won't be able to select a font that contains only symbols.</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFApply </CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H200 </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Enables the Apply button on the dialog box.</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFBoth </CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H3 </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Causes the dialog box to list the available printer and screen fonts. The hDC property identifies the device context associated with the printer.</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFEffects </CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H100 </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Specifies that the dialog box enables strikethrough, underline, and color effects.</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFFixedPitchOnly</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H4000</CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Specifies that the dialog box selects only fixed pitch fonts.</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFForceFontExist</CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H10000</CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Specifies that an error message box is displayed if the user attempts to select a font or style that doesn't exist.</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFHelpButton </CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H4</CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Causes the dialog box to display a Help button.</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>cdlCFLimitSize </CODE></TD>
+<TD WIDTH="12%" VALIGN="TOP">
+<CODE><P>&amp;H2000</CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Specifies that the dialog box selects only font sizes within the range specified by the Min and Max properties.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>The following properties are set by ShowFont:</P>
+<CODE><P>Dialog.Color</P>
+<P>Dialog.FontBold</P>
+<P>Dialog.FontItalic</P>
+<P>Dialog.FontName</P>
+<P>Dialog.FontSize</P>
+<P>Dialog.FontStrikethru</P>
+<P>Dialog.FontUnderline</P>
+</CODE><P>&nbsp;</P>
+<P>&nbsp;</P>
+
+
+<B><FONT FACE="Helvetica"><P>3. The "Save As" Dialog</P>
+</font></B><P><IMG SRC="images/TN08SaveAs.GIF" WIDTH=431 HEIGHT=191></P>
+<P>&nbsp;</P>
+<P>Open the Save As Dialog with the command:</P>
+<CODE><P>Dialog.ShowSave</P>
+<P><B>Notes</B>
+
+<P>It returns in dialog.filename an extra leading '\' that must be removed with
+the following code:
+
+<P><CODE>fn=right(dialog.filename,len(dialog.filename)-1)</CODE>
+
+<P>Also, even though the dialog is set to <CODE>dialog.defaultext="cdb"</CODE>, if you don't specifically add in the extension to the file in 'File Name', then you must click on the 'Options' button and Select from Type (set by
+<CODE>dialog.filter="Data (*.cdb)|*.cdb") </CODE>or it will NOT append the extension to dialog.filename!
+
+<P>Setting <CODE>dialog.defaultext="cdb"</CODE> and using dialog.showopen will automatically
+add the extension.  Dialog.showopen also returns the correct path without
+the extra leading '\'" -- Greg Kelly
+
+<p>On Pocket PC 2003 devices, the Save dialog in the Common Dialog control does not work properly. There is an updated version of this control in the Installers folder on the distribution CD (after Oct, 2003). Copy it into the Windows folder of your device and execute this statement in NS Basic on the device:
+<p><code>
+shellExecute "open","regsvrce","mscecomdlg.dll"
+</code>
+<p>If this file is not on your CD, email us a <A HREF="mailto:support&copy; nsbasic.com">support&copy; nsbasic.com</A> and we will send it to you.
+
+<P>&nbsp;</P>
+<P><B>Properties</B>
+<P>The following properties can be set before calling:</P>
+<CODE><P>Dialog.DialogTitle = "Save As File"</P>
+<P>Dialog.InitDir = "\"</P>
+<P>Dialog.Flags = 0</P>
+<P>Dialog.Filter = "Text|*.txt"</P>
+<P>Dialog.DefaultExt = "txt"</P>
+<P>Dialog.filename = "" 'initialize</P>
+<P>Dialog.Flags [=value]</P></CODE>
+
+<P>&nbsp;</P>
+
+
+<P>The value for flags follows. Note that the same flags are used for Select File dialog. Also, not all flags work in the current release.</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P>Constant</TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<P>Value</TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNAllowMultiselect</CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H200</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Specifies that the File Name list box allows multiple selections.The user can select more than one file at run time by pressing the SHIFT key and using the UP ARROW and DOWN ARROW keys to select the desired files. When this is done, the FileName property returns a string containing the names of all selected files. The names in the string are delimited by spaces.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNCreatePrompt</CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H2000 </CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Specifies that the dialog box prompts the user to create a file that doesn't currently exist. This flag automatically sets the <CODE>cdlOFNPathMustExist</CODE> and <CODE>cdlOFNFileMustExist</CODE> flags.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNExtensionDifferent</CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H400</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Indicates that the extension of the returned filename is different from the extension specified by the <CODE>DefaultExt</CODE> property. This flag isn't set if the <CODE>DefaultExt</CODE> property is Null, if the extensions match, or if the file has no extension. This flag value can be checked upon closing the dialog box.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNFileMustExist </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H1000</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Specifies that the user can enter only names of existing files in the File Name text box. If this flag is set and the user enters an invalid filename, a warning is displayed. This flag automatically sets the <CODE>cdlOFNPathMustExist</CODE> flag.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNHelpButton </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H10</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Causes the dialog box to display the Help button.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNHideReadOnly </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H4</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Hides the Read Only check box.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNLongNames </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H200000</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Use long filenames.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNNoChangeDir </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H8</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Forces the dialog box to set the current directory to what it was when the dialog box was opened.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNNoLongNames </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H40000</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>No long file names.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNNoReadOnlyReturn </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H8000</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Specifies that the returned file won't have the Read Only attribute set and won't be in a write protected directory.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNNoValidate </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H100</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Specifies that the common dialog box allows invalid characters in the returned filename.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNOverwritePrompt </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H2</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Causes the Save As dialog box to generate a message box if the selected file already exists. The user must confirm whether to overwrite the file.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNPathMustExist </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H800</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Specifies that the user can enter only valid paths. If this flag is set and the user enters an invalid path, a warning message is displayed.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNReadOnly </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H1</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Causes the Read Only check box to be initially checked when the dialog box is created. This flag also indicates the state of the Read Only check box when the dialog box is closed.</TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<CODE><P>cdlOFNShareAware </CODE></TD>
+<TD WIDTH="13%" VALIGN="TOP">
+<CODE><P>&amp;H4000</CODE></TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<P>Specifies that sharing violation errors will be ignored.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>You can also define selected flags. For example:</P>
+<CODE><P>Const ReadOnly = &amp;H00000001&amp;</P>
+<P>Const Effects = &amp;H00000100&amp;</P>
+<P>Dialog.Flags = &amp;H10&amp; Or &amp;H200&amp;</P>
+</CODE><P>&nbsp;</P>
+<P>The following properties are set by ShowOpen:</P>
+<P><CODE>Dialog.FileName</code></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>4. The "Select File" Dialog</P>
+</font></B><P><IMG SRC="images/TN08SelectFile.GIF" WIDTH=429 HEIGHT=191></P>
+<P>&nbsp;</P>
+<P>Open the Select File Dialog with the command:</P>
+<CODE><P>Dialog.ShowOpen</P>
+</CODE><P>&nbsp;</P>
+<P>The following properties can be set before calling:</P>
+<CODE><P>Dialog.DialogTitle = "Pick a text file to open"</P>
+<P>Dialog.InitDir = "\"</P>
+<P>Dialog.Filter = "Text|*.txt"</P>
+<P>Dialog.FilterIndex = 1</P>
+<P>Dialog.Flags = &amp;H1000 Or &amp;H800 'path and file must exist</P>
+<P>Dialog.filename = "" 'initialize</P>
+</CODE><P></P>
+<P>See "Open File" Dialog for information on flag settings.</P>
+<P>&nbsp;</P>
+<P>The following properties are set by ShowOpen:</P>
+<P><CODE>Dialog.FileName</code></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>5. Help Dialog</P>
+</font></B><P><IMG SRC="images/TN08Help.GIF" WIDTH=394 HEIGHT=193></P>
+<P>Open the Help Dialog with the command:</P>
+<CODE><P>Dialog.ShowHelp</P>
+</CODE><P>&nbsp;</P>
+<P>The following properties can be set before calling:</P>
+<CODE><P>Dialog.HelpCommand [ = value]</P>
+<P>Dialog.HelpContext [ = string]</P>
+<P>Dialog.HelpFile [ = filename]</P></CODE>
+<P></P>
+<P>Values for <CODE>HelpCommand</CODE> are as follows:</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<P>Constant </TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<P>Value</TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpCommand </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H102&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Executes a Help macro.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpContents </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H3&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Displays the Help contents topic as defined by the Contents option in the [OPTION] section of the .hpj file.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpContext </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H1&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Displays Help for a particular context. When using this setting, you must also specify a context using the HelpContext property.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpContextPopup </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H8&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Displays in a pop up window a particular Help topic identified by a context number defined in the [MAP] section of the .hpj file.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpForceFile </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H9&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Ensures WinHelp displays the correct Help file. If the correct Help file is currently displayed, no action occurs. If the incorrect Help file is displayed, WinHelp opens the correct file.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpHelpOnHelp </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H4&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Displays Help for using the Help application itself.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpIndex </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H3&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Displays the index of the specified Help file. An application should use this value only for a Help file with a single index.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpKey </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H101&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Displays Help for a particular keyword. When using this setting, you must also specify a keyword using the HelpKey property.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpPartialKey </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H105&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Displays the topic found in the keyword list that matches the keyword passed in the dwData parameter if there is one exact match. If more than one match exists, the Search dialog box with the topics found listed in the Go To list box is displayed. If no match exists, the Search dialog box is displayed. To bring up the Search dialog box without passing a keyword, use a long pointer to an empty string.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpQuit </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H2&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Notifies the Help application that the specified Help file is no longer in use.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpSetContents</CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H5&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Determines which contents topic is displayed when a user presses the F1 key.</TD>
+</TR>
+<TR><TD WIDTH="27%" VALIGN="TOP">
+<CODE><P>cdlHelpSetIndex </CODE></TD>
+<TD WIDTH="11%" VALIGN="TOP">
+<CODE><P>&amp;H5&amp;</CODE></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P>Sets the context specified by the HelpContext property as the current index for the Help file specified by the HelpFile property. This index remains current until the user accesses a different Help file. Use this value only for Help files with more than one index.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>If you've created a Windows Help file for your application and set the application's HelpFile property, Help is called when a user presses the Help button. If there is a context number in the HelpContextID property for either the active control or the active form, Help displays a topic corresponding to the current Help context; otherwise it displays the main contents screen. The default location of the file is the \windows directory.</P>
+<P>You can also use the HelpFile property to determine which Help file is displayed when a user requests Help from the Object Browser for an ActiveX component.</P>
+<P>Simple help files can be normal html: Microsoft notes that building more complex Help files can require the Microsoft Windows Help Compiler, which is available with Visual Basic, Professional Edition.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica"><P>Sample Code</P>
+</font></B><P><IMG SRC="images/TN08.GIF" WIDTH=425 HEIGHT=182></P>
+<CODE><P>&nbsp;</P>
+<PRE>Option Explicit
+
+addObject "dialog"
+
+'Color Constants
+Private Const cdlCCIFullOpen = &amp;H2
+Private Const cdlCCPreventFullOpen = &amp;H4
+Private Const cdlCCRGBInit = &amp;H1
+    
+'Help Constants
+Private Const cdlHelpContext = &amp;H1
+    
+'Font Constants
+Private Const cdlCFScreenFonts = &amp;H1
+Private Const cdlCFEffects = &amp;H100
+Private Const cdlCFLimitSize = &amp;H2000
+Private Const cdlCFForceFontExist = &amp;H10000
+dim selection
+selection=0
+
+while selection&lt;&gt;9
+  selection=inputbox("Choose Common Dialog Operation:" &amp; chr(13) &amp; "1. Color" &amp; chr(13) &amp; "2. Font" &amp; chr(13) &amp; "3. Save As " &amp; chr(13) &amp; "4. Select File" &amp; chr(13) &amp; "5. Show Help" &amp; chr(13) &amp;  "9. End Program", "COMM Demo")
+  select case selection
+  case 1
+    cmdColor_click
+  case 2
+    cmdFont_click
+  case 3
+    cmdSaveAs_click
+  case 4
+    cmdSelectFile_click
+  case 5
+    cmdShowHelp_click
+  case else
+    selection=9
+  end select
+wEnd
+
+Private Sub cmdColor_Click()
+  dim txtcolorRGB
+  txtColorRGB=output.backcolor  
+  'On Error Resume Next
+        
+  'Generate error if cancel is pressed
+  dialog.CancelError = True
+
+  'Check if the text in the text box is a number,
+  'if so, use it as our initial color
+
+  If IsNumeric(txtColorRGB) then
+    dialog.Color = txtColorRGB.Text
+    dialog.Flags = cdlCCRGBInit
+  End If
+  'Ensure Full Open
+  dialog.Flags = dialog.Flags + cdlCCIFullOpen
+  'Show the dialog
+  dialog.ShowColor
+       
+  'Determine action to take after dialog is dismissed
+  If Err.Number = 0 Then 
+  txtColorRGB = dialog.Color 'everything OK
+  output.BackColor = dialog.Color
+ElseIf Err.Number = 32755 Then
+  'The user canceled the dialog, so do nothing
+Else
+  MsgBox "Error in Common Dialog ShowColor" &amp; vbCrLf &amp; vbCrLf &amp; _
+    Err.Number &amp; ": " &amp; Err.Description, vbCritical, "Common Dialog ShowColor"
+End If
+
+End Sub
+
+Private Sub cmdFont_Click()
+  'Set minimum and maximum font sizes
+  dialog.Max = 30
+  dialog.Min = 8
+        
+  'Generate error if cancel is pressed
+  dialog.CancelError = True
+        
+  'Setup flags for what we want to show
+  dialog.Flags = cdlCFForceFontExist Or cdlCFLimitSize Or cdlCFEffects Or cdlCFScreenFonts
+        
+  On Error Resume Next
+  'Show the font dialog
+  dialog.ShowFont
+        
+  'Determine action to take after dialog is dismissed
+  If Err.Number = 0 Then
+    on error goto 0
+    output.ForeColor = dialog.Color
+    output.FontBold = dialog.FontBold
+    output.FontItalic = dialog.FontItalic
+    output.FontName = dialog.FontName
+    output.FontSize = dialog.FontSize
+    output.FontStrikethru = dialog.FontStrikethru
+    output.FontUnderline = dialog.FontUnderline
+  ElseIf Err.Number = 32755 Then
+    'The user canceled the dialog, so do nothing
+  Else
+    MsgBox "Error in Common Dialog ShowFont" &amp; vbCrLf &amp; vbCrLf &amp; _
+      Err.Number &amp; ": " &amp; Err.Description, vbCritical, "Common Dialog ShowFont"
+  End If
+  output.drawtext "This is the new font"
+End Sub
+
+Private Sub cmdSaveAs_Click()
+  dialog.DialogTitle = "Save As File"
+  dialog.InitDir = "\"
+  dialog.Flags = 0
+  dialog.Filter = "Text|*.txt"
+  dialog.DefaultExt = "txt"
+  dialog.filename = ""   'initialize
+        
+  'Generate error if cancel is pressed
+  dialog.CancelError = True
+  On Error Resume Next
+        
+  'Show the Save As Dialog
+  dialog.ShowSave
+        
+  'Determine action to take after dialog is dismissed
+  If Err.Number = 0 Then
+    txtFileName = dialog.filename
+  ElseIf Err.Number = 32755 Then
+    'The user canceled the dialog, so do nothing
+  Else
+    MsgBox "Error in Common Dialog ShowSave" &amp; vbCrLf &amp; vbCrLf &amp; _
+      Err.Number &amp; ": " &amp; Err.Description, vbCritical, "Common Dialog ShowSave"
+  End If
+End Sub
+
+Private Sub cmdSelectFile_Click()
+  dialog.DialogTitle = "Pick a text file to open"
+  dialog.InitDir = "\"
+  dialog.Filter = "Text|*.txt"
+  dialog.FilterIndex = 1
+  dialog.Flags = &amp;H1000 Or &amp;H800  'path and file must exist
+  dialog.filename = ""   'initialize
+        
+  'Generate error if cancel is pressed
+  dialog.CancelError = True
+  On Error Resume Next
+        
+  dialog.ShowOpen
+      
+  'Determine action to take after dialog is dismissed
+  If Err.Number = 0 Then
+    txtFileName = dialog.filename
+  ElseIf Err.Number = 32755 Then
+    'The user canceled the dialog, so do nothing
+  Else
+    MsgBox "Error in Common Dialog ShowOpen" &amp; vbCrLf &amp; vbCrLf &amp; _
+      Err.Number &amp; ": " &amp; Err.Description, vbCritical, "Common Dialog ShowOpen"
+  End If  
+End Sub
+
+Private Sub cmdShowHelp_Click()
+  dialog.HelpFile = "nsbasic.htc"
+  'dialog.HelpCommand = cdlHelpContext
+  'dialog.HelpContext = "adjusting_memory_and_power_settings"
+  dialog.ShowHelp    
+End Sub</PRE>
+<P>&nbsp;<BR>
+&nbsp;<BR>
+&nbsp;</P></CODE></BODY>
+</HTML>

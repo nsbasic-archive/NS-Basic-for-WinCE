@@ -1,0 +1,9 @@
+; RGridCtrl.def : Declares the module parameters.
+
+LIBRARY      "RGridCtrl.DLL"
+
+EXPORTS
+	DllCanUnloadNow      PRIVATE
+	DllGetClassObject    PRIVATE
+	DllRegisterServer    PRIVATE
+	DllUnregisterServer	 PRIVATE

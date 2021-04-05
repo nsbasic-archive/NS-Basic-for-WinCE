@@ -1,0 +1,1 @@
+d:\apps\ezsetup -i DialogX.ini -r DialogXReadme.txt -e all\license.txt -o DialogX.exe

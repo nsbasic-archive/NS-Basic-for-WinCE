@@ -1,0 +1,357 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="Microsoft Word 98">
+<link rel="stylesheet" href="/style2.css">
+<TITLE>Tech Note 03m: Accessing Simple Files</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=5>
+	  <h2>Tech Note 03m: Accessing Simple Files </h2>
+	  </FONT></B>
+	  <h3><B><FONT FACE="Helvetica">January 26, 2006</FONT></B><B><FONT FACE="Helvetica">
+</font></B></h3>
+	  <h5>&nbsp;</h5>
+	  <h5><b><font face="Helvetica">© 2010 NS BASIC Corporation. All rights reserved.
+</font></b></h5>
+	</TD>
+</TR>
+</TABLE>
+<hr>
+
+<blockquote>
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">
+There is additional documentation on Microsoft's website.</A>.
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>Simple File I/O can be done in NS BASIC/CE using the File Object. To create a File Object, use the following statement:</P>
+<CODE><P>addObject "file"</P></code>
+<P>A sample follows showing how Simple File I/O works.</P>
+<P>&nbsp;</P>
+<H4>File Properties</H4>
+<TABLE BORDER CELLSPACING=1 WIDTH=441>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<P>Properties</TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<CODE><P>Attr </CODE></TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Return file mode used on Open statement.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<CODE><P>Eof</CODE></TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Returns True/False if end of a file has been reached.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<CODE><P>Loc </CODE></TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Returns the current read/write position within an open file.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<CODE><P>Lof</CODE></TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Returns the size (in bytes) of an open file.</TD>
+</TR>
+<TR><TD WIDTH="14%" VALIGN="TOP">
+<CODE><P>Seek </CODE></TD>
+<TD WIDTH="86%" VALIGN="TOP">
+<P>Sets or returns the next read/write position within an open file.</TD>
+</TR>
+</TABLE>
+
+<H4>&nbsp;</H4>
+<H4>File Methods</H4>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>Type </TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<P>Method </TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<CODE><P>Open </CODE></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>Open pathname,mode [,access][,lock][,reclen]</CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Enables input/output (I/O) to a file.</P>
+<P>Mode: Specifies the file mode<BR>
+0: closed<BR>
+1: input<BR>
+2: output<BR>
+4: random<BR>
+8: append<BR>
+32: binary</P>
+<P>Access: Operations permitted on the file<BR>
+1: read<BR>
+2: write<BR>
+3: read and write (default)</P>
+<P>Lock: Operations permitted on the file by other processes<BR>
+1: shared<BR>
+2: lock read<BR>
+3: lock write (default)<BR>
+0: lock read and write</P>
+<P>Reclen can be up to 32767. </TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<CODE><P>Close </CODE></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>Close </CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Concludes input/output (I/O) to a file opened using the Open statement.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<CODE><P>Read </CODE></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>Get data[,recNumber]</CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Reads data from an open disk file into a variable.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>InputFields(n)</CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Reads n datafields from an open sequential file and assigns the data to variables. See WriteFields.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>Input (number) </CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Returns a string that contains number characters from a file opened in Input or Binary mode. See Put.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>InputB (number) </CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Returns a string that contains number bytes from a file opened in Input or Binary mode..</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>LineInputString()</CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Reads a single line from an open sequential file and assigns it to a string variable. See linePrint.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<CODE><P>Write </CODE></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>LinePrint()</CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Writes a text string to a file.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>Put data[,recNumber]</CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Writes data from a variable to a disk file.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<CODE><P>WriteFields </CODE></TD>
+<TD WIDTH="60%" VALIGN="TOP">
+<P>Writes data to a sequential file. Puts commas between items and quotes around strings, and a newline at the end of each writeFields list.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<H4>Sample Code&nbsp;</H4>
+<P><IMG SRC="images/TN02.GIF" WIDTH=426 HEIGHT=181></P>
+<P>&nbsp;</P>
+<CODE><PRE>REM This program demonstrates the use of the File and Filesystem Controls
+
+Option Explicit
+Dim selection
+addObject "filesystem"
+addObject "file"
+
+addObject "commandButton","cmdAttr",5,5,70,20
+cmdAttr.text="Attr"
+addObject "commandButton","cmdDir",5,25,70,20
+cmdDir.text="Dir"
+addObject "commandButton","cmdGetPut",5,45,70,20
+cmdGetPut.text="Get/Put"
+addObject "commandButton","cmdLineWrite",5,65,70,20
+cmdLineWrite.text="Line Write"
+addObject "commandButton","cmdWrite",5,85,70,20
+cmdWrite.text="Write"
+
+addObject "label","label",10,110,230,20
+label.text="File Path"
+label.backcolor=output.backcolor
+addObject "textbox","input",10,130,230,20
+
+
+Sub cmdAttr_Click()
+  On Error Resume Next
+  Dim sTheFile
+   
+  sTheFile = input.text
+  
+  msgbox "GetAttr:" & fileSystem.GetAttr(sTheFile) & chr(13) & "FileDateTime:" & fileSystem.FileDateTime(sTheFile) & chr(13) & "FileLen:" & fileSystem.fileLen(sTheFile),0,"File Attributes for " & sTheFile
+  If Err <> 0 Then
+    MsgBox "Error in GetAttr: " & Err.Description
+    Err.Clear
+  End If
+  killfocus
+End Sub
+
+Sub cmdDir_Click()
+  Dim sDir, sMsg
+
+  label.text="Enter file name (wildcards OK) for DIR Command"
+
+  sDir = filesystem.dir(input.text)
+  sMsg = "Directory contents of " & input.text & ": " & vbCrLf & sDir
+  While (sDir <> "")
+    sDir = fileSystem.Dir()
+    If sDir <> "" Then
+      sMsg = sMsg & ", " & sDir
+    End If
+  Wend
+   
+  msgbox  sMsg
+  killfocus
+End Sub
+
+Sub cmdGetPut_Click()
+  WriteUsingPut
+  ReadUsingGet
+  killfocus
+End Sub
+
+Sub cmdLineWrite_Click()
+  Writeline
+  Readline
+  killfocus
+End Sub
+
+Sub cmdWrite_Click()
+  WriteUsingControl
+  ReadUsingControl
+  killfocus
+End Sub
+
+Sub WriteUsingPut()
+  On Error Resume Next
+  Dim myArray
+  ReDim myArray(6)
+  file.Open "ceGetPut.txt", 4, 2, 3, 500 'fsAccessWrite
+
+  myArray(1) = 1
+  myArray(2) = "This is a string"
+  myArray(3) = True
+  myArray(4) = Date
+  myArray(5) = 63.12
+
+  file.Put myArray
+  If Err <> 0 Then
+    MsgBox "Error in WriteUsingPut: " & Err.Description
+    err.clear
+  End If
+
+  myArray(1) = 2
+  myArray(2) = "This is a string2"
+  myArray(3) = True
+  myArray(4) = Date + 1
+  myArray(5) = 63.12
+  file.Put myArray
+
+  myArray(1) = 3
+  myArray(2) = "This is a string3"
+  myArray(3) = True
+  myArray(4) = #11/16/34#
+  myArray(5) = 63.12
+  file.Put myArray
+
+  msgbox "done with Put", 0, "Put"
+  file.Close
+End Sub
+
+Sub ReadUsingGet()
+  Dim myArray,i,msgString
+  On Error Resume Next
+  file.Open "ceGetPut.txt", 4, 1, 3, 500
+  file.Get myArray, 2
+
+  msgString = myArray(1)
+  For i = 2 To UBound(myArray)
+    msgString = msgString & ", " & myArray(i)
+  Next
+
+  msgBox msgString,0,"Contents of ceGetPut.txt"
+  file.Close
+End Sub
+
+Sub WriteUsingControl()
+  Dim myArray
+  ReDim myArray(10)
+
+  myArray(1) = Date
+  myArray(2) = "This is a string with a "" (quote)."
+  myArray(3) = "True"
+  myArray(4) = #11/16/34#
+  myArray(5) = 63.12
+  myArray(6) = "Text"
+  myArray(7) = "Null"
+  myArray(8) = ""
+
+  file.Open "ceWrite.txt", 2 'fsModeOutput
+  file.WriteFields myArray
+  file.Close
+End Sub
+
+Sub ReadUsingControl()
+  Dim myArray, msgString, i
+  file.Open "ceWrite.txt", 1 'fsModeInput
+  myArray = file.InputFields(10)
+    
+  msgString = myArray(1)
+  For i = 2 To UBound(myArray, 1)
+    msgString = msgString & ", " & myArray(i)
+  Next
+    
+  msgbox msgString,0,"Contents of ceWrite.txt"
+  file.Close
+End Sub
+
+Sub Writeline()
+  On Error Resume Next
+  file.Open "ceLine.txt", 2 'fsModeOutput
+  If Err <> 0 Then
+    MsgBox "Error in writeline: " & Err.Description
+    Err.Clear
+  End If
+  file.LinePrint "Hier ist unser erste Linie."
+  file.LinePrint "Hier ist unser zweite Linie."
+  file.Close
+End Sub
+
+Sub Readline()
+  file.Open "ceLine.txt", 1 'fsModeInput
+  dim sOut
+  sOut = file.LineInputString()
+  sOut =sOut & Chr(13) & file.LineInputString()
+  msgBox sOut,0,"Contents of ceLine.txt"
+
+  file.Close
+End Sub
+
+</PRE>
+<P>&nbsp;</P>
+</CODE>
+</BODY>
+</HTML>

@@ -1,0 +1,265 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="Creation,Prog IDs,Compatibility,Common dialogs">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/Common dialogs/.">
+<title>Common dialogs overview</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Common Dialogs ActiveX</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">Common dialogs overview</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\doc\\start.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            NSBasic Common Dialogs ActiveX (ComDlg) provides access to some of
+            the system defined common dialog boxes. In version 1.0 these are
+            file open/save dialog, color choosing dialog, and font choosing
+            dialog.
+            <p>Conceptually ComDlg ActiveX is implemented in manner very close
+            to the Microsoft's common dialog ActiveX you may already know. The resemblance
+            makes it almost fully compatible with existing code that uses that
+            control, but still, the similarities are only superficial. NSBasic
+            ComDlg control provides a number of features that allow the
+            developer to write better readable code, easily access certain
+            features and avoid mistakes.&nbsp;</p>
+            <h3>Creation</h3>
+            <p>The object can be created explicitly using this code:</p>
+            <blockquote>
+              <p><img border="0" src="img/obj.gif" width="16" height="16">  <b><a href="comdlg.htm">ComDlg</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.ComDlg<br>
+                ClassID: {9DF344D4-66FB-4660-A569-AC8586CFE9FF}<br>
+                Create example: AddObject &quot;NSBasic.ComDlg&quot;,
+                &quot;MyComDlg&quot;</b></p>
+              </blockquote>
+              <blockquote>
+                <p><b>See also: <a href="comdlgflags.htm">ComDlgFlags</a><a href="rasentry.htm">
+                object</a> </b>which is non-creatable. It is returned by the
+                ComDlg.<a href="comdlgflags.htm">Flags</a> property and provides both low-level and high-level
+                flags access.</p>
+              </blockquote>
+            </blockquote>
+            <p>Alternatively you can add its DLL to the NSBasic toolbox and
+            place a ComDlg control on a form. We recommend the second way, because
+            it gives the object access to the form object, thus allowing it to
+            create modal dialog boxes.&nbsp;</p>
+            <p><b>How to add the control to the toolbox manually: </b>Make sure
+            that the Windows desktop&nbsp; version of control's DLL (NSBComDlg.dll)
+            is installed/registered on your machine.&nbsp; Open the ActiveX
+            Control manager dialog box from the tool menu, browse for the DLL
+            and add it. Note that for the both NSBasic development environments
+            (Desktop and CE) the desktop version of the DLL is used. The
+            specific version for the device is needed only when the application
+            is deployed. This is so, because the IDE uses only the registration
+            information for the DLL.&nbsp;</p>
+            <h3>Architecture</h3>
+            <p>The same ComDlg object controls/shows all the supported system
+            common dialogs. This means that you can show any of these dialogs
+            using the same object. The settings specific to a certain common
+            dialog affect only its appearance, thus the application does not
+            usually need separate instance for each dialog type it shows. Still,
+            it is up to you to determine what is best in your particular case -
+            sometimes it may be easier to create one ComDlg object for showing
+            file open dialogs, one for font selection and so on. In other cases
+            it is more convenient to use a single instance of the object to show
+            all the needed dialogs.</p>
+            <p>The ComDlg object provides the <b><a href="comdlg.htm#Reset">Reset</a></b>
+            method which provides a simple way to initialize and configure the
+            object with the most common settings for a certain common dialog
+            type.&nbsp;</p>
+            <p>See more details on the <a href="comdlg.htm">ComDlg</a>'s page.</p>
+            <h3>Typical usage</h3>
+            <p>The typical usage of the ComDlg object follows a simple pattern
+            for all the dialog types it supports. The example lines below are
+            for file open dialog, but the sequence of actions is the same for
+            all the dialog types.</p>
+            <p>Usually the first step is to reset the object for a the dialog
+            you are about to show:<br>
+            <b>NSComDlg1.Reset &quot;File&quot;&nbsp;</b></p>
+            <p>Then some flags are set to configure the dialog appearance and
+            features:<br>
+            <b>NSComDlg1.Flags.MultiSelect = True '&nbsp; We will accept
+            multiple files<br>
+            NSComDlg1.Flags.NoChangeDir = True&nbsp;<br>
+            ... some other flags ...</b></p>
+            <p>Set the initial values - initialize the dialog.<br>
+            <b>NSComDlg1.InitDir = &quot;C:\mydir&quot;<br>
+            NSComDlg1.DialogTitle = &quot;Select SQL queries&quot;<br>
+            NSComDlg1.Filter = &quot;SQL files|*.sql|Text files|*.txt|All
+            files|*.*&quot;<br>
+            ... more settings - as needed ...</b></p>
+            <p>Show the dialog<br>
+            <b>If </b><b>Not NSComDlg1.ShowOpen Then<br>
+            </b>&nbsp;&nbsp;&nbsp; ' Action is cancelled - usually this means
+            skip the operation<br>
+            <b>Else<br>
+            </b>&nbsp;&nbsp;&nbsp; ' Obtain and use the user selection<br>
+            &nbsp;&nbsp;&nbsp; <b>For Each sqlFile In NSComDlg1.FileNames<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>' Do something with
+            each file, for the sake of the example let show them in message
+            boxes<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><i>MsgBox
+            NSComDlg1.InitDir &amp; &quot;\&quot; &amp; sqlFile</i><br>
+            &nbsp;&nbsp;&nbsp; Next</b><br>
+            <b>End If</b></p>
+            <p>In the reality you may want to show the dialog multiple times
+            with the last settings. In such case you would want to call Reset,
+            set the desired flags only once and then show the dialog when
+            needed. This can be done by putting the one-time code in the
+            Form.Load for example and the rest in the methods in which the
+            dialog must be shown. The initial values of the object properties
+            are different case - you may want or not want to set them every time
+            you show the dialog. It is also possible that you would want to keep
+            most of them constant and change only some. In the above example you
+            may want to have the dialog title set to the same text always and
+            different directory for each dialog invocation. Separate the
+            initialization code as appropriate considering the flow of the code
+            execution in your application.</p>
+            <h3>Supported platforms and compatibility </h3>
+            <p>The library is available as single DLL named: <b>NSBComDlg.dll.</b> </p>
+            <p>The ActiveX looks for the application the same way on each
+            platform, but the actual functionality depends on the system. This
+            is because it shows system defined standard dialogs. On some
+            platforms some of them may not be available. In such case the
+            corresponding method that show the dialog would return False or
+            raise error depending on the value of the <a href="comdlg.htm#CancelError"> CancelError</a> property. Thus
+            on platforms where certain dialog is not provided by the system the
+            object will behave as if the user always cancels the dialog. </p>
+            <p>Aside of the system common dialogs existence the implementation
+            of the common dialogs differs on each platform. This is caused
+            mostly because of platform specifics. Therefore some flags may have
+            no effect on certain platform - see the <a href="comdlgflags.htm">ComDlgFlags</a>
+            object for details. </p>
+            <p>Here is the list of the currently supported platforms with some
+            notes about the system common dialogs availability. If you want to
+            use the same code for all the platforms it is highly recommended to
+            review the list and determine the effect of the platform differences
+            over the application. </p>
+            <table border="0" width="100%" bgcolor="#808000" cellspacing="1">
+              <tr>
+                <th valign="top" nowrap><font color="#FFFFFF">Platform(s)</font></th>
+                <th valign="top" nowrap><font color="#FFFFFF">Notes</font></th>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Windows desktop/tablet/laptop</td>
+                <td valign="top" bgcolor="#FFFFFF">All the dialogs are available
+                  to the full extent of their features.&nbsp;</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Palm-sized PC</td>
+                <td valign="top" bgcolor="#FFFFFF">The Font selection dialog (<a href="comdlg.htm#ShowFont">ShowFont</a>)
+                  may not be available. The file open/save dialog provides
+                  access only to certain directories*. Color dialog does not
+                  support extended panel**.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Handheld PC (Pro and 2000)</td>
+                <td valign="top" bgcolor="#FFFFFF">All the dialogs are
+                  available. Some minor features may not be available for some
+                  dialogs.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Pocket PC (incl. 2002, 2003
+                  and later)</td>
+                <td valign="top" bgcolor="#FFFFFF">On Pocket PC 2000 (the oldest
+                  one - very rare today) the Font dialog may not be
+                  available***. The Color dialog (Choose color) does not support
+                  the extended panel. The file open/save dialogs allow access
+                  only to certain directories*.</td>
+              </tr>
+              <tr>
+                <td valign="top" bgcolor="#FFFFFF">Windows CE.NET version 4 and
+                  later based devices (tablets, media devices etc.)</td>
+                <td valign="top" bgcolor="#FFFFFF">The functionality is
+                  virtually equivalent to the Windows desktop except for some
+                  layout differences.</td>
+              </tr>
+            </table>
+            <p>* - The practice came from the world of the Palm devices. In
+            order to ensure that inexperienced users wont get lost on the device
+            the open/save dialogs and even alternative implementations (from MFC
+            for instance) allow on these devices the user to open save files
+            only in the &quot;My Documents&quot; directory, its first level
+            subdirectories and the root and the first level sub-directories of
+            the memory cards. This usually good enough because the files the
+            application saves/loads are usually wanted in these locations. An
+            alternative implementation may be provided in future versions of the
+            control - your feedback is welcome. See <a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/COMDLG/prj/doc/cenotes.htm">Pocket
+            PC notes</a> for detailed explanation of the Pocket PC behavior
+            specifics. </p>
+            <p>** - The color selection dialog on Pocket PC based devices is
+            more simplistic than on the desktops and CE devices with bigger
+            screens. For instance it has no free-color selection panel. </p>
+            <p>*** - Font dialog is not listed in the Pocket PC SDK's header
+            files. In the reality it is available on virtually all of the
+            existing Pocket PC and later device. The control will show it if it
+            is implemented. You may expect problems only on the first Pocket PC
+            devices (2000 edition) which are mostly extinct and rarely
+            considered as targets by the projects today. The Font dialog on
+            Pocket PC is rather simplistic - it has no font preview, looks a
+            little bare-boned, but it works fine. </p>
+            <h3>Troubleshooting </h3>
+            <p><b>File open/save dialog</b>.&nbsp; </p>
+            <blockquote>
+              <p>The dialog does not show. Make sure you set the <a href="comdlg.htm#FileName"> FileName</a>
+              property to an empty string or valid file name (not necessarily
+              existing - just syntactically correct). Check the flags you use
+              and clear those that are not needed and any flags that may
+              conflict with each other. </p>
+              <p>No files are shown in the file list (especially on Pocket PC).
+              Make sure you have a non-empty filter. See <a href="comdlg.htm#Filter">Filter</a>
+              property for more details. </p>
+            </blockquote>
+            <p><b>Font dialog</b> </p>
+            <blockquote>
+              <p>The dialog does not show on a certain device. The device may
+              have an OS version that does not implement the dialog. If this
+              happens only on a device with Pocket PC 2000 or earlier OS version
+              you can be certain that this is the case. </p>
+              <p>No fonts or not all fonts are listed. See if you have at least
+              one of the <b><a href="comdlgflags.htm#ScalableOnly">ScreenFonts, PrinterFonts</a>
+              </b>flags set to True. See also the other flags that concern the
+              font types enabled for selection. </p>
+            </blockquote>
+            <p>&nbsp; </p>
+            <p>&nbsp; </p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2006 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\doc\\start.htm-->
+
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+CommandButton
+Caption
+BackColor
+Left
+Top
+Width
+Height
+FontName
+FontSize
+FontBold
+FontItalic
+FontStrikethru
+FontUnderline
+Tag
+TabStop

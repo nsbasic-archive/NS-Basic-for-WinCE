@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.win32.api.1 = s 'NSBasic Win32API Class'
+	{
+		CLSID = s '{9217A3CE-4560-45D0-853C-F4CBCAD694C4}'
+	}
+	NSBasic.win32.api = s 'NSBasic Win32API Class'
+	{
+		CLSID = s '{9217A3CE-4560-45D0-853C-F4CBCAD694C4}'
+		CurVer = s 'NSBasic.win32.api.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {9217A3CE-4560-45D0-853C-F4CBCAD694C4} = s 'NSBasic Win32API Class'
+		{
+			ProgID = s 'NSBasic.win32.api.1'
+			VersionIndependentProgID = s 'NSBasic.win32.api'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F1072A90-2DF5-49BC-BDFB-2B604FDB9598}'
+		}
+	}
+}

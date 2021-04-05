@@ -1,0 +1,198 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_49_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_49_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>FUNCTION                                                           Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FUNCTION</span></font> <i><span
+style='font-style:italic;'>procedurename</span></i>[(<i><span style='font-style:italic;'>arglist</span></i>)]</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>procedurename</span></i> = <i><span
+style='font-style:italic;'>expression</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [EXIT
+FUNCTION]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>statements</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                [<i><span style='font-style:italic;'>procedurename</span></i> = <i><span
+style='font-style:italic;'>expression</span></i>]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>END FUNCTION</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FUNCTION declares a procedure, <i><span style='font-style:italic;'>procedurename</span></i>,
+that executes <i><span style='font-style:
+italic;'>statements</span></i>, with <i><span style='font-style:italic;'>arglist</span></i> as parameters, with an optional return value. The
+required parameter, <i><span
+style='font-style:italic;'>procedurename</span></i>,
+is used to call the procedure, and must follow standard variable naming
+conventions. The optional parameter list, <i><span
+style='font-style:italic;'>arglist</span></i>, is a
+comma separated list of variables used to represent variables that are passed
+to the procedure when it is called. The optional component, <i><span style='font-style:italic;'>statements</span></i>, will be executed as the body of the procedure.
+Any number of optional EXIT FUNCTION statements can be used to exit the
+procedure during execution. The value returned by the procedure defaults to
+EMPTY. To return a value other than the default, assign the value to the
+function name. The current value of <i><span
+style='font-style:italic;'>procedurename</span></i>
+will be returned when the procedure exits by executing all statements or
+encountering an EXIT FUNCTION statement.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Each member of <i><span
+style='font-style:italic;'>arglist</span></i> is an
+argument passed to the procedure, as declared below:</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>[BYVAL | BYREF] <i><span
+style='font-style:italic;'>varname</span></i>[()]</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>The optional keyword, BYVAL, specifies that a copy of the
+variable be passed into the procedure, making its value outside the procedure
+unmodifiable by the procedure. The optional keyword, BYREF, specifies that the
+address of the variable be passed into the procedure, making its value outside
+the procedure modifiable by the procedure. <i><span
+style='font-style:italic;'>varname</span></i> can be
+used within the procedure to reference a value passed in, it follows standard
+variable naming procedure.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Note</span></font></b>: If the return value is not
+stored in a variable or used in an expression, the procedure is called as a SUB
+procedure, and multiple arguments cannot be enclosed in parenthesis.</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM FUNCTION Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'FUNCTION: a procedure that returns a value</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Selection, SalePrice</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Selection = Menu(&quot;Wednesday&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;Wednesday's menu
+feature:&quot;,Selection</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SalePrice = Min(31,29)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;Sale Price:&quot;, SalePrice</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>FUNCTION Menu(day)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  IF
+day = &quot;Wednesday&quot; THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+Menu = &quot;Salisbury Steak&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  END
+IF</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END FUNCTION</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>FUNCTION Min(x,y)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  IF x
+&gt; y THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    MIN
+= y</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+EXIT FUNCTION</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  ELSE</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>    MIN
+= x</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  END
+IF</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END FUNCTION</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Wednesday's menu feature: Salisbury Steak</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Sale Price:   29</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>CALL, SUB</span></font></p>
+
+</div>
+
+</body>
+
+</html>

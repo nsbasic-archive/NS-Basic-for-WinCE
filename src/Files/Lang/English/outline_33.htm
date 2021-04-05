@@ -1,0 +1,145 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_33_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_33_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>EQV                                                                         Operator</span></font></u></b></h4>
+
+<p class=MsoNormal><i><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-style:italic;'>result</span></font></i> = <i><span style='font-style:italic;'>x</span></i>
+EQV <i><span
+style='font-style:italic;'>y</span></i></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EQV returns the logical equivalence of two expressions. <i><span style='font-style:italic;'>result</span></i> is TRUE, if both expressions <i><span style='font-style:italic;'>x</span></i>
+and <i><span style='font-style:italic;'>y</span></i> evaluate to TRUE or both expressions <i><span style='font-style:italic;'>x</span></i> and <i><span
+style='font-style:italic;'>y</span></i> evaluate to
+FALSE, otherwise, <i><span style='font-style:
+italic;'>result</span></i> is FALSE.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EQV also does a bitwise comparison of two numeric
+expressions. Each bit in <i><span
+style='font-style:italic;'>result</span></i> is set
+to 1 if both corresponding bits in <i><span
+style='font-style:italic;'>x</span></i> and <i><span style='font-style:italic;'>y</span></i> are 1 or both corresponding bits in <i><span style='font-style:italic;'>x</span></i>
+and <i><span style='font-style:italic;'>y</span></i> are 0, otherwise it is set to 0.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM EQV Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'EQV performs logical and bitwise</span></font>equivalence</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Test1, Test2, Test3, x, y</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>x = 4</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>y = 9</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Test1 = x &lt; 0 EQV y &lt; 10</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Test2 = x &gt; 0 EQV y &gt; 10</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Test3 = x &lt; 0 EQV y &gt; 10</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;Logical:&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot; 
+x &lt; 0 EQV y &lt; 10 = &quot; &amp; Test1</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot; 
+x &gt; 0 EQV y &gt; 10 = &quot; &amp; Test2</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot; 
+x &lt; 0 EQV y &gt; 10 = &quot; &amp; Test3</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;Bitwise:&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot; 
+x EQV y = &quot; &amp; (x EQV y)</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Logical:</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  x
+&lt; 0 EQV y &lt; 10 = False</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  x
+&gt; 0 EQV y &gt; 10 = False</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  x
+&lt; 0 EQV y &gt; 10 = True</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Bitwise:</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  x EQV
+y = -14</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>AND, IMP, NOT, OR, XOR</span></font></p>
+
+</div>
+
+</body>
+
+</html>

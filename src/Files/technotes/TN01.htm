@@ -1,0 +1,140 @@
+<HTML>
+<HEAD>
+<TITLE>Installation Issues</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h2>Tech Note 01: <br>
+		Common Problems and Solutions</h2>	  
+		<h3>November 04, 2009</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr size="1" noshade>
+
+Installation of NS Basic/CE on Windows CE devices is problem free in the vast majority of cases. However, there are occasions when the installer does not complete properly, most often due to problems in the Registry.
+<P>The Registry is a file built into the Windows CE operating system. When an application is launched, Windows CE uses the Registry to obtain vital information about how to start an application. Since the Registry is shared by all the applications on a device, if it gets corrupted by one application, others will be affected.
+<p>The standard installer that gets built by eMbedded Visual Basic is one of the applications that is known to corrupt the Windows CE registry when uninstalling an app.
+<P>The NS Basic/CE Installer needs to put information into the Registry for NS Basic/CE programs run properly. If it is unable to, you will get error messages when you try to run NS Basic/CE.
+<P>In most cases, the situation can be corrected by manually entering the commands to register an application. However, if this fails, you will need to recreate your Registry. The only way to do this is to backup your device, give it a hard reset, then reload your applications.
+
+<p><b>1. (Desktop) Error 429 on startup</b>
+<p>This is caused by controls not getting properly registered on installation. This can happen as the result of a corrupted registry. It can be fixed by a batch file that is installed with NS Basic/CE. It needs to be run as Administrator.
+<p>\program files\nsbasic\ce\register.bat.
+
+<p>This can also be caused by problems in the Registry. This can be corrected by using a registry cleaner utility, such as <A HREF="http://www.pcmedixwebs.com/regclean.htm">RegCleaner</A>. Another useful utility is called <a href="http://www.aivosto.com/activexplorer.html">ActiveXplorer</a>.
+
+<p><b>2. Make sure you are using the latest version of ActiveSync</b>
+<P>This is the software used from the desktop to install NS Basic/CE. If you are running something older than ActiveSync 3.7.1 Build 4034 (The build number is important), you need to upgrade. If you are using something called CE Services, it has been replaced by ActiveSync and you definitely need to upgrade.
+<A HREF="http://www.microsoft.com/downloads/results.aspx?sortCriteria=date&OSID=&productID=&CategoryID=&freetext=ActiveSync&DisplayLang=en&DisplayEnglishAlso=">
+Get the latest version from Microsoft.</A>
+
+<p><b>3. Norton Anti Virus: "Malicious script detected" message. </b>
+Click on "Authorize this script". NAV is being overzealous here. It is objecting to the NS Basic IDE doing a normal operation using a standard Microsoft interface. Authorizing it here will not compromise the security in your system in any way. To permanently stop this message, start Norton Antivirus and go into Options. Under Script Blocking, turn off "Enable Script Blocking".
+
+<P><B>4. If you get one of the following messages on the device:</B>
+<UL COMPACT>
+	<LI>"Failed to create engine ..."
+	<LI>"There is no application associated with "BASIC Installer..."
+	<LI>"Cannot find extension Forms Data"<p></P>
+</UL>
+
+Download <A HREF="http://www.devbuzz.com/content/vbregfix_pg1.asp">VBRegFix</A>. There's an interesting article here about why this problem happens as well. If this does not solve the problem, you will need to do a backup, hard reset and reinstall the software, thereby resetting the Registry.
+
+
+<p><b>5. "Please Reinstall NS Basic" on the desktop</b> or<br>
+<b>"PSPC is not a valid integer value"</b> or <br>
+<b>Characters in the code window are all "????..."</b>
+<p>Some early versions of 4.0 have left an extra file around that needs to be deleted. To fix this error, do the following steps:
+<ol>
+	<li>Uninstall NS Basic/CE.</li>
+	<li>Do a search for file NSBPictb.dll and delete any copies you find.</li>
+	<li>Install the current version of NS Basic/CE.</li>
+</ol>
+
+<P><B>6. If you get the following message on your device:</B>
+<UL COMPACT>
+	<LI>"Cannot find MSCEFILE or MSCEPicture"
+</UL>
+<p></P>If your unit has a keyboard, type
+
+<OL COMPACT>
+	<LI>cmd+r...regsvrce.exe mscefile.dll
+	<LI>cmd+r...regsvrce.exe mscepicture.dll
+</OL>
+
+On a Palm-size PC:
+
+<OL COMPACT>
+	<LI>Bring up the on screen keyboard.
+	<LI>Tap the task bar on the bottom to set the focus to the task bar
+	<LI>Type "RUN23" into the on screen keyboard.
+	<LI>A message prompt saying "OPEN" will appear.
+	<LI>Repeat for "regsvrce.exe mscepicture.dll"
+	<LI>Repeat for "regsvrce.exe mscefile.dll"
+</OL>
+
+On a Pocket PC:
+
+<OL COMPACT>
+	<LI>Go to the Today screen
+	<LI>Push in the Action button on the side of the unit. (on an iPaq, push down in the center of the speaker button)
+	<LI>Hold your pen down on the date in the top right corner
+	<LI>A message prompt saying "OPEN" will appear.
+	<LI>Type in "regsvrce.exe mscepicture.dll"
+	<LI>Repeat for "regsvrce.exe mscefile.dll"
+</OL>
+
+On a Pocket PC 2002 and later:
+
+<OL COMPACT>
+	<LI>Start Programs... File Explorer
+	<LI>Tap "Open" at the botton of the screen.
+	<LI>A message prompt saying "OPEN" will appear.
+	<LI>Type in "regsvrce.exe mscepicture.dll"
+	<LI>Repeat for "regsvrce.exe mscefile.dll"
+</OL>
+
+<P><B>7. (Device) If NS Basic/CE starts, but Visual Designer is not found</B> 
+<OL COMPACT>
+	<LI>If you installed NS Basic/CE to your card, uninstall it and reinstall to the default directory
+	<LI>Make sure VNSB.exe is in \Program Files\NS Basic
+	<LI>Otherwise, your Registry is corrupted. You will need to do a backup, hard reset (consult your manufacturer's handbook for information how) and reinstall all the applications on your device.
+</OL>
+
+<B>8. (Device) When installing BASIC.EXE on a PPC, the device hangs on 'setting registry entries...'</B>
+<P>This is caused by a bug in Windows CE. You need to load the new version of WCELoad first. From the ReadMe.txt file on the release CD, tap on the link to WCELoad.exe Update.
+<P>If your CD was produced before August 31st, 1999, you can also get the WCELoad.exe Update <A HREF="http://www.nsbasic.com/pub/ce/updates/WCELOAD.EXE">from our website</A>.<br><br>
+
+
+<p><b>9. "Could not find CLSID for VBScript" appears on device</B>
+<p>This message appears on Windows Mobile 2003 for Pocket PC devices. These devices do not have certain libraries included in ROM which were on previous units. It means either you have not installed the NS Basic runtime on the device, or your registry is badly corrupted. If it is corrupted, you should do a backup, hard reset and reinstall all software.
+
+<h4>10. Run Time Error 380 - Invalid Property Value</h4>
+This is caused by having only True Type fonts enabled. In the Fonts Control panel, in the View Options dialog there's a True Type Fonts
+tab. In this is a check box entitled "Show only True Type fonts
+in the programs on my computer". Unchecking this solves the problem.
+
+<h4>11. Vista: Installers to device do not work</h4>
+<p>If you attempt to install Microsoft ActiveSync, which is not supported in Vista, the subsequent installation of Microsoft Device Center (MDC) will not work properly. You won't get a message. Delete ActiveSync from the system and then reinstall MDC.
+
+<h4>12. Language Reference file does not open</h4>
+Try clicking on the file \program files\nsbasic\*\lang\English.chm. If you get the message "Cannot open the file mk:@MITStore:c:\Program Files\NSBasic\*\Lang\English.chm", you have a problem with your Windows installation. To fix it, open a CMD window, type the following on the command line:
+<pre>
+regsvr32 %systemroot%\system32\hhctrl.ocx 
+regsvr32 %systemroot%\system32\itss.dll
+</pre>
+This problem will affect all .chm files when it happens - not just NS Basic. 
+
+
+<P><B>If you are still having problems, please contact us at <A HREF="mailto:support&copy; nsbasic.com">support&copy; nsbasic.com</A>. We will be happy to help you!</B>
+
+</BODY>
+</HTML>

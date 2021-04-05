@@ -1,0 +1,15 @@
+addobject "MGCEWin32.API", "API", 0, 0, 0, 0
+
+MsgBox "The desktop color is about to change which will trigger an event"
+oldColor = API.SystemColor( 1 )
+API.SystemColor( 1 ) = 128
+API.SystemColor( 1 ) = oldColor
+
+sub API_ColorChange
+   MsgBox "A system color has been changed"
+end sub
+
+sub API_Hibernate
+   MsgBox "The device went into hibernate mode"
+end sub
+

@@ -1,0 +1,24 @@
+0 Pocket PC - ARM
+0 Pocket PC - SH3
+0 Pocket PC - MIPS
+0 Palm-size PC - SH3
+0 Palm-size PC - MIPS
+0 HPC/Pro - ARM
+0 HPC/Pro - SH3
+0 HPC/Pro - SH4
+0 HPC/Pro - MIPS
+0 HPC 2000 - ARM
+0 HPC 2000 - MIPS
+0 Pocket PC 2002 - ARM
+0 Pocket PC 2003 - ARM
+0 Standard SDK - ARMV4
+0 Standard SDK - ARMV4I
+0 Standard SDK - EMU
+0 Standard SDK - MIPSII
+0 Standard SDK - MIPSIIFP
+0 Standard SDK - MIPSIV
+0 Standard SDK - MIPSIVFP
+0 Standard SDK - SH3
+0 Standard SDK - SH4
+0 Standard SDK - x86
+0 Desktop - x86

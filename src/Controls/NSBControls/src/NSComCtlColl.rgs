@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.comctl.NSComCtlColl.1 = s 'NSBasic NSComCtlColl Class'
+	{
+		CLSID = s '{30861775-4F37-435A-AAEB-D954D1621487}'
+	}
+	NSBasic.comctl.NSComCtlColl = s 'NSBasic NSComCtlColl Class'
+	{
+		CLSID = s '{30861775-4F37-435A-AAEB-D954D1621487}'
+		CurVer = s 'NSBasic.comctl.NSComCtlColl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {30861775-4F37-435A-AAEB-D954D1621487} = s 'NSBasic NSComCtlColl Class'
+		{
+			ProgID = s 'NSBasic.comctl.NSComCtlColl.1'
+			VersionIndependentProgID = s 'NSBasic.comctl.NSComCtlColl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{9152ECB3-952A-4F35-83F5-C35F8D42375D}'
+		}
+	}
+}

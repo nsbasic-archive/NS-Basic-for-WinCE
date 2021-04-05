@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>Manually Uninstalling NS Basic/CE</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h2>Tech Note 01a: <br>
+		Manually Uninstalling NS Basic/CE</h2>	  <h3>February 6, 2006</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr size="1" noshade>
+
+The Uninstaller for NS Basic/CE works in almost all cases. However, in the event of corruption of Windows or manual deletion of some files, it can fail. Here are instructions for completely uninstalling NS Basic/CE without a script. This should work with NS Basic/CE 5.0 and later. With earlier versions, the only difference will be in the Registry step.
+
+<p><b>1. Uninstall the program files</b>
+<p>Delete the directory \program files\nsbasic\ce
+
+<p><b>2. Uninstall the helper files</b>
+<p>In \Windows\System32 (or \WinNT\System32 in Windows 2000), delete the following files if they exist: 
+<ul>
+	<li>NSBAddScript.dll (only if you are not using NS Basic/Deskop)</li>
+	<li>NSBPhone.ocx</li>
+	<li>NSBPictB.ocx</li>
+	<li>NSCEPictureBox.ocx</li>
+</ul>
+
+<p><b>3. Clear out Registry entries</b>
+<p>Do Start->Run to bring up the Run menu.<br>
+Enter Regedit into the Open: field.<br>
+Navigate to HKEY_CURRENT_USER\Software\NSBasic<br>
+Delete the CE key (which will delete everything beneath it). 
+
+<p><b>4. Clean up the Start menu</b>
+<p>Right click on Start and Choose Open<br>
+Choose Programs<br>
+Right click on NS Basic CE and delete it.
+
+</BODY>
+</HTML>

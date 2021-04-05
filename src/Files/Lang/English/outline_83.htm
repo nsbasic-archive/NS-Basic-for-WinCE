@@ -1,0 +1,637 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_83_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_83_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>MSGBOX                                                                Function</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>MSGBOX</span></font>(<i><span style='font-style:italic;'>prompt</span></i>[,
+<i><span style='font-style:italic;'>buttons</span></i>[, <i><span style='font-style:italic;'>title</span></i>]])</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>MSGBOX opens a dialog box, and waits for the user to tap on a
+button. The return value is an integer that indicates which button was tapped.
+The required parameter, <i><span
+style='font-style:italic;'>prompt</span></i>, is a
+string expression that is displayed in the body of the dialog box. The optional
+parameter, <i><span style='font-style:italic;'>buttons</span></i>, is a numeric or constant
+expression that specifies which buttons to draw, which icon to use, the
+identity of the default button, and the modality of the dialog box. The default
+value for buttons is 0, other values are obtained by adding the desired
+constants from table below. The optional parameter, <i><span style='font-style:italic;'>title</span></i>,
+is a string expression that is displayed in the title bar of the dialog box.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Some Windows CE devices do not have this function.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Table&nbsp;</span></font></b><b><span style='font-weight:bold;'>15</span></b><b><span style='font-weight:bold;'>: Button constants</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.8pt;border-collapse:collapse;
+ border:none;'>
+ <tr height=22 style='height:16.6pt;'>
+  <td width=114 height=22 valign=top bgcolor="#B3B3B3" style='width:85.5pt;
+  border:solid windowtext 1.0pt;
+  background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;height:16.6pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Constant</span></font></p>
+  </td>
+  <td width=42 height=22 valign=top bgcolor="#B3B3B3" style='width:31.5pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:16.6pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Value</span></font></p>
+  </td>
+  <td width=132 height=22 valign=top bgcolor="#B3B3B3" style='width:99.0pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:16.6pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Description</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbOKOnly</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>0</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>OK Button only</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbOKCancel</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>1</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>OK and Cancel buttons</span></font></p>
+  </td>
+ </tr>
+ <tr height=30 style='height:22.45pt;'>
+  <td width=114 height=30 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:22.45pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbAbortRetryIgnore</span></font></p>
+  </td>
+  <td width=42 height=30 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:22.45pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>2</span></font></p>
+  </td>
+  <td width=132 height=30 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:22.45pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Abort, Retry, and Ignore buttons</span></font></p>
+  </td>
+ </tr>
+ <tr height=30 style='height:22.45pt;'>
+  <td width=114 height=30 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:22.45pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbYesNoCancel</span></font></p>
+  </td>
+  <td width=42 height=30 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:22.45pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>3</span></font></p>
+  </td>
+  <td width=132 height=30 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:22.45pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Yes, No, and Cancel buttons</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbYesNo</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>4</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Yes and No buttons</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbRetryCancel</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>5</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Retry and Cancel buttons</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbCritical</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>16</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Critical Message icon</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbQuestion</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>32</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Warning Query icon</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbExclamation</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>48</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Warning Message icon</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbInformation</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>64</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Information Message icon</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbDefaultButton1</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>0</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>First button is default</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbDefaultButton2</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>256</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Second button is default</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbDefaultButton3</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>512</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Third button is default</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=114 height=16 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbDefaultButton4</span></font></p>
+  </td>
+  <td width=42 height=16 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>768</span></font></p>
+  </td>
+  <td width=132 height=16 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Fourth button is default</span></font></p>
+  </td>
+ </tr>
+ <tr height=46 style='height:34.15pt;'>
+  <td width=114 height=46 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:34.15pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbApplicationModal</span></font></p>
+  </td>
+  <td width=42 height=46 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:34.15pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>0</span></font></p>
+  </td>
+  <td width=132 height=46 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:34.15pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Application interface is disabled until user responds to
+  dialog box</span></font></p>
+  </td>
+ </tr>
+ <tr height=60 style='height:44.95pt;'>
+  <td width=114 height=60 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:44.95pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbSystemModal</span></font></p>
+  </td>
+  <td width=42 height=60 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:44.95pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>4096</span></font></p>
+  </td>
+  <td width=132 height=60 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:44.95pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Application and system interfaces are disabled until user
+  responds to dialog box.</span></font></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Table&nbsp;</span></font></b><b><span style='font-weight:bold;'>16</span></b><b><span style='font-weight:bold;'>: MSGBOX return values</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.8pt;border-collapse:collapse;
+ border:none;'>
+ <tr height=22 style='height:16.6pt;'>
+  <td width=96 height=22 valign=top bgcolor="#B3B3B3" style='width:1.0in;
+  border:solid windowtext 1.0pt;
+  background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;height:16.6pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Constant</span></font></p>
+  </td>
+  <td width=72 height=22 valign=top bgcolor="#B3B3B3" style='width:.75in;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:16.6pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Value</span></font></p>
+  </td>
+  <td width=120 height=22 valign=top bgcolor="#B3B3B3" style='width:1.25in;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:16.6pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Description</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbOK</span></font></p>
+  </td>
+  <td width=72 height=16 valign=top style='width:.75in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>1</span></font></p>
+  </td>
+  <td width=120 height=16 valign=top style='width:1.25in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>OK</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbCancel</span></font></p>
+  </td>
+  <td width=72 height=16 valign=top style='width:.75in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>2</span></font></p>
+  </td>
+  <td width=120 height=16 valign=top style='width:1.25in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Cancel</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbAbort</span></font></p>
+  </td>
+  <td width=72 height=16 valign=top style='width:.75in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>3</span></font></p>
+  </td>
+  <td width=120 height=16 valign=top style='width:1.25in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Abort</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbRetry</span></font></p>
+  </td>
+  <td width=72 height=16 valign=top style='width:.75in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>4</span></font></p>
+  </td>
+  <td width=120 height=16 valign=top style='width:1.25in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Retry</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbIgnore</span></font></p>
+  </td>
+  <td width=72 height=16 valign=top style='width:.75in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>5</span></font></p>
+  </td>
+  <td width=120 height=16 valign=top style='width:1.25in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Ignore</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbYes</span></font></p>
+  </td>
+  <td width=72 height=16 valign=top style='width:.75in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>6</span></font></p>
+  </td>
+  <td width=120 height=16 valign=top style='width:1.25in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Yes</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbNo</span></font></p>
+  </td>
+  <td width=72 height=16 valign=top style='width:.75in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>7</span></font></p>
+  </td>
+  <td width=120 height=16 valign=top style='width:1.25in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>No</span></font></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>&nbsp;</span></font></b></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM MSGBOX Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'MSGBOX displays a modal dialog box</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>CONST TITLE = &quot;MSGBOX Tour&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Continue</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>MSGBOX(&quot;Hello World!&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>MSGBOX &quot;Brief tour of MSGBOX&quot;, 0,
+TITLE</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Continue = MSGBOX(&quot;Continue tour?&quot;,
+_</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       vbYesNo
++ vbQuestion, TITLE)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>IF Continue = vbYes THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       Continue=MSGBOX(&quot;Short
+tour, huh?&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       vbInformation
++ vbYesNo, TITLE)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END IF</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Continue = MSGBOX(&quot;Repeat tour?&quot;,
+257,</span></font>TITLE)</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>IF Continue = vbCancel THEN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       MSGBOX(&quot;Goodbye!&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END IF</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face="Times New Roman"><span style='font-size:
+10.0pt;line-height:115%;font-family:"Times New Roman","serif";'><img width=222 height=140
+src="outline_83_files/image003.png"></span></font></p>
+
+<p class=MsoNormal><font size=2 face="Times New Roman"><span style='font-size:
+10.0pt;line-height:115%;font-family:"Times New Roman","serif";'><img width=242 height=138
+src="outline_83_files/image006.png"></span></font></p>
+
+<p class=MsoNormal><font size=2 face="Times New Roman"><span style='font-size:
+10.0pt;line-height:115%;font-family:"Times New Roman","serif";'><img width=250 height=200
+src="outline_83_files/image009.png"></span></font></p>
+
+<p class=MsoNormal><font size=2 face="Times New Roman"><span style='font-size:
+10.0pt;line-height:115%;font-family:"Times New Roman","serif";'><img width=268 height=200
+src="outline_83_files/image012.png"></span></font></p>
+
+<p class=MsoNormal><font size=2 face="Times New Roman"><span style='font-size:
+10.0pt;line-height:115%;font-family:"Times New Roman","serif";'><img width=242 height=140
+src="outline_83_files/image015.png"></span></font></p>
+
+<p class=MsoNormal><font size=2 face="Times New Roman"><span style='font-size:
+10.0pt;line-height:115%;font-family:"Times New Roman","serif";'><img width=222 height=138
+src="outline_83_files/image018.png"></span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>INPUTBOX</span></font></p>
+
+</div>
+
+</body>
+
+</html>

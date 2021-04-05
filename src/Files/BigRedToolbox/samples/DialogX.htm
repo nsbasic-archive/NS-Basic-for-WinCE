@@ -1,0 +1,215 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Find Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/DialogX1.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<IMG SRC="images/DialogX2.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+
+OPTION EXPLICIT
+CONST APPTITLE = "DialogX"
+DIM i, Temp
+
+DialogX_Show  'Default Form
+bTest.SetFocus
+
+ADDOBJECT "NSBasic.DialogX.1", "Input", 0, 0, 0, 0
+ADDOBJECT "NSBasic.DialogX.1", "Dlg", 0, 0, 0, 0
+Dlg.Height = 110
+Dlg.Width = 125
+Dlg.Title = "DialogX Demo"
+tWidth.Text = Dlg.Width
+tHeight.Text = Dlg.Height
+tFontSize.Text = Dlg.FontSize
+bCaptionOK.Value = Dlg.CaptionOK
+bCaptionClose.Value = Dlg.CaptionClose
+Dlg.AddObject "CommandButton", "bHello", 3, 3, 60, 14
+Dlg.SetCaption "bHello", "&Hello World!"
+Dlg.AddObject "CheckBox", "chkBox", 65, 3, 57, 12
+Dlg.SetCaption "chkBox", "Hello Wo&rld"
+Dlg.SetValue "chkBox", TRUE
+Dlg.AddObject "Label", "lHello", 3, 22, 40, 10
+Dlg.SetCaption "lHello", "Hello &World"
+Dlg.AddObject "TextBox", "tHello", 45, 20, 77, 12
+Dlg.SetPassword "tHello", TRUE
+Dlg.AddObject "ComboBox", "cbx", 3, 37, 60, 70
+Dlg.AddObject "ListBox", "lbx", 65, 37, 57, 60
+FOR i = 1 TO 7
+  Dlg.AddItem "lbx", WEEKDAYNAME(i)
+NEXT
+Dlg.SetIntegralHeight "lbx", FALSE
+Dlg.SetIndex "lbx", DATEPART("W", NOW) - 1
+Dlg.AddObject "OptionButton", "optBut1", 7, 64, 52, 14
+Dlg.SetCaption "optBut1", "Hell&o World"
+Dlg.SetGroup "optBut1", TRUE
+Dlg.AddObject "OptionButton", "optBut2", 7, 78, 52, 14
+Dlg.SetCaption "optBut2", "Hello Worl&d"
+Dlg.AddObject "OptionButton", "optBut3", 7, 92, 52, 14
+Dlg.SetCaption "optBut3", "H&ello World"
+Dlg.SetValue "optBut1", 2
+Dlg.AddObject "GroupBox", "gbx", 3, 54, 59, 54
+Dlg.SetCaption "gbx", "Option Group"
+
+SUB bTitle_Click
+  Temp = Input.InputBox("Enter dialog box title", APPTITLE, Dlg.Title)
+  IF LEN(Temp) > 0 THEN Dlg.Title = Temp ELSE Temp = "Dialog"
+  bTest.SetFocus
+END SUB  'bTitle_Click
+
+SUB FileExit_Click : BYE : END SUB
+
+SUB bTest_Click
+'  MSGBOX Dlg.DoModal
+  IF Dlg.DoModal THEN
+    MSGBOX "tHello.Text = " & Dlg.GetCaption("tHello")
+    MSGBOX "chkBox value = " & Dlg.GetValue("chkBox")
+    MSGBOX "OptionButton value = " & Dlg.GetValue("optBut1")
+  END IF
+  bTest.SetFocus
+END SUB  'bTest_Click
+
+SUB bWidth_Click
+  ON ERROR RESUME NEXT
+  Temp = CINT(tWidth.Text)
+  IF Err <> 0 THEN
+    tWidth.Text = Dlg.Width
+    Err.Clear
+    EXIT SUB
+  END IF
+  Dlg.Width = Temp
+  MSGBOX "Dialog width set to " & Temp, vbOK, APPTITLE
+  bTest.SetFocus
+END SUB  'bWidth_Click
+
+SUB bHeight_Click
+  ON ERROR RESUME NEXT
+  Temp = CINT(tHeight.Text)
+  IF Err <> 0 THEN
+    tHeight.Text = Dlg.Height
+    Err.Clear
+    EXIT SUB
+  END IF
+  Dlg.Height = Temp
+  MSGBOX "Dialog height set to " & Temp, vbOK, APPTITLE
+  bTest.SetFocus
+END SUB  'bHeight_Click
+
+SUB bFontName_Click
+  Temp = Input.InputBox("Enter dialog font name", APPTITLE, Dlg.FontName)
+  IF LEN(Temp) > 0 THEN Dlg.FontName = Temp
+  bTest.SetFocus
+END SUB  'bFontName_Click
+
+SUB bFontSize_Click
+  ON ERROR RESUME NEXT
+  Temp = CINT(tFontSize.Text)
+  IF Err <> 0 THEN
+    tFontSize.Text = Dlg.FontSize
+    Err.Clear
+    EXIT SUB
+  END IF
+  Dlg.FontSize = Temp
+  MSGBOX "Dialog font size set to " & Temp, vbOK, APPTITLE
+  bTest.SetFocus
+END SUB  'bFontSize_Click
+
+SUB bCaptionOK_Click
+  IF bCaptionOK.Value = 0 THEN
+    Dlg.CaptionOK = FALSE
+  ELSE
+    Dlg.CaptionOK = TRUE
+  END IF
+  bCaptionClose.Value = Dlg.CaptionClose
+  bTest.SetFocus
+END SUB  'bCaptionOK_Click
+
+SUB bCaptionClose_Click
+  IF bCaptionClose.Value = 0 THEN
+    Dlg.CaptionClose = FALSE
+  ELSE
+    Dlg.CaptionClose = TRUE
+  END IF
+  bTest.SetFocus
+END SUB  'bCaptionClose_Click
+
+'*** Begin Generated Code ***
+
+DIM DialogX
+SUB DialogX_Load
+  IF NOT ISEMPTY(DialogX) THEN EXIT SUB
+  REDIM DialogX(11)
+  ADDOBJECT "CommandButton", "bTitle", 2, 1, 72, 26
+  SET DialogX(1) = bTitle
+  DialogX(1).Caption = "&Title"
+  DialogX(1).BackColor = &H00C0C0C0&
+  ADDOBJECT "CommandButton", "bWidth", 2, 28, 72, 26
+  SET DialogX(2) = bWidth
+  DialogX(2).Caption = "&Width"
+  DialogX(2).BackColor = &H00C0C0C0&
+  ADDOBJECT "TextBox", "tWidth", 78, 30, 48, 22
+  SET DialogX(3) = tWidth
+  DialogX(3).MaxLength = 16
+  ADDOBJECT "CommandButton", "bHeight", 2, 55, 72, 26
+  SET DialogX(4) = bHeight
+  DialogX(4).Caption = "&Height"
+  DialogX(4).BackColor = &H00C0C0C0&
+  ADDOBJECT "TextBox", "tHeight", 78, 57, 48, 22
+  SET DialogX(5) = tHeight
+  DialogX(5).MaxLength = 16
+  ADDOBJECT "CommandButton", "bTest", 3, 145, 126, 26
+  SET DialogX(6) = bTest
+  DialogX(6).Caption = "T&est"
+  DialogX(6).BackColor = &H00C0C0C0&
+  ADDOBJECT "CommandButton", "bFontName", 2, 82, 72, 26
+  SET DialogX(7) = bFontName
+  DialogX(7).Caption = "&FontName"
+  DialogX(7).BackColor = &H00C0C0C0&
+  ADDOBJECT "CommandButton", "bFontSize", 2, 109, 72, 26
+  SET DialogX(8) = bFontSize
+  DialogX(8).Caption = "Font&Size"
+  DialogX(8).BackColor = &H00C0C0C0&
+  ADDOBJECT "TextBox", "tFontSize", 78, 111, 48, 22
+  SET DialogX(9) = tFontSize
+  DialogX(9).MaxLength = 16
+  ADDOBJECT "CheckBox", "bCaptionOK", 3, 172, 126, 16
+  SET DialogX(10) = bCaptionOK
+  DialogX(10).FontSize = 8
+  DialogX(10).BackColor = &H00C0C0C0&
+  DialogX(10).Caption = "&Caption OK Button"
+  ADDOBJECT "CheckBox", "bCaptionClose", 3, 192, 126, 16
+  SET DialogX(11) = bCaptionClose
+  DialogX(11).FontSize = 8
+  DialogX(11).BackColor = &H00C0C0C0&
+  DialogX(11).Caption = "Caption Ca&ncel Button"
+END SUB  'DialogX_Load
+
+SUB DialogX_Show
+  DIM i
+  DialogX_ShowMenu
+  Output.ScaleMode = 3
+  IF ISEMPTY(DialogX) THEN DialogX_Load
+  FOR i = 1 TO UBOUND(DialogX)
+    DialogX(i).Show
+  NEXT
+END SUB  'DialogX_Show
+
+SUB DialogX_Hide
+  DIM i
+  IF ISEMPTY(DialogX) THEN Err.Raise 44000, , "Form not loaded" : EXIT SUB
+  FOR i = 1 TO UBOUND(DialogX)
+    DialogX(i).Hide
+  NEXT
+END SUB  'DialogX_Hide
+
+SUB DialogX_ShowMenu
+  SETMENU "TitleBar", ARRAY("&File")
+  SETMENU "&File", ARRAY("E&xit||FileExit")
+  UPDATESCREEN
+END SUB  'DialogX_ShowMenu
+
+'*** End Generated Code ***
+</PRE>
+</body>
+</html>

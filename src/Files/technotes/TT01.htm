@@ -1,0 +1,250 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 01: A Simple Program</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 01: A Simple Program</h2>
+      <h3>February 01, 2010</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+  	  <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p></td></tr></table>
+<hr>
+
+<h2>Purpose </h2>The purpose of this tutorial is to demonstrate how a simple 
+program is created using NS Basic/CE. You should have NS Basic/CE installed 
+before beginning this tutorial. 
+<h2>Description of the Program </h2>The program to be developed will display a 
+form with a button on it. When the user taps the button, the program responds 
+with the message  "Hello--Welcome to NS Basic/CE" 
+<h2>Program Development </h2>
+<h4>1. Startup</h4>
+<ul>
+  <li>Start NS Basic/CE from the Start menu. 
+  <li>At the initial screen select Standard in the New Project dialog box and 
+  click OK</li></ul>
+<p align="center"><img height="662" alt="" src="images/TT01.1.gif" width="547" border="0"> 
+<h4>2. Modify Form Properties</h4>
+<ul>
+  <li>You should now see a blank screen with the title "Form1" 
+  <li>Select the form in the Project Explorer by clicking on it. 
+  <li>In Properties, change Name to "Hello" </li></ul>
+<h4>3. Add a button to the form</h4>
+<ul>
+  <li>Select the CommandButton object in the ToolBox (blank rectangle box) 
+  <li>Move the cursor to the desired location on the Form screen 
+  <li>Click the left mouse button to place the button object on the form 
+</li></ul>Change the button's text: 
+<ul>
+  <li>Click on the button to select it  
+  <li>In the Properties window, change Caption to "Tap Here" </li></ul>Resize the 
+button: 
+<ul>
+  <li>Position the mouse cursor over the button and notice the resize 
+  marker around the button 
+  <li>Press the left mouse button and drag one of the resize markers to 
+  change the size in that direction  
+  <li>Release the left mouse button when the size is correct  
+</li></ul>Relocate the button on the screen: 
+<ul>
+  <li>Select the button with the left mouse button 
+  <li>Position the mouse cursor to the middle of the button 
+  <li>Press the left mouse button and drag the button to the desired position
+  on the form 
+  <li>Release the left mouse button when in the proper position </li></ul>
+<p align="center"> <img height="661" alt="" src="images/TT01.2.gif" width="579" border="0"> 
+<h4>5. Add commands to be executed when the button is tapped</h4>
+<ul>
+  <li>Double click on the button 
+  <li>A code window will appear with some code statements already supplied for 
+  you <html></html>
+  <li>Position the cursor to the line below the SUB statement 
+  <li>Enter the following line:
+   <pre>  MsgBox "Hello -- Welcome to NS Basic/CE",0,"NS Basic" </pre>
+  <li>At the top of the code window enter the following lines:
+   <pre>  Option Explicit
+  ShowOKButton TRUE </pre></li></ul>The last two lines are not required but 
+recommended in all your programs. <b>Option Explicit</b> ensures that all 
+variables are defined first (using the <b>DIM</b> statement). <b>ShowOKButton</b> 
+places an OK button on the output screen of CE devices so the program can be 
+closed (the default X button only minimizes the program). 
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True    ' Used for /CE, no-op for desktop
+Sub CommandButton1_Click
+   MsgBox "Hello -- Welcome to NS Basic/CE",0,"NS Basic"
+End Sub
+</pre></blockquote>
+
+<p align="center"> <img height="197" alt="" src="images/TT01.3.gif" width="463" border="0"> 
+<ul>
+  <li>Close the code window. </li></ul>
+<h4>6. Save the Project</h4>
+<ul>
+  <li>Select "File" from the top main menu 
+  <li>Select "Save project" and save your program as HelloPgm 
+  <li>This will save your project in the selected directory as HelloPgm.nsb and 
+  HelloPgm.nsp  
+  <li>All form definitions, form objects, all code, and other project info are 
+  saved into the one project file. </li></ul>
+  
+<h2>Testing The Project</h2>
+Now we are ready to test the project. You can either 
+download and run the program on a CE device or on the Microsoft Microsoft Device Emulator. 
+Please refer to the instructions in Tech Note 23: Using the Microsoft Device 
+Emulator, for information about installing and running the Microsoft Device Emulator. If you plan to run on an actual device, skip this step.
+
+<h4>Starting the Microsoft Device Emulator</h4>If you plan to test the program on the Microsoft Device Emulator it needs to be installed and running before it can be used. 
+<ul>
+  <li>Install the Microsoft Device Emulator (see Tech Note 23) 
+  <li>Install and verify ActiveSync is running 
+  <li>Start the Microsoft Device Emulator from the Start->Programs menu 
+  <li>Start the Device Emulator Manager from Start->Programs menu 
+  <li>In the Device Emulator Manager, right click on the device under the Others 
+  line (click Refresh if empty) 
+  <li>Click on Cradle from the drop-down menu 
+  <li>ActiveSync should now connect to the Microsoft Device Emulator </li></ul>
+
+
+<h4>Running the Program</h4>
+<ul>
+  <li>Start ActiveSync if it's not already running 
+  <li>Select Start from the Run menu. </li></ul>
+Note: By default, the project is saved 
+every time the program is run. As a shortcut you can press F5 to save and start 
+the program. 
+<p>Any errors will appear in a message box on the CE 
+device/emulator. The message box displays the error and line number where the 
+error occurred. Errors must be corrected and Start repeated until there are no 
+more errors.<br><br>Congratulations !! You have now written your first NS 
+Basic/CE program. 
+<p align="center"><img height="490" alt="" src="images/TT01.4.gif" width="298"
+ border="0"> <img height="486" alt="" src="images/TT01.5.gif" width="300" border="0">
+  
+<h2>Extending the Tutorial</h2>
+Let's explore some further features of NS 
+Basic/CE. We'll do this by modifying your first program to be more complicated. 
+Exit NS Basic/CE by choosing File and Exit from the menu. 
+<h2>Restart</h2>
+<ul>
+  <li>Restart NS Basic/CE from the Start menu. 
+  <li>The first screen (Open) allows you to start a new project or open an 
+  existing project. 
+  <li>Click on Recent; select HelloPgm.nsb; and click Open. 
+  <li>The project will load into the IDE. </li></ul>
+<p align="center"><img height="390" alt="" src="images/TT01.6.gif" width="435" border="0"> 
+<h2>Revision: Change the Message </h2>
+<ul>
+  <li>Double click on the "Tap Here" button to bring up the code window. 
+  <li>Enter the following code after the SUB statement: </li></ul><pre>	Dim s
+	s = date </pre>
+<ul>
+  <li>Change the MsgBox statement to: </li></ul><pre>  	MsgBox "Today is " &amp; s,0,"NS Basic" </pre>
+<p align="center"> <img height="212" alt="" src="images/TT01.7.gif" width="463" border="0"> 
+<ul>
+  <li>Close the code window. 
+  <li>Press F5 (Start) to test using the Microsoft Device Emulator or download to a CE device. 
+
+  <li>When run, the message displayed should be "Today is dd/mm/yy" (today's 
+  date replaces the Hello message).</li></ul>
+  
+<h2>Revision: Add Code at Program Startup</h2>This change will add a message box 
+that's displayed when the program first starts. 
+<ul>
+  <li>Make the Code Window visible 
+  <li>Before the SUB line, enter this line: </li></ul>
+  <pre>  	msgbox "HelloPgm will continue when you tap on OK",0,"NS Basic"</pre>
+ 
+<p align="center"><img height="266" alt="" src="images/TT01.8.gif" width="483" border="0">
+<ul>
+  <li>Close the code window.
+  <li>Press F5 (Start) to download and test the change.
+  <li>When the program starts the message box is displayed and waits until the
+user taps the OK button </li></ul>
+   
+<h2>Revision: Add Code at Form Display Time</h2>
+This change will add a label which 
+shows the time-of-day. Another button will be added to update the label with the 
+latest time.
+<p>Add a field where the Time of Day will be shown: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form and select it 
+  <li>In the Properties window, change the Name to "lblTimeField" 
+  <li>In the Properties window, change the Caption to "Time Of Day"  
+  <li>Resize the label as needed to hold the time</li></ul>
+  
+  Add a button to refresh the Time of Day field: 
+<ul>
+  <li>Select the CommandButton object in the Toolbox (blank rectangle box) 
+  <li>Place it on the form and select it 
+  <li>In the Properties window, change the Name to "cmdRefreshTime" 
+  <li>In the Properties window, change the Caption to "Refresh Time"  
+  <li>Resize and reposition the button on the form </li></ul>
+<p align="center"><img height="366" alt="" src="images/TT01.9.gif" width="260" border="0">
+
+<p>Note: You can press F5 (Start) after you added or changed a visual 
+design and before you add the code to support the visual changes. The program 
+will download and execute and the new objects will be displayed (but not 
+useable). This can be useful for prototyping a new design or getting the visual 
+design right before adding the code. 
+
+<p>Add code to fill in the time-of-day when the form displays 
+<ul>
+  <li>Double click on an empty area of the form 
+  <li>The Code Window will open with the cursor in the Hello_Load 
+subroutine
+  <li>Enter the following code after the SUB line: </li></ul>
+  <pre>	lblTimeField.Caption = Time</pre>
+ <ul> 
+  <li>Make the form visible again and double click on the "Refresh Time" button 
+  <li>The Code Window will open with the cursor in the cmdRefreshTime_Click  
+subroutine
+  <li>Enter the following code after the SUB line: </li></ul>
+  <pre>	lblTimeField.Caption = Time</pre>
+
+  <p>Your code should look like the following:</p>
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True    ' Used for /CE, no-op for desktop
+
+MsgBox "HelloPgm will continue when you tap on OK",0,"NS Basic"
+
+Sub CommandButton1_Click
+   Dim s
+   s = Date
+   MsgBox "Today is " & s,0,"NS Basic"
+End Sub
+
+Sub Hello_Load
+   lblTimeField.Caption = Time
+End Sub
+
+Sub cmdRefreshTime_Click
+   lblTimeField.Caption = Time
+End Sub
+</pre></blockquote>
+     
+<p align="center"> <img height="387" alt="" src="images/TT01.10.gif" width="480" border="0"> 
+ 
+<ul>
+  <li>Close the code window.
+  <li>Press F5 (Start) to download and test the change.
+  <li>The above code executes when the form loads and when the user presses
+   the Refresh Time button. 
+  The Time() function returns the current time and displays it in the 
+  Time of Day field on the form. </li></ul>
+  
+<p align="center"><img height="489" alt="" src="images/TT01.11.gif" width="309" border="0"></p></li>
+
+</body>
+
+</html>

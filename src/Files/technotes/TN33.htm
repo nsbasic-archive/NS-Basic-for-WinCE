@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 33: Printing</TITLE>
+<META NAME="Version" CONTENT="8.0.4915">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="82%" VALIGN="TOP">
+	  <h2>Tech Note 33: Printing to a Serial Port</h2>
+	  <h3>Jun 20, 2006
+</h3>
+	</TR>
+</TABLE>
+<hr noshade size="1">
+
+<P>Contributed by Daniel Kurtz, Software Developer, Geneer Corporation, Des Plaines, IL  (dkurtz&copy; geneer.com)</P>
+<P>The Comm control should be configured for 9600, N, 8, 1 (won't work at any other speed.); DTREnable = false, handshaking = 2, InputLen = 0, InputMode = false, NullDiscard = False, ParityReplace = ?, RTThreshold = 1, RTSEnable = False, SThreshold = 0.</P>
+<P>At the start of your print job, if the port is not already open then open it using the PortOpen = True method.  You then use the Output method to write each line of your report to the port.  Terminate each line with a vbCRLF.</P>
+<P>I'm not sure if it's necesary, but to eliminate any chance of overwriting the port buffer with each new line, I clear the buffer after each line with:</P>
+
+<pre>            ' Make sure the commport buffer is clear.
+            Do While Comm1.OutBufferCount &gt; 0
+            Loop
+</pre>
+<P>I've found that once you get a certain amount of data into the buffer (after outputting about 60 of our lines, which are each about 90 bytes long) that the buffer WILL overrun.  The buffer being overrun in this case I'm pretty sure is the printer's, so depending on what printer your using and how much memory it has the parameters of the problem might vary.  The only way I could figure out how to deal with it (after finding that the above described buffer-clearing loop didn't seem to make a difference) was to introduce an arbitrary pause of a few seconds, to allow the buffer to clear before sending more data into it.  I do that with:</P>
+
+<pre>            ' We delay an arbitrary number of seconds to make sure
+            ' the print input buffer is clear before continuing.
+            intDelay = Time()
+            Do While Time() &lt; DateAdd("s", PRINT_DELAY, intDelay)
+            Loop
+</pre>
+<P>where PRINT_DELAY = 30.  The required delay might differ from device to devi ce etc.  I arrived at this value after a lot of experimentation with our SH3-based Casios, and the value is at least not too short when the app runs on a Hewlett-Packard.  The idea of deliberately slowing down the report by an arbitrary 30 seconds per page (the 60 or so lines corresponds with the length of our page) drives me batty, but I couldn't come up with a more elegant solution in the time available.  If you know something about how serial communications are done you might be able to figure out something using handshaking or something like that so that the control knows whether the printer is ready to receive data (that could also maybe let you know if there's even a printer attached!  We just tell the user to make sure the damned thing is plugged in and then go right ahead and behave as if it were, just trusting that it's there.)  But I don't know if such a strategy would work if the printer itself is not a serial printer.  We're doing all of our printing and testing via a serial-paralell converter. even tho my personal, older LaserJet has a serial port, which I was considering spending some time experimenting with, very few newer printers have them anymore, so we're committed to using a serial-paralell converter.</P>
+<P>As mentioned, there's no fancy formatting or anything unless you want to get into sending control codes and figuring out how to do driver-like things with them.  Our specification just called for something that looks like a simple file dump, so I just use plain ASCII text, terminating each line with vbCRLF.  Print blank lines by just sending a vbCRLF.  Paginate using vbFormFeed, and use vbFormFeed to clear your last page from the printer buffer.</P>
+<P>Once you're done with your output, and if you no longer need the port, then you can close it using the PortOpen = False method.  In addition to using the comm port for printing, we use it to receive input from a barcode scanner wand, for which the communication parameters are different.  IOW, the settings for the wand don't allow printing, and the settings for printing don't allow the wand to function.  In a case like this you need to close and reopen the port to reconfigure it for each function.  You could either use one Comm control and simply close it, reconfigure the properties and then re-open, or (like I did) use 2 Comm controls, each one configured for the specific task.  At the beginning of my print job I close the port with the wand's control and then open with the printer's.  At the end I close it with the printer's, then re-open it with the wand.  Obviously you can't open the port with another control if the first port still has it open, nor can you re-open the same control with a different configuration if that control still has it open.  Unfortunately I've found that at run-time, PortOpen = False does not always work reliably.  In my experience, it will always work EVENTUALLY (at least using the version of the control that's included with the VBCE 6 beta; I'm using VBCE 5, but the version of this control with the beta will work with 5) but not always on the first try.  So anytime I need to close and re-open the comm port I put it in a loop, something like:</P>
+
+<pre>          For intCommAttempts = 1 To 1000
+            Comm2.PortOpen = False
+            Comm1.PortOpen = True
+            If Comm1.PortOpen Then
+              Exit For
+            End If
+          Next
+</pre>
+<P>If the thing is not accomplished after 1000 tries then I report an error. The error has never actually been reported in run-time, so you could probably just do something like:</P>
+
+<P>
+<PRE> do while Comm2.PortOpen
+   Comm2.PortOpen = False
+ loop
+ Comm1.PortOpen = True
+</PRE>
+<B></B><P><FONT FACE="Helvetica" SIZE=4><B>About  Geneer </b></font><FONT SIZE=2>(</FONT><A HREF="http://www.Geneer.com/"><B><FONT FACE="Helvetica" SIZE=2>http:// www.Geneer.com</font></B></A><FONT SIZE=1>)</font></P>
+<P>Established in 1984, Geneer (www.geneer.com) is well recognized as a pioneer in the implementation of emerging new software technologies. Geneer develops customized software applications for Fortune 500 companies in the Manufacturing, Financial Services, Telecommunications, and Life Sciences industries, helping its clients achieve competitive advantage  with faster times-to-market.  From design through delivery, Geneer?s adherence to its proven set of disciplines called Code Science allows its clients to maintain optimal control over project schedules, quality, and costs. Currently with over 180 employees, recent Geneer software partnerships include Dow AgroSciences, Eli Lilly, USDATA, Giddings &amp; Lewis,  Packard Instruments,  AT&amp;T,   Omron Electronics,  ACNielsen,  Lucent Technologies, First American Title Insurance, and GE Fanuc.</P></BODY>
+</HTML>

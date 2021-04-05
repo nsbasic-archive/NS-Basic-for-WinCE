@@ -1,0 +1,158 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%Provider%
+CESignature="$Windows CE$"
+
+[CEStrings]
+AppName = "Runtime"
+InstallDir = %CE1% 	;"\Program Files"
+
+
+[CEDevice.WM]
+ProcessorType = 2577; StrongArm processors
+VersionMin = 4.2
+VersionMax = 100.0
+BuildMax = 0xE0000000
+
+[CEDevice.HPC_1824]
+ProcessorType = 1824; Windows CE 4.1 42ARMi devices (Sigmarion III)
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_2336]
+ProcessorType = 2336; Windows CE 4.2 42ARMV4T devices (Advantech, Handera)
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_2577]
+ProcessorType = 2577; Windows CE 4.2 42ARMV4 devices (NetbookPro, Workabout Pro, MobilePro)
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_4000]
+ProcessorType = 4000; Windows CE 4.2 MIPSII (AMD AU1100)
+VersionMin = 4.0
+VersionMax = 100.0
+
+[SourceDisksNames]
+
+[SourceDisksNames.WM]
+2 =, "ARM files",, e:\NSBCE8\Files\Controls\WM
+
+[SourceDisksNames.HPC_1824]
+2 =, "HPC 1824 files",, e:\NSBCE8\Files\Controls\1824
+[SourceDisksNames.HPC_2336]
+2 =, "HPC 2577 files",, e:\NSBCE8\Files\Controls\2577
+[SourceDisksNames.HPC_2577]
+2 =, "HPC 2577 files",, e:\NSBCE8\Files\Controls\2577
+[SourceDisksNames.HPC_4000]
+2 =, "HPC 4000 files",, e:\NSBCE8\Files\Controls\4000
+
+
+; CPU-independent source files...
+[SourceDisksFiles]
+
+; CPU-specific source files...
+basic.exe = 2
+regsvrce.exe = 2
+nscepicturebox.ocx = 2
+Vbscript.dll = 2
+
+
+[DefaultInstall]
+AddReg = AddRegistry.All
+
+[DefaultInstall.WM]
+CopyFiles = Files.NSBASIC,Files.Windows,Files.Vbscript
+CESelfRegister=nscepicturebox.ocx
+AddReg=AddRegistry.HPC_2577
+
+[DefaultInstall.HPC_1824]
+CopyFiles = Files.NSBASIC,Files.Windows,Files.Vbscript
+CESelfRegister=nscepicturebox.ocx
+
+[DefaultInstall.HPC_2336]
+CopyFiles = Files.NSBASIC,Files.Windows,Files.Vbscript
+CESelfRegister=nscepicturebox.ocx
+AddReg=AddRegistry.HPC_2577
+
+[DefaultInstall.HPC_2577]
+CopyFiles = Files.NSBASIC,Files.Windows,Files.Vbscript
+CESelfRegister=nscepicturebox.ocx
+AddReg=AddRegistry.HPC_2577
+
+[DefaultInstall.HPC_4000]
+CopyFiles = Files.NSBASIC,Files.Windows,Files.Vbscript
+CESelfRegister=nscepicturebox.ocx
+AddReg=AddRegistry.HPC_4000
+
+
+; Ouput directories for files & shortcuts
+[DestinationDirs]
+Files.NSBASIC = 	0,%InstallDir%\nsbasic
+Files.Windows = 	0,%CE2%
+Files.VBScript = 	0,%CE2%
+DefaultDestDir = 	0,%InstallDir%
+
+; Install into \Program Files\nsbasic"
+[Files.NSBasic]
+"basic.exe"
+
+; Install into \Windows
+[Files.Windows]
+"nscepicturebox.ocx",,,0x00000000
+"regsvrce.exe",,,0x00000010
+
+; install into \Windows
+[Files.Vbscript]
+"vbscript.dll",,,0x00000010
+
+
+; Create document associations...
+[AddRegistry.All]
+HKCR, ".nsb", "Default", 0, "nsbfile"
+HKCR, "nsbfile", "Default", 0, "NS Basic/CE Program"
+HKCR, "nsbfile\DefaultIcon", "Default", 0, "%InstallDir%\nsbasic\basic.exe,0"
+HKCR, "nsbfile\Shell\Open\Command", "Default", 0, """%InstallDir%\nsbasic\basic.exe"" ""%%1"""
+HKCR, "TypeLib\{4E130E40-7DBE-11D2-8F23-0000F87A4335}", "Default", 0, "0"
+HKCR, "TypeLib\{4E130E40-7DBE-11D2-8F23-0000F87A4335}\1.0", "", 0, "0"
+HKCR, "TypeLib\{4E130E40-7DBE-11D2-8F23-0000F87A4335}\1.0\0", "", 0, "0"
+HKCR, "TypeLib\{4E130E40-7DBE-11D2-8F23-0000F87A4335}\1.0\0\win32", "", 0, "\windows\pimtlb.dll"
+
+[AddRegistry.HPC_2577]
+;This is needed for VBScript.dll on the Symbol MC3000, which does not register properly
+HKCR, "CLSID","{B54F3742-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language Authoring"
+HKCR, "CLSID","{B54F3741-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language"
+
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32", "ThreadingModel", 0, "both" ;VBScript
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript"
+
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript Author"
+
+HKCR, "VBS", "Default", 0, "VB Script Language"
+HKCR, "VBS\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBS Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBS Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS Author\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript", "Default", 0, "VB Script Language"
+HKCR, "VBScript\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBScript Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript Author\OLEScript","Default", 0, "(value not set)"
+
+; Misc. strings...
+[Strings]
+Provider = "NSB"

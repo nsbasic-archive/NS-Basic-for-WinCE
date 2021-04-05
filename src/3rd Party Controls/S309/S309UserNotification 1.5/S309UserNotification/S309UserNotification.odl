@@ -1,0 +1,201 @@
+// S309UserNotification.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (S309UserNotification.tlb) that will become a resource in
+// S309UserNotification.ocx.
+
+#include <olectl.h>
+
+[ uuid(B9FF41CD-2B29-493a-8103-0599885C3836), version(1.5),
+  helpfile("S309UserNotification105.hlp"),
+  helpstring("Software 309 UserNotification 1.5"),
+  control ]
+library S309USERNOTIFICATION105
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+
+	//  Primary dispatch interface for CS309Icon
+	
+	[ uuid(E48A1C23-57FB-4117-A0FF-3E12335ECC28) ]
+	dispinterface IS309Icon
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CS309Icon)
+			[id(1), restricted, hidden] long This;
+			[id(2), nonbrowsable] long hIcon;
+			[id(0), nonbrowsable] long _hIcon;
+			[id(3)] VARIANT Tag;
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CS309Icon)
+			[id(4)] boolean Load(BSTR Name, VARIANT IconID);
+			[id(5)] void Destroy();
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CS309Icon
+
+	[ uuid(BC74350B-B84B-4470-8D31-96EA720F88EB) ]
+	coclass S309Icon
+	{
+		[default] dispinterface IS309Icon;
+	};
+
+	//  Primary dispatch interface for CS309Alert
+	
+	[ uuid(62F5D63B-92A7-4182-81F4-822D702EEFA6) ]
+	dispinterface IS309Alert
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CS309Alert)
+			[id(1)] BSTR Name;
+			[id(2)] VARIANT Tag;
+			[id(3)] BSTR HTML;
+			[id(4)] long Duration;
+			[id(5)] BSTR Title;
+			[id(6)] boolean StraightToTray;
+			[id(7)] boolean Critical;
+			[id(8)] boolean ForceMessage;
+			[id(9)] boolean Show;
+			[id(10)] IS309Icon* Icon;
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CS309Alert)
+			[id(11)] boolean Add();
+			[id(12)] boolean Remove();
+			[id(13)] boolean Update();
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CS309Alert
+
+	[ uuid(A33E2F50-D38B-4195-9A46-A8727CDA92B2) ]
+	coclass S309Alert
+	{
+		[default] dispinterface IS309Alert;
+	};
+
+	//  Primary dispatch interface for CS309Alerts
+	
+	[ uuid(64172A96-14B7-4A3F-9668-E016A9F8CBF2) ]
+	dispinterface IS309Alerts
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CS309Alerts)
+			[id(1)] long Count;
+			[id(2)] VARIANT Tag;
+			//}}AFX_ODL_PROP
+			[id(DISPID_NEWENUM), restricted] IUnknown* _NewEnum ;
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CS309Alerts)
+			[id(5), propget] IS309Alert* Item(VARIANT ID);
+			[id(0), propget] IS309Alert* _Item(VARIANT ID);
+			[id(3)] boolean Remove(VARIANT ID);
+			[id(4)] IS309Alert* Add(BSTR Name);
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CS309Alerts
+
+	[ uuid(805694E1-3593-47FA-98D8-31AA1A8A6A34) ]
+	coclass S309Alerts
+	{
+		[default] dispinterface IS309Alerts;
+	};
+
+	//  Primary dispatch interface for CS309UserNotificationCtrl
+
+	[ uuid(09CF196B-CC6E-4b1a-8B87-45CECBCD28AD),
+	  helpstring("Dispatch interface for Software 309 UserNotification 1.5"), hidden ]
+	dispinterface _DS309UserNotification
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CS309UserNotificationCtrl)
+			[id(1)] boolean LED;
+			[id(2)] boolean Vibrate;
+			[id(3)] boolean Dialog;
+			[id(4)] boolean Sound;
+			[id(5)] boolean Repeat;
+			[id(6)] BSTR DialogTitle;
+			[id(7)] BSTR DialogText;
+			[id(8)] BSTR SoundFile;
+			[id(9), nonbrowsable] VARIANT DateTime;
+			[id(10)] BSTR AppName;
+			[id(11)] long Left;
+			[id(12)] long Top;
+			[id(13)] VARIANT Tag;
+			[id(14)] float Version;
+			[id(15)] BSTR VersionString;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CS309UserNotificationCtrl)
+			[id(16)] long Set(long hID);
+			[id(17)] boolean Clear(long hID);
+			[id(18)] boolean GetUserPreferences();
+			[id(19)] boolean Handle(BSTR AppNAme);
+			[id(20)] boolean RunAppAtTime();
+			[id(21)] IS309Alerts* Alerts();
+			[id(22)] boolean CancelRunAppAtTime();
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CS309UserNotificationCtrl
+
+	[ uuid(443FCCAC-E1B3-4c6d-9457-7051DFAF27A4),
+	  helpstring("Event interface for Software 309 UserNotification 1.5") ]
+	dispinterface _DS309UserNotificationEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CS309UserNotificationCtrl)
+			[id(1)] void AlertCommand(IS309Alert* Alert, long Command);
+			[id(2)] void AlertDismiss(IS309Alert* Alert, BOOL Timeout);
+			[id(3)] void AlertLink(IS309Alert* Alert, BSTR Link);
+			[id(4)] void AlertShow(IS309Alert* Alert);
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CS309UserNotificationCtrl
+
+	[ uuid(A6436888-F49A-4bd2-B1D5-48C7D2B21C51),
+	  helpstring("Software 309 UserNotification 1.5"), control ]
+	coclass S309UserNotification
+	{
+		[default] dispinterface _DS309UserNotification;
+		[default, source] dispinterface _DS309UserNotificationEvents;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

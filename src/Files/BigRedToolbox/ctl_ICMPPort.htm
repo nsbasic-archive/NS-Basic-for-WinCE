@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>ICMPPort Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;ICMPPort Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/icmpport.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The ICMPPort control is used to facilitate ICMP communications.  It can act both
+as a client and a server and communicate with any number of hosts simultaneously,
+as well as generate and receive broadcast packets.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The interface of the control is similar to the interface of IPPort, only much
+simpler.  The control is activated/deactivated by using the <b>Active</b> property.  This
+property enables or disables sends or receives.  Data can be sent in the
+same way as IPPort, using the <b>DataToSend</b>.  The destination is specified using
+the <b>RemoteHost</b> property.  Inbound data is received through the <b>DataIn</b> event. 
+The control automatically creates an ICMP header containing <b>MessageType</b>,
+<b>MessageSubType</b>, and a checksum for the message.<P>If the <b>UseConnection</b> is set to True, then a local association is created with
+the remote host.  Otherwise, the control can receive datagrams (packets) from any
+host, and send datagrams to any host.  Packets can be broadcasted on the local net
+by setting the destination to 255.255.255.255.<P>The operation of the control is almost completely asynchronous.  All the calls,
+except the ones that deal with domain name resolution, operate through Windows
+messages (no blocking calls).  The gain in performance is considerable when compared
+to using blocking calls.<P>This control requires a Winsock 1.1 compliant TCP/IP stack.  This means
+that the Winsock stack installed in the system must have a version of at
+least 1.1.  In particular, Windows 95, 98, and NT machines with Winsock 2.0
+are fully supported.
+ 
+
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">AcceptData.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Enables or disables data reception (the DataIn event).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Active.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Enables or disables sending and receiving of data.  Action property.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DataToSend.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+A string of data to be sent to the remote host.  Write-only property.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DontRoute.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+If set to True, forces the socket to send data directly to interface (no routing).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">InBufferSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The size in bytes of the incoming queue of the socket.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the local host or user-assigned IP interface through which connections are accepted or initiated.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MaxMessageSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The maximum length of the messages that can be received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageSubType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The subtype of the ICMP message (part of the ICMP header).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The type of the ICMP message (part of the ICMP header).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">OutBufferSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The size in bytes of the outgoing queue of the socket.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemoteHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The address of the RemoteHost.  Domain names are resolved to IP addresses.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SocketHandle.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The handle of the main socket used by the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TimeToLive.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The time to live (TTL) value for the ICMP packets to send.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">UseConnection.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+If set, the control connects to the RemoteHost.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifying information about the loaded Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockLoaded.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Loads and unloads Winsock on demand.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxDatagramSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size in bytes of the largest UDP datagram that can be sent or received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxSockets.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Maximum number of sockets available to a single process.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockPath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to the Winsock DLL used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The status of the Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DataIn.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when new ICMP messages come in.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Error.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Information about errors during data delivery.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ReadyToSend.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when the control is ready to send data.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

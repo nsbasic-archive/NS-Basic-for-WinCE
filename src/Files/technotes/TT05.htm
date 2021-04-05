@@ -1,0 +1,291 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 05: Using a Function in a Module</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 05: Using a Function in a Module</h2>
+      <h3>April 17, 2008</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+      <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p> 
+ 	</td></tr></table>
+<hr>
+
+<h3>Contents:</h3>
+<ol>
+    <li><a href="#Intro">Introduction</a></li>
+    <li><a href="#Setup">Setting up the Form</a></li>
+    <li><a href="#Add">Adding Code</a></li>
+    <li><a href="#Create">Adding a New Module</a></li>
+    <li><a href="#Func">Function Basics</a></li>  
+    <li><a href="#Code">Add Code to Function</a></li>	
+</ol>
+
+<a name="Intro"></a><h2>Introduction</h2>
+
+<p>The purpose of this tutorial is to demonstrate using NS Basic/CE
+to create a function in a stand-alone module that can be accessed from any
+point in your application.
+You can create modules of code that have been tested and can be reused
+from one project to the next.
+The advantage of creating a separate module is that it can then easily be
+added to new projects.
+To add an existing module, click on the Project menu, and then click on Add
+Existing Module.</p>
+
+<p>You should have completed Tutorial #1 before beginning this tutorial.
+It's also a good idea to review the previous tutorials for information about
+creating forms, controls, and testing your project.</p>
+
+<p>This program will convert a temperature value to Fahrenheit. The user
+enters a value in a text box and selects the unit (Celsius, Kelvin, or
+Rankine). Pressing the Convert button calls the Convert function located
+in an external module to perform the conversion. The answer is displayed
+in a text box.</p>
+
+<a name="Setup"></a><h2>Setting up the Form</h2>
+
+<p>Before we create the new function, we first need to create some
+controls to let us select the information the function will need.</p>
+
+<p>Start a new "Standard" project and save it as <i>TempConversion.nsb</i>.</p>
+
+<p><b>Add a text box for entering the value</b></p>
+<ul>
+    <li>Add a TextBox on the form</li>
+    <li>In the Properties window, change Name to "txtValue"</li>
+    <li>In the Properties window, delete the value of Text</li>
+    <li>Expand and reposition the TextBox on the form</li>
+</ul> 
+
+<p><b>Add a label above the value text box</b></p>
+<ul>
+    <li>Add a Label on the form after the previous text box</li>
+    <li>In the Properties window, change Name to "lblValue"</li>
+    <li>In the Properties window, change Caption to "Enter Value"</li>
+    <li>Expand and reposition the Label on the form</li>
+</ul>
+
+<p><b>Add a combo box for selecting conversion units</b></p>
+<ul>
+    <li>Add a ComboBox on the form</li>
+    <li>In the Properties window, change Name to "cboUnits"</li>
+    <li>In the Properties window, set ExpandedHeight to 100 (this determines
+	the how much the combo box will expand)</li>
+    <li>Expand and reposition the ComboBox on the form</li>
+</ul> 
+
+<p><b>Add a label above the units combo box</b></p>
+<ul>
+    <li>Add a Label on the form above the combo box</li>
+    <li>In the Properties window, change Name to "lblUnits"</li>
+    <li>In the Properties window, change Caption to "Units"</li>
+    <li>Expand and reposition the Label on the form</li>
+</ul>
+
+<p><b>Add a text box for displaying the conversion answer</b></p>
+<ul>
+    <li>Add a TextBox on the form</li>
+    <li>In the Properties window, change Name to "txtFahrenheit"</li>
+    <li>In the Properties window, delete the value of Text</li>
+    <li>In the Properties window, change the value of Locked to True (this
+	makes the field read-only)</li>
+    <li>Expand and reposition the TextBox on the form</li>
+</ul> 
+
+<p><b>Add a label above the conversion answer text box</b></p>
+<ul>
+    <li>Add a Label on the form above the previous text box</li>
+    <li>In the Properties window, change Name to "lblFahrenheit"</li>
+    <li>In the Properties window, change Caption to "Value in Fahrenheit"</li>
+    <li>Expand and reposition the Label on the form</li>
+</ul>
+
+<p><b>Add a button to start the conversion</b></p>
+<ul>
+    <li>Add a CommandButton on the form</li>
+    <li>In the Properties window, change Name to "cmdButton"</li>
+    <li>In the Properties window, change Caption to "Convert"</li>
+    <li>Expand and reposition the Label on the form</li>
+</ul>
+
+<p>Note: The Name of Labels do not need to be renamed but I
+find it helps with the design if the label Name matches the label Caption.
+Otherwise your labels will be called Label1, Label2, etc., which makes
+it more difficult to determine the location of the label on the form. </p>
+
+<br>
+<p align="center"><img src="images/TT05.1.gif" width="574" height="661" alt="" border="0" align="">
+<br>
+
+<p>Press F5 to save and execute the program. Your form should look like this:</p>
+<br>
+<p align="center"><img src="images/TT05.2.gif" width="310" height="488" alt="" border="0" align="">
+<br>
+<a name="Add"></a><h2>Adding Code to the Form</h2>
+
+<p>Now that we have our form, we can begin to add code. In the Project
+Explorer pane, double click on an empty area on the form.
+In the code window add the following lines between the
+<b>Sub Form1_Load</b> and <b>End Sub</b> lines:</p>
+
+<pre>
+    cboUnits.AddItem "Celsius",0
+    cboUnits.AddItem "Kelvin",1
+    cboUnits.AddItem "Rankine",2
+    cboUnits.ListIndex = 0
+</pre>
+<p>The above code initializes our Combo box list and sets Celsius as
+the selected item. This code will execute after our form and controls
+have loaded</p>
+
+<p>Add these lines at the top of the Code Window:</p>
+<pre>
+    Option Explicit
+    ShowOKButton True
+</pre>
+
+<p>See the NS Basic manual if you need more information on what these commands do.</p>
+
+<p>Navigate back to the form and double click on the Convert button to
+open it's code window. Add the following lines between the
+<b>Sub cmdConvert_Click</b> and <b>End Sub</b> lines:</p>
+
+<pre>
+    Dim result
+    result = Convert(CSng(txtValue.text), cboUnits.ListIndex)
+    txtFahrenheit.Text = CStr(result)
+</pre>
+   
+<p>These lines creates an variable that stores the answer when
+we call the Convert function (located in an external module).
+The Convert function is called with
+the number entered by the user in the Value text box after it's converted
+into a single precision number. The Units index is retrieved from the
+Units combo box. This will be either 0, 1, or 2 depending on which unit
+was selected (Celsius, Kelvin, or Rankine). After the Convert function
+returns, the value is placed in the Fahrenheit text box as a string.</p>
+
+<p>Many programmers actually treat the function name as a variable,
+placing it directly into the equation with it's necessary arguments.
+The program will perform the function, calculate the results and place
+it into the equation as it is calculating the answer. </p>
+
+<p>Your Code Window should look like this:</p>
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True
+
+Sub Form1_Load
+   cboUnits.AddItem "Celsius",0
+   cboUnits.AddItem "Kelvin",1
+   cboUnits.AddItem "Rankine",2
+   cboUnits.ListIndex = 0
+End Sub
+
+Sub cmdConvert_Click
+   Dim result
+   result = Convert(CSng(txtValue.text), cboUnits.ListIndex)
+   txtFahrenheit.Text = CStr(result)
+End Sub
+</pre></blockquote>
+
+<br>
+<p align="center"><img src="images/TT05.3.gif" width="486" height="357" alt="" border="0" align="">
+<br>
+
+<a name="Create"></a><h2>Adding a New Module</h2>
+
+<p>To add a module to the project click on "Project" in IDE menu. Select "Add New Module". </p>
+
+<p align="center"><img src="images/TT05.4.gif" width="483" height="532" alt="" border="0" align="">
+
+<p>This will open a new Code Window and a new module also appears in the Project Explorer.</p>
+
+<p align="center"><img src="images/TT05.5.gif" width="226" height="279" alt="" border="0" align="">
+
+
+<a name="Func"></a><h2>Function Basics</h2>
+
+<p> In the new code window we will add the following Function to the module:</p>
+
+<pre>	Function Convert (Value, Units)
+</pre>
+
+<p>This line defines a function with the name Convert. It is helpful to
+think of this as also creating a variable named Convert.
+In our example it also creates two other variables, Value and Units.
+These variables receive the values from the arguments in the
+calling statement. You can have as many additional values here as
+needed provided you supply the values in your calling statement. The
+function always assigns the values to these variables in the order they
+are listed. A function can only return one value (if you need to
+return more than one value you should consider using global variables
+instead).</p>
+
+<p> So in our example using the lines of code from the Convert button,
+Value is assigned the first parameter, and Units is assigned to the second 
+parameter.</p>
+
+<a name="Code"></a><h2>Add Code to the Function</h2>
+
+<p>Now that we have the values, we need to add some code to calculate
+the converted temperature. Add the following lines to the code window:</p>
+
+<pre>
+    Function Convert(Value, Units)
+		Dim ConvtUnits
+
+		' Units is the number from the combo box that tells us which formula to use
+		Select Case Units
+   
+		Case 0
+			' This formula for Celsius to Fahrenheit
+			ConvtUnits  = (Value * 1.8) + 32
+        
+		Case 1
+			' This formula for Kelvin to Fahrenheit
+			ConvtUnits = (Value * 1.8) - 459.67
+        
+		Case 2
+			' This is formula for Rankine to Fahrenheit
+			ConvtUnits = Value - 459.67
+           
+		End Select
+
+		Convert = ConvtUnits    ' Assign the return value
+
+	End Function
+</pre>
+
+<p>The final code window then should look like this.</p>
+
+<p align="center"><img src="images/TT05.6.gif" width="595" height="463" alt="" border="0" align="">
+
+<p>Save your project. First NS Basic will ask you to give a name to the
+function module. Give it a descriptive name like <b>TempConv_mod.bas</b>.
+You can use
+this function in other projects by adding it to the project. To add an
+existing module select "Project" from the IDE menu, and select "Add
+Existing Module" from the drop down menu. The modules are stored by
+default in the projects folder of NS Basic with .bas extensions.</p>
+
+<p>Press F5 to save and start your program. You should be able to select a
+temperature scale and value and get the correct Fahrenheit conversion
+when you tap the Convert button.</p>
+
+<p align="center"><img src="images/TT05.7.gif" width="313" height="487" alt="" border="0" align="">
+
+</BODY>
+</HTML>
+  
+  
+  

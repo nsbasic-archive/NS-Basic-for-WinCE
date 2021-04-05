@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<TITLE>Tech Note 02b: Handling ActiveX events on multiple forms</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 02b: Handling ActiveX events on multiple forms</h2>
+	  <h5>
+      <H3>February 22, 2005</H3>
+      <H5>© 2010 NS BASIC Corporation. All rights reserved.</H5></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<i>This Tech Note applies to versions of NS Basic/CE before 5.1. The problem was fixed in that release. The simplest way to get around this is to <a href="http://www.nsbasic.com/orderupgradece.shtml" target="_top">get the new version</a>.</i>
+<P>If you have a project with more than one form and you place an ActiveX control on other than the first form, events from that control will not be picked up in your code. In this document, we'll show you how to work around this.
+
+<p>This note applies to all versions of NS Basic/CE, from 1.0 to the current. It does not affect the intrinsic controls which are built into NS Basic/CE.
+
+<p><b>More detail on what is happening:</b>
+
+<p>Here is the simplest program thats exhibits this behavior:
+
+<pre>
+AddObject "GridCtrl.GridCtrl", "Grid1", 10, 30, 190, 64 
+AddObject "CommandButton", "CommandButton1", 0, 0, 108, 21 
+CommandButton1.Caption = "Show Grid2"
+'CommandButton1_Click 'uncomment this and it works OK
+
+Sub CommandButton1_Click
+   AddObject "GridCtrl.GridCtrl", "Grid2", 10, 170, 190, 64
+End Sub
+
+Sub grid1_click
+    MsgBox "Grid 1 clicked!"
+End Sub
+
+Sub grid2_click
+    MsgBox "Grid 2 clicked!"
+End Sub
+</pre>
+
+<p>This sample has two grids. One is created immediately; the other is created as the result of a button being clicked. Events from Grid1 are picked up, but not Grid2. 
+
+<p>To confirm that this is the problem, uncomment the 4th statement.  Grid2 will now be created at program startup and work properly.
+
+<p><b>How to work around:</b>
+
+<p>ActiveX controls which need to respond to events need to be created at startup. There are a couple of problems that need to be worked around as a result: the control may show, even when it is not yet wanted, and getting this to work with the standard Forms code that NS Basic/CE generates. It's easy to work around both situations.
+
+<p>1. Hiding an ActiveX control until it is needed
+
+<p>Many ActiveX controls do not have a hide/show property to allow you to hide the control until it is needed. You can get around this by placing the ActiveX control onto a standard Frame object, then hiding and showing the frame.
+
+<p>Here is a sample:
+
+<pre>
+AddObject "Frame","Frame2",10,10,20,20
+AddObject "GridCtrl.GridCtrl","Grid2", 0,0,20,20,Frame2
+Frame2.hide
+</pre>
+
+Grid2 is created as a child of Frame2. Doing Frame1.hide will hide the grid.
+
+<p>2. Working with NS Basic/CE Forms
+
+<p>If you save a project you have created with NS Basic/CE as a .txt file and opened it in Notepad, you'll see that a section of code starting with "<code>*** Begin Generated Code ***</code>" has been added to the end of your program. This handles the creating, showing and hiding of objects and forms. 
+
+<p>You'll notice that the same thing is happening as in our first sample. The objects on the second form are only created when you tap a button to go to the second form. The ActiveX objects on the second form will not send events to your program since they were not created during the original startup.
+
+<p>To remedy this, use the same code as above, plus a bit more: 
+
+<pre>
+AddObject "Frame","Frame2",10,10,20,20
+AddObject "GridCtrl.GridCtrl","Grid2", 0,0,20,20,Frame2
+Frame2.Hide
+
+Sub Form2_Load
+    SetParent frame2,form2_form
+    Form2.Show
+End Sub
+</pre>
+
+The Form2_Load subroutine is called after Form2 is created. The SetParent call places our Frame2 object onto Form2. Now, when Form2 is hidden and shown, our grid object will also be hidden and show.
+
+
+</BODY></HTML>

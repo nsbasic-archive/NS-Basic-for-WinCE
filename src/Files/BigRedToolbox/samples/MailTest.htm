@@ -1,0 +1,296 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Mailtest Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/MailTest.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+Dim MainForm( 8 )
+Dim AddForm( 13 )
+
+ANY_FOLDER = 255
+INBOX_FOLDER = 254               ' IDs of stock folders
+OUTBOX_FOLDER = 253              ' These should always be present and never change
+SENT_FOLDER = 252
+
+bkColor = Output.BackColor
+
+addobject "MGCEMail.Mail", "Mail"
+                                 '  Create initial form
+addobject "Label", "flbl", 2, 0, 170, 18
+addobject "MGCETreeview.Treeview", "folders", 2, 18, 170,  ( output.height / 2 ) - 18
+addobject "CommandButton", "NewFolder", 178, 2, 70, 18
+addobject "CommandButton", "DelFolder", 178, 20, 70, 18
+addobject "CommandButton", "NewMsg", 178, 38, 70, 18
+addobject "CommandButton", "DelMsg", 178, 56, 70, 18
+addobject "CommandButton", "MoveMsg", 178, 74, 70, 18
+addobject "MGCEListView.ListView", "msgs", 2, ( output.height / 2 ) + 1, 250, output.height / 2
+set MainForm( 1 ) = flbl
+set MainForm( 2 ) = folders
+set MainForm( 3 ) = NewFolder
+set MainForm( 4 ) = DelFolder
+set MainForm( 5 ) = NewMsg
+set MainForm( 6 ) = DelMsg
+set MainForm( 7 ) = msgs
+set MainForm( 8 ) = MoveMsg
+for i = 1 to 8
+   MainForm( i ).Hide
+next
+                                 ' Create New Message form
+addobject "Label", "addlbl1", 2, 0, 70, 18
+addobject "Textbox", "addsendto", 74, 0, 170, 18
+addobject "Label", "addlbl2", 2, 20, 70, 18
+addobject "Textbox", "addfrom", 74, 20, 170, 18
+addobject "Label", "addlbl3", 2, 40, 70, 18
+addobject "Textbox", "addCC", 74, 40, 170, 18
+addobject "Label", "addlbl4", 2, 60, 70, 18
+addobject "Textbox", "addsubject", 74, 60, 170, 18
+addobject "Label", "addlbl5", 2, 81, 70, 18
+addobject "Combobox", "addservice", 74, 80, 170, 80
+addobject "Textbox", "addmessage", 2, 106, 242, output.height - 132
+addobject "CommandButton", "addOK", 30, output.height - 20, 80, 18
+addobject "CommandButton", "addCancel", 132, output.height - 20, 80, 18
+set AddForm( 1 ) = addlbl1
+set AddForm( 2 ) = addsendto
+set AddForm( 3 ) = addlbl2
+set AddForm( 4 ) = addfrom
+set AddForm( 5 ) = addlbl3
+set AddForm( 6 ) = addCC
+set AddForm( 7 ) = addlbl4
+set AddForm( 8 ) = addsubject
+set AddForm( 9 ) = addlbl5
+set AddForm( 10 ) = addservice
+set AddForm( 11 ) = addmessage
+set AddForm( 12 ) = addOK
+set AddForm( 13 ) = addCancel
+addlbl1.Caption = "Send To:"
+addlbl1.Alignment = 1
+addlbl2.Caption = "From:"
+addlbl2.Alignment = 1
+addlbl3.Caption = "CC:"
+addlbl3.Alignment = 1
+addlbl4.Caption = "Subject:"
+addlbl4.Alignment = 1
+addlbl5.Caption = "Service:"
+addlbl5.Alignment = 1
+for i = 1 to 13
+   AddForm( i ).Hide
+next
+addlbl1.BackColor = bkColor
+addlbl2.BackColor = bkColor
+addlbl3.BackColor = bkColor
+addlbl4.BackColor = bkColor
+addlbl5.BackColor = bkColor
+addOK.BackColor = bkColor
+addCancel.BackColor = bkColor
+addOK.Caption = "OK"
+addCancel.Caption = "Cancel"
+addsendto.Borderstyle = 1
+addfrom.Borderstyle = 1
+addCC.Borderstyle = 1
+addsubject.Borderstyle = 1
+addmessage.MultiLine = TRUE
+addmessage.Borderstyle = 1
+
+flbl.BackColor = bkColor
+flbl.Caption = "Folders"
+NewFolder.BackColor = bkColor
+DelFolder.BackColor = bkColor
+NewMsg.BackColor = bkColor
+DelMsg.BackColor = bkColor
+MoveMsg.BackColor = bkColor
+NewFolder.Caption = "New Folder"
+DelFolder.Caption = "Del Folder"
+NewMsg.Caption = "New Msg"
+DelMsg.Caption = "Del Msg"
+MoveMsg.Caption = "Move Msg"
+msgs.View = 1
+msgs.FullRowSelect = TRUE
+msgs.SelectionDisplay = TRUE
+msgs.InsertColumn 1, "From"
+msgs.InsertColumn 2, "Date"
+msgs.InsertColumn 3, "Subject"
+
+SetCtrls( 0 )
+SetCtrls( 1 )
+
+iFolderSelection = 0                     ' Nothing selected yet
+
+On Error Resume Next
+svcArray = Mail.AllServices              ' Get mail service names
+if Err = 0 then
+   for i = 1 to UBound( svcArray )       ' Loop through all services in array
+      addservice.AddItem svcArray( i )
+   next
+   set svcArray = Nothing                ' Kill off array
+end if
+on error goto 0
+AddAllFolders                            ' Add all folders to treeview
+
+
+sub SetCtrls( i )
+   if i = 0 then
+      for j = 1 to UBound( MainForm )
+         MainForm( j ).Hide
+      next
+      for j = 1 to UBound( AddForm )
+         AddForm( j ).Hide
+      next
+      exit sub
+   end if
+   if i = 1 then
+      for j = 1 to UBound( MainForm )
+         MainForm( j ).Show
+      next
+      exit sub
+   end if
+   if i = 2 then
+      for j = 1 to UBound( AddForm )
+         AddForm( j ).Show
+      next
+   end if
+end sub
+
+
+sub AddAllFolders                         ' Add folders to treeview control
+   folders.Clear                              ' First, remove anything already there
+                                                   ' Add stock folders as top level items
+   iInbox = folders.AddItem( ,, "Inbox", INBOX_FOLDER )
+   i = folders.AddItem( , iInbox, "Outbox", OUTBOX_FOLDER )
+   folders.AddItem , i, "Sent", SENT_FOLDER
+   Mail.Open   
+   folderArray = Mail.AllFolders       ' Get array of all folder IDs
+   if Err = 0 then
+      For i = 1 to UBound( folderArray )   '  Loop through all array items
+         if folderArray( i ) <> INBOX_FOLDER and _
+            folderArray( i ) <> OUTBOX_FOLDER and _
+            folderArray( i ) <> SENT_FOLDER then
+                                                    ' If not a stock folder, add folder name and ID as subitem to Inbox
+            folders.AddItem iInbox, ,Mail.FolderName( folderArray( i ) ), folderArray( i )
+         end if
+      Next
+      set folderArray = Nothing          ' Get rid of array
+   end if
+   Mail.Close
+end sub
+
+
+sub FolderMessages( iFolder )         ' Add all messages in a specific folder
+   Mail.Open
+   Mail.Folder = iFolder
+   a = Mail.FolderMessages
+   if TypeName( a ) <> "Empty" then           ' If it's not a empty array, do something
+      for i = 1 to UBound( a )
+         Mail.ReadMessage a( i )                   ' Get each message by it's ID
+         msgs.InsertItem i, Mail.Sender,, a( i ) ' Add sender, saving ID with the item
+         msgs.SetItem i, 2, Mail.Date             ' Add some other stuff to the listview
+         msgs.SetItem i, 3, Mail.Subject
+      next
+      set a = Nothing                                   ' Get rid of array
+   end if
+   Mail.Close
+end sub
+
+
+sub NewFolder_Click           ' New Folder button clicked
+   s = InputBox( "Enter a name for the new folder", "New Folder" )   ' Ask user for new folder name
+   if Len( s ) = 0 then exit sub    '  Exit if  no name specified
+   Mail.Open
+   Mail.CreateFolder  s          ' Create new folder
+   Mail.Close
+   AddAllFolders                   ' Redo folders control to reflect change
+   iFolderSelection = 0
+end sub
+
+
+sub DelFolder_Click                                       ' Del Folder button clicked
+   if iFolderSelection = 0 then                           ' If no folder is selected, quit
+      MsgBox "No folder is selected!"
+      exit sub
+   end if
+   iItem = folders.ItemValue( iFolderSelection )    ' Get ID of selected folder
+   if iItem = INBOX_FOLDER or iItem = OUTBOX_FOLDER or iItem = SENT_FOLDER then
+      MsgBox "You cannot delete a system folder!"
+      exit sub                                                     ' Exit if it's a system folder
+   end if
+   c = MsgBox( "Remove " & folders.ItemText( iFolderSelection ) & " folder?", vbOKCancel, _
+                       "Remove Folder" )                     ' Ask user if he's sure about this
+   if c = vbCancel then exit sub                          ' and exit if he's not
+   Mail.Open
+   Mail.RemoveFolder iItem                               ' Remove folder
+   Mail.Close
+   AddAllFolders                                              ' Redo folder list to reflect change
+   iFolderSelection = 0
+end sub
+
+
+sub folders_Changed( olditem, newitem )           ' Selected folder changed
+   iFolderSelection = newitem                           ' Save new selection
+   iFolder = folders.ItemValue( newitem )            ' Get ID of selected folder
+   msgs.Clear
+   FolderMessages( iFolder )                             ' Get messages in selecetd folder
+end sub
+
+
+sub DelMsg_Click
+   i = msgs.SelectedCount
+   if i < 1 then
+      MsgBox "No messages are selected"
+      exit sub
+   end if
+   iCount = msgs.Count
+   Mail.Open
+   for i = iCount to 1 step -1
+      if msgs.Select( i ) then Mail.DeleteMessage msgs.ItemValue( i, 1 )
+   next    
+   Mail.Close
+   msgs.Clear
+   FolderMessages( folders.ItemValue( iFolderSelection ) )
+end sub
+
+sub NewMsg_Click
+   SetCtrls( 0 )
+   SetCtrls( 2 )
+end sub
+
+sub addCancel_Click
+   SetCtrls( 0 )
+   SetCtrls( 1 )
+end sub
+
+sub addOK_Click
+   if Len( addsendto.caption ) < 1 then
+      MsgBox "You kind of forgot where it's supposed to go"
+      addsendto.SetFocus
+      exit sub
+   end if
+   if Len( addfrom.caption ) < 1 then
+      MsgBox "You need to specify where it's coming from"
+      addfrom.SetFocus
+      exit sub
+   end if
+   if Len( addservice.text ) < 1 then
+      MsgBox "You need to specify a service"
+      addservice.SetFocus
+      exit sub
+   end if
+   Mail.Open
+   Mail.Clear
+   Mail.Recipient = addsendto.caption
+   Mail.Sender = addfrom.caption
+   Mail.CC = addCC.caption
+   Mail.Subject = addsubject.caption
+   Mail.Message = addmessage.caption
+   Mail.Folder = OUTBOX_FOLDER
+   Mail.Date = Now
+   Mail.Service = addservice.text
+   Mail.WriteMessage
+   Mail.Close
+   SetCtrls( 0 )
+   SetCtrls( 1 )
+end sub
+
+sub MoveMsg_Click
+end sub
+

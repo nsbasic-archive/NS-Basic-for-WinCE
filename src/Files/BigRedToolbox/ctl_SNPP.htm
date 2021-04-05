@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>SNPP Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;SNPP Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/snpp.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The SNPP control is used to send pages through the internet using the
+SNNP protocol.<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+It is a client implementation of Simple Network
+Paging Protocol Version 3 as specified in RFC 1861.  Service extensions
+level 2 are supported intrinsically and the user can access
+all of level 3 extensions.<P>SNPP allows, unlike SMTP, for immediate notification of message delivery,
+gives absolute flexibility over the content sent to the recipient,
+allows to specifying multiple choice responses, etc.<P>To send a message the <b>ServerName</b>, recipient's <b>PagerId</b> and <b>Message</b>
+properties should be filled out (at a minimum) and <b>Action</b> delivers the
+message.<P>The server's response is given in <b>PITrail</b> events and by the <b>LastReply</b>
+property.  Customized commands may be sent using the <b>Command</b> property.<P>Optional properties include: <b>CallerId</b>, <b>ServerPort</b> and <b>LocalHost</b><P>This control requires a Winsock 1.1 compliant TCP/IP stack.  This means
+that the Winsock stack installed in the system must have a version of at
+least 1.1.  In particular, Windows 95, 98, and NT machines with Winsock 2.0
+are fully supported.
+ 
+
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+An action code for the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">CallerId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The id of the caller.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Command.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Can be used to send additional commands directly to the SNPP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LastReply.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The last reply from the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Message.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The message being sent (alphanumeric).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PagerId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The id number of the pager sending a Message to.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ServerName.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name or address of the SNPP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ServerPort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The server port for SNPP (default 444).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the local host.  When connected, the IP address of the interface through which the connection was made.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SocketHandle.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The handle of the main socket used by the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifying information about the loaded Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockLoaded.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Loads and unloads Winsock on demand.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxDatagramSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size in bytes of the largest UDP datagram that can be sent or received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxSockets.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Maximum number of sockets available to a single process.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockPath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to the Winsock DLL used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The status of the Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Error.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Information about errors during data delivery.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PITrail.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Traces the commands sent to the mail server, and the respective replies.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

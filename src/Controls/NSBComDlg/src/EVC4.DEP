@@ -1,0 +1,1622 @@
+# eMbedded Visual C++ Dependency File, included by EVC4.VCN
+
+!IF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Debug"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Debug"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinSize"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinDependency"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccBuffer.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccmisc.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\osspecific.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) CE42_EMU_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH3) CE42_SH3_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH4) CE42_SH4_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE x86) CE42_X86_Release"
+
+.\ComDlgMiniEnum.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Debug"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"guiddef.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Debug"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinSize"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinDependency"
+
+.\Desk.cpp : \
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccBuffer.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccmisc.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\osspecific.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"guiddef.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) CE42_EMU_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH3) CE42_SH3_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH4) CE42_SH4_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE x86) CE42_X86_Release"
+
+.\Desk.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\dlldatax.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Debug"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Debug"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinSize"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinDependency"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) CE42_EMU_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH3) CE42_SH3_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH4) CE42_SH4_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE x86) CE42_X86_Release"
+
+.\Desk.rc : \
+	".\ComDlgMiniEnum.rgs"\
+	".\Desk.tlb"\
+	".\icon1.ico"\
+	".\nscomdlg.bmp"\
+	".\NSComDlg.rgs"\
+	".\NSComDlgFlags.rgs"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Debug"
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Debug"
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinSize"
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinSize"
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) CE42_EMU_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH3) CE42_SH3_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH4) CE42_SH4_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE x86) CE42_X86_Release"
+
+.\dlldatax.c : \
+	".\Desk.h"\
+	".\Desk_p.c"\
+	".\dlldata.c"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Debug"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Debug"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinSize"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinDependency"
+
+.\NSComDlg.cpp : \
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccBuffer.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccmisc.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\osspecific.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\safearrayhelper.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) CE42_EMU_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH3) CE42_SH3_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH4) CE42_SH4_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE x86) CE42_X86_Release"
+
+.\NSComDlg.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\ComDlgMiniEnum.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Debug"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Debug"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinSize"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinDependency"
+
+.\NSComDlgFlags.cpp : \
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccBuffer.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccmisc.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\osspecific.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\safearrayhelper.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) CE42_EMU_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH3) CE42_SH3_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH4) CE42_SH4_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE x86) CE42_X86_Release"
+
+.\NSComDlgFlags.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\Desk.h"\
+	".\NSComDlg.h"\
+	".\NSComDlgFlags.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Debug"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Debug"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinSize"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) Release MinDependency"
+
+.\StdAfx.cpp : \
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp.cpp"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\automationhlp.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccBuffer.cpp"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccBuffer.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccmisc.cpp"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\ccmisc.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\osspecific.cpp"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\osspecific.h"\
+	"..\..\..\..\..\..\Light\Common\TPoolLibrary\safearrayhelper.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE emulator) CE42_EMU_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH3) CE42_SH3_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE SH4) CE42_SH4_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "EVC4 - Win32 (WCE x86) CE42_X86_Release"
+
+.\StdAfx.cpp : \
+	"..\include\TPoolLibrary\automationhlp-typepackers.h"\
+	"..\include\TPoolLibrary\automationhlp.cpp"\
+	"..\include\TPoolLibrary\automationhlp.h"\
+	"..\include\TPoolLibrary\ccBuffer.cpp"\
+	"..\include\TPoolLibrary\ccBuffer.h"\
+	"..\include\TPoolLibrary\ccmisc.cpp"\
+	"..\include\TPoolLibrary\ccmisc.h"\
+	"..\include\TPoolLibrary\osspecific.cpp"\
+	"..\include\TPoolLibrary\osspecific.h"\
+	"..\include\TPoolLibrary\safearrayhelper.h"\
+	"..\include\TPoolLibrary\safeComDlg.cpp"\
+	"..\include\TPoolLibrary\safeComDlg.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+

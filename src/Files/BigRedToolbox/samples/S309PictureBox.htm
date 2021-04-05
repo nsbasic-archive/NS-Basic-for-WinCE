@@ -1,0 +1,348 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309PictureBox Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309PictureBox.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+option explicit
+dim Menu, bDialog, gstrTitle, gstrURL, h
+
+const S309_STD_ENABLE = 1
+const S309_STD_DISABLE = -1
+const S309_VIEW_ENABLE = 2
+const S309_VIEW_DISABLE = -2
+
+const STD_CUT = 0
+const STD_COPY = 1
+const STD_PASTE = 2
+const STD_UNDO = 3
+const STD_REDOW = 4
+const STD_DELETE = 5
+const STD_FILENEW = 6
+const STD_FILEOPEN = 7
+const STD_FILESAVE = 8
+const STD_PRINTPRE = 9
+const STD_PROPERTIES = 10
+const STD_HELP = 11
+const STD_FIND = 12
+const STD_REPLACE = 13
+const STD_PRINT = 14
+
+const VIEW_LARGEICONS = 0
+const VIEW_SMALLICONS = 1
+const VIEW_LIST = 2
+const VIEW_DETAILS = 3
+const VIEW_SORTNAME = 4
+const VIEW_SORTSIZE = 5
+const VIEW_SORTDATE = 6
+const VIEW_SORTTYPE = 7
+const VIEW_PARENTFOLDER = 8
+const VIEW_NETCONNECT = 9
+const VIEW_NETDISCONNECT = 10
+const VIEW_NEWFOLDER = 11
+
+gstrTitle = "S309PictureBox Example"
+gstrURL = "http://members.xoom.com/S309"
+Menu = array("&File||File","&Tools||Tools","&Help||Help","|",gstrTitle,"|",gstrURL)
+setmenu "TitleBar",Menu
+Menu = array("&Open...||btnSelect","Save &As...||btnSave","-","E&xit||mnuFileExit")
+setmenu "File",Menu
+Menu = array("&About Box||mnuAboutBox")
+setmenu "Help",menu
+Menu = array("Capture &Screen||mnuToolsCapture","-","&Cls||mnuCls","Refres&h||mnuRefresh","-","&Toggle Full Screen||mnuToggle")
+setmenu "Tools",Menu
+
+if (Output.Width mod 2) = 1 then
+ Output.Move 0, 0, (Output.ScaleX(Output.Width + 1, 3,1)), (Output.ScaleY(Output.Height, 3, 1))
+end if    
+output.backcolor=vbgreen
+updatescreen
+
+on error resume next
+err.clear
+addobject "Dialog","Dialog",0,0,0,0
+if err.number = 0 then
+  bDialog = true
+end if
+on error goto 0
+
+addobject "s309.picturebox.1","btnSelect",5,5,20,20
+btnSelect.autosize = true
+btnSelect.borderstyle = 1
+btnSelect.Appearance = 1
+btnSelect.CommonBitmapType = S309_STD_ENABLE
+btnSelect.CommonBitmapID = STD_FILEOPEN
+
+addobject "s309.picturebox.1","btnSave",28,5,20,20
+btnSave.autosize = true
+btnSave.borderstyle = 1
+btnSave.Appearance = 1
+btnSave.CommonBitmapType = S309_STD_ENABLE
+btnSave.CommonBitmapID = STD_FILESAVE
+
+addobject "s309.picturebox.1","btnRotate",51,5,20,20
+btnRotate.autosize = true
+btnRotate.borderstyle = 1
+btnRotate.Appearance = 1
+btnRotate.CommonBitmapType = S309_STD_ENABLE
+btnRotate.CommonBitmapID = STD_REDOW
+
+addobject "s309.picturebox.1","btnMirror",75,5,20,20
+btnMirror.autosize = true
+btnMirror.borderstyle = 1
+btnMirror.Appearance = 1
+btnMirror.CommonBitmapType = S309_STD_ENABLE
+btnMirror.CommonBitmapID = STD_FIND
+
+addobject "s309.picturebox.1","picBox",100,0,output.width-100,output.height
+picBox.backcolor=vbwhite
+call ResetSize
+
+addobject "ComboBox","cmbMirror",5,30,90,200
+cmbMirror.style = 2
+cmbMirror.additem "No Mirror"
+cmbMirror.additem "Mirror Horizontal"
+cmbMirror.additem "Mirror Veritcal"
+cmbMirror.additem "Mirror Both"
+cmbMirror.listindex = 0
+
+addobject "ComboBox","cmbRotate",5,55,90,200
+cmbRotate.style = 2
+cmbRotate.additem "No Rotation"
+cmbRotate.additem "Rotate 90"
+cmbRotate.additem "Rotate 180 "
+cmbRotate.additem "Rotate 270"
+cmbRotate.listindex = 0
+
+addobject "ComboBox","cmbBorder",5,80,90,200
+cmbBorder.style = 2
+cmbBorder.additem "No Border"
+cmbBorder.additem "3D Tile Sunken Border"
+cmbBorder.additem "3D Soft Sunken Border"
+cmbBorder.additem "Single Line Border"
+cmbBorder.additem "3D Soft Raised Border"
+cmbBorder.additem "3D Tile Raised Border"
+cmbBorder.listindex = 3
+call cmbBorder_Click()
+
+addobject "ComboBox","cmbAlign",5,105,90,200
+cmbAlign.style = 2
+cmbAlign.additem "No Alignment"
+cmbAlign.additem "AutoSize"
+cmbAlign.additem "Stretch"
+cmbAlign.additem "Center Horizontally"
+cmbAlign.additem "Center Vertically"
+cmbAlign.additem "Center Both"
+cmbAlign.listindex = 0
+
+addobject "CheckBox", "chkInvert", 5,130,90,15
+chkInvert.backcolor = output.backcolor
+chkInvert.caption = "Invert Colors"
+
+addobject "CheckBox", "chkWaitCursor", 5,150,90,15
+chkWaitCursor.backcolor = output.backcolor
+chkWaitCursor.caption = "Wait Cursor"
+chkWaitCursor.value = 1
+call chkWaitCursor_click()
+
+picBox.ZOrder 0
+
+sub mnuFileExit_Click()
+  bye
+end sub
+sub mnuToolsCapture_Click()
+  updatescreen
+  picBox.CaptureScreen
+end sub
+sub btnSelect_Click()
+  dim strFile, strMsg, pos
+  btnSelect.appearance = -1 
+  btnSelect.refresh
+  if bDialog then
+    dialog.dialogtitle = "Select an image file to display"
+    pos = instrrev(picBox.picture,"\")
+    if pos < 2 then
+      dialog.initdir = "\"
+    else
+      dialog.initdir = left(picBox.picture, pos - 1)
+    end if  
+    strFile = "All Images|*.2bp;*.bmp;*.gif;*.jpg;*.jpeg;*.jpe;*.xbm|"
+    strFile = strFile & "Bitmaps Images|*.2bp;*.bmp|Gif Images|*.gif|"
+    strFile = strFile & "Jpeg Images|*.jpg;*.jpeg;*.jpe|Xbm Images|*.xbm|All Files|*.*"
+    dialog.filter = strFile
+    dialog.filterindex =1
+    dialog.flags = &h1000 or &h800
+    dialog.filename = ""
+    dialog.cancelerror = true
+    on error resume next
+    err.clear
+    dialog.showopen
+    if err.number <> 0 then
+      on error goto 0
+      btnSelect.appearance = 1 
+      btnSelect.refresh
+      exit sub
+    end if  
+    on error goto 0
+    strFile = dialog.filename
+  else  
+    strMsg = "Common Dialogs ActiveX control not found on the system." & vbcrlf & vbcrlf
+    strMsg = strMsg & "Please enter the name of an image file to display."
+    strFile = InputBox(strMsg,gstrTitle,picBox.picture)
+  end if
+  picBox.Picture = strFile
+  if not picBox.ImageLoaded then
+    msgbox "File not found: " & strFile
+  else
+    btnMirror.CommonBitmapID = btnMirror.CommonBitmapID
+    btnRotate.CommonBitmapID = btnRotate.CommonBitmapID
+  end if
+  btnSelect.appearance = 1 
+  btnSelect.refresh
+end sub
+sub btnMirror_Click()
+  cmbMirror.setfocus
+  if cmbMirror.listindex = 0 then
+    msgbox "No mirroring value set in combobox.", vbExclamation, gstrTitle
+    exit sub
+  end if  
+  btnMirror.appearance = -1
+  btnMirror.refresh
+  picBox.MirrorImage
+  btnMirror.appearance = 1
+  btnMirror.MirrorImage
+end sub
+sub btnRotate_Click()
+  cmbRotate.setfocus
+  if cmbRotate.listindex = 0 then
+    msgbox "No rotation value set in combobox.", vbExclamation, gstrTitle
+    exit sub
+  end if  
+  btnRotate.appearance = -1
+  btnRotate.refresh
+  picBox.RotateImage
+  btnRotate.appearance = 1
+  btnRotate.RotateImage
+end sub
+sub cmbAlign_Click()
+  select case cmbAlign.listindex
+    case 1
+      picBox.autosize = true
+      picBox.Center = 0 
+      picBox.Stretch = false
+    case 2
+      picBox.autosize = false
+      picBox.Center = 0
+      picBox.Stretch = true
+    case 3, 4, 5
+      picBox.autosize = false
+      picBox.Stretch = false
+      picBox.Center = (cmbAlign.listindex - 2) 
+    case Else
+      picBox.autosize = false
+      picBox.Center = 0
+      picBox.Stretch = false
+  end select
+  call ResetSize
+end sub  
+sub cmbBorder_Click()
+  if cmbBorder.listindex = 0 then
+    picBox.borderstyle = 0
+  else
+    picBox.borderstyle = 1
+    picBox.appearance = cmbBorder.listindex - 3
+  end if
+  picBox.refresh       
+end sub
+sub chkWaitCursor_Click()
+  if chkWaitCursor.value = 1 then
+    picBox.WaitCursor = true
+  else
+    picBox.WaitCursor = false
+  end if  
+end sub
+sub cmbMirror_Click()
+  picBox.Mirror = cmbMirror.listindex
+  btnMirror.Mirror = cmbMirror.listindex
+end sub
+sub cmbRotate_Click()
+  picBox.Rotate = (cmbRotate.listindex * 90)
+  btnRotate.Rotate = (cmbRotate.listindex * 90)
+end sub
+sub mnuAboutBox_Click()
+  picBox.aboutbox
+end sub
+sub mnuCls_Click()
+  picBox.Cls
+end sub
+sub mnuRefresh_Click()
+  picBox.refresh
+end sub  
+sub mnuToggle_Click()
+  call picBox_DblClick()
+end sub
+sub picBox_DblClick()
+  if picBox.left = 0 then
+    picBox.move 100, 0, (output.width - 100), output.height
+  else
+    picBox.move 0, 0, output.width, output.height
+   end if  
+end sub  
+sub ResetSize()
+  if picBox.left = 0 then
+    picBox.move 0, 0, output.width, output.height
+  else  
+    picBox.move 100, 0, (output.width - 100), output.height
+  end if  
+end sub   
+sub chkInvert_Click()
+  if chkInvert.value = 1 then
+    picBox.Invert = true
+  else
+    picBox.Invert = false
+  end if  
+  picBox.InvertImage
+end sub  
+sub btnSave_Click()
+  dim strFile, strMsg, pos
+  btnSave.appearance = -1 
+  btnSave.refresh
+  if bDialog then
+    dialog.dialogtitle = "Select a name for the saved image"
+    pos = instrrev(picBox.picture,"\")
+    if pos < 2 then
+      dialog.initdir = "\"
+    else
+      dialog.initdir = left(picBox.picture, pos - 1)
+    end if  
+    strFile = "Bitmaps Images|*.bmp|"
+    dialog.filter = strFile
+    dialog.filterindex =1
+    dialog.flags = &h200000 or &h800 or &h8000 or &h2
+    dialog.filename = ""
+    dialog.cancelerror = true
+    on error resume next
+    err.clear
+    dialog.showsave
+    if err.number <> 0 then
+      on error goto 0
+      btnSave.appearance = 1 
+      btnSave.refresh
+      exit sub
+    end if  
+    on error goto 0
+    strFile = dialog.filename
+  else  
+    strMsg = "Common Dialogs ActiveX control not found on the system." & vbcrlf & vbcrlf
+    strMsg = strMsg & "Please select a name for the saved image."
+    strFile = InputBox(strMsg,gstrTitle,picBox.picture)
+  end if
+  picBox.SaveImageToFile strFile,0
+  btnSave.appearance = 1 
+  btnSave.refresh
+end sub  
+</PRE>
+</body>
+</html>

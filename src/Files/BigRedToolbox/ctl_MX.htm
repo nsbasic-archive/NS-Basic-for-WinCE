@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>MX Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;MX Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/mx.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The MX control enables querying of mail exchange (MX) records from a 
+Domain Name Server (DNS).
+That is, it will find out the name(s) of the mail server(s) accepting email for
+a given email address or domain.<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The control will try to find out automatically the name of a DNS server
+from the system's settings and set the <b>DNSServer</b> property.<P>The control operates in asynchronous mode: assigning an email address or
+domain name to <b>EmailAddress</b> property directs the control to query
+the <b>DNSServer</b> and fire the <b>Response</b> event for each server
+which handles the mail for the email address and fill out the <b>MailServer</b>
+property with the most preferred mail server and the <b>Status</b> event to
+"Ok" or an error message.<P><b>RequestId</b> may be used to identify requests and is used in the <b>Response</b> event. 
+The user may set its value before sending out requests.<P>This control requires a Winsock 1.1 compliant TCP/IP stack.  This means
+that the Winsock stack installed in the system must have a version of at
+least 1.1.  In particular, Windows 95, 98, and NT machines with Winsock 2.0
+are fully supported.
+ 
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DNSPort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The port where the DNS server is listening.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">DNSServer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+IP address (or name) of the DNS server to query.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EmailAddress.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Action property triggering a request to DNSServer.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MailServer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Mail server with lowest precedence value (lowest cost to reach).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RequestId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifies each request.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Status.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Status of the request: empty while in progress, 'OK' or error message upon completition.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the local host or user-assigned IP interface through which connections are accepted or initiated.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SocketHandle.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The handle of the main socket used by the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifying information about the loaded Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockLoaded.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Loads and unloads Winsock on demand.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxDatagramSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size in bytes of the largest UDP datagram that can be sent or received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxSockets.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Maximum number of sockets available to a single process.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockPath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to the Winsock DLL used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The status of the Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Response.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired for each MailServer accepting email for the domain.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Error.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Information about errors during data delivery.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

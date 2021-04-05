@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>MIME Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;MIME Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/mime.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The MIME control allows for easy implementation of the Multipurpose Internet Mail Extensions
+or MIME as defined in RFC 1521 and updated in RFCs 2045-2049.  
+Those standards provide for formating of messages containing non-text,
+multipart or non 'US' formated text.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The control's operation is controlled by the <b>Action</b> property.  It may
+be used for decoding or encoding of messages.  <b>Message</b> holds the
+content of the encoded message or the filename which holds the encoded data. 
+The decoded data is put in <b>PartDecodedString</b> and/or <b>PartDecodedFile</b>
+depending on the user's query.
+<P>To decode a MIME message you should first assign either the whole message (headers
+and body) to <b>Message</b> or put the message headers to <b>MessageHeaders</b>
+and the message body or the filename holding it to <b>Message</b>. 
+Setting <b>Action</b> property to decode directs the control to start parsing the message:
+it will fill out the <b>ContentType</b>, <b>ContentTypeAttr</b> and <b>PartCount</b> properties as well as
+the array properties <b>PartSize</b>, <b>PartContentType</b>, <b>PartContentTypeAttr</b>,
+<b>PartContentDisposition</b>, <b>PartContentDispositionAttr</b>,
+<b>PartEncoding</b>, <b>PartName</b>, <b>PartFilename</b>, <b>PartHeaders</b>,
+for each decoded part from 0 to <b>PartCount</b>-1.<P>For each part you may then
+get the content out of <b>PartDecodedString</b> or <b>PartDecodedFile</b> properties.  Setting
+<b>Action</b> to decode doesn't
+actually decode the message but only parses it.  The real decoding is done when
+the respective array property <b>PartDecodedFile</b> or <b>PartDecodedString</b> is first
+accessed for any particular index.
+<P>To encode data into a MIME message you should first assign values for each part
+to either <b>PartDecodedString</b> or <b>PartDecodedFile</b>, optionally assign
+values to the other Part- properties.  Assiging a value to the <b>PartDecodedString</b>
+or <b>PartDecodedFile</b> properties fills out automatically the <b>PartHeaders</b> property
+for the respective part.  Set <b>Action</b> property to encode directs the control
+to fill out the <b>Message</b> with the message body and the <b>MessageHeaders</b>
+with the headers.
+<P>The <b>Progress</b> event is fired as the message is parsed and the data
+is decoded/encoded.
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls the operation of MIME control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Boundary.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The boundary separating the MIME parts. Maximum length of 80.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ContentType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The value of the content-type header of the message which was encoded/decoded.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ContentTypeAttr.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The attributes for content-type header of the message which was encoded/decoded.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Message.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Filename holding the encoded message or the encoded message itself.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageHeaders.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The headers of the MIME message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartContentType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Content type for each part 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartContentTypeAttr.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array holding the content type attributes, if any, for each part, numbered 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartContentDisposition.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Content Disposition for each part 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartContentDispositionAttr.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array holding the content disposition's attributes, if any, for each part, numbered 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartEncoding.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The actual content encoding type for each part 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartDecodedFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array holding the filenames with the decoded data numbered 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartDecodedString.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array property. It holds the actual content of each part, numbered 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartFilename.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The filename attribute specified in the headers of the part.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartName.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name given to a part, such as the filename.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartHeaders.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Headers for each MIME part, numbered 0 to PartCount-1.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The size of each PartDecodedFile or PartDecodedString.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartCount.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The number of MIME parts in the encoded message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Progress.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Shows the progress of decoding/encoding the input data.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

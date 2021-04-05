@@ -1,0 +1,12 @@
+body { font-family: Arial; font-size: 10pt; background-color: rgb(240,240,240); color: rgb(0,0,40) }
+.bigFont { font-family: Arial; font-size: 16pt }
+td { font-family: Arial; font-size: 10pt }
+th { font-family: Arial; font-size: 10pt }
+H1 { font-family: Arial; font-size: 16pt }
+H2 { font-family: Arial; font-size: 14pt }
+H3 { font-family: Arial; font-size: 12pt }
+H4 { font-family: Arial; font-size: 10pt }
+A:link { text-decoration: none; color: rgb(32,64,0); border-bottom: 1px dotted rgb(32,64,0); }
+A:visited { text-decoration: none; color: rgb(32,64,0); border-bottom: 1px dotted rgb(32,64,0); }
+A:active { text-decoration: underline; color: rgb(32,64,0); border-bottom: 1px dotted rgb(32,64,0); }
+A:hover { color: rgb(0,0,0); text-decoration: none; background-color: rgb(160,192,128); border: none;  }

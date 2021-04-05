@@ -1,0 +1,261 @@
+<HTML>  
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=iso-8859-1">
+<TITLE>TN30: Distributing your application</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY>
+
+<TABLE CELLSPACING="0" BORDER="0" WIDTH="478" CELLPADDING="0">
+  <TR>
+    <TD WIDTH="22%" VALIGN="TOP"><IMG SRC="images/BigIcon.GIF" WIDTH="86"
+      HEIGHT="103" NATURALSIZEFLAG="0" ALIGN="BOTTOM"></TD> 
+    <TD WIDTH="78%" VALIGN="TOP">
+      <h2>Tech Note 30: <br>
+		Distributing your Application</h2>
+      <h3>April 30, 2009</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved.
+    </h5>
+	</TD>
+  </TR>
+</TABLE>
+<HR ALIGN=LEFT size="1" noshade>
+<h2>Overview</h2>
+
+<P>If you cannot use NS Basic's built in ability to create installers, creating proper installation procedures for Windows CE devices is not a simple task. NS Basic/CE programs need to use the some installation procedures as other applications. In this document, we'll try to make it as easy as possible for you.
+
+<P>The steps to creating an installer are as follows:
+<OL COMPACT>
+	<LI>Get the Installer files
+	<LI>Create your .inf file
+	<LI>Create your .ini file
+	<LI>Compile them using cabwiz.exe (included in any Windows Mobile SDK from Microsoft)
+	<LI>Package them using EZSetup.exe
+	<LI>Test them.
+</OL>
+
+<h2>Third Party Tools</h2>
+There are some third party tools that can be used to help build installers.
+<ul>
+	<LI><a href="http://www.ocpsoftware.com/products.php?nm=cecabmgr">CECabMgr</a>
+	<LI><a href="http://www.softspb.com/products/ezsetup/">EZSetup</a>
+	<li><a href="http://www.vbce.com/ceconnect/index.asp">CeConnect</a></li>
+	<LI><a href="http://www.symantec.com/business/wise-installation-studio">Wise Installation Studio</a>
+</ul>
+
+
+<h2>How to create an installer from scratch</h2>
+
+<h3>1. Get the Installer files</h3>
+
+<P>The installer files are in a folder named <CODE>\installer</CODE> the NS Basic/CE Release CD. After installing them on a device, you can copy them back onto your system into a directory that will be accessed by your installer.
+
+
+<h3>2. Create your .inf file</h3>
+
+<P>The .inf file contains the information about the files to be installed on your CE device. It contains the pathnames where the files are to be found on your desktop, and where the files should be places on your CE device. Constructing this file properly is the most complex part of creating your installer. 
+
+<P>Here is a sample .inf file:
+<textarea name="textfield" cols=80 rows = 15 wrap="OFF">
+[Version]
+Signature="$Windows NT$"
+Provider=%Provider%
+CESignature="$Windows CE$"
+
+[CEStrings]
+AppName = "Project1"
+InstallDir= %CE1%
+
+[CEDevice.WM]
+ProcessorType = 2577; StrongArm processors
+VersionMin = 4.2
+VersionMax = 100.0
+BuildMax = 0xE0000000
+
+
+[SourceDisksNames]
+
+[SourceDisksNames.WM]
+1 =, "App files",,E:\temp
+2 =, "ARM files",,C:\Program Files\NSBasic\CE\controls\WM
+
+
+; CPU-independent source files...
+[SourceDisksFiles]
+
+; CPU-specific source files...
+basic.exe = 2
+nscepicturebox.ocx = 2
+Vbscript.dll = 2
+Finance.dll = 2
+
+Project1.exe = 1
+
+
+[DefaultInstall]
+CopyFiles = Files.NSBASIC,Files.Windows,Files.App
+AddReg = AddRegistry.VBScript, AddRegistry.All
+CEShortcuts =Shortcuts.Menu
+CESelfRegister=nscepicturebox.ocx,Finance.dll
+
+; Ouput directories for files & shortcuts
+[DestinationDirs]
+Files.NSBASIC  = 	0,%CE1%\nsbasic
+Files.Windows  = 	0,%CE2%
+Files.App      =	0,%CE1%\%Provider%
+DefaultDestDir = 	0,%InstallDir%
+
+; Install into \Program Files\nsbasic"
+[Files.NSBasic]
+"basic.exe",,,0x00000000
+
+; Install into \Windows
+[Files.Windows]
+"nscepicturebox.ocx",,,0x00000000
+"vbscript.dll",,,0x00000010
+"Finance.dll",,,0x0000000
+
+
+; Install into \Program Files\CompanyName
+[Files.App]
+"Project1.exe",,,0x00000000
+
+
+; Install into \windows\Programs
+[Shortcuts.Menu]
+Project1,0,"Project1.exe",%CE11%
+
+[AddRegistry.All]
+HKCR, ".nsb", "Default", 0, "nsbfile"
+HKCR, "nsbfile", "Default", 0, "NS Basic/CE Program"
+HKCR, "nsbfile\DefaultIcon", "Default", 0, "%InstallDir%\nsbasic\basic.exe,0"
+HKCR, "nsbfile\Shell\Open\Command", "Default", 0, """%InstallDir%\nsbasic\basic.exe"" ""%%1"""
+
+[AddRegistry.VBScript]
+;This is needed for VBScript.dll on the Symbol MC3000, which does not register properly
+HKCR, "CLSID","{B54F3742-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language Authoring"
+HKCR, "CLSID","{B54F3741-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language"
+
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32", "ThreadingModel", 0, "both" ;VBScript
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript"
+
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript Author"
+
+HKCR, "VBS", "Default", 0, "VB Script Language"
+HKCR, "VBS\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBS Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBS Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS Author\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript", "Default", 0, "VB Script Language"
+HKCR, "VBScript\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBScript Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript Author\OLEScript","Default", 0, "(value not set)"
+
+[Strings]
+Provider = "Project1Co"
+</textarea>
+<P>Other resources:
+<OL COMPACT>
+	<LI><A HREF="TN30b.htm">.inf File Format Documentation</A>
+	<LI><A HREF="http://msdn.microsoft.com/en-us/library/aa924359.aspx">Microsoft's CabWiz documentation</A>
+</OL>
+
+<h3>3. Create your .ini file</h3>
+
+<P>The .ini file describes which CAB files are to be included in the installer. Here is a sample .ini file to create the runtime installer for Runtime.ppc.exe.
+
+<PRE>[CEAppManager]
+Version = 1.0
+Component = App
+
+[App]
+Description = App
+CabFiles = App.WM.cab</PRE>
+
+<h3>4. Compile using cabwiz.exe</h3>
+
+<P>Cabwiz.exe is a program supplied by Microsoft. You can download it as part of any of the current Windows Mobile SDKs. It reads your .ini file and outputs one or more .CAB files. A CAB file is produced for each platform (WM, 2577, 4000 etc) and CPU type that you plan to support.
+
+<P>Here is a sample script to start Cabwiz.exe. Save this as a .bat file so you don't have to type it all in each time.
+
+<PRE>del *.CAB
+cabwiz App.inf /err err.log /cpu WM /compress
+</PRE>
+
+<h3>5. Package them using EZSetup.exe</h3>
+
+<P>EZSetup.exe is a handy utility from Scott Ludwig. It uses your .ini file to get the list of .CAB files that Cabwiz.exe produced and makes a single compressed file out of them. EZSetup.exe should be in the current folder. 
+
+<P>Here is a sample script to start EZSetup. Save this as a .bat file so you don't have to type it all in each time. You can combine this with the Cabwiz .bat file to build your installer with a single command.
+
+<PRE>ezsetup -i App.ini -r ReadMe.txt -e EULA.txt -o Project1.Installer.exe
+</PRE>
+
+<h3>6. A Script to do it all</h3>
+
+<pre>del /Q App.Installer.exe App.WM.cab
+
+cabwiz App.inf /err err.log /cpu WM /compress
+copy "C:\Program Files\NSBasic\CE\ezsetup.exe" .
+
+ezsetup -i App.ini -r ReadMe.txt -e EULA.txt -o Project1.Installer.exe
+
+del /Q *.tmp *.DAT ezsetup.exe
+move /Y App.WM.CAB Project1.Installer.cab
+</pre>
+
+<h3>7. CECabMgr</h3>
+<i>submitted by <A HREF="mailto:sales&copy; sabot.co.jp">Shimoe</A></i> 
+<p>I first bought WinCE CAB Manager from <A HREF="http://www.ocpsoftware.com/products.php?nm=cecabmgr">http://www.ocpsoftware.com/products.php?nm=cecabmgr</A>
+It cost me $150, but it was cheap for me if considering analyzing the inf file.
+
+<OL>
+	<LI>Installed Runtime.ppc.exe
+	<LI>Copied all CAB files in "C:\Program Files\Microsoft ActiveSync\Runtime" to a folder.
+	<LI>In WinCE CAB Manage, ADDed the program I developed.
+	<LI>Referred to "Setup.ini" in "C:\Program Files\Microsoft ActiveSync\Runtime" and modified for my program.
+	<LI>Used EzSetup.exe to create an installation program.
+	Because EzSetup.exe in NS Basic's CD-ROM was English version, I 
+downloaded EzSetup v2.1 Japanese from http://wince.tripod.co.jp/
+</OL>
+
+It works on my iPAQ but I am not sure if it does on all devices.
+Here is the installation program that was created:
+<A 
+HREF="http://www.sabot.co.jp/nstoday/downloads/NSTodaySetup.exe">http://www.sabot.co.jp/nstoday/downloads/NSTodaySetup.exe</A>
+
+<h3>8. Auto Installation</h3>
+
+Certain Windows CE devices store the installed NS Basic program in RAM. When power to the device is lost, the RAM is wiped out and NS Basic needs to be installed again. There are a couple of techniques to have this happen automatically when the power comes back on.
+
+<ul>
+	<li><p>Put the files on a card: If the system has a memory card, put the .cab file into an \AutoRun directory on the card. It will be executed on startup.</li>
+
+	<li><p>Put the cab file in the \Application folder. Then, place a RUN file in \Application\Startup containing the following 2 lines:<br><pre>
+\windows\wceload.exe
+\application\nsb.cab</pre></li>
+</ul>
+
+<h3>9. If you have questions</h3>
+
+<P>We'd like to be able to provide the same level of support for installation issues as we for for NS Basic/CE itself, but not all the sofware comes from us. We can offer tips based on our own experience and act as a central point for keeping track of good ideas our users have on creating installers.
+
+<P>If you have questions, <a href="http://groups.yahoo.com/group/nsbasic-ce/">post them on our web board</a>. If we can't answer them ourselves, perhaps another user can.
+
+<P>We will add to this document with new information and suggestions you submit. Hopefully, we'll develop this into something that is easily usable for all!
+</BODY>
+</HTML>

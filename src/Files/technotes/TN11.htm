@@ -1,0 +1,313 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 11: ImageList Control</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h1>Tech Note 11: ImageList Control</h1>
+	  <h3>Feb 27, 2007
+	  </h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- #include file="includes/header.htm" -->  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <h1>NSBImageList ActiveX</h1>
+            <p>This control is part of <a href="TN11a.htm">NS BASIC Controls package</a>. Please see its documentation to get full information about this package.</p>
+      <h2>1. Overview</h2>
+      <p>The NSBImageList control is not a visual object. It is a storage for
+      small images you use with other controls. Thus the NSBImageList should be
+      considered as helper which allows you manipulate sets of images as whole
+      and assign them to the controls that need them.&nbsp;</p>
+      <p>As a rule the controls that use NSBImageList create implicitly as much
+      instances of the object as they need. Then the implicitly created
+      NSBImageList-s are exposed through their properties and you can use them
+      directly typically without need to ever create the NSBImageList on your
+      own. For example the NSListView control exposes 3 such image lists through
+      its <b>Icons</b>, <b>SmallIcons</b> and <b>ColumnHeaderIcons</b> 
+      properties (see the <a href="TN11a.htm#FAQ">NS BASIC Controls FAQ</a>
+      for a quick illustration).</p>
+      <h2>2. Architecture&nbsp;</h2>
+      <p>The NSBImageList control has the following structure:</p>
+      <p><img border="0" src="images/NSBImageListObjModel.gif" width="568" height="176"></p>
+      <p>Actually it is a typical collection with elements - NSBListImage
+      objects. The elements can be addressed by index:<br>
+      <font color="#006600">Set li = objImageList(2)</font><br>
+      By name (if names are set to some of the elements - i.e. this is
+      optional):<br>
+      <font color="#006600">Set li = objImageList(&quot;MyImage&quot;)</font><br>
+      Or enumerated:<br>
+      <font color="#006600">For li In objImageList<br>
+      &nbsp; ' Do something with each li (NSBListImage)<br>
+      Next</font></p>
+      <p>The indices are 1-based, the names are optional.</p>
+      <p>Typically the applications rarely need to work with the individual
+      images in the list except for loading and sometimes removing them. Thus
+      usually the image list is filled with images and the control that uses the
+      list is instructed to show one image or another with certain visual
+      elements in it. This is done by specifying index or key name of an image
+      from the list. For example in the NSListView control you can assign index
+      or a key name to the Icon property of the ListItem object thus instructing
+      the control to show the corresponding image from the image list with that
+      item. However, the application in no way uses the individual image from
+      the list directly - it only tells which one to use.</p>
+      <h2>3. Members reference</h2>
+      <h3>NSBImageList object</h3>
+      <p>A collection of NSBListImage objects. It provides access to the general
+      image list features, means to load images and members for the list
+      manipulation.</p>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">&nbsp;</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Clear</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Clear</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes all the images from the
+            list.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            LoadBitmap</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>n = object.LoadBitmap(file
+            [,key])</td>
+          <td bgcolor="#FFFFFF" valign="top">Loads one or more images from the
+            specified bitmap file.&nbsp;<br>
+            The arguments are:<br>
+            <b>file</b> - full path name to a bitmap file<br>
+            <b>key</b> - (optional) string which is assigned as key name to all
+            the loaded images.<br>
+            <b>returns:</b> the index of the first of the loaded images&nbsp;<br>
+            The bitmap is expected to contain 1 or more images each <b>Width</b>
+            pixels wide and <b>Height</b> pixels high.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            LoadResource</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>n = object.LoadResource(<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [file],<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [resID],<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [type],<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [key])</td>
+          <td bgcolor="#FFFFFF" valign="top">Loads a resource from a DLL or EXE
+            module. Depending on the resource type and size one or more images
+            are created in the image list.<br>
+            <b>file</b> - the path to the module from which to load a resource.
+            If empty the executable of the application is assumed.<br>
+            <b>resID</b> - integer or string ID of the resource to load (Most
+            often integer ID-s are used). You need to know the resource ID and
+            specify it.<br>
+            <b>type</b> - resource type: 0 - bitmap, 1 - icon, 2 - cursor. If a
+            bitmap is specified multiple images may be created in the list as
+            many as the bitmap size permits (each image is <i>Width</i> wide and
+            <i>Height</i> high). If the width of the bitmap is less than the
+            value of the <i>Width</i> property no images are loaded.<br>
+            <b>key</b> - if specified this key name is assigned to the new
+            image(s) created.&nbsp;<br>
+            See also the remarks section.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Remove</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Remove index_or_key</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes image from the list by
+            index or key name. If key name is specified and there are more than
+            one image with the same key name only the first is
+            removed.&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Count</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>n = object.Count</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the number of images in the
+            image list.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            BackColor</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.BackColor = clr<br>
+            clr = object.BackColor&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Specifies the background color used
+            by the list when the images are drawn on the screen. Most often this
+            property is controlled by the control using the list and you do not
+            need to take care about it (see the remarks).&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            MaskColor</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.MaskColor = clr<br>
+            clr = object.MaskColor</td>
+          <td bgcolor="#FFFFFF" valign="top">Puts/gets the mask color which is
+            used to for masking the loaded images. This property has effect only
+            when images are loaded from a bitmap (e.g. using the LoadBitmap
+            method). If UseMaskColor is also True the loaded images are masked
+            with this color and all the pixels on them with that color are
+            considered transparent (see the remarks).</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            UseMaskColor</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.UseMaskColor = b<br>
+            b = object.UseMaskColor&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables/Disables the usage of the
+            MaskColor.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Height</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Height = h<br>
+            h = object.Height</td>
+          <td bgcolor="#FFFFFF" valign="top">Puts/gets the height of the images
+            in the list in pixels.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Width</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Width = w<br>
+            w = object.Width</td>
+          <td bgcolor="#FFFFFF" valign="top">Puts/gets the width of the images
+            in the list in pixels.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Tag</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = v<br>
+            Set object.Tag = o<br>
+            v = object.Tag<br>
+            Set o = object.Tag</td>
+          <td bgcolor="#FFFFFF" valign="top">The application can save in this
+            property any data and then access it when needed.&nbsp;</td>
+        </tr>
+      </table>
+      <h4>Remarks</h4>
+            <p>The image list supports masked and unmasked images. The mask is
+            used to point out which pixels of the image are transparent. For the
+            bitmaps do not have such feature the mask must be specified somehow.
+            The MaskColor serves that purpose. When you create images for the
+            application you must select a color that will mark the pixels that
+            will appear transparent. Then by specifying that color in the
+            MaskColor Property and setting the UseMaskColor to True you instruct
+            the control to automatically create transparency masks for the
+            images loaded from bitmaps (e.g. using LoadBitmap).&nbsp;</p>
+            <p>FYI: How the transparency is achieved? In most cases there is no
+            need of true transparency and when the controls (such as NSListView)
+            need to draw images from the image list they set its BackColor to
+            the color of the background over which they are going to draw. Then
+            when individual images are drawn the transparent pixels are drawn
+            with this color. This method is not true transparency but is faster.</p>
+            <p>The <b>LoadResource</b> method enables you to consume applicable
+            resources from any EXE/DLL. Note that the corresponding EXE/DLL must
+            be for the same platform on which the program is running.&nbsp; I.e.
+            you cannot get a DLL from a desktop and put it on a Pocket PC
+            because you like to use a few icons in its resources.</p>
+            <p>What is the resource ID? This is a number or a name (but cannot
+            be both) assigned to the resource (icon, bitmap, etc.) by the
+            developer of the corresponding DLL/EXE.&nbsp; I.e. the EXE/DLL
+            module contains a directory of resources and the Resource ID is like
+            a file name or number in it. Most developers prefer numeric ID-s in
+            order to cut some size from their EXE/DLL. If you want to learn the
+            resource ID-s of the icons, bitmaps, cursors in an EXE/DLL from
+            another developer (or a system one) you can use any available
+            resource browser/editor at hand. For example MS Visual Studio can
+            open EXE/DLL files and show the resources in them.</p>
+            <p>Some NS Basic developers practice usage of resource DLL. These
+            are DLL with no code in them, packing only useful resources such as
+            icons, bitmaps and others. This can be done with the appropriate MS
+            Visual Studio version for the platform and does not need any
+            programming. To create such a DLL create a DLL project, create a new
+            &lt;something&gt;.rc file and add it to the project. Then go to the
+            linker settings and in the project options edit box add /NOENTRY
+            command line option. Then compile the DLL. Using the resource editor
+            you can add/import various resources into the project and then use
+            them. Check the generated resource.h file to learn the numeric ID-s
+            or specify names for the resources you add in &quot;&quot; (quotes)
+            to force textual identifiers.</p>
+      <h3>NSBListImage object</h3>
+      Represents an image in an NSBImageList object.
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b>Set img = NSBImageList.Item(index)<br>
+        Set img = NSBImageList(index)</b><br>
+        or<br>
+        <b>Set img = NSBImageList.Item(&quot;key&quot;)<br>
+        Set img = NSBImageList(&quot;key&quot;)</b><br>
+        or<br>
+        <b>For Each img In NSBImageList<br>
+        &nbsp;&nbsp; ' make use of img<br>
+        Next</b></p>
+      </blockquote>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td width="33%" nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td width="33%" nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td width="34%"><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th width="100%" colspan="3" nowrap bgcolor="#FFFFCC">&nbsp;</th>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Index</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>v = object.Index</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">Numeric - returns the
+            index of the NSBListImage object in the image list (the NSBImageList
+            object to which it belongs).</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Key</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>v = object.Key<br>
+            object.Key = string</td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">String. Sets/gets the
+            key name of the object under which it can be accessed through the
+            NSBImageList that contains it.</td>
+        </tr>
+        <tr>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Tag</td>
+          <td width="33%" bgcolor="#FFFFFF" valign="top" nowrap>v = object.Tag<br>
+            object.Tag = v<br>
+            Set object.Tag = o </td>
+          <td width="34%" bgcolor="#FFFFFF" valign="top">A storage for
+            application specific data.</td>
+        </tr>
+      </table>
+            <p>&nbsp; </p>
+            <p>&nbsp; </p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- #include file="includes/footer.htm" -->
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,803 @@
+ 100	Abs(number) 'devuelve el valor absoluto deNumber
+ 101	AddObject ObjectID, varName, [izquierda, arriba, ancho, alto, [parent]] 'añade un objeto llamado VarName
+ 102	Array(expression list) 'Crea una matriz a partir de una lista de elementos
+ 103	Asc(string) 'devuelve el valor ASCII de un caracter
+ 104	Atn(number) 'devuelve el arco tangente 
+ 105	CBool(exp) 'Convertir a Boolean
+ 106	CByte(exp) 'Convertir a tipo Byte
+ 107	CCur(exp) 'Convertir a tipo Currency
+ 108	CDate(exp) 'Convertir a tipo Date
+ 109	CDbl(exp) 'Convertir a Double
+ 110	Chr(number) 'Convertir number a caracter
+ 111	CInt(exp) 'Convertir a Integer
+ 112	CLng(exp) 'Convertir a Long
+ 113	Cos(exp) 'devuelve el Coseno de exp
+ 114	CreateObject(ObjectID) 'Crea un Objeto
+ 115	CSng(exp) 'Convertir a Single 
+ 116	CStr(exp) 'Convertir a String
+ 117	Date 'devuelve la fecha actual del sistema
+ 118	DateAdd(interval, number, date) 'Añade number (definido por interval) a date. Ver Ref. Lenguaje para los valores de Interval.
+ 119	DateDiff(interval,d1,day2[,1stdayofwk[, 1stwkofyr]]) 'devuelve interval entre fechas. Ver Language Ref para los valores de Interval.
+ 120	DatePart(interval, day[, 1stdayofwk[, 1stwkofyr]]) 'devuelve part de la fecha actual. Ver Language Ref para los valores de Interval.
+ 121	DateSerial(year, month, day) 'devuelve una variable Date a partir de valores numericos
+ 122	DateValue(date) 'devuelve una variable Date a partir de una cadena.
+ 123	Day(date) 'devuelve el dia (1-31) a partir de una variable Date.
+ 124	Eval(string) 'devuelve el resultado de ejecutar string
+ 125	Execute(string) 'Ejecuta string
+ 126	ExecuteFile(string) 'Ejecuta un archivo de texto.
+ 127	Exp(number) 'devuelve e elevado al valor de number.
+ 128	Filter(stringarray, value[, include[, compare]]) 'devuelve una matriz de cadenas. Ver Referencia del Lenguaje.
+ 129	Fix(number) 'devuelve la parte entera de number.
+ 130	FormatCurrency(exp[, fractionaldigits[, leadingdigit[, parensfornegative[, groupdigits]]]]) 'devuelve una cadena. Ver Ref. Lenguaje.
+ 131	FormatDateTime(date[, formatname]) 'devuelve una cadena. Ver Language Ref.
+ 132	FormatNumber(exp[, fractionaldigits[, leadingdigit[, parensfornegative[, groupdigits]]]]) 'devuelve una cadena. Ver Ref. Lenguaje.
+ 133	FormatPercent(exp[, fractionaldigits[, leadingdigit[,parensfornegative[,groupdigits]]]])Hex(number) 'devuelve una cadena. Ver Ref. Lenguaje.
+ 134	GetObject(pathname, class) 'Abre un pathname como un objeto 
+ 135	GetRef(functionName) 'devuelve una referencia a una funcion
+ 136	Hex(number) 'devuelve un valor hexadecimal como cadena
+ 137	Hour(time) 'devuelve la parte horaria (0-23) de time.
+ 138	InputBox(prmpt[, title[, default[, x[, y]]]]) 'Muestra en pantall un input box y devuelve lo que se introduzca.
+ 139	InStr([start, ]string1, string2[, compare]) 'Encuentra una cadena dentro de otra.
+ 140	InStrRev(string1, string2[, start[, compare]]) 'Encuentra una cadena dentro de otra, la busqueda comienza desde el final.
+ 141	Int(number) 'devuelve el Integer de number
+ 142	IsArray(exp) 'Es exp una matriz?
+ 143	IsDate(exp) 'Es exp un Date?
+ 144	IsEmpty(exp) 'Es exp Empty?
+ 145	IsNull(exp) 'Es exp Null?
+ 146	IsNumeric(exp) 'Es exp un numero?
+ 147	IsObject(exp) 'Es exp un Objeto?
+ 148	Join(stringarray[, delimiter])  'Combina una matriz de cadenas en una unica cadena, separadas por delimiter.
+ 149	LBound(array[, dimension]) 'devuelve un numero long correspondiente al ordinal mas bajo de los elementos de una matriz.
+ 150	LCase(string) 'Convierte una cadena a minusculas
+ 151	Left(string, length) 'devuelve length caracteres de string tomados por la izquierda.
+ 152	LeftB(string, length) 'devuelve length bytes de string tomados por la izquierda.
+ 153	Len({string | variable}) 'devuelve el numero de caracteres en string.
+ 154	LenB({string | variable}) 'devuelve el numero de bytes en string.
+ 155	LoadPicture(filename) 'devuelve un objeto picture.
+ 156	Log(number) 'devuelve el logaritmo natural de number.
+ 157	LTrim(string) 'devuelve string sin espacios por la izquierda
+ 158	Mid(string, start[, length]) 'devuelve Length caracteres de string empezando por la posicion correspondiente a Start.
+ 159	MidB(string, start[, length]) 'devuelve Length bytes de string empezando por la posicion correspondiente a Start.
+ 160	Minute(time) 'devuelve la parte de minutos (0-59) de time.
+ 161	Month(date) 'devuelve la parte del mes (1-12) de date.
+ 162	MonthName(date[, abbreviate]) 'devuelve el nombre del mes de date.
+ 163	MsgBox(prompt[, buttons[, title]]) 'Muestra un message box. Ver Referencia del Lenguaje para consultar los botones admitidos.
+ 164	Oct(number) 'devuelve number covertido a octal como cadena.
+ 165	Replace(target, find, source[, strt[, count[, comp]]]) 'Reemplaza una cadena con otra.
+ 166	RGB(red, green, blue) 'devuelve un valor RGB. Colores oscilan entre 0-255.
+ 167	Right(string, length) 'devuelve length caracteres de string tomados por la derecha.
+ 168	RightB(string, length) 'devuelve length bytes de string tomados por la derecha.
+ 169	Rnd[(number)] 'devuelve un numero aleatorio de precision sencilla entre 0 y 1.
+ 170	Round(number[, fractionalDigits]) 'devuelve Number redondeado al mas proximo fractionalDigits.
+ 171	RTrim(string) 'devuelve String sin espacios por la derecha.
+ 172	Second(time) 'devuelve la parte de segundos (0-59) de time.
+ 173	SetLocale(LocaleID) 'Asigna settings locales. Ver valores Microsoft para settings locales.
+ 174	SetMenu(menuString[||menuKey], menuList) 'Asigna el menu actual.
+ 175	SetParent(child, parent) 'Asigna el parent de un objeto child.
+ 176	Sgn(number) 'devuelve el signo de un numero (-1, 0, o 1).
+ 177	ShellExecute(verb, file[, parms]) 'Ejecuta un programa externo. Verb puede ser Open o Print.
+ 178	Sin(number) 'devuelve el seno de Number.
+ 179	Sleep(number) 'Detiene todos los procesos durante Number de milisegundos.
+ 180	Space(number) 'devuelve una cadena de espacios de longitud Number.
+ 181	Split(string[, delimiter[, count[, compare]]]) 'devuelve una matriz de cadenas a partir de una cadena
+ 182	Sqr(number) 'devuelve la raiz cuadrada de Number.
+ 183	StrComp(string1,string2[, compare]) 'Compara 2 cadenas. Ver Referencia del Lenguaje para más información.
+ 184	String(number, character) 'devuelve una cadena formada for Number de character.
+ 185	StrReverse(string) 'devuelve la cadena inversa de string.
+ 186	Tan(number) 'devuelve la tangente de Number.
+ 187	TimeSerial(hour, minute, second) 'devuelve una variable Time formada por los parametros horas, minutos, segundos.
+ 188	TimeValue(string) 'devuelve una variable Time a partir de una cadena.
+ 189	Trim(string) 'devuelve una cadena sin espacios al comienzo o al final.
+ 190	TypeName(variable) 'devuelve una cadena que indica el tipo de variable.
+ 191	UBound(array[, dimension]) 'devuelve el ordinal mas alto de los elementos de una matriz.
+ 192	UCase(string) 'Convierte string a mayusculas.
+ 193	VarType(variable) 'devuelve un numero que corresponde al tipo de variable.
+ 194	Weekday(date[, firstdayofweek]) 'devuelve el valor integer del dia de la semana.
+ 195	WeekdayName(number[, abbrev[, 1stdayofwk]) 'devuelve el nombre del dia de la semana.
+ 196	Year(date) 'devuelve la parte del año de date.
+ 197	GetCommandLine() 'devuelve la linea de comando usada para lanzar el programa
+ 198	GetSerialNumber() 'devuelve el número de serie de la maquina
+1000	&Archivo
+1001	&Nuevo Proyecto
+1002	&Abrir Proyecto...
+1003	&Guardar Proyecto
+1004	Guardar Proyecto &Como...
+1005	&Guardar
+1006	Guardar &Como...
+1007	Guardar T&odo
+1008	Config&urar impresión...
+1009	&Imprimir...
+1010	S&alir
+1011	&Editar
+1012	&Deshacer
+1013	Rehacer
+1014	Cor&tar
+1015	&Copiar
+1016	&Pegar
+1017	&Borrar
+1018	Seleccionar &Todo
+1019	&Encontrar...
+1020	Encontrar &Siguiente
+1021	R&eemplazar...
+1022	&Ir a la Linea...
+1023	&Ver
+1024	Barra de &Herramientas
+1025	Barra de &Estado
+1026	&Refrescar
+1027	&Proyecto
+1028	Añadir &Formulario
+1029	Añadir &Menu
+1030	Añadir &Bitmap
+1031	Codigo de &Startup
+1032	Codigo de &Terminación
+1033	Codigo de &Ayuda
+1034	Ha&cer 
+1035	&ActiveSync 
+1036	ActiveSync NS Basic Ru&ntime
+1037	ActiveSync Lib&rerías Compartidas
+1038	P&ropiedades...
+1039	Ajustes Pro&yecto de Destino
+1040	F&ormato
+1041	&Alineación
+1042	&Izquierda
+1043	&Centrado
+1044	&Derecha
+1045	&Arriba
+1046	&Mitad
+1047	&Abajo
+1048	&Rejilla
+1049	&Hacer del mismo tamaño
+1050	&Ancho
+1051	&Alto
+1052	&Ambos
+1053	&Ajustar a la Rejilla
+1054	Espacio &Horizontal
+1055	&Igual
+1056	&Incrementar
+1057	&Decrementar
+1058	&Eliminar
+1059	Espacio &Vertical
+1064	&Centrar en Formulario
+1065	&Horizontalmente
+1066	&Verticalmente
+1067	&Orden
+1068	Traer al F&rente
+1069	Mover al &Frente
+1070	Mover &Atrás
+1071	&Enviar Atrás
+1072	&Herramientas
+1073	Editor de &Menu
+1074	&Opciones...
+1075	&Window
+1076	&Caja de Herramientas
+1077	P&ropiedades de la Ventana
+1078	&Cascada
+1079	Marcos &Horizontal
+1080	Marcos &Vertical
+1081	&Windows...
+1082	&Ayuda
+1083	&Registrar...
+1084	Referencia del &Lenguaje
+1085	&NS Basic Web
+1086	&Sobre NS Basic/CE...
+1087	Nuevo
+1088	Abrir
+1089	Guardar
+1090	Imprimir
+1091	Deshacer
+1092	Rehacer
+1093	Cortar
+1094	Copiar
+1095	Pegar
+1096	Borrar
+1097	Buscar
+1098	Añadir Formulario
+1099	Añadir Bitmap
+1100	Añadir Modulo
+1101	&Compilar 
+1102	Propiedades
+1103	Editor de Menu
+1104	Sobre el Proyecto
+1105	&Información del Sistema...
+1106	OK
+1107	Atención: ...
+1108	Versión
+1109	Titulo de la Aplicación
+1110	Descripción de la Aplicación
+1111	Atrás
+1112	Adelante
+1113	Alto
+1114	Refrescar
+1115	Inicio
+1116	Buscar
+1117	&Dirección:
+1118	Explorador de &Proyecto
+1119	Notas Técnicas
+1120	NS Basic/CE
+1121	Edición de d
+1122	¡La manera más fácil de programar una máquina Windows CE!
+1123	Comprar
+1124	Información de la Demo
+1125	Encontrar
+1126	&Encontrar:
+1127	Reemplazar &Con:
+1128	Buscar
+1129	&Módulo Actual
+1130	Proyecto A&ctual
+1131	&Texto marcado
+1132	Busca palabras enteras S&olo
+1133	Mayúsculas/minú&sculas solo
+1134	Encontrar &Siguiente
+1135	Cancelar
+1136	&Reemplazar
+1137	Reemplazar &Todo
+1138	&Instalar
+1139	&Cancelar
+1141	Nuevo
+1142	Existente
+1143	Reciente
+1144	No mostrar este diálogo en el f&uturo
+1145	&Abrir
+1146	&Cancelar
+1147	Nombre de Archivo:
+1148	Tipo de Archivo:
+1149	Nuevo Proyecto
+1150	Opciones
+1151	Path &Global
+1152	Em CE &Path
+1153	&Browse
+1154	&Lanzar Em CE al arrancar
+1155	Al iniciar NS Basic
+1156	Preguntar qué &hacer
+1157	Crear proyecto por d&efecto
+1158	Preferencias del E&ditor...
+1159	Fuente de Texto Normal
+1160	Objetos de Dibujo y &Texto Normal
+1161	&Fuente...
+1162	&Pegar a la Rejilla
+1163	&Rejilla de:
+1164	&Guardar antes de Compilar
+1165	&Compilar como Fat App
+1166	Ajustar &Alta Resolución para HandEra
+1167	Tras Compilar...
+1168	Enviar a Em C&E
+1169	Lanzar &Immediatamente
+1170	&ActiveSync al Dispositivo
+1171	No hacer &nada
+1172	Hojear
+1173	Ejemplo
+1174	Explorador de Proyecto
+1175	Propiedades
+1176	Registro
+1177	Contacta con NS BASIC Corporation en nuestro sitio Web, http://www.nsbasic.com, para obtener una versión no limitada y la documentación completa y sigue las instrucciones para registrar el producto.
+1178	Número de &Serie
+1179	Demo no Registrada
+1180	Cuando hayas obtenido un Número de Serie introdúcelo en el espacio de arriba. Si no has obtenido legalmente un Número de Serie el espacio superior mostrará "Unregistered Demo". Ver el Acuerdo de Licencia para los detalles completos.
+1181	Características Avanzadas
+1182	Mostrar Espacio en Blanco
+1183	Comentario
+1184	Deshacer Comentario
+1185	Ajustar Contador de Repetición
+1186	Ejecutar Comando
+1202	Botón
+1203	Lista
+1204	Etiqueta
+1205	Campo
+1206	PushButton
+1207	Checkbox
+1208	Popup Trigger
+1209	Selector Trigger
+1210	Bitmap
+1211	Gadget
+1212	Repeating Button
+1213	Scrollbar
+1214	Graffiti Shift Indicator
+1215	&Ejecutar
+1216	&Opciones de Compilación...                            
+1217	Download Runtime
+1218	P&referencias...
+1219	Arrancar Em C&E
+1220	&Ejecutar 
+1221	Volver a &Lanzador
+1222	Download Librería Compartida
+1223	Download 
+1224	Copiar y &Proteger
+1301	Explorador de Proyecto
+1302	Propiedades
+1303	Encontrar
+1304	Encontrar/Reemplazar
+1305	The Big Red Toolbox
+1400	Versión
+1401	NS Basic/CE
+1403	Atención: Este programa y su documentación están protegidos por las leyes del copyright y tratados internacionales. La reproducción, el uso o la distribución no autorizadas del mismo, o una parte de él, tendrá como consecuencia serias penalizaciones tanto civiles como criminales y serán perseguidas hasta la máxima extensión permitida por la ley. Por favor vea el Acuerdo de Licencia en el Manual de NS BASIC.
+1404	OK
+1405	Información del &Sistema...
+1406	\ / : * ? " < > |
+1407	Un nombre de archivo valido no puede tener ninguno de los siguientes caracteres: \ / : * ? " < > |
+1408	Valor no válido de la Propiedad
+1409	\a/a[a]a|a+a=a-a(a)a*a&a^a%a$a#a@a!a:a;a'a"a{a}a<a>a,a.a?a a`a~
+1410	Nombre de objeto no válido: 
+1411	No se encuentran una o más fuentes. Por favor vuelva a instalar NS Basic/CE.
+1412	El Proyecto no se compilará si no tiene al menos un formulario
+1413	Por favor localice Em CE.
+1414	&Lanzar Em CE al arrancar?
+1440	&General
+1441	Opciones Generales del Programa
+1442	Editor
+1443	Opciones del Editor de Ventanas
+1444	Pantalla &CE
+1445	Opciones de la Pantalla CE
+1446	Compilar/Download
+1447	Opciones de Compilar/Download
+1450	NSBasicText9
+1451	NSBasicText9B
+1452	NSBasicText12
+1453	NSBasicSymbol9
+1454	NSBasicSymbol11
+1455	NSBasicSymbol7
+1456	NSBasicLED
+1457	NSBasicText12B
+1500	Ver O&bjeto
+1501	Ver C&ódigo
+1502	Ver Código de Arranque&
+1503	Ver Código de &Terminación
+1504	Ver &Código
+1505	&Renombrar Object
+1506	Ver Código de &Eventos
+1507	Ver Código de &Ayuda
+1508	&Añadir
+1509	&Formulario
+1510	&Menu
+1511	&Bitmap
+1512	&Nuevo Modulo
+1513	Modulo &Existente...
+1514	Añadir Barra de &Menu
+1515	Añadir &Dropdown
+1516	Añadir &Nuevo Modulo
+1517	Añadir Modulo &Existente...
+1518	&Cerrar Proyecto
+1519	Qu&itar Bitmap
+1520	Qui&tar Module
+1600	Editor de Menu
+1601	Mover &Arriba
+1602	Mover Abaj&o
+1603	Insertar
+1604	Añadir Barra de Menu&
+1605	Insertar Dro&pdown
+1606	Añadir D&ropdown
+1607	&Borrar
+1608	Mover Arriba
+1609	Move Abajo
+1610	Nombre:
+1611	&Captura:
+1612	Proc Nombre:
+1613	&Shortcut:
+1614	Menu &Layout
+1618	&Siguiente
+1619	&Cancelar
+1620	Una opción de Menú ha de tener un nombre en caption
+1621	Editar Nombre del Manu
+1622	Añadir Nuevo Menu
+1623	Asignar Nombre al Menu
+1624	Añadir Nuevo Menu
+1625	Asignar nombre a la Barra de Menu
+1626	Borrar Menu
+1627	¿Desea borrar este menu?
+1628	Asignar Nombre al Dropdown
+1629	Añadir nueva Barra de Menu
+1630	Añadir nuevo Dropdown
+2000	(None)
+2001	(Icon)
+2002	El Proyecto no contiene ningún bitmap con esa ID
+2050	Ya existe un Proyecto con ese nombre
+2051	Ya existe un Proyecto con ese nombre. ¿Sobreescribir?
+2052	Creator ID debe tener al menos un caracter en mayúsculas
+2100	 está designado como el Formulario por defecto del Proyecto. ¿Desea cambiarlo?
+2150	El Proyecto ya tiene un Formulario llamado: 
+2151	El origen y la dimensión del Formulario no son usados actualmente por NS Basic/CE
+2152	Los Formularios Modales no están disponibles actualmente en NS Basic/CE
+2200	Archivo>Cargar Imagen>Imagen Tipo (*.gif;*.jpg;*.bmp;*.ico;*.emf;*.wmf)|*.gif;*.jpg;*.bmp;*.ico;*.emf;*.wmf|Todos los archivos|*.*>bmp
+2250	El Proyecto ya tiene un bitmap llamado: 
+2300	Archivo>Cargar Módulo>Módulos (*.cod)|*.cod>cod
+2400	0 - Standard>1 - Standard Bold>2 - Large>3 - Symbol>4 - Symbol 11>5 - Symbol 7>6 - LED>7 - Large Bold
+2450	El Proyecto ya tiene un objeto llamado: 
+2550	El Proyecto no tiene un bitmap con ese ID de Recurso
+2551	El bitmap con ese ID de recurso ya está siendo usado
+2700	Otro objeto en este formulario con el mismo ID de Grupo ha sido seleccionado. ¿Está seguro que quiere que este objeto tenga el mismo ID de Grupo?
+2701	Otro objeto en este formulario con el mismo ID de Grupo ha sido seleccionado. ¿Está seguro que quiere seleccionar este objeto?
+2850	El número Máximo de Caracteres debe ser mayor que 0
+2851	Un campo no puede ser dinamicamente dimensionado con un scrollbar, quiere quitar el scrollbar?
+2852	Un campo debe tener múltiples líneas para usar un scrollbar, quiere quitar el scrollbar?
+2950	El número de items visibles debe ser mayor que 0
+3050	El Valor Mínimo debe ser menor que el Máximo
+3051	El valor debe estar comprendido entre el Mínimo y el Máximo
+3100	La lista de los Tipos de Recursos no está disponible actualmente en NS Basic/CE
+3101	Qu&itar Proyecto
+3102	Bor&rar Formulario
+3103	Error...
+3104	No se encuentra la cabecera de SUB o FUNCTION
+3105	La única sentencia a continuación de un SELECT CASE es CASE.
+3106	Se esperaba una variable o una constante numérica.
+3107	Se esperaba una variable de cadena o un literal entre comillas. Term and type:
+3108	No se encuentran los niveles requeridos de subscripting
+3109	Es más largo que el límite de: 
+3110	Los Subscripts deben ser constantes o variables numéricas.
+3111	El nombre usado como subscript no está definido.
+3112	Se esperaba un nombre de Etiqueta válido
+3113	Se experaba un nombre de sub rutina o función válido.
+3114	El Módulo ha excedido su tamaño límite.
+3115	Error de Sintaxis.
+3116	El codigo compilado excede el tamaño del buffer interno.
+3117	SUB o FUNCTION no definido:
+3118	Etiqueta no definida:
+3119	No se encuentra la sentencia END SUB o END FUNCTION.
+3120	Paréntesis a la derecha sin uno a la izquierda.
+3121	Paréntesis izquierdo falta tras el nombre de la función.
+3122	Falta el paréntesis derecho al final de la llamada a la función.
+3123	 necesita: 
+3124	 encontrado: 
+3125	Falta el paréntesis izquierdo al final de la llamada a la función.
+3126	Falta el paréntesis derecho al final de la llamada a la función.
+3127	Nombre no válido para el objeto tabla
+3128	No se encuentra un objeto con nombre
+3129	Nombre de Objeto no válido
+3130	El nombre de la Database no puede ser el mismo que el del Proyecto.
+3131	Se esperaba una variable Database nombre
+3132	Nobre de Tipo no válido
+3133	Las estructuras TYPE no pueden ser usadas como database keys
+3134	El Argumento no es un nombre de variable válido o literal.
+3135	Tipo de variable usado incorrecto:
+3136	El Argumento no es un nombre de variable válido o literal.
+3137	Tipo de variable usado incorrecto:
+3138	Tipo de variable usado incorrecto:
+3139	El Argumento no es un nombre de variable válido o literal.
+3140	Tipo de variable usado incorrecto:
+3141	Tipo de variable usado incorrecto:
+3142	Tipo de variable usado incorrecto:
+3143	El Argumento no es un nombre de variable válido o literal.
+3144	Tipo de variable usado incorrecto:
+3145	Tipo de variable usado incorrecto:
+3146	Tipo de variable usado incorrecto:
+3147	Tipo de variable usado incorrecto:
+3148	Número incorrecto de argumentos en la función
+3149	El Objeto no soporta ese método o propiedad
+3150	El resultado de la función debe ser asignado a una variable
+3151	Un IF o SELECT CASE no tienen ENDIF o END SELECT.
+3152	No se encuentra el paréntesis derecho:
+3153	Orden no identificada:
+3154	No se puede usar una constante a la izquierda de =.
+3155	A un CTypeDef solo se le puede asignar otro CTypeDef
+3156	Sólo se pueden asignar variables CTypeDef al mismo tipo de CDefTypeVariable.
+3157	Demasiados niveles de subscripting
+3158	Demasiados niveles de subscripting
+3159	Demasiados niveles de subscriptingg
+3160	Demasiados niveles de subscripting
+3161	Demasiados niveles de subscripting
+3162	El lado derecho e izquierdo de = deben ser del mismo tipo.
+3163	ENDIF sin IF
+3164	ENDWHILE sin WHILE
+3165	EXIT SUB no está permitido en una función
+3166	EXIT FUNCTION no está permitido en una sub rutina
+3167	EXIT SUB no está permitido en una función
+3168	IF sin ENDIF
+3169	EXIT FUNCTION no está permitido en una sub rutina
+3170	IF sin ENDIF
+3171	Variable ya definida
+3172	Nombre de TYPE ya definido como una variable
+3173	Nombre de TYPE ya definido.
+3174	Elemento de la estructura TYPE duplicado
+3175	Las definiciones de TYPE no pueden contener otras variables TYPE.
+3176	Nombre de objeto de librería duplicado: 
+3177	Imposible abrir el archivo de libreria .INF
+3178	Variable ya definida
+3179	Demasiados niveles de subscripting
+3180	Solo se pueden usar modificadores de la sentencia DIM con valore numericos.
+3181	Nombre de Función ua usado en sub rutina o función.
+3182	DEFINE no necesario y puede causar conflictos con definición de función.
+3183	El tipo de función debe ser definico con la cláusula AS
+3184	Previos SUB o FUNCTION sin sentencia EXIT
+3185	Nombre de Función ya usado como párrafo o en otra función.
+3186	Número de argumentos erróneo
+3187	El tipo de función debe ser definico con la cláusula AS
+3188	Nombre de función definido en dos sitios distintos
+3189	Previos SUB o FUNCTION sin sentencia EXIT
+3190	Nombre de sub rutina ya usado como párrafo o en otra función.
+3191	Nombre de sub rutina definido en dos sitios distintos.
+3192	Número de argumentos erróneo
+3193	No se puede usar CALL en la misma línea que IF
+3194	Nombre de sub rutina ya usado como párrafo o en otra función.
+3195	Número de argumentos erróneo.
+3196	Información extra al final de la sentencia.
+3197	El nombre dado no es un nombre válido de menú.
+3198	Sentencia demasiado compleja.
+3199	NEXT sin FOR.
+3200	CASE sin SELECT CASE.
+3201	CASE con valor no puede ir tras CASE ELSE
+3202	CASE sin valido dataname.
+3203	Sentencia demasiado compleja
+3204	END SELECT sin SELECT CASE.
+3205	SELECT CASE sin sentencias CASE
+3206	No se puede poner una sentencia IF en la misma linea.
+3207	Sentencia IF demasiado compleja.
+3208	Sentencia demasiado compleja.
+3209	Etiqueta duplicada.
+3210	El nombre de NEXTFORM debe ir entre comillas o ser una variable de cadena.
+3211	El nombre de un formulario debe ir entre comillas.
+3212	NEXTFORM hace referencia a un formulario desconocido: 
+3213	No se puede redibujar este tipo de objeto.
+3214	El subscript de un Table debe ser numerico
+3215	Tablas de transferencia deben tener el mismo tipo de datos.
+3216	La etiqueta no puede ser asignada antes que se muestre el objeto.
+3217	El Graffiti Shift Indicator no se puede ocultar.
+3218	El valor del texto no se puede asignar antes de mostrar el objeto.
+3219	El objeto no soporta esta acción.
+3220	Demasiados niveles de subscripting de CTypeDef.
+3221	Módulo demasiado grande.
+3222	Imposible abrir archivo .INF
+3223	Método de declaración no válido en archivo .INF:
+3224	Insuficientes variables aritméticas de trabajo.
+3225	Insuficientes variables de cadena de trabajo.
+3226	Insuficientes variables lógicas de trabajo.
+3227	El compilado continuará pero no ha tenido éxito.
+3228	Erroneo IF logico dentro del programa.
+3229	Error interno del compilador - encontrado código de función:
+3230	Compilando...
+3231	Guardando...
+3232	Downloading... Parando la aplicación actual...
+3233	Downloading...
+3234	Lanzando aplicación...
+3235	Error de Compilación
+3236	El Formulario tiene más de un Pushbutton asignado al mismo ID de grupo. Solo un miembro de un ID de grupo puede estar seleccionado.
+3237	Versión no válida de Formulario: 
+3238	Pegar no válido: versión de Formulario
+3239	Versión de menú no válida:
+3240	Pegar no válido: Tipo de Menu
+3241	Pegar no válido: Versión de Menu
+3242	Pegar no válido: Tipo de Barra de Menu
+3243	Pegar no válido: Versión de Barra de Menu
+3244	Versión de Barra de Menu no válida: 
+3245	Pegar no válido: Tipo de Dropdown
+3246	Pegar no válido: Versión de Dropdown
+3247	Versión de Dropdown no válida: 
+3248	Tipo de Objeto no válido: 
+3249	Versión de Objeto no válida: 
+3250	Pegar no válido: Tipo de Objeto
+3251	Pegar no válido: Versión de Objeto
+3252	Módulo no encontrado: 
+3253	El nombre de un Proyecto no puede contener caracteres double byte.
+3254	Error: No se puede reconocer el objeto formulario: 
+3255	Versión de Proyecto no válida: 
+3256	Imposible guardar Proyecto.
+3257	Imposible encontrar Módulo: 
+3258	Tipo de Objeto ilegal: 
+3259	Error cargando Proyecto: 
+3260	Bitmap no encontrado: 
+3261	Desea ocultar la Barra de Título?
+3262	Entre un nuevo título de formulario
+3263	¡Enhorabuena! Ahora dispone de la versión completa con licencia.
+3264	Retornando a Versión sin registrar. Por favor, introduzca su número de serie.
+3265	Esto es una versión Demo. No puede ser registrada. Por favor contacte con NS BASIC Corporation para conseguir una versión registrada.
+3266	¿Desea eliminar este bitmap?
+3267	Versión de Bitmap no válida: 
+3268	Pegar no válido: Tipo de Bitmap
+3269	Pegar no válido: Versión de Bitmap
+3270	Versión de Botón no válida: 
+3271	Pegar no válido: Tipo de Botón
+3272	Pegar no válido: Versión de Botón
+3273	Versión de CheckBox no válida: 
+3274	Pegar no válido: Tipo de Checkbox
+3275	Pegar no válido:  Versión de Checkbox
+3276	Invalid PushButton version: 
+3277	Pegar no válido: Tipo de PushButton
+3278	Pegar no válido: Versión de PushButton
+3279	Invalid Field Version: 
+3280	Pegar no válido: Tipo de Campo
+3281	Pegar no válido: Versión de Campo
+3282	Invalid Gadget Version: 
+3283	Pegar no válido: Tipo de Gadget
+3284	Pegar no válido: Versión de Gadget
+3285	Invalid Graffit Shift Indicator Version:
+3286	Pegar no válido: Tipo de Shift Indicator
+3287	Pegar no válido: Versión de Shift Indicator
+3288	Invalid Label Version: 
+3289	Pegar no válido: Tipo de Etiqueta
+3290	Pegar no válido: Versión de Etiqueta
+3291	Invalid List Version: 
+3292	Pegar no válido: Tipo de Lista
+3293	Pegar no válido: Versión de Lista
+3294	Invalid Popup Version: 
+3295	Pegar no válido: Tipo de Popup
+3296	Pegar no válido: Versión de Popup
+3297	Invalid Repeater Version: 
+3298	Pegar no válido: Tipo de Repetidor
+3299	Pegar no válido: Versión de Repetidor
+3300	Invalid Scrollbar Version: 
+3301	Pegar no válido: Tipo de Scrollbar
+3302	Pegar no válido: Versión de Scrollbar
+3303	Invalid Selector Version: 
+3304	Pegar no válido: Tipo de Selector
+3305	Pegar no válido: Versión de Selector
+3306	Se ha alcalnzado el final del área de búsqueda. ¿Desea comenzar desde el principio?
+3307	Versión de Archivo de Bitmap no válida:
+3308	Error: El Bitmap tiene 0 bytes: 
+3309	Bitmap no encontrado: 
+3310	NS Basic/CE Demo Edition ha expirado. Es el momento de comprarlo.
+3311	Diás que faltan 
+3312	¡Bienvenido a la versión NS Basic/CE's Demonstration Edition!
+3313	Clique el botón Buy para más información o para conseguir la última versión de NS Basic/CE con completo soporte y un manual de 200 páginas.
+3314	Esta es la versión completa de NS Basic/CE con algunas restricciones:
+3315	1. Las aplicaciones que cree sólo funcionarán durante 5 días.
+3316	2. Las aplicaciones sólo se pueden crear en su ordenador, no en el dispositivo.
+3317	3. La versión Demo sólo será funcional durante 30 días.
+3318	4. Las librerías compartidas no están incluídas.
+3319	Asegúrese de leer las notas de la versión para una información completa sobre cómo empezar.
+3320	Texto de búsqueda no encontrado.
+3321	Final de búsqueda alcanzado
+3322	Por favor selecciones un nombre de usuario.
+3323	El programa se instalará en el dispositivo CE durante la próxima sincronización con ActiveSynch.
+3324	No se encuentran nombres de usuarios para los que instalar los programas. Instalación cancelada.
+3325	No se encuentra un Navegador asociado.
+3326	URL fallida. No se abrió la página Web.
+3327	Proyecto ya abierto:
+3328	Imposible abrir el archivo de Proyecto: 
+3329	Guardar 
+3330	Proyecto ya abierto
+3331	El Módulo ha cambiado. ¿Desea guardar los cambios?
+3332	El Download fracas=F3
+3333	Imposible mostrar contenido de Ayuda.
+3334	Clique OK cuando el reinicio se haya completado.
+3335	Bajando... Copiando...
+3336	Download a Em CE fracasado.
+3337	No se ha seleccionado opción de download en Opciones de Compilar/Download
+3338	Han habido errores. La compilación no se ha completado.
+3339	Em CE pathname no válido.
+3340	La aplicación no puede comenzar en Em CE: 
+3341	Em CE no responde. ¿Está funcionando?
+3342	Algunos errores de compilación...
+3343	Listo para cargarlo en su dispositivo CE o Em CE
+3344	Compilado finalizado.
+3345	Han habido errores. El programa no será cargado.
+3346	Reinicie NS Basic para ver las nuevas opciones de idioma.
+3347	El objeto Bitmap tiene un ID de Recurso no válido:
+3348	MS Sans Serif
+3349	9
+3350	0
+3351	Tabla de variables sobre saturada. Reduzca el número de variables y literales.
+3352	Notas Técnicas
+3353	¿Imprimir sólo el módulo actual?
+3354	CASE debe ir seguido por una cadena, un literal numérico o un simple nombre de variable. Valores calculados o funciones no están permitidos.
+3355	Añadir Recurso
+3356	Quitar Recurso
+3357	Añadir Recurso
+3358	Archivos CE (*.prc;*.pdb;)|*.prc;*.pdb
+3359	Recurso
+3360	Recurso no encontrado: 
+3361	Error: Recurso > 64k:
+3362	El número de Decimales debe ser al menos 2 digitos menos que la longitud total.
+3363	El código del diseñador de Formularios ha sido modificado por el usuario.
+3364	El Proyecto ha de guardarse antes de ejecutarlo.
+3365	Imposible conectar con el Emulador.
+3366	The Big Red Toolbox
+3367	Comprueba la ruta de instalación en Herramientas..Opciones. No se puede copiar en:
+3368	ActiveSync no encontrado.
+3369	Programa copiado en el dispositivo pero no se ejecutará. Instale el runtime de NS Basic.
+3370	Ejecutar
+3371	Lanzar el emulador Em CE
+3372	ActiveSync el programa al dispositivo
+3373	Instaladores...
+3374	Instaladores adicionales
+3375	Lanzar Programa
+3376	En &Emulador
+3377	ActiveSync al &Dispositivo
+3378	&Ejecutar automáticamente
+3379	Ruta de instalación en el Dispositivo:
+3380	ActiveSync debe estar en marcha.
+3381	Archivo de instalación no encontrado. Busque y seleccione el archivo directamente:
+3382	No se puede abrir: El Archivo está encriptado.
+3383	Archivo no encontrado o Número de Serie no introducido.
+3384	NSBasic EmCE
+3385	Cargando...
+3386	Reinicio
+3387	Opciones...
+3388	Sobre NS Basic EmCE...
+3389	Opciones
+3390	Plataforma Windows CE
+3391	Pocket PC
+3392	Handheld PC
+3393	Usuario
+3394	Tamaño de pantalla
+3395	&Ancho:
+3396	A&lto:
+3397	Localización de Menu
+3398	&Arriba
+3399	&Abajo
+3400	OK
+3401	Cancelar
+3401	Aplicar
+3402	Versión 
+3403	Un Emulador en el ordenador para programas NS Basic/CE.
+3404	Imposible conectar con el IDE, ¿hay alguna otra copia funcionando?
+3406	Error añadiendo objeto.
+3407	Error en la petición de conexión.
+3408	Información del Sistema no disponible en este momento.
+3409	&None
+3410	\technotes\images\BigIcon.gif
+3411	qué nombre desea para este objeto?
+3412	Emulador debe estar funcionando.
+3413	Copiando al dispositivo:
+3414	Ejecutando: 
+3415	Imposible conseguir TypeLib info. Por favor reinstale.
+3416	Nombres de menu solo puede contener [A-Z, a-z, 0-9, _], y deben comenzar con una letra o subrayado.
+3417	Cada opcion del menu debe tener un nombre (use - como separador en el menu).
+3418	Opcion de menu saltada un nivel.
+3419	Error en Menú: Barra de título.
+3420	Imposible crear control:
+3421	El Formulario Factor debe tener nombre.
+3422	El ancho del Formulario Factor deber ser mayor que 0.
+3423	El alto del Formulario Factor deber ser mayor que 0.
+3424	Por favor reinstale NS Basic/CE.
+3425	MNSBCodeMax_Initialize recall.
+3426	Por favor, cierre el programa y pruebe de nuevo.
+3427	Imposible encontrar el Emulador, por favor reinstale de nuevo.
+3428	Error Cargando Proyecto.
+3429	Imprimir el módulo actual solamente?
+3430	Nombre:
+3431	&Ancho en Pixels:
+3432	&Alto en Pixels:
+3433	&Menu Arriba
+3434	&Formularios:
+3435	&Usar Fuente IDE
+3436	Lanzar &Virtual CE
+3437	V_Remote.exe no puede empezar en el dispositivo. ¿Está instalado correctamente?
+3438	v_ppc no puede comenzar en el ordenador.
+3439	&Lenguaje
+3440	Establecer dispositivo
+3441	Dispositivo registrado.
+3442	Registro de Dispositivo fallido. ¿Está funcionando ActiveSync?
+3443	Programa creado con una versión Demo de NS Basic/CE.
+3444	El programa ha expirado.
+3445	&Copiar a memoria
+3446	&ActiveX Control Manager
+3447	ActiveX Control Manager
+3448	No se puede abrir el archivo de entrada 
+3449	No se puede abrir el archivo de salida 
+3450	AddScript: BeginUpdateResourceA fallido.
+3451	AddScript: UpdateResourceA fallido.
+3452	AddScript: Icon fallido.
+3453	NS Basic/CE
+3454	Ha&cer
+3461	Imposible abrir 
+3462	¡Archivo de Proyecto corrupto!
+3463	Error Guardando 
+3464	Error Guardando Propiedades del Proyecto
+3465	Error Exportando el Proyecto
+3466	Error Guardando el archivo del Proyecto
+3467	¿Exportar los siguientes archivos?
+3468	Métrica de Pantalla
+3469	Guardar antes de Ejecutar
+3470	Guardar Módulo como
+3471	Hacer Proyecto
+3472	Imposible encontrar el archivo de recursos de cadenas
+3473	Léame
+3474	Idioma
+3475	
+3476	&Instalador
+3477	Borrar archivos generados
+3478	Idioma
+3479	
+3480	Bienvenido al instalador de %appname% de %companyname%. Siga las instrucciones en el dispositivo para completar la instalación.
+3481	Esta es la Licencia de Usuario Final (EULA) para %appname% de %companyname%. Por favor, consulte la política de licencias de %companyname% antes de aceptar y continuar.
+3482	Ha ocurrido un problema al generar el instalador. Por favor, examine los archivos "log" en el directorio actual para más información.
+3483	Archivo no encontrado: 
+3484	Crear archivo CAB comprimido
+3485	No borrar archivo CAB
+3486	Instalador creado correctamente: 
+3487	Plataforma
+3488	Información dispositivo
+3489	Tutoriales
+3490	Abrir proyecto de ejemplo...
+3491	Tipo de procesador: 
+3492	Tipo de dispositivo: 
+3493	Información OEM: 
+3494	Versión de dispositivo: 
+3495	Último dispositivo conectado:

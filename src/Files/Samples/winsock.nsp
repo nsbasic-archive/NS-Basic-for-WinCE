@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "winsock"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\winsock.nsb"
+Project.AddModule "main", ".\winsock.nsb"
+Project.AddResourceFile "MSCEWinSock","{controls}\MSCEWinSock.dll","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

@@ -1,0 +1,207 @@
+// Desk.idl : IDL source for Desk.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Desk.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+	[
+		object,
+		uuid(BF531F0F-5139-408A-A56D-E62B03F230EE),
+		dual,
+		helpstring("INSComDlgFlags Interface"),
+		pointer_default(unique)
+	]
+	interface INSComDlgFlags : IDispatch
+	{
+		[id(1), helpstring("method Clear")] HRESULT Clear();
+		[propget, id(2), helpstring("property MultiSelect")] HRESULT MultiSelect([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(2), helpstring("property MultiSelect")] HRESULT MultiSelect([in] VARIANT_BOOL newVal);
+		[propget, id(3), helpstring("property CreatePrompt")] HRESULT CreatePrompt([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(3), helpstring("property CreatePrompt")] HRESULT CreatePrompt([in] VARIANT_BOOL newVal);
+		[propget, id(4), helpstring("property ExtensionDifferent")] HRESULT ExtensionDifferent([out, retval] VARIANT_BOOL *pVal);
+		[propget, id(5), helpstring("property FileMustExist")] HRESULT FileMustExist([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(5), helpstring("property FileMustExist")] HRESULT FileMustExist([in] VARIANT_BOOL newVal);
+		[propget, id(6), helpstring("property HelpButton")] HRESULT HelpButton([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(6), helpstring("property HelpButton")] HRESULT HelpButton([in] VARIANT_BOOL newVal);
+		[propget, id(7), helpstring("property HideReadOnly")] HRESULT HideReadOnly([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(7), helpstring("property HideReadOnly")] HRESULT HideReadOnly([in] VARIANT_BOOL newVal);
+		[propget, id(8), helpstring("property NoChangeDir")] HRESULT NoChangeDir([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(8), helpstring("property NoChangeDir")] HRESULT NoChangeDir([in] VARIANT_BOOL newVal);
+		[propget, id(9), helpstring("property NoDereferenceLinks")] HRESULT NoDereferenceLinks([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(9), helpstring("property NoDereferenceLinks")] HRESULT NoDereferenceLinks([in] VARIANT_BOOL newVal);
+		[propget, id(10), helpstring("property NoReadOnlyReturn")] HRESULT NoReadOnlyReturn([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(10), helpstring("property NoReadOnlyReturn")] HRESULT NoReadOnlyReturn([in] VARIANT_BOOL newVal);
+		[propget, id(11), helpstring("property NoValidate")] HRESULT NoValidate([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(11), helpstring("property NoValidate")] HRESULT NoValidate([in] VARIANT_BOOL newVal);
+		[propget, id(12), helpstring("property OverwritePrompt")] HRESULT OverwritePrompt([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(12), helpstring("property OverwritePrompt")] HRESULT OverwritePrompt([in] VARIANT_BOOL newVal);
+		[propget, id(13), helpstring("property PathMustExist")] HRESULT PathMustExist([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(13), helpstring("property PathMustExist")] HRESULT PathMustExist([in] VARIANT_BOOL newVal);
+		[propget, id(14), helpstring("property ReadOnly")] HRESULT ReadOnly([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(14), helpstring("property ReadOnly")] HRESULT ReadOnly([in] VARIANT_BOOL newVal);
+		[propget, id(15), helpstring("property ShareAware")] HRESULT ShareAware([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(15), helpstring("property ShareAware")] HRESULT ShareAware([in] VARIANT_BOOL newVal);
+		[propget, id(16), helpstring("property FullOpen")] HRESULT FullOpen([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(16), helpstring("property FullOpen")] HRESULT FullOpen([in] VARIANT_BOOL newVal);
+		[propget, id(17), helpstring("property PreventFullOpen")] HRESULT PreventFullOpen([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(17), helpstring("property PreventFullOpen")] HRESULT PreventFullOpen([in] VARIANT_BOOL newVal);
+		[propget, id(18), helpstring("property RGBInit")] HRESULT RGBInit([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(18), helpstring("property RGBInit")] HRESULT RGBInit([in] VARIANT_BOOL newVal);
+		[propget, id(19), helpstring("property ANSIOnly")] HRESULT ANSIOnly([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(19), helpstring("property ANSIOnly")] HRESULT ANSIOnly([in] VARIANT_BOOL newVal);
+		[propget, id(20), helpstring("property Effects")] HRESULT Effects([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(20), helpstring("property Effects")] HRESULT Effects([in] VARIANT_BOOL newVal);
+		[propget, id(21), helpstring("property FixedPitchOnly")] HRESULT FixedPitchOnly([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(21), helpstring("property FixedPitchOnly")] HRESULT FixedPitchOnly([in] VARIANT_BOOL newVal);
+		[propget, id(22), helpstring("property ForceFontExist")] HRESULT ForceFontExist([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(22), helpstring("property ForceFontExist")] HRESULT ForceFontExist([in] VARIANT_BOOL newVal);
+		[propget, id(23), helpstring("property LimitSize")] HRESULT LimitSize([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(23), helpstring("property LimitSize")] HRESULT LimitSize([in] VARIANT_BOOL newVal);
+		[propget, id(24), helpstring("property NoFaceSel")] HRESULT NoFaceSel([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(24), helpstring("property NoFaceSel")] HRESULT NoFaceSel([in] VARIANT_BOOL newVal);
+		[propget, id(25), helpstring("property NoSimulations")] HRESULT NoSimulations([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(25), helpstring("property NoSimulations")] HRESULT NoSimulations([in] VARIANT_BOOL newVal);
+		[propget, id(26), helpstring("property NoSizeSel")] HRESULT NoSizeSel([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(26), helpstring("property NoSizeSel")] HRESULT NoSizeSel([in] VARIANT_BOOL newVal);
+		[propget, id(27), helpstring("property NoStyleSel")] HRESULT NoStyleSel([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(27), helpstring("property NoStyleSel")] HRESULT NoStyleSel([in] VARIANT_BOOL newVal);
+		[propget, id(28), helpstring("property NoVectorFonts")] HRESULT NoVectorFonts([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(28), helpstring("property NoVectorFonts")] HRESULT NoVectorFonts([in] VARIANT_BOOL newVal);
+		[propget, id(29), helpstring("property ScalableOnly")] HRESULT ScalableOnly([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(29), helpstring("property ScalableOnly")] HRESULT ScalableOnly([in] VARIANT_BOOL newVal);
+		[propget, id(30), helpstring("property ScreenFonts")] HRESULT ScreenFonts([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(30), helpstring("property ScreenFonts")] HRESULT ScreenFonts([in] VARIANT_BOOL newVal);
+		[propget, id(31), helpstring("property TTOnly")] HRESULT TTOnly([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(31), helpstring("property TTOnly")] HRESULT TTOnly([in] VARIANT_BOOL newVal);
+		[propget, id(32), helpstring("property WYSIWYG")] HRESULT WYSIWYG([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(32), helpstring("property WYSIWYG")] HRESULT WYSIWYG([in] VARIANT_BOOL newVal);
+		[id(33), helpstring("method SetDefaults")] HRESULT SetDefaults();
+		[propget, id(34), helpstring("property PrinterFonts")] HRESULT PrinterFonts([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(34), helpstring("property PrinterFonts")] HRESULT PrinterFonts([in] VARIANT_BOOL newVal);
+		[propget, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([out, retval] long *pVal);
+		[propput, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([in] long newVal);
+	};
+    [
+		object,
+		uuid(71480CE5-596C-4045-8AED-036752C8CC0A),
+		dual,
+		helpstring("IComDlgMiniEnum Interface"),
+		pointer_default(unique)
+	]
+	interface IComDlgMiniEnum : IDispatch
+	{
+        [propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] long lIndex, [out, retval] VARIANT *pVal);
+		[propget, id(2), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown* *pVal);
+	};
+
+    [
+		object,
+		uuid(E7C7890C-6667-4EF1-8D64-CDC04BDEDE14),
+		dual,
+		helpstring("INSComDlg Interface"),
+		pointer_default(unique)
+	]
+	interface INSComDlg : IDispatch
+	{
+		[propget, id(1), helpstring("property FileName")] HRESULT FileName([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property FileName")] HRESULT FileName([in] BSTR newVal);
+		[propget, id(2), helpstring("property DialogTitle")] HRESULT DialogTitle([out, retval] BSTR *pVal);
+		[propput, id(2), helpstring("property DialogTitle")] HRESULT DialogTitle([in] BSTR newVal);
+		[propget, id(3), helpstring("property Filter")] HRESULT Filter([out, retval] BSTR *pVal);
+		[propput, id(3), helpstring("property Filter")] HRESULT Filter([in] BSTR newVal);
+		[propget, id(4), helpstring("property DefaultExt")] HRESULT DefaultExt([out, retval] BSTR *pVal);
+		[propput, id(4), helpstring("property DefaultExt")] HRESULT DefaultExt([in] BSTR newVal);
+		[propget, id(5), helpstring("property InitDir")] HRESULT InitDir([out, retval] BSTR *pVal);
+		[propput, id(5), helpstring("property InitDir")] HRESULT InitDir([in] BSTR newVal);
+		[propget, id(6), helpstring("property Color")] HRESULT Color([out, retval] OLE_COLOR *pVal);
+		[propput, id(6), helpstring("property Color")] HRESULT Color([in] OLE_COLOR newVal);
+		[propget, id(7), helpstring("property Flags")] HRESULT Flags([out, retval] INSComDlgFlags **pVal);
+		[propget, id(8), helpstring("property FontName")] HRESULT FontName([out, retval] BSTR *pVal);
+		[propput, id(8), helpstring("property FontName")] HRESULT FontName([in] BSTR newVal);
+		[propget, id(9), helpstring("property FontBold")] HRESULT FontBold([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(9), helpstring("property FontBold")] HRESULT FontBold([in] VARIANT_BOOL newVal);
+		[propget, id(10), helpstring("property FontItalic")] HRESULT FontItalic([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(10), helpstring("property FontItalic")] HRESULT FontItalic([in] VARIANT_BOOL newVal);
+		[propget, id(11), helpstring("property FontStrikeThru")] HRESULT FontStrikeThru([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(11), helpstring("property FontStrikeThru")] HRESULT FontStrikeThru([in] VARIANT_BOOL newVal);
+		[propget, id(12), helpstring("property FontUnderLine")] HRESULT FontUnderLine([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(12), helpstring("property FontUnderLine")] HRESULT FontUnderLine([in] VARIANT_BOOL newVal);
+		[propget, id(13), helpstring("property Min")] HRESULT Min([out, retval] long *pVal);
+		[propput, id(13), helpstring("property Min")] HRESULT Min([in] long newVal);
+		[propget, id(14), helpstring("property Max")] HRESULT Max([out, retval] long *pVal);
+		[propput, id(14), helpstring("property Max")] HRESULT Max([in] long newVal);
+		[propget, id(15), helpstring("property CancelError")] HRESULT CancelError([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(15), helpstring("property CancelError")] HRESULT CancelError([in] VARIANT_BOOL newVal);
+		[propget, id(16), helpstring("property FilterIndex")] HRESULT FilterIndex([out, retval] long *pVal);
+		[propput, id(16), helpstring("property FilterIndex")] HRESULT FilterIndex([in] long newVal);
+		[propget, id(17), helpstring("property FontSize")] HRESULT FontSize([out, retval] double *pVal);
+		[propput, id(17), helpstring("property FontSize")] HRESULT FontSize([in] double newVal);
+		[propget, id(18), helpstring("property FileTitle")] HRESULT FileTitle([out, retval] BSTR *pVal);
+		[propput, id(18), helpstring("property FileTitle")] HRESULT FileTitle([in] BSTR newVal);
+		[id(19), helpstring("method ShowOpen")] HRESULT ShowOpen([out,retval] VARIANT_BOOL* pbResult);
+		[id(20), helpstring("method ShowSave")] HRESULT ShowSave([out,retval] VARIANT_BOOL* pbResult);
+		[id(21), helpstring("method ShowColor")] HRESULT ShowColor([out,retval] VARIANT_BOOL* pbResult);
+		[id(22), helpstring("method ShowFont")] HRESULT ShowFont([out,retval] VARIANT_BOOL* pbResult);
+		[propget, id(23), helpstring("property Charset")] HRESULT Charset([out, retval] long *pVal);
+		[propput, id(23), helpstring("property Charset")] HRESULT Charset([in] long newVal);
+		[propget, id(24), helpstring("property Action")] HRESULT Action([out, retval] VARIANT *pVal);
+		[propput, id(24), helpstring("property Action")] HRESULT Action([in] VARIANT newVal);
+		[propget, id(25), helpstring("property FileNames")] HRESULT FileNames([out, retval] IComDlgMiniEnum **pVal);
+		[id(26), helpstring("method Reset")] HRESULT Reset([in,optional] VARIANT vAction);
+		[propget, id(27), helpstring("property CustomColors")] HRESULT CustomColors([in] long index, [out, retval] OLE_COLOR *pVal);
+		[propput, id(27), helpstring("property CustomColors")] HRESULT CustomColors([in] long index, [in] OLE_COLOR newVal);
+		[propget, id(28), helpstring("property IsPocketPC")] HRESULT IsPocketPC([out, retval] VARIANT_BOOL *pVal);
+		[propget, id(29), helpstring("property HelpFile")] HRESULT HelpFile([out, retval] BSTR *pVal);
+		[propput, id(29), helpstring("property HelpFile")] HRESULT HelpFile([in] BSTR newVal);
+		[propget, id(30), helpstring("property HelpCommand")] HRESULT HelpCommand([out, retval] long *pVal);
+		[propput, id(30), helpstring("property HelpCommand")] HRESULT HelpCommand([in] long newVal);
+		[propget, id(31), helpstring("property HelpContext")] HRESULT HelpContext([out, retval] VARIANT *pVal);
+		[propput, id(31), helpstring("property HelpContext")] HRESULT HelpContext([in] VARIANT newVal);
+		[propget, id(32), helpstring("property HelpKey")] HRESULT HelpKey([out, retval] BSTR *pVal);
+		[propput, id(32), helpstring("property HelpKey")] HRESULT HelpKey([in] BSTR newVal);
+		[id(33), helpstring("method ShowHelp")] HRESULT ShowHelp();
+	};
+	
+
+[
+	uuid(6A6D1995-8DDD-4262-8C6A-126F176C1362),
+	version(1.0),
+	helpstring("NSBASIC Common Dialogs")
+]
+library NSBComDlgLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(9DF344D4-66FB-4660-A569-AC8586CFE9FF),
+		helpstring("NSBasic NSComDlg Class"),
+        version(1.0),
+        control
+	]
+	coclass NSComDlg
+	{
+		[default] interface INSComDlg;
+	};
+	[
+		uuid(772336BC-25F1-4EC5-A79C-605960D277E6),
+		helpstring("NSBasic NSComDlgFlags Class")
+	]
+	coclass NSComDlgFlags
+	{
+		[default] interface INSComDlgFlags;
+	};
+	[
+		uuid(5E1D838C-8B6B-492B-9C44-076B1357C934),
+		helpstring("NSBasic ComDlgMiniEnum Class")
+	]
+	coclass ComDlgMiniEnum
+	{
+		[default] interface IComDlgMiniEnum;
+	};
+};

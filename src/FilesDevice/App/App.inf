@@ -1,0 +1,104 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%Provider%
+CESignature="$Windows CE$"
+
+[CEStrings]
+AppName = "My Great App"
+InstallDir = %CE1%
+
+[CEDevice.WM]
+ProcessorType = 2577; StrongArm processors
+VersionMin = 4.2
+VersionMax = 100.0
+BuildMax = 0xE0000000
+
+
+[SourceDisksNames]
+
+[SourceDisksNames.WM]
+1 =, "App files",,e:\NSBCE8\FilesDevice\App
+2 =, "ARM files",,e:\NSBCE8\800\WM
+
+
+; CPU-independent source files...
+[SourceDisksFiles]
+
+; CPU-specific source files...
+basic.exe = 2
+nscepicturebox.ocx = 2
+Vbscript.dll = 2
+Project1.exe = 1
+
+[DefaultInstall]
+CopyFiles = Files.NSBASIC,Files.Windows,Files.App
+AddReg = AddRegistry.VBScript, AddRegistry.All
+CEShortcuts =Shortcuts.Menu
+CESelfRegister=nscepicturebox.ocx
+
+; Ouput directories for files & shortcuts
+[DestinationDirs]
+Files.NSBASIC  = 	0,%CE1%\nsbasic
+Files.Windows  = 	0,%CE2%
+Files.App      =	0,%CE1%\%Provider%
+DefaultDestDir = 	0,%InstallDir%
+
+; Install into \Program Files\nsbasic"
+[Files.NSBasic]
+"basic.exe"
+
+; Install into \Windows
+[Files.Windows]
+"nscepicturebox.ocx",,,0x00000000
+"vbscript.dll",,,0x00000010
+
+; Install into \Program Files\CompanyName
+[Files.App]
+"project1.exe",,,0,00000000
+
+; Install into \windows\Programs
+[Shortcuts.Menu]
+%AppName%,0,"Project1.exe",%CE11%
+
+[AddRegistry.All]
+HKCR, ".nsb", "Default", 0, "nsbfile"
+HKCR, "nsbfile", "Default", 0, "NS Basic/CE Program"
+HKCR, "nsbfile\DefaultIcon", "Default", 0, "%InstallDir%\nsbasic\basic.exe,0"
+HKCR, "nsbfile\Shell\Open\Command", "Default", 0, """%InstallDir%\nsbasic\basic.exe"" ""%%1"""
+
+[AddRegistry.VBScript]
+;This is needed for VBScript.dll on the Symbol MC3000, which does not register properly
+HKCR, "CLSID","{B54F3742-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language Authoring"
+HKCR, "CLSID","{B54F3741-5B07-11CF-A4B0-00AA004A55E8}",0,"VB Script Language"
+
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32", "ThreadingModel", 0, "both" ;VBScript
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3741-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript"
+
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}","InprocServer32",0,"\windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\InprocServer32","Default",0,"\Windows\vbscript.dll"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\OLEScript","Default",0,"(Value not set)"
+HKCR, "CLSID\{B54F3742-5B07-11CF-A4B0-00AA004A55E8}\ProgID","Default",0,"VBScript Author"
+
+HKCR, "VBS", "Default", 0, "VB Script Language"
+HKCR, "VBS\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBS Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBS Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBS Author\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript", "Default", 0, "VB Script Language"
+HKCR, "VBScript\CLSID","Default", 0, "{B54F3741-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript\OLEScript","Default", 0, "(value not set)"
+
+HKCR, "VBScript Author", "Default", 0, "VB Script Language Authoring"
+HKCR, "VBScript Author\CLSID","Default", 0, "{B54F3742-5B07-11CF-A4B0-00AA004A55E8}"
+HKCR, "VBScript Author\OLEScript","Default", 0, "(value not set)"
+
+[Strings]
+Provider = "MyCo"

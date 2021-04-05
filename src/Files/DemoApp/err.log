@@ -1,0 +1,1 @@
+Warning: Section [DestinationDirs] key "Files.Windows" is not using the string "%InstallDir%"

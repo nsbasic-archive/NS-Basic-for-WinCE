@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NSBComDlg">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ShowOpen">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+		<param name="Name" value="Pocket PC specifics">
+		<param name="Local" value="cenotes.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ShowSave">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+		<param name="Name" value="Pocket PC specifics">
+		<param name="Local" value="cenotes.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ShowColor">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ShowFont">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Reset">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FileName">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DialogTitle">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Filter">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DefaultExt">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="InitDir">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Color">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Flags">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FontName">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FontBold">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FontItalic">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FontStrikeThru">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FontUnderLine">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Min">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Max">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CancelError">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FilterIndex">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FontSize">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FileTitle">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Charset">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Action">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FileNames">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CustomColors">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="MultiSelect">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CreatePrompt">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ExtensionDifferent">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FileMustExist">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="HelpButton">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="HideReadOnly">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoChangeDir">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoDereferenceLinks">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoReadOnlyReturn">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoValidate">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="OverwritePrompt">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PathMustExist">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ReadOnly">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ShareAware">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FullOpen">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PreventFullOpen">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RGBInit">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ANSIOnly">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Effects">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FixedPitchOnly">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ForceFontExist">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="LimitSize">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoFaceSel">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoSimulations">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoSizeSel">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoStyleSel">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NoVectorFonts">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ScalableOnly">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ScreenFonts">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="TTOnly">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="WYSIWYG">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SetDefaults">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PrinterFonts">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Value">
+		<param name="Name" value="ComDlgFlags object">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Creation">
+		<param name="Name" value="Common dialogs overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Prog IDs">
+		<param name="Name" value="Common dialogs overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Compatibility">
+		<param name="Name" value="Common dialogs overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Common dialogs">
+		<param name="Name" value="Common dialogs overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Pocket PC notes">
+		<param name="Name" value="Pocket PC specifics">
+		<param name="Local" value="cenotes.htm">
+    </OBJECT>
+</UL>
+</BODY></HTML>

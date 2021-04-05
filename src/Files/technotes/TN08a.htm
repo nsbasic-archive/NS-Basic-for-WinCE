@@ -1,0 +1,622 @@
+<HTML>
+<HEAD>
+<TITLE>TN08a: Files with Records and Fields</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 08a: Files with Records and Fields</h2>
+	  <h5>
+      <H3>October 1, 2009</H3>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<p>This control provides an easy way to access files which have their data organized in records and fields. It is included in NS Basic. The information in the document is for the most part copied from the official <a href="http://www.newobjects.com/pages/ndl/ndl.asp?file=StoragesAndFiles/SFRecord.htm"> documentation</a> on NewObject's website. For further information, please refer to the official documentation. The information on this page is copyright ZmeY soft and published with their permission.
+
+<p>Code written using this control is interoperable between both NS Basic/CE and NS Basic/Desktop.
+
+<p>If the data in your file is organized as one or more records, with a single string or binary data in each record, use the File I/O control in Tech Note 08. If your file has a fixed format to each record, File I/O with fields as described in this Tech Note should be used.
+
+<p>The methods and properties documented here are a subset of the full capabilities of this control. To see the rest of the features, look at the full documentation from NewObjects. The features not included here will still work well with NS Basic, but are for advanced users.
+
+<p>The Record object defines a record of values of well-known types. This record then can be saved or read to/from any file. The effect is a technique very similar to the technique used with the DB tables but applicable to files. If you ever heard of or used flat files or files with random access - this is the way to do so.</p> 
+
+<p>How does this work? The script defines a record - i.e. defines its fields and defines their types and sizes. With types known for each field the size of the entire record can be calculated - e.g. how many bytes it will occupy.
+
+<p>Then the NS Basic program is able to set the record's fields with values or read them. To read/write the record from/to file or other file the application connects the Record object with the file (see BindTo method). With this, the application sees the file as set of records. The application can move the current position to any record and read or write it. Thus the file behaves as table of records. It is similar to the tables in a DB, but note the difference - the record definition is created by the script and not obtained from the file (of course - if the file contains such information the program could read it and create the record).</p>
+
+<p>Before any of the items below can be used, the file needs to be opened. Do this using the <a href="TN09.htm#OpenFile.htm" target="_top">OpenFile</a> method in the <a href="TN09.htm" target="_top">File System Control</a>.
+        
+<p><b>Installation:</b> This control requires that NewObjectsPack1.dll be installed and registered.<br>
+<p><b>Creation:</b> <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set File = FS.OpenFile("C:\MyFile.txt")
+
+</pre>
+
+        <table border="0" cellspacing="1">
+          <tr>
+            <td valign="top" align="left" colspan="3">Record definition members</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/prop_r.GIF" width="17"
+            height="14"></td>
+            <td valign="top" align="left"><b><a href="#Field.htm">Field</a> (default)</b></td>
+            <td valign="top" align="left">Access field of the record</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/prop_r.GIF" width="17"
+            height="14"></td>
+            <td valign="top" align="left"><b><a href="#Count.htm">Count</a></b></td>
+            <td valign="top" align="left">Count of the fields in the record</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#AddField.htm">AddField</a></b></td>
+            <td valign="top" align="left">Create and add a new field to the record</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#Remove.htm">Remove</a></b></td>
+            <td valign="top" align="left">Remove a field from the record</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" colspan="3">Connection to file (and filter)</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#BindTo.htm">BindTo</a></b></td>
+            <td valign="top" align="left">Bind the record to a file through a filter specified or
+            using the default filter.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#ReBind.htm">ReBind</a></b></td>
+            <td valign="top" align="left">Rebind to the file. If come fields are
+            added/removed/changed</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#UnBind.htm">UnBind</a></b></td>
+            <td valign="top" align="left">Remove the binding.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" colspan="3">Random access (DB table-like) reading and
+            writing</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/prop_rw.gif" width="36"
+            height="14"></td>
+            <td valign="top" align="left"><b><a href="#RecordCount.htm">RecordCount</a></b></td>
+            <td valign="top" align="left">The total records in the file</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><a href="#Move.htm"><b>Move, MoveNext, MovePrev,
+            MoveFirst, MoveLast</b></a></td>
+            <td valign="top" align="left">Recordset like operations.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#ReRead.htm">ReRead</a></b></td>
+            <td valign="top" align="left">Rereads the record from the file.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#Update.htm">Update</a></b></td>
+            <td valign="top" align="left">Saves (updates) the record to the file.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left" colspan="3">Sequential read/write</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#Read.htm">Read</a></b></td>
+            <td valign="top" align="left">Reads the record from the file. The new position is
+            immediately after the record.&nbsp;</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img border="0" src="images/method.gif" width="17"
+            height="16"></td>
+            <td valign="top" align="left"><b><a href="#Write.htm">Write</a></b></td>
+            <td valign="top" align="left">Writes the record to the file. The new position is after
+            the record.</td>
+          </tr>
+        </table>
+        
+<HR noshade size="1"><A Name="Field.htm">
+<h4>Field</h4> <p>Indexed property that returns a field from the record.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>Set variable = Record.Field(index)<br>
+          Record.Field(index) = value
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>index - String or number. The name or index of the field in the
+          record, starting from 1.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote><pre>
+' Will list the fields names and their values
+For I = 1 To Record.Count
+   MsgBox record.Field(I).Name &amp; &quot; = &quot; &amp; record.Field(I)
+Next</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>This property gives the application access to the previously added fields into the
+          record. It supports names and numeric indexes therefore the fields can be accessed
+          sequentially and directly (by known name) as needed.</p>
+        </blockquote>
+        
+<HR noshade size="1"><A Name="Count.htm">
+<h4>Count</h4><p>Returns the
+        count of the fields in the record.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = Record.Count</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Record.AddField &quot;FirstName&quot;, vbString, 20
+Record.AddField &quot;LastName&quot;, vbString, 20
+MsgBox &quot;Field count &quot; &amp; Record.Count
+' Will return 2</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote></blockquote>   
+        
+<HR noshade size="1"><A Name="AddField.htm">
+ <h4>AddField</h4>
+ <p>Creates and adds new field to the record. This methods provides a
+          convenient way to construct a record when the
+          fields are well-known and several fields are to be added sequentially.
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>Record.Add Name, Type[, Size]</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>Name - name of the new field (string)</p>
+          <p>Type - The type of the new field. One of the vbXXtype
+          constants for example (see VarType function in NS Basic Language Reference for list of
+          the constants). </p>
+          <p>Size - Optional integer value that specifies the
+          size/maximum size of the field value. Required only for data types
+          like strings.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+  'Add a field named &quot;Title&quot; of String type with size 128 characters
+  Record.AddField &quot;Title&quot;, vbString, 128
+  
+  'Add a field named &quot;Age&quot; of type Integer (2 bytes integer)
+  Record.AddField &quot;Age&quot;, vbInt
+  <pre></blockquote>
+        <h4>Remarks:</h4>
+        <blockquote></blockquote>
+        
+        
+<HR noshade size="1"><A Name="Remove.htm">
+<h4>Remove</h4><p>Removes a
+        field from the record.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>Record.Remove index</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>index - String or numeric. Field name or index to remove.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <p>Suppose the file contains one type of records up to a certain position and another after
+          it.</p>
+          <pre>
+  AddObject "newObjects.utilctls.SFMain", "FS"
+  AddObject "newObjects.utilctls.SFRecord", "Record"
+  Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+  Record.AddField &quot;FirstName&quot;, vbString, 20
+  Record.AddField &quot;LastName&quot;, vbString, 20
+  Record.BindTo file
+  Record.MoveFirst
+  For I = 1 To 4
+  &nbsp; ' Do something, display records etc.
+  &nbsp; Record.MoveNext
+  Next
+  Record.Remove &quot;FirstName&quot;
+  Record.ReBind
+  For I = 1 To 4
+  &nbsp; ' Do something, display records etc.
+  &nbsp; Record.MoveNext
+  Next
+  ' 4 records containing first and last name are read and then
+  ' 4 records containing only last name</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>As in the other cases after changing the record structure/settings ReBind must be
+          called in order to allow the filter to re-calculate the record representation. Of course
+          the modified record can be attached to another file - by calling BindTo with the other
+          file as parameter.</p>
+        </blockquote>        
+        
+<HR noshade size="1"><A Name="BindTo.htm">
+<h4>BindTo</h4><p>Binds
+          the Record to a file. Binding occurs through the
+          default filter or through an optional filter.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>Record.BindTo File [, filter]</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>Record - an initialized SFRecord Record. There is no
+          sense to invoke BindTo without some Fields added to the record.</p>
+          <p>File - An object representing a file. </p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;A&quot;, vbString, 20
+Record.AddField &quot;B&quot;, vbLong
+Record.AddField &quot;C&quot;, vbDouble
+Record.BindTo file&nbsp;</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>Binding creates or/and attaches a record to a file.
+          
+          <p>Be sure to UnBind before closing the file.
+          
+          <p>If any settings of the record are changed the ReBind
+          method must be called in order to calculate the correct size of the
+          record.</p>
+          
+          <p>The optional <i>filter</i> argument provides additional specifications on how the data is read and written. You can read additional documentation <a href="http://www.newobjects.com/pages/ndl/ndl.asp?file=StoragesAndFiles/SFFilter.htm" target="_top">here</a>.
+        </blockquote>
+        
+ <HR noshade size="1"><A Name="ReBind.htm">
+ <h4>ReBind</h4><p>Re-binds the
+        record to the same file with the same filter. Can be called only if BindTo was called
+        before.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>Record.ReBind</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>See Read.
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>ReBind must be invoked any time a change is made to the record object
+          settings. This
+          excludes the changes of the field values, of course. </p>
+          <p>Be sure to UnBind before closing the file.
+          
+        </blockquote>      
+
+ <HR noshade size="1"><A Name="UnBind.htm">
+ <h4>UnBind</h4><p>Removes the binding from the record.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>Record.UnBind</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>See Read.
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>This must be called when you close the file, otherwise it will still be around when you open it again.</p>
+        </blockquote>      
+
+ <HR noshade size="1"><A Name="RecordCount.htm">
+ <h4>RecordCount</h4>
+ <p>When read this property returns the total count of the records in the
+        file. They are calculated over the current file size, the size of the record
+        and the beginning of the file.</p>
+        <p>When written the property sets the file size to the number of records specified. Therefore setting RecordCount to a number less
+        than the current actual record count will truncate the file. Respectively
+        setting it
+        to a greater value will extend the file.</p>
+        <p>Can be called only if the record has been previously bound to a file.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = Record.RecordCount</p>
+          <p>Record.RecordCount = variable</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>variable - the number of records in the file.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;FirstName&quot;, vbString, 20
+Record.AddField &quot;LastName&quot;, vbString, 20
+Record.BindTo file
+MsgBox &quot;The file contains &quot; &amp; Record.RecordCount &amp; &quot; records&quot;</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>The RecordCount property gets/sets the number of the records in the file calculated
+          over the file size.
+        </blockquote>       
+
+<HR noshade size="1"><A Name="Move.htm">
+<H4>Move, MoveFirst, MoveNext, MovePrev, MoveLast</h4>
+<p>Record
+        based navigation through the file. These methods supply features similar to the DB
+        recordsets. The position in the file is changed to the record specified and the record
+        object is read (filled with the data contained in the file at the position). Previously
+        contained data in the record is lost (if not explicitly written before the move
+        operation).</p>
+
+        <p><strong>MoveFirst</strong> - moves current position to the first record<br>
+        <strong>MoveLast</strong> - moves the position over the last record (or the
+        beginning of the file if empty)<br>
+        <strong>MoveNext</strong> - moves to the next record<br>
+        <strong>MovePrev</strong> - moves to the previous record</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = Record.Move pos, origin<br>
+          variable = Record.MoveNext<br>
+          variable = Record.MovePrev<br>
+          variable = Record.MoveLast<br>
+          variable = Record.MoveFirst</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>variable - Boolean. Indicates the success of the operation - True
+          means success, False means failure.</p>
+          <p>pos - Position in the file - index of the record in the file where
+          the record object is to be positioned.</p>
+          <p>origin - How the <i>pos</i> is
+          calculated against:</p>
+          <blockquote>
+            <p>0 - the beginning of the file <br>
+            1 - the current record. E.g. negative <i>pos</i> will move the record backwards
+            and positive will move it forward.<br>
+            2 - the end of the file.</p>
+          </blockquote>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <p>Example 1:</p>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;FirstName&quot;, vbString, 20
+Record.AddField &quot;LastName&quot;, vbString, 20
+Record.BindTo file
+Record.MoveFirst
+MsgBox record.Field(&quot;FirstName&quot;) &amp; &quot; &quot; &amp; record.Field(&quot;LastName&quot;)
+' Will display the first record from the file</pre>
+          <p>Example 2:</p>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;FirstName&quot;, vbString, 20
+Record.AddField &quot;LastName&quot;, vbString, 20
+Record.BindTo file
+Record.Move 0, 2
+record.Field(&quot;FirstName&quot;) = &quot;John&quot;
+record.Field(&quot;LastName&quot;) = &quot;Smith&quot;
+Record.Write
+' Moves the record immediately after the end of the file
+' In other words creates new record and sets and writes some data</pre>
+          <p>Example 3:</p>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;FirstName&quot;, vbString, 20
+Record.AddField &quot;LastName&quot;, vbString, 20
+Record.BindTo file
+Record.MoveFirst
+k = 1
+While Not File.EOS
+&nbsp; MsgBox &quot;Record &quot; &amp; k &amp; &quot;: &quot; &amp; record.Field(&quot;FirstName&quot;) &amp; &quot; &quot; &amp; record.Field(&quot;LastName&quot;)
+&nbsp; Record.MoveNext
+&nbsp; k = k + 1
+Wend
+' Lists all the records from the file.</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+<p>The behavior of the Record object resembles the behavior of a recordset object (like in ADO or DAO), but there are considerable differences caused by the fact that Record works over files and not over a data base. There are some actions automatically performed by the recordsets used with data bases, but in case of files the application is responsible for everything. We designed the Record object to require as little additional work as possible without losing functionality.</p> 
+
+<p>Move methods change the current position in the file. After moving the record is read from the file and position is recovered (i.e. the record remains positioned on the same record). To change the contents of the record at the current position in the file application changes the values of the record's fields and calls the Update method - to update the file.</p> 
+
+<p>When moving the data already contained in the record is not saved (this is the typical behavior of all the similar objects - DB recordsets for example).</p> 
+
+<p>One important note for Record. After binding (e.g. call the <a href="#BindTo.htm">BindTo</a> or <a href="#ReBind.htm">ReBind</a> methods) the record is not positioned, nor read, nor written from/to the file. Therefore the position of the record in the file is not guaranteed. To ensure the record is positioned on the first record call MoveFirst (or other method if another position is desired) before doing anything else. However the position is not changed by rebind operations and if before performing the operation the record has been positioned you will need to call only the ReRead method to synchronize the data in the file and in the record.</p> 
+
+<p>Creating new record in the file is equivalent to moving the current position after the last record. Therefore it can be done by calling <code>Record.Move 0,2</code> and not MoveLast which will move the position over the last <em>existing</em> record.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="ReRead.htm">
+<h4>ReRead</h4> <p>Re-reads
+          the record from the current position in the bound file and remains on the SAME record (the
+          position after the method call will be the same as before calling it).</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = Record.ReRead</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>returned value: Boolean success indicator</p>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>You may need this method in different situations:</p>
+          <ul>
+            <li>To ensure the record's content is synched with the contents of
+              the file</li>
+            <li>To refill the record if you have change the position in the
+              file explicitly (not through the record's navigation methods)</li>
+            <li>To discard the values set to the record after the last
+              navigation/read operation.</li>
+          </ul>
+        </blockquote>
+ 
+<HR noshade size="1"><A Name="Update.htm">
+<h4>Update</h4><p>Updates
+          the file with the record contents. The file and record position
+          remains the same - over the same record.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = Record.Update</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p><b>returned value:</b> Boolean success indicator.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;Field1&quot;, vbString, 20
+Record.AddField &quot;Field2&quot;, vbLong
+Record.BindTo file
+
+Record.MoveFirst
+For I = 1 To 10
+  record.Field(&quot;Field1&quot;).Value = &quot;Value &quot; &amp; I
+  record.Field(&quot;Field2&quot;).Value = I
+  Record.Update
+  Record.MoveNext
+  MsgBox &quot;Writing record &quot; &amp; I
+Next
+Record.UnBind</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>It is helpful to compare the sample above with the sample in
+          the <a href="#Write.htm">Write</a> method's page.</p>
+          <p>The update operation is implemented in a way very similar to the
+          similar methods in ADO and many other DB manipulation API/components.
+          In fact after defining and binding the record to the file the usage
+          of the Record object follows the same pattern.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="Read.htm">
+<h4>Read</h4><p>Reads the record
+        from the current position in the file and leaves the current position after it.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = Record.Read</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>variable - Boolean value - True if successful, False if not successful
+          or if the end of file has been reached.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre>'1. Read all the records up to the end of the file.
+While Record.Read
+&nbsp; MsgBox record.Field(&quot;field1&quot;) &amp; &quot;, &quot; &amp; record.Field(&quot;field2&quot;) &amp; &quot;&lt;BR&gt;&quot;
+Wend
+</pre>
+        <pre>'2. Read the contents of the file sequentially
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;Field1&quot;, vbString, 20
+Record.AddField &quot;Field2&quot;, vbLong
+Record.BindTo file
+Record.Filter.unicodeText = False
+Record.ReBind
+
+While Not file.EOS
+  Record.Read
+  MsgBox &quot;Read a record: Field1=&quot; &amp; record.Field(&quot;Field1&quot;).Value &amp; &quot; ,Field2=&quot; &amp; record.Field(&quot;Field2&quot;).Value
+Wend
+Record.UnBind
+</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>Read and Write methods are alternatives to the Move, ReRead and Update methods. </p>
+          <p>The record must be bound to the file. If the input data is not Unicode, the Filter.UnicodeText property needs to be set to False (default is True) and a ReBind done.</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="Write.htm">
+<h4>Write</h4><p>Writes
+          the contents of the record to the file and remains on the resulting
+          position - i.e. the position after the operation is the next
+          record.&nbsp;</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = Record.Write</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>returned value: Boolean success indicator</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre class="sample">
+AddObject "newObjects.utilctls.SFMain", "FS"
+AddObject "newObjects.utilctls.SFRecord", "Record"
+Set file = FS.OpenFile(&quot;Somefile.bin&quot;)
+Record.AddField &quot;Field1&quot;, vbString, 20
+Record.AddField &quot;Field2&quot;, vbLong
+Record.BindTo file
+
+For I = 1 To 10
+  record.Field(&quot;Field1&quot;).Value = &quot;Value &quot; &amp; I
+  record.Field(&quot;Field2&quot;).Value = I
+  Record.Write
+  MsgBox &quot;Writing record &quot; &amp; I 
+Next
+Record.UnBind</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+          <blockquote>
+            <p>It will be helpful to compare the sample above with the sample in
+            the <a href="#Update.htm">Update</a> method's page.</p>
+            <p>The Write method does not need its own seek (re-positioning
+            operation). 
+            <p>As it can be seen using Write method instead of update requires a
+            bit less code and is perfect for initial file filling operations.
+            For example a program
+            that imports a DB table into file, may prefer the Write method
+            which will simplify its code.&nbsp;</p>
+          </blockquote>       
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_115_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_115_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>SETPARENT                                                        Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SETPARENT</span></font> <i><span
+style='font-style:italic;'>child</span></i>, <i><span style='font-style:italic;'>parent</span></i></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>SETPARENT is used to move one control inside a container
+control.  The required component, <i><span style='font-style:italic;'>child</span></i>, is the control to be moved into the container.  The required component, <i><span style='font-style:italic;'>parent</span></i>,
+is the control that will hold the <i><span
+style='font-style:italic;'>child</span></i>, it must
+be a control with the container property (ie. Frame). Both controls must be
+created before the call to SETPARENT is made. This will work properly when the
+controls are intrinsic controls built into NS Basic. Third party controls do
+not all implement the needed interfaces to do this properly.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM SETPARENT Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>'</span>SETPARENT
+moves one control inside another</font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ADDOBJECT </span></font>&quot;TextBox&quot;,
+&quot;input&quot;, 5, 5, 140, 18</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>ADDOBJECT
+&quot;Frame&quot;, &quot;box&quot;, 0, 0, 200, 40</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt;'>SETPARENT
+input, box</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&nbsp;</span></font></p>
+
+</div>
+
+</body>
+
+</html>

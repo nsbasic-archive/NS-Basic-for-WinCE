@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_10_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_10_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>CHAIN                                                                  Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>CHAIN</span></font> <i><span
+style='font-style:italic;'>pathname</span></i>[, <i><span style='font-style:italic;'>reset</span></i>]</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>CHAIN loads a program into the environment and begins
+execution. The required component, <i><span
+style='font-style:italic;'>pathname</span></i>, is a
+string expression that specifies the absolute path name of the program to load
+and execute. The required component, <i><span
+style='font-style:italic;'>reset</span></i>, is a
+boolean expression that specifies whether the environment should be completely
+reset (all constants, variables, and procedures cleared from memory) before
+loading and executing the new program. Use a BYE statement after CHAIN to
+complete execution of the calling program.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>If <i><span
+style='font-style:italic;'>reset</span></i> is TRUE,
+execution continues in the original program until it stops executing. All
+variable and subroutines are reset and the new program is then loaded and run. </span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>If <i><span
+style='font-style:italic;'>reset</span></i> is FALSE,
+then the new program is run immediately, with all variables and subroutines
+remaining intact. When the new program ends, the original program continues
+from the next statement. Variables and subroutines added or modified in the
+CHAINed program will remain.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Hint: Use CHAIN with <i><span
+style='font-style:italic;'>reset</span></i> FALSE to
+&quot;include&quot; common program statements in multiple programs.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Program A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;This is program A&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>A=100</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>CHAIN &quot;B.nsb&quot;,TRUE 'reset the
+environment</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;This is program A after
+CHAIN&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Program B</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;This is program B&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>A=200</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>This is program A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>This is program A after CHAIN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>100</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&lt;screen clears&gt;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>This is program B</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&lt;no value prints as A is undefined in</span></font>program B&gt;</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b> 2</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Program A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;This is program A&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>A=100</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>CHAIN &quot;B.nsb&quot;,FALSE 'don't reset
+the environment</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;This is program A after
+CHAIN&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Program B</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;This is program B&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>A=200</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>This is program A</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>This is program B</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>100</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>This is program A after CHAIN</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>200</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXECUTE</span></font></p>
+
+</div>
+
+</body>
+
+</html>

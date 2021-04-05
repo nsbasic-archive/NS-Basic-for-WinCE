@@ -1,0 +1,35 @@
+HKCR
+{
+	NSBasic.comctl.ListView.1 = s 'NSBasic ListView Class'
+	{
+		CLSID = s '{F7A4DFE2-C262-457E-B0C5-B4789D02988D}'
+		'Insertable'
+	}
+	NSBasic.comctl.ListView = s 'NSBasic ListView Class'
+	{
+		CLSID = s '{F7A4DFE2-C262-457E-B0C5-B4789D02988D}'
+		CurVer = s 'NSBasic.comctl.ListView.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F7A4DFE2-C262-457E-B0C5-B4789D02988D} = s 'NSBasic ListView Class'
+		{
+			ProgID = s 'NSBasic.comctl.ListView.1'
+			VersionIndependentProgID = s 'NSBasic.comctl.ListView'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 101'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{9152ECB3-952A-4F35-83F5-C35F8D42375D}'
+			'Version' = s '1.0'
+		}
+	}
+}

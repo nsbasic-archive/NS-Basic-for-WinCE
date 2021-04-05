@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<TITLE>Tech Note 23: Using the Microsoft Device Emulator</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 23: Using the Microsoft Device Emulator</h2>
+	  <h5>
+      <H3>February 1, 2010</H3>
+      <H5>© 2010 NS BASIC Corporation. All rights reserved.</H5></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+Starting with NS Basic/CE 6.0, the Microsoft Device Emulator (MDE) can be used to test your application on the desktop without an attached device. The MDE can emulate a variety of devices, include Pocket PC 2003 Second Edition and Windows Mobile 5.
+
+<p>The MDE is a true emulator: it uses an actual ROM image, as would be installed in a device, within an ARM emulated environment. As a result, the quality of the emulation is considerably higher than previous emulators. Since it interfaces to NS Basic/CE via an ActiveSync connection, it is easy to load software on to and control.
+
+<p>You'll need a fairly fast desktop system to get performance anywhere close to a real device. Using the standard NS Basic/CE Benchmark program, it scores 9013 on a 3 ghz desktop CPU, a bit more than 1/3 the speed of an actual device with a 300 mhz ARM processor. Microsoft's ActiveSync also has to be installed, to transfer your program to the emulator once it is running. 
+
+<p>Note that the downloads are large. If you do not have a broadband connection, you are better off using Virtual CE to connect to an actual device. You need to be running Windows 7, Vista, XP or 2000 with the latest service packs. For XP and 2000, you need to be running ActiveSync 4.5. For Windows 7 or Vista, you will need Window Mobile Device Center 6.1 or newer.
+
+<p>Microsoft also has a <a href="http://msdn2.microsoft.com/en-us/library/bb278114.aspx" target="_top">tutorial</a> on their site.
+
+<h2>1. Downloading and Installing</h2>
+
+You will need the Emulator itself, plus an image for the device you want to emulate. 
+
+<p>A. Download the Microsoft Device Emulator 3.0:<br>
+<a href="http://www.microsoft.com/DOWNLOADS/details.aspx?FamilyID=a6f6adaf-12e3-4b2f-a394-356e2c2fb114&displaylang=en">http://www.microsoft.com/DOWNLOADS/details.aspx?FamilyID=a6f6adaf-12e3-4b2f-a394-356e2c2fb114&displaylang=en</a> (1.1 megs)
+
+<p>C. Download the images. For NS Basic/CE, you'll want the Professional Images. The Standard Images are for SmartPhones only and will not work with NS Basic.
+
+<p>They are available in quite a few different languages. Note the English is not listed at the top of page, but listed further down.
+
+
+<ul>
+	<li><a href="http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=20686a1d-97a8-4f80-bc6a-ae010e085a6e" target="_top">Windows Mobile 6.5</a>
+	<li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=1A7A6B52-F89E-4354-84CE-5D19C204498A&displaylang=en" target="_top">Windows Mobile 6.1.4</a>
+
+	<li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=3d6f581e-c093-4b15-ab0c-a2ce5bffdb47&DisplayLang=en" target="_top">Windows Mobile 6.1</a>
+
+	<li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=38c46aa8-1dd7-426f-a913-4f370a65a582&amp;DisplayLang=en" target="_top">Windows Mobile 6</a>
+
+	<li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=c62d54a5-183a-4a1e-a7e2-cc500ed1f19a&amp;DisplayLang=en" target="_top">Windows Mobile 5</a><br>Select "efp.msi" at the bottom of the page (56.6) megs.</li>
+	<li>For Windows Mobile 2003 SE:<br> A standalone emulator is not available. You'll need to get Visual Studio 2005, and get the ROM images in \Program Files\Microsoft Visual Studio 8\SmartDevices\Emulators\Images\PocketPC\2003</li>
+	<li>Other images are available in SDKs from Microsoft.</li>
+</ul>
+
+<p>D. You may also need to install Microsoft's Virtual Machine Network Driver. It is installed as part of Virtual PC 2007.
+<a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=04D26402-3199-48A3-AFA2-2DC0B40A73B6&amp;displaylang=en" target="_top">http://www.microsoft.com/downloads/details.aspx?FamilyId=04D26402-3199-48A3-AFA2-2DC0B40A73B6&displaylang=en</a>
+
+<P>Be sure to follow Microsoft's instructions for installation. It is not unusual to have to reboot. If ActiveSync does not connect, try registering the Device Emulator again. 
+
+<p>If the options for the Windows Mobile 5 and Windows Mobile 6 emulators do not appear in the Device Emulator Manager, you may need to install the Windows Mobile 5 and Windows Mobile 6 SDKs, which are available on Microsoft's website.
+
+<P>An easier way is to use the Windows Start button. Find Windows Mobile 6 SDK, Standalone Emulator Images, then choose the emulator you wish to start.
+
+<p>If you have questions, Microsoft has a newsgroup for the Emulator here:<br>
+<a href="http://forums.microsoft.com/msdn/showforum.aspx?forumid=76&amp;siteid=1" target="_top">http://forums.microsoft.com/msdn/showforum.aspx?forumid=76&siteid=1</a>
+
+<h2>2. Starting up the Emulator</h2>
+
+If you are running the Pocket PC emulator, choose which emulator you wish to run<br>
+<img src="images/TN35a.gif" alt="">
+
+<p>Only the Pocket PC emulators will be useful: NS Basic/CE does not support Smartphone.  If you choose Restore, the previous session will continue; otherwise a new session will start.
+<p>The Emulator will then start. It will take a few seconds for it to complete this. While you are waiting, start the Device Emulator Manager. Your screen will look like this:<br>
+<img src="images/TN35b.gif" alt="">
+<p>Now right click on "PocketPC 2003 SE" and select Cradle. The Emulator will now connect to ActiveSync (you have that running already, of course?) just like a real device would if you put it into its cradle.<br>
+
+<p>There is some useful documentation in the Emulator under its Help menu. It describes a number of useful options, include setting up a folder that can be shared with the desktop.
+
+<h2>3. Using NS Basic/CE</h2>
+
+<p>All that is left to do is install your program. Do it just as you would to a real device: Choose Start under the Run menu, or hit F5.
+
+<h2>4. Some advanced notes</h2>
+
+<p>The emulator can be launched from the command line, giving additional options. Here is a sample to start up a Pocket PC 2003 device with 128 megs of memory. (You'll need to have the appropriate images and files installed).
+
+<pre>
+"C:\Program Files\Microsoft\Device Emulator 2.0 Preview\DeviceEmulator.exe" "C:\Program Files\Microsoft Visual Studio 8\SmartDevices\Emulators\Images\PocketPC\2003\VGAPortrait\1033\PPC_2003_SE_VGA_WWE_ARMv4.bin" /n /defaultsave /skin "C:\Program Files\Microsoft Visual Studio 8\Smartdevices\Skins\PocketPC_2003\PocketPC_2003_VGA\1033\PocketPC_2003_VGA_Skin.xml" /memsize 128
+</pre>
+
+Here is another command line for starting the emulator in German:
+
+<pre>
+deviceemulator ppc_ger.bin /flash save.bin /memsize 128 /sharedfolder storagecard
+</pre>
+
+<h2>5. Using Windows Mobile Emulator without ActiveSync</h2>
+<i>Contributed by <a href="rolf.brandt@rbsoft.info" target="_top">Rolf Brandt</a>.</i>
+<p>Install the Windows Mobile Emulator. You can download it here:<br>
+<br>
+<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=1a7a6b52-f89e-4354-84ce-5d19c204498a&amp;displaylang=en" target="_blank">http://www.microsoft.com/downloads/details.aspx?FamilyID=1a7a6b52-f89e-4354-84ce\-5d19c204498a&amp;displaylang=en</a></p>
+<p>Start the Emulator. Select the desired Windows Mobile OS by right mouse click
+and then click &quot;<b>Connect</b>&quot;.</p>
+<p><img border="0" src="images/TN35c.jpg" width="420" height="300"></p>
+<p>Click on &quot;<b>File</b>&quot; and then on &quot;<b>Configure</b>&quot;. On
+this picture you see Windows Mobile with the <b><a href="http://www.ghisler.com/ce.htm" target="_blank">Total Commander /CE</a></b> started.
+It is absolutely great and it's freeware. You can download it here: <a href="http://www.ghisler.com/ce.htm" target="_blank">http://www.ghisler.com/ce.htm</a></p>
+
+<p><img border="0" src="images/TN35e.jpg" width="356" height="552"></p>
+<p>You will see this screen. Under the Tab &quot;<b>General</b>&quot; go to
+&quot;<b>Shared Folder</b>&quot; and select the folder on your Desktop PC where
+your NSB application resides. This setting emulates a SD Card on your emulator
+image. Click <b>OK</b> to save the settings.</p>
+<p><img border="0" src="images/TN35d.jpg" width="528" height="414"></p>
+<p>&nbsp;</p>
+
+<h3>Installing the NSBasic Runtimes to the Emulator</h3>
+<p>Now you have to install NSBasic to the emulator just as you would to a normal
+device. Copy the cab files to your virtual SD card and execute them from the
+emulator. After this the
+emulator will have associated the nsb extension with the NSBasic.</p>
+<p>You find the cab files in one of the following directories:</p>
+<ul>
+  <li><b>Vista</b>: C:\Windows\WindowsMobile\RuntimeFat\BASIC.PocketPC4_ARM.cab</li>
+  <li><b>XP</b>: C:\Programme\Microsoft ActiveSync\RuntimeFat\BASIC.PocketPC4_ARM.cab</li>
+</ul>
+<p><b>If you have not installed the Runtimes to a device yet then proceed as
+follows:</b></p>
+
+<ol>
+  <li>Start NSBasic</li>
+  <li>From the menu select &lt;<b>Run</b>&gt;&lt;<b>Installers</b>&gt;</li>
+  <li>Select '<b>RuntimeFat.ppc.exe</b>'</li>
+</ol>
+<p><img border="0" src="images/TN35g.jpg" width="563" height="416"></p>
+
+<p>If you are using additional controls these too have to be installed to the
+emulator. This&nbsp; can be done without a device being connected.&nbsp;</p>
+
+<p>&nbsp;</p>
+<h3>Saving the State of the Emulator</h3>
+<p>Next close the emulator and save the settings.</p>
+<p><img border="0" src="images/TN35f.jpg" width="296" height="107"></p>
+<p>When you restart the same emulator image the next time it will start with the same settings
+and programs installed.</p>
+<p>&nbsp;</p>
+
+
+</BODY></HTML>

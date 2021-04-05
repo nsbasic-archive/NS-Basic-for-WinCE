@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<TITLE>Tech Note 21: Devices Supported</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 21: Devices Supported</h2>
+	  <h5>
+      <H3>October 06, 2009</H3>
+      <H5>© 2010 NS BASIC Corporation. All rights reserved.</H5></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<P>NS Basic/CE runs on the vast majority of Windows Mobile and Windows CE devices. However, there are quite a number of variations of these devices.
+
+<p>Here, by version of Windows CE, are the devices that are supported. You can get the version of Windows CE from the Settings...System screen on the device if you are not sure.
+
+<p>There is also a database that tracks the specifications of most PDAs. When last checked, it had over 700 devices listed. See <a href="http://pdadb.net/" target="_top">http://pdadb.net/</a>.
+
+<p>To understand the differences between different Windows CE devices, see this <a href="http://www.hpcfactor.com/support/windowsce/">Brief History of Windows CE</a>.
+
+<p><b>Windows Mobile / Windows Phone</b>
+
+<p>NS Basic/CE supports all Windows Mobile devices with touch screens. That includes Windows Mobile Versions 5, 6, 6.1 and 6.5.
+<p>Technically, Windows Mobile is a special build of Windows CE, with additional modules and features to make it consumer ready. You will find various releases of Windows Mobile listed below under the version of Windows CE they are built on.
+
+<p><b>Windows Embedded CE 6.0 </b>
+
+<p>Windows Embedded CE 6.0 (yes, they changed the name again) devices have not yet been released. NS Basic/CE has been tested on Microsoft's beta emulator for Windows CE 6.0 and it runs properly. Note that Windows Mobile 6 devices actually run an updated version of Windows CE 5.0, not Windows CE 6.0.
+
+<UL>
+	<li>Windows Embedded CE 6.0 devices with ARM and MIPS CPUs should work.
+
+</ul>
+
+<p><b>Windows CE 5.0 </b>
+
+<p>Note that Windows Mobile 6 devices actually run an updated version of Windows CE 5.0.
+
+<UL>
+	<LI>All Windows Mobile 6.5 Professional Edition devices
+	<LI>All Windows Mobile 6.1 Professional Edition devices
+	<LI>All Windows Mobile 6 Professional Edition devices
+	<LI>All Windows Mobile 6 Classic Edition devices
+	<LI>All Windows Mobile 5.0 Pocket PC devices
+	<LI>All Windows Mobile 5.0 Pocket PC Phone Edition devices<br>
+			(including Palm 700w and square screen devices.)
+    <li>Other devices running Windows CE 5.0 with ARM and MIPS CPUs should work.
+</ul>
+<p>If you have a Windows CE 5 device that is not listed above, we may still be able to help you with our <a href="http://www.nsbasic.com/ce/info/embeddedDeviceSupport.html">Embedded Device Support Program</a>.
+<p>Smartphone devices (other than Pocket PC Phone Edition) are not supported. The ROMs of these devices do not have the MFC components that NS Basic/CE needs to run. Also, since they do not have touchscreens, the user interface is quite different.
+
+
+<p><b>Windows CE .NET (also known as Windows CE 4.x)</b>
+
+<UL>
+	<LI>	All Windows Mobile Pocket PC Second Edition devices
+	<LI>	All Windows Mobile Pocket PC devices
+	<LI>	All Windows Mobile 2003 for Pocket PC devices.
+	<LI>	All Windows Mobile 2003 for Pocket PC Phone Edition devices.
+	<LI>	Advantech TPC-60
+	<li>	Applied Data
+	<LI>	Axiomtek GOT-2570S
+	<li>	Becker GPS Navigator
+	<li>	Compsee MAT 203/204
+	<li>	CuWin
+	<li>	DataLogic SilverJet
+	<LI>	Diagnostic Instruments Di-400
+	<LI>	DoCoMo Sigmarion III
+	<li>	DSP Aurora AU1100
+	<LI>	Intermec CK31
+	<LI>	Intermec CK60
+	<LI>	NEC MobilePro 900c
+	<LI>	PSC Falcon 4220
+	<LI>	Psion Teklogix NetBook Pro
+	<LI>	Psion Teklogix WorkAbout Pro
+	<LI>	SmarTerminal iPC320
+	<LI>	Symbol MC1000 series
+	<LI>	Symbol MC3000 series
+	<LI>	Symbol MC9000 series
+	<li>	Two Technologies
+	<li>	Yakumo EazyGo XSC
+	<LI>	Windows CE .NET 4.2 devices using StrongArm processors in ARMV4 or ARMV4I mode
+	<li>	Windows CE .NET 4.2 devices using MIPS processors
+</ul>
+<p>If you have a Windows CE .NET device that is not listed above, we may still be able to help you with our <a href="http://www.nsbasic.com/ce/info/embeddedDeviceSupport.html">Embedded Device Support Program</a>.
+<p>The Casio ET-500M30 and DT-X10 devices, using Windows CE 4.1, are not supported. They use ARM Processors in ARMV4T mode. More recent Casio units should be OK.
+<p>Smartphone devices (other than Pocket PC Phone Edition) are not supported. The ROMs of these devices do not have the MFC components that NS Basic/CE needs to run.
+
+<h2>Legacy Devices</h2>
+
+The devices in this section are supported by versions of NS Basic up to 7.0. Support for them was dropped in NS Basic/CE 8.0, introduced in 2009, about seven years after the last device in this section was manufactured.
+
+<p><b>Windows CE 3.0</b>
+<UL>
+	<LI>	All Pocket PC 2002 devices
+	<LI>	All Pocket PC devices
+	<LI>	All Handheld PC 2000 devices
+</ul>
+	
+<b>Windows CE 2.1</b>
+<UL>
+	<LI>	All Handheld PC Pro devices
+	<LI>	All Handheld PC devices running Windows CE 2.10.
+	<LI>	All Palm-size PC devices running Windows CE 2.11.
+</UL>
+
+<p>Since Microsoft's development tools (which we use to build NS Basic/CE itself) can no longer target pre Windows CE 3.0 devices, the latest version of NS Basic/CE that will run on them is Version 2.0.
+
+</BODY></HTML>

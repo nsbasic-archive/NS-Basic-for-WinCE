@@ -1,0 +1,230 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_43_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_43_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>FILTER                                                                   Function</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FILTER</span></font> (<i><span
+style='font-style:italic;'>stringarray</span></i>, <i><span style='font-style:italic;'>value</span></i>[, <i><span
+style='font-style:italic;'>include</span></i>[, <i><span style='font-style:italic;'>compare</span></i>]])</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FILTER returns an array of strings that is a subset of inputs
+that have met the specified filter criteria. The required parameter, <i><span style='font-style:italic;'>stringarray</span></i>, is a one-dimensional array of strings to be
+filtered. The required parameter, <i><span
+style='font-style:italic;'>value</span></i>, is a
+string expression to be searched for. The optional parameter, <i><span style='font-style:italic;'>include</span></i>, is a boolean value, when TRUE, the returned values
+are the strings that contain value, when FALSE, the returned values do not
+contain value. The default value of <i><span
+style='font-style:italic;'>include</span></i> is
+TRUE. The optional parameter, <i><span
+style='font-style:italic;'>compare</span></i>, is a
+numeric expression or constant that specifies the type of comparisons to
+perform, see below. The default value of <i><span
+style='font-style:italic;'>compare</span></i> is
+vbBinaryCompare.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Table&nbsp;</span></font></b><b><span style='font-weight:bold;'>10</span></b><b><span style='font-weight:bold;'>: Comparison constants</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.8pt;border-collapse:collapse;
+ border:none;'>
+ <tr height=18 style='height:13.8pt'>
+  <td width=114 height=18 valign=top bgcolor="#B3B3B3" style='width:85.5pt;
+  border:solid windowtext 1.0pt;
+  background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;height:13.8pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Constant</span></font></p>
+  </td>
+  <td width=42 height=18 valign=top bgcolor="#B3B3B3" style='width:31.5pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:13.8pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Value</span></font></p>
+  </td>
+  <td width=132 height=18 valign=top bgcolor="#B3B3B3" style='width:99.0pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:13.8pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Description</span></font></p>
+  </td>
+ </tr>
+ <tr height=30 style='height:22.35pt'>
+  <td width=114 height=30 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:22.35pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbBinaryCompare</span></font></p>
+  </td>
+  <td width=42 height=30 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:22.35pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>0</span></font></p>
+  </td>
+  <td width=132 height=30 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:22.35pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Binary comparison, case sensitive (default)</span></font></p>
+  </td>
+ </tr>
+ <tr height=36 style='height:27.3pt'>
+  <td width=114 height=36 valign=top style='width:85.5pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:27.3pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbTextCompare</span></font></p>
+  </td>
+  <td width=42 height=36 valign=top style='width:31.5pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:27.3pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>1</span></font></p>
+  </td>
+  <td width=132 height=36 valign=top style='width:99.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:27.3pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Textual comparison, case insensitive</span></font></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>&nbsp;</span></font></b></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM FILTER Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'FILTER finds matches in an array of strings</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM Who, TheKs, NotEric</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Who = ARRAY(&quot;Eric&quot;,
+&quot;Kenny&quot;, &quot;Kyle&quot;, &quot;Stan&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>TheKs = FILTER(Who, &quot;k&quot;, TRUE,</span></font>vbTextCompare)</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>NotEric = FILTER(Who, &quot;Eric&quot;,
+FALSE, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+vbBinaryCompare)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PrintArray &quot;Who&quot;, Who</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PrintArray &quot;The K's&quot;, TheKs</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PrintArray &quot;Everyone but Eric&quot;,
+NotEric</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB PrintArray(ArrName, Arr)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  DIM i</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+ArrName</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  FOR i
+= 0 TO UBOUND(Arr)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+PRINT &quot;  &quot; &amp; Arr(i)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  NEXT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Who</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Eric</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Kenny</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Kyle</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Stan</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>The K's</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Kenny</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Kyle</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Everyone but Eric</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Kenny</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Kyle</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  Stan</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>REPLACE</span></font></p>
+
+</div>
+
+</body>
+
+</html>

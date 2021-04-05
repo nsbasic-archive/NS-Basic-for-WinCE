@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "Color"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\NSBComDlg\Color.nsb"
+Project.AddModule "main", ".\Color.nsb"
+Project.AddResourceFile "NSBComDlg","{controls}\NSBComDlg.dll","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

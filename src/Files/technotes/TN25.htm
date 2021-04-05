@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<TITLE>Tech Note 25: eVB2NSB</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 25: eVB2NSB Converter</h2>
+	  <h3>September 21, 2009</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<p>The eVB2NSB Converter can be used to convert eMbedded Visual Basic projects to NS Basic/CE. As with any such conversion tool, it does not do a 100% conversion. It can reliably convert enough your project so that the final fix ups should not be too tedious.
+
+<p>We are continuing to improve this tool. To make it easier to see what is going on, the source code is available. Feel free to modify it for your own use and send us updates to the code. The source can be downloaded from <a href="http://www.nsbasic.com/pub/ce/updates/eVB2NSB.zip">eVB2NSB.zip</a>. It is open source and written in VB6, so you are welcome to modify it.
+
+<p><i>If you would like NS BASIC Corporation to do the conversion for you, we can do so at a reasonable cost. Since we've done this a number of times, we are able to do this quickly. Send an email to <a href="mailto:support@nsbasic.com" target="_top">support@nsbasic.com</a> if you are interested.</i>
+
+<P>Here is a detailed comparison of eVB and NS Basic/CE.<br>
+<a href="http://www.nsbasic.com/ce/info/Comparison.html" target="_top">http://www.nsbasic.com/ce/info/Comparison.html</a>
+               
+
+<p>The eVB2NSB converter is available on the Desktop under the Tools menu. 
+
+<H4>Why Convert?</H4>
+
+Whenever you move to something new, the first thing you may notice are the things you are missing. Don't despair: NS Basic/CE will give you many other benefits in return. We are of course interested in your suggestions how we can make NS Basic/CE better.
+
+<p>Here are some of the benefits of conversion:
+<OL>
+	<LI>Better performance - usually twice as fast
+	<LI>More controls and objects
+	<LI>Additional statements
+	<LI>Develop on Desktop or Device
+	<LI>Run on more devices
+	<LI>Additional controls
+	<LI>NS Basic/CE is continuing to be enhanced
+</OL>
+
+<H4>How to run the conversion</H4>
+
+<OL>
+	<LI>Start eVB2NSB
+	<LI>Open your project
+	<LI>Click on the Convert button. 
+	<LI>A list of notes will display about the conversion.
+	<LI>A single output file called <projectName>.txt will be produced.
+	<LI>You can open this file in the NS Basic/CE desktop or on the device.
+</OL>
+
+
+<H4>Things to keep in mind</H4>
+
+<OL>
+	<LI>Object names must be unique. If eVB2NSB finds two objects with the same name, it will ask you to reopen the project in eVB and change one of them. Remember to change the name of any events for that object as well. An object also cannot share the name of a form. 
+	<li>Variables that are global to a form in eVB are global to the project in NS Basic/CE. If you DIM the same variable name in two different forms, the second DIM will be ignored. Variables DIMmed within Subs or Funcs are unaffected.
+	<LI>Form Properties: NS Basic's form is based on a Picturebox object, so it doesn't have all the properties that eVB does. Most are rarely used: they are Appearance, Caption, ControlBox, LockControls, ShowOK. Statements using these will be commented out in the converted code.
+	<LI>MenuBars: NS Basic has a different way of doing menus. It's actually much simpler. There is a SetMenu statement that can be run at any time which sets the menu options, instead of the collection of Menu controls that eVB uses. eVB2NSB does not convert menus, so this needs to be done manually.
+	<LI>Bitmaps: eVB includes bitmaps into the project itself, in a frx file. NS Basic leaves them as separate files. There is a utility that can be downloaded from the net called FRX Split 2.0 that can be used to extract bitmaps from a frx file.
+	<LI>ListBoxes: eVB lets you set up preloaded values for listboxes in the IDE. With NS Basic, you need to do this in code. At this time, eVB2NSB does not extract the information (it is in the form.frx file) to generate this code, so it needs to be done manually.
+	<LI>Timer Control: NSB does not need a separate Timer control. Instead, just set the Timer property of any intrinsic control: an event will be fired off that many milliseconds.
+	<LI>Me: The Me object is not supported. eVB2NSB will turn statements that use Me into comments so you can fix them.
+	<LI>Shapes: NSB cannot currently draw rounded rectangles. It draws square rectangles instead.
+	<LI>Multiple statements per line: eVB2NSB does a pretty good job with these. It splits them up to separate statements to do the conversion. However, if you put IF...THEN... :END IF all on one line, it will not convert properly. Unwind these constructs before converting if you use them.
+	<li>Enum Constants are not automatically created. Some controls initialize a set of constants that are used by the control. You will need to add the ones you use to your program. A good place to put them is near the beginning. For example, the ADOCE control has a CursorTypeEnum, which initializes several variables such as adOpenForwardOnly. Add the following statements to your code to take care of this:<pre>
+   Const adOpenForwardOnly = 0
+   Const adOpenKeyset = 1
+   Const adOpenDynamic = 2
+   Const adOpenStatic = 3
+   Const adOpenUnspecified = -1</pre>
+   <li>Grid control: A grid may not have 0 rows.
+</OL>
+
+</BODY>
+</HTML>

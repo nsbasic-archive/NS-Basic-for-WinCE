@@ -1,0 +1,89 @@
+// S309UserNotification.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (S309UserNotification.tlb) that will become a resource in
+// S309UserNotification.ocx.
+
+#include <olectl.h>
+
+[ uuid(E4A57596-BD6F-11D2-AE1A-00608CC01367), version(1.4),
+  helpfile("S309UserNotification.hlp"),
+  helpstring("S309UserNotification ActiveX Control module"),
+  control ]
+library S309USERNOTIFICATIONLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CS309UserNotificationCtrl
+
+	[ uuid(E4A57597-BD6F-11D2-AE1A-00608CC01367),
+	  helpstring("Dispatch interface for S309UserNotification Control"), hidden ]
+	dispinterface _DS309UserNotification
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CS309UserNotificationCtrl)
+			[id(1)] boolean LED;
+			[id(2)] boolean Vibrate;
+			[id(3)] boolean Dialog;
+			[id(4)] boolean Sound;
+			[id(5)] boolean Repeat;
+			[id(6)] BSTR DialogTitle;
+			[id(7)] BSTR DialogText;
+			[id(8)] BSTR SoundFile;
+			[id(9)] VARIANT DateTime;
+			[id(10)] BSTR AppName;
+			[id(11)] long Left;
+			[id(12)] long Top;
+			[id(13)] short VersionMajor;
+			[id(14)] short VersionMinor;
+			[id(15)] VARIANT Tag;
+			[id(16)] long Version;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CS309UserNotificationCtrl)
+			[id(17)] long Set(long hID);
+			[id(18)] boolean Clear(long hID);
+			[id(19)] boolean GetUserPreferences();
+			[id(20)] boolean Handle(BSTR AppNAme);
+			[id(21)] boolean RunAppAtTime();
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CS309UserNotificationCtrl
+
+	[ uuid(E4A57598-BD6F-11D2-AE1A-00608CC01367),
+	  helpstring("Event interface for S309UserNotification Control") ]
+	dispinterface _DS309UserNotificationEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CS309UserNotificationCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CS309UserNotificationCtrl
+
+	[ uuid(E4A57599-BD6F-11D2-AE1A-00608CC01367),
+	  helpstring("S309UserNotification Control"), control ]
+	coclass S309UserNotification
+	{
+		[default] dispinterface _DS309UserNotification;
+		[default, source] dispinterface _DS309UserNotificationEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

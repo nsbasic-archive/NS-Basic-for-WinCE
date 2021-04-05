@@ -1,0 +1,97 @@
+HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>HTML2 Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/HTML2.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' Demo of MGCEHtml control, 1999 by Mark Gamber
+' NS Basic is (c) NS Basic Corporation
+' MGCEHtml is (c) Mark Gamber
+
+' This program demos the MGCEHtml control. A tabstrip is created and used to control which
+' form is displayed in an HTML control. The HTML control is given a form based on the tab and
+' triggers an event when the form's Submit button is pressed. That event determines what form
+' was used and generates output HTML using the "form color" and displaying the form name
+' and data passed from the form as a list of fields.
+
+AddObject "CETabStrip.TabStrip.1", "Tab", 2, 0, OUTPUT.Width - 4, 20
+Tab.tabs.Add 1,, "Main Form"
+Tab.tabs.Add 2,, "Second Form"
+Tab.tabs.Add 3,, "Third Form"
+Tab.tabs.Add 4,, "Misc"
+Tab.tabs.Remove 5
+
+AddObject "MGCENet.HTML", "HTML", 2, 22, OUTPUT.Width - 4, OUTPUT.Height - 24
+AddForm( 1 )
+
+
+Sub Tab_Click
+   s = Tab.SelectedItem.Caption
+   if s = "Main Form" then AddForm( 1 )
+   if s = "Second Form" then AddForm( 2 )
+   if s = "Third Form" then AddForm( 3 )
+   if s = "Misc" then AddForm( 4 )
+end sub
+
+sub AddForm( iForm )
+   if iForm = 1 then
+      s = "&lt;body bgcolor='#C0C0C0'>&ltcenter>&ltbr>&ltform action='Form 1' method=POST>"
+      s = s & "&lttable border=1 bgcolor='#80FF80'>"
+      s = s & "&lttr>&lttd>Name:&lt/td>&ltinput type='text' name='Name' size=30>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd>Address:&lt/td>&ltinput type='text' name='Addr' size=30>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd>City:&lt/td>&lttd>&ltinput type='input' size=24 name='City'>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd colspan=2 align='center'>&ltinput type='submit'>&lt/td>&lt/tr>"
+      s = s & "&lt/table>&lt/form>&lt/center>&lt/body>"
+   end if
+   if iForm = 2 then
+      s = "&ltbody bgcolor='#C0C0C0'>&ltcenter>&ltbr>&ltform action='Form 2' method=POST>"
+      s = s & "&lttable border=1 bgcolor='#FFFF80'>"
+      s = s & "&lttr>&lttd>This is a :&lt/td>&ltinput type='radio' name='HPC' value='Casio'> Casio&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd> &nbsp;&lt/td>&ltinput type='radio' name='HPC' value='HP'>Hewlett-Packard&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd> &nbsp;&lt/td>&ltinput type='radio' name='HPC' value='Phillips'>Phillips&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd> &nbsp;&lt/td>&ltinput type='radio' name='HPC' value='Other'>Other&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd colspan=2 align='center'>&ltinput type='submit'>&lt/td>&lt/tr>"
+      s = s & "&lt/table>&lt/form>&lt/center>&lt/body>"
+   end if
+   if iForm = 3 then
+      s = "&ltbody bgcolor='#C0C0C0'>&ltcenter>&ltbr>&ltform action='Form 3' method=POST>"
+      s = s & "&ltinput type='hidden' Name='SlyField' value='ThirdForm'>"
+      s = s & "&lttable border=1 bgcolor='#FF80FF'>"
+      s = s & "&lttr>&lttd>Name:&lt/td>&ltinput type='text' name='Name' size=30>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd>Address:&lt/td>&ltinput type='text' name='Addr' size=30>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd>City:&lt/td>&lttd>&ltinput type='input' size=24 name='City'>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd colspan=2 align='center'>&ltinput type='submit'>&lt/td>&lt/tr>"
+      s = s & "&lt/table>&lt/form>&lt/center>&lt/body>"
+   end if
+   if iForm = 4 then
+      s = "&ltbody bgcolor='#C0C0C0'>&ltcenter>&ltbr>&ltform action='Form 4' method=POST>"
+      s = s & "&lttable border=1 bgcolor='#FFFFFF'>"
+      s = s & "&lttr>&lttd>Name:&lt/td>&ltinput type='text' name='Name' size=30>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd>Address:&lt/td>&ltinput type='text' name='Addr' size=30>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd>City:&lt/td>&lttd>&ltinput type='input' size=24 name='City'>&lt/td>&lt/tr>"
+      s = s & "&lttr>&lttd colspan=2 align='center'>&ltinput type='submit'>&lt/td>&lt/tr>"
+      s = s & "&lt/table>&lt/form>&lt/center>&lt/body>"
+   end if
+   HTML.Clear
+   HTML.AddText s
+end sub
+
+sub HTML_Click( sTarget, sData )
+   if sTarget = "Form 1" then s = "&ltbody bgcolor='#80FF80'>"
+   if sTarget = "Form 2" then s = "&ltbody bgcolor='#FFFF80'>"
+   if sTarget = "Form 3" then s = "&ltbody bgcolor='#FF80FF'>"
+   if sTarget = "Form 4" then s = "&ltbody bgcolor='#FFFFFF'>"
+   s = s & "&ltfont size=4>&ltb>&ltbr>" & sTarget
+   s = s & " submitted the following data:&ltbr>&nbsp;&ltbr>&nbsp;&nbsp;&nbsp;&nbsp;"
+   sData = Replace( sData, "&", "&ltbr>&nbsp;&nbsp;&nbsp;&nbsp;" )
+   s = s & sData & "&lt/body>"
+   HTML.Clear
+   HTML.AddText s
+end sub
+
+</PRE>
+</body>
+</html>
+

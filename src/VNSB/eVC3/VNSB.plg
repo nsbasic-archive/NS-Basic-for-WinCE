@@ -1,0 +1,97 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: VNSB - Win32 (WCE x86em) Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"x86emDbg/VNSB.res" /d UNDER_CE=211 /d "UNICODE" /d "_UNICODE" /d "WIN32" /d "STRICT" /d _WIN32_WCE=211 /d "H/PC Pro 2.11" /d "_WIN32_WCE_EMULATION" /d "INTERNATIONAL" /d "USA" /d "INTLMSG_CODEPAGE" /d "_DEBUG" /d "x86" /d "i486" /d "_x86_" /d "_AFXDLL" "D:\Projects\NSBasic FB\VNSB\VNSB.rc"" 
+Creating temporary file "C:\TEMP\RSP37.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /Zi /Od /D UNDER_CE=211 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "_DEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /FR"x86emDbg/" /Fp"x86emDbg/VNSB.pch" /Yu"stdafx.h" /Fo"x86emDbg/" /Fd"x86emDbg/" /c 
+"D:\Projects\NSBasic FB\VNSB\CodeDlg.cpp"
+"D:\Projects\NSBasic FB\VNSB\ComObjectDlg.cpp"
+"D:\Projects\NSBasic FB\VNSB\MainFrm.cpp"
+"D:\Projects\NSBasic FB\VNSB\MenuEditorDlg.cpp"
+"D:\Projects\NSBasic FB\VNSB\NSBForm.cpp"
+"D:\Projects\NSBasic FB\VNSB\NSBFormObjectView.cpp"
+"D:\Projects\NSBasic FB\VNSB\PropEditorDlg.cpp"
+"D:\Projects\NSBasic FB\VNSB\SelectObjectDlg.cpp"
+"D:\Projects\NSBasic FB\VNSB\VNSB.cpp"
+"D:\Projects\NSBasic FB\VNSB\VNSBDlg.cpp"
+"D:\Projects\NSBasic FB\VNSB\VNSBDoc.cpp"
+"D:\Projects\NSBasic FB\VNSB\VNSBView.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSP37.tmp" 
+Creating temporary file "C:\TEMP\RSP38.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /Zi /Od /D UNDER_CE=211 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=211 /D "H/PC Pro 2.11" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "_DEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /FR"x86emDbg/" /Fp"x86emDbg/VNSB.pch" /Yc"stdafx.h" /Fo"x86emDbg/" /Fd"x86emDbg/" /c 
+"D:\Projects\NSBasic FB\VNSB\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSP38.tmp" 
+Creating temporary file "C:\TEMP\RSP39.tmp" with contents
+[
+/nologo /stack:0x10000,0x1000 /entry:"wWinMainCRTStartup" /subsystem:windows /incremental:yes /pdb:"x86emDbg/VNSB.pdb" /debug /machine:I386 /nodefaultlib:"libc.lib /nodefaultlib:libcd.lib /nodefaultlib:libcmt.lib /nodefaultlib:libcmtd.lib /nodefaultlib:msvcrt.lib /nodefaultlib:msvcrtd.lib /nodefaultlib:oldnames.lib" /out:"x86emDbg/VNSB.exe" /windowsce:emulation  
+".\x86emDbg\CodeDlg.obj"
+".\x86emDbg\ComObjectDlg.obj"
+".\x86emDbg\MainFrm.obj"
+".\x86emDbg\MenuEditorDlg.obj"
+".\x86emDbg\NSBForm.obj"
+".\x86emDbg\NSBFormObjectView.obj"
+".\x86emDbg\PropEditorDlg.obj"
+".\x86emDbg\SelectObjectDlg.obj"
+".\x86emDbg\StdAfx.obj"
+".\x86emDbg\VNSB.obj"
+".\x86emDbg\VNSBDlg.obj"
+".\x86emDbg\VNSBDoc.obj"
+".\x86emDbg\VNSBView.obj"
+".\x86emDbg\VNSB.res"
+]
+Creating command line "link.exe @C:\TEMP\RSP39.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+VNSBView.cpp
+Generating Code...
+Linking...
+Creating temporary file "C:\TEMP\RSP3B.tmp" with contents
+[
+/nologo /o"x86emDbg/VNSB.bsc" 
+".\x86emDbg\StdAfx.sbr"
+".\x86emDbg\CodeDlg.sbr"
+".\x86emDbg\ComObjectDlg.sbr"
+".\x86emDbg\MainFrm.sbr"
+".\x86emDbg\MenuEditorDlg.sbr"
+".\x86emDbg\NSBForm.sbr"
+".\x86emDbg\NSBFormObjectView.sbr"
+".\x86emDbg\PropEditorDlg.sbr"
+".\x86emDbg\SelectObjectDlg.sbr"
+".\x86emDbg\VNSB.sbr"
+".\x86emDbg\VNSBDlg.sbr"
+".\x86emDbg\VNSBDoc.sbr"
+".\x86emDbg\VNSBView.sbr"]
+Creating command line "bscmake.exe @C:\TEMP\RSP3B.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+VNSB.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

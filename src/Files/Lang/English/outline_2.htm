@@ -1,0 +1,604 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_2_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_2_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+a:link, span.MsoHyperlink
+	{
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{
+	color:purple;
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>ADDOBJECT                                                       Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ADDOBJECT</span></font> <i><span
+style='font-style:italic;'>objectId:license</span></i>[, <i><span
+style='font-style:italic;'>objectname</span></i>[, <i><span style='font-style:italic;'>xpos</span></i>, <i><span
+style='font-style:italic;'>ypos</span></i>, <i><span style='font-style:italic;'>width</span></i>, <i><span
+style='font-style:italic;'>height, parent</span></i>]]</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ADDOBJECT attaches an object to a program. Once an object is
+attached, its properties can be queried and its methods can be executed from
+within the program. The required parameter, <i><span
+style='font-style:italic;'>objectID</span></i>, is a
+string expression that references the full name of an object from the registry,
+or the short name of the object. Table 4 below lists some common objects. If
+the control requires a <i><span
+style='font-style:italic;'>license</span></i> number,
+enter it after the <i><span
+style='font-style:italic;'>objectID</span></i>,
+separated by a colon. The optional parameter, <i><span style='font-style:italic;'>objectname</span></i>,
+is a string expression that must follow standard variable naming conventions. <i><span style='font-style:italic;'>objectname</span></i> is the variable that will be added to the
+program, to refer to the object. If no <i><span
+style='font-style:italic;'>objectname</span></i> is
+given <i><span style='font-style:italic;'>objectID</span></i> is used by default. The
+optional parameters <i><span
+style='font-style:italic;'>xpos</span></i>, <i><span style='font-style:italic;'>ypos</span></i>, <i><span
+style='font-style:italic;'>width</span></i>, and <i><span style='font-style:italic;'>height</span></i>, are numeric expressions that specify the default
+location and size of visual objects in pixels. The <i><span style='font-style:italic;'>parent</span></i>
+parameter makes the object a child of the object that is named: the new control
+will be placed on top of the <i><span
+style='font-style:italic;'>parent</span></i>.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>The description of an object and its values are contained in
+its Properties. (See &quot;Properties&quot;)</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Objects may contain functions you can call from your program.
+(See &quot;Methods&quot;)</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Objects which are contained within NS Basic/CE itself are
+documented in this Handbook. NS Basic/CE also supports external objects, also
+known as ActiveX Controls. A number of these come with NS Basic/CE; others are
+available from third parties. They are documented in the Tech Notes under the
+Help menu.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Objects</span></font>cansendeventsto
+your program by calling SUB procedures. The name of the procedure is a
+combination of the object nameandtheevent.An optional, comma-separated list of
+arguments may be included by someevents.Important:Ifanobjectsends events, you must always supply all 6 arguments. (See
+&quot;Events&quot;)</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&nbsp;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB objectname_event(arglist)]</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+'Execute this when objectname gets event</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<b><font size=2 face=Calibri><span
+style='font-size:11.0pt;line-height:115%;font-family:"Calibri","sans-serif";
+font-weight:bold;'><br clear=all style='page-break-before:
+always'>
+</span></font></b>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Table&nbsp;</span></font></b><b><span style='font-weight:bold;'>4</span></b><b><span style='font-weight:bold;'>: Common Objects</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.8pt;border-collapse:collapse;
+ border:none;'>
+ <tr height=20 style='height:15.0pt'>
+  <td width=96 height=20 valign=top bgcolor="#B3B3B3" style='width:1.0in;
+  border:solid windowtext 1.0pt;
+  background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;height:15.0pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Short Name</span></font></p>
+  </td>
+  <td width=192 height=20 valign=top bgcolor="#B3B3B3" style='width:2.0in;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:15.0pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Where it's documented</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>ADO</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Data Base - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN03a.htm">Tech Note 03</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>CheckBox</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><a name="OLE_LINK5"></a><a name="OLE_LINK4"><font size=2 face=Calibri><span
+  style='font-size:11.0pt;line-height:115%'>In this document</span></font></span></a></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>ComboBox</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document </span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Comm</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Serial Comms - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN05.htm">Tech Note 05</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>CommandButton</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Date</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Dialog</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Dialog boxes - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN04.htm">Tech Note 04</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>File</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Simple File I/O - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN08.htm">Tech Note 08</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>FileSystem</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Files and Dirs - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN09.htm">Tech Note 09</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Frame</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Finance</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Money calculations - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN03f.htm">Tech Note 03</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Grid</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Data Grid - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN10.htm">Tech Note 10</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>HTMLView</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Html viewer – <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN42.htm">Tech Note 42</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>HScrollbar</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Image</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Image holder - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN03h.htm">Tech Note 03</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>ImageList</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>List of Images - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN11.htm">Tech Note 11</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Label</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>ListBox</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>ListView</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Display Items - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN11.htm">Tech Note 12</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>OptionButton</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Output</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>PictureBox</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Manipulate Pictures - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN13.htm">Tech Note 13</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>TabStrip</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Tab object - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN17.htm">Tech Note 17</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>TextBox</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Time</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>TreeView</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'><a href="http://www.nsbasic.com/ce/info/technotes/TN18.htm">Tech
+  Note 23</a></span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>TriButton</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>VScrollBar</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>In this document</span></font></p>
+  </td>
+ </tr>
+ <tr height=16 style='height:12.0pt;'>
+  <td width=96 height=16 valign=top style='width:1.0in;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 1.8pt 0in 1.8pt;height:12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>WinSock</span></font></p>
+  </td>
+  <td width=192 height=16 valign=top style='width:2.0in;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:
+  12.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Internet stuff - <a
+  href="http://www.nsbasic.com/ce/info/technotes/TN16.htm">Tech Note 03</a></span></font></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>&nbsp;</span></font></b></p>
+
+<b><font size=2 face=Calibri><span
+style='font-size:11.0pt;line-height:115%;font-family:"Calibri","sans-serif";
+font-weight:bold;'><br clear=all style='page-break-before:
+always'>
+</span></font></b>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM ADDOBJECT adds an object to the program</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ADDOBJECT
+&quot;ThirdParty.Control:123-ghs&quot;,&quot;TPC&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ADDOBJECT &quot;Finance&quot;,
+&quot;Finance&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ADDOBJECT &quot;PictureBox&quot;,
+&quot;PBox&quot;, 65, 10, 55, 20</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PBox.BorderStyle = 1</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PBox.BackColor = vbWhite</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PBox.DrawText &quot; Button&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB PBox_Click()</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+FORMATCURRENCY(Finance.Pmt(.0058, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>   
+180, 130000))</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Events, Methods, Properties, SET</span></font></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+E:\NSBCE8\Benchmarks\BenchmarkDotNet\BenchmarkDotNet\bin\Release\BenchmarkDotNet.exe
+E:\NSBCE8\Benchmarks\BenchmarkDotNet\BenchmarkDotNet\obj\Release\ResolveAssemblyReference.cache
+E:\NSBCE8\Benchmarks\BenchmarkDotNet\BenchmarkDotNet\obj\Release\BenchmarkDotNet.Form1.resources
+E:\NSBCE8\Benchmarks\BenchmarkDotNet\BenchmarkDotNet\obj\Release\BenchmarkDotNet.vbproj.GenerateResource.Cache
+E:\NSBCE8\Benchmarks\BenchmarkDotNet\BenchmarkDotNet\obj\Release\BenchmarkDotNet.exe

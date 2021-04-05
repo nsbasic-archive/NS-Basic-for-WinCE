@@ -1,0 +1,275 @@
+/////////////////////////////////////////////////////////////////////////////
+// IS309Icon properties
+
+long IS309Icon::GetHIcon()
+{
+	long result;
+	GetProperty(0x2, VT_I4, (void*)&result);
+	return result;
+}
+
+void IS309Icon::SetHIcon(long propVal)
+{
+	SetProperty(0x2, VT_I4, propVal);
+}
+
+long IS309Icon::Get_hIcon()
+{
+	long result;
+	GetProperty(0x0, VT_I4, (void*)&result);
+	return result;
+}
+
+void IS309Icon::Set_hIcon(long propVal)
+{
+	SetProperty(0x0, VT_I4, propVal);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// IS309Icon operations
+
+BOOL IS309Icon::Load(LPCTSTR Name, const VARIANT& IconID)
+{
+	BOOL result;
+	static BYTE parms[] =
+		VTS_BSTR VTS_VARIANT;
+	InvokeHelper(0x3, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+		Name, &IconID);
+	return result;
+}
+
+void IS309Icon::Destroy()
+{
+	InvokeHelper(0x4, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+// IS309Alert properties
+
+CString IS309Alert::GetName()
+{
+	CString result;
+	GetProperty(0x1, VT_BSTR, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetName(LPCTSTR propVal)
+{
+	SetProperty(0x1, VT_BSTR, propVal);
+}
+
+VARIANT IS309Alert::GetTag()
+{
+	VARIANT result;
+	GetProperty(0x2, VT_VARIANT, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetTag(const VARIANT& propVal)
+{
+	SetProperty(0x2, VT_VARIANT, &propVal);
+}
+
+CString IS309Alert::GetHtml()
+{
+	CString result;
+	GetProperty(0x3, VT_BSTR, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetHtml(LPCTSTR propVal)
+{
+	SetProperty(0x3, VT_BSTR, propVal);
+}
+
+long IS309Alert::GetDuration()
+{
+	long result;
+	GetProperty(0x4, VT_I4, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetDuration(long propVal)
+{
+	SetProperty(0x4, VT_I4, propVal);
+}
+
+CString IS309Alert::GetTitle()
+{
+	CString result;
+	GetProperty(0x5, VT_BSTR, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetTitle(LPCTSTR propVal)
+{
+	SetProperty(0x5, VT_BSTR, propVal);
+}
+
+BOOL IS309Alert::GetStraightToTray()
+{
+	BOOL result;
+	GetProperty(0x6, VT_BOOL, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetStraightToTray(BOOL propVal)
+{
+	SetProperty(0x6, VT_BOOL, propVal);
+}
+
+BOOL IS309Alert::GetCritical()
+{
+	BOOL result;
+	GetProperty(0x7, VT_BOOL, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetCritical(BOOL propVal)
+{
+	SetProperty(0x7, VT_BOOL, propVal);
+}
+
+BOOL IS309Alert::GetForceMessage()
+{
+	BOOL result;
+	GetProperty(0x8, VT_BOOL, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetForceMessage(BOOL propVal)
+{
+	SetProperty(0x8, VT_BOOL, propVal);
+}
+
+BOOL IS309Alert::GetShow()
+{
+	BOOL result;
+	GetProperty(0x9, VT_BOOL, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetShow(BOOL propVal)
+{
+	SetProperty(0x9, VT_BOOL, propVal);
+}
+
+LPDISPATCH IS309Alert::GetIcon()
+{
+	LPDISPATCH result;
+	GetProperty(0xa, VT_DISPATCH, (void*)&result);
+	return result;
+}
+
+void IS309Alert::SetIcon(LPDISPATCH propVal)
+{
+	SetProperty(0xa, VT_DISPATCH, propVal);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// IS309Alert operations
+
+BOOL IS309Alert::Add()
+{
+	BOOL result;
+	InvokeHelper(0xb, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+	return result;
+}
+
+BOOL IS309Alert::Remove()
+{
+	BOOL result;
+	InvokeHelper(0xc, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+	return result;
+}
+
+BOOL IS309Alert::Update()
+{
+	BOOL result;
+	InvokeHelper(0xd, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+	return result;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+// IS309Alerts properties
+
+long IS309Alerts::GetCount()
+{
+	long result;
+	GetProperty(0x1, VT_I4, (void*)&result);
+	return result;
+}
+
+void IS309Alerts::SetCount(long propVal)
+{
+	SetProperty(0x1, VT_I4, propVal);
+}
+
+VARIANT IS309Alerts::GetTag()
+{
+	VARIANT result;
+	GetProperty(0x2, VT_VARIANT, (void*)&result);
+	return result;
+}
+
+void IS309Alerts::SetTag(const VARIANT& propVal)
+{
+	SetProperty(0x2, VT_VARIANT, &propVal);
+}
+
+LPUNKNOWN IS309Alerts::Get_NewEnum()
+{
+	LPUNKNOWN result;
+	GetProperty(0xfffffffc, VT_UNKNOWN, (void*)&result);
+	return result;
+}
+
+void IS309Alerts::Set_NewEnum(LPUNKNOWN propVal)
+{
+	SetProperty(0xfffffffc, VT_UNKNOWN, propVal);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// IS309Alerts operations
+
+LPDISPATCH IS309Alerts::GetItem(const VARIANT& ID)
+{
+	LPDISPATCH result;
+	static BYTE parms[] =
+		VTS_VARIANT;
+	InvokeHelper(0x5, DISPATCH_PROPERTYGET, VT_DISPATCH, (void*)&result, parms,
+		&ID);
+	return result;
+}
+
+LPDISPATCH IS309Alerts::Get_Item(const VARIANT& ID)
+{
+	LPDISPATCH result;
+	static BYTE parms[] =
+		VTS_VARIANT;
+	InvokeHelper(0x0, DISPATCH_PROPERTYGET, VT_DISPATCH, (void*)&result, parms,
+		&ID);
+	return result;
+}
+
+BOOL IS309Alerts::Remove(const VARIANT& ID)
+{
+	BOOL result;
+	static BYTE parms[] =
+		VTS_VARIANT;
+	InvokeHelper(0x3, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+		&ID);
+	return result;
+}
+
+LPDISPATCH IS309Alerts::Add(LPCTSTR Name)
+{
+	LPDISPATCH result;
+	static BYTE parms[] =
+		VTS_BSTR;
+	InvokeHelper(0x4, DISPATCH_METHOD, VT_DISPATCH, (void*)&result, parms,
+		Name);
+	return result;
+}

@@ -1,0 +1,301 @@
+Subject: RE: Re(10): Progress...
+Date Sent: Thursday, March 2, 2006 11:47 AM
+From: Franson <johan@franson.com
+To: 'George Henne' <gh@nsbasic.com
+
+Hi,
+
+You find the ActiveX components SerialCE.dll and SerialXP.dll in the
+SerialTools SDK. I guess you want to include them in some way in your own
+download? Another option is that you simply forward your users to our site
+for download, and they will get a fresh version in that case.
+
+Those are the keys NSBasic developers should use:
+
+SerialTools Standard ActiveX for Pocket PC:
+sRYVMVfu32jo8XT1RNFZcUVtLV0v30NMsttx
+
+SerialTools Standard ActiveX for Windows:
+ISAjkPsNWjHYjFopdifGQcUMYRD5C9YOIwZ8
+
+Let me know if you have any further questions.
+
+I'll be happy to participate in any joint press release, and I can also post
+the news on our site.
+
+Best Regards,
+Johan
+
+Franson GpsGate http://franson.com/gpsgate
+GPS sharing - Run many GPS applications at the same time!
+GPS simulation - Great during demonstration and development!
+
+
+-----Original Message-----
+From: George Henne [mailto:gh@nsbasic.com]
+Sent: den 1 mars 2006 21:21
+To: Johan Franson
+Subject: Re(10): Progress...
+
+No problem!
+
+Thank you.
+
+Yes.
+
+It is very late here, about 9.30 PM, and I need to leave the office, I
+will
+reply to you first thing in the morning.
+
+
+Best Regards,
+Johan
+
+Franson GpsGate http://franson.com/gpsgate
+GPS sharing - Run many GPS applications at the same time!
+GPS simulation - Great during demonstration and development!
+
+
+ -----Original Message-----
+ From: George Henne [mailto:gh@nsbasic.com]
+ Sent: den 1 mars 2006 21:16
+ To: Johan Franson
+ Subject: Re(8): Progress...
+
+ OK - it went through this time.
+
+ George Henne
+ NS BASIC Corporation
+ http://www.nsbasic.com
+
+ Hi,
+ 
+ I can see that you have tried twice to place the order, but the credit
+ card
+ company (or shareit) rejected it both times.
+ 
+ You can try again, or place the order over the phone:
+ http://www.shareit.com/ccc/index.html?cccid=[DASID_3980]
+ 
+ 
+ Best Regards,
+ Johan
+ 
+ Franson GpsGate http://franson.com/gpsgate
+ GPS sharing - Run many GPS applications at the same time!
+ GPS simulation - Great during demonstration and development!
+ 
+ 
+  -----Original Message-----
+  From: George Henne [mailto:gh@nsbasic.com]
+  Sent: den 1 mars 2006 21:07
+  To: Johan Franson
+  Subject: Re(6): Progress...
+ 
+  OK, I placed the order. Let me know if there are any difficulties...
+ 
+  Hi,
+  
+  Make a payment for any of the OEM licenses on this page, I know the
+  product
+  is not relevant, it is just a way to make a $499 transfer:
+ 
+http://franson.com/serialtools/purchase.asp?license=pro&platform=net
+  
+  After the payment is made I will send you all relevant information.
+  
+  Best Regards,
+  Johan
+  
+  Franson GpsGate http://franson.com/gpsgate
+  GPS sharing - Run many GPS applications at the same time!
+  GPS simulation - Great during demonstration and development!
+  
+  
+   -----Original Message-----
+   From: George Henne [mailto:gh@nsbasic.com]
+   Sent: den 1 mars 2006 19:26
+   To: Johan Franson
+   Subject: Re(4): Progress...
+  
+   Payment can be by whatever method works well for you - which do
+you
+   prefer?
+  
+   Hi,
+   
+    This sounds reasonable. Is an update to SerialTools 2.0
+standard
+    expected any time soon?
+   
+   Not really. Only minor bug fixes as bug reports comes in.
+   
+    How will licence numbers work? Will there be a special one for
+NS
+  Basic
+    users?
+   
+   Yes, there will be a license key for NS Basic users.
+   
+    Once we do this, let's also issue joint press releases and
+create
+  some
+    publicity for both our products. :-)
+   
+   Absolutely
+   
+   Do we have a deal? In that case how do you want to pay?
+   
+   Best Regards,
+   Johan
+   
+   Franson GpsGate http://franson.com/gpsgate
+   GPS sharing - Run many GPS applications at the same time!
+   GPS simulation - Great during demonstration and development!
+   
+   
+    -----Original Message-----
+    From: George Henne [mailto:gh@nsbasic.com]
+    Sent: den 28 februari 2006 18:31
+    To: Johan Franson
+    Subject: Re(2): Progress...
+   
+    This sounds reasonable. Is an update to SerialTools 2.0
+standard
+    expected any time soon?
+   
+    If someone wants extra support from you, they can always buy a
+ copy.
+  Of
+    course, we will let them know about the professional edition
+as
+  well.
+   
+    How will licence numbers work? Will there be a special one for
+NS
+  Basic
+    users?
+   
+    Once we do this, let's also issue joint press releases and
+create
+  some
+    publicity for both our products. :-)
+   
+   
+   
+    Hi George,
+    
+    What about those terms:
+    
+    -Free distribution rights for SerialTools v2.0 Standard
+ ActiveX
+  for
+    Pocket
+    PC and Windows for NSBasic developers in NSBasic projects.
+    -You may distribute SerialXP.dll and SerialCE.dll as part
+of
+ your
+    NSBasic
+    distribution.
+    -Where you mention SerialTools on your site you also
+mention
+ it
+  is
+    owned
+    by franson.com and you include a link to the SerialTools
+ homepage.
+    -NSBasic users are welcome to make posts about SerialTools
+in
+ our
+    forum,
+    but we will not necessarily answer any. If you are interested
+in
+    answering
+    such posts you are welcome to do so.
+    -You are not guaranteed technical support from us.
+    -A one time USD 500 fee.
+    
+    Best Regards,
+    Johan
+    
+    Franson GpsGate http://franson.com/gpsgate
+    GPS sharing - Run many GPS applications at the same time!
+    GPS simulation - Great during demonstration and development!
+    
+    
+     -----Original Message-----
+     From: George Henne [mailto:gh@nsbasic.com]
+     Sent: den 27 februari 2006 16:38
+     To: Johan Franson
+     Subject: Re: Progress...
+    
+     It's fixed! Thanks for your help in this.
+    
+     I'd like to find a way to distribute your tool with our
+ product.
+     Ideally, I'd like to pay about $500 for the right to
+ distribute
+  your
+     desktop and Pocket PC tools to all our users. Only a few
+ actually
+   need
+     serial comms, of course.
+    
+     I looked at the option of us simply being a reseller of the
+  Franson
+     Tools. This has the advantage of costing us no more than
+the
+  number
+   of
+     copies our customers actually use, but it would be easier
+for
+ us
+  if
+   we
+     did not have to do the bookkeeping. For you, it's uncertain
+ how
+  many
+     copies our customers might buy: perhaps getting $500 up
+front
+  might
+   be
+     worth more.
+    
+     Right now, we give our customers Microsoft's MSCEComm.dll
+  control,
+    which
+     is free. Your control is better, since it does Bluetooth
+well.
+    
+     Would this be possible?
+    
+     No good result yet.
+     
+     Other controls we've look at that use IPortEvents fall
+back
+ to
+    IDispatch
+     if IportEvents do not work, which is why they are OK for
+us.
+     
+     We're still working on this...
+     
+     George Henne
+     NS BASIC Corporation
+     http://www.nsbasic.com
+    
+    
+   
+   
+  
+  
+  
+ 
+ 
+ 
+
+
+
+
+
+

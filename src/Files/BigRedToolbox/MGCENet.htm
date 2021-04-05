@@ -1,0 +1,230 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>MGCENet Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCENet</P>
+</FONT><FONT FACE="Arial"><P>Tools for the Net: HTML and IP Addresses</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>October 24, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+MGCENet - Windows CE Custom Control Objects<BR>Written by Mark Gamber, October 1999<BR><BR>NS Basic is (c) NS Basic Corporation<BR>Windows CE is (c) Microsoft Corporation<BR><HR>
+
+MGCENet provides two separate controls for Windows CE applications capable of
+making use of COM oriented controls such as NS Basic. Included in this package are:
+
+
+<UL COMPACT>
+	<LI><A HREF="MGCENet.htm#IP">IP Address control</A>
+	<LI><A HREF="MGCENet.htm#HTML">HTML control</A>
+</UL>
+
+
+
+<HR>
+
+<H4>Installation</H4>
+
+<P>Connect your Windows CE device to your desktop using ActiveSync. On the desktop, run the program MGCENet.exe. Follow the instructions on the screen to complete the installation. Both controls will be installed and registered automatically. 
+<HR>
+
+<A NAME="IP"></A>
+<H2>IP Address Control</H2>
+<IMG SRC="images/IPaddressDetail.JPG" ALT="" WIDTH="142" HEIGHT="23">
+<P>The IP Address control makes it easy to display and obtain an IP address from a user
+by providing the interface used in several other components, such as dial-up network
+setup, ethernet setup and so on. The IP Address control supports the following
+properties, methods and events:
+
+<H4>Object Creation</H4>
+<CODE>addobject "MGCENet.IPAddress", "IPAddr", 10, 10, 140, 20</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/IPAddress.htm">IPAddress</A> - Demo of IPAddress functions
+</UL>
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Value</TD> <TD>Value sets and retrieves the current contents of the IP Address as a text string. Partial addresses may be specified as well as full four byte addresses.<P><CODE>IPAddr.Value = "192.168.0.1"<BR>ip = IPAddr.Value</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Border</TD> <TD>TRUE (non-zero) enables a border around the control (the default). FALSE (zero) removes the control border.<P><CODE>IPAddr.Border = TRUE<BR>iBorder = IPAddr.Border</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Enabled</TD> <TD>TRUE (non-zero) enables the control, FALSE (zero) disables the control. The default is TRUE.<P><CODE>IPAddr.Enabled = TRUE<BR>iIsEnabled = IPAddr.Enabled</CODE></TD>
+	</TR>
+	<TR>
+		<TD>BackColor</TD> <TD>Set and retrieve the control background color RGB value. The default value is White (16777215).<P><CODE>IPAddr.BackColor = (255 * 65536 ) + ( 255 * 256 )<BR>nBackColor = IPAddr.BackColor</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ForeColor</TD> <TD>Set and retrieve the control text color, including the dots between numbers. The default value is Black (0)<P><CODE>IPAddr.ForeColor = 0<BR>nForeColor = IPAddr.ForeColor</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontName</TD> <TD>Set and retrieve the name of the font used by the control. The default is "Arial"<P><CODE>IPAddr.FontName = "Courier New"<BR>sFont = IPAddr.FontName</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontSize</TD> <TD>Set and retrieve the size of the font used by the control. The default value is 14.<P><CODE>IPAddr.FontSize = 12<BR>iFontSize = IPAddr.FontSize</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontBold</TD> <TD>TRUE (non-zero) causes the control to display text using a bold font. FALSE (zero) sets it to use a non-bold font. The default is FALSE.<P><CODE>IPAddr.FontBold = TRUE<BR>bBold = IPAddr.FontBold </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Tabstop</TD> <TD>TRUE (non-zero) allows you to Tab to the control. FALSE (zero) prevents Tab from reaching the control. The default value is TRUE.<P><CODE>IPAddr.Tabstop = TRUE<BR>iTab = IPAddr.Tabstop</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Returns the version number of the control as an integer.</TD>
+	</TR>
+</TABLE>
+
+
+
+<H4>Methods</H4>
+	
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Show</TD> <TD>Call this method to make the control visible.<P><CODE>IPAddr.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>Call the Hide method to make the control invisible.<P><CODE>IPAddr.Hide</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>SetFocus sets the input focus to the first number in the control.<P><CODE>IPAddr.SetFocus</CODE></TD>
+	</TR>
+</TABLE>
+
+
+
+<H4>Events</H4>
+	The IP Address control supports no events.
+
+<HR>
+
+<A NAME="HTML"></A>
+<H2>HTML Control</H2>
+
+The HTML control allows the addition of the Windows HTML viewer to your program. The
+HTML control accepts HTML formatted text from literal strings or files and triggers
+an event when a hyperlink has been clicked upon, sending along the link text and any
+related data, such as from a form. The HTML is not a browser control, it has no
+concept of TCP/IP or the Internet, it simply displays the HTML you stream into it.
+That HTML can, of course, come from the internet via a TCP/IP or Winsock control.
+
+<H4>Object Creation</H4>
+<CODE>addobject "MGCENet.HTML","HTML",10,24,OUTPUT.Width-20,OUTPUT.Height-26</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/HTML1.htm">HTML1</A> - Read a file and display with HTML Viewer
+	<LI><A HREF="samples/HTML2.htm">HTML2</A> - Do a selection of HTML forms
+	<LI><A HREF="samples/HTML3.htm">HTML3</A> - Take actions from HTML events
+</UL>
+
+<H2>Properties</H2>
+
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Border</TD> <TD>Set Border to TRUE (non-zero) to display a border around the control or FALSE (zero) to remove the border. The default value is TRUE.<P><CODE>HTML.Border = TRUE<BR>bBorder = HTML.Border</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ForceFit</TD> <TD>Set and retrieve the ForceFit flag. When set to TRUE, images are forced to to fit within the display area of the control. Set to FALSE to allow the images to display using their normal size regardless of the control size. The default value is FALSE.<P><CODE>HTML.ForceFit = FALSE<BR>Forced = HTML.ForceFit </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Style</TD> <TD>Set and retrieve the Style property which determines how the edge of the control is displayed. This is different from the Border property. Styles include:
+		<CODE><UL COMPACT>
+	<LI>0: No edge<BR>
+	<LI>		1: "Sunken" edge<BR>
+	<LI>		2: "Raised" edge<BR>
+</UL>
+
+		HTML.Style = 2<BR>iStyle = HTML.Style</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Tabstop</TD> <TD>TRUE (non-zero) allows you to Tab to the control. FALSE (zero) prevents Tab from reaching the control. The default value is TRUE.<P><CODE>HTML.Tabstop = TRUE<BR>iTab = HTML.Tabstop </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Returns the version number of the control as an integer.</TD>
+	</TR>
+</TABLE>
+
+
+
+<H4>Methods</H4>
+
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Clear</TD> <TD>Remove all data from the HTML control by calling Clear.<P><CODE>HTML.Clear</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Copy</TD> <TD>The Copy method causes all selected text to copy to the clipboard.<P><CODE>HTML.Copy</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Show</TD> <TD>Call the Show method to make the control visible.<P><CODE>HTML.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>Call the Hide method to make the control invisible.<P><CODE>HTML.Hide</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetText</TD> <TD>The SetText method clears the contents of the control and adds a specified HTML formatted text string.<P>
+		<PRE>HTML.SetText = "&lt;font size=3>&lt;b>&lt;center>Fission Boosting&lt;/center>"</PRE></TD>
+	</TR>
+	<TR>
+		<TD>AddText</TD> <TD>AddText appends text to the control, adding it to existing data within the control.<P>
+		<PRE>HTML.AddText = "Your string here"</PRE></TD>
+	</TR>
+	<TR>
+		<TD>SetTextFromFile</TD> <TD>SetTextFromFile clears the control and adds new HTML formatted text from a specified ASCII file.<P><CODE>HTML.SetTextFromFile "html1.dat"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>AddTextFromFile</TD> <TD>This method adds HTML formatted text read from a specified ASCII file but does not clear the control. The text is appended to exist data.<P><CODE>HTML.AddTextFromFile "tinium.txt"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ToAnchor</TD> <TD>An "anchor" is an HTML tag which identifies a section of the text. You may create hyperlinks to the anchor and, upon receiving a click event from the control you may jump to that section by calling the ToAnchor method.<P><CODE>HTML:  &lt;a href='#anchor1'>To Anchor #1&lt;/a><BR><BR>Basic: HTML.ToAnchor "anchor"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>TextDone</TD> <TD>Call this method when you are done adding text to the control until the next time Clear, SetText or SetTextFromFile are used. This causes the control to do "clean up" work, fixing any errors in HTML and finishing rendering, such as with images and tables.<P><CODE>HTML.TextDone</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectAll</TD> <TD>SelectAll does just that, selects all text in the HTML control.<P><CODE>HTML.SelectAll</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>Call this method to set the input focus to the HTML control.<P><CODE>HTML.SetFocus</CODE></TD>
+	</TR>
+</TABLE>
+
+
+
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Click</TD> <TD>The click event is triggered when a hyperlink is selected or a form is submitted. Two parameters are passed to the event handler, Text and Data. The text parameter ismost commly used and contains the hyperlink text or the ACTION text from a form. In addition, a form using "METHOD=GET" will cause the field names and data to be appended to the action text. For example, "formtext?Field1= Yes&Field2=My+Name&Field3=Yes". When a form using "METHOD=POST" is submitted, only the action text is sent as the Text parameter. The field names and data of a "METHOD=POST" type form is passed as the Data parameter. Using the first example, Text would contain "formtext" and Data would contain "?Field1=Yes& Field2=My+Name&Field3=Yes".<P><CODE>sub HTML_Click( Text, Data )<BR>MsgBox "Text is " & Text, vbOKOnly, "Hyperlink"<BR>end sub</CODE></TD>
+	</TR>
+</TABLE>
+
+<HR>
+
+
+<H4>Change Log</H4>
+<P>10/23/99: Added Copy method to HTML object.
+
+
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,201 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%Provider%
+CESignature="$Windows CE$"
+
+[CEStrings]
+AppName = "DialogX"
+InstallDir = %CE2%
+
+; Create a HPC2000 specific CAB files
+[CEDevice.HPC2000_ARM]
+ProcessorType = 2577; StrongArm processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 3.00
+VersionMax = 100.0
+
+[CEDevice.HPC2000_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 3.00
+VersionMax = 100.0
+
+; Create a HPCPRO specific CAB files
+[CEDevice.HPCPRO_ARM]
+ProcessorType = 2577; StrongArm processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.HPCPRO_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.HPCPRO_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.HPCPRO_SH4]
+ProcessorType = 10005; SH4 processors
+UnsupportedPlatforms="Palm PC","HPC"
+VersionMin = 2.11
+VersionMax = 2.99
+
+; Create a HPC specific CAB files
+[CEDevice.HPC_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="Palm PC"
+VersionMin = 2.00
+VersionMax = 2.00
+
+[CEDevice.HPC_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="Palm PC"
+VersionMin = 2.00
+VersionMax = 2.00
+
+; Create a PPC specific CAB files
+[CEDevice.PPC_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="HPC","Jupiter"
+VersionMin = 2.11
+VersionMax = 2.99
+
+[CEDevice.PPC_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="HPC","Jupiter"
+VersionMin = 2.11
+VersionMax = 2.99
+
+; Create a PocketPC specific CAB files
+[CEDevice.PocketPC_MIPS]
+ProcessorType = 4000; MIPS processors
+UnsupportedPlatforms="HPC","Jupiter","Galileo"
+VersionMin = 3.00
+VersionMax = 100.0
+
+[CEDevice.PocketPC_SH3]
+ProcessorType = 10003; SH3 processors
+UnsupportedPlatforms="HPC","Jupiter","Galileo"
+VersionMin = 3.00
+VersionMax = 100.0
+
+[CEDevice.PocketPC_ARM]
+ProcessorType = 2577; StrongArm processors
+UnsupportedPlatforms="HPC","Jupiter","Galileo"
+VersionMin = 3.00
+VersionMax = 100.0
+
+[SourceDisksNames]
+1 = , "Common Files",, e:\nsbce\300\ALL
+
+[SourceDisksNames.HPC2000_ARM]
+2 =, "ARM files",, e:\nsbce\300\HPC2000\ARM
+[SourceDisksNames.HPC2000_MIPS]
+2 =, "MIPS files",, e:\nsbce\300\HPC2000\MIPS
+
+[SourceDisksNames.HPCPRO_ARM]
+2 =, "ARM files",, e:\nsbce\300\HPCPRO\ARM
+[SourceDisksNames.HPCPRO_MIPS]
+2 =, "MIPS files",, e:\nsbce\300\HPCPRO\MIPS
+[SourceDisksNames.HPCPRO_SH3]
+2 =, "SH3 files",, e:\nsbce\300\HPCPRO\SH3
+[SourceDisksNames.HPCPRO_SH4]
+2 =, "SH4 files",, e:\nsbce\300\HPCPRO\SH4
+
+[SourceDisksNames.HPC_MIPS]
+2 =, "MIPS files",, e:\nsbce\300\HPC\MIPS
+[SourceDisksNames.HPC_SH3]
+2 =, "SH3 files",, e:\nsbce\300\HPC\SH3
+
+[SourceDisksNames.PPC_MIPS]
+2 =, "MIPS files",, e:\nsbce\300\PPC\MIPS
+[SourceDisksNames.PPC_SH3]
+2 =, "SH3 files",, e:\nsbce\300\PPC\SH3
+
+[SourceDisksNames.PocketPC_MIPS]
+2 =, "MIPS files",, e:\nsbce\300\PocketPC\MIPS
+[SourceDisksNames.PocketPC_SH3]
+2 =, "SH3 files",, e:\nsbce\300\PocketPC\SH3
+[SourceDisksNames.PocketPC_ARM]
+2 =, "ARM files",, e:\nsbce\300\PocketPC\ARM
+
+
+[SourceDisksFiles]
+DialogX.nsb = 1
+Find.nsb = 1
+Login.nsb = 1
+HelloDialog.nsb = 1
+DialogX.ocx = 2
+
+[DefaultInstall]
+AddReg = AddRegistry.All
+CESelfRegister=DialogX.ocx
+
+[DefaultInstall.HPC2000_ARM]
+CopyFiles = Files.Windows,Files.Samples
+[DefaultInstall.HPC2000_MIPS]
+CopyFiles = Files.Windows,Files.Samples
+
+[DefaultInstall.HPCPRO_ARM]
+CopyFiles = Files.Windows,Files.Samples
+[DefaultInstall.HPCPRO_MIPS]
+CopyFiles = Files.Windows, Files.Samples
+[DefaultInstall.HPCPRO_SH3]
+CopyFiles = Files.Windows, Files.Samples
+[DefaultInstall.HPCPRO_SH4]
+CopyFiles = Files.Windows, Files.Samples
+
+[DefaultInstall.HPC_MIPS]
+CopyFiles = Files.Windows, Files.Samples
+[DefaultInstall.HPC_SH3]
+CopyFiles = Files.Windows, Files.Samples
+
+[DefaultInstall.PPC_MIPS]
+CopyFiles = Files.Windows, Files.SamplesPPC
+[DefaultInstall.PPC_SH3]
+CopyFiles = Files.Windows, Files.SamplesPPC
+
+[DefaultInstall.PocketPC_MIPS]
+CopyFiles = Files.Windows, Files.SamplesPPC
+[DefaultInstall.PocketPC_SH3]
+CopyFiles = Files.Windows, Files.SamplesPPC
+[DefaultInstall.PocketPC_ARM]
+CopyFiles = Files.Windows, Files.SamplesPPC
+
+
+; Ouput directories for files & shortcuts
+[DestinationDirs]
+Files.Windows = 	0,%CE2%
+Files.Samples = 	0,\BASIC Samples
+Files.SamplesPPC = 	0,%CE5%
+DefaultDestDir = 	0,%InstallDir%
+
+; Install into \Windows
+[Files.Windows]
+"DialogX.ocx"
+
+; Install into "\BASIC Samples"
+[Files.Samples]
+"DialogX.nsb"
+"Find.nsb"
+"Login.nsb"
+"HelloDialog.nsb"
+
+; Install into "\My Documents"
+[Files.SamplesPPC]
+"DialogX.nsb"
+"Find.nsb"
+"Login.nsb"
+"HelloDialog.nsb"
+
+[AddRegistry.All]
+
+; Misc. strings...
+[Strings]
+Provider = "NSB"
+

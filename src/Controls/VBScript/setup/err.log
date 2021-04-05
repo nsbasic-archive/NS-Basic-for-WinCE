@@ -1,0 +1,10 @@
+Warning: Section [DestinationDirs] key "Files.Windows" is not using the string "%InstallDir%"
+Warning: Section [AddRegistry.All] has no data
+Warning: Section [DestinationDirs] key "Files.Windows" is not using the string "%InstallDir%"
+Warning: Section [AddRegistry.All] has no data
+Warning: Section [DefaultInstall] key "AddReg" - there are no section entries to process
+Warning: Section [DestinationDirs] key "Files.Windows" is not using the string "%InstallDir%"
+Warning: Section [AddRegistry.All] has no data
+Warning: Section [DefaultInstall] key "AddReg" - there are no section entries to process
+Warning: Section [DestinationDirs] key "Files.Windows" is not using the string "%InstallDir%"
+Warning: Section [AddRegistry.All] has no data

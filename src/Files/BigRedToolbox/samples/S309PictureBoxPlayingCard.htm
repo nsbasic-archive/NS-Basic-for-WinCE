@@ -1,0 +1,254 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309PictureBoxPlayingCard Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309PictureBoxPlayingCard.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+option explicit
+dim nLastCategory, suitarray, Menu, gstrTitle, gSize, gHeight, gWidth, gAdd
+
+gstrTitle = "S309PictureBox PlayingCard Example"
+Menu = array("&File||File",gstrTitle,"|","http://members.xoom.com/S309")
+setmenu "TitleBar",menu
+Menu = array("E&xit||mnuFileExit")
+setmenu "File", Menu
+
+nLastCategory = 99  
+suitarray = array("Clubs","Diamonds", "Hearts", "Spades")
+if (Output.Width mod 2) = 1 then
+ Output.Move 0, 0, (Output.ScaleX(Output.Width + 1, 3,1)), (Output.ScaleY(Output.Height, 3, 1))
+end if    
+output.backcolor=vbgreen
+updatescreen
+
+gSize = 1
+gAdd = 1
+
+addobject "S309.PictureBox.1","picCard",180,0,0,0
+picCard.playingCard = 1
+gHeight = picCard.imageHeight
+gWidth = picCard.imageWidth
+piccard.cls
+piccard.backcolor=vbwhite
+piccard.stretch = true
+
+addobject "ComboBox","cmbCategory",10,5,160,140
+cmbCategory.style = 2
+cmbCategory.additem "Clubs (1 - 13)"
+cmbCategory.additem "Diamonds (14 - 26)"
+cmbCategory.additem "Hearts (27 - 39)"
+cmbCategory.additem "Spades (40 - 52)"
+cmbCategory.additem "Card Misc (53 - 59)"
+cmbCategory.additem "Card Backs (61 - 66)"
+cmbCategory.additem "Card Other (78 - 80)"
+
+addobject "ComboBox","cmbCard",10,30,160,140
+cmbCard.style = 2
+
+addobject "ComboBox","cmbWildCard",10,55,160,120
+cmbWildCard.style = 2
+cmbWildCard.additem "No WildCard"
+cmbWildCard.additem "Horizontal WildCard"
+cmbWildCard.additem "Vertical WildCard"
+cmbWildCard.additem "Center WildCard"
+cmbWildcard.listindex = 0
+
+addobject "ComboBox","cmbAnimateInterval",10,80,160,120
+cmbAnimateInterval.style = 2
+cmbAnimateInterval.additem "No Animation"
+cmbAnimateInterval.additem "1 Second Animation"
+cmbAnimateInterval.additem "2 Seconds Animation"
+cmbAnimateInterval.additem "3 Seconds Animation"
+cmbAnimateInterval.additem "4 Seconds Animation"
+cmbAnimateInterval.additem "5 Seconds Animation"
+cmbAnimateInterval.listindex = 0
+
+addobject "ComboBox","cmbMirror",10,105,160,120
+cmbMirror.style = 2
+cmbMirror.additem "No Mirror"
+cmbMirror.additem "Mirror Horizontal"
+cmbMirror.additem "Mirror Veritcal"
+cmbMirror.additem "Mirror Both"
+cmbMirror.listindex = 0
+
+addobject "ComboBox","cmbRotate",10,130,160,120
+cmbRotate.style = 2
+cmbRotate.additem "No Rotation"
+cmbRotate.additem "Rotate 90"
+cmbRotate.additem "Rotate 180 "
+cmbRotate.additem "Rotate 270"
+cmbRotate.listindex = 0
+
+addobject "CheckBox", "chkInvert", 10,155,160,15
+chkInvert.backcolor = output.backcolor
+chkInvert.fontBold = true
+chkInvert.caption = "Invert Colors"
+addobject "Label","lblAnimationAvailable",10,175,160,15
+lblAnimationAvailable.hide
+lblAnimationAvailable.caption = "Animation Available"
+lblAnimationAvailable.backcolor = output.backcolor
+lblAnimationAvailable.fontBold = true
+lblAnimationAvailable.alignment = 2
+
+addobject "Label","lblClick",1,195,output.width,15
+lblClick.hide
+lblClick.caption = "Single Click on Card to Animate, Double Click On Card To Change Size"
+lblClick.backcolor = output.backcolor
+lblClick.fontBold = true
+lblClick.alignment = 2
+lblClick.show
+
+picCard.zorder 0
+
+cmbCategory.listindex = 0
+call cmbCategory_Click()
+
+sub mnuFileExit_Click()
+  bye
+end sub  
+
+sub cmbCategory_Click()
+  dim suit, listindex
+  if cmbCategory.listindex < 4 then
+    suit = suitarray(cmbCategory.listindex) 
+    if nLastCategory < 4 then
+      listindex = cmbCard.listindex
+    else
+      listindex = 0
+    end if    
+    cmbCard.clear
+    cmbCard.additem "Ace of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 1) & ")"
+    cmbCard.additem "Two of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 2) & ")"
+    cmbCard.additem "Three of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 3) & ")"
+    cmbCard.additem "Four of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 4) & ")"
+    cmbCard.additem "Five of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 5) & ")"
+    cmbCard.additem "Six of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 6) & ")"
+    cmbCard.additem "Seven of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 7) & ")"
+    cmbCard.additem "Eight of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 8) & ")"
+    cmbCard.additem "Nine of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 9) & ")"
+    cmbCard.additem "Ten of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 10) & ")"
+    cmbCard.additem "Jack of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 11) & ")"
+    cmbCard.additem "Queen of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 12) & ")"
+    cmbCard.additem "King of " & suit & " (" & cstr((cmbCategory.listindex * 13) + 13) & ")"
+    cmbCard.listindex = listindex
+  elseif cmbCategory.listindex = 4 then
+    if nLastCategory <> 4 then
+      cmbCard.clear
+      cmbCard.additem "Joker (53)"
+      cmbCard.additem "Blank Card (54)"
+      cmbCard.additem "Blank Face Card (55)"
+      cmbCard.additem "Club Card (56)"
+      cmbCard.additem "Diamond Card (57)"
+      cmbCard.additem "Hearts Card (58)"
+      cmbCard.additem "Spades Card (59)"
+      cmbCard.listindex = 0
+    end if  
+  elseif cmbCategory.listindex = 5 then
+    if nLastCategory <> 5 then
+      cmbCard.clear
+      if picCard.ScreenWidth = 240 then
+        cmbCard.additem "Dragon (61)"
+        cmbCard.additem "Pyramid (62)"
+        cmbCard.additem "? I have no idea (63)"
+        cmbCard.additem "Cheating Hand (64)"
+        cmbCard.additem "Clover (65)"
+        cmbCard.additem "Sailboat (66)"
+     else
+        cmbCard.additem "WIN32_WCE Horse (61)"
+        cmbCard.additem "Haunted Castle (62)"
+        cmbCard.additem "Bubbling Fish (63)"
+        cmbCard.additem "Cheating Hand (64)"
+        cmbCard.additem "Helpful Robot (65)"
+        cmbCard.additem "Sailboat (66)"
+      end if  
+      cmbCard.listindex = 0
+    end if  
+  elseif cmbCategory.listindex = 6 then
+    if nLastCategory <> 6 then
+      cmbCard.clear
+      cmbCard.additem "O Card (78)"
+      cmbCard.additem "X Card (79)"
+      cmbCard.additem "Ghost Card (80)"
+      cmbCard.listindex = 0
+    end if  
+  end if
+  call cmbCard_Click()
+  nLastCategory = cmbCategory.listindex
+end sub 
+sub cmbCard_Click()
+  call SetCardSize 
+  if cmbCategory.listindex < 4 then
+    picCard.PlayingCard = ((cmbCategory.listindex * 13) + cmbCard.listindex) + 1
+  elseif cmbCategory.listindex = 4 then
+    picCard.PlayingCard = cmbCard.listindex + 53
+  elseif cmbCategory.listindex = 5 then
+    picCard.PlayingCard = cmbCard.listindex + 61
+  elseif cmbCategory.listindex = 6 then
+    picCard.PlayingCard = cmbCard.listindex + 78
+  end if
+  if picCard.animationavailable then
+    lblAnimationAvailable.show
+  else
+    lblAnimationAvailable.hide
+  end if    
+  picCard.waitcursor = false
+end sub 
+sub cmbAnimateInterval_Click()
+  picCard.AnimationInterval = cmbAnimateInterval.listindex * 1000
+end sub
+sub picCard_Click()
+'  call SetCardSize
+  picCard.animate
+end sub  
+sub picCard_DblClick()
+  gsize = gsize + gAdd
+  if gsize < 1 then
+    gsize = 1
+    gadd = 1
+  elseif ((gheight * gSize) > output.height) or ((gwidth * gSize) > output.width) then
+    gadd = -1
+    gSize = gSize + gAdd
+  end if    
+  picCard.move picCard.left, picCard.top, gwidth * gsize , gheight * gsize
+end sub  
+sub cmbWildCard_Click()
+   picCard.wildcard = cmbwildcard.listindex
+end sub      
+sub chkInvert_Click()
+  if chkInvert.value = 1 then
+    picCard.Invert = true
+  else
+    picCard.Invert = false
+  end if  
+  picCard.InvertPicture
+end sub  
+sub cmbMirror_Click()
+  picCard.Mirror = cmbMirror.listindex
+'  btnMirror.Mirror = cmbMirror.listindex
+end sub
+sub cmbRotate_Click()
+  picCard.Rotate = (cmbRotate.listindex * 90)
+'  btnRotate.Rotate = (cmbRotate.listindex * 90)
+end sub
+sub SetCardSize()
+  if (picCard.rotate = 90) or (picCard.rotate = 270) then
+    gheight = 52
+    gwidth = 70
+    picCard.waitcursor = true
+  else  
+    gheight = 70
+    gwidth = 52
+    picCard.waitcursor = false
+  end if  
+  do while ((gheight * gSize) > output.height) or ((gwidth * gSize) > output.width)
+    gSize = gSize - 1
+    gAdd = -1
+  loop   
+  picCard.move picCard.left, picCard.top, gwidth * gsize , gheight * gsize
+end sub
+</PRE>
+</body>
+</html>
+

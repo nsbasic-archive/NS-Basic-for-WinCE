@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>TreeEx Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/TreeEx.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+' Registry browser using the MGCEWin32, MGCEListView and MGCETreeView
+' controls. Written by Mark Gamber using NS Basic.
+
+CLASSES_ROOT = 0
+CURRENT_USER = 1
+LOCAL_MACHINE =2
+
+iWidth = OUTPUT.width / 2
+addobject "MGCEWin32.Registry", "Registry", 0, 0, 0, 0
+addobject "MGCETreeView.TreeView", "Tree", 2, 0, iWidth - 3, OUTPUT.height
+addobject "MGCEListView.ListView", "List", iWidth + 1, 0, iWidth - 2, OUTPUT.height
+
+Tree.AllowEdit = TRUE
+List.View = 1
+List.InsertColumn 1, "Name", 50, 0
+List.InsertColumn 2, "Type", 50, 0
+List.InsertColumn 3, "Value", 100, 0
+
+topItem  = Tree.AddItem( 0, topItem, "Classes", 0 )
+Tree.AddItem topItem, 0, "", -1
+topItem  = Tree.AddItem( 0, topItem, "Current User", 0 )
+Tree.AddItem topItem, 0, "", -1
+topItem  = Tree.AddItem( 0, topItem, "Local Machine", 0 )
+Tree.AddItem topItem, 0, "", -1
+
+sub Tree_Expanding( item )
+   child = Tree.Child( item )
+   if Tree.ItemValue( child ) = -1 then
+      s = Tree.TreePath( Tree.Parent( child ) )
+      Tree.DeleteItem( child )
+      i = InStr( 1, s, "\" )
+      if i > 0 then
+         root = Left( s, i - 1)
+      else
+         root = s
+      end if
+      if root = "Classes"  then Registry.Key = CLASSES_ROOT
+      if root = "Current User" then Registry.Key = CURRENT_USER
+      if root = "Local Machine" then Registry.Key = LOCAL_MACHINE
+      if i > 0 then
+         path = Mid( s, i + 1 )
+      else
+         path = ""
+      end if
+      Registry.Path = path
+      newItem = 0
+      i = 0
+      on error resume next
+      while Err.number = 0
+         s = Registry.GetPathName( i )
+         if Err.number = 0 then
+            newItem = Tree.AddItem( item, newItem, s, 0 )
+            Tree.AddItem newItem, 0, "", -1
+            i = i + 1
+         end if
+      wend
+      Err.Clear
+   end if
+end sub
+
+sub Tree_Changing( oldItem, newItem )
+   if Tree.ItemText( newItem ) <> "" then
+      s = Tree.TreePath( newItem )
+      i = InStr( 1, s, "\" )
+      if i > 0 then
+         root = left( s, i - 1 )
+         Registry.Path = Mid( s, i + 1 )
+      else
+         root = s
+         Registry.Path = ""
+      end if
+      if root = "Classes" then Registry.Key = CLASSES_ROOT
+      if root = "Current User" then Registry.Key = CURRENT_USER
+      if root = "Local Machine" then Registry.Key = LOCAL_MACHINE
+      i = 0
+      on error resume next
+      Err.Clear
+      List.Clear
+      while Err.number = 0
+         s = Registry.GetValueName( i )
+         Registry.Name = s
+         if Err.number = 0 then
+            List.InsertItem 1, s, 0, 0
+            t = Registry.ValueType
+            if t = 1 then
+               List.SetItem 1, 2, "String", 0, 0
+               List.SetItem 1, 3, Registry.Value, 0, 0
+            end if   
+            if t = 3 then
+               List.SetItem 1, 2, "Binary", 0, 0
+               v = Registry.Value
+               if Len ( v ) > 20 then v = Left( v, 20 ) & "..."
+               List.SetItem 1, 3, v, 0, 0
+            end if
+            if t = 4 then
+               List.SetItem 1, 2, "Dword", 0, 0
+               v = CStr( Registry.Value )
+               List.SetItem 1, 3, v, 0, 0
+            end if
+            if t = 7 then
+               List.SetItem 1, 2, "Array", 0, 0
+               v = Registry.Value
+               List.SetItem 1, 3, v( 1 ), 0, 0
+            end if
+         end if
+         i = i + 1
+      wend
+   end if
+end sub
+</PRE>
+</body>
+</html>
+

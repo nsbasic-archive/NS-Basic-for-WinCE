@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+	<TITLE>.inf File Format</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY>
+
+For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa448616.aspx" target="_top">http://msdn.microsoft.com/en-us/library/aa924359.aspx</a>
+
+<h3>Processor-Specific Sections</h3>
+
+<p>The .CAB files created using an .inf file are processor specific:  Each one can be used with only one type of processor.  To create processor-specific CAB files, you must append the processor type extension to some of the section names.
+
+For example:<pre>
+		[DefaultInstall]  -  shared by all platforms
+		[DefaultInstall.sh3]  - specific to the SH3 processor
+		[DefaultInstall.mips]  - specific to the MIPS processor</pre>
+
+<p>The following sections can be appended with a processor-specific extension:
+
+<pre>
+[CEDevice]
+[DefaultInstall]
+[SourceDisksNames]
+[SourceDisksFiles]
+</pre>
+
+
+<h4>INF Sections Used</h4>
+
+<p>An .inf file is made up of a number of sections, each of which starts with a section name in [brackets].
+<pre>
+<b>[Version]</b>
+Signature="signature-name"
+Provider=provider-name
+CESignature="$Windows CE$"
+</pre>
+<ul>
+	<li>Signature - should be "$Windows NT$"</li>
+	<li>Provider - name of the software provider.</li>
+	<li>CESignature - must be included, and specified as above.</li>
+</ul>
+
+
+<pre>
+<b>[CEDevice]</b> *
+[ProcessorType=processor-type]
+[UnsupportedPlatforms=platform-family-name [ , platform-family-name]]
+[VersionMin=[major_version.minor_version]]
+[VersionMax=[major_version.minor_version]]
+[BuildMin=[build-number]]
+[BuildMax=[build-number]]
+</pre>
+<p>All of the above keys are optional.
+
+<ul>
+	<li>ProcessorType - The numeric processor type returned by SYSTEMINFO.dwProcessorType.  SH3 processors normally have a value of 10003, and MIPS processors have a value of 4000.</li>
+	<li>UnsupportedPlatforms - A list of platform family names that is known to be unsupported, i.e. "hpc" or "gryphon".  It the connected device is listed here, the Application Manager will not display the application.</li>
+	<li>VersionMin,VersionMax - The version returned by OSVERSIONINFO.dwVersionMajor and OSVERSIONINFO.dwVersionMinor.</li>
+	<li>BuildMin, BuildMax - The build information returned by OSVERSIONINFO.dwBuildNumber.</li>
+</ul>
+
+<pre>
+<b>[DefaultInstall]</b>
+CopyFiles=file-list-section [ , file-list-section]...
+AddReg=add-registry-section [ , add-registry-section]...
+CEShortcuts=shortcut-list-section [ , shortcut-list-section]...
+CESetupDLL=[DLL-filename]
+CESelfRegister=DLL-filename [ , DLL-filename]
+</pre>
+<ul>
+	<li>CopyFiles - a list of [CopyFiles] sections (see below) to be used.</li>
+	<li>AddReg - a list of [AddRegistry] sections (see below) to be used.</li>
+	<li>CEShortcuts - a list of [CEShortcuts] sections (see below) to be used.</li>
+	<li>CESetupDLL - an ISV-created "Setup.DLL" that exports functions to be called during installation onto the Windows CE device.</li>
+	<li>CESelfRegister - a list of self-registering DLLs to be installed.  "DllRegisterServer()" will be called during installation, and "DllUnregisterServer()" will be called during uninstallation.</li>
+</ul>
+
+<pre>
+<b>[SourceDisksNames]</b>
+disk-ordinal= , disk-label , , path
+.
+.
+.
+</pre>
+This section identifies and names the disk that contains the source files for file copying operations. The source files are listed in the [SourceDisksFiles] section (see below).
+
+
+<ul>
+	<li>disk-ordinal - a unique number that identifies a source disk. If there is more than one source disk, each must have a unique ordinal. </li>
+	<li>disk-label - the label assigned to the source disk.</li>
+	<li>path - specifies the absolute path to the files on the source disk.</li>
+</ul>
+
+<pre>
+<b>[SourceDisksFiles]</b>
+filename=disk-ordinal [ , subdir]
+.
+.
+.
+</pre>
+This section names the source files used during installation and identifies the source disks that contain the files. The source disks are listed in the [SourceDisksNames] section (see above).
+
+
+<ul>
+	<li>filename - name of the file to be installed</li>
+	<li>disk-ordinal - the ordinal number of the source disk where the file can be found.  The ordinal number is specified in the [SourceDisksNames] section (see above).</li>
+	<li>subdir - optional parameter that specifies a subdirectory on the source disk where the file can be found.</li>
+</ul>
+
+<pre>
+<b>[DestinationDirs]</b>
+file-list-section=0, subdir
+.
+.
+.
+</pre>
+This section defines the destination directories for the operations specified in the [CopyFiles] and [CEShortcuts] sections (see below).
+
+
+<ul>
+	<li>file-list-section - the name of [CopyFiles] or [CEShortcuts] section that contains the names of the files/shortcuts to be copied to the destination directory.</li>
+	<li>subdir - name of the destination directory to use.  This directory name can contain string macros for certain system directories, as defined below.  </li>
+</ul>
+
+
+<b>Directory Name Macros</b>
+
+<p>The following table shows Windows Embedded CE directory identifiers and the resulting directories on devices running Windows Mobile 6 Professional or Windows Mobile 6 Classic. If the default storage volume on the device is Storage, \Storage is added to the beginning of the directory identifiers.
+<pre>
+%CE1%	\Program Files
+%CE2%	\Windows
+%CE4%	\Windows\StartUp
+%CE5%	\My Documents
+%CE8%	\Program Files\Games
+%CE11%	\Windows\Start Menu\Programs
+%CE14%	\Windows\Start Menu\Programs\Games
+%CE15%	\Windows\Fonts
+%CE17%	\Windows\Start Menu
+
+</pre>
+
+<pre>
+<b>[CopyFiles]</b>
+destination-file-name [ , source-file-name] [ , ,flag]
+.
+.
+.
+</pre>
+This section specifies files to be copied to the Windows CE device during installation.  The actual file section name ("CopyFiles") is user-defined, and may vary.
+
+<ul>
+	<li>destination-file-name - name of the destination file to be created.</li>
+	<li>source-file-name - optional parameter that specifies the name of the source file, if it is different than the name of the destination file.</li>
+	<li>flag - optional flag that controls how the files are copied.  The following flags are supported:</li>
+<pre>
+COPYFLG_WARN_IF_SKIP            0x00000001 Warn a user if an attempt is made to skip a file after an error occurs.
+COPYFLG_NOSKIP                  0x00000002 Do not allow a user to skip copying a file.
+COPYFLG_NO_OVERWRITE            0x00000010 Do not overwrite a file in the destination directory.
+COPYFLG_REPLACEONLY             0x00000400 Copy the source file to the destination directory only if the file is in the destination directory.
+CE_COPYFLG_NO_DATE_DIALOG       0x20000000 Do not copy if target is newer
+CE_COPYFLG_NODATECHECK          0x40000000 Ignore date and overwrite target
+CE_COPYFLG_SHARED               0x80000000 Reference-counting shared file
+</pre>
+</ul>
+
+<pre>
+<b>[CEShortcuts]</b> *
+shortcut-file-name, type-flag, target-file/path [ , standard-destination-path]
+.
+.
+.
+</pre>
+This section specifies shortcuts to be created on the Windows CE device during installation.  The actual shortcut section name ("CEShortcuts") is user-defined, and may vary.
+
+
+<ul>
+	<li>shortcut-file-name - the name of shortcut file to be created.  This name does not require the ".lnk" extension.</li>
+	<li>type-flag - if 0 or empty, the target is a file.  Any non-zero value indicates that the target is a pathname.</li>
+	<li>target-file/path - if the target is a file, the target file name must be defined in a [CopyFiles] section (see above).  If the target is a path, the path name must either be defined in [DestinationDirs], or set to %InstallDir%.</li>
+	<li>standard-destination-path - optional parameter that specifies either one of the standard %CE% paths (see [DestinationDirs] section above), or %InstallDir%.  </li>
+</ul>
+
+<pre>
+<b>[AddRegistry]</b>
+reg-root-string, [subkey], [value-name], [flags], [value]
+.
+.
+.
+</pre>
+This section specifies registry entries to be created on the Windows CE device during installation.  The actual registry section name ("AddRegistry") is user-defined, and may vary.
+
+<ul>
+	<li>reg-root-string - can be one of: HKCR (same as HKEY_CLASSES_ROOT), HKCU (same as HKEY_CURRENT_USER), HKLM (same as HKEY_LOCAL_MACHINE), or HKU (same as HKEY_USERS).</li>
+	<li>subkey - optional parameter that specifies a sub-key to be created under the root key.</li>
+	<li>value-name - optional parameter that specifies the name of the value to be created under the specified key.  If left empty, the default value for the key is set.</li>
+	<li>flags - flag the determines how the key/value is created, and the type of the value.  The supported flags are:</li>
+<pre>
+FLG_ADDREG_NOCLOBBER        0x00000002 If the registry key exists, do not overwrite it. This flag can be used in combination with any of the other flags in this table.
+FLG_ADDREG_TYPE_SZ          0x00000000 The REG_SZ registry data type.
+FLG_ADDREG_TYPE_MULTI_SZ    0x00010000 The REG_MULTI_SZ registry data type. The value field that follows can be a list of strings separated by commas.
+FLG_ADDREG_TYPE_BINARY      0x00000001 The REG_BINARY registry data type. The value field that follows must be a list of numeric values separated by commas, one byte per field, and must not use the 0x hexadecimal prefix.
+FLG_ADDREG_TYPE_DWORD       0x00010001 The REG_DWORD data type. Only the non-compatible format in the Win32 Setup .inf documentation is supported.
+</pre>
+
+	<li>value - optional value to set. This parameter can be either a string or a number in hexadecimal notation.
+</ul>
+
+<pre>
+<b>[CEStrings]</b> *
+AppName=application-name
+InstallDir=default-installation-directory
+</pre>
+<ul>
+	<li>application-name - the name of the application being installed.</li>
+	<li>default-installation-directory - the path to the directory to use as the default installation directory.  This string is used for the %InstallDir% macro, required for many of the sections described above.  When specifying this string, the standard %CE% macros (see [DestinationDirs] above) can be used.</li>
+</ul>
+
+
+<pre>
+<b>[Strings]</b>
+string-name=value
+.
+.
+.
+</pre>
+This section defines custom string macros to be used when the INF file is compiled.  
+
+<ul>
+	<li>string-name - The name of the new macro you want to create.  For example, a value of "Provider" will allow you to use the newly created "%Provider%" macro anywhere in the INF file.</li>
+	<li>value - The value that the string macro will expand to.</li>
+</ul>
+
+</BODY>
+</HTML>

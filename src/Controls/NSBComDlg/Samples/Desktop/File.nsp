@@ -1,0 +1,3 @@
+Dim AppEXEName: AppEXEName = "File"
+Dim AppPath: AppPath = "E:\NSBCE6\Controls\NSBComDlg\Samples\Desktop\File.nsd"
+Project.AddModule "main", "E:\NSBCE6\Controls\NSBComDlg\Samples\Desktop\File.nsd"

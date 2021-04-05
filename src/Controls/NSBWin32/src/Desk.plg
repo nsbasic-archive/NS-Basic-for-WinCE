@@ -1,0 +1,120 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Desk - Win32 Unicode Release MinDependency--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /tlb ".\Desk.tlb" /h "Desk.h" /iid "Desk_i.c" /Oicf "E:\NSBCE6\Controls\NSBWin32\src\Desk.idl""
+Creating command line "rc.exe /l 0x409 /fo"output/Desk.res" /d "NDEBUG" "E:\NSBCE6\Controls\NSBWin32\src\Desk.rc"" 
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP657.tmp" with contents
+[
+/nologo /MT /W3 /O1 /I "../include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /Fp"output/Desk.pch" /Yu"stdafx.h" /Fo"output/" /Fd"output/" /FD /c 
+"E:\NSBCE6\Controls\NSBWin32\src\API.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\APIPosPoint.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\Desk.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\MiniEnum.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\RAS.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\RASConState.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\RASEntry.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\Registry.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\Timer.cpp"
+"E:\NSBCE6\Controls\NSBWin32\src\Tray.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP657.tmp" 
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP658.tmp" with contents
+[
+/nologo /MT /W3 /O1 /I "../include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /Fp"output/Desk.pch" /Yc"stdafx.h" /Fo"output/" /Fd"output/" /FD /c 
+"E:\NSBCE6\Controls\NSBWin32\src\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP658.tmp" 
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP659.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Rasapi32.lib comctl32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"output/NSBWin32.pdb" /machine:I386 /def:".\Desk.def" /out:"output/NSBWin32.dll" /implib:"output/NSBWin32.lib" 
+.\output\API.obj
+.\output\APIPosPoint.obj
+.\output\Desk.obj
+.\output\MiniEnum.obj
+.\output\RAS.obj
+.\output\RASConState.obj
+.\output\RASEntry.obj
+.\output\Registry.obj
+.\output\StdAfx.obj
+.\output\Timer.obj
+.\output\Tray.obj
+.\output\Desk.res
+]
+Creating command line "link.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP659.tmp"
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP65A.bat" with contents
+[
+@echo off
+if "%OS%"=="" goto NOTNT
+if not "%OS%"=="Windows_NT" goto NOTNT
+regsvr32 /s /c ".\output\NSBWin32.dll"
+echo regsvr32 exec. time > ".\output\regsvr32.trg"
+goto end
+:NOTNT
+echo Warning : Cannot register Unicode DLL on Windows 95
+:end
+]
+Creating command line "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSP65A.bat"
+Creating Type Library...
+Microsoft (R) MIDL Compiler Version 5.01.0164  
+Copyright (c) Microsoft Corp 1991-1997. All rights reserved.
+Processing E:\NSBCE6\Controls\NSBWin32\src\Desk.idl
+Desk.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\oaidl.idl
+oaidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\objidl.idl
+objidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\unknwn.idl
+unknwn.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\wtypes.idl
+wtypes.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\ocidl.idl
+ocidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\oleidl.idl
+oleidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\servprov.idl
+servprov.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\urlmon.idl
+urlmon.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\msxml.idl
+msxml.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+API.cpp
+APIPosPoint.cpp
+Desk.cpp
+MiniEnum.cpp
+RAS.cpp
+RASConState.cpp
+RASEntry.cpp
+Registry.cpp
+Timer.cpp
+Tray.cpp
+Generating Code...
+Linking...
+   Creating library output/NSBWin32.lib and object output/NSBWin32.exp
+NSBWin32.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBWin32.dll"; ignoring directive
+<h3>Output Window</h3>
+Performing registration
+
+
+
+<h3>Results</h3>
+NSBWin32.dll - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

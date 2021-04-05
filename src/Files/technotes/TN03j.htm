@@ -1,0 +1,259 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="Microsoft Word 98">
+<TITLE>Tech Note 03j: ListView Object</TITLE>
+<META NAME="Template" CONTENT="HD:Applications:Microsoft Office 98:Templates:Web Pages:Blank Web Page">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 03j: ListView Object </h2>
+	  <h3>January 5, 2007
+</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr noshade size="1">
+
+<blockquote>
+  <p>For more information on this control, see Microsoft's 
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">documentation</A>.
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>This control displays items using one of four different views: large (standard) icons, small icons, list, and report. You can arrange items into columns with or without column headings. You can display accompanying icons and text.</P>
+<p>This control has been replaced by NSBControls.dll.
+
+<B><P>Sample Code</P>
+</B><P>Here is a sample contributed by Heiko Stolte. It can be downloaded, with the image files it uses, from <a href="http://www.nsbasic.com/pub/ce/samples/ListView.zip" target="_top">http://www.nsbasic.com/pub/ce/samples/ListView.zip</a>.
+<pre>
+Option Explicit
+ShowOKButton True
+
+' adapted to nsbasic by Heiko Stolte 2006
+
+
+' copy all bitmaps ( 256 colors !!!!)to \my documents
+' this color thing is important,
+' otherwise you get an format error 
+    
+
+' if needed:
+' ShellExecute "open","regsvrce","msceimagelist.dll"
+
+' view style
+Const lvwIcon = 0
+Const lvwSmallIcon = 1
+Const lvwList = 2
+Const lvwReport = 3
+' labeledit
+Const lvwManual = 1
+Const lvwAutomatic = 0
+' alignment
+Const lvwColumnLeft = 0
+Const lvwColumnRight = 1
+Const lvwColumnCenter = 2
+' sort order
+Const lvwAscending = 0
+Const lvwDescending = 1
+' Find Item Where
+Const lvwText = 0
+Const lvwSubitem = 1
+Const lvwTag = 2
+Dim Sort(2)
+
+Sub Form1_Load()
+   Dim name
+   ' the objects
+   AddObject "Textbox", "TB1" ,10 ,10 ,100 ,20
+   AddObject "CommandButton", "AddBtn",120,10,50,20
+   AddObject "CommandButton", "RemoveBtn",180,10,50,20
+   AddObject "CommandButton", "FormBtn",120,40,50,20
+   AddObject "CommandButton", "viewOption_Icon",120,70,50,20
+   AddObject "CommandButton", "viewOption_SmallIcon",180,70,50,20
+   AddObject "CommandButton", "viewOption_List",120,100,50,20
+   AddObject "CommandButton", "viewOption_Report",180,100,50,20
+   AddObject "ceimagelist.imagelistctrl.1","ImageList1",0,0,0,0
+   AddObject "ceimagelist.imagelistctrl.1","ImageList2",0,0,0,0
+   AddObject "listviewctrl.listviewctrl.1","listView",10,130,220,120
+   
+   AddBtn.Caption = "Add"
+   RemoveBtn.Caption = "Remove"
+   FormBtn.Caption = "Change"
+   viewOption_Icon.Caption = "Big"
+   viewOption_SmallIcon.Caption = "Small"
+   viewOption_List.Caption = "List"
+   viewOption_Report.Caption = "Report"
+       
+    ' big icons
+    ImageList1.Add("\My Documents\test1.bmp")
+    ImageList1.Add("\My Documents\test2.bmp")
+    ImageList1.Add("\My Documents\test3.bmp")
+    ImageList1.Add("\My Documents\test4.bmp")
+    ' small icons
+    ImageList2.Add("\My Documents\test5.bmp")
+    ImageList2.Add("\My Documents\test6.bmp")
+    ImageList2.Add("\My Documents\test7.bmp")
+    ImageList2.Add("\My Documents\test8.bmp")
+    
+    ' connect listview with imageview
+    ListView.Icons = ImageList1.hImageList
+    ListView.SmallIcons = ImageList2.hImageList
+    
+    ' header 
+    ListView.ColumnHeaders.Add , , "Name", 1500,lvwColumnLeft 
+    ListView.ColumnHeaders.Add , , "Form", , lvwColumnRight
+    
+    ' items one possibility
+    ListView.ListItems.Add 1 ,"1" , "Kevin", 1, 1
+    ListView.ListItems(1).SubItems(1) = "kid"
+    ' items or so
+    Dim i
+    Set i = ListView.ListItems.Add(, , "Kyle", 2, 2)
+    i.SubItems(1) = "kid"
+    Set i = ListView.ListItems.Add(, , "Eric", 3, 3)
+    i.SubItems(1) = "kid"
+    Set i = ListView.ListItems.Add(, , "Mr. Garrison", 4, 4)
+    i.SubItems(1) = "Teacher"
+    Set i = ListView.ListItems.Add(, , "Mr. Hankey", 4, 4)
+    i.SubItems(1) = "Puppet"
+
+    ListView.View = lvwReport
+    
+    ListView.ListItems.Item(1).Selected = True
+    TB1.Text = ListView.ListItems.Item(1).SubItems(1)
+    
+    Sort(1) = True
+    Sort(2) = True
+End Sub
+
+Sub AddBtn_Click()
+    On Error Resume Next
+    Dim i
+    Set i = ListView.ListItems.Add(, , "New item", 1, 1)
+    If Err.Number Then
+        MsgBox CStr(Err.Number) & ": " & Err.Description
+    End If
+    On Error Goto 0
+End Sub
+
+Sub RemoveBtn_Click()
+    On Error Resume Next
+    ListView.ListItems.Remove (ListView.SelectedItem.Index)
+    If Err.Number = 424 Then
+        MsgBox "No selected item"
+    ElseIf Err.Number Then
+        MsgBox CStr(Err.Number) & ": " & Err.Description
+    End If
+    On Error Goto 0
+End Sub
+
+Sub FormBtn_Click()
+    ' gives textbox text to subitem   
+    On Error Resume Next
+    ListView.SelectedItem.SubItems(1) = TB1.Text
+    If Err.Number = 424 Then
+        MsgBox "No selected item"
+    ElseIf Err.Number Then
+        MsgBox CStr(Err.Number) & ": " & Err.Description
+    End If
+    On Error Goto 0
+End Sub
+' the different views
+Sub ViewOption_Icon_Click()
+    ListView.View = lvwIcon
+End Sub
+
+Sub ViewOption_SmallIcon_Click()
+    ListView.View = lvwSmallIcon
+End Sub
+
+Sub ViewOption_List_Click()
+    ListView.View = lvwList
+End Sub
+
+Sub ViewOption_Report_Click()
+    ListView.View = lvwReport
+End Sub
+' ColumnClick event
+' sort by click on header
+Sub ListView_ColumnClick(Index)
+    If Sort(Index) Then
+        Sort(Index) = False
+        ListView.SortOrder = lvwAscending
+    Else
+        Sort(Index) = True
+        ListView.SortOrder = lvwDescending
+    End If
+    ListView.SortKey = Index - 1
+    ListView.Sorted = True
+End Sub
+' itemClick event
+Sub ListView_ItemClick(Index)
+    TB1.Text = ListView.ListItems.Item(Index).SubItems(1)
+End Sub
+
+
+'*** Begin Generated Code ***
+
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(Form1_Temp) Then
+      AddObject "Frame", "Form1_Form", 0, 0, Output.Width, Output.Height
+      Form1_Form.Visible = False
+      Form1_Form.BackColor = 12632256
+      AddObject "PictureBox", "Form1", 0, 0, 0, 0, Form1_Form
+      Form1.BorderStyle = 0
+      Form1.Move 0, 0, Form1_Form.Width * 15, Form1_Form.Height * 15
+      Set Form1_Temp = Form1
+      Form1_Form.Caption = "Form1"
+   
+   End If
+   On Error Goto 0
+   Form1_Form.Visible = True
+   callIfExists("Form1_Load")
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If IsEmpty(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   Form1_Form.Visible = False
+   callIfExists("Form1_Unload")
+End Sub  'Form1_Hide
+
+Sub callIfExists(theSub)
+Dim s
+If ScriptEngineMajorVersion < 5 Then
+  Execute("On Error Resume Next:"&theSub) 'attempt to execute it
+Else
+  On Error Resume Next
+  Set s = GetRef(theSub)
+  If err.Number <> 0 Then Exit Sub 'it does not exist
+  On Error GoTo 0
+  Execute (theSub) 'execute it
+End If
+End Sub
+
+'*** End Generated Code ***
+</pre>
+
+
+</BODY>
+</HTML>

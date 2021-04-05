@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.comctl.NSListViewEvent.1 = s 'NSBasic NSListViewEvent Class'
+	{
+		CLSID = s '{93B251F7-8671-4F70-B12F-CF6C88F12820}'
+	}
+	NSBasic.comctl.NSListViewEvent = s 'NSBasic NSListViewEvent Class'
+	{
+		CLSID = s '{93B251F7-8671-4F70-B12F-CF6C88F12820}'
+		CurVer = s 'NSBasic.comctl.NSListViewEvent.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {93B251F7-8671-4F70-B12F-CF6C88F12820} = s 'NSBasic NSListViewEvent Class'
+		{
+			ProgID = s 'NSBasic.comctl.NSListViewEvent.1'
+			VersionIndependentProgID = s 'NSBasic.comctl.NSListViewEvent'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{9152ECB3-952A-4F35-83F5-C35F8D42375D}'
+		}
+	}
+}

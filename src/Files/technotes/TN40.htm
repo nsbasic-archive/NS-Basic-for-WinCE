@@ -1,0 +1,128 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 40: Differences between Visual Basic 6 (VB6) and NS Basic/CE</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="82%" VALIGN="TOP">
+	  <h2>Tech Note 40: Differences between Visual Basic 6 (VB6) and NS Basic/CE</h2>
+	  <h3>Oct 25, 2007</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+<i>Contributed anonymously.</i>
+
+
+<p><b>Background</b>
+
+<p>NSBasic has three flavors of its Basic language: NSBasic/CE for Windows PDAs; NSBasic/Palm for Palm PDAs and NSBasic/Desktop for desktop applications designed to run on Windows platform desktop PCs.
+
+<p>In late 2006 I wrote my first NSBasic/CE application and want to memorialize the differences I found between Vb6 and NSBasic/CE languages as a reference for myself and anyone who is called on to support code that I wrote.
+
+<p>I started learning NSBasic by reading part of a NSBasic book designed for NSBasic/Palm and quickly learned that there are significant differences in syntax and capabilities between the different flavors of NSBasic. I don't know at this writing how close the various flavors are but I've found the differences so far are significant if you aren't expecting them. One important difference between NSBasic/Palm and NSBasic/CE is that on the Palm platform you dimension variables with a type (Integer, String etc) and for CE all variables are variants. A big difference if you plan to cut and paste code between NSBasic/CE and NSBasic/Palm.
+
+<p>To program with NSBasic/CE you will need Microsoft's Active Sync installed on the computer, a PDA running Pocket PC, Win CE or Window's Mobile and that PDA must be connected to the desktop PC.
+
+<p>My version of NSBasic/CE came with a program allowing programs running on the PDA to display on the desktop PC monitor. I believe, but am not certain, that newer releases don't include this program.
+
+<p>When you run a NSBasic/CE program from the IDE it compiles the program (errors and all), copies the working/non-working exe to the PDA and runs the program on the PDA with its display shown on the virtual display on the desktop PC.  This is an important concept to know for debugging and obviously differs from VB6 which runs programs locally. More on this later.
+
+<p>Syntax errors are displayed on the virtual display and reference the line number and character number where the error resides. These line and character references are often incorrect; view the information as the line/character where the run time processor figured out there was a problem; sometimes the error is before or after the designated line/character shown. I found it pretty easy to figure out where the error actually was by inspecting code for obvious syntax problems, adding msgbox notices, removing code that was suspect or moving the order that commands were processed if appropriate. Adding msgboxes made me think of how we debug JavaScript.
+
+<p>The IDE makes it easy to find (and goto) the line# referenced in the run time processor but there is (with my current version) a hole in this if I correctly understand an article I read on line. According to this article line#s can't be relied on if code exists within modules. The solution, it says, is to save the project as a text file and use Notepad to find the line#. Sounds like fun.  A future release is supposed to fix this difficulty.
+
+<p>A NSBasic/CE program can be written with a text editor or the IDE.  Most of the samples were written with a text editor and don't show forms if called up in the IDE. I suggest samples be included for both types of development as it makes it much easier for a Newbe to pick the closest sample and program from the sample rather than work from scratch. I felt it took a lot of extra effort to transpose ideas from the sample to my project which was created in the IDE. In non-IDE projects Text boxes, buttons and so on are added to the project with the AddObject command. 
+
+<p>The IDE is close enough to Vb6 that an experienced Vb6 programmer will feel at home within a short period of time and the non-IDE projects have obvious syntax to the point where it should be pretty simple to write a program without the IDE.
+
+<p>At this writing with 8 hours of experience there is still more that I don't know compared to what I know. I'm writing now in case I need to reorient myself if I put NSBasic down for a time. Below are some syntax/programming issues that slowed me down on my first project. After one day of programming I started to feel like I got my sea legs and that NSBasic/CE is like programming/Debugging in JavaScript with VBScript syntax + the added benefit of a pretty darn good IDE. I particularly like the addobjects command which allows the programmer to programmatically supplement or replace the need to use the IDE to create forms/objects on forms.
+
+<p><b>Important Concept</b>
+
+<p>If your code has a syntax error on the PDA it always continues to run even after it apparently aborts. You can see this on the PDA's list of running programs. Since the IDE copies a new exe on top of the old (on the PDA) when recompiling, your changes won't make it to the PDA unless you first kill the old program from the PDA's running program list.  (on PDA: Settings ... Memory ... list of running programs)
+
+<p>If the program compiles the program will still remain in memory when you exit UNLESS you include the recommended command showokbutton=true in form1_load which stops (vs hides) the program on the PDA when it ends.
+
+<p>It's important to remember the distinction here as you always need to kill the program as you compile and run across syntax errors in your code and don't need to do this if the program compiles without syntax errors and exits normally (presumes you used showbutton=true).  This isn't as difficult as it sounds; I just had a virtual screen always visible and ready for me to kill the program (if needed) that I was working on and the process became automatic very quickly.
+
+<p><b>First Project Description</b>
+<p>I wrote a vb6 program to capture signatures based on the picture box control. The picturebox MouseMove and MouseDown events were used to trap when the mouse was pressed. A long text string of x/y coordinates is saved to the hard drive and available for restore.
+
+<p>I wanted a similar program to run on a PDA for signature capture. My learning curve would have easily been cut in half if I had known about the items listed below in advance.
+
+<TABLE BORDER=1 CELLSPACING=0 cellpadding=1>
+	<tr>
+		<th>Concept</th> <th>Vb6</th> <th>NSBasic/CE</th> <th>Comment</th>
+	</tr>
+	<tr>
+		<td>Variables</td> <td>Dim I as integer, s as string</td> <td>Dim I, s</td> <td>All variables are variants in NSBasic, variables are not case sensitive as in VB6 but case is not 'self correcting' as in vb6 making it more important to use option explicit than in vb6 as you don't have visual feedback if you mistype something</td>
+	</tr>
+	<tr>
+		<td>Variables</td> <td>Dim i%, s$, a&</td> <td>Dim I, s, a</td> <td>No %, $, & etc in variable names allowed as in vb6</td>
+	</tr>
+	<tr>
+		<td>Function</td> <td><pre>Private Function f(a,b,c) As Boolean
+  If a = 1 then f="": exit function
+  Code.
+  Code.
+  F=somethingtruefalse
+End function</pre></td> <td><pre>Function f(a,b,c)
+  If a = 1 then exit function
+  Code.
+  Code.
+  F=somethingtruefalse
+End Function</pre></td> <td>Note missing 'as boolean'<br>
+Note no f="" if early return (causes error in NSB)<br>Note: no Public/Private</td>
+	</tr>
+	<tr>
+		<td>Function/Sub</td> <td>Public Function f(byval a)</td> <td>Function f(a)</td> <td>No ByVal</td>
+	</tr>
+	<tr>
+		<td>On Error</td> <td>On Error Resume Next<br>
+On Error Goto 0<br>
+On Error GoTo StatementLabel</td> <td>On Error Resume Next<br>
+On Error Goto 0</td> <td>On Error goto label not supported</td>
+	</tr>
+	<tr>
+		<td>Goto label</td> <td>Goto Again</td> <td></td> <td>Goto <i>label</i> not supported</td>
+	</tr>
+	<tr>
+		<td>End/Unload Me</td> <td>Unload Me<br>End</td> <td>Form1_hide<br>Bye</td> <td>Unload Me not supported, did not try End, but Bye seems to be the way to stop a program</td>
+	</tr>
+	<tr>
+		<td>App object</td> <td>App.path</td> <td>CurrentPath</td> <td>App object not supported. Currentpath returns path and the name of the program running, so you need to filter the progname out if you plan to use just the path portion</td>
+	</tr>
+	<tr>
+		<td>Scope</td> <td>Local/global variables</td> <td>Local/Global variables</td> <td>Works same as in vb6</td>
+	</tr>
+	<tr>
+		<td>Auto type correct</td> <td>EndIF changes to End If automatically</td> <td>Endif stays as endif</td> <td>No autocorrection is a easy source of syntax errors if you rely on vb6 to correct your typing for endif and other similar commands</td>
+	</tr>
+	<tr>
+		<td>For / next</td> <td><pre>For I = 1 to 10
+  Code
+Next i</pre></td> <td><pre>For I = 1 to 10
+  Code
+Next</pre></td> <td>Note, no next I; if you include next I you get a syntax error</td>
+	</tr>
+	<tr>
+		<td>Object_MouseDown</td> <td>VB6 shows the available events automatically in the IDE</td> <td>NSBasic shows the click object automatically (as far as I can tell) but you are on your own when it comes to adding other events such as mousedown, mousemove, onchange etc. </td> <td>Refer to NSBasic documentation to find out what events you can code for; they are largely the  same as vb6 except you need to add them manually</td>
+	</tr>
+	<tr>
+		<td>File I/O</td> <td><pre>Filen = freefile()
+Open "c:\file.txt" for input as #filen
+Code
+Close #filen</pre></td> <td>Addobject "file"
+File.open
+Code</pre></td> <td>I like the syntax of NSBasic file handling better than vb6 but the methods available don't show automatically because you add the object manually. See the docs for syntax.</td>
+	</tr>
+</table>
+			

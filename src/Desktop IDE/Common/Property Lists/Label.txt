@@ -1,0 +1,17 @@
+Label
+Caption
+BackColor
+ForeColor
+Left
+Top
+Width
+Height
+FontName
+FontSize
+FontBold
+FontItalic
+FontStrikethru
+FontUnderline
+BorderStyle
+Alignment
+Tag

@@ -1,0 +1,243 @@
+// NSCEPictureBox.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (NSCEPictureBox.tlb) that will become a resource in
+// NSCEPictureBox.ocx.
+
+#include <olectl.h>
+
+[ uuid(3A697326-1B43-4D83-8BC2-9B8BABB78DCC), version(1.0),
+  helpfile("helpfile.htm"),
+  helpstring("NSCEPictureBox ActiveX Control module"),
+  control ]
+library NSCEPICTUREBOXLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CNSCEPictureBoxCtrl
+
+	[ uuid(72D0AF66-CE97-45EE-8C62-F875F1B002E3),
+	  helpstring("Dispatch interface for NSCEPictureBox Control"), hidden ]
+	dispinterface _DNSCEPictureBox
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CNSCEPictureBoxCtrl)
+			[id(DISPID_BACKCOLOR), bindable, requestedit] OLE_COLOR BackColor;
+			[id(DISPID_FORECOLOR), bindable, requestedit] OLE_COLOR ForeColor;
+			[id(DISPID_HWND)] OLE_HANDLE hWnd;
+			[id(DISPID_CAPTION), bindable, requestedit] BSTR Caption;
+			[id(1)] boolean ShowCaption;
+			[id(6)] long Width;
+			[id(7)] long Height;
+			[id(8)] BSTR FontName;
+			[id(9)] long FontSize;
+			[id(10)] long ImageWidth;
+			[id(11)] long ImageHeight;
+			[id(12)] boolean AnimationAvailable;
+			[id(13)] long AnimationInterval;
+			[id(14)] short Appearance;
+			[id(15)] boolean AutoDetectTransparency;
+			[id(16)] boolean AutoRefresh;
+			[id(17)] boolean AutoSize;
+			[id(18)] boolean BitmapOnClipboard;
+			[id(19)] short BorderStyle;
+			[id(20)] VARIANT ByteArray;
+			[id(21)] short Center;
+			[id(22)] boolean Clip;
+			[id(23)] long ClipHeight;
+			[id(24)] long ClipWidth;
+			[id(25)] long ClipTop;
+			[id(26)] long ClipLeft;
+			[id(27)] boolean CommandButton;
+			[id(28)] short CommonBitmapID;
+			[id(29)] short CommonBitmapType;
+			[id(30)] long ScreenLeft;
+			[id(31)] long ScreenTop;
+			[id(32)] long ScreenHeight;
+			[id(33)] long ScreenWidth;
+			[id(34)] long DrawWidth;
+			[id(35)] short FillStyle;
+			[id(36)] OLE_COLOR FillColor;
+			[id(37)] boolean FocusRect;
+			[id(38)] long FocusRectIndentLeft;
+			[id(39)] long FocusRectIndentRight;
+			[id(40)] long FocusRectIndentTop;
+			[id(41)] long FocusRectIndentBottom;
+			[id(42)] boolean FontBold;
+			[id(43)] boolean FontItalic;
+			[id(44)] boolean FontStrikethru;
+			[id(45)] boolean FontTransparent;
+			[id(46)] boolean FontUnderline;
+			[id(47)] long FontEscapement;
+			[id(48)] long FontOrientation;
+			[id(49)] long FontWeight;
+			[id(50)] long HScrollPosition;
+			[id(51)] long VScrollPosition;
+			[id(53)] boolean Visible;
+			[id(54)] short ImageBitsPerPixel;
+			[id(55)] short ImageLoadBitsPerPixel;
+			[id(56)] long ImageLoadBufferSize;
+			[id(57)] long ImageLoadMaxHeight;
+			[id(58)] long ImageLoadMaxWidth;
+			[id(59)] long ImageLoadScalePercent;
+			[id(60)] boolean ImageLoaded;
+			[id(61)] boolean Invert;
+			[id(62)] long Top;
+			[id(63)] long Left;
+			[id(64)] short Mirror;
+			[id(65)] short MouseMovePoints;
+			[id(66)] long MouseMovePointsCount;
+			[id(68)] boolean OnToolbar;
+			[id(69)] boolean Overlay;
+			[id(70)] long OverlayTop;
+			[id(71)] long OverlayLeft;
+			[id(72)] OLE_COLOR OverlayTransparentColor;
+			[id(73)] short PenStyle;
+			[id(74)] short PenFillStyle;
+			[id(67)] BSTR Name;
+			[id(75)] BSTR Picture;
+			[id(76)] BSTR PlayingCardsDll;
+			[id(77)] short PlayingCard;
+			[id(78)] boolean Resize;
+			[id(79)] long ResizeWidth;
+			[id(80)] long ResizeHeight;
+			[id(81)] long ResourceBitmapID;
+			[id(82)] BSTR ResourceFile;
+			[id(83)] boolean ResourceFileLoaded;
+			[id(84)] long ResourceIconWidth;
+			[id(85)] long ResourceIconHeight;
+			[id(86)] long ResourceIconID;
+			[id(87)] short Rotate;
+			[id(88)] short ScaleMode;
+			[id(89)] short ScreenBitsPerPixel;
+			[id(90)] boolean Scroll;
+			[id(91)] long ScrollX;
+			[id(92)] long ScrollY;
+			[id(93)] short ScrollBars;
+			[id(94)] boolean Stretch;
+			[id(95)] boolean WaitCursor;
+			[id(96)] VARIANT Tag;
+			[id(97)] boolean TapAndHoldEventEnabled;
+			[id(98)] OLE_COLOR TransparentColor;
+			[id(99)] BSTR URLAgent;
+			[id(100)] boolean URLFlagCache;
+			[id(101)] boolean URLFlagPassive;
+			[id(102)] boolean URLFlagReload;
+			[id(103)] long URLFlags;
+			[id(104)] boolean UseJPEGBitsPerPixel;
+			[id(105)] float Version;
+			[id(106)] BSTR VersionString;
+			[id(107)] short WildCard;
+			[id(108)] long hBitmap;
+			[id(109)] long hIcon;
+			[id(110)] long hFont;
+			[id(2)] float ScaleWidth;
+			[id(3)] float ScaleHeight;
+			[id(4)] float ScaleLeft;
+			[id(5)] float ScaleTop;
+			[id(111)] long VersionMajor;
+			[id(112)] long VersionMinor;
+			[id(DISPID_ENABLED), bindable, requestedit] boolean Enabled;
+			[id(113)] BSTR resourceBitmapIDstr;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CNSCEPictureBoxCtrl)
+			[id(116)] void CaptureScreen();
+			[id(117)] void ClipImage();
+			[id(118)] void Cls();
+			[id(119)] boolean Copy();
+			[id(120)] boolean Paste();
+			[id(121)] void CreateImage(long x, long y);
+			[id(122)] void Data(VARIANT x, VARIANT y);
+			[id(123)] void DrawCircle(long a, long b, float c, VARIANT d, VARIANT e);
+			[id(124)] boolean DrawIcon(BSTR szName, VARIANT vIconID, VARIANT vLarge, VARIANT vocColor, VARIANT vDrawType);
+			[id(125)] void DrawLine(float nFromX, float nFromY, float nToX, float nToY, VARIANT vocColor, VARIANT vBox, VARIANT vFill);
+			[id(126)] void DrawMouseMoveLines(OLE_COLOR ooColor);
+			[id(127)] void DrawMouseMoveLinesEx(long nStartX, long nStartY, long nEndX, long nEndY, OLE_COLOR ocColor);
+			[id(128)] void DrawPicture(BSTR szName, long nX, long nY, VARIANT vnWidth, VARIANT vnHeight, VARIANT vnX2, VARIANT vnY2, VARIANT vnWidth2, VARIANT vnHeight2, VARIANT vnRasterOp);
+			[id(129)] void DrawPoint(long nX, long nY, VARIANT vocColor);
+			[id(130)] void DrawPolygon(short nPoints, VARIANT vocColor);
+			[id(131)] void DrawRoundRect(float nLeft, float nTop, float nRight, float nBottom, VARIANT vnWidth, VARIANT vnHeight, VARIANT vocColor);
+			[id(132)] void DrawPolyLines(short nPoints, VARIANT vocColor);
+			[id(133)] void DrawText(BSTR szText, VARIANT vnX, VARIANT vnY, VARIANT vocColor);
+			[id(134)] void DrawTextInRect(BSTR text, VARIANT left, VARIANT top, VARIANT width, VARIANT height, VARIANT color);
+			[id(135)] boolean GetMouseMovePoint(short nPoint, long* nX, long* nY);
+			[id(136)] void Show();
+			[id(137)] void Hide();
+			[id(138)] short IntensityBlue(OLE_COLOR c);
+			[id(139)] short IntensityRed(OLE_COLOR c);
+			[id(140)] short IntensityGreen(OLE_COLOR c);
+			[id(141)] void InvertImage();
+			[id(142)] void MirrorImage();
+			[id(143)] void Move(long nX, long nY, long nW, long nH);
+			[id(114)] void StopUrlStream();
+			[id(115)] void Animate();
+			[id(160), propget] OLE_COLOR Pixel(long x, long y);
+			[id(160), propput] void Pixel(long x, long y, OLE_COLOR nNewValue);
+			[id(144)] OLE_COLOR RGB(short nRed, short nGreen, short nBlue);
+			[id(145)] OLE_COLOR QBColor(short nColorCode);
+			[id(146)] void RefreshDesktopWallpaper();
+			[id(147)] void SetCapture();
+			[id(148)] void ReleaseCapture();
+			[id(149)] void ResizeImage();
+			[id(150)] void RotateImage();
+			[id(151)] boolean SaveImageToFile(BSTR szFileName, short nFileType);
+			[id(152)] void ScrollImage();
+			[id(153)] void SetFocus();
+			[id(154)] void SetPointArray(long nIndex, long nX, long nY);
+			[id(155)] long TextWidth(BSTR s);
+			[id(156)] long TextHeight(BSTR s);
+			[id(157)] long URL(BSTR lpszURL, VARIANT vUser, VARIANT vPassword);
+			[id(158)] void ZOrder(short pos);
+			[id(DISPID_REFRESH)] void Refresh();
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CNSCEPictureBoxCtrl
+
+	[ uuid(D83DF036-29AB-4F46-B84D-174AAFD561D6),
+	  helpstring("Event interface for NSCEPictureBox Control") ]
+	dispinterface _DNSCEPictureBoxEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CNSCEPictureBoxCtrl)
+			[id(DISPID_CLICK)] void Click();
+			[id(1)] void GotFocus();
+			[id(2)] void HScroll(long nSBCode, BOOL* bRefresh, long* nPos, long* nMove, long nMin, long nMax, long nPage, long nCX, long nCY);
+			[id(3)] void VScroll(long nSBCode, BOOL* bRefresh, long* nPos, long* nMove, long nMin, long nMax, long nPage, long nCX, long nCY);
+			[id(4)] void LostFocus();
+			[id(5)] void TapAndHold(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			[id(DISPID_DBLCLICK)] void DblClick();
+			[id(DISPID_MOUSEDOWN)] void MouseDown(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			[id(DISPID_MOUSEMOVE)] void MouseMove(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			[id(DISPID_MOUSEUP)] void MouseUp(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CNSCEPictureBoxCtrl
+
+	[ uuid(A814C71A-A051-4350-880F-0D76F743C63C),
+	  helpstring("NSCEPictureBox Control"), control ]
+	coclass NSCEPictureBox
+	{
+		[default] dispinterface _DNSCEPictureBox;
+		[default, source] dispinterface _DNSCEPictureBoxEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

@@ -1,0 +1,186 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tray Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/CETweak.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+
+<pre>
+' CETweak by Mark Gamber using NS Basic
+' This is a useful example of the registry and HTML
+' controls. The program sets a couple useful flags
+' in the registry to enable / disable window animation
+' and if the \Network folder is visible from the root
+' directory. Also, the system, menu bar and popup
+' menu fonts may be specified, the interface to the
+' three types handled by a tabstrip and HTML
+' control. The HTML control uses a form to obtain
+' data which is picked apart in basic and saved.
+
+' Changes will take effect after the next soft reset.
+
+Option Explicit
+
+' Create the various objects
+addobject "MGCEWin32.Registry", "reg"
+addobject "Label", "lbl1", 2, 2, 120, 16
+addobject "Checkbox", "AniChk", 124, 2, 16, 16
+addobject "Label", "lbl2", 2, 20, 120, 16
+addobject "Checkbox", "NetChk", 124, 20, 16, 16
+addobject "CETabStrip.TabStrip.1", "Tab", 2, 41, 240, 20
+addobject "MGCENet.HTML", "html", 2, 60, 239, output.height - 62
+
+reg.Key = 2     ' We never leave HKEY_LOCAL_MACHINE in this app, so set it now
+
+lbl1.BackColor = output.BackColor                        ' Initialize the rest of the controls
+lbl1.Caption = "Window Animation:"
+lbl2.BackColor = output.BackColor
+lbl2.Caption = "Network Folder:"
+Tab.tabs.Add 1,, "System Font"                             '  Add some stuff to the tabstrip
+Tab.tabs.Add 2,, "Menu Font"
+Tab.tabs.Add 3,, "Popup Font"
+Tab.tabs.Remove 4
+
+html.SetText GetSystemFont( 1 ) ' Initialize HTML by feeding it the system font form
+
+reg.Path = "System\GWE"                      ' HKLM\System\GWE\Animate is first flag
+reg.Name = "Animate"                                                     '  and it may not be there
+
+on error resume next
+i = reg.Value
+if Err.number <> 0 then                                    '  If the entry is missing, it's enabled
+   AniChk.Value = TRUE
+else
+   if CInt( i ) = 1 then                                                    ' Otherwise, check it's value
+      AniChk.Value = TRUE
+   end if
+end if
+
+Err.Clear
+reg.Path = "Comm\Redir"
+reg.Name = "RegisterFSRoot"                                 ' Looking for network folder flag
+i = reg.Value
+if Err.number = 0 then                  ' It's off by default, so it can only be on if it's there
+   if CInt( i ) <> 0  then NetChk.Value = TRUE
+end if
+
+
+sub Tab_click                                        ' Select HTML form based on selected tab
+   if Tab.SelectedItem.Caption = "System Font" then html.SetText GetSystemFont( 1 )
+   if Tab.SelectedItem.Caption = "Menu Font" then html.SetText GetSystemFont( 2 )
+   if Tab.SelectedItem.Caption = "Popup Font" then html.SetText GetSystemFont( 3 )
+end sub
+
+
+function GetSystemFont( fType )
+   Dim s
+
+   s = "<body bgcolor='#" & Hex( output.BackColor ) & "'><form action='" & CStr( fType ) & "' "
+   s = s & "method='POST'><table width='100%' border=0>"
+   s = s + "<tr><td align='right'><font size=3 face='Arial'>Font Name:</td><td align='left'>"
+   s = s + "<input type='text' size=12 maxlength=32 name='FontName' value='"
+   if fType = 1 then  reg.Path = "System\GDI\SYSFNT"
+   if fType = 2 then  reg.Path = "System\GWE\Menu\BarFnt"
+   if fType = 3 then  reg.Path = "System\GWE\Menu\PopFnt"
+   reg.Name = "Nm"
+   s = s & reg.Value & "'></td></tr>"
+   s = s + "<tr><td align='right'><font size=3 face='Arial'>Font Size:</td><td align='left'>"
+   s = s + "<input type='text' size=12 maxlength=32 name='FontSize' value='"
+   reg.Name = "Ht"
+   s = s & CStr( reg.Value ) & "'></td></tr>"
+   s = s + "<tr><td align='right'><font size=3 face='Arial'>Bold:</td><td align='left'>"
+   s = s + "<input type='checkbox' name='FontBold'"
+   reg.Name = "Wt"
+   if CInt( reg.Value ) <> 400 then s = s & " CHECKED"
+   s = s & ">&nbsp;&nbsp;&nbsp;Italic:"
+   s = s + "<input type='checkbox' name='FontItal'"
+   reg.Name = "It"
+   if CInt( reg.Value ) = 1 then s = s & " CHECKED"
+   s = s & "></td></tr>"
+   s = s & "<tr><td align='center' colspan=2><input type='submit' value='Set'></td></tr>"
+   s = s + "</table></form></body>"
+   GetSystemFont = s
+end function
+
+
+sub AniChk_Click
+   reg.Path = "System\GWE"
+   reg.Name = "Animate"
+   reg.ValueType = 4
+   reg.Value = AniChk.Value
+end sub
+
+
+sub NetChk_Click
+   reg.Path = "Comm\Redir"
+   reg.CreatePath
+   reg.Name = "RegisterFSRoot"
+   reg.ValueType = 4
+   reg.Value = NetChk.Value
+end sub
+
+
+sub html_Click( url, data )
+   Dim i, j, s, sName, sSize
+   
+   if url = "1" then  reg.Path = "System\GDI\SYSFNT"
+   if url = "2" then  reg.Path = "System\GWE\Menu\BarFnt"
+   if url = "3" then  reg.Path = "System\GWE\Menu\PopFnt"
+   i = InStr( 1, data, "FontName=" )
+   if i = 0 then
+      MsgBox "You need to specify a font name!", vbOKOnly, "Error"
+      exit sub
+   end if
+   i = i + 9
+   j = InStr( i, data, "&" ) - i
+   sName = Trim( Mid( data, i, j ) )
+   if Len( sName ) < 1 then
+      MsgBox "You need to specify a font name!", vbOKOnly, "Error"
+      exit sub
+   end if
+
+   i = InStr( 1, data, "FontSize=" )
+   if i = 0 then
+      MsgBox "You need to specify a font size!", vbOKOnly, "Error"
+      exit sub
+   end if
+   i = i + 9
+   j = InStr( i, data, "&" )
+   if j > 0 then
+      sSize = Trim( Mid( data, i, j - i ) )
+   else
+      sSize = Trim( Mid( data, i ) )
+   end if
+   if Len( sSize ) < 1 then
+      MsgBox "You need to specify a font size!", vbOKOnly, "Error"
+      exit sub
+   end if
+
+   reg.ValueType = 1
+   reg.Name = "Nm"
+   reg.Value = sName
+   reg.Name = "Ht"
+   reg.ValueType = 4
+   MsgBox sSize
+   reg.Value = sSize
+   i = InStr( 1, data, "FontBold=" )
+   reg.Name = "Wt"
+   if i > 0 then
+      reg.Value = 700
+   else
+      reg.Value = 400
+   end if
+   i = InStr( 1, data, "FontItal=" )
+   reg.Name = "It"
+   if i > 0 then
+      reg.Value = 1
+   else
+      reg.Value = 0
+   end if
+end sub
+</PRE>
+</body>
+</html>
+
+

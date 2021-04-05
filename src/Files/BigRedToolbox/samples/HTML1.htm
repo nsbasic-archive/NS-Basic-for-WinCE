@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>HTML1 Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/HTML1.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' Demonstration of how to load a file's contents into the HTML control
+' Written by Mark Gamber using NS Basic
+' This assumes you have nsbasic.htc in your \Windows directory.
+
+addobject "MGCENet.HTML", "HTML", 10, 24, OUTPUT.Width - 20, OUTPUT.Height - 26
+addobject "TextBox", "NewText", 10, 2, 140, 20
+addobject "CommandButton", "AddText", 154, 2, 56, 22
+
+AddText.Caption = "Add"
+
+HTML.SetTextFromFile "\windows\nsbasic.htc"
+HTML.TextDone
+
+sub HTML_Click( text, data )       ' Something was clicked on the control
+   i = InStr( 1, text, "#" )       ' Was it an anchor?
+   if i > 1 then                   ' If so, only use text beyond the '#'
+      HTML.ToAnchor Mid( text, i + 1 )    ' Jump to the anchor
+   else                            '  If not, just display the HREF text
+      MsgBox text, vbOKOnly, "HREF Text"
+   end if
+end sub
+
+sub AddText_Click
+      HTML.SetText NewText.Text
+end sub
+</PRE>
+</body>
+</html>

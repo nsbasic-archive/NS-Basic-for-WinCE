@@ -1,0 +1,177 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>TN42: Using the HTMLview Control</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=582>
+<TR><TD WIDTH="103" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+<TD WIDTH="475" VALIGN="TOP">
+	  <h2>Tech Note 42: Using the HTMLview Control</h2>
+	  <h3>November 30, 2009</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+<i>This control is available starting in NS Basic/CE 8.1</i>
+
+<P>The HTMLview is a powerful control that lets you embed HTML documents in your program. You can do full HTML formatting, display images and link outside documents, images and subroutines. Embedded JavaScript and HTTP Post are also supported.
+
+<P>In order to use the the HTMLview control in your program, use the following command:</P>
+<CODE><P>   AddObject "HTMLView",&quot;html&quot;,10,10,100,100 'set the bounds as you need</code>
+
+<p>The HTMLview control is installed in the ROM of all Windows Mobile devices supported by NS Basic/CE. It is not usually found on Windows CE devices not running Windows Mobile. The control itself is based on Internet Explorer 6.
+
+<p>NS Basic/CE installs a sample called HTMLview. It's a useful placed to get started with this control. Additional documentation is available on <a href="http://msdn.microsoft.com/en-us/library/bb159830.aspx" target="_top">Microsoft's web site</a>. Note that Microsoft's documentation of this control is not comprehensive: there are additional capabilities defined in <a href="http://www.fh-oow.de/institute/iapg/projekte/ok_gis/doku/developer/client/htmlctrl_8h-source.html" target="_top">HTMLview.h</a>. If you discover some additional useful features, please let us know and we will update this documentation.
+
+<p>To make full use of this control, you'll have to know some HTML coding. One of our favorite sites to learn about HTML is <a href="http://vzone.virgin.net/sizzling.jalfrezi/iniframe.htm" target="_top">Sizzling Jalfreezi</a>.
+
+<p>To set the text to display in the control, simply set the Text property. You can modify the appearance of the control and perform actions on it using the SendMessage function. If the user clicks on a link in the document, the HotSpot subroutine in your program will be called.<pre><xmp>
+   html.Text = "<body><i>Hello, World!</i><body>"
+</xmp></pre>
+
+To optimise the output for the small screen of Windows Mobile device, use the MobileOptimized tag. The effect of this is that the text is reflowed to the actual width of the screen, rather than forcing the user to scroll horizontally to view the text. Microsoft's documentation indicates that value for 'content' should be the screen width. In practice, it appears that 240 works correctly for all screen widths.
+<pre><xmp>
+   metaTag = "<meta name='MobileOptimized' content=240>"
+   html.text = metaTag & html.Text = "<body><i>Hello, World!</i><body>"
+</xmp></pre>
+
+<p>This control is supported on all Windows Mobile devices. It is also supported on Windows CE devices which have HtmlView.dll and Imgdecmp.dll installed in ROM. If your device does not have these installed, you may be able to get the manufacturer of the device to supply them. The files are installed at part of the PIE package.
+
+<h3>Actions</h3>
+
+<P>HTMLview is controled using the SendMessage function. The general form of this function is<pre>
+   x = SendMessage(<i>control hWnd, action, 0, value</i>)
+   x = SendMessageString(<i>control hWnd, action, 0, value</i>) 'use if <i>value</i> is a string.
+</pre>
+
+<P><b>Examples</b><pre>
+   x = SendMessage(html.hwnd, 1137, 0, True) 'DTM_CLEAR clear the window
+   
+   Const DTM_ANCHORW = 1130
+   x = SendMessageString(html.hwnd, DTM_ANCHORW, 0, "#300") 'jump to anchor #300
+</pre>
+
+<TABLE BORDER CELLSPACING=1 WIDTH=646>
+	<tr>
+		<td>Action</td> <td>Action Value</td> <td>Description</td>
+	</tr>
+	<tr>
+		<td>DTM_ADDSTYLE</td> <td>1150</td> <td>Adds a style sheet. Value is a string.</td>
+	</tr>
+	<tr>
+		<td>DTM_ANCHORW</td> <td>1130</td> <td>Tell the HTML control to jump to the indicated anchor. Value is a string.</td>
+	</tr>
+	<tr>
+		<td>DTM_CLEAR</td> <td>1137</td> <td>Clear the html window. Value is True.</td>
+	</tr>
+	<tr>
+		<td>DTM_ENABLECLEARTYPE</td> <td>1138</td> <td>Display text using ClearType. Value is True/False.</td>
+	</tr>
+	<tr>
+		<td>DTM_ENABLECONTEXTMENU</td> <td>1134</td> <td>Enables context menu. Value is True/False.</td>
+	</tr>
+	<tr>
+		<td>DTM_ENABLESCRIPTING</td> <td>1139</td> <td>Enables scripting in the control. Value is True/False.</td>
+	</tr>
+	<tr>
+		<td>DTM_IMAGEFAIL</td> <td>1134</td> <td>Send this if you can't load an image in your Hotspot function. A "failed to load" image icon will appear.</td>
+	</tr>
+	<tr>
+		<td>DTM_ISSELECTION</td> <td>1136</td> <td>Returns True/False if any text is selected.</td>
+	</tr>
+	<tr>
+		<td>DTM_LAYOUTHEIGHT</td> <td>1142</td> <td>Returns the height of the actual text</td>
+	</tr>
+	<tr>
+		<td>DTM_LAYOUTWIDTH</td> <td>1141</td> <td>Returns the width of the actual text</td>
+	</tr>
+	<tr>
+		<td>DTM_SELECTALL</td> <td>1135</td> <td>Select all the text in the window.</td>
+	</tr>
+	<tr>
+		<td>DTM_ZOOMLEVEL</td> <td>1140</td> <td>Sets the text size. Value is 0-4. Default is 1.</td>
+	</tr>
+</table>
+
+<h3>The HotSpot Sub</h3>
+
+<p>The HotSpot Sub is a subroutine in your program which is called when the user taps on a link in the html document. If you do not have a HotSpot Sub, nothing happens.
+
+<p>The syntax is:<pre>
+   Sub html_HotSpot(<i>link, parameters</i>)
+</pre> where <i>link</i> is the contents of the href string of the link, and <i>parameters</i> is a comma separated list of all an html Form's values.
+
+<P><b>Example</b><pre><xmp>
+Sub html_HotSpot(link, arg)
+   If Right(link,3)="gif" Then 'display image full size
+      html.Text=metaTag & "<img src='" & link & "'><a>"
+   ElseIf Left(link,1)="#" Then 'Go to an Anchor
+      SendMessageString html.hwnd, DTM_ANCHORW, 0, Mid(link,2) 'jump to anchor
+   ElseIf Left(link,4)="http" Then 'Open a web page in Explorer
+      ShellExecute "open","iexplore.exe",link
+   Else 'none of the above
+      MsgBox "Hotspot called:" & vbCrLf & link & vbCrLf & arg,, "HTMLview"
+   End If
+End Sub</xmp></pre>
+This code looks at the link that comes back. If it is a gif image, it displays the image full size in the html window. If not, it just puts up a message box. This is a particularly powerful feature: it allows you to execute NS Basic code to respond to the user's taps. This opens up many possibilities that would not be easy to do (or even possible) using html scripting. 
+
+<h3>The Windows Mobile 6.x HiRes Bug</h3>
+
+When Windows Mobile 6 first came out, developers noticed that the HTMLview control displayed text at twice the proper size when running on 192 dpi (Hi Res) devices. Microsoft responded that this only happened in emulation mode, where an app designed for a 240x320 screen runs on a 480x640 by pixel doubling, so the app looks the same. Rather than providing a fix for the bug, Microsoft recommends you redevelop your app to support Hi Res.
+<p>NS Basic/CE allows you to run your app in Hi Res mode, by setting Hi Res in Project Properties to True. The text in the Htmlview control will then appear at the proper size. Of course, all your other controls will then appear to be much smaller - you will have to resize them for the Hi Res screen.
+
+<h3>Samples</h3>
+
+<p><b>1. Display and respond to links</b><pre><xmp>
+Sub Links_Click
+   sText = "<a href='\program files\htmlview\clock.gif'><img width=20 height=20 src='\program files\htmlview\clock.gif'><a>"
+   stext = stext & "<p><a href='http://www.nsbasic.com'>NS Basic.com</a>"
+   sText = sText & "<p>Here is some text."
+   html.Text=metaTag & sText  
+End Sub
+</xmp></pre>
+This routine displays an image link and a text link. Tapping on the text link results in <p align="center"><img  src="images/TN42a.gif" border="0"> 
+
+
+<p><b>2. Use a Form, HTML objects and POST</b><pre><xmp>
+Sub Post_Click
+   sText = "<p>Demonstrate HTML POST</p>" & vbCrLf
+   sText = sText & "<form method='POST' action='test.htm' name='form1'>" & vbCrLf
+   sText = sText & "<p><select size='1' name='select1' id='select1'>" & vbCrLf
+   sText = sText & "<option value='One' selected>One</option>" & vbCrLf
+   sText = sText & "<option value='Two'>Two</option>" & vbCrLf
+   sText = sText & "<option>Three</option>" & vbCrLf
+   sText = sText & " </select></p>" & vbCrLf
+   sText = sText & " <input type='text1' name='txtText' value='Test' size='10'>"
+   sText = sText & " <p><input type='submit' value='Submit' name='B1'>" & vbCrLf
+   sText = sText & "</form>" & vbCrLf
+   sText = sText & "</body>" & vbCrLf
+   html.Text=metaTag & sText  
+End Sub
+</xmp></pre>
+This routine displays an HTML Select object, which has a drop down list of values, an Input box that can take up to 10 characters, and a Submit button. Tapping on the submit button results in both the link and the values of the form's contents being sent to the HotSpot Sub.
+<p align="center"><img  src="images/TN42b.gif" border="0"> 
+
+<p><b>3. Create a useful object for an NS Basic program</b><pre><xmp>
+Sub List_Click
+   stext = "<table>"
+   For i=1 To 50
+      stext = stext & "<tr><td width=80%><a href='line" & i & "'>This is a lineitem in the list " & i & "<a></td>" 
+      stext = stext & "<td width=20% align=right>23/40<br>&nbsp;</td></tr>" & vbCrLf 
+   Next
+   stext = stext & "</table>"
+   html.Text = metaTag & sText
+End Sub
+</xmp></pre>
+NS Basic's ListBox is easy to use, but can't display multiline items or columns. Using the HTMLview control, you can format a list almost any way you want using html, then use the result in your program.
+<p align="center"><img  src="images/TN42c.gif" border="0"> 
+
+
+</BODY>
+</HTML>

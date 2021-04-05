@@ -1,0 +1,152 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_15_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_15_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>CommandButton                                                      Object</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ADDOBJECT &quot;CommandButton</span></font>&quot;, <i><span style='font-style:italic;'>name</span></i>,
+<i><span style='font-style:italic;'>xpos</span></i>, <i><span style='font-style:italic;'>ypos</span></i>,</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                <i><span style='font-style:italic;'>width</span></i>, <i><span
+style='font-style:italic;'>height</span></i></span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>CommandButton is used to display a standard button object in
+the output window. The required component, <i><span
+style='font-style:italic;'>name</span></i>, is the
+name of a variable that is added to the program to reference the object, it
+must follow standard variable naming conventions. The required components, <i><span style='font-style:italic;'>xpos</span></i>, <i><span
+style='font-style:italic;'>ypos</span></i>, <i><span style='font-style:italic;'>width</span></i>, and <i><span
+style='font-style:italic;'>height</span></i> are
+numeric expressions that set the location and size of the object in pixels,
+measured from the upper left corner of the output window.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Setting the property Value to 1 toggles the button, fires the
+click event, and sets the value back to 0.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Properties Supported</span></font></b> <b><span style='font-weight:bold;'>(see &quot;Properties&quot;)</span></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>BackColor, Caption, Default, Enabled, FontBold, FontItalic,
+FontName, FontSize, FontStrikethru, FontUnderline, ForeColor, Height, Hwnd,
+Left, Name, ParentHWnd, TabStop, Tag, Text, Timer, Top, Visible, Width,
+WindowLong, Value</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Methods Supported</span></font></b> <b><span style='font-weight:bold;'>(see &quot;Methods&quot;)</span></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Hide, Move, SetFocus, Show</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Events Supported</span></font></b> <b><span style='font-weight:bold;'>(see &quot;Events&quot;)</span></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Click, DblClick, GotFocus, KeyDown, KeyPress, KeyUp,
+LostFocus, Timer</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM CommandButton Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'CommandButton is a standard button object</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ADDOBJECT &quot;CommandButton&quot;,
+&quot;Button&quot;, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  100,
+10, 80, 20</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Button.BackColor = Output.BackColor</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Button.Text = &quot;Click Me!&quot;</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b>.</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>BackColor = vbWHITE</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>SUB Button_Click</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  PRINT
+&quot;Button clicked&quot;</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'> 
+KillFocus</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>END SUB</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ADDOBJECT, Events, Methods, Properties</span></font></p>
+
+</div>
+
+</body>
+
+</html>

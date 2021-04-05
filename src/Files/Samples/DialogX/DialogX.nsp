@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "DialogX"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\DialogX\DialogX.nsb"
+Project.AddModule "main", ".\DialogX.nsb"
+Project.AddResourceFile "DialogX","{controls}\DialogX.ocx","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

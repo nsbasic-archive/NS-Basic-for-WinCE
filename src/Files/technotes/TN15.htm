@@ -1,0 +1,387 @@
+<HTML>
+<HEAD>
+<TITLE>Tech Note 15: Using SQLite</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 15: Using SQLite</h2>
+	  <h5>
+      <H3>September 20, 2009</H3>
+      <H5>© 2010 NS BASIC Corporation. All rights reserved.</H5></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+
+<p>SQLite is a fast, popular and easy to use database. Using some controls from NewObjects.com, it's easy to integrate SQLite into NS Basic/CE or NS Basic/Desktop applications. Best of all, it's free. Its speed and easy of use make it a practical choice for use when you need an indexed file system for an app. Databases you create can be accessed, without change, using SQLite on a Windows CE system or on any other platform SQLite runs on.
+
+<p>SQLite COM (or precisely SQLite3 COM) is a zero-configuration,  in-process, SQL database engine which is implemented in a single DLL. It is a member of the newObjects ActiveX Pack1 Family and depends on the AXPack1 core DLL only. 
+
+<P>The SQLite COM is based on the source code of the version 3.3.5 of the popular SQLite database engine (see <a href="http://www.sqlite.org" target="_top">http://www.sqlite.org</a>). However SQLite COM contains not only the engine but also the COM interface to it and set of added features making it more convenient for  Windows environments.
+
+<p>There are two sets of commands: the ones implemented as part of the wrapper control, and the SQLite commands themselves, called using the wrapper's Execute function. Documentation on the wrapper's functions comes with AXPack1; documentation on SQLite itself is <a href="SQLite.htm" target="_top">here</a>.
+
+<p>NS Basic/Desktop installs the SQLite control automatically, so there is no need to download or install anything before use. If you are redistributing your app, make sure you include NewObjectsPack1.dll and SQLite3ComUTF8.dll. 
+
+<p>To use the controls with NS Basic/CE, you must add SQLite3ComUTF8.dll and NewObjectsPack1.dll as Resources in your project. They will then be installed and registered along with your program.
+
+<p>To see a sample of NS Basic code using SQLIte, <a href="SQLiteSample.htm" target="_top">click here</a>.
+
+<p>You can download the full documentation for these controls from 
+<a href="http://www.newobjects.com/downloads/NDLInstall.zip" target="_top">http://www.newobjects.com/downloads/NDLInstall.zip</a>
+
+
+
+
+<h4>1. Add the SQLite object to your program.</h4>
+<pre>
+AddObject "newObjects.sqlite3.dbutf8","db"
+</pre>
+This will create an object called 'db' which will perform the database operations for you.
+
+<h4>2. Open the database file</h4>
+
+<p>SQLite keeps the entire database in a single physical file. Use the Open method to open the file. If it does not exist, it is opened:
+<pre>
+	'Open the database
+	If db.Open("Name.db")  Then 'create the database if it doesn't exist yet
+		db.AutoType = True
+		db.TypeInfoLevel = 4
+	Else
+		MsgBox "Error on db.Open: " & db.lastError
+	End If
+</pre>
+If it opens sucessfully, we set a couple of options: setting AutoType to True means that database values will automatically get their types from the data that is assigned to them, much like NS Basic does with all variables. TypeInfoLevel=4 sets the level of type info returned by the Execute method to a reasonable level of data for debugging. Setting TypeInfoLevel to 0 would require less processing. You'll want to read more about this in the AXPack1 documentation as you get more experienced.
+
+<h4>3. Get a set of records</h4>
+
+<p>If step 4 created a new database file, it will be empty. A database is made up of tables. A Table is simply a collection of records with a defined format. We can see if our table exists as follows:
+<pre>
+	On Error resume next
+	Set records=db.Execute("Select * from NameDB")
+	On Error Goto 0
+	If  Left(db.lasterror, 13)="no such table" Then Call createDatabase
+</pre>
+We attempt to get a set of records. This is our first use of the Execute statement, which sends a command to the SQLite engine. We ask it to select all the records in the NameDB table. If the NameDB table hasn't been created yet, we need to do so. 
+<p>The SELECT command is very powerful - you can use it to collect all kinds of different sets of records. Read more about it in the SQL Documentation.
+
+<h4>4. Create the table if it does not exist</h4>
+<pre>
+	cmd="CREATE TABLE NameDB(""FirstName"", ""LastName"","" Age"", PRIMARY KEY(""FirstName""))"
+	On Error resume next
+	Set res=db.Execute(cmd)
+	On Error Goto 0
+	If db.lasterror<>"" Then MsgBox "Create Table error " & db.lasterror
+</pre>
+For convenience, we build the next command for SQLite in a string, then feed it to the Execute method. The double quote signs inside a string resolve themselves into single quotes, so the actual command to SQL is:
+<pre>
+	CREATE TABLE NameDB("FirstName", "LastName","Age", PRIMARY KEY("LastName"))
+</pre>
+We're creating a table with three columns, indexed by the first name: each record therefore has 3 fields. There are, of course, many more options on this command.
+
+<h4>5. Add a record to the table</h4>
+<pre>
+	cmd="INSERT OR REPLACE INTO  ""NameDB""  VALUES( """ & tbFirstName.text & """,""" & tbLastName.text &""",""" & tbAge.text & """)"
+	showstatus cmd
+	
+	On Error resume next
+	Set r=db.Execute(cmd)
+	On Error Goto 0
+	If db.LastError<>"" Then MsgBox "INSERT error: " & db.lasterror
+</pre>
+Once again, all the quotes get resolved in the command. The actual command sent to SQLite is:
+<pre>	INSERT OR REPLACE INTO "NameDB" VALUES("John","Kemeny","80")
+</pre>	
+Using the last name as the key, the record is added or replaced. Once again, there are many more options on this command: we're just trying to get you started here. Once you have added the record, you'll need to do your selection again. It won't to automatically added.
+<pre>
+	Set records=db.Execute("Select * from NameDB")
+	showStatus  "Database now has " & records.count & " records."
+</pre>
+
+<h4>6. Delete a record</h4>
+
+<p>This is pretty easy:
+<pre>
+	cmd="DELETE FROM NameDB WHERE lastname = """ & tbLastName.Text & """"
+	
+	On Error resume next
+	Set r=db.Execute(cmd)
+	On Error Goto 0
+	If db.LastError<>"" Then MsgBox "DELETE error: " & db.lasterror
+</pre>
+The command sent to SQLite resolves to:
+<pre>	DELETE FROM NameDB WHERE lastname = "Kemeny"
+</pre>
+
+<h4>7. Accessing records in the table</h4>
+<p>When we did the SELECT command, the result was put into the records object. Using that, we can easily get at any field in any record. This code fills a comboBox with a list of all the records:
+<pre>
+	cbList.clear
+	For row=1 To records.count
+		cbList.addItem records(row)(1) & " " & records(row)(2)
+	Next
+</pre>
+Treat the records as a large array. The first argument is the record number and the second is the field in the record. In this case, we're adding the first and list name of from each record as a line in the combobox.
+
+<h4>9. Closing the table</h4>
+<p>When you are done using a table, it is important to close it. Otherwise, many work files could be left in memory.
+<pre>
+	db.close
+</pre>
+
+<p>
+
+<h4>Sample Program</h4>
+<img src="images/TN34.gif" alt="">
+<p>You can copy this code, save it as a .txt file, then open it in NS Basic. It is also in the Samples folder.
+<pre>
+'SQLite -- Show some simple SQLite operations
+'This program runs on Windows XP, 2000 and CE
+'This program will compile in NS Basic/Desktop and NS Basic/CE.
+'See http://www.nsbasic.com for more information
+
+'This program show how to create a simple SQLite database and do additions and deletions..
+'The code may be copied freely.
+
+AddObject "newObjects.sqlite.dbutf8","db"
+Dim records	'The current record set
+Dim rec		'The current record number
+
+openDatabase
+
+Sub Form1_Load
+	form1.caption="SQLite Demo"
+	showStatus "Welcome to SQLite Version " & db.SQLiteVersion
+	showStatus "NameDB database opened with " & records.count & " records."
+	
+	'Display the first record in the database
+	rec=1
+	displayRecord(rec)	
+	
+End Sub
+
+Sub cbSave_Click
+	Dim cmd 
+	Dim r
+	If tbLastName.text="" Then Exit Sub
+		
+	cmd="INSERT OR REPLACE INTO  ""NameDB""  VALUES( """ & tbFirstName.text & """,""" & tbLastName.text &""",""" & tbAge.text & """)"
+	showstatus cmd
+	
+	On Error resume next
+	Set r=db.Execute(cmd)
+	On Error Goto 0
+	If db.LastError<>"" Then MsgBox "INSERT error: " & db.lasterror
+		
+	'Get new selection, now that a record has been added
+	Set records=db.Execute("Select * from NameDB")
+	showStatus  "Database now has " & records.count & " records."
+
+End Sub
+	
+Sub cbDelete_Click
+	Dim cmd
+	cmd="DELETE FROM NameDB WHERE lastname = """ & tbLastName.Text & """"
+	showStatus cmd
+	
+	On Error resume next
+	Set r=db.Execute(cmd)
+	On Error Goto 0
+	If db.LastError<>"" Then MsgBox "DELETE error: " & db.lasterror
+		
+	'Get new selection, now that a record has been added
+	Set records=db.Execute("Select * from NameDB")
+	showStatus "Database now has " & records.count & " records." 
+	
+	'display new record since current one was deleted
+	If rec>1 Then
+		rec=rec-1
+	Else
+		rec=records.count
+	End If
+	displayRecord(rec)
+	
+End Sub
+	
+Sub openDatabase
+	'Open the database
+	If db.Open("Name.db")  Then 'create the database if it doesn't exist yet
+		db.AutoType = True
+		db.TypeInfoLevel = 4
+	Else
+		MsgBox "Error on db.Open: " & db.lastError
+	End If
+		
+	'Get the initial selection of all records
+	On Error resume next
+	Set records=db.Execute("Select * from NameDB")
+	On Error Goto 0
+	If  Left(db.lasterror, 13)="no such table" Then Call createDatabase
+End Sub
+
+Sub createDatabase
+	Dim cmd
+	Dim res
+	cmd="CREATE TABLE NameDB(""FirstName"", ""LastName"","" Age"", PRIMARY KEY(""FirstName""))"
+	On Error resume next
+	Set res=db.Execute(cmd)
+	On Error Goto 0
+	If db.lasterror<>"" Then MsgBox "Create Table error " & db.lasterror
+		
+	'Get the initial selection of records - it will be empty at first
+	Set records=db.Execute("Select * from NameDB")
+	
+End Sub
+
+Sub cbForward_Click
+	If rec < records.count Then rec=rec+1
+	displayRecord(rec)	
+End Sub
+
+Sub cbBack_Click
+	If rec > 1 Then rec=rec-1
+	displayRecord(rec)
+End Sub
+
+Sub displayRecord(n)
+	If n<1 Or n>records.count Then Exit Sub
+	tbFirstName.Text = 	records(n)(1)
+	tbLastName.Text = records(n)(2)
+	tbAge.Text = records(n)(3)
+	showStatus "Record " & n & " of " & records.count 
+End Sub
+
+Sub showStatus(txt)
+	tbStatus.text=txt & vbcrlf & tbStatus.Text
+End Sub
+
+Sub cbList_DropDown
+	cbList.clear
+	For row=1 To records.count
+		cbList.addItem records(row)(1) & " " & records(row)(2)
+	Next
+End Sub
+
+Sub cbList_Change
+	rec=cbList.ListIndex+1
+	displayRecord(rec)
+End Sub
+
+Sub Output_Close
+	db.close
+End Sub
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "SQLite"
+Dim AppPath: AppPath = "E:\NSBD2\Files\technotes\TN05\SQLite.txt"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(Form1_Temp) Then
+      AddObject "Frame", "Form1_Form", 0, 0, Output.Width, Output.Height
+      Form1_Form.Visible = False
+      Form1_Form.BackColor = 12632256
+      AddObject "PictureBox", "Form1", 0, 0, 0, 0, Form1_Form
+      Form1.BorderStyle = 0
+      Form1.Move 0, 0, Form1_Form.Width * 15, Form1_Form.Height * 15
+      Set Form1_Temp = Form1
+      Form1_Form.Caption = "Form1"
+   
+      Execute "AddObject " & chr(34) & "Form" & chr(34) & ", " & chr(34) & "Form1" & chr(34) & ", 0, 0, 240, 320, Form1_Form"
+      '--------
+      AddObject "Label", "lbFirstName", 12, 16, 56, 21, Form1_Form
+      lbFirstName.BackColor = 12632256
+      lbFirstName.Caption = "First Name"
+      lbFirstName.FontSize =  8.25
+      '--------
+      AddObject "Label", "lbLastName", 12, 44, 56, 21, Form1_Form
+      lbLastName.BackColor = 12632256
+      lbLastName.Caption = "Last Name"
+      lbLastName.FontSize =  8.25
+      '--------
+      AddObject "Label", "lbAge", 12, 72, 56, 21, Form1_Form
+      lbAge.BackColor = 12632256
+      lbAge.Caption = "Age"
+      lbAge.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbFirstName", 112, 16, 120, 20, Form1_Form
+      tbFirstName.BackColor = 16777215
+      tbFirstName.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbLastName", 112, 44, 120, 20, Form1_Form
+      tbLastName.BackColor = 16777215
+      tbLastName.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbAge", 112, 72, 120, 20, Form1_Form
+      tbAge.BackColor = 16777215
+      tbAge.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "cbSave", 48, 104, 68, 20, Form1_Form
+      cbSave.Caption = "Save"
+      cbSave.FontSize =  8.25
+      cbSave.BackColor = 12632256
+      '--------
+      AddObject "CommandButton", "cbDelete", 124, 104, 68, 20, Form1_Form
+      cbDelete.Caption = "Delete"
+      cbDelete.FontSize =  8.25
+      cbDelete.BackColor = 12632256
+      '--------
+      AddObject "CommandButton", "cbBack", 12, 104, 20, 20, Form1_Form
+      cbBack.Caption = "<"
+      cbBack.FontBold = True
+      cbBack.FontSize =  8.25
+      cbBack.BackColor = 12632256
+      '--------
+      AddObject "CommandButton", "cbForward", 212, 104, 20, 21, Form1_Form
+      cbForward.Caption = ">"
+      cbForward.FontBold = True
+      cbForward.FontSize =  8.25
+      cbForward.BackColor = 12632256
+      '--------
+      AddObject "ComboBox", "cbList", 12, 132, 220, 100, Form1_Form
+      cbList.BackColor = 16777215
+      cbList.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbStatus", 12, 160, 216, 92, Form1_Form
+      tbStatus.BackColor = 16777215
+      tbStatus.FontSize =  8.25
+      tbStatus.MaxLength = 1000
+      tbStatus.Multiline = True
+      tbStatus.Scrollbars = 3
+      '--------
+   End If
+   Form1_Form.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If IsEmpty(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1_Form.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+
+'*** End Generated Code ***
+
+<pre>
+
+</BODY></HTML>

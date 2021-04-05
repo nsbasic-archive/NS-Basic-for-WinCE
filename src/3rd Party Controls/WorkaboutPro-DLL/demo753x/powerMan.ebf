@@ -1,0 +1,134 @@
+VERSION 5.00
+Object = "{6556ED95-9838-11D1-80AE-00C04FAD5EFB}#1.0#0"; "MSCEListView.dll"
+Begin VB.Form powerMan 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "Power Management"
+   ClientHeight    =   3615
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   3480
+   ControlBox      =   -1  'True
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3615
+   ScaleWidth      =   3480
+   Begin MSCELISTVIEWLibCtl.ListViewCtrl plist 
+      Height          =   2895
+      Left            =   120
+      TabIndex        =   1
+      Top             =   120
+      Width           =   3255
+      FontBold        =   0   'False
+      FontItalic      =   0   'False
+      FontName        =   "Arial"
+      FontSize        =   8
+      FontStrikethrough=   0   'False
+      FontUnderline   =   0   'False
+      HideColumnHeaders=   0   'False
+      HideSelection   =   -1  'True
+      LabelEdit       =   0
+      LabelWrap       =   0   'False
+      MultiSelect     =   0   'False
+      Sorted          =   0   'False
+      SortKey         =   0
+      SortOrder       =   0
+      View            =   0
+   End
+   Begin VBCE.CommandButton OK 
+      Height          =   375
+      Left            =   1200
+      TabIndex        =   0
+      Top             =   3120
+      Width           =   1095
+      _cx             =   1931
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "OK"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+End
+Attribute VB_Name = "powerMan"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+
+Private Sub Form_Load()
+' set up two column headers
+   plist.View = lvwReport
+   plist.ListItems.Clear
+   plist.ColumnHeaders.Clear
+   
+   ' Add headers
+    plist.ColumnHeaders.Add , , "Source"
+    plist.ColumnHeaders.Add , , "Setting"
+    plist.ColumnHeaders.Add , , "Value"
+    Dim powersource As Variant, value As Variant
+    Dim cpowerSources As Variant, counter As Integer, counter2 As Integer
+    
+    Set PowerManagement = CreateObject("powermanagementX.PowerManagement") ' create the control
+    cpowerSources = PowerManagement.CountPowerSources
+    
+    
+    For counter = 1 To cpowerSources Step 1
+          powersource = PowerManagement.PowerSourceString(counter)
+          value = PowerManagement.suspendTimeout(powersource)
+          AddListItem powersource, "Suspend Timeout", value
+          
+          value = PowerManagement.SystemIdleTimeout(powersource)
+          AddListItem powersource, "SystemIdleTimeout", value
+          
+          value = PowerManagement.UserIdleTimeout(powersource)
+          AddListItem powersource, "UserIdleTimeout", value
+          
+          Dim suspendTimeout As Variant
+          suspendTimeout = PowerManagement.CountValidSuspendTimeouts(powersource)
+          For counter2 = 1 To suspendTimeout Step 1
+            value = PowerManagement.ValidSuspendTimeouts(powersource, counter2)
+            AddListItem powersource, "ValidSuspend", value
+          Next
+          
+          suspendTimeout = PowerManagement.CountValidSystemIdleTimeouts(powersource)
+          For counter2 = 1 To suspendTimeout Step 1
+            value = PowerManagement.ValidSystemIdleTimeouts(powersource, counter2)
+            AddListItem powersource, "ValidSystem", value
+          Next
+          
+          suspendTimeout = PowerManagement.CountValidUserIdleTimeouts(powersource)
+          For counter2 = 1 To suspendTimeout Step 1
+            value = PowerManagement.ValidUserIdleTimeouts(powersource, counter2)
+            AddListItem powersource, "ValidUser", value
+          Next
+    Next
+    
+        
+End Sub
+
+
+Public Sub AddListItem(Source As String, Setting As String, value As String)
+    Dim MyItem As ListItem
+    
+    ' add the list item
+    Set MyItem = plist.ListItems.Add(, , Source)
+    
+    ' set its subitems
+    MyItem.SubItems(1) = Setting
+    MyItem.SubItems(2) = value
+    
+End Sub
+
+Private Sub OK_Click()
+    powerMan.Hide
+End Sub

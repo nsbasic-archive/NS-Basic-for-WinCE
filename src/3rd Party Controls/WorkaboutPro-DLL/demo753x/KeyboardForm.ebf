@@ -1,0 +1,106 @@
+VERSION 5.00
+Begin VB.Form KeyboardForm 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "Keyboard"
+   ClientHeight    =   3615
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   3480
+   ControlBox      =   -1  'True
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3615
+   ScaleWidth      =   3480
+   Begin VBCE.CommandButton OK 
+      Height          =   375
+      Left            =   1080
+      TabIndex        =   2
+      Top             =   2040
+      Width           =   1215
+      _cx             =   2143
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "OK"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.TextBox kt 
+      Height          =   255
+      Left            =   1440
+      TabIndex        =   1
+      Top             =   240
+      Width           =   1815
+      _cx             =   3201
+      _cy             =   450
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.Label Label1 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   0
+      Top             =   240
+      Width           =   1215
+      _cx             =   2143
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Keyboard Type:"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+End
+Attribute VB_Name = "KeyboardForm"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+Private Sub Form_Load()
+    Set SystemObject = CreateObject("systemX.SystemInformation") ' create the control
+    
+    kt = SystemObject.KeyboardType
+End Sub

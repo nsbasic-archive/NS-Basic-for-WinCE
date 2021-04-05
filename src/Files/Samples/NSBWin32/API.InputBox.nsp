@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "API.InputBox"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\NSBWin32\API.InputBox.nsb"
+Project.AddModule "main", ".\API.InputBox.nsb"
+Project.AddModule "MPBar", ".\MPBar.bas"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

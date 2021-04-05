@@ -1,0 +1,9 @@
+; S309PictureBox.def : Declares the module parameters.
+
+LIBRARY      "S309PICTUREBOX208.OCX"
+
+EXPORTS
+	DllCanUnloadNow      PRIVATE
+	DllGetClassObject    PRIVATE
+	DllRegisterServer    PRIVATE
+	DllUnregisterServer  PRIVATE

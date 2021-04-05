@@ -1,0 +1,220 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>RichEdit Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/RichEdit.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+addobject "MGCERichEdit.RichEdit", "redit", 2, 22, output.width - 4, output.height - 24
+addobject "CommandButton", "Bold", 2, 2, 20, 20
+addobject "CommandButton", "Italic", 22, 2, 20, 20
+addobject "CommandButton", "Uline", 42, 2, 20, 20
+addobject "CommandButton", "Sout", 62, 2, 20, 20
+addobject "CommandButton", "Subs", 82, 2, 20, 20
+addobject "CommandButton", "Supr", 102, 2, 20, 20
+addobject "CommandButton", "Save", 122, 2, 40, 20
+addobject "CommandButton", "Load", 162, 2, 40, 20
+addobject "CommandButton", "Find", 202, 2, 40, 20
+addobject "Textbox", "Ftext", 242, 2, 80, 20
+
+Bold.Caption = "&B"
+Italic.Caption = "&I"
+Uline.Caption = "&U"
+Sout.Caption = "&S"
+Subs.Caption = "&L"
+Supr.Caption = "&P"
+Save.Caption = "Sa&ve"
+Load.Caption = "&Load"
+Find.Caption = "&Find"
+
+Bold.BackColor = output.BackColor
+Italic.BackColor = output.BackColor
+Uline.BackColor = output.BackColor
+Sout.BackColor = output.BackColor
+Subs.BackColor = output.BackColor
+Supr.BackColor = output.BackColor
+Save.BackColor = output.BackColor
+Load.BackColor = output.BackColor
+Find.BackColor = output.BackColor
+Ftext.BorderStyle = 1
+
+redit.Multiline = TRUE
+redit.SelectionDisplay = TRUE
+redit.Border = TRUE
+redit.BackColor = 65535
+redit.ForeColor = 0
+redit.FontName = "Courier New"
+redit.FontSize = 240
+redit.Scrollbars = 2
+redit.SetFocus
+redit.Caption = "This is the Rich Edit control"
+redit.SetStart = 12
+redit.SelLength = 9
+redit.SelectionFontBold = TRUE
+redit.SetStart = 0
+redit.SelLength = 0
+
+
+sub Find_Click
+   if Len( Trim( Ftext.Caption ) ) = 0 then exit sub
+   i = redit.FindText( , , , Ftext.Caption )
+   if i <> -1 then
+      redit.SetStart = i
+      redit.SelLength = Len( Ftext.Caption )
+   end if
+end sub
+
+sub Bold_Click
+   if redit.SelectionFontBold = FALSE then
+      redit.SelectionFontBold = TRUE
+      Bold.FontWeight = 700
+      Bold.ForeColor = 255
+   else
+      redit.SelectionFontBold = FALSE
+      Bold.FontWeight = 400
+      Bold.ForeColor = 0
+   end if
+   redit.SetFocus
+end sub
+
+sub Italic_Click
+   if redit.SelectionFontItalic = FALSE then
+      redit.SelectionFontItalic = TRUE
+      Italic.FontWeight = 700
+      Italic.ForeColor = 255
+   else
+      redit.SelectionFontItalic = FALSE
+      Italic.FontWeight = 400
+      Italic.ForeColor = 0
+   end if
+   redit.SetFocus
+end sub
+
+sub Uline_Click
+   if redit.SelectionFontUnderline = FALSE then
+      redit.SelectionFontUnderline = TRUE
+      Uline.FontWeight = 700
+      Uline.ForeColor = 255
+   else
+      redit.SelectionFontUnderline = FALSE
+      Uline.FontWeight = 400
+      Uline.ForeColor = 0
+   end if
+   redit.SetFocus
+end sub
+
+sub Sout_Click
+   if redit.SelectionFontStrikeout = FALSE then
+      redit.SelectionFontStrikeout = TRUE
+      Sout.FontWeight = 700
+      Sout.ForeColor = 255
+   else
+      redit.SelectionFontStrikeout = FALSE
+      Sout.FontWeight = 400
+      Sout.ForeColor = 0
+   end if
+   redit.SetFocus
+end sub
+
+sub Subs_Click
+   if redit.SelectionFontOffset >= 0 then
+      redit.SelectionFontOffset = -60
+      Subs.FontWeight = 700
+      Subs.ForeColor = 255
+   else
+      redit.SelectionFontOffset = 0
+      Subs.FontWeight = 400
+      Subs.ForeColor = 0
+   end if
+end sub
+
+sub Supr_Click
+   if redit.SelectionFontOffset <= 0 then
+      redit.SelectionFontOffset = 60
+      Supr.FontWeight = 700
+      Supr.ForeColor = 255
+   else
+      redit.SelectionFontOffset = 0
+      Supr.FontWeight = 400
+      Supr.ForeColor = 0
+   end if
+end sub
+
+sub Save_Click
+   fName = InputBox( "Filename:", "Save RTF File", "test.rtf" )
+   if Len( fName ) then
+      on error resume next
+      i = redit.Save( fName )
+      if Err.number then
+         MsgBox "An error occurred saving " & fName
+      else
+         MsgBox CStr( i ) & " bytes saved to " & fName
+      end if
+   end if
+   redit.SetFocus
+end sub
+
+sub Load_Click
+   fName = InputBox( "Filename:", "Load RTF File", "test.rtf" )
+   if Len( fName ) then
+      on error resume next
+      i = redit.Load( fName )
+      if Err.number then
+         MsgBox "An error occurred loading " & fName
+      else
+         MsgBox CStr( i ) & " bytes loaded from " & fName
+      end if
+   end if 
+   redit.SetFocus
+end sub
+
+sub redit_SelectionChange( pos, length, f )
+   if f AND 1 then
+      Bold.FontWeight = 700
+      Bold.ForeColor = 255
+   else
+      Bold.FontWeight = 400
+      Bold.ForeColor = 0
+   end if
+   if f AND 2 then
+      Italic.FontWeight = 700
+      Italic.ForeColor = 255
+   else
+      Italic.FontWeight = 400
+      Italic.ForeColor = 0
+   end if
+   if f AND 4 then
+      Uline.FontWeight = 700
+      Uline.ForeColor = 255
+   else
+      Uline.FontWeight = 400
+      Uline.ForeColor = 0
+   end if
+   if f AND 8 then
+      Sout.FontWeight = 700
+      Sout.ForeColor = 255
+   else
+      Sout.FontWeight = 400
+      Sout.ForeColor = 0
+   end if
+   f = redit.SelectionFontOffset
+   if f < 0 then
+      Subs.FontWeight = 700
+      Subs.ForeColor = 255
+   else
+      if f > 0 then
+         Supr.FontWeight = 700
+         Supr.ForeColor = 255
+      else
+         Subs.FontWeight = 400
+         Supr.FontWeight = 400
+         Subs.ForeColor = 0
+         Supr.ForeColor = 0
+      end if
+   end if
+end sub
+</PRE>
+</body>
+</html>
+

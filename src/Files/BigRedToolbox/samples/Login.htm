@@ -1,0 +1,151 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Login Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Login.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+'
+'  Login.nsb
+'    by Marcus M. Darden 9/29/1999
+'
+' This script opens dialogs that facilitate logins.
+' LoginDlg: Simple dialog with Username and Password fields
+' RemoteLoginDlg:  Similar to LoginDlg with third field for RemoteHost
+' Note: Password fields mask text with asterisks (*).
+' Note: Maximum Username length is 10 characters
+
+OPTION EXPLICIT
+DIM RemoteHost, UserName, Password, LoginDlg, RemoteLoginDlg
+
+TestLogin_Show
+
+bLogin.SetFocus
+SUB bLogin_Click : Login : END SUB
+SUB bRemoteLogin_Click : RemoteLogin : END SUB
+SUB FileExit_Click : BYE : END SUB
+
+FUNCTION Login
+  IF ISEMPTY(LoginDlg) THEN CreateLogin
+  LoginDlg.SetCaption "tUserName", "anonymous"
+  LoginDlg.SetCaption "tPassword", ""
+  IF LoginDlg.DoModal THEN
+    UserName = LoginDlg.GetCaption("tUserName")
+    Password = LoginDlg.GetCaption("tPassword")
+    IF UserName <> "" THEN _
+      MSGBOX "Username: " & UserName & vbCRLF & "Password: '" & Password & "'", vbOK, "Login Test"
+  END IF
+  bLogin.SetFocus
+END FUNCTION  'Login
+
+FUNCTION RemoteLogin
+  IF ISEMPTY(RemoteLoginDlg) THEN CreateRemoteLogin
+  RemoteLoginDlg.SetCaption "tRemoteHost", "localhost"
+  RemoteLoginDlg.SetCaption "tUserName", "anonymous"
+  RemoteLoginDlg.SetCaption "tPassword", ""
+  IF RemoteLoginDlg.DoModal THEN
+    RemoteHost = RemoteLoginDlg.GetCaption("tRemoteHost")
+    UserName = RemoteLoginDlg.GetCaption("tUserName")
+    Password = RemoteLoginDlg.GetCaption("tPassword")
+    IF LEN(RemoteHost) > 0 AND LEN(UserName) > 0 THEN _
+      MSGBOX "Remote Host: " & RemoteHost & vbCRLF _
+        & "Username: " & UserName & vbCRLF _
+        & "Password: '" & Password & "'", vbOK, "Remote Login Test"
+  END IF
+  bRemoteLogin.SetFocus
+END FUNCTION  'RemoteLogin
+
+SUB CreateLogin
+  IF NOT ISEMPTY(LoginDlg) THEN EXIT SUB
+  WAITCURSOR TRUE
+  ADDOBJECT "NSBasic.DialogX.1", "LoginDlg_", 0, 0, 0, 0
+  SET LoginDlg = LoginDlg_
+
+  LoginDlg.Title = "Login"
+  LoginDlg.Height = 45
+  LoginDlg.Width = 115
+  LoginDlg.AddObject "Label", "lUserName", 5, 7, 35, 14
+  LoginDlg.SetCaption "lUserName", "&Username"
+  LoginDlg.AddObject "TextBox", "tUserName", 40, 5, 70, 14
+  LoginDlg.SetMaxLength "tUserName", 10
+  LoginDlg.AddObject "Label", "lPassword", 5, 27, 35, 14
+  LoginDlg.SetCaption "lPassword", "&Password"
+  LoginDlg.AddObject "TextBox", "tPassword", 40, 25, 70, 14
+  LoginDlg.SetPassword "tPassword", TRUE
+  WAITCURSOR FALSE
+END SUB  'CreateLogin
+
+SUB CreateRemoteLogin
+  IF NOT ISEMPTY(RemoteLoginDlg) THEN EXIT SUB
+  WAITCURSOR TRUE
+  ADDOBJECT "NSBasic.DialogX.1", "RemoteLoginDlg_", 0, 0, 0, 0
+  SET RemoteLoginDlg = RemoteLoginDlg_
+
+  RemoteLoginDlg.Title = "Remote Login"
+  RemoteLoginDlg.Height = 65
+  RemoteLoginDlg.Width = 125
+  RemoteLoginDlg.AddObject "Label", "lRemoteHost", 5, 7, 45, 14
+  RemoteLoginDlg.SetCaption "lRemoteHost", "Remote &Host" 
+  RemoteLoginDlg.AddObject "TextBox", "tRemoteHost", 50, 5, 70, 14
+  RemoteLoginDlg.AddObject "Label", "lUserName", 5, 27, 35, 14
+  RemoteLoginDlg.SetCaption "lUserName", "&Username"
+  RemoteLoginDlg.AddObject "TextBox", "tUserName", 50, 25, 70, 14
+  RemoteLoginDlg.SetMaxLength "tUserName", 10
+  RemoteLoginDlg.AddObject "Label", "lPassword", 5, 47, 35, 14
+  RemoteLoginDlg.SetCaption "lPassword", "&Password"
+  RemoteLoginDlg.AddObject "TextBox", "tPassword", 50, 45, 70, 14
+  RemoteLoginDlg.SetPassword "tPassword", TRUE
+  WAITCURSOR FALSE
+END SUB  'CreateRemoteLogin
+
+'*** Begin Generated Code ***
+
+DIM TestLogin
+SUB TestLogin_Load
+  IF NOT ISEMPTY(TestLogin) THEN EXIT SUB
+  REDIM TestLogin(2)
+
+  ADDOBJECT "CommandButton", "bLogin", 3, 3, 126, 22
+  SET TestLogin(1) = bLogin
+  TestLogin(1).Caption = "&Login"
+  TestLogin(1).BackColor = &H00C0C0C0&
+  '---------
+  ADDOBJECT "CommandButton", "bRemoteLogin", 3, 28, 126, 22
+  SET TestLogin(2) = bRemoteLogin
+  TestLogin(2).Caption = "&Remote Login"
+  TestLogin(2).BackColor = &H00C0C0C0&
+END SUB  'TestLogin_Load
+
+SUB TestLogin_Show
+  DIM i
+  ON ERROR RESUME NEXT
+  TestLogin_ShowMenu
+  IF ISEMPTY(TestLogin) THEN TestLogin_Load
+  FOR i = 1 TO UBOUND(TestLogin)
+    TestLogin(i).Show
+  NEXT
+  TestLogin(0) = TRUE
+END SUB  'TestLogin_Show
+
+SUB TestLogin_Hide
+  DIM i
+  IF ISEMPTY(TestLogin) THEN Err.Raise 44000, , "Form not loaded" : EXIT SUB
+  ON ERROR RESUME NEXT
+  FOR i = 1 TO UBOUND(TestLogin)
+    TestLogin(i).Hide
+  NEXT
+  TestLogin(0) = FALSE
+END SUB  'TestLogin_Hide
+
+SUB TestLogin_ShowMenu
+  SETMENU "TitleBar", ARRAY("&File")
+  SETMENU "&File", ARRAY("E&xit||FileExit")
+END SUB  'TestLogin_ShowMenu
+
+'*** End Generated Code ***
+
+</PRE>
+</body>
+</html>
+

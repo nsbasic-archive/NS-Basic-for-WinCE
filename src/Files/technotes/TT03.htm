@@ -1,0 +1,324 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 03: Adding Two Numbers</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 03: Adding Two Numbers</h2>
+      <h3>April 18, 2008</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+	  <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p>
+      </td></tr></table>
+<hr>
+
+<h3>Contents:</h3>
+<ol>
+    <li><a href="#Intro">Introduction</a></li>
+    <li><a href="#Starting">Getting Started</a></li>
+    <li><a href="#MessageBox">Adding Two Numbers Using MessageBox</a></li>
+    <li><a href="#Form">Adding Two Numbers Using Form</a></li>
+</ol>
+
+<a name="Intro"></a><h2>Introduction</h2>
+
+The purpose of this tutorial is to demonstrate simply adding
+two numbers together using NS Basic/CE. You should have completed Tutorial #1
+before beginning this tutorial. 
+
+<p>The program to be developed will start out adding two numbers and displaying
+the answer in a message box. After that we will create a program that
+allows the user to enter the two numbers on a form and display the answer
+when the Add button is clicked.</p>
+
+<a name="Starting"></a><h2>Getting Started</h2>
+<p>Start NS Basic/CE from the Start menu and select Formless from the project
+dialog box. This will open a code window.</p>
+ 
+<p align="center"><img src="images/TT03.1.gif" width="764" height="661" alt="" border="0">
+
+<a name="MessageBox"></a><h2>Adding Two Numbers Using MessageBox</h2>
+<p>To demonstrate how simple it is to create a program to add two numbers
+together, we will enter code to add two numbers and display the answer
+in a MessageBox.</p>
+
+<h4>1. Creating the Code</h4>
+
+<p>First we declare three variables to hold our values:</p>
+<UL>
+	<li><i>FirstNumber</i>, contains the first half of our math equation</li>
+	<li><i>SecondNumber</i>, contains the second half of our math equation</li>
+	<li><i>Total</i>, contains the answer</li>
+</UL>
+<p>Next we set <i>FirstNumber</i> to equal 10 and <i>SecondNumber</i> to 7.</p>
+<p>We then add the two number and store the result in <i>Total.</i></p>
+<p>Finally, we display the result in a MessageBox using the CStr function to
+convert the number into a string we can display.</p>
+
+  <p>Your code should look like the following:</p>
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True
+
+Sub main
+   Dim FirstNumber
+   Dim SecondNumber
+   Dim Total
+   
+   FirstNumber = 10
+   SecondNumber = 7
+   
+   Total = FirstNumber + SecondNumber
+      
+   MsgBox "And the total is: " + CStr(Total),0,"NS Basic"
+   
+End Sub
+</pre></blockquote>
+
+<p align="center"><img src="images/TT03.2.gif" width="458" height="384" alt="" border="0" align="">
+
+<h4>2. Saving the Project</h4>
+<p>Save the project by selecting File from the top main and select Save Project.
+Name the project <i>Add2MsgBox.nsb</i> and click Save</p>
+
+<h4>3. Testing the Program</h4>
+<ul>
+  <li>Start ActiveSync if it's not already running
+  <li>Select Start from the Run menu (or press F5). </li></ul>
+
+<p align="center"><img src="images/TT03.3.gif" width="308" height="487" alt="" border="0" align="">
+  
+  
+<a name="Form"></a><h2>Adding Two Numbers Using Form</h2>
+<p>Displaying the total of two fixed numbers in a MessageBox is not very
+practical since you need to modify the program every time you want to change
+the numbers. We will create a new version of the program that will allow
+the user to enter the numbers on a form and display the total when the
+user clicks a button.</p>
+
+<h4>1. Creating the Form</h4>
+<p>Start NS Basic/CE from the Start menu and select Standard from the project
+dialog box. (If NS Basic is already running, select File and New Project
+instead.) This will open a form window.</p>
+
+Add a text box for entering the first number: 
+<ul>
+  <li>Click on the TextBox object in the Toolbox ("ab" icon) 
+  <li>Move the cursor to the form and click the left mouse button to place the 
+object on the form 
+  <li>Click on the object to select it. 
+  <li>In the Properties window, change the Name to "txtFirstNo" 
+  <li>Scroll down in the Properties Window and delete the value of Text
+  <li>Use the mouse to expand the size of the TextBox and reposition
+  on the form. </li>
+</ul>
+  
+Add a text label before the first number: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form before the text box and click on it to select. 
+  <li>In the Properties window, change the Name to "lblFirstNo" (This is
+  optional since we will not need to refer to it in our program.)
+  <li>In the Properties window, change the Caption to "First Number" </li>
+ </ul>
+
+ Add a text box for entering the second number: 
+<ul>
+  <li>Click on the TextBox object in the Toolbox ("ab" icon) 
+  <li>Move the cursor to the form and click the left mouse button to place the 
+object on the form 
+  <li>Click on the object to select it. 
+  <li>In the Properties window, change the Name to "txtSecondNo" 
+  <li>Scroll down in the Properties Window and delete the value of Text
+  <li>Use the mouse to expand the size of the TextBox and reposition
+  on the form. </li>
+</ul>
+  
+Add a text label before the second number: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form before the text box and click on it to select. 
+  <li>In the Properties window, change the Name to "lblSecondNo" (This is
+  optional since we will not need to refer to it in our program.)
+  <li>In the Properties window, change the Caption to "Second Number" </li>
+ </ul>
+ 
+Add a text box for displaying the Total: 
+<ul>
+  <li>Click on the TextBox object in the Toolbox ("ab" icon) 
+  <li>Move the cursor to the form and click the left mouse button to place the 
+object on the form 
+  <li>Click on the object to select it. 
+  <li>In the Properties window, change the Name to "txtTotal" 
+  <li>Scroll down in the Properties Window and change the value of Locked
+  to True (makes the field read-only)
+  <li>Scroll down in the Properties Window and delete the value of Text
+  <li>Use the mouse to expand the size of the TextBox and reposition
+  on the form. </li>
+</ul>
+
+Add a label before the Total field: 
+<ul>
+  <li>Select label object in the Toolbox ("A" icon) 
+  <li>Place it on the form before the text box and click on it to select it 
+  <li>In the Properties Window, change the Name to "lblTotal" (optional)
+  <li>In the Properties window, change the Caption to "Total ="  
+  <li>Expand the label to hold the text</li>
+</ul>
+
+Add a button to add the two numbers: 
+<ul>
+  <li>Select the CommandButton object in the Toolbox (blank rectangle box). 
+  <li>Place it on the form and click on it to select it. 
+  <li>In the Properties window, change the Name to "cmdAdd" 
+  <li>In the Properties window, change the Caption to "Add" 
+
+  <li>Use the mouse to expand the size of the CommandButton to display the text 
+  all on the same line and reposition on the form. </li>
+</ul>  
+
+<p align="center"><img src="images/TT03.4.gif" width="568" height="661" alt="" border="0" align="">
+
+<h4>2. Saving the Project</h4>
+<p>Save the project by selecting File from the top main and select Save Project.
+Name the project <i>Add2Form.nsb</i> and click Save</p>
+
+<h4>3. Testing the Form</h4>
+<p>At this point we have a finished form but have not entered any code
+to actually add the numbers and display the results. You can still
+run the program to see how the form will appear on a CE device or the CE
+Emulator. You may find that some tweaks are needed in the size and position
+of some of the controls and labels.</p>
+<ul>
+  <li>Start ActiveSync if its not already running
+  <li>Select Start from the Run menu (or press F5). </li>
+</ul>
+<p>Note: As a shortcut, you can use F5 to both Save and Start the program.
+If you are working with a new project, you will be prompted for a project
+name before the program is started.</p>
+
+<p>Tip: If you're testing the form and haven't yet entered any code you will
+find the program doesn't really go away when you click the X box on the CE
+device. In order to stop a program, do the following:
+Start-&gt;Settings-&gt;System-&gt;Memory-&gt;Running Programs and selecting the program 
+and Stop or Stop All. Adding "ShowOkButton True" in the Code Window will
+put an OK button in place of the X button and close the program.</p>
+
+<p>If your program aborts with an error you may still need to stop the program
+using CE's Memory utility. If the program aborts before the ShowOKButton
+statement executes only the X button will appear on the CE screen.</p>
+
+<p align="center"><img src="images/TT03.5.gif" width="310" height="487" alt="" border="0" align="">
+
+<h4>4. Creating the Code</h4>
+<p>We are now ready to add code to our form to make it actually do some work.
+We will use the same variables we declared in our first example but read their
+values from the fields entered by the user. Reading the user's input and
+adding the numbers will be performed when the user clicks on the Add
+button.</p>
+
+<p>NS Basic will automatically open the Code Window and generate the
+Add button subroutine when you double click the button on the form.
+You can also open the Code Window by right clicking on the form and selecting
+View Code.<p>
+
+<p>Enter the code so it looks like the following screen.</p>
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True
+
+Dim FirstNumber
+Dim SecondNumber
+Dim Total
+   
+Sub cmdAdd_Click   
+   FirstNumber  = CSng(txtFirstNo.Text)
+   SecondNumber = CSng(txtSecondNo.Text)
+   
+   Total = FirstNumber + SecondNumber
+   
+   txtTotal.Text = Total
+End Sub
+</pre></blockquote>
+
+<p align="center"><img src="images/TT03.6.gif" width="453" height="387" alt="" border="0" align="">
+
+<p>The CSng function is used to convert the number string the user enter 
+into a single precision number.</p>
+
+<p>Note: The code uses variables to hold the user's numbers and the total.
+You could also eliminate all the variables by directly accessing the
+fields directly and not storing anything.</p>
+
+<pre>	txtTotal.Text = CSng(txtFirstNo.Text) + CSng(txtSecondNo.Text)</pre>
+<p>Either way works but I feel the program is easier to understand when
+the variables are used.</p>
+
+<h4>5. Testing the Program</h4>
+<ul>
+  <li>Start ActiveSync if it's not already running
+  <li>Select Start from the Run menu (or press F5). </li>
+</ul>
+
+<p align="center"><img src="images/TT03.7.gif" width="309" height="491" alt="" border="0" align="">
+
+<p>There are three TextBox fields on the form. The first two accept user
+input and the third (Total) has it's Locked property set to True, making it
+a read-only field. This property can be set in the Property window or
+as a line of code.</p>
+
+<h4>6. Error Checking</h4>
+<p>The above program is very simple in terms of it's function and lack of
+any type of error checking. As an additional exercise, code was added to 
+verify that the user has entered the proper values when the Add
+button is clicked. The <i>IsNumeric</i> function is used to verify that the
+user has enter a proper number into both text box fields.
+An error message is displayed if the field is
+left blank or does not contain a valid number.
+</p>
+
+<p>The final program with error checking:</p>
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True
+
+Dim FirstNumber
+Dim SecondNumber
+Dim Total
+   
+Sub cmdAdd_Click
+   If Not IsNumeric(txtFirstNo.Text) Then
+      MsgBox "First Number must be a number!",0,"NS Basic"
+      Exit Sub
+   End If
+
+   If Not IsNumeric(txtSecondNo.Text) Then
+      MsgBox "Second Number must be a number!",0,"NS Basic"
+      Exit Sub
+   End If
+         
+   FirstNumber  = CSng(txtFirstNo.Text)
+   SecondNumber = CSng(txtSecondNo.Text)
+   
+   Total = FirstNumber + SecondNumber
+   
+   txtTotal.Text = Total
+End Sub
+</pre></blockquote>
+
+<p align="center"><img src="images/TT03.8.gif" width="494" height="496" alt="" border="0" align="">
+
+</BODY>
+</HTML>
+  
+  
+  

@@ -1,0 +1,249 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>TN07: DialogX Control</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#FFFFFF">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="17%" VALIGN="TOP">
+	  <P><img src="images/BigIcon.GIF" width=86 height=103>
+	</TD>
+    <TD WIDTH="83%" VALIGN="TOP">
+	  <h2>Tech Note 07: DialogX 1.0
+</h2>
+	  <h3>A control that lets you build powerful dialog boxes.</h3>
+	  <h3>September 11, 2003</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+<HR noshade size="1">
+
+
+<IMG SRC="images/HelloDialogDetail.JPG" ALT="" WIDTH="220" HEIGHT="138">
+
+<P>DialogX is an ActiveX control designed to allow NS Basic/CE users to create
+and use custom dialog boxes.  
+
+<P>DialogX creates dialogs that are modal and passive.  The dialogs are modal
+because program execution halts, and waits for the user to close the dialog.
+The dialogs are passive because the program is halted while the dialog is open,
+and the dialog cannot be changed by the program until it is closed.
+
+<P>DialogX syntax is very similar to NSBasic/CE.  Objects are added by calling
+the AddObject method.  The list of usable objects is similar to list of
+intrinsic objects in NSBasic/CE:
+<UL COMPACT>
+	<LI>    CommandButton 
+	<LI>    TextBox
+	<LI>    Label
+	<LI>    ListBox
+	<LI>    ComboBox
+	<LI>    OptionButton
+	<LI>	CheckBox
+</UL>
+with additions:
+<UL COMPACT>
+	<LI>    GroupBox
+	<LI>    Bitmap
+	<LI>    SpinCtrl
+	<LI>    Slide
+</UL>
+    
+<P>Many familiar object properties can be set by DialogX methods with equivalent names.  DialogX also supports some new properties.  These objects can be
+used to create powerful, flexible dialog content that will greatly improve your
+program's user interface.
+
+Using DialogX is a five step process:
+<OL COMPACT>
+	<LI>Creation
+	<LI>Add and configure objects
+	<LI>Set default values (if necessary)
+	<LI>Open the dialog with DoModal
+	<LI>Retrieve values (if necessary)
+</OL>
+    
+<P>NOTE: There is also an InputBox method of DialogX that simulates the
+INPUTBOX Function of NSBasic/CE.  The dialog that is opened fits properly
+on a Palm-Size PC screen!!
+
+<P>All dimensions and coordinates are in Dialog Template
+Units (DTUs). DTUs are relative to the DialogX's selected font. A smaller font
+size will create a smaller DialogX with the same values of Width and Height.
+
+<P>Dialog Base Units (DBUs) are the average width and height, in pixels, of the
+characters in the dialog's font. Each horizontal DBU is equal to 4 horizontal DTUs
+and each vertical DBU is equal to 8 vertical DTUs.</P>
+
+<H4>Installation</H4>
+
+<P>Connect your Windows CE device to your desktop using ActiveSync. On the desktop, run the program DialogX.exe. Follow the instructions on the screen to complete the installation.
+<P>If you have NS Basic/CE 3.01 or later, DialogX is installed along with NS Basic/CE itself. You may need to register the control if your programs cannot find it. Use this NS Basic/CE statement:<br>
+
+<code>shellexecute "open","regsvrce.exe","dialogx.ocx"</code>
+
+<HR SIZE=5>
+
+<H4>Object Creation</H4>
+	<CODE>AddObject "NSBasic.DialogX.1", "Name"</CODE>
+	<P>
+	Starting with Rev 3.01, you can simply do<br> 
+	<CODE>AddObject "DialogX", "Name"</CODE>
+
+<H4>Samples</H4>
+These samples are installed with the rest of the NS Basic samples.
+	<UL COMPACT>
+	<LI>HelloDialog - Simple Hello Dialog
+	<LI>Find - Dialog box for a text find box
+	<LI>Login - Dialog box for a login prompt
+</UL>
+
+<TABLE WIDTH=100% CELLPADDING=3 BORDER=2>
+<TR><TH COLSPAN=3>Properties</TH></TR>
+<TR><TH>Name</TH><TH>Value</TH><TH>Description</TH></TR>
+<TR><TD>CaptionClose</TD><TD><B>TRUE</B>|FALSE</TD><TD>Adds close box "X" to DialogX.</TD></TR>
+<TR><TD>CaptionOK</TD><TD><B>TRUE</B>|FALSE</TD><TD>Adds OK button "OK" to DialogX.</TD></TR>
+<TR><TD>FontName</TD><TD>Text (Default: System Font)</TD><TD>Sets font name for font used in DialogX items.</TD></TR>
+<TR><TD>FontSize</TD><TD>Number (Default: 9)</TD><TD>Sets font size for font used in DialogX items.</TD></TR>	
+<TR><TD>Height</TD><TD>Number (Default: 100)</TD><TD>Sets DialogX height (in DTU's).</TD></TR>
+<TR><TD>HelpFile</TD><TD>FileName (Text)</TD>
+<TD>Displays DialogX with "?" in frame, which opens Help with the given file<BR>
+ If a fully qualified paths is not used, the file will be opened from \Windows.</TD></TR>
+<TR><TD>SystemSound</TD><TD>Number</TD>
+ <TD>Play one of the standard system sounds when the DialogX is opened:
+ <UL><LI>vbCRITICAL</LI><LI>vbQUESTION</LI><LI>vbEXCLAMATION</LI><LI>vbINFORMATION</LI></UL>
+ </TD></TR>
+<TR><TD>Tag</TD><TD><EM>Expression</EM></TD>
+ <TD>This property is not used by DialogX. Any valid expression can be used to set this property.</TD></TR>
+<TR><TD>Title</TD><TD>Text</TD><TD>Sets the title displayed in DialogX.</TD></TR>
+<TR><TD>VersionMajor</TD><TD><EM>Read-Only</EM></TD><TD>Returns a numeric value.</TD></TR>
+<TR><TD>VersionMinor</TD><TD><EM>Read-Only</EM></TD><TD>Returns a numeric value.</TD></TR>
+<TR><TD>Width</TD><TD>Number (Default: 160)</TD><TD>Sets DialogX width (in DTU's).</TD></TR>
+</TABLE>
+&nbsp;
+<TABLE WIDTH=100% CELLPADDING=3 BORDER=2>
+<TR><TH COLSPAN=3>Methods</TH></TR>
+<TR><TH>Name</TH><TH>Parameters</TH><TH>Description/Return Value(s)</TH></TR>
+<TR><TD>AddItem</TD><TD>ObjectName (Text), Item (Text)</TD>
+<TD>Adds list items to ListBox and ComboBox objects.</TD></TR>
+<TR><TD>AddObject</TD><TD>ObjectType (Text), ObjectName (Text), Left, Top, Width, Height</TD>
+<TD>Adds an object to the DialogX.  Dimensions are in DBU's. Valid types:<BR>
+CommandButton, TextBox, Label, ListBox, ComboBox, OptionButton, CheckBox, 
+GroupBox, Bitmap, SpinCtrl, Slider<BR>
+      <EM>Note</EM>: A SpinCtrl must be added directly after the TextBox it will control.</TD></TR>
+<TR><TD>ClearList</TD><TD>ObjectName (Text)</TD>
+<TD>Removes all text items from ListBox and ComboBox objects.</TD></TR>
+<TR><TD>DoModal</TD><TD>&nbsp;</TD>
+<TD>Displays the DialogX.  Returns Number 0 = Cancel, 1 = OK, 2... = User Defined</TD></TR>
+<TR><TD COLSPAN=3>*** Note "Get" methods only return values after the DialogX has been opened
+and a button with a return value not equal to 0 has been pressed</TD></TR>
+<TR><TD>GetCaption</TD><TD>ObjectName (Text)</TD>
+<TD>Returns the text from a DialogX item.</TD></TR>
+<TR><TD>GetIndex</TD><TD>ObjectName (Text)</TD><TD>Returns the selected index for ListBox and ComboBox.  Returns a Number</TD></TR>
+<TR><TD>GetValue</TD><TD>ObjectName (Text)</TD>
+<TD>Returns the selected index for ListBox and ComboBox, the check state from OptionButton and CheckBox, or the position from SpinCtrl and Slider. When working with OptionButton objects, use GetValue only on the first button in a group, after the SetGroup method has been called.</TD></TR>
+<TR><TD>InputBox</TD><TD>Prompt (Text), Title (Text), Default (Text)</TD>
+ <TD>Similar to the default INPUTBOX from NSBasic, this creates a dialog that will fit the screen of most Palm-Size PCs. The
+ string from the text box is returned if the user taps "OK" or presses the enter key, otherwise an empty string ("") is returned.
+ All 3 arguments are required.</TD>
+<TR><TD>Reset</TD><TD>&nbsp;</TD><TD>Removes all objects and reinitializes DialogX.</TD></TR>
+<TR><TD>SetAlignment</TD><TD>ObjectName (Text), 0|1|2</TD>
+<TD>Sets text alignment in TextBox and Label, sets button arrangement in OptionButton and CheckBox, sets alignment of SpinCtrl.
+<TABLE BORDER=1 CELLSPACING=1 CELLPADDING=2>
+<TR><TD>0</TD><TD>Left</TD></TR>
+<TR><TD>1</TD><TD>Right</TD></TR>
+<TR><TD>2</TD><TD>Center</TD></TR></TABLE>
+"Center" Not used in OptionButton, CheckBox, or SpinCtrl</TD></TR>
+<TR><TD>SetAutoTicks</TD><TD>ObjectName (Text), TRUE|<B>FALSE</B></TD>
+<TD>Automatically draws interval ticks on Slider objects.<BR>
+See also, SetTickFrequency.</TD></TR>
+<TR><TD>SetBitmap</TD><TD>ObjectName (Text), Filename (*.bmp)</TD>
+<TD>Loads a bitmap from a fully qualified pathname to a Bitmap file.</TD></TR>
+<TR><TD>SetCaption</TD><TD>ObjectName (Text), Caption (Text)</TD>
+<TD>Sets the text of a DialogX item.</TD></TR>
+<TR><TD>SetCase</TD><TD>ObjectName (Text), <B>0</B>|1|2</TD>
+<TD>Sets TextBox objects to automatically convert case.
+<TABLE BORDER=1 CELLSPACING=1 CELLPADDING=2>
+<TR><TD><B>0</B></TD><TD>Mixed case</TD></TR>
+<TR><TD>1</TD><TD>Lowercase</TD></TR>
+<TR><TD>2</TD><TD>Uppercase</TD></TR></TABLE></TD></TR>
+<TR><TD>SetDirection</TD><TD>ObjectName (Text), <B>0</B>|1|2</TD>
+<TD>Sets the direction the thumb control points in a Slider object.
+<TABLE BORDER=1 CELLSPACING=1 CELLPADDING=2>
+<TR><TD><B>0</B></TD><TD>Both</TD></TR>
+<TR><TD>1</TD><TD>Left/Top</TD></TR>
+<TR><TD>2</TD><TD>Right/Bottom</TD></TR></TABLE></TD></TR>
+<TR><TD>SetEnabled</TD><TD>ObjectName (Text), <B>TRUE</B>|FALSE</TD>
+<TD>Enables or disables (grays out) an object.</TD></TR>
+<TR><TD>SetGroup</TD><TD>ObjectName (Text), TRUE|<B>FALSE</B></TD>
+<TD>Use this property to begin a group of mutually exclusive OptionButtons. Use SetGroup on the first OptionButton of group only!  Once this is set, the value of the group can be set or read from the first OptionButton with the SetValue() and GetValue() methods.</TD></TR>
+<TR><TD>SetHBitmap</TD><TD>ObjectName (Text), HBITMAP</TD>
+<TD>A Handle to a BITMAP that is valid when the DialogX is opened and is displayed in Bitmap objects.</TD></TR>
+<TR><TD>SetIndex</TD><TD>ObjectName (Text), Number</TD>
+<TD>Sets the originally selected item in a ListBox or ComboBox.  The list is
+      0-based, with 0 being the first item, and -1 indicating no selection.</TD></TR>
+<TR><TD>SetIntegralHeight</TD><TD>ObjectName (Text), <B>TRUE</B>|FALSE</TD>
+<TD>Use to modify ListBox or ComboBox objects to hide or show partial items.</TD></TR>
+<TR><TD>SetMax/SetMin</TD><TD>ObjectName (Text), Number</TD>
+<TD>Sets the range for SpinCtrl and Slider objects.  Default 0-100.</TD></TR>
+<TR><TD>SetMaxLength</TD><TD>ObjectName (Text), Number</TD>
+<TD>Sets the total number of characters that can be entered in a TextBox or editable ComboBox.</TD></TR>
+<TR><TD>SetMultiline</TD><TD>ObjectName (Text), TRUE|<B>FALSE</B></TD>
+<TD>Set the multiline property to TRUE, to allow TextBox objects to accept carriage returns and multiple lines of text.</TD></TR>
+<TR><TD>SetNumbersOnly</TD><TD>ObjectName (Text), TRUE|<B>FALSE</B></TD>
+<TD>Sets TextBox objects to filter non-numeric input.</TD></TR>
+<TR><TD>SetPassword</TD><TD>ObjectName (Text), TRUE|<B>FALSE</B></TD>
+<TD>Modifies TextBox items to display password character (*).</TD></TR>
+<TR><TD>SetReturnValue</TD><TD>ObjectName (Text), Number</TD>
+<TD>This sets the value DoModal returns when an object is Clicked/Double Clicked/Selected.<BR>
+0 = Cancel, 1 = OK, 2... = User Defined.<BR>
+Set Return Value to -1 to restore default behavior.</TD></TR>
+<TR><TD>SetScrollbars</TD><TD>ObjectName (Text), <B>0</B>|1|2|3</TD>
+<TD>This will add or remove scrollbars from TextBox or ListBox objects.
+<TABLE BORDER=1 CELLSPACING=1 CELLPADDING=2>
+<TR><TD><B>0</B></TD><TD>None</TD></TR>
+<TR><TD>1</TD><TD>Horizontal</TD></TR>
+<TR><TD>2</TD><TD>Vertical</TD></TR>
+<TR><TD>3</TD><TD>Horizontal & Vertical</TD></TR></TABLE></TD></TR>
+<TR><TD>SetShowTicks</TD><TD>ObjectName (Text), <B>TRUE</B>|FALSE</TD>
+<TD>Set to show the limit ticks for Slider objects.</TD></TR>
+<TR><TD>SetSorted</TD><TD>ObjectName (Text), TRUE|<B>FALSE</B></TD>
+<TD>Use to automatically sort ListBox and ComboBox list items alphabetically.</TD></TR>
+<TR><TD>SetStyle</TD><TD>ObjectName (Text), <B>0</B>|2</TD>
+<TD>Use to set ComboBox read-only.
+<TABLE BORDER=1 CELLSPACING=1 CELLPADDING=2>
+<TR><TD><B>0</B></TD><TD>Allow Input</TD></TR>
+<TR><TD>2</TD><TD>Read-Only</TD></TR></TABLE></TD></TR>
+<TR><TD>SetTabStop</TD><TD>ObjectName (Text), TRUE|FALSE</TD>
+<TD>This adds or removes an object from the chain of tabable items.</TD></TR>
+<TR><TD>SetTickFrequency</TD><TD>ObjectName (Text), Number</TD>
+<TD>Set the frequency for interval ticks on Slider objects.  Default 1.</TD></TR>
+<TR><TD>SetValue</TD><TD>ObjectName (Text), TRUE|FALSE|Number</TD>
+<TD>Sets the check state of OptionButton and CheckBox, sets the position of SpinCtrl and Slider.  When working with OptionButton objects, use SetValue only on the first button in a group, after the SetGroup method has been called.</TD></TR>
+<TR><TD>SetVertical</TD><TD>ObjectName (Text), TRUE|FALSE</TD>
+<TD>Sets the orientation for SpinCtrl and Slider objects.<BR>
+SpinCtrl default TRUE.<BR>Slider default determined by slider object shape.</TD></TR>
+<TR><TD>SetVisible</TD><TD>ObjectName (Text), <B>TRUE</B>|FALSE</TD>
+<TD>Shows or hides a DialogX item.</TD></TR>
+<TR><TD>Version</TD><TD>&nbsp;</TD><TD>Returns a text value.</TD></TR>
+</TABLE>
+<HR>
+<H4>Change Log</H4>
+10/12/99: SetScrollbars corrected.
+02/13/00: Additional changes to Scrollbar logic
+</BODY>
+</HTML>
+
+
+
+
+
+
+

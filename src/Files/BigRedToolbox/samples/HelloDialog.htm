@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>HelloDialogX Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/HelloDialog.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+
+'
+' HelloDialogX Usage Sample
+'
+DIM Dlg
+
+OpenDlg
+
+SUB OpenDlg
+  IF ISEMPTY(Dlg) THEN
+    '*** Step 1: Creation ***
+    ADDOBJECT "NSBasic.DialogX.1", "Dlg_", 0, 0, 0, 0
+    SET Dlg = Dlg_
+    Dlg.Title = "Hello World"
+    Dlg.Width = 120 : Dlg.Height = 60
+    '*** Step 2: Add and configure objects ***
+    Dlg.AddObject "Label", "lRespond", 5, 5, 35, 12
+    Dlg.SetCaption "lRespond", "&Respond"
+    Dlg.AddObject "TextBox", "tRespond", 42, 3, 73, 12
+  END IF
+  '*** Step 3: Set default values (if necessary) ***
+  Dlg.SetCaption "tRespond", "Hello!"
+  '***Step 4: Open the dialog with DoModal ***
+  IF Dlg.DoModal THEN
+    '*** Step 5: Retrieve values (if necessary) ***
+    MSGBOX Dlg.GetCaption("tRespond")
+  END IF
+END SUB  'OpenDlg
+</PRE>
+</body>
+</html>

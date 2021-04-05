@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_74_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_74_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>ListBox                                                                       Object</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ADDOBJECT &quot;ListBox</span></font>&quot;, <i><span style='font-style:italic;'>name</span></i>,
+<i><span style='font-style:italic;'>xpos</span></i>, <i><span style='font-style:italic;'>ypos</span></i>,
+<i><span style='font-style:italic;'>width</span></i>, <i><span style='font-style:italic;'>height</span></i></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ListBox is used to display a text list object that floats
+over the output window. The required component, <i><span style='font-style:italic;'>name</span></i>,
+is the name of a variable that is added to the program to reference the object.
+It must follow standard variable naming conventions. The required components, <i><span style='font-style:italic;'>xpos</span></i>, <i><span
+style='font-style:italic;'>ypos</span></i>, <i><span style='font-style:italic;'>width</span></i>, and <i><span
+style='font-style:italic;'>height</span></i> are
+numeric expressions that set the location and size of the object in pixels,
+measured from the upper left corner. The ListIndex property is the index of the
+selected item in the list, the index of the first item is 0; if no item is
+selected, the ListIndex property is -1. MultiSelect must be set to True before
+any items are added to the listbox.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Properties Supported</span></font></b> <b><span style='font-weight:bold;'>(see &quot;Properties&quot;)</span></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>BackColor, Enabled, FontBold, FontItalic, FontName, FontSize,
+FontStrikethru, FontUnderline, ForeColor, Height, Hwnd, IntegralHeight, Left,
+List (read only), ListCount (read-only), ListIndex, MultiSelect, Name, NewIndex,
+ParentHWnd, Redraw, ScrollBars, SelCount, Selected, SpinBox, Sorted, Tag,
+TabStop, Text, Timer, Top, TopIndex, Visible, Width, WindowLong</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Methods Supported</span></font></b> <b><span style='font-weight:bold;'>(see &quot;Methods&quot;)</span></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>AddItem, Clear, Hide, Move, RemoveItem, SetFocus, Show</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Events Supported</span></font></b> <b><span style='font-weight:bold;'>(see &quot;Events&quot;)</span></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>Change, Click, DblClick, GotFocus, KeyDown, KeyPress, KeyUp,
+LostFocus, Timer</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM ListBox Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'ListBox is a text list object</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM i</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>ADDOBJECT &quot;ListBox&quot;,
+&quot;List&quot;, 10, 10, 100,</span></font>100</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>List.ScrollBars = 2</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>FOR i = vbSUNDAY TO vbSATURDAY</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>  List.AddItem
+WEEKDAYNAME(i)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>NEXT</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>List.ListIndex = WEEKDAY(NOW-1)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>List.SetFocus</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>ADDOBJECT, ComboBox, Events, Methods, Properties</span></font></p>
+
+</div>
+
+</body>
+
+</html>

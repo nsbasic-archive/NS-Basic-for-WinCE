@@ -1,0 +1,389 @@
+// Desk.idl : IDL source for Desk.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Desk.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(2DBB9E8E-F774-46F9-BB23-96122A994A2A),
+		dual,
+		helpstring("IAPI Interface"),
+		pointer_default(unique)
+	]
+	interface IAPI : IDispatch
+	{
+		[id(1), helpstring("method FindWindow")] HRESULT FindWindow([in] BSTR bstrTitle,[out,retval] long* plhWnd);
+		[id(2), helpstring("method ReleaseCapture")] HRESULT ReleaseCapture();
+		[id(3), helpstring("method SendMessage")] HRESULT SendMessage([in] long lWnd, [in] long lMsg, [in] long wParam, [in] long lParam, [out,retval] long *plRet);
+		[id(4), helpstring("method SendMessageText")] HRESULT SendMessageText([in] long lWnd, [in] long lMsg, [in] long wParam, [in] BSTR bText, [out,retval] long *plRet);
+		[id(5), helpstring("method WindowFromPoint")] HRESULT WindowFromPoint([in] long lXpos, [in] long lYpos, [out,retval] long *plRet);
+		[id(6), helpstring("method ChildWindowFromPoint")] HRESULT ChildWindowFromPoint([in] long lWnd, [in] long lXpos, [in] long lYpos, [out,retval] long *plRet);
+		[id(7), helpstring("method PostMessage")] HRESULT PostMessage([in] long lWnd, [in] long lMsg, [in] long wParam, [in] long lParam, [out,retval] long *plRet);
+		[propget, id(8), helpstring("property ForegroundWindow")] HRESULT ForegroundWindow([out, retval] long *pVal);
+		[propput, id(8), helpstring("property ForegroundWindow")] HRESULT ForegroundWindow([in] long newVal);
+		[propget, id(9), helpstring("property Focus")] HRESULT Focus([out, retval] long *pVal);
+		[propput, id(9), helpstring("property Focus")] HRESULT Focus([in] long newVal);
+		[propget, id(10), helpstring("property Capture")] HRESULT Capture([out, retval] long *pVal);
+		[propput, id(10), helpstring("property Capture")] HRESULT Capture([in] long newVal);
+		[propget, id(11), helpstring("property EnableKeyboard")] HRESULT EnableKeyboard([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(11), helpstring("property EnableKeyboard")] HRESULT EnableKeyboard([in] VARIANT_BOOL newVal);
+		[propget, id(12), helpstring("property WindowText")] HRESULT WindowText([in] long lWnd, [out, retval] BSTR *pVal);
+		[propput, id(12), helpstring("property WindowText")] HRESULT WindowText([in] long lWnd, [in] BSTR newVal);
+		[propget, id(13), helpstring("property SystemColor")] HRESULT SystemColor([in] long lColor, [out, retval] long *pVal);
+		[propput, id(13), helpstring("property SystemColor")] HRESULT SystemColor([in] long lColor, [in] long newVal);
+		[propget, id(14), helpstring("property TopMost")] HRESULT TopMost([in] long lWnd, [out, retval] VARIANT_BOOL *pVal);
+		[propput, id(14), helpstring("property TopMost")] HRESULT TopMost([in] long lWnd, [in] VARIANT_BOOL newVal);
+		[id(15), helpstring("method GetWindow")] HRESULT GetWindow([in] long lWnd, [in] long lType, [out, retval] long *pVal);
+		[propget, id(16), helpstring("property ClassName")] HRESULT ClassName([in] long lWnd, [out, retval] BSTR *pVal);
+		[id(17), helpstring("method ShowWindow")] HRESULT ShowWindow([in] long lWnd, [in] long lFlag);
+		[id(18), helpstring("method GetAsyncKeyState")] HRESULT GetAsyncKeyState([in] long lKey, [out,retval] long *plRet);
+		[id(19), helpstring("method SendKeys")] HRESULT SendKeys([in] BSTR bstrKeys,[in,defaultvalue(0)] VARIANT_BOOL bSilent);
+		[id(20), helpstring("method GetMemoryStatus")] HRESULT GetMemoryStatus([in] long lType,[out,retval] VARIANT* pResult);
+		[id(21), helpstring("method GetStorageStatus")] HRESULT GetStorageStatus([in] long lInfo,[in,optional] VARIANT v,[out,retval] VARIANT* pvResult);
+		[id(22), helpstring("method GetPowerStatus")] HRESULT GetPowerStatus([in] VARIANT v,[out,retval] VARIANT* pvResult);
+		[propget, id(23), helpstring("property SystemParameters")] HRESULT SystemParameters(VARIANT vType, [out, retval] VARIANT *pVal);
+		[propput, id(23), helpstring("property SystemParameters")] HRESULT SystemParameters(VARIANT vType, [in] VARIANT newVal);
+        [propputref, id(23), helpstring("property SystemParameters")] HRESULT SystemParameters(VARIANT vType, [in] VARIANT newVal);
+		[id(24), helpstring("method CreateShortcut")] HRESULT CreateShortcut([in] BSTR bShortcut, [in] BSTR bTarget);
+		[id(25), helpstring("method AddToRecent")] HRESULT AddToRecent([in] BSTR bstrPath);
+		[id(26), helpstring("method GetSpecialFolder")] HRESULT GetSpecialFolder([in] VARIANT vType, [out,retval] BSTR *pRet);
+		[id(27), helpstring("method GetShortcutTarget")] HRESULT GetShortcutTarget([in] BSTR bstrShortcut, [out, retval] BSTR *pVal);
+		[id(28), helpstring("method FindWindowByClass")] HRESULT FindWindowByClass([in] BSTR bClass, [out,retval] long *lRet);
+		[propget, id(29), helpstring("property ClipText")] HRESULT ClipText([out, retval] BSTR *pVal);
+		[propput, id(29), helpstring("property ClipText")] HRESULT ClipText([in] BSTR newVal);
+		[propget, id(30), helpstring("property Version")] HRESULT Version([out, retval] long *pVal);
+		[propget, id(31), helpstring("property CursorPos")] HRESULT CursorPos([out, retval] VARIANT *pVal);
+		[propget, id(32), helpstring("property SystemVersion")] HRESULT SystemVersion([out, retval] long *pVal);
+		[propget, id(33), helpstring("property WindowLong")] HRESULT WindowLong([in] long lWnd,[in] long lVal, [out, retval] long *pVal);
+		[propput, id(33), helpstring("property WindowLong")] HRESULT WindowLong([in] long lWnd,[in] long lVal, [in] long newVal);
+		[propget, id(34), helpstring("property Ticks")] HRESULT Ticks([out, retval] VARIANT *pVal);
+		[propget, id(35), helpstring("property SystemTime")] HRESULT SystemTime([out, retval] VARIANT *pVal);
+		[propput, id(35), helpstring("property SystemTime")] HRESULT SystemTime([in] VARIANT newVal);
+		[propget, id(36), helpstring("property LocalTime")] HRESULT LocalTime([out, retval] VARIANT *pVal);
+		[propput, id(36), helpstring("property LocalTime")] HRESULT LocalTime([in] VARIANT newVal);
+		[propget, id(37), helpstring("property WindowParent")] HRESULT WindowParent([in] long lWnd, [out, retval] long *pVal);
+		[propput, id(37), helpstring("property WindowParent")] HRESULT WindowParent([in] long lWnd, [in] long newVal);
+		[propget, id(38), helpstring("property OSType")] HRESULT OSType([out, retval] VARIANT *pVal);
+	};
+
+[
+	uuid(F1072A90-2DF5-49BC-BDFB-2B604FDB9598),
+	version(1.0),
+	helpstring("Desk 1.0 Type Library")
+]
+library DESKLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(8CDE0F97-EBED-4583-87E5-403A2C242986),
+		helpstring("_IAPIEvents Interface")
+	]
+	dispinterface _IAPIEvents
+	{
+		properties:
+		methods:
+        [id(1), helpstring("method Hibernate")] HRESULT Hibernate();
+		[id(2), helpstring("method ColorChange")] HRESULT ColorChange();
+		[id(3), helpstring("method FontChange")] HRESULT FontChange();
+		[id(4), helpstring("method PaletteChange")] HRESULT PaletteChange();
+		[id(5), helpstring("method SettingsChange")] HRESULT SettingsChange(long lType);
+	};
+	[
+		object,
+		uuid(73C23FBF-77FA-4B2E-92AB-6A78B28AF32B),
+		dual,
+		helpstring("IRegistry Interface"),
+		pointer_default(unique)
+	]
+	interface IRegistry : IDispatch
+	{
+		[propget, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([out, retval] VARIANT *pVal);
+		[propput, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([in] VARIANT newVal);
+		[propget, id(1), helpstring("property Key")] HRESULT Key([out, retval] long *pVal);
+		[propput, id(1), helpstring("property Key")] HRESULT Key([in] long newVal);
+		[propget, id(2), helpstring("property Path")] HRESULT Path([out, retval] BSTR *pVal);
+		[propput, id(2), helpstring("property Path")] HRESULT Path([in] BSTR newVal);
+		[propget, id(3), helpstring("property Name")] HRESULT Name([out, retval] BSTR *pVal);
+		[propput, id(3), helpstring("property Name")] HRESULT Name([in] BSTR newVal);
+		[propget, id(4), helpstring("property Version")] HRESULT Version([out, retval] long *pVal);
+		[propget, id(5), helpstring("property ValueType")] HRESULT ValueType([out, retval] long *pVal);
+		[propput, id(5), helpstring("property ValueType")] HRESULT ValueType([in] long newVal);
+		[id(6), helpstring("method GetPathName")] HRESULT GetPathName([in] long lPath,[out,retval] BSTR* bstrPath);
+		[id(7), helpstring("method GetValueName")] HRESULT GetValueName([in] long lVal,[out,retval] BSTR* bstrVal);
+		[id(8), helpstring("method CreatePath")] HRESULT CreatePath();
+		[id(9), helpstring("method DeletePath")] HRESULT DeletePath();
+		[id(10), helpstring("method DeleteValue")] HRESULT DeleteValue();
+		[propget, id(11), helpstring("property UseRawBinary")] HRESULT UseRawBinary([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(11), helpstring("property UseRawBinary")] HRESULT UseRawBinary([in] VARIANT_BOOL newVal);
+		[propget, id(12), helpstring("property HexWithSpaces")] HRESULT HexWithSpaces([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(12), helpstring("property HexWithSpaces")] HRESULT HexWithSpaces([in] VARIANT_BOOL newVal);
+		[propget, id(13), helpstring("property ReturnEmptyForEnumEnd")] HRESULT ReturnEmptyForEnumEnd([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(13), helpstring("property ReturnEmptyForEnumEnd")] HRESULT ReturnEmptyForEnumEnd([in] VARIANT_BOOL newVal);
+	};
+
+	[
+		uuid(9217A3CE-4560-45D0-853C-F4CBCAD694C4),
+		helpstring("NSBasic Win32API Class")
+	]
+	coclass API
+	{
+		[default] interface IAPI;
+		[default, source] dispinterface _IAPIEvents;
+	};
+	[
+		uuid(6A5801CA-412D-40F3-9387-0A18DC86A172),
+		helpstring("_IRegistryEvents Interface")
+	]
+	dispinterface _IRegistryEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		object,
+		uuid(68AC877B-3C13-4AAA-A133-FD57B844403B),
+		dual,
+		helpstring("ITimer Interface"),
+		pointer_default(unique)
+	]
+	interface ITimer : IDispatch
+	{
+		[propget, id(1), helpstring("property Interval")] HRESULT Interval([out, retval] long *pVal);
+		[propput, id(1), helpstring("property Interval")] HRESULT Interval([in] long newVal);
+		[propget, id(2), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(2), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+		[propget, id(3), helpstring("property Version")] HRESULT Version([out, retval] long *pVal);
+		[id(4), helpstring("method Start")] HRESULT Start([in,defaultvalue(0)] long lInterval);
+		[id(5), helpstring("method Stop")] HRESULT Stop();
+	};
+
+	[
+		uuid(602E25DA-DBE7-4358-A542-1DFEC6793443),
+		helpstring("NSBasic Registry Class")
+	]
+	coclass Registry
+	{
+		[default] interface IRegistry;
+		[default, source] dispinterface _IRegistryEvents;
+	};
+	[
+		uuid(871BBB2C-37F0-40FD-8315-15CE6F053240),
+		helpstring("_ITimerEvents Interface")
+	]
+	dispinterface _ITimerEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method OnTimer")] HRESULT OnTimer([in] IDispatch* pTimerObj);
+		[id(2), helpstring("method Interval")] HRESULT Interval();
+	};
+	[
+		object,
+		uuid(4D8ECB90-92AE-44DF-BDD0-E556B1215FE6),
+		dual,
+		helpstring("ITray Interface"),
+		pointer_default(unique)
+	]
+	interface ITray : IDispatch
+	{
+		[propget, id(1), helpstring("property Version")] HRESULT Version([out, retval] long *pVal);
+		[propget, id(2), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(2), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+		[propget, id(3), helpstring("property Image")] HRESULT Image([out, retval] long *pVal);
+		[propput, id(3), helpstring("property Image")] HRESULT Image([in] long newVal);
+		[id(4), helpstring("method AddImage")] HRESULT AddImage([in] BSTR bstrImage,[out,retval] long* plAdded);
+		[id(5), helpstring("method RemoveImage")] HRESULT RemoveImage([in] long lImage);
+		[propget, id(6), helpstring("property Tip")] HRESULT Tip([out, retval] BSTR *pVal);
+		[propput, id(6), helpstring("property Tip")] HRESULT Tip([in] BSTR newVal);
+	};
+
+	[
+		uuid(ACE050A1-EEF9-435B-8D29-0D676727188B),
+		helpstring("NSBasic Timer Class")
+	]
+	coclass Timer
+	{
+		[default] interface ITimer;
+		[default, source] dispinterface _ITimerEvents;
+	};
+	[
+		uuid(B076D927-5D10-4BEF-988B-0C7F8D6C9678),
+		helpstring("_ITrayEvents Interface")
+	]
+	dispinterface _ITrayEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method Click")] HRESULT Click([in] IDispatch* pSender);
+		[id(2), helpstring("method RClick")] HRESULT RClick([in] IDispatch* pSender);
+		[id(3), helpstring("method DblClick")] HRESULT DblClick([in] IDispatch* pSender);
+		[id(4), helpstring("method KeyDown")] HRESULT KeyDown([in] IDispatch* pSender);
+		[id(5), helpstring("method RDblClick")] HRESULT RDblClick([in] IDispatch* pSender);
+	};
+	[
+		object,
+		uuid(49A756A5-39EA-48FC-989B-83EAE678223E),
+		dual,
+		helpstring("IRAS Interface"),
+		pointer_default(unique)
+	]
+	interface IRAS : IDispatch
+	{
+		[propget, id(1), helpstring("property PhoneBook")] HRESULT PhoneBook([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property PhoneBook")] HRESULT PhoneBook([in] BSTR newVal);
+		[propget, id(2), helpstring("property Entries")] HRESULT Entries([out, retval] IUnknown **pVal);
+		[propget, id(3), helpstring("property Version")] HRESULT Version([out, retval] long *pVal);
+		[propget, id(4), helpstring("property Connections")] HRESULT Connections([out, retval] IUnknown* *pVal);
+		[propget, id(DISPID_VALUE), helpstring("property Entry")] HRESULT Entry([in] BSTR bstrName, [out, retval] IDispatch* *pVal);
+	};
+
+	[
+		uuid(5334D155-E526-4A1D-B03F-86B112DC8D3A),
+		helpstring("NSBasic Tray Class")
+	]
+	coclass Tray
+	{
+		[default] interface ITray;
+		[default, source] dispinterface _ITrayEvents;
+	};
+	[
+		uuid(E0F161FC-1226-4E35-84FB-06B4A7CA4513),
+		helpstring("_IRASEvents Interface")
+	]
+	dispinterface _IRASEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		object,
+		uuid(0A0C668E-6D87-4946-8659-46ECB8CA3C28),
+		dual,
+		helpstring("IMiniEnum Interface"),
+		pointer_default(unique)
+	]
+	interface IMiniEnum : IDispatch
+	{
+		[propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] long lIndex, [out, retval] VARIANT *pVal);
+		[propget, id(2), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown* *pVal);
+	};
+	[
+		object,
+		uuid(4E70A835-EB6B-4E19-812A-089E735C4476),
+		dual,
+		helpstring("IRASEntry Interface"),
+		pointer_default(unique)
+	]
+	interface IRASEntry : IDispatch
+	{
+		[propget, id(DISPID_VALUE), helpstring("property Name")] HRESULT Name([out, retval] BSTR *pVal);
+		[propput, id(DISPID_VALUE), helpstring("property Name")] HRESULT Name([in] BSTR newVal);
+		[propget, id(2), helpstring("property CallbackNumber")] HRESULT CallbackNumber([out, retval] BSTR *pVal);
+		[propput, id(2), helpstring("property CallbackNumber")] HRESULT CallbackNumber([in] BSTR newVal);
+		[propget, id(3), helpstring("property UserName")] HRESULT UserName([out, retval] BSTR *pVal);
+		[propput, id(3), helpstring("property UserName")] HRESULT UserName([in] BSTR newVal);
+		[propget, id(4), helpstring("property Domain")] HRESULT Domain([out, retval] BSTR *pVal);
+		[propput, id(4), helpstring("property Domain")] HRESULT Domain([in] BSTR newVal);
+		[propput, id(5), helpstring("property Password")] HRESULT Password([in] BSTR newVal);
+		[id(6), helpstring("method Validate")] HRESULT Validate([out,retval] VARIANT_BOOL* pbResult);
+		[propget, id(7), helpstring("property PhoneNumber")] HRESULT PhoneNumber([out, retval] BSTR *pVal);
+		[propput, id(7), helpstring("property PhoneNumber")] HRESULT PhoneNumber([in] BSTR newVal);
+		[id(8), helpstring("method Connect")] HRESULT Connect();
+		[id(9), helpstring("method Disconnect")] HRESULT Disconnect();
+		[id(10), helpstring("method Reload")] HRESULT Load();
+		[id(11), helpstring("method Update")] HRESULT Update();
+		[id(12), helpstring("method Delete")] HRESULT Delete();
+		[propget, id(13), helpstring("property HasPassword")] HRESULT HasPassword([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(13), helpstring("property HasPassword")] HRESULT HasPassword([in] VARIANT_BOOL newVal);
+		[propget, id(14), helpstring("property IsActive")] HRESULT IsActive([out, retval] VARIANT_BOOL *pVal);
+		[propget, id(15), helpstring("property Status")] HRESULT Status([out, retval] IDispatch* *pVal);
+		[id(16), helpstring("method ResetState")] HRESULT ResetState();
+	};
+	[
+		object,
+		uuid(16825776-A0C8-4BBE-A94F-F4E265FB317D),
+		dual,
+		helpstring("IRASConState Interface"),
+		pointer_default(unique)
+	]
+	interface IRASConState : IDispatch
+	{
+		[propget, id(DISPID_VALUE), helpstring("property State")] HRESULT State([out, retval] long *pVal);
+		[propget, id(2), helpstring("property ErrorNumber")] HRESULT ErrorNumber([out, retval] long *pVal);
+		[propget, id(3), helpstring("property DeviceType")] HRESULT DeviceType([out, retval] BSTR *pVal);
+		[propget, id(4), helpstring("property DeviceName")] HRESULT DeviceName([out, retval] BSTR *pVal);
+		[id(5), helpstring("method Refresh")] HRESULT Refresh();
+	};
+	[
+		object,
+		uuid(A41DAE7D-A1CD-4E15-BAA1-A4AAD050CEEB),
+		dual,
+		helpstring("IAPIPosPoint Interface"),
+		pointer_default(unique)
+	]
+	interface IAPIPosPoint : IDispatch
+	{
+		[propget, id(1), helpstring("property X")] HRESULT X([out, retval] long *pVal);
+		[propput, id(1), helpstring("property X")] HRESULT X([in] long newVal);
+		[propget, id(2), helpstring("property Y")] HRESULT Y([out, retval] long *pVal);
+		[propput, id(2), helpstring("property Y")] HRESULT Y([in] long newVal);
+		[propget, id(3), helpstring("property Left")] HRESULT Left([out, retval] long *pVal);
+		[propput, id(3), helpstring("property Left")] HRESULT Left([in] long newVal);
+		[propget, id(4), helpstring("property Top")] HRESULT Top([out, retval] long *pVal);
+		[propput, id(4), helpstring("property Top")] HRESULT Top([in] long newVal);
+		[propget, id(5), helpstring("property Right")] HRESULT Right([out, retval] long *pVal);
+		[propput, id(5), helpstring("property Right")] HRESULT Right([in] long newVal);
+		[propget, id(6), helpstring("property Bottom")] HRESULT Bottom([out, retval] long *pVal);
+		[propput, id(6), helpstring("property Bottom")] HRESULT Bottom([in] long newVal);
+		[propget, id(7), helpstring("property Value")] HRESULT Value([in] long lIndex, [out, retval] long *pVal);
+		[propput, id(7), helpstring("property Value")] HRESULT Value([in] long lIndex, [in] long newVal);
+	};
+
+	[
+		uuid(38CE02DD-7A75-4077-A1A8-DEC520CD618A),
+		helpstring("NSBasic RAS Class")
+	]
+	coclass RAS
+	{
+		[default] interface IRAS;
+		[default, source] dispinterface _IRASEvents;
+	};
+	[
+		uuid(EF7E635B-8F0C-4EE1-B99D-E2A0C83A4763),
+		helpstring("MiniEnum Class")
+	]
+	coclass MiniEnum
+	{
+		[default] interface IMiniEnum;
+	};
+	[
+		uuid(26CABC11-3169-41F8-8353-AFC2A5EA572B),
+		helpstring("NSBasic RASEntry Class")
+	]
+	coclass RASEntry
+	{
+		[default] interface IRASEntry;
+	};
+	[
+		uuid(2E99A06C-AC25-401D-9526-C65C1F4EEF53),
+		helpstring("NSBasic RASConState Class")
+	]
+	coclass RASConState
+	{
+		[default] interface IRASConState;
+	};
+	[
+		uuid(B98C4618-BB8B-40C1-9B6B-CDE95B2CA62F),
+		helpstring("NSBAsic APIPosPoint Class")
+	]
+	coclass APIPosPoint
+	{
+		[default] interface IAPIPosPoint;
+	};
+};

@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.comctl.ImageList.1 = s 'NSBasic ImageList Class'
+	{
+		CLSID = s '{E4FD27CF-BA94-452F-A486-82CFA4D09868}'
+	}
+	NSBasic.comctl.ImageList = s 'NSBasic ImageList Class'
+	{
+		CLSID = s '{E4FD27CF-BA94-452F-A486-82CFA4D09868}'
+		CurVer = s 'NSBasic.comctl.ImageList.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {E4FD27CF-BA94-452F-A486-82CFA4D09868} = s 'NSBasic ImageList Class'
+		{
+			ProgID = s 'NSBasic.comctl.ImageList.1'
+			VersionIndependentProgID = s 'NSBasic.comctl.ImageList'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{9152ECB3-952A-4F35-83F5-C35F8D42375D}'
+		}
+	}
+}

@@ -1,0 +1,160 @@
+Sub CommandButton1_Click
+   NSComDlg1.Reset "Font"
+   NSComDlg1.FontName = TextFontName.Text
+   NSComDlg1.Min = TextMin.Text
+   NSComDlg1.Max = TextMax.Text
+   NSComDlg1.FontBold = FontBold.Value
+   NSComDlg1.FontItalic = FontItalic.Value
+   NSComDlg1.FontUnderLine = FontUnderLine.Value
+   NSComDlg1.FontStrikeThru = FontFontStrikeThru.Value
+   NSComDlg1.FontSize = FontSize.Text
+   NSComDlg1.Flags.Effects = FontEffects.Value
+   NSComDlg1.Flags.LimitSize = LimitSizes.Value
+   If NSComDlg1.ShowFont Then
+      TextFontName.Text = NSComDlg1.FontName
+         Label1.FontName = NSComDlg1.FontName
+      TextMin.Text = NSComDlg1.Min
+      TextMax.Text = NSComDlg1.Max
+      FontBold.Value = NSComDlg1.FontBold
+         Label1.FontBold = NSComDlg1.FontBold
+      FontItalic.Value = NSComDlg1.FontItalic
+         Label1.FontItalic = NSComDlg1.FontItalic
+      FontUnderLine.Value = NSComDlg1.FontUnderLine
+         Label1.FontUnderline = NSComDlg1.FontUnderLine
+      FontFontStrikeThru.Value = NSComDlg1.FontStrikeThru
+         Label1.FontStrikethru = NSComDlg1.FontStrikeThru
+      FontSize.Text = NSComDlg1.FontSize
+         Label1.FontSize = NSComDlg1.FontSize
+      FontColor.Caption = Hex(NSComDlg1.Color)
+         Label1.ForeColor = NSComDlg1.Color
+   End If
+End Sub
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Font"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\src\TestSuites\Font\Font.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.win32.ComDlg.1", "NSComDlg1", 8, 8, 82, 21, Form1
+      '--------
+      AddObject "CommandButton", "CommandButton1", 96, 8, 108, 21, Form1
+      CommandButton1.Caption = "Choose font"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 8, 304, 624, 136, Form1
+      Label1.Alignment = 2
+      Label1.BackColor = 12632256
+      Label1.BorderStyle = 1
+      Label1.Caption = "Sample text"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 8, 40, 80, 24, Form1
+      Label2.BackColor = 12632256
+      Label2.Caption = "FontName:"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextFontName", 96, 40, 208, 24, Form1
+      TextFontName.BackColor = 16777215
+      TextFontName.FontSize =  8.25
+      TextFontName.Text = "Arial"
+      '--------
+      AddObject "Label", "Label3", 312, 40, 56, 21, Form1
+      Label3.BackColor = 12632256
+      Label3.Caption = "Min:"
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextMin", 368, 40, 32, 24, Form1
+      TextMin.BackColor = 16777215
+      TextMin.FontSize =  8.25
+      TextMin.Text = "8"
+      '--------
+      AddObject "Label", "Label4", 408, 40, 56, 21, Form1
+      Label4.BackColor = 12632256
+      Label4.Caption = "Max:"
+      Label4.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextMax", 472, 40, 32, 24, Form1
+      TextMax.BackColor = 16777215
+      TextMax.FontSize =  8.25
+      TextMax.Text = "48"
+      '--------
+      AddObject "CheckBox", "FontBold", 8, 80, 79, 21, Form1
+      FontBold.BackColor = 12632256
+      FontBold.Caption = "Bold"
+      FontBold.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "FontItalic", 104, 80, 79, 21, Form1
+      FontItalic.BackColor = 12632256
+      FontItalic.Caption = "Italic"
+      FontItalic.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "FontUnderLine", 192, 80, 79, 21, Form1
+      FontUnderLine.BackColor = 12632256
+      FontUnderLine.Caption = "Underline"
+      FontUnderLine.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "FontFontStrikeThru", 280, 80, 79, 21, Form1
+      FontFontStrikeThru.BackColor = 12632256
+      FontFontStrikeThru.Caption = "Striked thru"
+      FontFontStrikeThru.FontSize =  8.25
+      '--------
+      AddObject "Label", "LabelX", 8, 112, 56, 21, Form1
+      LabelX.BackColor = 12632256
+      LabelX.Caption = "Color:"
+      LabelX.FontSize =  8.25
+      '--------
+      AddObject "Label", "FontColor", 104, 112, 88, 24, Form1
+      FontColor.BackColor = 12632256
+      FontColor.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label5", 8, 144, 56, 21, Form1
+      Label5.BackColor = 12632256
+      Label5.Caption = "FontSize:"
+      Label5.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "FontSize", 88, 144, 69, 21, Form1
+      FontSize.BackColor = 16777215
+      FontSize.FontSize =  8.25
+      FontSize.Text = "8"
+      '--------
+      AddObject "CheckBox", "FontEffects", 8, 176, 79, 21, Form1
+      FontEffects.BackColor = 12632256
+      FontEffects.Caption = "Effects"
+      FontEffects.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "LimitSizes", 8, 200, 79, 21, Form1
+      LimitSizes.BackColor = 12632256
+      LimitSizes.Caption = "Limit size"
+      LimitSizes.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

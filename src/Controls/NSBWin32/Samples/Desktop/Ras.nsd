@@ -1,0 +1,98 @@
+Dim Entries
+Sub Form1_Load
+   AddObject "NSBasic.win32.RAS", "ras"
+End Sub
+Sub CommandButton1_Click
+   ListBox1.Clear
+   Set Entries = ras.Entries
+   For Each Entry In Entries
+      ListBox1.AddItem Entry.Name
+   Next
+End Sub
+
+Sub CommandButton2_Click
+   ListBox1.Clear
+   Set Entries = ras.Connections
+   For Each Entry In Entries
+      ListBox1.AddItem Entry.Name
+   Next
+End Sub
+Sub CommandButton3_Click
+   Dim Entry
+   Set Entry = Entries(ListBox1.ListIndex + 1)
+   Entry.ResetState
+   If Entry.IsActive Then
+      MsgBox "Entry is already connected/connecting."
+   Else
+      Entry.Connect
+   End If
+End Sub
+Sub CommandButton4_Click
+   Dim Entry
+   Set Entry = Entries(ListBox1.ListIndex + 1)
+   Entry.ResetState
+   If Not Entry.IsActive Then
+      MsgBox "Entry is not connected."
+   Else
+      Entry.Connect
+   End If
+End Sub
+
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Ras"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\smp\RAS\Ras.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "ListBox", "ListBox1", 16, 16, 152, 173, Form1
+      ListBox1.BackColor = 16777215
+      ListBox1.FontSize =  8.25
+      ListBox1.Sorted = False
+      '--------
+      AddObject "CommandButton", "CommandButton1", 176, 16, 108, 21, Form1
+      CommandButton1.Caption = "Get RAS Entries"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton2", 176, 48, 108, 21, Form1
+      CommandButton2.Caption = "Get Connections"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton3", 176, 104, 108, 21, Form1
+      CommandButton3.Caption = "Connect"
+      CommandButton3.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton4", 176, 136, 108, 21, Form1
+      CommandButton4.Caption = "Diconnect"
+      CommandButton4.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

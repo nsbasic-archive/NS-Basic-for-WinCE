@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>VUMeter Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/VUMeter.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' VUMeter demo by Mark Gamber using NS Basic
+
+addobject "MGCEBarsNPops.Scrollbar", "HBar", 60, 10, 100, 20
+addobject "MGCEBarsNPops.VUMeter", "HMeter", 60, 40, 100, 20
+addobject "MGCEBarsNPops.Scrollbar", "VBar", 10, 40, 20, 100
+addobject "MGCEBarsNPops.VUMeter", "VMeter",40, 40, 20, 100
+
+HMeter.Min = 1
+HMeter.Max = 100
+HMeter.Value = 1
+HMeter.LowColor = 128
+HMeter.HighColor = 255
+HMeter.Segments = 10
+VMeter.Min = 1
+VMeter.Max = 100
+VMeter.Value = 100
+VMeter.LowColor = ( 128 * 256 )
+VMeter.HighColor = ( 255 * 256 )
+VMeter.Segments = 10
+
+sub HBar_Change( value )
+   HBar.Value = value
+   HMeter.Value = value
+end sub
+
+sub VBar_Change( value )
+   VBar.Value = value
+   VMeter.Value =100 - value
+end sub
+</PRE>
+</body>
+</html>

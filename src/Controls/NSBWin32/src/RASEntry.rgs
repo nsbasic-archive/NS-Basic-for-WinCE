@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.win32.RASEntry.1 = s 'NSBasic RASEntry Class'
+	{
+		CLSID = s '{26CABC11-3169-41F8-8353-AFC2A5EA572B}'
+	}
+	NSBasic.win32.RASEntry = s 'NSBasic RASEntry Class'
+	{
+		CLSID = s '{26CABC11-3169-41F8-8353-AFC2A5EA572B}'
+		CurVer = s 'NSBasic.win32.RASEntry.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {26CABC11-3169-41F8-8353-AFC2A5EA572B} = s 'NSBasic RASEntry Class'
+		{
+			ProgID = s 'NSBasic.win32.RASEntry.1'
+			VersionIndependentProgID = s 'NSBasic.win32.RASEntry'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F1072A90-2DF5-49BC-BDFB-2B604FDB9598}'
+		}
+	}
+}

@@ -1,0 +1,156 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="Pocket PC notes,ShowOpen,ShowSave">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/Common dialogs/">
+<title>Pocket PC specifics</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Common Dialogs ActiveX</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">Pocket PC specifics</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\doc\\cenotes.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <font SIZE="2">In PocketPC (all versions) and the Pocket PC ancestor
+            (Palm-Sized PC) the standard file open/save dialogs are designed in
+            a way inspired by the Palm OS. Perhaps some people in Microsoft
+            already regret this, but it is a fact and we need to cope with it.
+            <p><b>FILE OPEN DIALOG</b></p>
+            <p>So, the file open dialog (unlike in the desktop and full CE
+            version) is more like a filtered search and not a single directory
+            view. Thus you have a directory filter, and file type filter (in
+            open file) and a list of files.</p>
+            <p>The file list contains all the files with the selected file
+            extension in a 1-level directory on all the storage devices. Note
+            that for the internal storage the dialog uses &quot;My
+            Documents&quot; as a root directory and not the device root
+            directory. Thus from the FILE OPEN dialog perspective you have these
+            storage devices:</p>
+            <p><b>\My Documents<br>
+            \Memory Card1<br>
+            \Memory Card2<br>
+            ... etc ...</b></p>
+            <p>Of course the names of the memory cards varies from device to
+            device.</p>
+            <p>The dialog can show files only in these locations and in 1-st
+            level subdirectories in them.</font> <font SIZE="2">As the directory
+            combo box (by itself) specifies a filter and not a complete location
+            it may contain only a name and not a full path. Thus</p>
+            <p><b>NSBComDlg1.InitDir = &quot;\Some card\somedir&quot;<br>
+            </b>is <b><font color="#FF0000"> invalid</font></b> and will be
+            ignored or may cause strange results on some versions of the OS, but<br>
+            <b>NSBComDlg1.InitDir = &quot;somedir&quot;<br>
+            </b>is valid and will initialize the directory filter with &quot;somedir&quot;
+            and the files in</p>
+            <p><b>\My Documents\somedir<br>
+            \Memory card1\somedir<br>
+            ... etc ..</b></p>
+            <p>will be listed. Of course that directory should exist in one or
+            more of these locations.</p>
+            <p><b>FILE SAVE DIALOG</b></p>
+            <p>In this dialog there are 3 filters:</p>
+            <p>1. Folder (directory)<br>
+            2 .File type<br>
+            3. Location (meaning in fact storage card/device)</p>
+            <p>InitDir is of no use here, it is even treated a bit incorrectly
+            by the system. Thus you should use FileName property to initialize
+            the dialog:</p>
+            <p>
+            <b>NSComDlg1.FileName = &quot;\Storage device\Directory\filename.ext&quot;<br>
+            </b>or
+            <b><br>
+            NSComDlg1.FileName = &quot;\My Documents\\filename.ext&quot;<br>
+            </b>or
+            <b><br>
+            NSComDlg1.FileName = &quot;\Storage device\filename.ext&quot;</b></p>
+            <p>I.e. you must specify a full path name. The file name at the end
+            may be whatever you want - treat it as a proposed file name for
+            example.&nbsp;</p>
+            <p>You cannot omit any of the path parts without risking strange
+            behavior on some Pocket PC OS versions. Furthermore on some
+            occasions the system gets confused if the proposed file name is only
+            one character long - so propose a descriptive file name to the user
+            when OpenSave is invoked and no prior save operation has been
+            performed (from which you may keep the last name under which the
+            file has been saved).&nbsp;</p>
+            <p><b>The IsPocketPC property.</b></p>
+            <p>The NSComDlg object provides a property named IsPocketPC which
+            returns True if the platform on which the application runs is a
+            Pocket PC. Using it you can implement different behavior for Pocket
+            PC and other platforms thus making the code reusable regardless of
+            the platform. The only other way is to use only the FileName
+            property for initialization and specify full path name in it. In
+            this case only the Open file dialog on Pocket PC will not initialize
+            with any specific directory which seems to be the acceptable
+            sacrifice if the aim is single code to serve all the platforms.</p>
+            <p><b>CONCLUSION</b></p>
+            <p>The NSBASIC Common Dialogs control makes use of the system
+            provided standard dialog boxes and does not implement them.
+            Therefore it reflects the system behavior and all the mentioned
+            specifics are the same no matter how you use the corresponding
+            dialogs - from NSBasic or from C for example.
+            </font>
+ <font SIZE="2">Unfortunately the limitations of the File open/save dialogs on
+            Pocket PC make it nearly impossible to use the same code as on a
+            desktop or on a full scale Windows CE device (such as HPC or a
+            tablet). An implementation of own file dialogs has been considered,
+            but there are two reasons to provide this control in this
+ form:&nbsp;
+            </font>
+            </p>
+            <p> <font SIZE="2">1. The Pocket PC users are already familiar with this
+            behavior which is also exerted by some alternative dialog
+            implementations from Microsoft (for instance applications built
+            using MFC use file view with similar limitations - see pocket word
+            and excel for example). Therefore, no matter how you feel about
+            these dialogs they are already a standard and the applications
+            designed for regular users should use them to keep the user within
+            the realm he/she already knows.
+            </font>
+            </p>
+            <p><font size="2">2. The control provides almost the same methods
+            and properties as the former Microsoft Common Dialogs control thus
+            making applications porting easier.</font></p>
+            <p><font size="2">Any other implementation we may provide in future
+            will be alternative choice, but not a replacement for this control
+            (because of the above reasons).</font></p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2006 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\doc\\cenotes.htm-->
+
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+Dim AppEXEName: AppEXEName = "Font"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\src\TestSuites\Font\Font.nsd"
+

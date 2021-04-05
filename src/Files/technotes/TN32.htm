@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>TN 32: Sending Mail</TITLE>
+<META NAME="Version" CONTENT="8.0.4915">
+<META NAME="Date" CONTENT="1/20/98">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 32: Sending Mail
+</h2>
+	  <h3>Jul 17, 2003</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr noshade size="1">
+
+<P>&nbsp;</P>
+<P>It's easy to send mail messages from NS Basic/CE.</P>
+<P>The method that follows opens up Pocket Outlook and creates a normal mail message. Next time you connect, it will be sent. While you could also create and send the message directly using Winsock, that method would only work if you were connected at the time. This method gives much more flexibilty and is simpler as well.</P>
+<P>This method will work on Windows CE devices that have the PMail program installed. It is normally in the \windows folder.
+</P>
+<Pre>
+q=chr(34)
+eTo="-TO " & q & "info&copy; nsbasic.com" & q
+eSubject="-SUBJECT " & q & "Email sent from NS Basic/CE" & q
+eBody="-BODY " & q & "Hello, NS Basic people!" & q
+shellExecute "open","tmail.exe " & eTo & eSubject & eBody 
+</PRE>
+or, using another formatting standard,
+<pre>
+eTo="mailto:" & "info&copy; n..."
+eSubject="?subject=" & "Email sent from NS Basic/CE on a 2002 device!"
+eBody="&body=" & "Hello, NS Basic people!"
+eAttachment="&attach=" & "benchmark.nsb"
+shellExecute "open","tmail.exe", eTo & eSubject & eBody
+</pre>
+In some versions of Windows CE, such as Pocket PC 2000, the mail program is called pmail.exe, not tmail.exe. The shellExecute line needs to be changed.
+
+<FONT FACE="Monaco" SIZE=1><P>&nbsp;</P>
+</FONT><P>The following arguments are supported in the tmail.exe (or pmail.exe) command:</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<P><FONT FACE="Monaco" SIZE=1>-ATTACHMENT</FONT></TD>
+<TD WIDTH="83%" VALIGN="TOP">
+<P>File to attach (needs Pocket Outlook 3.0)</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<FONT FACE="Monaco" SIZE=1><P>-BCC</FONT></TD>
+<TD WIDTH="83%" VALIGN="TOP">
+<P>Email to Send Blind copy to</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<FONT FACE="Monaco" SIZE=1><P>-BODY</FONT></TD>
+<TD WIDTH="83%" VALIGN="TOP">
+<P>Body of message</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<FONT FACE="Monaco" SIZE=1><P>-CC</FONT></TD>
+<TD WIDTH="83%" VALIGN="TOP">
+<P>Email to Send copy to</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<FONT FACE="Monaco" SIZE=1><P>-SUBJECT</FONT></TD>
+<TD WIDTH="83%" VALIGN="TOP">
+<P>Subject of message</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<FONT FACE="Monaco" SIZE=1><P>-TO</FONT></TD>
+<TD WIDTH="83%" VALIGN="TOP">
+<P>Email address to send to</TD>
+</TR>
+</TABLE>
+
+<FONT FACE="Monaco" SIZE=1><P>&nbsp;</P>
+</FONT><P>&nbsp;</P></BODY>
+</HTML>

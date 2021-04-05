@@ -1,0 +1,131 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_39_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_39_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>EXECUTE                                                             Statement</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXECUTE</span></font>(<i><span style='font-style:italic;'>string</span></i>)</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXECUTE</span></font>(&quot;file:|ascii:|unicode:&quot;
+&amp; <i><span style='font-style:italic;'>string</span></i>) NSEXECUTE(&quot;file:|ascii:|unicode:&quot;
+&amp; <i><span style='font-style:italic;'>string</span></i>)</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EXECUTE executes an expression or file as if it were code
+substituted in the program. The required parameter, <i><span style='font-style:italic;'>string</span></i>,
+can be either a string expression or the name of a file containing statements
+that is executed. If multiple statements are to be executed, separate them with
+a carriage return (vbCRLF). The code can access and modify all variables in the
+current running program.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>If the string starts with &quot;file:&quot; or
+&quot;ascii:&quot;, the rest of the string is used as a pathname to an ascii
+file. If the string starts with &quot;unicode:&quot; it refers to a file in
+unicode format. The filename feature is only available at development NS
+Basic/CE - not the Runtime version.</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>NSEXECUTE works the same way as EXECUTE, but objects created
+using ADDOBJECT</span></font> will send events back to your program.</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM EXECUTE execute a string as a SUB</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM x</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>x = 5</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>EXECUTE(&quot;PRINT x * 10&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>EXECUTE(&quot;x = x * 10&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'text.txt is a file with &quot;PRINT 50&quot;
+in it</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>EXECUTE(&quot;ascii:\my
+documents-est.txt&quot;)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT x</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>50</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>50</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>50110</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>EVAL, EXECUTEGLOBAL</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&nbsp;</span></font></p>
+
+</div>
+
+</body>
+
+</html>

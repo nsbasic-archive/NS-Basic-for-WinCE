@@ -1,0 +1,495 @@
+<html><head><title>Tech Note 26: DECLARE: Using API Functions</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css"></head><body bgcolor="#ffffff" link="#0000ff" text="#000000" vlink="#800080">
+
+<table border="0" cellspacing="0" width="550">
+<tbody><tr>
+	<td valign="top" width="18%">
+<p><IMG SRC="images/BigIcon.GIF" height="103" width="86"></p></td>
+    <td valign="top" width="82%">
+	  <h2>Tech Note 26: DECLARE: Using API Functions</h2>
+	  <h5>
+      </h5><h3>October 21, 2009</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</td>
+</tr>
+</tbody></table>
+<hr noshade="noshade" size="1">
+
+The AddObject mechanism is the easiest way to use Active X
+controls and other OCX and DLL files that support automation.  However, a number of very useful DLLs
+(Dynamic Link Libraries) do not support automation but 
+instead export symbols that are the names of functions.  Starting with 
+NS Basic/CE 6.5.0 and NS Basic/Desktop 2.5.0, a program can access these functions within DLLs using the Declare
+statement.
+
+<p>This ability allows you to get at many of the system calls in Windows. To see a list of them and get sample DECLARE definitions, get APIViewer from <a href="http://www.activevb.de/rubriken/apiviewer/index-apiviewereng.html" target="_top">http://www.activevb.de/rubriken/apiviewer/index-apiviewereng.html</a>. After you install it, put a shortcut to APIViewer2004.exe into \program files\nsbasic\ce\tools and you can start it from within NS Basic.
+
+<p></p><h2>1. Introduction</h2>
+
+<p>NS Basic provides both subroutines and functions.  In DLLs, this distinction 
+is blurred.  All are called functions, and a subroutine is simply a function
+that does not return a value.</p>
+
+<p>Functions in a DLL are uniquely identified by name.  Each function may have a
+fixed number of arguments, each with a given type.  NSBasic can access functions
+with up to 20 arguments.</p>
+
+<p>Before using a function, you must issue a Declare statement for that function.
+A good place to do this is in the startup code of the program.</p>
+
+<h2>2. Declare</h2>
+
+<p>The syntax of the Declare statement is similar to that of Visual Basic.  The chief
+difference is that the description after Declare must be a string, enclosed in double
+quotation marks.  Normally, this is a static string.  Since the Declare syntax includes
+double quotation marks, these should be doubled.  It is also possible to construct a 
+string at runtime to pass to Declare.</p>
+
+<p>There are two versions of the Declare syntax, one for subroutines, and one for 
+functions:</p>
+
+<p><code>Declare "Sub <i>name</i> Lib ""<i>libname</i>"" [Alias ""<i>aliasname</i>""] [([<i>arglist</i>])]"</code></p>
+<p><code>Declare "Function <i>name</i> Lib ""<i>libname</i>"" [Alias ""<i>aliasname</i>""] [([<i>arglist</i>])] [As <i>type</i>]"
+</code></p>
+
+<p>Square brackets enclose optional items.</p>
+
+<p>The <i>name</i> is the name of the function to use as a function or subroutine in an 
+NS Basic program.  When this internal name within the DLL is different, use the Alias
+clause giving the internal name of the function.  This is useful when an internal name conflicts with a keyword.</p>
+
+<p>The <i>libname</i> is the name of the DLL library.  It may be a full pathname to the
+DLL or a partial pathname or single file name, in which case the system searches for the
+DLL.  Most normal DLLs will be stored in the <code>\Windows</code> directory, in which case
+the path name can be omitted, and the system will find it quickly.</p>
+
+<p>The <i>arglist</i> is a list of argument declarations.  Each declaration is of one of two forms:</p>
+
+<p><code>ByVal <i>varName</i> [()] [As <i>type</i>]</code></p>
+<p><code>ByRef <i>varName</i> [()] [As <i>type</i>]</code></p>
+
+<p>Be careful!  Even though ByRef is the default for NS Basic, nearly all DLL calls take ByVal parameters.</p>
+You may not use the "_" character in <i>varName</i>.
+
+<p>Types are as follows:</p>
+
+<table border="1">
+<tbody><tr><th>Type</th><th>Description</th></tr>
+<tr><td>Date</td><td>A date/time, passed as a system date</td></tr>
+<tr><td>Time</td><td>Equivalent to date</td></tr>
+<tr><td>Boolean</td><td>A boolean value, passed as a short</td></tr>
+<tr><td>Byte</td><td>A byte value, passed as a short</td></tr>
+<tr><td>Integer</td><td>An integer, passed as a short</td></tr>
+<tr><td>Long</td><td>A long integer, passed as a long</td></tr>
+<tr><td>Single</td><td>A single-precision floating-point number, passed as a float</td></tr>
+<tr><td>Double</td><td>A double-precision floating-point number, passed as a double</td></tr>
+<tr><td>CString</td><td>A string, passed as a C sting (ASCII or UTF-8)</td></tr>
+<tr><td>BSTR</td><td>A string, passed as a Unicode string (UTF-16)</td></tr>
+<tr><td>String</td><td>This is the same as BSTR.</td></tr>
+<tr><td>Object</td><td>An automation-aware object, such as added with AddObject</td></tr>
+<tr><td>Variant</td><td>An NSBasic variant type</td></tr>
+</tbody></table>
+
+<p>Because DLL functions are usually intended for use by C programs,
+and NS Basic (and other versions of Basic) use types that differ in
+some respects, some conversion is done.</p>
+
+<p>Simple numerical types are passed ByVal according to the normal
+rules of C. ByRef parameters are usually passed as pointers to the
+specified C type.</p>
+
+<p>Arrays are passed as pointers to a contiguous block of values of the given type.  When passed
+ByRef, the result values are copied back into the NS Basic variable.  See section 5 below for more
+information.</p>
+
+<p>Some care must be taken with strings. Traditionally, 8-bit strings
+have been used in
+computing. Since then, strings have been expanded to be able to
+represent languages other than English through a system known as
+Unicode. There are two common encodings for Unicode: UTF-8
+and UTF-16, with 8-bit and 16-bit characters, respectively. UTF-8 is a
+superset of ASCII that
+uses characters 129 through 255 to represent other Unicode characters.
+All programs on Windows CE/Mobile, including NS Basic, are supposed to
+use UTF-16 strings. However, many DLLs, including many on Windows CE,
+expect UTF-8 or ASCII strings. Some DLLs provide two versions of a
+function, one using 8-bit strings (with a name ending in "A") and
+another using 16-bit strings (with a name ending in "W".
+When a DLL function expects an 8-bit string, use CString. When a DLL
+expects a 16-bit string, use BSTR. The String
+type is a synonym for BSTR and is provided to make it easier to convert
+code written for
+other versions of Basic.</p>
+
+<p>The Variant type is provided for cases where a DLL has been written to be aware of NS Basic
+and automation variables.  These appear in DLLs rarely if ever.  You cannot pass an array of
+Variants.  This is because Variants themselves can contain arrays, which are known as SAFEARRAYs.</p>
+
+<p>The variable translation mechanism has been tested with a variety of DLLs.  However, there
+are literally tens of thousands of DLLs out there, and they are mostly designed for the static,
+compiled environment of C programs.  The dynamic, interpreted environment of NS Basic problems
+is very different, and there are some ambiguities.  If you run into a DLL that cannot be 
+accessed using Declare, please let us know.</p>
+
+<h2>4. Error Handling</h2>
+
+<p>If there is an error in the syntax of a Declare statement, NS Basic will produce an error 
+message.  Most error messages will make sense and describe the problem accurately.  The
+message "Extraneous characters at end of declaration" may be produced when there is 
+some sort of syntax error, but the parser cannot accurately guess what it exactly is.  Common
+syntax errors include omitting ByVal or ByRef, failing to double the quotes for quoted strings,
+and including a return type for a subroutine.</p>
+
+<p>If the system cannot find the DLL, however, the call will fail silently.  This allows a
+graceful recovery for a common problem, sometimes known as "DLL Hell," in which a DLL may be
+absent or ambiguous on a the device.</p>
+
+<p>When executing a Declare, NS Basic will create a symbol to describe the library as a whole.
+This symbol is the name passed to the Lib clause, except that all characters other than A-Z, a-z,
+and 0-9 are converted to underscores ("_").  You can check the type name of this symbol to see if 
+the library has been loaded.  If the library was loaded correctly, the type name will be <code>"Object"</code>.
+If it was not found, it will be <code>"Empty"</code> or <code>"Null"</code> depending on exactly how it failed to load.</p>
+
+<p>For example:</p>
+
+<p><code>Declare "Function fnBocka Lib ""Bocka"" Alias ""foo"" (ByVal a As Long) As Long"</code></p>
+
+<p>If Bocka (which is probably Bocka.dll) loaded, <code>typename(Bocka)</code> will be <code>"Object"</code>.</p>
+
+<p>The DLL mechanism is fragile, because a DLL only exports symbols of functions and not
+detailed type information.  There is no way that NS Basic can check to see if the types 
+of arguments and the return type by examining the DLL.  If the argument list or return type
+is wrong, your program may recieve bad values or errors when it uses a function.  Always 
+test thorougly on a safe copy of the emulator.</p>
+
+<h2>5. Arrays</h2>
+
+<p>The array passing mechanism in NS Basic is designed to provide good functionality for 
+DLLs that were written with other languages in mind, but there are things to keep in mind.</p>
+
+<p>You must declare arrays to have the correct size before passing them to a function or
+procedure.  It is customary to use subscripts starting with 1 in NS Basic.  However, most
+DLLs written for C use subscripts starting with 0.  When you declare an array, NS Basic allocates
+space for the zero subscript as well.  For example, if you declare</p>
+
+<p><code>dim foo(1)</code></p>
+
+<p>the resulting array will have two elements, foo(0) and foo(1).  If you pass this array to
+a Declared function, the function will receive a pointer to a contiguous block containing foo(0)
+and foo(1).  Arrays are passed using the SAFEARRAY datatype with all the elements contiguous
+as they appear in the SAFEARRAY data structure.</p>
+
+<p>Before being passed to the Declared function, all the elements will be converted into the
+data type that the function expects.  If the call is ByVal, these converted values will be 
+discarded, and the original array will be unaffected.  If the call is ByRef, however, the values
+will be copied back into the original array.  This can cause unexpected results.  If an array 
+containing short integers is passed ByRef to a function expecting long integers, upon return, 
+the array will contain long integers.  This design produces maximum safety and avoids loss of
+data.</p>
+
+<p>Arrays can also be passed to a Declared function as VARIANTs.  To do this, use Variant 
+as the data type and omit the parentheses.  As any NS Basic type can be passed as a VARIANT,
+this requires that the DLL be able to deal with VARIANTs.  This allows more sophisticated 
+array processing, including the ability to find the dimensions of the array within a DLL.
+For new development, however, Active X controls are strongly recommended.  See section 9.</p>
+
+<h2>6. Structs</h2>
+
+NSBasic does not have structs, only arrays. However, it is possible to use an array to pass data 
+back and forth on system calls.
+
+<p>An array is a contiguous block of scalars of a certain type.  This must line up in
+memory with the elements of the struct.
+
+<p>Arrays can hold elements of any type, and these types have different sizes.  Structs
+also have size rules and are packed in a certain way, based on the word size.  Some
+structs will require intimate knowledge of how the C compiler works, but most structs
+can safely be passed using longs, and the positions can be intuited fairly easily.
+
+<p>Consider the following struct:
+<pre>
+typedef struct _CONNMGR_CONNECTIONINFO {
+  DWORD cbSize;
+  DWORD dwParams;
+  DWORD dwFlags;
+  DWORD dwPriority;
+  BOOL bExclusive;
+  BOOL bDisabled;
+  GUID guidDestNet;
+  HWND hWnd;
+  UINT uMsg;
+  LPARAM lParam;
+  ULONG ulMaxCost;
+  ULONG ulMinRcvBw;
+  ULONG ulMaxConnLatency;
+} CONNMGR
+</pre>
+DWORD is a double word, the same size as a long.  BOOL happens to be declared as an int,
+which is the same size as a long.  A GUID is the size of 16 bytes, which is the size of four
+longs.  HWND, like all pointers on 32-bit CE devices, is the size of a long.  UINT is the
+size of a int, which is the size of a long.  LPARAM is the size of a long.  ULONG is an 
+unsigned long, which is the size of a long.  So the sizes of the elements of this structure
+are as follows:
+<pre>
+  DWORD 	1
+  DWORD 	1
+  DWORD 	1
+  DWORD 	1
+  BOOL 		1
+  BOOL 		1
+  GUID 		4
+  HWND 		1
+  UINT 		1
+  LPARAM 	1
+  ULONG 	1
+  ULONG 	1
+  ULONG 	1
+</pre>
+To get the size of the array, add up the size of the elements.  In this case, the structure
+is 16 longs long.
+
+<p>However, when passing structs to DLLs, it is important to remember that the C language used
+for DLLs starts counting at 0, while NSBasic and other versions of Basic start counting at 1.
+Every array has an extra element for zero.  So declare the struct like this:
+<pre>
+Dim CStruct(15)
+</pre>
+Then initialize it to longs.  The easiest way is to initialize to a large number:
+<pre>
+For k = 0 to 15
+    CStruct(k) = 100000
+Next
+</pre>
+cbSize will be CStruct(0), dwParams will be CStruct(1), guidDestNet will be CStruct(6),
+CStruct(7), CStruct(8), and CStruct(9).
+
+<p>Once the array is built, use the standard NSBasic/CE array-passing mechanism to pass it to the 
+functions in the DLL.
+
+<p>Due to alignment, it is more difficult to handle structs where shorter elements than 4-byte
+longs are used, such as 1-byte chars and 2-byte shorts.  However, you can usually figure it
+out without a C compiler by knowing the following rules:
+<ol>
+  <li> All structs start on a 4-byte (long) address, so the address of the beginning is divisible by 4.
+  <li> Elements are positioned on a type of boundary given by their length.  1-byte chars are positioned
+   on a one-byte boundary, and 2-byte shorts are positioned on a 2-byte boundary.  
+  <li> Within the constraints of 2, elements are packed as tightly as they can be.
+  <lI> Larger elements, such as the GUID above, are a series of longs.
+</OL>
+Most structs have explicit dummy elements that you can see within the struct, so you can easily
+count.  This is standard practice for structs that are exposed to other programs.  Sometimes, however,
+there may be a struct that is implicitly packed by the C compiler.  In those rare cases, you may
+have to dig deeper.
+
+<h3>6.1 Structs: The Rect struct</h3>
+
+The Rect struct is a fairly simple example of a struct. Here's how to use it from NS Basic:
+<pre>
+Declare "Function ""EqualRect"" Lib ""User32.dll"" (ByVal a() as long, ByVal b() as long) as Boolean"
+
+dim a(3)
+dim b(3)
+
+a(0) = 1
+a(1) = 2
+a(2) = 3
+a(3) = 4
+
+b(0) = 1
+b(1) = 2
+b(2) = 3
+b(3) = 4
+
+print EqualRect(a, b)
+</pre>
+
+<h2>7. System Libraries</h2>
+
+<p>One of the uses of the Declare mechanism is to access system libraries, including API
+functions, that are not directly available in NS Basic, such as accessing the registry,
+invoking pop-up menus, <i>etc.</i></p>
+
+<p>On Windows CE/Mobile, most API functions are stored in the CoreDLL library.  On the
+desktop, they are found in a variety of libraries, including Kernel32, User32, and AdvAPI32.
+Information is available through web searches for system routines and the libraries in which
+they reside.</p>
+
+<p>Note that not all API functions are guaranteed to return NS Basic data types.  For pointers
+and handles, long integers can safely be used.  API functions that return structures (such as
+GetDiskFreeSpaceExW on the Desktop version, which returns two long integers as a single 
+argument) must use arrays.</p>
+
+<h2>8. Examples</h2>
+
+<p>The following simple formless example accesses several API functions from NS Basic/CE or
+NS Basic/Desktop:</p>
+
+<h3>8.1 NS Basic/CE</h3>
+
+<pre>Rem Run through some DECLARE statement samples
+ShowOKButton True 'Set minimize button to close app
+
+Sub main
+   
+   '1. Do a messageBeep. 
+   MessageBeep MB_ICONEXCLAMATION
+   
+   '2. Get storage info on device
+   Dim lpAvailable, lpTotalBytes, lpTotalFree
+
+   ' To obtain the space, just specify any valid path in the desired "drive".
+   ' Change "\Storage Card\" to "\" to get main memory space.
+
+   res = GetDiskFreeSpaceExW("\", lpAvailable, lpTotalBytes, lpTotalFree)
+   MsgBox "Available: " &amp; lpAvailable &amp; vbcrlf &amp; "Total Bytes: " &amp; lpTotalBytes &amp; vbcrlf &amp; "Total Free: " &amp; lpTotalFree, vbokonly, "Storage"
+
+   '3 Get a value from the registry
+   Dim lngSize, hlngSubKey, lngType, RegData
+
+   lngSize = 256
+   RegData = String(lngSize, 0)
+
+   'Handle (hlngSubKey) to the "\ControlPanel\Owner" key
+   res = RegOpenKeyEx(HKEY_CURRENT_USER, "\ControlPanel\Owner", 0, 0, hlngSubKey)
+
+   'Read the "Owner" info frm open registry key
+   res = RegQueryValueEx(hlngSubKey, "Owner", 0, lngType, RegData, lngSize)
+
+   MsgBox RegData, vbOKOnly, "PPC Owner"
+
+   res = RegCloseKey(hlngSubKey)
+End Sub
+
+'MessageBeep Definitions
+Const MB_ICONHAND = 16
+Const MB_ICONQUESTION = 32
+Const MB_ICONEXCLAMATION = 48
+Const MB_ICONASTERISK = 64
+Const MB_ICONINFORMATION = 64   'MB_ICONASTERISK
+Const MB_ICONSTOP = 16 	        'MB_ICONHAND
+
+Declare "Function MessageBeep Lib ""Coredll"" (ByVal mType as Long) as Long"
+
+Declare "Function GetDiskFreeSpaceExW Lib ""Coredll"" (ByVal lpDirectoryName As String, ByRef lpFreeBytesAvailableToCaller As Long, ByRef lpTotalNumberOfBytes As Long, ByRef lpTotalNumberOfFreeBytes As Long) As Boolean"
+
+'Registry definitions
+Const ERROR_SUCCESS = &amp;O0
+Const HKEY_CURRENT_USER = &amp;H80000001
+
+Declare "Function RegCloseKey Lib ""Coredll"" (ByVal hKey As Long) As Long"
+
+Declare "Function RegOpenKeyEx Lib ""Coredll"" Alias ""RegOpenKeyExW"" (ByVal hKey As Long, ByVal lpSubKey As String, ByVal ulOptions As Long, ByVal samDesired As Long, phkResult As Long) As Long"
+Declare "Function RegQueryValueEx Lib ""Coredll"" Alias ""RegQueryValueExW"" (ByVal hKey As Long, ByVal lpValueName As String, ByVal lpReserved As Long, lpType As Long, ByVal lpData As String, lpcbData As Long) As Long"
+</pre>
+Example 2:
+<pre>
+	Dim pStatus(12),fUpdate, str
+	Declare "Function GetSystemPowerStatusEx Lib ""Coredll"" (ByRef pStatus() As Byte, ByVal fUpdate As Boolean) As Boolean"
+        fUpdate = True
+	res = GetSystemPowerStatusEx(pStatus, fUpdate)
+	If pStatus(0) = 0 Then
+	  str = "Battery Power"
+	Else
+	  str = "External Power"
+	End If
+	MsgBox "Bat State: "  & CStr(pStatus(2)) & "% " & str,0,"Battery Status"
+</pre>
+
+<h3>8.2 NS Basic/Desktop</h3>
+
+Example 1:
+<pre>
+Rem Run through some DECLARE statement samples
+
+Sub main
+   
+   '1. Do a messageBeep. 
+   MessageBeep MB_ICONEXCLAMATION
+   Sleep 1000
+   
+   '2. Get storage info on device
+   Dim lpAvailable(1), lpTotalBytes(1), lpTotalFree(1)
+
+   ' To obtain the space, just specify any valid path in the desired "drive".
+   ' Change "\Storage Card\" to "\" to get main memory space.
+
+   res = GetDiskFreeSpaceExW("D:", lpAvailable, lpTotalBytes, lpTotalFree)
+   MsgBox "Available: " & di2d(lpAvailable) & vbcrlf & "Total Bytes: " & di2d(lpTotalBytes) & vbcrlf & "Total Free: " & di2d(lpTotalFree), vbokonly, "Storage"
+
+   '3 Get a value from the registry
+   Dim lngSize, hlngSubKey, lngType, RegData
+
+   lngSize = 256
+   RegData = String(lngSize, 0)
+
+   res = RegOpenKeyEx(HKEY_CURRENT_USER, "Control Panel\International", 0, KEY_READ, hlngSubKey)
+
+   If 0 = res Then
+
+       'Read the "Owner" info frm open registry key
+       res = RegQueryValueEx(hlngSubKey, "sCountry", 0, lngType, RegData, lngSize)
+
+       MsgBox RegData, vbOKOnly, "Country"
+
+       res = RegCloseKey(hlngSubKey)
+   End If
+End Sub
+
+'MessageBeep Definitions
+Const MB_ICONHAND = 16
+Const MB_ICONQUESTION = 32
+Const MB_ICONEXCLAMATION = 48
+Const MB_ICONASTERISK = 64
+Const MB_ICONINFORMATION = 64   'MB_ICONASTERISK
+Const MB_ICONSTOP = 16 	        'MB_ICONHAND
+
+Declare "Function MessageBeep Lib ""User32"" (ByVal mType as Long) as Long"
+
+Declare "Function GetDiskFreeSpaceExW Lib ""Kernel32"" (ByVal lpDirectoryName As String, ByRef lpFreeBytesAvailableToCaller() As Long, ByRef lpTotalNumberOfBytes() As Long, ByRef lpTotalNumberOfFreeBytes() As Long) As Boolean"
+
+'Registry definitions
+Const ERROR_SUCCESS = &O0
+Const HKEY_CLASSES_ROOT = &H80000000
+Const HKEY_CURRENT_USER = &H80000001
+Const KEY_READ          = &H20019
+
+Declare "Function RegOpenKeyEx Lib ""advAPI32"" Alias ""RegOpenKeyExW"" (ByVal hKey As Long, ByVal lpSubKey As String, ByVal ulOptions As Long, ByVal samDesired As Long, ByRef phkResult As Long) As Long"
+Declare "Function RegCloseKey Lib ""advAPI32"" (ByVal hKey As Long) As Long"
+Declare "Function RegQueryValueEx Lib ""advAPI32"" Alias ""RegQueryValueExW"" (ByVal hKey As Long, ByVal lpValueName As String, ByVal lpReserved As Long, ByRef lpType As Long, ByVal szData As String, ByRef lpcbData As Long) As Long"
+Declare "Function GetComputerName Lib ""kernel32"" Alias ""GetComputerNameW"" (ByRef Buffer As String, ByRef BufLen As Long) As Long"
+
+Function di2d(x())
+    'Take a large integer and convert it into a double
+    di2d = x(1) * 2.0^32
+    If x(0) < 0 Then
+        di2d = di2d + x(0)
+        di2d = di2d + 2.0^32
+    Else
+        di2d = di2d + x(0)
+    End If
+End Function
+</pre>
+<pre>
+Declare "Function GetComputerName Lib ""kernel32"" Alias ""GetComputerNameW""  (ByVal Buffer As string, ByRef BufLen As Long) As Long"
+cName=String(255,Chr(0))
+e = GetComputerName(cname, 255)
+MsgBox Left(cname,InStr(1,cname, Chr(0))-1)
+</pre>
+
+<p>Another more complex form-based example is available in the examples named Declare2.nsb or Declare2.nsd which are installed with NS Basic.</p>
+
+<h2>9. Development</h2>
+
+<p>The Declare mechanism is most useful for legacy code and existing DLLs.  It may be suitable for converting
+existing C code with simple argument passing, such as used by numerical libraries.  In many cases, you
+can find sample code for VB that can be copied into an NS Basic program (Remember to add the quote signs around
+the arguments.)
+
+<p>For development of new controls, especially for libraries that make heavy use of strings and arrays, it is recommended
+that you develop Active X/OCX controls instead.  The automation system provides
+greater flexibility, safety, and access to NS Basic variables and also provides events, which 
+simple DLLs cannot generate.</p>
+
+</body></html>

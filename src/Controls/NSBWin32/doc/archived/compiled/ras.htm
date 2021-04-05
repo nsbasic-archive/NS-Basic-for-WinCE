@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="RAS,Remote access,Dialing,Modems,PhoneBook,Entries,Connections,Version,Entry">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/RAS object/.">
+<title>RAS object</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Win32 objects</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">RAS object</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\ras.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>This object is the root of a foundation of objects that allow the
+            NSBasic application to obtain information and control the Remote
+            Access Connections (RAS) of the system/device. You need to create
+            only this object (<b>NSBasic.win32.RAS</b>), the other objects from
+            the RAS foundation are obtained/created by the its members.</p>
+            <p>While internally the RAS object and the RASEntry objects are able
+            to query the state of the entry (connected or not for instance), be
+            sure to pay attention to the RASEntry members reference in order to
+            ensure that you know when and how the state of the represented RAS
+            entry is current. For example if you obtain a RASEntry object it
+            represents the entry state at the moment in which you have obtained
+            the object. If you keep the object for some time the state of the
+            corresponding RAS entry may change because another application uses
+            it. Use RASEntry.ResetState whenever you need to be absolutely sure
+            that the RASEntry object &quot;knows&quot; what is currently
+            happening with the RAS entry it represents. If you omit this step
+            you may for example attempt to dial already connected entry.</p>
+            <h3>Notes&nbsp;</h3>
+            <p>Currently the RAS objects foundation represents the most common
+            RAS phone book features in all the Windows versions. In future the
+            foundation may be extended to support additional features - such as
+            specifying the RAS device settings and so on. The objects are
+            written with this in mind and compatibility of any NSBasic code that
+            uses them with future versions is guaranteed.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  PhoneBook</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.PhoneBook = value<br>
+                  variable = object.PhoneBook</td>
+                <td bgcolor="#FFFFFF" valign="top">By default it is empty which
+                  means &quot;the default phone book&quot;. Some OS versions
+                  support different phonebooks and you can specify the file name
+                  of a non-default phonebook in this property. Before using it
+                  consult the OS version/variant documentation to see if this it
+                  supports custom phonebooks.&nbsp;<br>
+                  If you do not have special reason to deal with custom
+                  phonebooks leave the property empty - i.e. do not change it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable = object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  Entry</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>objEntry =
+                  object.Entry(EntryName)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns <a href="rasentry.htm"> <b> RASEntry</b></a> object
+                  representing the RAS entry specified by the EntryName from the
+                  current phonebook (see PhoneBook).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/collection.gif" width="16" height="16">
+                  Entries</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object =
+                  object.Entries<br>
+                  For Each Entry In object.Entries</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a <b> collection</b> of <a href="rasentry.htm">
+                  <b>
+                  RASEntry objects</b></a> with all the entries in the current phonebook
+                  (see PhoneBook).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/collection.gif" width="16" height="16">
+                  Connections</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object =
+                  object.Connections<br>
+                  For Each Entry In object.Connections</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a <b> collection</b> of <a href="rasentry.htm">
+                  <b>
+                  RASEntry objects</b></a> currently active connections (connected or in
+                  connecting but in intermediate or erroneous state). You can
+                  think of it as of a collection of the connected RAS phonebook
+                  entries.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2005 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\ras.htm-->
+
+</table>
+
+</body>
+
+</html>

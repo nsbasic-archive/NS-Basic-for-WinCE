@@ -1,0 +1,9 @@
+; S309UserNotification.def : Declares the module parameters.
+
+LIBRARY      "S309USERNOTIFICATION105.OCX"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer PRIVATE

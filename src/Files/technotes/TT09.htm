@@ -1,0 +1,357 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 09: Creating a quick and dirty report</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 09: Creating a quick and dirty report from a database</h2>
+      <h3>June 16, 2008</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+      <p><em>Contributed by Harold Wood</em></p> 
+ 	</td></tr></table>
+<hr>
+
+<i>This tutorial is a bit more advanced. It assumes you already know about databases, file objects and how to program in NS Basic.</i>
+<p>You've written that really sweet App, everyone loves the screens, it does what it should, but then you get the "Well, that report is nice but it would be really cool if ........."
+
+<p>So what do you do? Write another report sub, and then for the next "Suggested Change" write another and so on?  Being the extremely lazy programmer that I am I like to make my code as reusable as possible. That way I can add the extra reports without a minimum amount of code effort, it keeps my userbase happy, my pocket book happy and me sitting on my couch watching bad scifi movies while pecking away on my laptop.
+
+<p>So let's make things easy now:
+
+<p>Add a comboBox to the report form, call it box_Reports.  Populate the list with the names (shortened of course) of your reports.
+
+<p>Define the SQL for your reports as constants, use the replaceable parameter method when you define the SQL, also, and this is important, give good thought to the names of the columns you will report, use Aliasing to make the column names sensible and meaning specific, so <pre>
+SELECT COUNT(*) FROM ITEMS;</pre>
+becomes <pre>SELECT COUNT(*) NumItems FROM ITEMS;</pre> This will become important later.  If you need a multipart name try the Underscore character, for example <code>Count_Orders_On_Backlog</code>.
+
+<p>You will find that with a little thought you can easily make the db Engine do the majority of the work for you, for example
+<pre>
+SELECT (SELECT AVG(PurchasedPrice) FROM ITEMS WHERE ItemId = oi.OrderItemId) Average_Price,
+(SELECT MIN(PurchasedPrice) FROM ITEMS WHERE ItemId = oi.OrderItemId) Lowest_Price,
+(SELECT MAX(PurchasedPrice) FROM ITEMS WHERE ItemId = oi.OrderItemId) Highest_Price,
+(SELECT SUM(NumUnitsOrdered) FROM OrderItems WHERE OrderItemId = oi.OrderItemId) Count_Ordered
+FROM OrderItems oi
+</pre>
+
+<p>The above query is just an example, it will provide a nice little report that can be useful and it doesn't take that much code to make it work.
+
+<p>Now that your SQL is ready you need to put together an output engine for it.  Here's where we do the coding.
+For the sake of simplicity ive left out the dialog box routines so we can just focus on the file IO.
+
+<p align="center"><textarea name="textfield" cols="80" rows="20" wrap="OFF">
+
+'Add a filesystem object
+AddObject "newObjects.utilctls.SFMain", "FS"
+
+Dim i
+Dim File
+Dim Recs
+Dim RptInProgress
+
+Set File = FS.CreateFile("\MyReport.txt")
+
+' text output
+File.unicodeText = False
+
+' Now I'll assume you have already populated a record set object from a successful query
+' the object will be called Records
+
+' this gives the user a way to cancel a report without killing the program, 
+' just add a button that turns this to false
+RptInProgress = True
+
+' write the header line
+For i = 1 To Records(1).Count Step 1
+   If i <> Records(1).Count Then
+        File.WriteText Records(1).Key(i) & vbTab,0
+   Else
+                File.WriteText Records(1).Key(i),1
+   End If
+Next
+
+' write the detail lines
+Recs = 1
+While Recs <= Records.Count And RptInProgress = True
+        DoEvents
+
+    For i = 1 To Records(Recs).Count -1 Step 1
+        Select Case Records(Recs).Info(i)
+                   Case "TEXT"
+                        If IsNull(Records(Recs)(i)) = False Then
+                           File.WriteText Records(Recs)(i) & vbTab ,0
+                        Else
+                           File.WriteText vbTab, 0
+                        End If
+                   Case "REAL"
+                        If IsNull(Records(Recs)(i)) = False Then
+                           File.WriteText Records(Recs)(i) & vbTab ,0
+                        Else
+                           File.WriteText "0.0" & vbTab, 0
+                        End If
+                   Case "INTEGER"
+                        If IsNull(Records(Recs)(i)) = False Then
+                           File.WriteText Records(Recs)(i) & vbTab, 0
+                        Else
+                           File.WriteText "0" & vbTab, 0
+                        End If
+                   Case Else
+                        MsgBox Records(Recs).Info(i)
+        End Select
+    Next
+
+    ' write last column
+    i = I + 1
+    Select Case Records(Recs).Info(i)
+                   Case "TEXT"
+                        If IsNull(Records(Recs)(i)) = False Then
+                           File.WriteText Records(Recs)(i), 1
+                        Else
+                           File.WriteText "", 1
+                        End If
+                   Case "REAL"
+                        If IsNull(Records(Recs)(i)) = False Then
+                           File.WriteText Records(Recs)(i), 1
+                        Else
+                           File.WriteText "0.0", 1
+                        End If
+                   Case "INTEGER"
+                        If IsNull(Records(Recs)(i)) = False Then
+                           File.WriteText Records(Recs)(i), 1
+                        Else
+                           File.WriteText "0", 1
+                        End If
+                   Case Else
+                        MsgBox Records(Recs).Info(i)
+        End Select
+
+    ' increment record pointer and loop back
+    Recs = Recs + 1
+WEnd
+</textarea>
+
+<p>This same code can be used without changes for a variety of quick reports.  You could easily change it to output HTML for a cleaner format or csv to import into regular excel(not the pocket version).
+
+<p>Have fun!
+
+<h4>Some more: Text, csv, and html output</h4>
+
+"SaveWhere" is my file dialog.
+
+<p align="center"><textarea name="textfield" cols="80" rows="20" wrap="OFF">
+
+With SaveWhere
+                .DialogTitle = "Save Report As"
+                .InitDir = Get_Current_Path & "\Shopping" & lstRptDetail.list(lstRptDetail.listIndex) & ".csv"
+                .Filter = "Text (*.txt)|*.txt|CSV (*.csv)|*.csv|Web (*.html)|*.html"
+                .DefaultExt = "xls"
+                .filename = "MyShopper_Report_" & lstRptDetail.list(lstRptDetail.listIndex) & ".xls"
+End With
+
+If SaveWhere.ShowSave Then
+   Set File = FS.CreateFile(SaveWhere.FileName)
+   OutMode = SaveWhere.Filterindex
+   RptInProgress = True
+   Select Case OutMode
+                  Case 1 ' text output
+                                   File.unicodeText = False
+                               ' write the header line
+                       For i = 1 To Records(1).Count Step 1
+                           If i <> Records(1).Count Then
+                                File.WriteText Records(1).Key(i) & vbTab,0
+                           Else
+                                        File.WriteText Records(1).Key(i),1
+                           End If
+                       Next
+                       ' write the detail lines
+                       Recs = 1
+                       While Recs <= Records.Count And RptInProgress = True
+                                DoEvents
+                                    For i = 1 To Records(Recs).Count Step 1
+                                        Select Case Records(1).Info(i)
+                                                   Case "TEXT"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i) & vbTab ,0
+                                                        Else
+                                                           File.WriteText vbTab, 0
+                                                        End If
+                                                   Case "REAL"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i) & vbTab ,0
+                                                        Else
+                                                           File.WriteText "0.0" & vbTab, 0
+                                                        End If
+                                                   Case Else
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i) & vbTab, 0
+                                                        Else
+                                                           File.WriteText "0" & vbTab, 0
+                                                        End If
+                                        End Select
+                                    Next
+                                    ' write last column
+                                    i = i + 1
+                                    Select Case Records(1).Info(i)
+                                                   Case "TEXT"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i), 1
+                                                        Else
+                                                           File.WriteText "", 1
+                                                        End If
+                                                   Case "REAL"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i), 1
+                                                        Else
+                                                           File.WriteText "0.0", 1
+                                                        End If
+                                                   Case "INTEGER"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i), 1
+                                                        Else
+                                                           File.WriteText "0", 1
+                                                        End If
+                                        End Select
+                                    Recs = Recs + 1
+                       WEnd
+                  Case 2 ' comma seperated values
+                                   File.unicodeText = False
+                               ' write the header line
+                       For i = 1 To Records(1).Count Step 1
+                           If i <> Records(1).Count Then
+                                File.WriteText Records(1).Key(i) & ", ",0
+                           Else
+                                        File.WriteText Records(1).Key(i),1
+                           End If
+                       Next
+                       ' write the detail lines
+                       Recs = 1
+                       While Recs <= Records.Count And RptInProgress = True
+                                DoEvents
+                                    For i = 1 To Records(Recs).Count Step 1
+                                        Select Case Records(1).Info(i)
+                                                   Case "TEXT"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i) & ", " ,0
+                                                        Else
+                                                           File.WriteText ",", 0
+                                                        End If
+                                                   Case "REAL"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i) & ", " ,0
+                                                        Else
+                                                           File.WriteText "0.0, ", 0
+                                                        End If
+                                                   Case "INTEGER"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i) & ", ", 0
+                                                        Else
+                                                           File.WriteText "0, ", 0
+                                                        End If
+                                        End Select
+                                    Next
+                                    ' write last column
+                                    i = i + 1
+                                    Select Case Records(1).Info(i)
+                                                   Case "TEXT"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i), 1
+                                                        Else
+                                                           File.WriteText "", 1
+                                                        End If
+                                                   Case "REAL"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i), 1
+                                                        Else
+                                                           File.WriteText "0.0", 1
+                                                        End If
+                                                   Case "INTEGER"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText Records(Recs)(i), 1
+                                                        Else
+                                                           File.WriteText "0", 1
+                                                        End If
+                                        End Select
+                                    Recs = Recs + 1
+                       WEnd
+                  Case 3 ' Web page
+                                   File.unicodeText = False
+                               ' write the header line
+                               File.WriteText "<HTML><BODY><TABLE BORDER=" & Chr(34) & "1" & Chr(34) & "><TR>", 0
+                       For i = 1 To Records(1).Count Step 1
+                           File.WriteText "<TD>" & Records(1).Key(i) & "</TD>",0
+                       Next..
+
+                       File.WriteText "</TR>", 1
+
+                       ' write the detail lines
+                       Recs = 1
+                       While Recs <= Records.Count And RptInProgress = True
+                                DoEvents
+                                    File.WriteText "<TR>", 0
+                                    For i = 1 To Records(Recs).Count Step 1
+                                        Select Case Records(1).Info(i)
+                                                   Case "TEXT"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText "<TD>" & Records(Recs)(i) & "</TD>" ,0
+                                                        Else
+                                                           File.WriteText "<TD></TD>", 0
+                                                        End If
+                                                   Case "REAL"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText "<TD>" & Records(Recs)(i) & "</TD>",0
+                                                        Else
+                                                           File.WriteText "<TD>0.0</TD>", 0
+                                                        End If
+                                                   Case "INTEGER"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText "<TD>" & Records(Recs)(i) & "</TD>", 0
+                                                        Else
+                                                           File.WriteText "<TD>0</TD>", 0
+                                                        End If
+                                        End Select
+                                    Next
+                                    ' write last column
+                                    i = i + 1
+                                    Select Case Records(1).Info(i)
+                                                   Case "TEXT"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText "<TD>" & Records(Recs)(i) & "</TD>" ,0
+                                                        Else
+                                                           File.WriteText "<TD></TD>", 0
+                                                        End If
+                                                   Case "REAL"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText "<TD>" & Records(Recs)(i) & "</TD>",0
+                                                        Else
+                                                           File.WriteText "<TD>0.0</TD>", 0
+                                                        End If
+                                                   Case "INTEGER"
+                                                        If IsNull(Records(Recs)(i)) = False Then
+                                                           File.WriteText "<TD>" & Records(Recs)(i) & "</TD>", 0
+                                                        Else
+                                                           File.WriteText "<TD>0</TD>", 0
+                                                        End If
+                                    End Select
+                                    File.WriteText "</TR>", 1
+                                    Recs = Recs + 1
+                       WEnd
+                       File.WriteText "</TABLE></BODY></HTML>", 1
+   End Select
+   File.Close
+   Set File = Nothing
+   RptInProgress = False
+   MsgBox "Completed report contains " & CStr(Recs - 1) & " Records", vbOKOnly, "Notice"
+   ShellExecute "OpenDoc", SaveWhere.Filename
+End If
+</textarea>
+</BODY>
+</HTML>
+  
+  
+  

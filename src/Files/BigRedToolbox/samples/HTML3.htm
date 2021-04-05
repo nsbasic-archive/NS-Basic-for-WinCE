@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>HTML3 Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/HTML3.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' Demonstration of how to create HTML objects, feed them HTML
+' and handle hyperlink selection.
+
+'  Create HTML control on the left which contains hyperlinks
+addobject "MGCENet.HTML", "List",  2, 2, 120, OUTPUT.Height - 2
+
+'  Create HTML control on the right to display which link was selected
+addobject "MGCENet.HTML", "Disp", 124, 2, OUTPUT.Width - 126, OUTPUT.Height - 2
+
+' Give 'em both borders
+List.Border = TRUE
+Disp.Border = TRUE
+
+' Set right control to display a gray background
+Disp.AddText "&ltbody bgcolor='#CCCCCC'>&lt/body>"
+
+' Add a list of links to the left control
+List.AddText "&ltbody bgcolor='#FFFFFF' link='#FF0000'>&ltcenter>&ltbr>&ltfont size=3>&ltb>"
+List.AddText "&lta href='Item1'>List Item 1&lt/a>&ltbr>&nbsp;&ltbr>"
+List.AddText "&lta href='Item2'>List Item 2&lt/a>&ltbr>&nbsp;&ltbr>"
+List.AddText "&lta href='Item3'>List Item 3&lt/a>&ltbr>&nbsp;&ltbr>"
+List.AddText "&lta href='Item4'>List Item 4&lt/a>&ltbr>&nbsp;&ltbr>"
+List.AddText "&lta href='Item5'>List Item 5&lt/a>&ltbr>&nbsp;&ltbr>"
+List.AddText "&lta href='Item6'>List Item 6&lt/a>&ltbr>"
+List.AddText "&lt/body>"
+List.TextDone    ' This indicates that no more text will be added, so clean up any errors in HTML
+
+
+'  A link in the left control has been selected
+sub List_Click( sTarget, sData )
+   s = "&ltbody bgcolor='#C0C0C0'>&ltcenter>&ltfont size=5>&ltb>"               ' Create HTML to display in Disp
+   s = s & sTarget & " selected from list&lt/b>&lt/font>&lt/center>&lt/body>"
+   Disp.SetText s            '  Clear any old HTML and add new
+end sub
+</PRE>
+</body>
+</html>
+

@@ -1,0 +1,821 @@
+# eMbedded Visual C++ Dependency File, included by CE4.VCN
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\API.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\API.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\API.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\API.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\API.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\API.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\APIPosPoint.cpp : \
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\APIPosPoint.cpp : \
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\APIPosPoint.cpp : \
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\APIPosPoint.cpp : \
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\APIPosPoint.cpp : \
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\APIPosPoint.cpp : \
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\Desk.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\DeskCP.h"\
+	".\dlldatax.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	".\Tray.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\Desk.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\DeskCP.h"\
+	".\dlldatax.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\Desk.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\DeskCP.h"\
+	".\dlldatax.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\Desk.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\DeskCP.h"\
+	".\dlldatax.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\Desk.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\DeskCP.h"\
+	".\dlldatax.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\Desk.cpp : \
+	".\API.h"\
+	".\APIPosPoint.h"\
+	".\Desk.h"\
+	".\Desk_i.c"\
+	".\DeskCP.h"\
+	".\dlldatax.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	".\Tray.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\Desk.rc : \
+	".\API.rgs"\
+	".\APIPosPoint.rgs"\
+	".\Desk.tlb"\
+	".\MiniEnum.rgs"\
+	".\RAS.rgs"\
+	".\RASConState.rgs"\
+	".\RASEntry.rgs"\
+	".\Registry.rgs"\
+	".\Timer.rgs"\
+	".\Tray.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\Desk.rc : \
+	".\API.rgs"\
+	".\APIPosPoint.rgs"\
+	".\Desk.tlb"\
+	".\MiniEnum.rgs"\
+	".\RAS.rgs"\
+	".\RASConState.rgs"\
+	".\RASEntry.rgs"\
+	".\Registry.rgs"\
+	".\Timer.rgs"\
+	".\Tray.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\Desk.rc : \
+	".\API.rgs"\
+	".\APIPosPoint.rgs"\
+	".\Desk.tlb"\
+	".\MiniEnum.rgs"\
+	".\RAS.rgs"\
+	".\RASConState.rgs"\
+	".\RASEntry.rgs"\
+	".\Registry.rgs"\
+	".\Timer.rgs"\
+	".\Tray.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\Desk.rc : \
+	".\API.rgs"\
+	".\APIPosPoint.rgs"\
+	".\Desk.tlb"\
+	".\MiniEnum.rgs"\
+	".\RAS.rgs"\
+	".\RASConState.rgs"\
+	".\RASEntry.rgs"\
+	".\Registry.rgs"\
+	".\Timer.rgs"\
+	".\Tray.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\Desk.rc : \
+	".\API.rgs"\
+	".\APIPosPoint.rgs"\
+	".\Desk.tlb"\
+	".\MiniEnum.rgs"\
+	".\RAS.rgs"\
+	".\RASConState.rgs"\
+	".\RASEntry.rgs"\
+	".\Registry.rgs"\
+	".\Timer.rgs"\
+	".\Tray.rgs"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\Desk.rc : \
+	".\API.rgs"\
+	".\APIPosPoint.rgs"\
+	".\Desk.tlb"\
+	".\MiniEnum.rgs"\
+	".\RAS.rgs"\
+	".\RASConState.rgs"\
+	".\RASEntry.rgs"\
+	".\Registry.rgs"\
+	".\Timer.rgs"\
+	".\Tray.rgs"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\MiniEnum.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\MiniEnum.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\MiniEnum.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\MiniEnum.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\MiniEnum.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\MiniEnum.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\RAS.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\RAS.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\RAS.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\RAS.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\RAS.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\RAS.cpp : \
+	".\Desk.h"\
+	".\MiniEnum.h"\
+	".\RAS.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\RASConState.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\RASConState.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\RASConState.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\RASConState.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\RASConState.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\RASConState.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\RASEntry.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\RASEntry.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\RASEntry.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\RASEntry.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\RASEntry.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\RASEntry.cpp : \
+	".\Desk.h"\
+	".\RASConState.h"\
+	".\RASEntry.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\Registry.cpp : \
+	".\Desk.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\Registry.cpp : \
+	".\Desk.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\Registry.cpp : \
+	".\Desk.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\Registry.cpp : \
+	".\Desk.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\Registry.cpp : \
+	".\Desk.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\Registry.cpp : \
+	".\Desk.h"\
+	".\Registry.h"\
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.cpp"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.cpp"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.cpp"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.cpp"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\Timer.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\Timer.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\Timer.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\Timer.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\Timer.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\Timer.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Timer.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Debug"
+
+.\Tray.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Tray.h"\
+	{$(INCLUDE)}"ras.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp-typepackers.h"\
+	{$(INCLUDE)}"TPoolLibrary\automationhlp.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccBuffer.h"\
+	{$(INCLUDE)}"TPoolLibrary\ccmisc.h"\
+	{$(INCLUDE)}"TPoolLibrary\osspecific.h"\
+	{$(INCLUDE)}"TPoolLibrary\safearrayhelper.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Debug"
+
+.\Tray.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinSize"
+
+.\Tray.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE emulator) Release MinDependency"
+
+.\Tray.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinSize"
+
+.\Tray.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Tray.h"\
+	
+
+!ELSEIF  "$(CFG)" == "CE4 - Win32 (WCE ARMV4) Release MinDependency"
+
+.\Tray.cpp : \
+	".\Desk.h"\
+	".\DeskCP.h"\
+	".\StdAfx.h"\
+	".\Tray.h"\
+	
+
+!ENDIF 
+

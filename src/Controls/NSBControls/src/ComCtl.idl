@@ -1,0 +1,662 @@
+// ComCtl.idl : IDL source for ComCtl.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ComCtl.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+[
+	uuid(9152ECB3-952A-4F35-83F5-C35F8D42375D),
+	version(1.0),
+	helpstring("NSBASIC Controls")
+]
+library NSBControlsLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+    typedef 
+    [
+        uuid(2BE88DB1-6063-4569-9BA8-07B33B0E1904),
+        helpstring("ColumnAlignment constants")
+    ]
+    enum {
+        NSLVColumnLeft = 0,
+        NSLVColumnRight = 1,
+        NSLVColumnCenter = 2
+    } NSListColumnAlignment;
+
+    typedef 
+    [
+        uuid(EADFEA08-4AC3-4895-9A3F-A646284130C2),
+        helpstring("View constants")
+    ]
+    enum {
+        lvwIcon = 0,
+        lvwSmallIcon = 2,
+        lvwList = 3,
+        lvwReport = 1
+    } NSListViewConstants;
+
+    typedef 
+    [
+        uuid(34A56B04-A8F6-4357-9C41-F86EEF510417),
+        helpstring("Find constants")
+    ]
+    enum {
+        lvwFindExact = 0,
+        lvwFindPartial = 1,
+        lvwFindSubstring = 2
+    } NSListViewFindConstants;
+
+    typedef 
+    [
+        uuid(36C703E3-AE76-4d91-80EA-5F2D2735C87A),
+        helpstring("SortOrder constants")
+    ]
+    enum {
+        lvwAscending = 0,
+        lvwDescending = 1
+    } NSListSortOrderConstants;
+
+    typedef 
+    [
+        uuid(4E256AF0-1AC8-4880-B4E9-37C9EB9640B7),
+        helpstring("SortType constants")
+    ]
+    enum {
+        lvwTextSort = 0,
+        lvwNumSort = 1,
+        lvwTextSortByTag = 2,
+        lvwNumSortByTag = 3
+    } NSListSortTypeConstants;
+
+    typedef 
+    [
+        uuid(15333EC3-4952-468c-9D92-ADF66DA2AF69), 
+        helpstring("ListArrange constants")
+    ]
+    enum {
+        lvwNone = 0,
+        lvwAutoLeft = 1,
+        lvwAutoTop = 2
+    } NSListArrangeConstants;
+
+    interface INSListItem;
+    interface INSListView;
+    interface INSColumnItems;
+
+
+    /*
+        This interface enables the objects in this library to 
+        cooperate and contain each other.
+        By design the parent object should pass pointer to
+        itself to the new child object, then call NSInitialize.
+        When released the parent must call NSTerminate to
+        instruct the child to clear that pointer and any other
+        pointers and handles to parent resources. After NSTerminate
+        the child object should refuse to do anything (at least anything
+        that may concern the parent objects).
+    */
+    [
+		object,
+		uuid(CAD9BF99-DCFA-41bc-93D2-7CF620082FA1),
+		helpstring("INSComCtlInt Interface"),
+		pointer_default(unique)
+	]
+	interface INSComCtlInt: IUnknown
+    {
+        HRESULT NSInitialize();
+		HRESULT NSTerminate();
+	};
+
+    [
+		object,
+		uuid(1E05FB74-12F4-4004-9C64-8934F903E1C2),
+		dual,
+		helpstring("INSComCtlColl Interface"),
+		pointer_default(unique)
+	]
+	interface INSComCtlColl : IDispatch
+	{
+		[propget, id(1), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] long Index, [out, retval] VARIANT *pVal);
+		[propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown* *pVal);
+	};
+
+    [
+		object,
+		uuid(EAF8890C-040A-4FED-A499-05F5061856AD),
+		dual,
+		helpstring("INSListSubItem Interface"),
+		pointer_default(unique)
+	]
+	interface INSListSubItem : IDispatch
+	{
+		[propget, id(DISPID_VALUE), helpstring("property Text")] HRESULT Text([out, retval] BSTR *pVal);
+		[propput, id(DISPID_VALUE), helpstring("property Text")] HRESULT Text([in] BSTR newVal);
+		[propget, id(1), helpstring("property Icon")] HRESULT Icon([out, retval] VARIANT *pVal);
+		[propput, id(1), helpstring("property Icon")] HRESULT Icon([in] VARIANT newVal);
+		[propget, id(2), helpstring("property Index")] HRESULT Index([out, retval] VARIANT *pVal);
+		[propput, id(2), helpstring("property Index")] HRESULT Index([in] VARIANT newVal);
+		[propget, id(3), helpstring("property Key")] HRESULT Key([out, retval] BSTR *pVal);
+		[propget, id(4), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(4), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+        [propputref, id(4), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+        [id(201), helpstring("Internal correction of indices"), hidden] HRESULT CorrectIndexIfGreater([in] long lSubIndex,[in] long lCorrection);
+		[propget, id(202), helpstring("property ListItem")] HRESULT ListItem([out, retval] INSListItem* *pVal);
+		[propget, id(203), helpstring("property ListView")] HRESULT ListView([out, retval] INSListView* *pVal);
+		[propget, id(204), helpstring("property IsSubItem")] HRESULT IsSubItem([out, retval] VARIANT_BOOL *pVal);
+	};
+
+    [
+		object,
+		uuid(D3862116-DC38-4ecc-A4D0-DC980778DAAF),
+		helpstring("INSListSubItemsInt Interface"),
+		pointer_default(unique)
+	]
+	interface INSListSubItemsInt : IUnknown
+	{
+        HRESULT ColumnRemoveUpdate([in] long lSubIndex);
+        HRESULT ColumnInsertUpdate([in] long lSubIndex);
+        HRESULT ColumnsClear();
+    }
+
+    [
+		object,
+		uuid(8877CF8C-D275-4599-B47B-1157AA62A059),
+		dual,
+		helpstring("INSFont Interface"),
+		pointer_default(unique)
+	]
+	interface INSFont : IDispatch
+	{
+		[propget, id(1), helpstring("property Bold")] HRESULT Bold([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(1), helpstring("property Bold")] HRESULT Bold([in] VARIANT_BOOL newVal);
+		[propget, id(2), helpstring("property Italic")] HRESULT Italic([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(2), helpstring("property Italic")] HRESULT Italic([in] VARIANT_BOOL newVal);
+		[propget, id(DISPID_VALUE), helpstring("property Name")] HRESULT Name([out, retval] BSTR *pVal);
+		[propput, id(DISPID_VALUE), helpstring("property Name")] HRESULT Name([in] BSTR newVal);
+		[propget, id(4), helpstring("property Underline")] HRESULT Underline([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(4), helpstring("property Underline")] HRESULT Underline([in] VARIANT_BOOL newVal);
+		[propget, id(5), helpstring("property Strikethru")] HRESULT Strikethru([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(5), helpstring("property Strikethru")] HRESULT Strikethru([in] VARIANT_BOOL newVal);
+		[propget, id(6), helpstring("property Charset")] HRESULT Charset([out, retval] short *pVal);
+		[propput, id(6), helpstring("property Charset")] HRESULT Charset([in] short newVal);
+		[propget, id(7), helpstring("property Size")] HRESULT Size([out, retval] double *pVal);
+		[propput, id(7), helpstring("property Size")] HRESULT Size([in] double newVal);
+		[propget, id(8), helpstring("property hFont"), hidden] HRESULT hFont([out, retval] OLE_HANDLE *pVal);
+	};
+
+	[
+		object,
+		uuid(6C7DE55E-B102-4269-BF95-0E3AC9C6B468),
+		dual,
+		helpstring("INSListSubItems Interface"),
+		pointer_default(unique)
+	]
+	interface INSListSubItems : IDispatch
+	{
+		[id(1), helpstring("method Clear")] HRESULT Clear();
+		[propget, id(2), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[id(3), helpstring("method Remove")] HRESULT Remove([in] VARIANT Index);
+		[propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] VARIANT Index, [out, retval] INSListSubItem* *pVal);
+		[propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown* *pVal);
+		[propget, id(6), helpstring("property ItemByIndex")] HRESULT ItemByIndex([in] long Index, [out, retval] INSListSubItem* *pVal);
+		[id(7), helpstring("method RemoveByIndex")] HRESULT RemoveByIndex([in] long Index);
+		[propget, id(8), helpstring("property DefinedCount")] HRESULT DefinedCount([out, retval] long *pVal);
+		[propget, id(9), helpstring("property ListItem")] HRESULT ListItem([out, retval] INSListItem* *pVal);
+		[propget, id(10), helpstring("property ListView")] HRESULT ListView([out, retval] INSListView* *pVal);
+		[propget, id(11), hidden, helpstring("property ItemIfExists")] HRESULT ItemIfExists([in] long Index, [out, retval] INSListSubItem* *pVal);
+	};
+
+    [
+		object,
+		uuid(C2251AD4-8088-4A24-9E3D-2B0FA1ADF48F),
+		dual,
+		helpstring("INSBListImage Interface"),
+		pointer_default(unique)
+	]
+	interface INSBListImage : IDispatch
+	{
+		[propget, id(1), helpstring("property Key")] HRESULT Key([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Key")] HRESULT Key([in] BSTR newVal);
+		[propget, id(2), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(2), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+        [propputref, id(2), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+		[propget, id(3), helpstring("property Index")] HRESULT Index([out, retval] long *pVal);
+	};
+
+    [
+		object,
+		uuid(6E6FA50A-373A-45A1-87FB-A44880E577E4),
+		dual,
+		helpstring("INSBImageList Interface"),
+		pointer_default(unique)
+	]
+	interface INSBImageList : IDispatch
+	{
+		[propget, id(1), helpstring("property Height")] HRESULT Height([out, retval] long *pVal);
+		[propput, id(1), helpstring("property Height")] HRESULT Height([in] long newVal);
+		[propget, id(2), helpstring("property Width")] HRESULT Width([out, retval] long *pVal);
+		[propput, id(2), helpstring("property Width")] HRESULT Width([in] long newVal);
+		[id(3), helpstring("method AddBitmap")] HRESULT LoadBitmap([in] BSTR bstrBmp,[in,optional] VARIANT Key,[out,retval] long* plIndex);
+		[id(4), helpstring("method Remove")] HRESULT Remove([in] VARIANT Index);
+		[propget, id(5), helpstring("property hImageList")] HRESULT hImageList([out, retval] OLE_HANDLE *pVal);
+		[propget, id(6), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[id(7), helpstring("method Clear")] HRESULT Clear();
+		[propget, id(8), helpstring("property BackColor")] HRESULT BackColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(8), helpstring("property BackColor")] HRESULT BackColor([in] OLE_COLOR newVal);
+		[propget, id(9), helpstring("property MaskColor")] HRESULT MaskColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(9), helpstring("property MaskColor")] HRESULT MaskColor([in] OLE_COLOR newVal);
+		[propget, id(10), helpstring("property UseMaskColor")] HRESULT UseMaskColor([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(10), helpstring("property UseMaskColor")] HRESULT UseMaskColor([in] VARIANT_BOOL newVal);
+		[propget, id(11), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(11), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+        [propputref, id(11), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+		[propget, id(12), helpstring("property ImageIndex")] HRESULT ImageIndex([in] VARIANT Index, [out, retval] long *pVal);
+		[id(13), helpstring("method AddIcon")] HRESULT AddIcon([in] VARIANT vData,[in,optional] VARIANT vKey,[in,defaultvalue(0)] VARIANT_BOOL bCursor,[out,retval] long* plIndex);
+		[id(14), helpstring("method LoadResource")] HRESULT LoadResource([in,optional] VARIANT vFile,[in,optional] VARIANT vIndex,[in,optional] VARIANT vType,[in,optional] VARIANT vKey,[out,retval] long* plIndex);
+		[propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] VARIANT Index, [out, retval] INSBListImage* *pVal);
+	};
+
+    [
+		object,
+		uuid(82C4960F-2CF3-497C-9FA5-1D32C5AAF174),
+		dual,
+		helpstring("INSColumnHeader Interface"),
+		pointer_default(unique)
+	]
+	interface INSColumnHeader : IDispatch
+	{
+		[propget, id(1), helpstring("property Text")] HRESULT Text([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Text")] HRESULT Text([in] BSTR newVal);
+		[propget, id(2), helpstring("property Alignment")] HRESULT Alignment([out, retval] NSListColumnAlignment *pVal);
+		[propput, id(2), helpstring("property Alignment")] HRESULT Alignment([in] NSListColumnAlignment newVal);
+		[propget, id(3), helpstring("property Index")] HRESULT Index([out, retval] long *pVal);
+		[propput, id(3), helpstring("property Index")] HRESULT Index([in] long newVal);
+		[propget, id(4), helpstring("property Key")] HRESULT Key([out, retval] BSTR *pVal);
+		[propput, id(4), helpstring("property Key")] HRESULT Key([in] BSTR newVal);
+		[propget, id(5), helpstring("property SubItemIndex")] HRESULT SubItemIndex([out, retval] long *pVal);
+		[propput, id(5), helpstring("property SubItemIndex")] HRESULT SubItemIndex([in] long newVal);
+		[propget, id(6), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(6), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+        [propputref, id(6), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+		[propget, id(7), helpstring("property Icon")] HRESULT Icon([out, retval] VARIANT *pVal);
+		[propput, id(7), helpstring("property Icon")] HRESULT Icon([in] VARIANT newVal);
+		[propget, id(8), helpstring("property Position")] HRESULT Position([out, retval] long *pVal);
+		[propput, id(8), helpstring("property Position")] HRESULT Position([in] long newVal);
+		[propget, id(9), helpstring("property ListView")] HRESULT ListView([out, retval] INSListView* *pVal);
+		[propget, id(DISPID_VALUE), helpstring("property ColumnItems")] HRESULT ColumnItems([out, retval] INSColumnItems* *pVal);
+		[propget, id(11), helpstring("property SortType")] HRESULT SortType([out, retval] NSListSortTypeConstants *pVal);
+		[propput, id(11), helpstring("property SortType")] HRESULT SortType([in] NSListSortTypeConstants newVal);
+		[propget, id(12), helpstring("property Width")] HRESULT Width([out, retval] long *pVal);
+		[propput, id(12), helpstring("property Width")] HRESULT Width([in] long newVal);
+		[propget, id(13), helpstring("property ShowImage")] HRESULT ShowImage([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(13), helpstring("property ShowImage")] HRESULT ShowImage([in] VARIANT_BOOL newVal);
+	};
+
+    [
+		object,
+		uuid(9EB2A0DA-AFF9-49D4-BA6D-E2B8AAAEEA66),
+		dual,
+		helpstring("INSColumnHeaders Interface"),
+		pointer_default(unique)
+	]
+	interface INSColumnHeaders : IDispatch
+	{
+		[propget, id(1), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[id(2), helpstring("method Clear")] HRESULT Clear();
+		[propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] VARIANT Index,[out, retval] INSColumnHeader **pVal);
+		[id(4), helpstring("method Remove")] HRESULT Remove([in] VARIANT Index);
+		[propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown **pVal);
+		[id(6), helpstring("method Add")] HRESULT Add([in,optional] VARIANT Index,[in,optional] VARIANT Key,[in,optional] VARIANT Text,[in,optional] VARIANT Width,[in,optional] VARIANT Alignment,[in,optional] VARIANT Icon, [out,retval] INSColumnHeader** ppObj);
+		[propget, id(7), helpstring("property ListView")] HRESULT ListView([out, retval] INSListView* *pVal);
+	};
+
+    [
+		object,
+		uuid(5F4A3DB6-FC84-41CA-9B3F-FDDEEDD190CB),
+		dual,
+		helpstring("INSListItem Interface"),
+		pointer_default(unique)
+	]
+	interface INSListItem : IDispatch
+	{
+		[propget, id(1), helpstring("property Key")] HRESULT Key([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Key")] HRESULT Key([in] BSTR newVal);
+		[propget, id(2), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(2), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+        [propputref, id(2), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+		[propget, id(3), helpstring("property Text")] HRESULT Text([out, retval] BSTR *pVal);
+		[propput, id(3), helpstring("property Text")] HRESULT Text([in] BSTR newVal);
+		[propget, id(4), helpstring("property Selected")] HRESULT Selected([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(4), helpstring("property Selected")] HRESULT Selected([in] VARIANT_BOOL newVal);
+		[propget, id(5), helpstring("property Indent")] HRESULT Indent([out, retval] long *pVal);
+		[propput, id(5), helpstring("property Indent")] HRESULT Indent([in] long newVal);
+		[propget, id(6), helpstring("property Icon")] HRESULT Icon([out, retval] VARIANT *pVal);
+		[propput, id(6), helpstring("property Icon")] HRESULT Icon([in] VARIANT newVal);
+		[propget, id(DISPID_VALUE), helpstring("property SubItems")] HRESULT SubItems([out, retval] INSListSubItems* *pVal);
+		[propget, id(8), helpstring("property Checked")] HRESULT Checked([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(8), helpstring("property Checked")] HRESULT Checked([in] VARIANT_BOOL newVal);
+		[propget, id(9), helpstring("property ListView")] HRESULT ListView([out, retval] INSListView* *pVal);
+		[id(10), helpstring("method StartLabelEdit")] HRESULT StartLabelEdit();
+		[id(11), helpstring("method EnsureVisible")] HRESULT EnsureVisible([in,defaultvalue(0)] VARIANT_BOOL bPartialOk);
+		[propget, id(12), helpstring("property ListItem")] HRESULT ListItem([out, retval] INSListItem* *pVal);
+		[propget, id(13), helpstring("property IsSubItem")] HRESULT IsSubItem([out, retval] VARIANT_BOOL *pVal);
+		[propget, id(14), helpstring("property X")] HRESULT X([out, retval] long *pVal);
+		[propput, id(14), helpstring("property X")] HRESULT X([in] long newVal);
+		[propget, id(15), helpstring("property Y")] HRESULT Y([out, retval] long *pVal);
+		[propput, id(15), helpstring("property Y")] HRESULT Y([in] long newVal);
+		[propget, id(16), helpstring("property Index")] HRESULT Index([out, retval] long *pVal);
+	};
+
+    [
+		object,
+		uuid(F00D35A3-7256-4235-87F1-639ECB7E636E),
+		dual,
+		helpstring("INSListItems Interface"),
+		pointer_default(unique)
+	]
+	interface INSListItems : IDispatch
+	{
+		[propget, id(1), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[id(2), helpstring("method Clear")] HRESULT Clear();
+		[id(3), helpstring("method Remove")] HRESULT Remove([in] VARIANT Index);
+		[propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] VARIANT Index, [out, retval] INSListItem* *pVal);
+		[id(5), helpstring("method Add")] HRESULT Add([in,optional] VARIANT Index,[in,optional] VARIANT Key,[in,optional] VARIANT Text,[in,optional] VARIANT Icon,[in,optional] VARIANT Indent,[out,retval] INSListItem** ppObj);
+		[propget, id(6), helpstring("property ListView")] HRESULT ListView([out, retval] INSListView* *pVal);
+		[propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown* *pVal);
+	};
+
+    [
+		object,
+		uuid(2D80F92F-3CBB-4EBE-A3B2-88B5F2E3C77E),
+		dual,
+		helpstring("INSListView Interface"),
+		pointer_default(unique)
+	]
+	interface INSListView : IDispatch
+	{
+		[propput, id(DISPID_CAPTION)]
+		HRESULT Caption([in]BSTR strCaption);
+		[propget, id(DISPID_CAPTION)]
+		HRESULT Caption([out,retval]BSTR* pstrCaption);
+		[propput, id(33)]
+		HRESULT Enabled([in]VARIANT_BOOL vbool);
+		[propget, id(33)]
+		HRESULT Enabled([out,retval]VARIANT_BOOL* pbool);
+		[id(34), helpstring("method FindItems")] HRESULT FindItems([in] BSTR Text,[in,defaultvalue(0)] VARIANT_BOOL bSubItems,[in,defaultvalue(0)] VARIANT_BOOL bTags,[in,defaultvalue(0)] NSListViewFindConstants nPartial,[out,retval] INSComCtlColl** ppObj);
+		[id(35), helpstring("method UnSelectAll")] HRESULT UnSelectAll();
+		[propget, id(36), helpstring("property SelectedItems")] HRESULT SelectedItems([out, retval] INSComCtlColl* *pVal);
+		[propget, id(37), helpstring("property Columns")] HRESULT Columns([out, retval] INSColumnHeaders* *pVal);
+		[id(38), helpstring("method SetFocus")] HRESULT SetFocus();
+		[propget, id(39), helpstring("property Width")] HRESULT Width([out, retval] long *pVal);
+		[propput, id(39), helpstring("property Width")] HRESULT Width([in] long newVal);
+		[propget, id(40), helpstring("property Height")] HRESULT Height([out, retval] long *pVal);
+		[propput, id(40), helpstring("property Height")] HRESULT Height([in] long newVal);
+		[propget, id(41), helpstring("property Top")] HRESULT Top([out, retval] long *pVal);
+		[propput, id(41), helpstring("property Top")] HRESULT Top([in] long newVal);
+		[propget, id(42), helpstring("property Left")] HRESULT Left([out, retval] long *pVal);
+		[propput, id(42), helpstring("property Left")] HRESULT Left([in] long newVal);
+		[propget, id(43), helpstring("property Visible")] HRESULT Visible([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(43), helpstring("property Visible")] HRESULT Visible([in] VARIANT_BOOL newVal);
+		[propget, id(DISPID_HWND)]
+		HRESULT Window([out, retval]long* phwnd);
+		[propput, id(DISPID_TABSTOP)]
+		HRESULT TabStop([in]VARIANT_BOOL vbool);
+		[propget, id(DISPID_TABSTOP)]
+		HRESULT TabStop([out, retval]VARIANT_BOOL* pbool);
+		[propget, id(1), helpstring("property ColumnHeaders")] HRESULT ColumnHeaders([out, retval] INSColumnHeaders* *pVal);
+		[propget, id(2), helpstring("property View")] HRESULT View([out, retval] NSListViewConstants *pVal);
+		[propput, id(2), helpstring("property View")] HRESULT View([in] NSListViewConstants newVal);
+		[propget, id(DISPID_VALUE), helpstring("property ListItems")] HRESULT ListItems([out, retval] INSListItems* *pVal);
+		[propget, id(4), helpstring("property HideSelection")] HRESULT HideSelection([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(4), helpstring("property HideSelection")] HRESULT HideSelection([in] VARIANT_BOOL newVal);
+		[propget, id(5), helpstring("property MultiSelect")] HRESULT MultiSelect([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(5), helpstring("property MultiSelect")] HRESULT MultiSelect([in] VARIANT_BOOL newVal);
+		[propget, id(6), helpstring("property SortOrder")] HRESULT SortOrder([out, retval] NSListSortOrderConstants *pVal);
+		[propput, id(6), helpstring("property SortOrder")] HRESULT SortOrder([in] NSListSortOrderConstants newVal);
+		[propget, id(7), helpstring("property Arrange")] HRESULT Arrange([out, retval] NSListArrangeConstants *pVal);
+		[propput, id(7), helpstring("property Arrange")] HRESULT Arrange([in] NSListArrangeConstants newVal);
+		[propget, id(8), helpstring("property HideColumnHeaders")] HRESULT HideColumnHeaders([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(8), helpstring("property HideColumnHeaders")] HRESULT HideColumnHeaders([in] VARIANT_BOOL newVal);
+		[propget, id(9), helpstring("property LabelEdit")] HRESULT LabelEdit([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(9), helpstring("property LabelEdit")] HRESULT LabelEdit([in] VARIANT_BOOL newVal);
+		[propget, id(10), helpstring("property LabelWrap")] HRESULT LabelWrap([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(10), helpstring("property LabelWrap")] HRESULT LabelWrap([in] VARIANT_BOOL newVal);
+		[propget, id(11), helpstring("property Sorted")] HRESULT Sorted([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(11), helpstring("property Sorted")] HRESULT Sorted([in] VARIANT_BOOL newVal);
+		[propget, id(12), helpstring("property Checkboxes")] HRESULT Checkboxes([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(12), helpstring("property Checkboxes")] HRESULT Checkboxes([in] VARIANT_BOOL newVal);
+		[propget, id(13), helpstring("property FullRowSelect")] HRESULT FullRowSelect([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(13), helpstring("property FullRowSelect")] HRESULT FullRowSelect([in] VARIANT_BOOL newVal);
+		[propget, id(14), helpstring("property GridLines")] HRESULT GridLines([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(14), helpstring("property GridLines")] HRESULT GridLines([in] VARIANT_BOOL newVal);
+		[propget, id(15), helpstring("property AllowColumnReorder")] HRESULT AllowColumnReorder([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(15), helpstring("property AllowColumnReorder")] HRESULT AllowColumnReorder([in] VARIANT_BOOL newVal);
+		[propget, id(16), helpstring("property SubItemImages")] HRESULT SubItemImages([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(16), helpstring("property SubItemImages")] HRESULT SubItemImages([in] VARIANT_BOOL newVal);
+		[propget, id(17), helpstring("property TrackSelect")] HRESULT TrackSelect([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(17), helpstring("property TrackSelect")] HRESULT TrackSelect([in] VARIANT_BOOL newVal);
+		[propget, id(18), helpstring("property UnderlineCold")] HRESULT UnderlineCold([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(18), helpstring("property UnderlineCold")] HRESULT UnderlineCold([in] VARIANT_BOOL newVal);
+		[propget, id(19), helpstring("property UnderlineHot")] HRESULT UnderlineHot([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(19), helpstring("property UnderlineHot")] HRESULT UnderlineHot([in] VARIANT_BOOL newVal);
+		[propget, id(20), helpstring("property SmallIcons")] HRESULT SmallIcons([out, retval] INSBImageList* *pVal);
+        [propputref, id(20), helpstring("property SmallIcons")] HRESULT SmallIcons([in] INSBImageList* newVal);
+		[propget, id(21), helpstring("property Icons")] HRESULT Icons([out, retval] INSBImageList* *pVal);
+		[propputref, id(21), helpstring("property Icons")] HRESULT Icons([in] INSBImageList* newVal);
+		[id(22), helpstring("method UpdateIcons")] HRESULT UpdateIcons();
+		[propget, id(23), helpstring("property SortHeaders")] HRESULT SortHeaders([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(23), helpstring("property SortHeaders")] HRESULT SortHeaders([in] VARIANT_BOOL newVal);
+		[propget, id(24), helpstring("property SortKey")] HRESULT SortKey([out, retval] long *pVal);
+		[propput, id(24), helpstring("property SortKey")] HRESULT SortKey([in] long newVal);
+		[propget, id(25), helpstring("property CustomSort")] HRESULT CustomSort([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(25), helpstring("property CustomSort")] HRESULT CustomSort([in] VARIANT_BOOL newVal);
+		[propget, id(26), helpstring("property ColumnHeaderIcons")] HRESULT ColumnHeaderIcons([out, retval] INSBImageList* *pVal);
+		[propputref, id(26), helpstring("property ColumnHeaderIcons")] HRESULT ColumnHeaderIcons([in] INSBImageList* newVal);
+		[propget, id(27), helpstring("property Tag")] HRESULT Tag([out, retval] VARIANT *pVal);
+		[propput, id(27), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+        [propputref, id(27), helpstring("property Tag")] HRESULT Tag([in] VARIANT newVal);
+		[propget, id(28), helpstring("property BackColor")] HRESULT BackColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(28), helpstring("property BackColor")] HRESULT BackColor([in] OLE_COLOR newVal);
+		[propget, id(29), helpstring("property TextBackColor")] HRESULT TextBackColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(29), helpstring("property TextBackColor")] HRESULT TextBackColor([in] OLE_COLOR newVal);
+		[propget, id(30), helpstring("property TextColor")] HRESULT TextColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(30), helpstring("property TextColor")] HRESULT TextColor([in] OLE_COLOR newVal);
+		[propget, id(31), helpstring("property Font")] HRESULT Font([out, retval] INSFont* *pVal);
+		[propputref, id(31), helpstring("property Font")] HRESULT Font([in] INSFont* newVal);
+	};
+
+    [
+		object,
+		uuid(3A0D93C6-1F25-4AD3-AB31-2BE7420C1B1A),
+		dual,
+		helpstring("INSListViewEvent Interface"),
+		pointer_default(unique)
+	]
+	interface INSListViewEvent : IDispatch
+	{
+		[propget, id(1), helpstring("property Column")] HRESULT Column([out, retval] INSColumnHeader* *pVal);
+		[propget, id(2), helpstring("property Item")] HRESULT Item([out, retval] INSListItem* *pVal);
+		[propget, id(3), helpstring("property SubItem")] HRESULT SubItem([out, retval] INSListSubItem* *pVal);
+		[propget, id(4), helpstring("property Event")] HRESULT Event([out, retval] long *pVal);
+		[propget, id(5), helpstring("property Text")] HRESULT Text([out, retval] BSTR *pVal);
+		[propget, id(6), helpstring("property Cancel")] HRESULT Cancel([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(6), helpstring("property Cancel")] HRESULT Cancel([in] VARIANT_BOOL newVal);
+		[propget, id(7), helpstring("property Key")] HRESULT Key([out, retval] long *pVal);
+		[propget, id(8), helpstring("property ListView")] HRESULT ListView([out, retval] INSListView* *pVal);
+	};
+
+    [
+		object,
+		uuid(BE0098C3-1034-4AC7-AFC8-1BD754460ACE),
+		dual,
+		helpstring("INSColumnItems Interface"),
+		pointer_default(unique)
+	]
+	interface INSColumnItems : IDispatch
+	{
+		[propget, id(DISPID_VALUE), helpstring("property Item")] HRESULT Item([in] VARIANT Index, [out, retval] IDispatch* *pVal);
+		[propget, id(2), helpstring("property Count")] HRESULT Count([out, retval] long *pVal);
+		[propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown* *pVal);
+	};
+
+    [
+		uuid(F401398D-6196-49da-9E40-5498402F545E),
+		helpstring("_INSListViewEvents Interface")
+	]
+	dispinterface _INSListViewEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method OnColumnClick")] HRESULT OnColumnClick([in] INSListViewEvent* oEvent);
+		[id(2), helpstring("method OnBeginLabelEdit")] HRESULT OnBeginLabelEdit([in] INSListViewEvent* oEvent);
+		[id(3), helpstring("method OnEndLabelEdit")] HRESULT OnEndLabelEdit([in] INSListViewEvent* oEvent);
+		[id(4), helpstring("method OnItemActivate")] HRESULT OnItemActivate([in] INSListViewEvent* oEvent);
+		[id(5), helpstring("method OnKeyDown")] HRESULT OnKeyDown([in] INSListViewEvent* oEvent);
+		[id(6), helpstring("method OnMarqueeBegin")] HRESULT OnMarqueeBegin([in] INSListViewEvent* oEvent);
+		[id(7), helpstring("method OnClick")] HRESULT OnClick([in] INSListViewEvent* oEvent);
+		[id(8), helpstring("method OnDblClick")] HRESULT OnDblClick([in] INSListViewEvent* oEvent);
+		[id(9), helpstring("method OnRClick")] HRESULT OnRClick([in] INSListViewEvent* oEvent);
+		[id(10), helpstring("method OnRDblClick")] HRESULT OnRDblClick([in] INSListViewEvent* oEvent);
+		[id(11), helpstring("method OnReturn")] HRESULT OnReturn([in] INSListViewEvent* oEvent);
+		[id(12), helpstring("method OnItemChanged")] HRESULT OnItemChanged([in] INSListViewEvent* oEvent);
+	};
+
+	[
+		uuid(F7A4DFE2-C262-457E-B0C5-B4789D02988D),
+		helpstring("NSBasic ListView Class")
+	]
+	coclass NSListView
+	{
+		[default] interface INSListView;
+        [default, source] dispinterface _INSListViewEvents;
+	};
+	[
+		uuid(67B081B1-8A58-4230-9FEC-9029F407CEE7),
+		helpstring("_INSBImageListEvents Interface")
+	]
+	dispinterface _INSBImageListEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method OnImageListChanged")] HRESULT OnImageListChanged();
+	};
+	
+	[
+		uuid(E4FD27CF-BA94-452F-A486-82CFA4D09868),
+		helpstring("NSBasic ImageList Class")
+	]
+	coclass NSBImageList
+	{
+		[default] interface INSBImageList;
+		[default, source] dispinterface _INSBImageListEvents;
+	};
+	[
+		uuid(B62F1938-B1CD-4E78-9FCB-8CAD1F997DB9),
+		helpstring("NSBasic ListImage Class")
+	]
+	coclass NSBListImage
+	{
+		[default] interface INSBListImage;
+	};
+	[
+		uuid(682F2EB8-9B45-4CF7-8C0E-2A1514265CB0),
+		helpstring("NSBasic NSColumnHeaders Class")
+	]
+	coclass NSColumnHeaders
+	{
+		[default] interface INSColumnHeaders;
+	};
+	[
+		uuid(0B4E0F87-C549-40D2-9B6C-34E7F105C10C),
+		helpstring("NSBasic NSColumnHeader Class")
+	]
+	coclass NSColumnHeader
+	{
+		[default] interface INSColumnHeader;
+	};
+	[
+		uuid(71427340-76E0-43DD-8EB7-26C775D9F34C),
+		helpstring("NSBasic NSListItems Class")
+	]
+	coclass NSListItems
+	{
+		[default] interface INSListItems;
+	};
+	[
+		uuid(D781A7C5-EFBF-4B7F-B2AB-04CB123EC507),
+		helpstring("NSBasic NSListItem Class")
+	]
+	coclass NSListItem
+	{
+		[default] interface INSListItem;
+	};
+	[
+		uuid(3E6044B6-7C40-4E52-967A-46A4231D398F),
+		helpstring("NSBasic NSListSubItems Class")
+	]
+	coclass NSListSubItems
+	{
+		[default] interface INSListSubItems;
+	};
+	[
+		uuid(C7AC974A-EEDC-4D8A-9E74-A6E28CA5B0FD),
+		helpstring("NSBasic NSListSubItem Class")
+	]
+	coclass NSListSubItem
+	{
+		[default] interface INSListSubItem;
+	};
+	[
+		uuid(93B251F7-8671-4F70-B12F-CF6C88F12820),
+		helpstring("NSBasic NSListViewEvent Class")
+	]
+	coclass NSListViewEvent
+	{
+		[default] interface INSListViewEvent;
+	};
+	[
+		uuid(E9ABD6FF-4B89-48CE-881D-243A7950E0FA),
+		helpstring("_INSFontEvents Interface")
+	]
+	dispinterface _INSFontEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method OnFontChange")] HRESULT OnFontChange();
+	};
+	
+
+	[
+		uuid(07679CF2-323B-46A7-87CB-A8DC600BC4BE),
+		helpstring("NSBasic NSFont Class")
+	]
+	coclass NSFont
+	{
+		[default] interface INSFont;
+		[default, source] dispinterface _INSFontEvents;
+	};
+	[
+		uuid(83ACFE88-E502-4379-8178-6740F32D81D6),
+		helpstring("NSBasic NSColumnItems Class")
+	]
+	coclass NSColumnItems
+	{
+		[default] interface INSColumnItems;
+	};
+	[
+		uuid(30861775-4F37-435A-AAEB-D954D1621487),
+		helpstring("NSBasic NSComCtlColl Class")
+	]
+	coclass NSComCtlColl
+	{
+		[default] interface INSComCtlColl;
+	};
+};

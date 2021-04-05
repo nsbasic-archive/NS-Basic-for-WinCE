@@ -1,0 +1,7 @@
+LIBRARY	NSBPictB
+DESCRIPTION	'This dll is used to patch bugs in the M$ PictureBox control'
+
+EXPORTS
+	NSBPictureBoxShow	@1
+	NSBPictureBoxHide	@2
+	Version	@3

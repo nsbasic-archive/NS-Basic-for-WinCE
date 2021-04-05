@@ -1,0 +1,5 @@
+E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\SmartDeviceApplication1\bin\Release\SmartDeviceApplication1.exe
+E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\SmartDeviceApplication1\obj\Release\ResolveAssemblyReference.cache
+E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\SmartDeviceApplication1\obj\Release\SmartDeviceApplication1.Form1.resources
+E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\SmartDeviceApplication1\obj\Release\SmartDeviceApplication1.vbproj.GenerateResource.Cache
+E:\NSBCE8\Benchmarks\BenchSuiteNET\SmartDeviceApplication1\SmartDeviceApplication1\obj\Release\SmartDeviceApplication1.exe

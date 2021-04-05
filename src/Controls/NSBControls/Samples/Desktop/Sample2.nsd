@@ -1,0 +1,333 @@
+Sub Form1_Load
+    NSListView1.Icons.Width = 32
+    NSListView1.Icons.Height = 32
+    NSListView1.Icons.LoadBitmap "bigicons2.bmp"
+    NSListView1.SmallIcons.Width = 16
+    NSListView1.SmallIcons.Height = 16
+    NSListView1.SmallIcons.LoadBitmap "smallicons2.bmp"
+    NSListView1.SubItemImages = True
+    NSListView1.AllowColumnReorder = True
+    NSListView1.GridLines = True
+    NSListView1.FullRowSelect = True
+    NSListView1.LabelEdit = True
+    
+    Dumper.SmallIcons.Width = 0
+    Dumper.SmallIcons.Height = 0
+    Dumper.View = 1 ' Grid
+    Dumper.GridLines = True
+    Dumper.MultiSelect = False
+    Dumper.SortHeaders = False
+    On Error Resume Next
+    Dumper.BackColor = RGB(255,255,192)
+    Dumper.TextColor = RGB(0,0,0)
+    Dumper.TextBackColor = RGB(255,255,208)
+    Dumper.Columns.Add 1, "Column", "Column", 70
+    Dumper.Columns.Add 2, "EventID", "Event ID", 70
+    Dumper.Columns.Add 3, "Item", "Item", 70
+    Dumper.Columns.Add 4, "SubItem", "SubItem", 70
+    Dumper.Columns.Add 5, "Text", "Text", 70
+End Sub
+Sub CommandButton1_Click
+   NSListView1.ListItems.Add , ItemText.Text, ItemText.Text, CLng(ItemImage.Text)
+End Sub
+
+Sub CommandButton2_Click
+   NSListView1.ColumnHeaders.Add CLng(ColIndex.Text), ColCapt.Text, ColCapt.Text
+End Sub
+
+Sub CommandButton4_Click
+   Dim I, Itm
+   For Each Itm In NSListView1.SelectedItems
+      Itm.SubItems.Item(CLng(SubIndex.Text)).Text = SubText.Text
+      Itm.SubItems.Item(CLng(SubIndex.Text)).Icon = CLng(SubImage.Text)
+   Next
+End Sub
+Sub CommandButton8_Click
+   NSListView1.View = 3
+End Sub
+Sub CommandButton6_Click
+   NSListView1.View = 0
+End Sub
+Sub CommandButton7_Click
+   NSListView1.View = 2
+End Sub
+
+Sub CommandButton9_Click
+   NSListView1.View = 1
+End Sub
+Sub CommandButton10_Click
+    Dumper.ListItems.Clear
+End Sub
+
+Sub CommandButton11_Click
+   Dim I
+    For I = 1 To 16
+        NSListView1.ListItems.Add , "Item" & I, "Item " & I, CLng((I Mod 4) + 1)
+    Next
+    NSListView1.ColumnHeaders.Add 1, "Col1", "Column 1", 40
+    NSListView1.ColumnHeaders.Add 2, "Col2", "Column 2", 40
+    NSListView1.ColumnHeaders.Add 3, "Col3", "Column 3", 40
+End Sub
+Sub CommandButton12_Click
+   Dim Itm, J, o
+    For Each Itm In NSListView1.ListItems
+        Randomize
+        J = Int(NSListView1.Columns.Count * Rnd) + 1
+        ' Set o = Itm.SubItems.Item(CLng(J)) ' The long notation
+        Set o = Itm(J) ' The short notation
+        o.Text = "Sub " & J
+        o.Icon = Int(4 * Rnd) + 1
+    Next
+End Sub
+' ListView events
+Sub FillEvent(e,oEvent)
+   e("EventID").Text = oEvent.Event
+   If Not oEvent.Column Is Nothing Then e("Column").Text = oEvent.Column.Text
+   If Not oEvent.Item Is Nothing Then e("Item").Text = oEvent.Item.Text
+   If Not oEvent.SubItem Is Nothing Then e("SubItem").Text = oEvent.SubItem.Text
+   e("Text").Text = oEvent.Text
+   e.EnsureVisible
+   ' This is needed because EnsureVisible sets the focus to the listview in which the
+   ' item resides
+   NSListView1.SetFocus
+End Sub
+
+Sub NSListView1_OnColumnClick(oEvent)
+   Set e = Dumper.ListItems.Add(, ,"OnColumnClick")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnBeginLabelEdit(oEvent)
+   Set e = Dumper.ListItems.Add(, ,"OnBeginLabelEdit")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnEndLabelEdit(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnEndLabelEdit")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnItemActivate(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnItemActivate")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnMarqueeBegin(oEvent)
+   Set e = Dumper.ListItems.Add (, ,"OnMarqueeBegin")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnClick(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnClick")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnDblClick(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnDblClick")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnReturn(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnReturn")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnRClick(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnRClick")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnRDblClick(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnRDblClick")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnKeyDown(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnKeyDown")
+   FillEvent e, oEvent
+End Sub
+Sub NSListView1_OnItemChanged(oEvent)
+   Set e = Dumper.ListItems.Add( , ,"OnItemChanged")
+   FillEvent e, oEvent
+End Sub
+
+
+
+
+
+
+
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Sample2"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\ComCtl\Samples\Desktop\Sample2.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.comctl.ListView.1", "NSListView1", 0, 0, 448, 216, Form1
+      '--------
+      AddObject "CommandButton", "CommandButton1", 0, 224, 108, 21, Form1
+      CommandButton1.Caption = "Add Item"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "ItemText", 160, 224, 69, 21, Form1
+      ItemText.BackColor = 16777215
+      ItemText.FontSize =  8.25
+      ItemText.Text = "Som Item"
+      '--------
+      AddObject "Label", "Label1", 120, 224, 40, 16, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Text:"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 232, 224, 96, 24, Form1
+      Label2.BackColor = 12632256
+      Label2.Caption = "Image index:"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "ItemImage", 328, 224, 69, 21, Form1
+      ItemImage.BackColor = 16777215
+      ItemImage.FontSize =  8.25
+      ItemImage.Text = "1"
+      '--------
+      AddObject "Frame", "Frame1", 456, 8, 176, 120, Form1
+      Frame1.BackColor = 12632256
+      Frame1.Caption = "View"
+      Frame1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton6", 8, 16, 108, 21, Frame1
+      CommandButton6.Caption = "Icons"
+      CommandButton6.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton7", 8, 40, 108, 21, Frame1
+      CommandButton7.Caption = "Small Icons"
+      CommandButton7.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton8", 8, 64, 108, 21, Frame1
+      CommandButton8.Caption = "List"
+      CommandButton8.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton9", 8, 88, 108, 21, Frame1
+      CommandButton9.Caption = "Report"
+      CommandButton9.FontSize =  8.25
+      '--------
+      AddObject "Frame", "Columns", 456, 136, 176, 104, Form1
+      Columns.BackColor = 12632256
+      Columns.Caption = "Columns"
+      Columns.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "ColIndex", 88, 16, 69, 21, Columns
+      ColIndex.BackColor = 16777215
+      ColIndex.FontSize =  8.25
+      ColIndex.Text = "1"
+      '--------
+      AddObject "Label", "Label3", 8, 16, 56, 21, Columns
+      Label3.BackColor = 12632256
+      Label3.Caption = "Index"
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label4", 8, 40, 56, 21, Columns
+      Label4.BackColor = 12632256
+      Label4.Caption = "Caption"
+      Label4.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "ColCapt", 88, 40, 69, 21, Columns
+      ColCapt.BackColor = 16777215
+      ColCapt.FontSize =  8.25
+      ColCapt.Text = "Column"
+      '--------
+      AddObject "CommandButton", "CommandButton2", 8, 72, 48, 24, Columns
+      CommandButton2.Caption = "Add"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton3", 64, 72, 64, 24, Columns
+      CommandButton3.Caption = "Delete"
+      CommandButton3.FontSize =  8.25
+      '--------
+      AddObject "Frame", "Frame2", 456, 248, 176, 200, Form1
+      Frame2.BackColor = 12632256
+      Frame2.Caption = "Sub Item"
+      Frame2.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label5", 8, 24, 56, 21, Frame2
+      Label5.BackColor = 12632256
+      Label5.Caption = "Index"
+      Label5.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "SubIndex", 88, 24, 69, 21, Frame2
+      SubIndex.BackColor = 16777215
+      SubIndex.FontSize =  8.25
+      SubIndex.Text = "1"
+      '--------
+      AddObject "Label", "Label6", 8, 56, 56, 21, Frame2
+      Label6.BackColor = 12632256
+      Label6.Caption = "Text"
+      Label6.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "SubText", 88, 56, 69, 21, Frame2
+      SubText.BackColor = 16777215
+      SubText.FontSize =  8.25
+      SubText.Text = "TextBox1"
+      '--------
+      AddObject "Label", "Label7", 8, 88, 72, 24, Frame2
+      Label7.BackColor = 12632256
+      Label7.Caption = "Image index"
+      Label7.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "SubImage", 88, 88, 69, 21, Frame2
+      SubImage.BackColor = 16777215
+      SubImage.FontSize =  8.25
+      SubImage.Text = "1"
+      '--------
+      AddObject "CommandButton", "CommandButton4", 8, 120, 72, 24, Frame2
+      CommandButton4.Caption = "Set"
+      CommandButton4.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton5", 88, 120, 64, 24, Frame2
+      CommandButton5.Caption = "Clear"
+      CommandButton5.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label8", 8, 152, 152, 40, Frame2
+      Label8.BackColor = 12632256
+      Label8.Caption = "Adds subitem to the selected items"
+      Label8.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton10", 336, 288, 114, 21, Form1
+      CommandButton10.Caption = "Clear"
+      CommandButton10.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton11", 0, 248, 136, 24, Form1
+      CommandButton11.Caption = "Add some items/columns"
+      CommandButton11.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton12", 136, 248, 112, 24, Form1
+      CommandButton12.Caption = "Random subitems"
+      CommandButton12.FontSize =  8.25
+      '--------
+      AddObject "NSBasic.comctl.ListView.1", "Dumper", 0, 312, 448, 136, Form1
+      '--------
+      AddObject "Label", "Label9", 8, 288, 312, 24, Form1
+      Label9.BackColor = 12632256
+      Label9.Caption = "ListView events (in the above list)"
+      Label9.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

@@ -1,0 +1,336 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>MGCERichEdit Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCERichEdit</P>
+</FONT><FONT FACE="Arial"><P>Tools for the Net: HTML and IP Addresses</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>September 21, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+MGCERichEdit - Windows CE Custom Control Objects<BR>
+Written by Mark Gamber, September 1999<BR><BR>
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+<HR>
+MGCERichEdit provides a rich edit control to Windows CE applications capable of making use of COM oriented controls such as NS Basic. It can directly edit files created in Pocket Word. When moved to the desktop, these files are readable by the Notepad application.<HR>
+
+<H4>Installation</H4>
+
+<P>Connect your Windows CE device to your desktop using ActiveSync. On the desktop, run the program MGCERichEdit.exe. Follow the instructions on the screen to complete the installation. The control will be installed and registered automatically. 
+<HR>
+
+<H4>Object Creation</H4>
+	
+		<code>AddObject "MGCERichEdit.RichEdit", "Name", x, y, xsize, ysize</CODE>
+
+<H4>Samples</H4>
+<UL COMPACT>
+	<LI><A HREF="samples/RichEdit.htm">RichEdit</A> - A simple RTF editor
+</UL>
+
+<H4>Properties</H4>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>BackColor</TD> <TD>Set and retrieve the RGB background color of the control. The default value is the current system window color.<P>
+		<code>cBack = REdit.BackColor<BR>
+		REdit.BackColor = ( 256 * 255 ) + 255</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Border</TD> <TD>Enable and disable a single-line border around the control. TRUE enables a border, FALSE removes the border and the default value is TRUE.<P>
+		<code>iHasBorder = REdit.Border<BR>
+		REdit.Border = TRUE </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Caption</TD> <TD>The Caption property is used to set and retrieve unformatted (plain) text to and from the control.<P>
+		<code>REdit.Caption = "Give the control some text"<BR>
+		sText = REdit.Caption </CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontBold</TD> <TD>Set and retrieve the default bold font setting for the control. TRUE enables a bold font while FALSE enables a standard font.<P>
+		<code>fType = REdit.FontBold<BR>
+		REdit.FontBold = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontItalic</TD> <TD>Set and retrieve the default italic font setting for the control. TRUE enables an italic font, FALSE enables a standard font.<P>
+		<code>fType = REdit.FontItalic REdit.FontItalic = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontName</TD> <TD>The FontName property sets and retrieves the name of the control's default font. The control default is "Arial".<P>
+		<code>REdit.FontName = "Courier New"<BR>
+		sFont = REdit.FontName</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontOffset</TD> <TD>This property sets and retrieves how far from the baseline text will be displayed. This value is in Twips (1/1440 in.) and may be positive and negative. If negative, text is displayed as subscript and a positive offset causes text to display as superscript. The default value is zero.<P>
+		<code>iOffset = REdit.FontOffset<BR>
+		REdit.FontOffset = -30</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontSize</TD> <TD>Set and retrieve the default size of text displayed by the control. This value is measured in Twips (1/1440 in).<P>
+		<code>REdit.FontSize = 240<BR>
+		fontSize = REdit.FontSize</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontStrikeout</TD> <TD>When TRUE, text is displayed with a line through the middle of a letter. FALSE removes the strike-out appearance. The default value is FALSE.<P>
+		<code>REdit.FontStrikeout = FALSE<BR>
+		iStrike = REdit.FontStrikeout</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontUnderline</TD> <TD>Set this property to TRUE to underline text by default or FALSE to remove the underline. The default value is FALSE.<P>
+		<code>iUnderline = REdit.FontUnderline<BR>
+		REdit.FontUnderline = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ForeColor</TD> <TD>Set and retrieve the default text color used by the control. The default value is zero (black).<P>
+		<code>cFont = REdit.ForeColor<BR>
+		REdit.ForeColor = 128</CODE></TD>
+	</TR>
+	<TR>
+		<TD>LeftMargin</TD> <TD>Set and retrieve the left margin of the control in Twips (1/1440 in).<P>
+		<code>iMargin = REdit.LeftMargin<BR>
+		REdit.LeftMargin = 720     ' 1/2 inch</CODE></TD>
+	</TR>
+	<TR>
+		<TD>LineCount</TD> <TD>This read-only property retrieves the number of lines of text contained by the control.<P>
+		<code>iLines = REdit.LineCount</CODE></TD>
+	</TR>
+	<TR>
+		<TD>MaxLength</TD> <TD>Set and retrieve the maximum number of characters the control may hold. The default value is 2137483646.<P>
+		<code>REdit.MaxLength = 120<BR>
+		iMaxCount = REdit.MaxLength</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Modify</TD> <TD>Set, reset and retrieve the control's modify flag. When set (TRUE), the control's contents have been modified since the property was last examined. FALSE indicates that the contents have not changed.<P>
+		<code>iCanSave = REdit.Modify<BR>
+		REdit.Modify = FALSE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Multiline</TD> <TD>This property determines if the contro; is in single or multiple line mode. Set to TRUE to enable multiple lines and FALSE for a single line control. NOTE: Because the control needs to be destroyed and recreated when this property is changed, text formatting and other style properties will be lost. Any text contained by the control at the time is retained.<P>
+		<code>REdit.Multiline = TRUE<BR>
+		iMLine = REdit.Multiline</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ReadOnly</TD> <TD>Set to TRUE, the control is read-only and it's contents may not be modified by the user. Set the property to FALSE to disable read-only mode.<P>
+		<code>iNoModify = REdit.ReadOnly<BR>
+		REdit.ReadOnly = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RightMargin</TD> <TD>Set and retrieve the right margin value, measured in Twips (1/1440 in).<P>
+		<code>REdit.RightMargin = 260   ' 1/4 in<BR>
+		iRightMargin = REdit.RightMargin </CODE></TD>
+	</TR>
+	<TR>
+		<TD>RTFText</TD> <TD>The RTFText property sets and retrieves RTF formatted text which includes the RTF tags themselves. This is opposed to the Caption property which simply sets and gets plain text.<P>
+		<code>REdit.RTFText = "Could have tags here, but I don't know what they are."<BR>
+		rtfText = REdit.RTFText </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Scrollbars</TD> <TD>Set and retrieve the scrollbar types in use by the control. These are:
+		<code><UL COMPACT>
+	<LI>0: None
+	<LI>		1: Vertical
+	<LI>		2: Horizontal
+	<LI>		3: Both
+</UL></CODE>
+
+		The default value is zero.<BR>
+		<CODE>REdit.Scrollbars = 2<BR>
+		iScroll = REdit.Scrollbars</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionDisplay</TD> <TD>When this property is TRUE, the control does not hide any selected text when it loses focus. When set to FALSE, the default, the selection is hidden, not lost, when focus is switched away from the control.<P>
+		<code>iSelDisp = REdit.SelectionDisplay<BR>
+		REdit.SelectionDisplay = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontBold</TD> <TD>This property determines if the currently selected text is bold or normal. TRUE indicates bold text and FALSE, the default, indicates standard text. If there is no selected text at the time, this property determines how additional text will appear.<P>
+		<code>REdit.SelectionFontBold = TRUE<BR>
+		iType = REdit.SelectionFontBold </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontFlags</TD> <TD>This property is a combination of the SelectionFontBold, SelectionFontItalic, SelectionFontUnderline and SelectionFontStrikeout properties and allows you to set and retrieve the status of all four properties at one time, increasing performance. Individual items are set using a combination of the following values:
+		<code><UL COMPACT>
+	<LI>1: Bold
+	<LI>		2: Italic<
+	<LI>		4: Underline<
+	<LI>		8: Strikeout
+</UL>
+</CODE>
+		Bitwise operations may be carried out on the property to determine which properties are set and which are not.<P>
+		<code>iFlags = REdit.SelectionFontFlags<BR>
+		REdit.SelectionFontFlags = 1 + 4   ' Bold & underlined<BR>
+		</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontItalic</TD> <TD>This property determines if the currently selected text is italic or normal. TRUE indicates italic text and FALSE, the default, indicates standard text. If there is no selected text at the time, this property determines how additional text will appear.<P>
+		<code>REdit.SelectionFontItalic = TRUE<BR>
+		iType = REdit.SelectionFontItalic </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontName</TD> <TD>Set and retrieve the name of the font used with selected text. If there is no selected text at the time, this property determines the font to use with inserted and appended text. The default is "Arial".<P>
+		<code>REdit.SelectionFontName = "Courier New"<BR>
+		fName = REdit.SelectionFontName</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontOffset</TD> <TD>Measured in Twips (1/1440 in), this property determines how far above or below the font baseline selected text will appear and may be positive for superscript text or negative for subscript text. The default value is zero. If there is no selected text at the time, the setting determines the appearance of inserted and appended text.<P>
+		<code>iOffset = REdit.SelectionFontOffset<BR>
+		REdit.SelectionFontOffset = 30 </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontSize</TD> <TD>Set and retrieve the size, measured in Twips, of the font used in a text selection. If there is no selection at the time, this determines the size of inserted and appended text.<P>
+		<code>REdit.SelectionFontSize = 240<BR>
+		iSize = REdit.SelectionFontSize </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontStrikeout</TD> <TD>When set to TRUE, selected text will appear as "struck out" with a line through the middle of each character. FALSE removes the struck out appearance. If no text is selected at the time, inserted and appended text takes on the property value.<P>
+		<code>REdit.SelectionFontStrikeout = TRUE<BR>
+		iLined = REdit.SelectionFontStrikeout </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontUnderline</TD> <TD>When set to TRUE, selected text is underlined and FALSE removes any underlines from selected text. If nothing is selected at the time, inserted and appended text takes on the appearance as set by this property.<P>
+		<code>REdit.SelectionFontUnderline = TRUE<BR>
+		iUnderlined = REdit.SelectionFontUnderline </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionFontColor</TD> <TD>Set and retrieve the RGB color value of currently selected text. If no text is selected, inserted and appended text takes on this property value.<P>
+		<code>REdit.SelectionFontColor = ( 128 * 65536 )<BR>
+		selColor = REdit.SelectionFontColor </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelLength</TD> <TD>Use this property along with the SetStart property to set and get the length of selected text. For example, if SetStart is 10 and SelLength is 5, then 5 characters will be selected starting with character 11 (the first character is in position zero). Setting SelLength to -1 and SetStart to zero selects all text in the control.<P>
+		<code>REdit.SelLength = 10<BR>
+		iSelLength = REdit.SelLength</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetStart</TD> <TD>This property determines the position of the first character of a text selection, starting with character zero, and is used with SelLength to select text.<P>
+		<code>REdit.SetStart = 0<BR>
+		iSelStart = REdit.SetStart</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Style</TD> <TD>The Style property determines how the control appears and uses the following values:
+		<code><UL COMPACT>
+	<LI>0: No style
+	<LI>		1: Sunken appearance
+	<LI>		2: Raised appearance
+</UL>
+
+		REdit.Style = 1<BR>
+		iStyle = REdit.Style</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Tabstop</TD> <TD>Set this property to TRUE (the default) to include the control in the tabstop order of an application. FALSE removes the control from the tabstop order.<P>
+		<code>REdit.Tabstop = FALSE<BR>
+		iCanTab = REdit.Tabstop </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>A read-only property used to determine the current version of this control.<P>
+		<code>iVer = REdit.Version</CODE></TD>
+	</TR>
+</TABLE>
+	
+<H4>Methods</H4>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>CharLine</TD> <TD>This method retrieves the line on which a specified character appears. The parameter determines the zero based index of the character in question.<P>
+		<code>iLine = REdit.CharLine( 145 )  ' What line is char 145 on? </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Copy</TD> <TD>Causes the control to copy selected text to the clipboard.<P>
+		<code>Redit.Copy</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Cut</TD> <TD>Causes the control to remove selected text and place it in the clipboard.<P>
+		<code>REdit.Cut</CODE></TD>
+	</TR>
+	<TR>
+		<TD>EmptyUndo</TD> <TD>Calling this method removes anything in the control's undo buffer. You cannot undo any changes to control text after this method has been called.<P>
+		<code>Redit.EmptyUndo</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FindText</TD> <TD>Use FontText to locate text within the control. You may specify an optional starting position, an optional length and search type. If any of these are specified, the search will be contained to the selected range of characters and follow the specified search type. Possible search types may be a combination of these values:<P>
+		<code>1: Move down through the control 2: Must match specified text entirely 4: Case must match</CODE> The return value is the character position of found text. If no match was found, -1 is returned by the control.<P>
+		<code>iPos = FindText( 1, 0, 100, "Find This" )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>GetTextRange</TD> <TD>Retrieve a selection of text from the control as determined by a start position and length parameter.<P>
+		<code>sText = REdit.GetTextRange( 100, 110 )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>Remove the control from the display.<P>
+		<code>REdit.Hide</CODE></TD>
+	</TR>
+	<TR>
+		<TD>LineChar</TD> <TD>Retrieve the current position of the first character of a specified line.<P>
+		<code>iCharPos = REdit.LineChar( 12 )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>LineScroll</TD> <TD>Causes the control to scroll by a specified amount horizontally and vertically.<P>
+		<code>REdit.LineScroll hAmt, vAmt </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Load</TD> <TD>Load the contents of a file into the control. Because most applications read and write single byte character files and single byte character strings are not easily dealt with by Basic, this method will load a single byte character file and translate it into unicode which is easily manipulated from within Basic. The return value is the number of bytes read by the control, if any.<P>
+		<code>REdit.Load "rtffile.txt"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Paste</TD> <TD>The contents of the clipboard, if any, will be pasted into the control at the current insertion point upon calling this method.<P>
+		<code>REdit.Paste</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Redo</TD> <TD>The opposite of Undo, calling this method will put back any changes that were removed by calling Undo.<P>
+		<code>REdit.Redo</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ReplaceSelection</TD> <TD>This method will replace selected text with a string passed through the method.<P>
+		<code>REdit.ReplaceSelection "Replaced with this"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Save</TD> <TD>Save the contents of the control to a file by calling this method. The contents are saved, including FTP formatting, as a single-byte character file. An optional second parameter may be set to one to overwrite an existing file of the same name as that specified or zero, the default, to throw an error if the file already exists. The return value is the number of bytes that were saved, if any.<P>
+		<code>iSaved = REdit.Save( "rtffile.rtf", 1 )    ' Overwrite if already there</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>Call this method to set input focus to the control.<P>
+		<code>REdit.SetFocus</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Show</TD> <TD>Display the control if hidden.<P>
+		<code>REdit.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Undo</TD> <TD>Call this method to undo any changes made to the control contents.<P>
+		<code>REdit.Undo</CODE></TD>
+	</TR>
+</TABLE>
+
+	
+<H4>Events</H4>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>GotFocus</TD> <TD>This event is triggered when the control gets input focus.<P>
+		<code>sub REdit_GotFocus<BR>
+		&nbsp;&nbsp;Redit.BackColor = ( 255 * 65536 )+ ( 255 * 256 ) + 255<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>LostFocus</TD> <TD>This event is trigged when the control loses input focus<P>
+		<code>sub REdit_GotFocus<BR>
+		&nbsp;&nbsp;Redit.BackColor = ( 128 * 65536 )+ ( 128 * 256 ) + 128<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionChange</TD> <TD>This event is triggered when the current text selection is changed or the caret is moved within the control's contained text. The parameters passed to this event are the starting position or current caret position, starting with zero,  the length of the selection and style flags used in the selection. If the event was fired because the caret was moved and there is no selection, the length is zero. See SelectionFontFlags for a description of the bit values used by the flags parameter.<P>
+		<code>sub REdit_SelectionChange( startpos, sellength, flags )<BR>
+		&nbsp;&nbsp;Label1.Caption = CStr( sellength ) & " characters are selected"<BR>
+		end sub</CODE></TD>
+	</TR>
+</TABLE>
+<HR>
+</BODY>
+</HTML>

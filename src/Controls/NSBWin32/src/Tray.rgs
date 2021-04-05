@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.win32.Tray.1 = s 'NSBasic Tray Class'
+	{
+		CLSID = s '{5334D155-E526-4A1D-B03F-86B112DC8D3A}'
+	}
+	NSBasic.win32.Tray = s 'NSBasic Tray Class'
+	{
+		CLSID = s '{5334D155-E526-4A1D-B03F-86B112DC8D3A}'
+		CurVer = s 'NSBasic.win32.Tray.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5334D155-E526-4A1D-B03F-86B112DC8D3A} = s 'NSBasic Tray Class'
+		{
+			ProgID = s 'NSBasic.win32.Tray.1'
+			VersionIndependentProgID = s 'NSBasic.win32.Tray'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F1072A90-2DF5-49BC-BDFB-2B604FDB9598}'
+		}
+	}
+}

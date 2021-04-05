@@ -1,0 +1,182 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="Tray,notification area,shell notification area,Tag,Image,AddImage,RemoveImage,Tip">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/">
+<title>Tray object</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Win32 objects</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">Tray object</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\tray.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>This object allows you put and control icons in the shell/system
+            notification area (often called System Tray).</p>
+            <p>The usage cycle of the object most often follows this pattern:<br>
+            1. One or more bitmaps are added to the object (see AddImage)<br>
+            2. At certain point the application puts an icon from the loaded
+            bitmaps into the tray (See Image property).<br>
+            3. The application handles user actions over the icon in the tray
+            (see the events).<br>
+            4. The application removes the image from the tray (object.Image =
+            0).</p>
+            <p>Do not forget to remove the image from the tray before the
+            application exits or earlier if appropriate. Otherwise the image
+            will remain there until the user passes with the mouse over it or
+            until the shell is restarted (on some CE devices).</p>
+            <p>If you need more than one tray icons you need the same number of
+            Tray objects in your application - each controlling one of the tray
+            icons.</p>
+            <p><b>Hint.</b> By using bitmaps containing many icons you can
+            implement animation or dynamic state indication in the tray.
+            Changing the Image property at run time will immediately change the
+            icon the user sees.&nbsp;</p>
+            <p>Note that on devices/systems with touch screens only Click and
+            DblClick events can actually occur. Although some of these systems
+            may support hold action internally translated to right mouse click
+            this is not common for the system tray support and you cannot count
+            on it when you write code that must run on different touch screen
+            based systems.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Image</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Image = value<br>
+                  variable = object.Image</td>
+                <td bgcolor="#FFFFFF" valign="top">Type: Numeric<br>
+                  Specifies an index of an image/icon in the bitmap (See
+                  AddImage). When set it puts the specified image index into the
+                  system tray or returns the index of the currently shown image.<br>
+                  If an image is already shown in the system tray putting new
+                  index will change it giving you the opportunity to implement
+                  animations or application state indication in the system
+                  tray.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Tag</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = value<br>
+                  variable = object.Tag</td>
+                <td bgcolor="#FFFFFF" valign="top">An application specified
+                  value for its custom usage.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable = object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  AddImage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>image_index =
+                  object.AddImage(bitmapfile_path)</td>
+                <td bgcolor="#FFFFFF" valign="top">Loads a set of icons/images
+                  to the object. The images are in a bitmap. Most often 16x16
+                  images are used. If you want to have 4 different images you
+                  put 4 such images in a single bitmap with size 64x16 from left
+                  to right. Then the first image has index 1 and so forth.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  RemoveImage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.RemoveImage(image_index)</td>
+                <td bgcolor="#FFFFFF" valign="top">Removes an image previously
+                  loaded with AddImage. Use the returned image_index from it to
+                  address it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Tip</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tip =
+                  tool_tip_text<br>
+                  variable = object.Tip</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the tool tip for
+                  the tray icon</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  Click</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub
+                  object_Click(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has clicked the tray
+                  icon with the left mouse button or has pressed space key over
+                  it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  RClick</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_RClick(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has clicked the tray
+                  icon with the right mouse button</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  DblClick</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_DblClick(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has double clicked
+                  the tray icon with the left mouse button or has pressed the
+                  Enter key over it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  RDblClick</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_RDblClick(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has double clicked
+                  the tray icon with the right mouse button.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  KeyDown</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_KeyDown(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">reserved for future use. </td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2005 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\tray.htm-->
+
+</table>
+
+</body>
+
+</html>

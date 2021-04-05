@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309UserNotification Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309UserNotification1.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<IMG SRC="images/S309UserNotification2.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+Dim Handle
+AddObject "S309.UserNotification.1","un",0,0
+un.aboutbox
+un.dialog = True
+un.Sound = True
+un.SoundFile = "Alarm2"
+un.LED = True
+un.Repeat = False
+un.GetUserPreferences()
+if un.Dialog then
+  un.DialogTitle = "This is the Title"
+  un.DialogText = "This is the Text"
+end if
+un.AppName = "S309UserNotification.ocx" ' display icon from executable
+un.DateTime = now + timeserial(0,0,5) 'show in 5 seconds
+Handle = un.Set(0)
+
+</PRE>
+</body>
+</html>

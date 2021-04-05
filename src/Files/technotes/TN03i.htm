@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="Microsoft Word 98">
+<TITLE>Tech Note 03i: ImageList Object</TITLE>
+<META NAME="Template" CONTENT="HD:Applications:Microsoft Office 98:Templates:Web Pages:Blank Web Page">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 03i: ImageList Object </h2>
+	  <h3>January 5, 2007
+</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr noshade size="1">
+
+<blockquote>
+  <p>For more information on this control, see Microsoft's 
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">documentation</A>.
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>This control contains a collection of images to which you can refer by index. Use as a central repository to conveniently supply other controls, such as TabStrip, ListView, and TreeView, with images. The number of images that you can load is limited by the amount of available memory. </P>
+<p>This control has been replaced by NSBControls.dll.
+<P>Here is some documention, thanks to Heiko Stolte:
+
+
+<h2>Syntax</h2>
+
+<pre>
+AddObject "ceimagelist.imagelistctrl.1", "ImageList1",0,0,0,0
+</pre>
+Where Imagelist1 is the name of the object.
+
+
+
+<h2>Properties</h2>
+
+<table BORDER=1 CELLSPACING=0 cellpadding=1>
+	<tr>
+		<td>HImageList</td> <td>Pointer to Imagelist </td>
+	</tr>
+	<tr>
+		<td>Count</td> <td>Number of pictures</td>
+	</tr>
+	<tr>
+		<td>Imagewidth*</td> <td>Width of Imagelist = width of first picture</td>
+	</tr>
+	<tr>
+		<td>Imageheight*</td> <td>Height of Imagelist = height of first picture</td>
+	</tr>
+</table>
+
+
+* all other pictures will be resized to first picture size
+
+<h2>Methods</h2>
+
+<table BORDER=1 CELLSPACING=0 cellpadding=1>
+	<tr>
+		<td>Add <i>pathfilename</i></td> <td>Adds an image to imagelist<br>Important: picture colors*  </td>
+	</tr>
+	<tr>
+		<td>Remove <i>index</i></td> <td>Remove pictures number</td>
+	</tr>
+	<tr>
+		<td>RemoveAll</td> <td>Removes all pictures</td>
+	</tr>
+	<tr>
+		<td>Replace <i>index</i>, <i>pathfilename</i></td> <td>Replace picture number index with picture filename</td>
+	</tr>
+	<tr>
+		<td>Reset</td> <td>Resets imagelist</td>
+	</tr>
+</table>
+
+
+* I tested with 256 colors, that works fine
+
+<h2>Example (see MSCEListview sample)</h2>
+<pre>
+AddObject "ceimagelist.imagelistctrl.1","ImageList1",0,0,0,0
+AddObject "ceimagelist.imagelistctrl.1","ImageList2",0,0,0,0
+AddObject "listviewctrl.listviewctrl.1","listView",10,130,220,120
+      
+       
+' big icons
+ImageList1.Add("\My Documents\test1.bmp")
+ImageList1.Add("\My Documents\test2.bmp")
+ImageList1.Add("\My Documents\test3.bmp")
+ImageList1.Add("\My Documents\test4.bmp")
+' small icons
+ImageList2.Add("\My Documents\test5.bmp")
+ImageList2.Add("\My Documents\test6.bmp")
+ImageList2.Add("\My Documents\test7.bmp")
+ImageList2.Add("\My Documents\test8.bmp")
+  
+' connect listview with imageview
+ListView.Icons = ImageList1.hImageList
+ListView.SmallIcons = ImageList2.hImageList
+</pre>
+</HTML>

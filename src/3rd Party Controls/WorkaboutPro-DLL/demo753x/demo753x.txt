@@ -1,0 +1,1976 @@
+Option Explicit
+'demo753x Converted by evb2nsb 2.1.3 on 7/22/2005
+ 
+'Set up app object variables   
+Dim AppComments, AppCompanyName, AppEXEName, AppFileDescription, AppLegalCopyright, AppLegalTradeMarks
+Dim AppMajor, AppMinor, AppPath, AppProductName, AppRevision, AppTaskVisible, AppTitle
+AppCompanyName = "Microsoft Corporation"
+AppEXEName = "demo753x"
+AppMajor = 1
+AppMinor = 0
+AppPath = "\Windows\Start Menu\Project1.vb"
+AppRevision = 0
+ 
+Sub Main_Load_startup() '*** Code for Form Main ***
+Output.cls
+' Variables
+' The File Menu
+Dim mnuFile
+' The Help Menu
+Dim mnuHelp
+
+
+End Sub 'Main_load_startup
+
+Sub Main_Load_User()
+      setupMenu()
+End Sub
+
+Sub Main_OKClick()
+    Bye 'was App.End
+End Sub
+
+
+Sub Main_Unload(Cancel)
+
+End Sub
+
+
+Sub setupMenu()
+    'Set this at design time in the properties sheet
+    'menuBar.NewButton = False
+'   Set up a reference to the File Menu object
+'*    Set mnuFile = MenuBar.Controls.AddMenu("File", "mnuFile")	'NSB: MenuBarLib not supported.
+'   Begin adding menu items to the File menu
+    mnuFile.Items.Add 1, "mnuFileSystemInfo", "System Info"
+    mnuFile.Items.Add 2, "mnuFileLedTest", "LED Test"
+    mnuFile.Items.Add 3, "mnuFileBeeperTest", "Beeper Test"
+    mnuFile.Items.Add 4, "mnuFileBeeperTest2", "Beeper Test 2"
+    mnuFile.Items.Add 5, "mnuFilePortTest", "Docking Port Test"
+    mnuFile.Items.Add 6, "mnuFileScannerTest", "Scanner Test"
+    mnuFile.Items.Add 7, "mnuFileScannerConfig", "Scanner Config"
+    mnuFile.Items.Add 8, "mnuFileBacklightTest", "Backlight Test"
+    mnuFile.Items.Add 9, "mnuFileSerialPorts", "Serial Ports"
+    mnuFile.Items.Add 10, "mnuFilePowerManagement", "Power Management"
+    mnuFile.Items.Add 11, "mnuFileDisplayInfo", "Display Info"
+    mnuFile.Items.Add 12, "mnuFileDockTetherEvent", "Dock/Tether Event"
+    mnuFile.Items.Add 13, "mnuFileNSAPICheck", "NS API Check"
+    mnuFile.Items.Add 14, "mnuFileKeyboard", "Keyboard"
+    mnuFile.Items.Add 15, "mnuFileNdis", "Radio 812.11"
+    mnuFile.Items.Add 16, "mnuFileGSM", "Radio GSM"
+    mnuFile.Items.Add 17, "mnuFilExit", "Exit"
+     
+    
+'   Set up a reference to the Help Menu object
+'*    Set mnuHelp = MenuBar.Controls.AddMenu("Help", "mnuHelp")	'NSB: MenuBarLib not supported.
+'   Begin adding menu items to the Help menu
+    mnuHelp.Items.Add 1, "mnuHelpAbout", "About"
+End Sub
+
+
+Sub menuBar_MenuClick(ByVal Item)
+    ' React to a menu selection
+    Select Case Item.Key
+        Case "mnuFileSystemInfo"
+              SystemForm.Show
+        Case "mnuFilePortTest"
+              Dock_Tether.Show
+        Case "mnuFileScannerTest"
+              ScannerTest.Show
+        Case "mnuFileLedTest"
+            Indicators.Show
+        Case "mnuFileKeyboard"
+              KeyboardForm.Show
+        Case "mnuFileBeeperTest"
+              TestBeeper
+        Case "mnuFileBeeperTest2"
+              BeeperTest.Show
+        Case "mnuFilePowerManagement"
+              powerMan.Show
+        Case "mnuFileBacklightTest"
+              backlight.Show
+        Case "mnuFileNdis"
+              NdisForm.Show
+              
+        Case "mnuFileExit"
+            ' End the program
+            Bye 'was App.End
+        Case "mnuHelpAbout"
+            MsgBox "MenuBar Example 1.0", vbOKOnly, "About"
+    End Select
+End Sub
+
+Sub TestBeeper()
+    addObject "peripheralsx.peripherals","PeripheralsObject"
+    Dim frequency
+    
+    
+    PeripheralsObject.PlayTone 1000, 500, 0
+    Sleep (1000)
+    For frequency = 800 To 3000 Step 1000
+            PeripheralsObject.PlayTone frequency, 1000, 0
+            Sleep (1000)
+    Next
+    
+    
+End Sub
+
+Sub TestNotSupportedAPI()
+    
+End Sub
+
+
+
+
+Sub SystemForm_Load_startup() '*** Code for Form SystemForm ***
+Output.cls
+Dim m_ListhWnd
+
+End Sub 'SystemForm_load_startup
+
+Sub SystemForm_Load_User()
+   ' set up two column headers
+   ListViewCtrl1.View = lvwReport
+   ListViewCtrl1.ListItems.Clear
+   ListViewCtrl1.ColumnHeaders.Clear
+   
+   ' Add headers
+    ListViewCtrl1.ColumnHeaders.Add , , "Name"
+    ListViewCtrl1.ColumnHeaders.Add , , "Value"
+    Dim value
+    
+  
+    addObject "systemx.systeminformation","SystemObject"
+    
+    
+    ' Add values to the List from the properties exposed by the control
+    value = SystemObject.MachineUniqueIdentifier
+    AddListItem "MachineUniqueIdentifier", value
+    
+    value = SystemObject.MachineType
+    AddListItem "MachineType", value
+    
+    value = SystemObject.TotalPhysicalRAMSize
+    AddListItem "TotalPhysicalRAMSize", value
+    
+    value = SystemObject.FreeStorageMemorySize
+    AddListItem "FreeStorageMemorySize", value
+    
+    value = SystemObject.FreeProgramMemorySize
+    AddListItem "FreeProgramMemorySize", value
+    
+    value = SystemObject.UserSuppliedMachineType
+    AddListItem "UserSuppliedMachineType", value
+    
+    value = SystemObject.UserSuppliedMachineDescription
+    AddListItem "UserSuppliedMachineDescription", value
+    
+    value = SystemObject.OS
+    AddListItem "OS", value
+    
+    value = SystemObject.ProcessorName
+    AddListItem "Processor Name", value
+    
+    value = SystemObject.Language
+    AddListItem "Language", value
+    
+    value = SystemObject.ProcessorSpeed
+    AddListItem "Processor Speed", value
+    
+    value = SystemObject.FlashMemorySize
+    AddListItem "Flash Memory Size", value
+    
+    value = SystemObject.BootcodeVersion
+    AddListItem "Bootcode Version", value
+    
+    value = SystemObject.SoftwareVersion
+    AddListItem "Software Version", value
+    
+    
+    
+    
+End Sub
+
+
+Sub AddListItem(ItemText, value)
+    Dim MyItem
+    
+    ' add the list item
+    Set MyItem = ListViewCtrl1.ListItems.Add(, , ItemText)
+    
+    ' set its subitems
+    MyItem.SubItems(1) = value
+    
+End Sub
+
+
+Sub Dock_Tether_Load_startup() '*** Code for Form Dock_Tether ***
+Output.cls
+
+End Sub 'Dock_Tether_load_startup
+
+Sub Dock_Tether_Load_User()
+    addObject "peripheralsx.peripherals","PeripheralsObject"
+    Refresh()
+End Sub
+
+Sub Refresh()
+    ' Add values to the List from the properties exposed by the control
+    If PeripheralsObject.InDockingStation = 1 Then
+        isdocked = "Yes"
+    Else
+        isdocked = "No"
+    End If
+    
+    If PeripheralsObject.TetherPortConnected = 1 Then
+        tethercon = "Yes"
+    Else
+        tethercon = "No"
+    End If
+  
+    doctstaus = PeripheralsObject.DockingStationDeviceType
+    tethstatus = PeripheralsObject.TetherPortDeviceType
+End Sub
+
+Sub refr_Click()
+    Refresh()
+End Sub
+
+Sub ScannerTest_Load_startup() '*** Code for Form ScannerTest ***
+Output.cls
+Dim internalPresent
+Dim externalPresent
+Dim isScannerEnabled
+
+End Sub 'ScannerTest_load_startup
+
+Sub disable_Click()
+    ScannerObject.SetScannerEnabled (False)
+    isenabled = ScannerObject.isScannerEnabled
+End Sub
+
+Sub enable_Click()
+    ScannerObject.SetScannerEnabled (True)
+    isenabled = ScannerObject.isScannerEnabled
+    
+End Sub
+
+Sub Firescanner_Click()
+    Dim rVal
+    rVal = ScannerObject.Scan() ' action button
+End Sub
+
+Sub ScannerTest_Load_User()
+     addObject "scannerx.scanner","ScannerObject"
+     Dim rVal
+     rVal = ScannerObject.RegisterWithScanner() 'register the control for events by creating the callback function
+     internalPresent = ScannerObject.isInternalScannerPresent
+     externalPresent = ScannerObject.isExternalScannerPresent
+     
+     If internalPresent = "Yes" Then
+        If externalPresent = "Yes" Then
+            present = "YY"
+        Else
+            present = "YN"
+        End If
+     Else
+        If externalPresent = "Yes" Then
+            present = "NY"
+        Else
+            present = "NN"
+        End If
+     End If
+     
+     isenabled = ScannerObject.isScannerEnabled
+     
+     
+     
+End Sub
+
+Sub ScannerTest_Unload(Cancel)
+    Dim rVal
+    rVal = ScannerObject.DeRegisterWithScanner() ' when we get out is a good way to removing the calback functions
+End Sub
+
+
+
+
+
+
+
+Sub KeyboardForm_Load_startup() '*** Code for Form KeyboardForm ***
+Output.cls
+
+End Sub 'KeyboardForm_load_startup
+
+Sub KeyboardForm_Load_User()
+    addObject "systemx.systeminformation","SystemObject"
+    
+    kt = SystemObject.KeyboardType
+End Sub
+
+Sub BeeperTest_Load_startup() '*** Code for Form BeeperTest ***
+Output.cls
+
+End Sub 'BeeperTest_load_startup
+
+Sub BeeperTest_Load_User()
+
+End Sub
+
+Sub play_Click()
+    addObject "peripheralsx.peripherals","PeripheralsObject"
+    PeripheralsObject.PlayTone Frecquency.Text, duration.Text, 0
+    
+End Sub
+
+Sub powerMan_Load_startup() '*** Code for Form powerMan ***
+Output.cls
+
+
+End Sub 'powerMan_load_startup
+
+Sub powerMan_Load_User()
+' set up two column headers
+   plist.View = lvwReport
+   plist.ListItems.Clear
+   plist.ColumnHeaders.Clear
+   
+   ' Add headers
+    plist.ColumnHeaders.Add , , "Source"
+    plist.ColumnHeaders.Add , , "Setting"
+    plist.ColumnHeaders.Add , , "Value"
+    Dim powersource, value
+    Dim cpowerSources, counter, counter2
+    
+    addObject "powermanagementx.powermanagement","PowerManagement"
+    cpowerSources = PowerManagement.CountPowerSources
+    
+    
+    For counter = 1 To cpowerSources Step 1
+          powersource = PowerManagement.PowerSourceString(counter)
+          value = PowerManagement.suspendTimeout(powersource)
+          AddListItem powersource, "Suspend Timeout", value
+          
+          value = PowerManagement.SystemIdleTimeout(powersource)
+          AddListItem powersource, "SystemIdleTimeout", value
+          
+          value = PowerManagement.UserIdleTimeout(powersource)
+          AddListItem powersource, "UserIdleTimeout", value
+          
+          Dim suspendTimeout
+          suspendTimeout = PowerManagement.CountValidSuspendTimeouts(powersource)
+          For counter2 = 1 To suspendTimeout Step 1
+            value = PowerManagement.ValidSuspendTimeouts(powersource, counter2)
+            AddListItem powersource, "ValidSuspend", value
+          Next
+          
+          suspendTimeout = PowerManagement.CountValidSystemIdleTimeouts(powersource)
+          For counter2 = 1 To suspendTimeout Step 1
+            value = PowerManagement.ValidSystemIdleTimeouts(powersource, counter2)
+            AddListItem powersource, "ValidSystem", value
+          Next
+          
+          suspendTimeout = PowerManagement.CountValidUserIdleTimeouts(powersource)
+          For counter2 = 1 To suspendTimeout Step 1
+            value = PowerManagement.ValidUserIdleTimeouts(powersource, counter2)
+            AddListItem powersource, "ValidUser", value
+          Next
+    Next
+    
+        
+End Sub
+
+
+Sub AddListItem(Source, Setting, value)
+    Dim MyItem
+    
+    ' add the list item
+    Set MyItem = plist.ListItems.Add(, , Source)
+    
+    ' set its subitems
+    MyItem.SubItems(1) = Setting
+    MyItem.SubItems(2) = value
+    
+End Sub
+
+Sub OK_Click()
+    powerMan.Hide
+End Sub
+
+Sub backlight_Load_startup() '*** Code for Form backlight ***
+Output.cls
+
+End Sub 'backlight_load_startup
+
+Sub DIMTIMELIST_LostFocus()
+    configVal.Text = DIMTIMELIST.Text
+End Sub
+
+Sub DTIMEONLIST_LostFocus()
+    configVal.Text = DTIMEONLIST.Text
+End Sub
+
+Sub KTIMEONLIST_LostFocus()
+    configVal.Text = KTIMEONLIST.Text
+End Sub
+
+
+Sub backlight_Load_User()
+    LoadBacklightConfiguration
+End Sub
+Sub LoadBacklightConfiguration()
+    listprops.View = lvwReport
+    listprops.ListItems.Clear
+    listprops.ColumnHeaders.Clear
+    
+    DIMTIMELIST.Clear
+    KTIMEONLIST.Clear
+    DTIMEONLIST.Clear
+    
+    
+    
+    
+    Dim counter
+   
+   ' Add headers
+    listprops.ColumnHeaders.Add , , "Config"
+    listprops.ColumnHeaders.Add , , "Value"
+       
+    addObject "backlightx.backlight","BacklightObject"
+    
+    Dim ret
+    ret = BacklightObject.BacklightControlSupported
+    If ret = 1 Then
+        AddListItem "Supported", "TRUE"
+    Else
+        AddListItem "Supported", "FALSE"
+    End If
+    
+    ret = BacklightObject.DisplayBacklightAlwaysOnForAcPower
+    If ret = 1 Then
+        AddListItem "DisplayBacklightAlwaysOnForAcPower", "TRUE"
+    Else
+        AddListItem "DisplayBacklightAlwaysOnForAcPower", "FALSE"
+    End If
+    
+    ret = BacklightObject.DisplayBacklightDimTime
+    AddListItem "DisplayBacklightDimTime", ret
+    
+    ret = BacklightObject.DisplayBacklightIntensity
+    AddListItem "DisplayBacklightIntensity", ret
+    
+    ret = BacklightObject.DisplayBacklightOnTime
+    AddListItem "DisplayBacklightOnTime", ret
+    
+    ret = BacklightObject.DisplayBacklightThreshold
+    AddListItem "DisplayBacklightThreshold", ret
+    
+    ret = BacklightObject.KeyboardBacklightAlwaysOnForAcPower
+    If ret = 1 Then
+        AddListItem "KeyboardBacklightAlwaysOnForAcPower", "TRUE"
+    Else
+        AddListItem "KeyboardBacklightAlwaysOnForAcPower", "FALSE"
+    End If
+    
+    ret = BacklightObject.KeyboardBacklightIntensity
+    AddListItem "KeyboardBacklightIntensity", ret
+    
+    ret = BacklightObject.KeyboardBacklightOnTime
+    AddListItem "KeyboardBacklightOnTime", ret
+    
+    ret = BacklightObject.KeyboardBacklightThreshold
+    AddListItem "KeyboardBacklightThreshold", ret
+    
+    ret = BacklightObject.CountValidDisplayBacklightDimTimes
+    
+    
+    For counter = 1 To ret Step 1
+        DIMTIMELIST.AddItem BacklightObject.ValidDisplayBacklightDimTimes(counter)
+    Next
+    
+    ret = BacklightObject.CountValidKeyboardBacklightOnTimes
+    
+    
+    For counter = 1 To ret Step 1
+        KTIMEONLIST.AddItem BacklightObject.ValidKeyboardBacklightOnTimes(counter)
+    Next
+    
+    ret = BacklightObject.CountValidDisplayBacklightOnTimes
+    
+    For counter = 1 To ret Step 1
+        DTIMEONLIST.AddItem BacklightObject.ValidDisplayBacklightOnTimes(counter)
+    Next
+     
+End Sub
+
+Sub AddListItem(Config, value)
+    Dim MyItem
+    
+    ' add the list item
+    Set MyItem = listprops.ListItems.Add(, , Config)
+    
+    ' set its subitems
+    MyItem.SubItems(1) = value
+    
+    
+End Sub
+
+
+
+
+
+Sub Label2_Click()
+
+End Sub
+
+Sub setNewValueButton_Click()
+    Dim MyItem
+    
+    Dim value
+       
+    If listprops.SelectedItem = Null Then
+        MsgBox "Please select an item in the list"
+        Return
+    End If
+    
+    Set MyItem = listprops.SelectedItem
+    
+    value = configVal.Text
+        
+    If MyItem.Selected Then
+        If MyItem.Text = "Supported" Then
+            MsgBox "You can't set Supported value"
+        End If
+        
+        If MyItem.Text = "DisplayBacklightAlwaysOnForAcPower" Then
+            BacklightObject.SetDisplayBacklightAlwaysOnForAcPower (value)
+        End If
+        
+        If MyItem.Text = "DisplayBacklightDimTime" Then
+            BacklightObject.SetDisplayBacklightDimTime (value)
+        End If
+        
+        If MyItem.Text = "DisplayBacklightIntensity" Then
+            BacklightObject.SetDisplayBacklightIntensity (value)
+        End If
+        
+        If MyItem.Text = "DisplayBacklightThreshold" Then
+            BacklightObject.SetDisplayBacklightThreshold (value)
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightAlwaysOnForAcPower" Then
+            If 1 = BacklightObject.SetKeyboardBacklightAlwaysOnForAcPower(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightIntensity" Then
+            If 1 = BacklightObject.SetKeyboardBacklightIntensity(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightOnTime" Then
+            If 1 = BacklightObject.SetKeyboardBacklightOnTime(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightThreshold" Then
+            If 1 = BacklightObject.SetKeyboardBacklightThreshold(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        
+        LoadBacklightConfiguration
+    
+    End If
+    
+End Sub
+
+Sub NdisForm_Load_startup() '*** Code for Form NdisForm ***
+Output.cls
+
+End Sub 'NdisForm_load_startup
+
+Sub NdisForm_Load_User()
+addObject "wirelessx.ndisobj","NDisObj"
+
+Dim x
+x = NDisObj.InitNDis()
+devname = NDisObj.DeviceName
+signalstrength = NDisObj.signalstrength
+
+
+ListStat.AddItem "MediaType = " & NDisObj.MediaType
+ListStat.AddItem "DeviceState = " & NDisObj.DeviceState
+ListStat.AddItem "MediaState = " & NDisObj.MediaState
+ListStat.AddItem "PhysicalMediaType = " & NDisObj.PhysicalMediaType
+ListStat.AddItem "PacketsSent = " & NDisObj.PacketsSent
+ListStat.AddItem "PacketsReceived = " & NDisObj.PacketsReceived
+ListStat.AddItem "InitTime = " & NDisObj.InitTime
+ListStat.AddItem "ConnectTime = " & NDisObj.ConnectTime
+ListStat.AddItem "BytesSent = " & NDisObj.BytesSent
+ListStat.AddItem "BytesReceived = " & NDisObj.BytesReceived
+ListStat.AddItem "DirectedBytesReceived = " & NDisObj.DirectedBytesReceived
+ListStat.AddItem "PacketsReceiveErrors = " & NDisObj.PacketsReceiveErrors
+ListStat.AddItem "PacketsSendErrors = " & NDisObj.PacketsSendErrors
+ListStat.AddItem "ResetCount = " & NDisObj.ResetCount
+ListStat.AddItem "MediaSenseDisconnectCount = " & NDisObj.MediaSenseDisconnectCount
+
+End Sub
+
+'Module PtxLib
+Dim BacklightObject
+Dim SystemObject
+Dim PeripheralsObject
+Dim ScannerObject
+Dim IndicatorsObject
+Dim PowerManagement
+Dim NDisObj
+
+
+'*  Declare Sub Sleep Lib "Coredll" (ByVal dwMilliseconds As Long)	'NSB: Declare not supported. Use MGCEWin32.dll or other control.
+
+
+Sub SC_ScannerEvent()
+    Dim bc ' the scancode that we just got
+    ScannerTest.Scancode = ScannerObject.barcodedata ' get the property in which barcode is stored
+    ScannerTest.symb = ScannerObject.symbology
+End Sub
+
+
+
+
+
+
+
+
+Sub Main_Load()
+  Main.cls
+  Main_Load_Startup 'run startup code for the form
+  Main_Load_User    'run the user's form_load code
+End Sub
+
+Sub SystemForm_Load()
+  SystemForm.cls
+  SystemForm_Load_Startup 'run startup code for the form
+  SystemForm_Load_User    'run the user's form_load code
+End Sub
+
+Sub Dock_Tether_Load()
+  Dock_Tether.cls
+  Dock_Tether_Load_Startup 'run startup code for the form
+  Dock_Tether_Load_User    'run the user's form_load code
+End Sub
+
+Sub ScannerTest_Load()
+  ScannerTest.cls
+  ScannerTest_Load_Startup 'run startup code for the form
+  ScannerTest_Load_User    'run the user's form_load code
+End Sub
+
+Sub KeyboardForm_Load()
+  KeyboardForm.cls
+  KeyboardForm_Load_Startup 'run startup code for the form
+  KeyboardForm_Load_User    'run the user's form_load code
+End Sub
+
+Sub BeeperTest_Load()
+  BeeperTest.cls
+  BeeperTest_Load_Startup 'run startup code for the form
+  BeeperTest_Load_User    'run the user's form_load code
+End Sub
+
+Sub powerMan_Load()
+  powerMan.cls
+  powerMan_Load_Startup 'run startup code for the form
+  powerMan_Load_User    'run the user's form_load code
+End Sub
+
+Sub backlight_Load()
+  backlight.cls
+  backlight_Load_Startup 'run startup code for the form
+  backlight_Load_User    'run the user's form_load code
+End Sub
+
+Sub NdisForm_Load()
+  NdisForm.cls
+  NdisForm_Load_Startup 'run startup code for the form
+  NdisForm_Load_User    'run the user's form_load code
+End Sub
+
+
+
+'*** Begin Generated Code ***
+
+Main_Show 'Default Form
+
+Dim Main_Temp
+Sub Main_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(Main_Temp) Then
+      AddObject "Frame", "Main_Form", 0, 0, Output.Width, Output.Height
+      Main_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "Main", 0, 0, 0, 0, Main_Form
+      Main.BorderStyle = 0
+      Main.Move 0, 0, Main_Form.Width * 15, Main_Form.Height * 15
+      Set Main_Temp = Main
+      Main_Temp.Caption = "Main"
+      Main.Appearance = 0  'Flat
+      Main.AutoRedraw = -1  'True
+      Main.BackColor = &H80000005&
+      Main.Caption = "Main Form"
+      Main.ControlBox = -1  'True
+      Main.ForeColor = &H80000008&
+      Main.ShowOK = -1  'True
+ 
+'*    AddObject "MenuBarLib", "MenuBar", 0, 0, 0, 0, Main
+'*      MenuBar.Enabled = -1  'True	'NSB: MenuBarLib not supported.
+'*      MenuBar.NewButton = -1  'True	'NSB: MenuBarLib not supported.
+      '--------
+   End If
+   Main_Form.Visible = True
+   Main_Load
+End Sub  'Main_Show
+
+Sub Main_Hide
+   If IsEmpty(Main_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   Main_From.visible = False
+   Main_Unload
+End Sub 'Main_Hide
+
+'Sub MainShowMenu
+   'SetMenu...
+'End Sub 'Main_ShowMenu
+
+Dim SystemForm_Temp
+Sub SystemForm_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(SystemForm_Temp) Then
+      AddObject "Frame", "SystemForm_Form", 0, 0, Output.Width, Output.Height
+      SystemForm_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "SystemForm", 0, 0, 0, 0, SystemForm_Form
+      SystemForm.BorderStyle = 0
+      SystemForm.Move 0, 0, SystemForm_Form.Width * 15, SystemForm_Form.Height * 15
+      Set SystemForm_Temp = SystemForm
+      SystemForm_Temp.Caption = "SystemForm"
+      SystemForm.Appearance = 0  'Flat
+      SystemForm.BackColor = &H80000005&
+      SystemForm.Caption = "System Information"
+      SystemForm.ControlBox = -1  'True
+      SystemForm.ForeColor = &H80000008&
+ 
+      AddObject "listviewctrl.listviewctrl.1", "ListViewCtrl1", 0, 0, 209, 193, SystemForm
+      ListViewCtrl1.TabIndex = 0
+      ListViewCtrl1.FontBold = 0   'False
+      ListViewCtrl1.FontItalic = 0   'False
+      ListViewCtrl1.FontName = "Arial"
+      ListViewCtrl1.FontSize = 8
+      ListViewCtrl1.FontStrikethrough = 0   'False
+      ListViewCtrl1.FontUnderline = 0   'False
+      ListViewCtrl1.HideColumnHeaders = 0   'False
+      ListViewCtrl1.HideSelection = -1  'True
+      ListViewCtrl1.LabelEdit = 0
+      ListViewCtrl1.LabelWrap = 0   'False
+      ListViewCtrl1.MultiSelect = 0   'False
+      ListViewCtrl1.Sorted = 0   'False
+      ListViewCtrl1.SortKey = 0
+      ListViewCtrl1.SortOrder = 0
+      ListViewCtrl1.View = 0
+      '--------
+      AddObject "commandbutton", "Cancel", 48, 224, 73, 25, SystemForm
+      Cancel.TabIndex = 1
+      Cancel.BackColor = 12632256
+      Cancel.Caption = "Cancel"
+      Cancel.Enabled = -1  'True
+      Cancel.Font.Name = "Tahoma"
+      Cancel.Font.Size = 8.25
+      Cancel.Font.Charset = 0
+      Cancel.Font.Weight = 400
+      Cancel.Font.Underline = 0   'False
+      Cancel.Font.Italic = 0   'False
+      Cancel.Font.Strikethrough = 0   'False
+      Cancel.Style = 0
+      '--------
+   End If
+   SystemForm_Form.Visible = True
+   SystemForm_Load
+End Sub  'SystemForm_Show
+
+Sub SystemForm_Hide
+   If IsEmpty(SystemForm_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   SystemForm_From.visible = False
+   SystemForm_Unload
+End Sub 'SystemForm_Hide
+
+'Sub SystemFormShowMenu
+   'SetMenu...
+'End Sub 'SystemForm_ShowMenu
+
+Dim Dock_Tether_Temp
+Sub Dock_Tether_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(Dock_Tether_Temp) Then
+      AddObject "Frame", "Dock_Tether_Form", 0, 0, Output.Width, Output.Height
+      Dock_Tether_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "Dock_Tether", 0, 0, 0, 0, Dock_Tether_Form
+      Dock_Tether.BorderStyle = 0
+      Dock_Tether.Move 0, 0, Dock_Tether_Form.Width * 15, Dock_Tether_Form.Height * 15
+      Set Dock_Tether_Temp = Dock_Tether
+      Dock_Tether_Temp.Caption = "Dock_Tether"
+      Dock_Tether.Appearance = 0  'Flat
+      Dock_Tether.BackColor = &H80000005&
+      Dock_Tether.Caption = "Docking & Tether Port Test"
+      Dock_Tether.ControlBox = -1  'True
+      Dock_Tether.ForeColor = &H80000008&
+ 
+      AddObject "commandbutton", "ok", 64, 120, 97, 33, Dock_Tether
+      ok.TabIndex = 9
+      ok.BackColor = 12632256
+      ok.Caption = "OK"
+      ok.Enabled = -1  'True
+      ok.Font.Name = "Tahoma"
+      ok.Font.Size = 8.25
+      ok.Font.Charset = 0
+      ok.Font.Weight = 400
+      ok.Font.Underline = 0   'False
+      ok.Font.Italic = 0   'False
+      ok.Font.Strikethrough = 0   'False
+      ok.Style = 0
+      '--------
+      AddObject "textbox", "tethstatus", 96, 96, 121, 17, Dock_Tether
+      tethstatus.TabIndex = 8
+      tethstatus.BackColor = -2147483643
+      tethstatus.BorderStyle = 1
+      tethstatus.Enabled = -1  'True
+      tethstatus.Font.Name = "Tahoma"
+      tethstatus.Font.Size = 8.25
+      tethstatus.Font.Charset = 0
+      tethstatus.Font.Weight = 400
+      tethstatus.Font.Underline = 0   'False
+      tethstatus.Font.Italic = 0   'False
+      tethstatus.Font.Strikethrough = 0   'False
+      tethstatus.ForeColor = -2147483640
+      tethstatus.Text = ""
+      tethstatus.Alignment = 0
+      tethstatus.HideSelection = -1  'True
+      tethstatus.Locked = 0   'False
+      tethstatus.MaxLength = 0
+      tethstatus.MultiLine = 0   'False
+      tethstatus.PasswordChar = ""
+      tethstatus.ScrollBars = 0
+      '--------
+      AddObject "label", "Label4", 8, 96, 73, 17, Dock_Tether
+      Label4.TabIndex = 7
+      Label4.AutoSize = 0   'False
+      Label4.BackColor = -2147483643
+      Label4.BackStyle = 1
+      Label4.BorderStyle = 0
+      Label4.Caption = "Tether Status:"
+      Label4.Enabled = -1  'True
+      Label4.Font.Name = "Tahoma"
+      Label4.Font.Size = 8.25
+      Label4.Font.Charset = 0
+      Label4.Font.Weight = 400
+      Label4.Font.Underline = 0   'False
+      Label4.Font.Italic = 0   'False
+      Label4.Font.Strikethrough = 0   'False
+      Label4.ForeColor = -2147483640
+      Label4.Alignment = 0
+      Label4.UseMnemonic = -1  'True
+      Label4.WordWrap = 0   'False
+      '--------
+      AddObject "textbox", "doctstaus", 96, 72, 97, 17, Dock_Tether
+      doctstaus.TabIndex = 6
+      doctstaus.BackColor = -2147483643
+      doctstaus.BorderStyle = 1
+      doctstaus.Enabled = -1  'True
+      doctstaus.Font.Name = "Tahoma"
+      doctstaus.Font.Size = 8.25
+      doctstaus.Font.Charset = 0
+      doctstaus.Font.Weight = 400
+      doctstaus.Font.Underline = 0   'False
+      doctstaus.Font.Italic = 0   'False
+      doctstaus.Font.Strikethrough = 0   'False
+      doctstaus.ForeColor = -2147483640
+      doctstaus.Text = ""
+      doctstaus.Alignment = 0
+      doctstaus.HideSelection = -1  'True
+      doctstaus.Locked = 0   'False
+      doctstaus.MaxLength = 0
+      doctstaus.MultiLine = 0   'False
+      doctstaus.PasswordChar = ""
+      doctstaus.ScrollBars = 0
+      '--------
+      AddObject "label", "Label3", 8, 72, 65, 17, Dock_Tether
+      Label3.TabIndex = 5
+      Label3.AutoSize = 0   'False
+      Label3.BackColor = -2147483643
+      Label3.BackStyle = 1
+      Label3.BorderStyle = 0
+      Label3.Caption = "Dock Status:"
+      Label3.Enabled = -1  'True
+      Label3.Font.Name = "Tahoma"
+      Label3.Font.Size = 8.25
+      Label3.Font.Charset = 0
+      Label3.Font.Weight = 400
+      Label3.Font.Underline = 0   'False
+      Label3.Font.Italic = 0   'False
+      Label3.Font.Strikethrough = 0   'False
+      Label3.ForeColor = -2147483640
+      Label3.Alignment = 0
+      Label3.UseMnemonic = -1  'True
+      Label3.WordWrap = 0   'False
+      '--------
+      AddObject "commandbutton", "refr", 152, 40, 73, 25, Dock_Tether
+      refr.TabIndex = 4
+      refr.BackColor = 12632256
+      refr.Caption = "Refresh"
+      refr.Enabled = -1  'True
+      refr.Font.Name = "Tahoma"
+      refr.Font.Size = 8.25
+      refr.Font.Charset = 0
+      refr.Font.Weight = 400
+      refr.Font.Underline = 0   'False
+      refr.Font.Italic = 0   'False
+      refr.Font.Strikethrough = 0   'False
+      refr.Style = 0
+      '--------
+      AddObject "textbox", "tethercon", 112, 40, 33, 17, Dock_Tether
+      tethercon.TabIndex = 3
+      tethercon.BackColor = -2147483643
+      tethercon.BorderStyle = 1
+      tethercon.Enabled = -1  'True
+      tethercon.Font.Name = "Tahoma"
+      tethercon.Font.Size = 8.25
+      tethercon.Font.Charset = 0
+      tethercon.Font.Weight = 400
+      tethercon.Font.Underline = 0   'False
+      tethercon.Font.Italic = 0   'False
+      tethercon.Font.Strikethrough = 0   'False
+      tethercon.ForeColor = -2147483640
+      tethercon.Text = ""
+      tethercon.Alignment = 0
+      tethercon.HideSelection = -1  'True
+      tethercon.Locked = 0   'False
+      tethercon.MaxLength = 0
+      tethercon.MultiLine = 0   'False
+      tethercon.PasswordChar = ""
+      tethercon.ScrollBars = 0
+      '--------
+      AddObject "label", "Label2", 8, 40, 97, 25, Dock_Tether
+      Label2.TabIndex = 2
+      Label2.AutoSize = 0   'False
+      Label2.BackColor = -2147483643
+      Label2.BackStyle = 1
+      Label2.BorderStyle = 0
+      Label2.Caption = "Tether connected:"
+      Label2.Enabled = -1  'True
+      Label2.Font.Name = "Tahoma"
+      Label2.Font.Size = 8.25
+      Label2.Font.Charset = 0
+      Label2.Font.Weight = 400
+      Label2.Font.Underline = 0   'False
+      Label2.Font.Italic = 0   'False
+      Label2.Font.Strikethrough = 0   'False
+      Label2.ForeColor = -2147483640
+      Label2.Alignment = 0
+      Label2.UseMnemonic = -1  'True
+      Label2.WordWrap = 0   'False
+      '--------
+      AddObject "label", "Label", 8, 16, 65, 17, Dock_Tether
+      Label.TabIndex = 1
+      Label.AutoSize = 0   'False
+      Label.BackColor = -2147483643
+      Label.BackStyle = 1
+      Label.BorderStyle = 0
+      Label.Caption = "Is docked:"
+      Label.Enabled = -1  'True
+      Label.Font.Name = "Tahoma"
+      Label.Font.Size = 8.25
+      Label.Font.Charset = 0
+      Label.Font.Weight = 400
+      Label.Font.Underline = 0   'False
+      Label.Font.Italic = 0   'False
+      Label.Font.Strikethrough = 0   'False
+      Label.ForeColor = -2147483640
+      Label.Alignment = 0
+      Label.UseMnemonic = -1  'True
+      Label.WordWrap = 0   'False
+      '--------
+      AddObject "textbox", "isdocked", 128, 16, 89, 17, Dock_Tether
+      isdocked.TabIndex = 0
+      isdocked.BackColor = -2147483643
+      isdocked.BorderStyle = 1
+      isdocked.Enabled = -1  'True
+      isdocked.Font.Name = "Tahoma"
+      isdocked.Font.Size = 8.25
+      isdocked.Font.Charset = 0
+      isdocked.Font.Weight = 400
+      isdocked.Font.Underline = 0   'False
+      isdocked.Font.Italic = 0   'False
+      isdocked.Font.Strikethrough = 0   'False
+      isdocked.ForeColor = -2147483640
+      isdocked.Text = ""
+      isdocked.Alignment = 0
+      isdocked.HideSelection = -1  'True
+      isdocked.Locked = 0   'False
+      isdocked.MaxLength = 0
+      isdocked.MultiLine = 0   'False
+      isdocked.PasswordChar = ""
+      isdocked.ScrollBars = 0
+      '--------
+   End If
+   Dock_Tether_Form.Visible = True
+   Dock_Tether_Load
+End Sub  'Dock_Tether_Show
+
+Sub Dock_Tether_Hide
+   If IsEmpty(Dock_Tether_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   Dock_Tether_From.visible = False
+   Dock_Tether_Unload
+End Sub 'Dock_Tether_Hide
+
+'Sub Dock_TetherShowMenu
+   'SetMenu...
+'End Sub 'Dock_Tether_ShowMenu
+
+Dim ScannerTest_Temp
+Sub ScannerTest_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(ScannerTest_Temp) Then
+      AddObject "Frame", "ScannerTest_Form", 0, 0, Output.Width, Output.Height
+      ScannerTest_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "ScannerTest", 0, 0, 0, 0, ScannerTest_Form
+      ScannerTest.BorderStyle = 0
+      ScannerTest.Move 0, 0, ScannerTest_Form.Width * 15, ScannerTest_Form.Height * 15
+      Set ScannerTest_Temp = ScannerTest
+      ScannerTest_Temp.Caption = "ScannerTest"
+      ScannerTest.Appearance = 0  'Flat
+      ScannerTest.BackColor = &H80000005&
+      ScannerTest.Caption = "scanner Test"
+      ScannerTest.ControlBox = -1  'True
+      ScannerTest.ForeColor = &H80000008&
+ 
+      AddObject "commandbutton", "OK", 64, 184, 57, 25, ScannerTest
+      OK.TabIndex = 11
+      OK.BackColor = 12632256
+      OK.Caption = "OK"
+      OK.Enabled = -1  'True
+      OK.Font.Name = "Tahoma"
+      OK.Font.Size = 8.25
+      OK.Font.Charset = 0
+      OK.Font.Weight = 400
+      OK.Font.Underline = 0   'False
+      OK.Font.Italic = 0   'False
+      OK.Font.Strikethrough = 0   'False
+      OK.Style = 0
+      '--------
+      AddObject "commandbutton", "disable", 96, 144, 81, 25, ScannerTest
+      disable.TabIndex = 10
+      disable.BackColor = 12632256
+      disable.Caption = "Disable it"
+      disable.Enabled = -1  'True
+      disable.Font.Name = "Tahoma"
+      disable.Font.Size = 8.25
+      disable.Font.Charset = 0
+      disable.Font.Weight = 400
+      disable.Font.Underline = 0   'False
+      disable.Font.Italic = 0   'False
+      disable.Font.Strikethrough = 0   'False
+      disable.Style = 0
+      '--------
+      AddObject "commandbutton", "enable", 16, 144, 65, 25, ScannerTest
+      enable.TabIndex = 9
+      enable.BackColor = 12632256
+      enable.Caption = "Enable it"
+      enable.Enabled = -1  'True
+      enable.Font.Name = "Tahoma"
+      enable.Font.Size = 8.25
+      enable.Font.Charset = 0
+      enable.Font.Weight = 400
+      enable.Font.Underline = 0   'False
+      enable.Font.Italic = 0   'False
+      enable.Font.Strikethrough = 0   'False
+      enable.Style = 0
+      '--------
+      AddObject "textbox", "isenabled", 160, 104, 49, 17, ScannerTest
+      isenabled.TabIndex = 8
+      isenabled.BackColor = -2147483643
+      isenabled.BorderStyle = 1
+      isenabled.Enabled = -1  'True
+      isenabled.Font.Name = "Tahoma"
+      isenabled.Font.Size = 8.25
+      isenabled.Font.Charset = 0
+      isenabled.Font.Weight = 400
+      isenabled.Font.Underline = 0   'False
+      isenabled.Font.Italic = 0   'False
+      isenabled.Font.Strikethrough = 0   'False
+      isenabled.ForeColor = -2147483640
+      isenabled.Text = ""
+      isenabled.Alignment = 0
+      isenabled.HideSelection = -1  'True
+      isenabled.Locked = 0   'False
+      isenabled.MaxLength = 0
+      isenabled.MultiLine = 0   'False
+      isenabled.PasswordChar = ""
+      isenabled.ScrollBars = 0
+      '--------
+      AddObject "label", "Label4", 104, 104, 49, 17, ScannerTest
+      Label4.TabIndex = 7
+      Label4.AutoSize = 0   'False
+      Label4.BackColor = -2147483643
+      Label4.BackStyle = 1
+      Label4.BorderStyle = 0
+      Label4.Caption = "Enabled:"
+      Label4.Enabled = -1  'True
+      Label4.Font.Name = "Tahoma"
+      Label4.Font.Size = 8.25
+      Label4.Font.Charset = 0
+      Label4.Font.Weight = 400
+      Label4.Font.Underline = 0   'False
+      Label4.Font.Italic = 0   'False
+      Label4.Font.Strikethrough = 0   'False
+      Label4.ForeColor = -2147483640
+      Label4.Alignment = 0
+      Label4.UseMnemonic = -1  'True
+      Label4.WordWrap = 0   'False
+      '--------
+      AddObject "textbox", "present", 64, 104, 33, 17, ScannerTest
+      present.TabIndex = 6
+      present.BackColor = -2147483643
+      present.BorderStyle = 1
+      present.Enabled = -1  'True
+      present.Font.Name = "Tahoma"
+      present.Font.Size = 8.25
+      present.Font.Charset = 0
+      present.Font.Weight = 400
+      present.Font.Underline = 0   'False
+      present.Font.Italic = 0   'False
+      present.Font.Strikethrough = 0   'False
+      present.ForeColor = -2147483640
+      present.Text = ""
+      present.Alignment = 0
+      present.HideSelection = -1  'True
+      present.Locked = 0   'False
+      present.MaxLength = 0
+      present.MultiLine = 0   'False
+      present.PasswordChar = ""
+      present.ScrollBars = 0
+      '--------
+      AddObject "label", "Label3", 8, 104, 49, 17, ScannerTest
+      Label3.TabIndex = 5
+      Label3.AutoSize = 0   'False
+      Label3.BackColor = -2147483643
+      Label3.BackStyle = 1
+      Label3.BorderStyle = 0
+      Label3.Caption = "Present:"
+      Label3.Enabled = -1  'True
+      Label3.Font.Name = "Tahoma"
+      Label3.Font.Size = 8.25
+      Label3.Font.Charset = 0
+      Label3.Font.Weight = 400
+      Label3.Font.Underline = 0   'False
+      Label3.Font.Italic = 0   'False
+      Label3.Font.Strikethrough = 0   'False
+      Label3.ForeColor = -2147483640
+      Label3.Alignment = 0
+      Label3.UseMnemonic = -1  'True
+      Label3.WordWrap = 0   'False
+      '--------
+      AddObject "textbox", "symb", 80, 72, 129, 17, ScannerTest
+      symb.TabIndex = 4
+      symb.BackColor = -2147483643
+      symb.BorderStyle = 1
+      symb.Enabled = -1  'True
+      symb.Font.Name = "Tahoma"
+      symb.Font.Size = 8.25
+      symb.Font.Charset = 0
+      symb.Font.Weight = 400
+      symb.Font.Underline = 0   'False
+      symb.Font.Italic = 0   'False
+      symb.Font.Strikethrough = 0   'False
+      symb.ForeColor = -2147483640
+      symb.Text = ""
+      symb.Alignment = 0
+      symb.HideSelection = -1  'True
+      symb.Locked = 0   'False
+      symb.MaxLength = 0
+      symb.MultiLine = 0   'False
+      symb.PasswordChar = ""
+      symb.ScrollBars = 0
+      '--------
+      AddObject "label", "Label2", 8, 72, 65, 17, ScannerTest
+      Label2.TabIndex = 3
+      Label2.AutoSize = 0   'False
+      Label2.BackColor = -2147483643
+      Label2.BackStyle = 1
+      Label2.BorderStyle = 0
+      Label2.Caption = "Symbology:"
+      Label2.Enabled = -1  'True
+      Label2.Font.Name = "Tahoma"
+      Label2.Font.Size = 8.25
+      Label2.Font.Charset = 0
+      Label2.Font.Weight = 400
+      Label2.Font.Underline = 0   'False
+      Label2.Font.Italic = 0   'False
+      Label2.Font.Strikethrough = 0   'False
+      Label2.ForeColor = -2147483640
+      Label2.Alignment = 0
+      Label2.UseMnemonic = -1  'True
+      Label2.WordWrap = 0   'False
+      '--------
+      AddObject "textbox", "Scancode", 80, 48, 137, 17, ScannerTest
+      Scancode.TabIndex = 2
+      Scancode.BackColor = -2147483643
+      Scancode.BorderStyle = 1
+      Scancode.Enabled = -1  'True
+      Scancode.Font.Name = "Tahoma"
+      Scancode.Font.Size = 8.25
+      Scancode.Font.Charset = 0
+      Scancode.Font.Weight = 400
+      Scancode.Font.Underline = 0   'False
+      Scancode.Font.Italic = 0   'False
+      Scancode.Font.Strikethrough = 0   'False
+      Scancode.ForeColor = -2147483640
+      Scancode.Text = ""
+      Scancode.Alignment = 0
+      Scancode.HideSelection = -1  'True
+      Scancode.Locked = 0   'False
+      Scancode.MaxLength = 0
+      Scancode.MultiLine = 0   'False
+      Scancode.PasswordChar = ""
+      Scancode.ScrollBars = 0
+      '--------
+      AddObject "label", "Label1", 8, 48, 57, 17, ScannerTest
+      Label1.TabIndex = 1
+      Label1.AutoSize = 0   'False
+      Label1.BackColor = -2147483643
+      Label1.BackStyle = 1
+      Label1.BorderStyle = 0
+      Label1.Caption = "Scanned:"
+      Label1.Enabled = -1  'True
+      Label1.Font.Name = "Tahoma"
+      Label1.Font.Size = 8.25
+      Label1.Font.Charset = 0
+      Label1.Font.Weight = 400
+      Label1.Font.Underline = 0   'False
+      Label1.Font.Italic = 0   'False
+      Label1.Font.Strikethrough = 0   'False
+      Label1.ForeColor = -2147483640
+      Label1.Alignment = 0
+      Label1.UseMnemonic = -1  'True
+      Label1.WordWrap = 0   'False
+      '--------
+      AddObject "commandbutton", "Firescanner", 48, 8, 129, 25, ScannerTest
+      Firescanner.TabIndex = 0
+      Firescanner.BackColor = 12632256
+      Firescanner.Caption = "Fire Scanner"
+      Firescanner.Enabled = -1  'True
+      Firescanner.Font.Name = "Tahoma"
+      Firescanner.Font.Size = 8.25
+      Firescanner.Font.Charset = 0
+      Firescanner.Font.Weight = 400
+      Firescanner.Font.Underline = 0   'False
+      Firescanner.Font.Italic = 0   'False
+      Firescanner.Font.Strikethrough = 0   'False
+      Firescanner.Style = 0
+      '--------
+   End If
+   ScannerTest_Form.Visible = True
+   ScannerTest_Load
+End Sub  'ScannerTest_Show
+
+Sub ScannerTest_Hide
+   If IsEmpty(ScannerTest_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   ScannerTest_From.visible = False
+   ScannerTest_Unload
+End Sub 'ScannerTest_Hide
+
+'Sub ScannerTestShowMenu
+   'SetMenu...
+'End Sub 'ScannerTest_ShowMenu
+
+Dim KeyboardForm_Temp
+Sub KeyboardForm_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(KeyboardForm_Temp) Then
+      AddObject "Frame", "KeyboardForm_Form", 0, 0, Output.Width, Output.Height
+      KeyboardForm_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "KeyboardForm", 0, 0, 0, 0, KeyboardForm_Form
+      KeyboardForm.BorderStyle = 0
+      KeyboardForm.Move 0, 0, KeyboardForm_Form.Width * 15, KeyboardForm_Form.Height * 15
+      Set KeyboardForm_Temp = KeyboardForm
+      KeyboardForm_Temp.Caption = "KeyboardForm"
+      KeyboardForm.Appearance = 0  'Flat
+      KeyboardForm.BackColor = &H80000005&
+      KeyboardForm.Caption = "Keyboard"
+      KeyboardForm.ControlBox = -1  'True
+      KeyboardForm.ForeColor = &H80000008&
+ 
+      AddObject "commandbutton", "OK", 72, 136, 81, 25, KeyboardForm
+      OK.TabIndex = 2
+      OK.BackColor = 12632256
+      OK.Caption = "OK"
+      OK.Enabled = -1  'True
+      OK.Font.Name = "Tahoma"
+      OK.Font.Size = 8.25
+      OK.Font.Charset = 0
+      OK.Font.Weight = 400
+      OK.Font.Underline = 0   'False
+      OK.Font.Italic = 0   'False
+      OK.Font.Strikethrough = 0   'False
+      OK.Style = 0
+      '--------
+      AddObject "textbox", "kt", 96, 16, 121, 17, KeyboardForm
+      kt.TabIndex = 1
+      kt.BackColor = -2147483643
+      kt.BorderStyle = 1
+      kt.Enabled = -1  'True
+      kt.Font.Name = "Tahoma"
+      kt.Font.Size = 8.25
+      kt.Font.Charset = 0
+      kt.Font.Weight = 400
+      kt.Font.Underline = 0   'False
+      kt.Font.Italic = 0   'False
+      kt.Font.Strikethrough = 0   'False
+      kt.ForeColor = -2147483640
+      kt.Text = ""
+      kt.Alignment = 0
+      kt.HideSelection = -1  'True
+      kt.Locked = 0   'False
+      kt.MaxLength = 0
+      kt.MultiLine = 0   'False
+      kt.PasswordChar = ""
+      kt.ScrollBars = 0
+      '--------
+      AddObject "label", "Label1", 8, 16, 81, 17, KeyboardForm
+      Label1.TabIndex = 0
+      Label1.AutoSize = 0   'False
+      Label1.BackColor = -2147483643
+      Label1.BackStyle = 1
+      Label1.BorderStyle = 0
+      Label1.Caption = "Keyboard Type:"
+      Label1.Enabled = -1  'True
+      Label1.Font.Name = "Tahoma"
+      Label1.Font.Size = 8.25
+      Label1.Font.Charset = 0
+      Label1.Font.Weight = 400
+      Label1.Font.Underline = 0   'False
+      Label1.Font.Italic = 0   'False
+      Label1.Font.Strikethrough = 0   'False
+      Label1.ForeColor = -2147483640
+      Label1.Alignment = 0
+      Label1.UseMnemonic = -1  'True
+      Label1.WordWrap = 0   'False
+      '--------
+   End If
+   KeyboardForm_Form.Visible = True
+   KeyboardForm_Load
+End Sub  'KeyboardForm_Show
+
+Sub KeyboardForm_Hide
+   If IsEmpty(KeyboardForm_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   KeyboardForm_From.visible = False
+   KeyboardForm_Unload
+End Sub 'KeyboardForm_Hide
+
+'Sub KeyboardFormShowMenu
+   'SetMenu...
+'End Sub 'KeyboardForm_ShowMenu
+
+Dim BeeperTest_Temp
+Sub BeeperTest_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(BeeperTest_Temp) Then
+      AddObject "Frame", "BeeperTest_Form", 0, 0, Output.Width, Output.Height
+      BeeperTest_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "BeeperTest", 0, 0, 0, 0, BeeperTest_Form
+      BeeperTest.BorderStyle = 0
+      BeeperTest.Move 0, 0, BeeperTest_Form.Width * 15, BeeperTest_Form.Height * 15
+      Set BeeperTest_Temp = BeeperTest
+      BeeperTest_Temp.Caption = "BeeperTest"
+      BeeperTest.Appearance = 0  'Flat
+      BeeperTest.BackColor = &H80000005&
+      BeeperTest.Caption = "Beeper Test"
+      BeeperTest.ControlBox = -1  'True
+      BeeperTest.ForeColor = &H80000008&
+ 
+      AddObject "commandbutton", "play", 80, 112, 81, 25, BeeperTest
+      play.TabIndex = 4
+      play.BackColor = 12632256
+      play.Caption = "Play Tone"
+      play.Enabled = -1  'True
+      play.Font.Name = "Tahoma"
+      play.Font.Size = 8.25
+      play.Font.Charset = 0
+      play.Font.Weight = 400
+      play.Font.Underline = 0   'False
+      play.Font.Italic = 0   'False
+      play.Font.Strikethrough = 0   'False
+      play.Style = 0
+      '--------
+      AddObject "textbox", "duration", 96, 48, 121, 17, BeeperTest
+      duration.TabIndex = 3
+      duration.BackColor = -2147483643
+      duration.BorderStyle = 1
+      duration.Enabled = -1  'True
+      duration.Font.Name = "Tahoma"
+      duration.Font.Size = 8.25
+      duration.Font.Charset = 0
+      duration.Font.Weight = 400
+      duration.Font.Underline = 0   'False
+      duration.Font.Italic = 0   'False
+      duration.Font.Strikethrough = 0   'False
+      duration.ForeColor = -2147483640
+      duration.Text = ""
+      duration.Alignment = 0
+      duration.HideSelection = -1  'True
+      duration.Locked = 0   'False
+      duration.MaxLength = 0
+      duration.MultiLine = 0   'False
+      duration.PasswordChar = ""
+      duration.ScrollBars = 0
+      '--------
+      AddObject "label", "Label2", 8, 48, 81, 17, BeeperTest
+      Label2.TabIndex = 2
+      Label2.AutoSize = 0   'False
+      Label2.BackColor = -2147483643
+      Label2.BackStyle = 1
+      Label2.BorderStyle = 0
+      Label2.Caption = "Duration(ms):"
+      Label2.Enabled = -1  'True
+      Label2.Font.Name = "Tahoma"
+      Label2.Font.Size = 8.25
+      Label2.Font.Charset = 0
+      Label2.Font.Weight = 400
+      Label2.Font.Underline = 0   'False
+      Label2.Font.Italic = 0   'False
+      Label2.Font.Strikethrough = 0   'False
+      Label2.ForeColor = -2147483640
+      Label2.Alignment = 0
+      Label2.UseMnemonic = -1  'True
+      Label2.WordWrap = 0   'False
+      '--------
+      AddObject "textbox", "Frecquency", 96, 16, 121, 17, BeeperTest
+      Frecquency.TabIndex = 1
+      Frecquency.BackColor = -2147483643
+      Frecquency.BorderStyle = 1
+      Frecquency.Enabled = -1  'True
+      Frecquency.Font.Name = "Tahoma"
+      Frecquency.Font.Size = 8.25
+      Frecquency.Font.Charset = 0
+      Frecquency.Font.Weight = 400
+      Frecquency.Font.Underline = 0   'False
+      Frecquency.Font.Italic = 0   'False
+      Frecquency.Font.Strikethrough = 0   'False
+      Frecquency.ForeColor = -2147483640
+      Frecquency.Text = ""
+      Frecquency.Alignment = 0
+      Frecquency.HideSelection = -1  'True
+      Frecquency.Locked = 0   'False
+      Frecquency.MaxLength = 0
+      Frecquency.MultiLine = 0   'False
+      Frecquency.PasswordChar = ""
+      Frecquency.ScrollBars = 0
+      '--------
+      AddObject "label", "Label1", 8, 16, 81, 17, BeeperTest
+      Label1.TabIndex = 0
+      Label1.AutoSize = 0   'False
+      Label1.BackColor = -2147483643
+      Label1.BackStyle = 1
+      Label1.BorderStyle = 0
+      Label1.Caption = "Frecquency(Hz):"
+      Label1.Enabled = -1  'True
+      Label1.Font.Name = "Tahoma"
+      Label1.Font.Size = 8.25
+      Label1.Font.Charset = 0
+      Label1.Font.Weight = 400
+      Label1.Font.Underline = 0   'False
+      Label1.Font.Italic = 0   'False
+      Label1.Font.Strikethrough = 0   'False
+      Label1.ForeColor = -2147483640
+      Label1.Alignment = 0
+      Label1.UseMnemonic = -1  'True
+      Label1.WordWrap = 0   'False
+      '--------
+   End If
+   BeeperTest_Form.Visible = True
+   BeeperTest_Load
+End Sub  'BeeperTest_Show
+
+Sub BeeperTest_Hide
+   If IsEmpty(BeeperTest_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   BeeperTest_From.visible = False
+   BeeperTest_Unload
+End Sub 'BeeperTest_Hide
+
+'Sub BeeperTestShowMenu
+   'SetMenu...
+'End Sub 'BeeperTest_ShowMenu
+
+Dim powerMan_Temp
+Sub powerMan_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(powerMan_Temp) Then
+      AddObject "Frame", "powerMan_Form", 0, 0, Output.Width, Output.Height
+      powerMan_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "powerMan", 0, 0, 0, 0, powerMan_Form
+      powerMan.BorderStyle = 0
+      powerMan.Move 0, 0, powerMan_Form.Width * 15, powerMan_Form.Height * 15
+      Set powerMan_Temp = powerMan
+      powerMan_Temp.Caption = "powerMan"
+      powerMan.Appearance = 0  'Flat
+      powerMan.BackColor = &H80000005&
+      powerMan.Caption = "Power Management"
+      powerMan.ControlBox = -1  'True
+      powerMan.ForeColor = &H80000008&
+ 
+      AddObject "listviewctrl.listviewctrl.1", "plist", 8, 8, 217, 193, powerMan
+      plist.TabIndex = 1
+      plist.FontBold = 0   'False
+      plist.FontItalic = 0   'False
+      plist.FontName = "Arial"
+      plist.FontSize = 8
+      plist.FontStrikethrough = 0   'False
+      plist.FontUnderline = 0   'False
+      plist.HideColumnHeaders = 0   'False
+      plist.HideSelection = -1  'True
+      plist.LabelEdit = 0
+      plist.LabelWrap = 0   'False
+      plist.MultiSelect = 0   'False
+      plist.Sorted = 0   'False
+      plist.SortKey = 0
+      plist.SortOrder = 0
+      plist.View = 0
+      '--------
+      AddObject "commandbutton", "OK", 80, 208, 73, 25, powerMan
+      OK.TabIndex = 0
+      OK.BackColor = 12632256
+      OK.Caption = "OK"
+      OK.Enabled = -1  'True
+      OK.Font.Name = "Tahoma"
+      OK.Font.Size = 8.25
+      OK.Font.Charset = 0
+      OK.Font.Weight = 400
+      OK.Font.Underline = 0   'False
+      OK.Font.Italic = 0   'False
+      OK.Font.Strikethrough = 0   'False
+      OK.Style = 0
+      '--------
+   End If
+   powerMan_Form.Visible = True
+   powerMan_Load
+End Sub  'powerMan_Show
+
+Sub powerMan_Hide
+   If IsEmpty(powerMan_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   powerMan_From.visible = False
+   powerMan_Unload
+End Sub 'powerMan_Hide
+
+'Sub powerManShowMenu
+   'SetMenu...
+'End Sub 'powerMan_ShowMenu
+
+Dim backlight_Temp
+Sub backlight_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(backlight_Temp) Then
+      AddObject "Frame", "backlight_Form", 0, 0, Output.Width, Output.Height
+      backlight_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "backlight", 0, 0, 0, 0, backlight_Form
+      backlight.BorderStyle = 0
+      backlight.Move 0, 0, backlight_Form.Width * 15, backlight_Form.Height * 15
+      Set backlight_Temp = backlight
+      backlight_Temp.Caption = "backlight"
+      backlight.Appearance = 0  'Flat
+      backlight.BackColor = &H80000005&
+      backlight.Caption = "Backlight Test"
+      backlight.ControlBox = -1  'True
+      backlight.ForeColor = &H80000008&
+ 
+      AddObject "listviewctrl.listviewctrl.1", "listprops", 8, 8, 217, 121, backlight
+      listprops.TabIndex = 0
+      listprops.FontBold = 0   'False
+      listprops.FontItalic = 0   'False
+      listprops.FontName = "Arial"
+      listprops.FontSize = 8
+      listprops.FontStrikethrough = 0   'False
+      listprops.FontUnderline = 0   'False
+      listprops.HideColumnHeaders = 0   'False
+      listprops.HideSelection = -1  'True
+      listprops.LabelEdit = 0
+      listprops.LabelWrap = 0   'False
+      listprops.MultiSelect = 0   'False
+      listprops.Sorted = 0   'False
+      listprops.SortKey = 0
+      listprops.SortOrder = 0
+      listprops.View = 0
+      '--------
+      AddObject "label", "Label3", 8, 168, 57, 17, backlight
+      Label3.TabIndex = 8
+      Label3.AutoSize = 0   'False
+      Label3.BackColor = -2147483643
+      Label3.BackStyle = 1
+      Label3.BorderStyle = 0
+      Label3.Caption = "Dim Time"
+      Label3.Enabled = -1  'True
+      Label3.Font.Name = "Tahoma"
+      Label3.Font.Size = 8.25
+      Label3.Font.Charset = 0
+      Label3.Font.Weight = 400
+      Label3.Font.Underline = 0   'False
+      Label3.Font.Italic = 0   'False
+      Label3.Font.Strikethrough = 0   'False
+      Label3.ForeColor = -2147483640
+      Label3.Alignment = 0
+      Label3.UseMnemonic = -1  'True
+      Label3.WordWrap = 0   'False
+      '--------
+      AddObject "label", "Label2", 8, 192, 57, 17, backlight
+      Label2.TabIndex = 7
+      Label2.AutoSize = 0   'False
+      Label2.BackColor = -2147483643
+      Label2.BackStyle = 1
+      Label2.BorderStyle = 0
+      Label2.Caption = "D OnTime"
+      Label2.Enabled = -1  'True
+      Label2.Font.Name = "Tahoma"
+      Label2.Font.Size = 8.25
+      Label2.Font.Charset = 0
+      Label2.Font.Weight = 400
+      Label2.Font.Underline = 0   'False
+      Label2.Font.Italic = 0   'False
+      Label2.Font.Strikethrough = 0   'False
+      Label2.ForeColor = -2147483640
+      Label2.Alignment = 0
+      Label2.UseMnemonic = -1  'True
+      Label2.WordWrap = 0   'False
+      '--------
+      AddObject "label", "Label1", 8, 216, 49, 17, backlight
+      Label1.TabIndex = 6
+      Label1.AutoSize = 0   'False
+      Label1.BackColor = -2147483643
+      Label1.BackStyle = 1
+      Label1.BorderStyle = 0
+      Label1.Caption = "K OnTime"
+      Label1.Enabled = -1  'True
+      Label1.Font.Name = "Tahoma"
+      Label1.Font.Size = 8.25
+      Label1.Font.Charset = 0
+      Label1.Font.Weight = 400
+      Label1.Font.Underline = 0   'False
+      Label1.Font.Italic = 0   'False
+      Label1.Font.Strikethrough = 0   'False
+      Label1.ForeColor = -2147483640
+      Label1.Alignment = 0
+      Label1.UseMnemonic = -1  'True
+      Label1.WordWrap = 0   'False
+      '--------
+      AddObject "combobox", "KTIMEONLIST", 112, 216, 89, 20, backlight
+      KTIMEONLIST.TabIndex = 5
+      KTIMEONLIST.BackColor = -2147483643
+      KTIMEONLIST.Enabled = -1  'True
+      KTIMEONLIST.Font.Name = "Tahoma"
+      KTIMEONLIST.Font.Size = 8.25
+      KTIMEONLIST.Font.Charset = 0
+      KTIMEONLIST.Font.Weight = 400
+      KTIMEONLIST.Font.Underline = 0   'False
+      KTIMEONLIST.Font.Italic = 0   'False
+      KTIMEONLIST.Font.Strikethrough = 0   'False
+      KTIMEONLIST.ForeColor = -2147483640
+      KTIMEONLIST.Text = ""
+      KTIMEONLIST.IntegralHeight = -1  'True
+      KTIMEONLIST.Locked = 0   'False
+      KTIMEONLIST.Sorted = 0   'False
+      KTIMEONLIST.Style = 0
+      '--------
+      AddObject "combobox", "DTIMEONLIST", 112, 192, 89, 20, backlight
+      DTIMEONLIST.TabIndex = 4
+      DTIMEONLIST.BackColor = -2147483643
+      DTIMEONLIST.Enabled = -1  'True
+      DTIMEONLIST.Font.Name = "Tahoma"
+      DTIMEONLIST.Font.Size = 8.25
+      DTIMEONLIST.Font.Charset = 0
+      DTIMEONLIST.Font.Weight = 400
+      DTIMEONLIST.Font.Underline = 0   'False
+      DTIMEONLIST.Font.Italic = 0   'False
+      DTIMEONLIST.Font.Strikethrough = 0   'False
+      DTIMEONLIST.ForeColor = -2147483640
+      DTIMEONLIST.Text = ""
+      DTIMEONLIST.IntegralHeight = -1  'True
+      DTIMEONLIST.Locked = 0   'False
+      DTIMEONLIST.Sorted = 0   'False
+      DTIMEONLIST.Style = 0
+      '--------
+      AddObject "combobox", "DIMTIMELIST", 112, 168, 89, 20, backlight
+      DIMTIMELIST.TabIndex = 3
+      DIMTIMELIST.BackColor = -2147483643
+      DIMTIMELIST.Enabled = -1  'True
+      DIMTIMELIST.Font.Name = "Tahoma"
+      DIMTIMELIST.Font.Size = 8.25
+      DIMTIMELIST.Font.Charset = 0
+      DIMTIMELIST.Font.Weight = 400
+      DIMTIMELIST.Font.Underline = 0   'False
+      DIMTIMELIST.Font.Italic = 0   'False
+      DIMTIMELIST.Font.Strikethrough = 0   'False
+      DIMTIMELIST.ForeColor = -2147483640
+      DIMTIMELIST.Text = ""
+      DIMTIMELIST.IntegralHeight = -1  'True
+      DIMTIMELIST.Locked = 0   'False
+      DIMTIMELIST.Sorted = 0   'False
+      DIMTIMELIST.Style = 0
+      '--------
+      AddObject "commandbutton", "setNewValueButton", 112, 136, 73, 17, backlight
+      setNewValueButton.TabIndex = 2
+      setNewValueButton.BackColor = 12632256
+      setNewValueButton.Caption = "Set"
+      setNewValueButton.Enabled = -1  'True
+      setNewValueButton.Font.Name = "Tahoma"
+      setNewValueButton.Font.Size = 8.25
+      setNewValueButton.Font.Charset = 0
+      setNewValueButton.Font.Weight = 400
+      setNewValueButton.Font.Underline = 0   'False
+      setNewValueButton.Font.Italic = 0   'False
+      setNewValueButton.Font.Strikethrough = 0   'False
+      setNewValueButton.Style = 0
+      '--------
+      AddObject "textbox", "configVal", 8, 136, 89, 17, backlight
+      configVal.TabIndex = 1
+      configVal.BackColor = -2147483643
+      configVal.BorderStyle = 1
+      configVal.Enabled = -1  'True
+      configVal.Font.Name = "Tahoma"
+      configVal.Font.Size = 8.25
+      configVal.Font.Charset = 0
+      configVal.Font.Weight = 400
+      configVal.Font.Underline = 0   'False
+      configVal.Font.Italic = 0   'False
+      configVal.Font.Strikethrough = 0   'False
+      configVal.ForeColor = -2147483640
+      configVal.Text = ""
+      configVal.Alignment = 0
+      configVal.HideSelection = -1  'True
+      configVal.Locked = 0   'False
+      configVal.MaxLength = 0
+      configVal.MultiLine = 0   'False
+      configVal.PasswordChar = ""
+      configVal.ScrollBars = 0
+      '--------
+   End If
+   backlight_Form.Visible = True
+   backlight_Load
+End Sub  'backlight_Show
+
+Sub backlight_Hide
+   If IsEmpty(backlight_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   backlight_From.visible = False
+   backlight_Unload
+End Sub 'backlight_Hide
+
+'Sub backlightShowMenu
+   'SetMenu...
+'End Sub 'backlight_ShowMenu
+
+Dim NdisForm_Temp
+Sub NdisForm_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(NdisForm_Temp) Then
+      AddObject "Frame", "NdisForm_Form", 0, 0, Output.Width, Output.Height
+      NdisForm_Form.BackColor = &H80000005&
+      AddObject "PictureBox", "NdisForm", 0, 0, 0, 0, NdisForm_Form
+      NdisForm.BorderStyle = 0
+      NdisForm.Move 0, 0, NdisForm_Form.Width * 15, NdisForm_Form.Height * 15
+      Set NdisForm_Temp = NdisForm
+      NdisForm_Temp.Caption = "NdisForm"
+      NdisForm.Appearance = 0  'Flat
+      NdisForm.BackColor = &H80000005&
+      NdisForm.Caption = "Ndis"
+      NdisForm.ControlBox = -1  'True
+      NdisForm.ForeColor = &H80000008&
+ 
+      AddObject "listbox", "ListStat", 8, 64, 217, 171, NdisForm
+      ListStat.TabIndex = 4
+      ListStat.BackColor = -2147483643
+      ListStat.Enabled = -1  'True
+      ListStat.Font.Name = "Tahoma"
+      ListStat.Font.Size = 8.25
+      ListStat.Font.Charset = 0
+      ListStat.Font.Weight = 400
+      ListStat.Font.Underline = 0   'False
+      ListStat.Font.Italic = 0   'False
+      ListStat.Font.Strikethrough = 0   'False
+      ListStat.ForeColor = -2147483640
+      ListStat.Columns = 0
+      ListStat.IntegralHeight = -1  'True
+      ListStat.MultiSelect = 0
+      ListStat.Sorted = 0   'False
+      '--------
+      AddObject "textbox", "signalstrength", 80, 40, 33, 17, NdisForm
+      signalstrength.TabIndex = 3
+      signalstrength.BackColor = -2147483643
+      signalstrength.BorderStyle = 1
+      signalstrength.Enabled = -1  'True
+      signalstrength.Font.Name = "Tahoma"
+      signalstrength.Font.Size = 8.25
+      signalstrength.Font.Charset = 0
+      signalstrength.Font.Weight = 400
+      signalstrength.Font.Underline = 0   'False
+      signalstrength.Font.Italic = 0   'False
+      signalstrength.Font.Strikethrough = 0   'False
+      signalstrength.ForeColor = -2147483640
+      signalstrength.Text = ""
+      signalstrength.Alignment = 0
+      signalstrength.HideSelection = -1  'True
+      signalstrength.Locked = 0   'False
+      signalstrength.MaxLength = 0
+      signalstrength.MultiLine = 0   'False
+      signalstrength.PasswordChar = ""
+      signalstrength.ScrollBars = 0
+      '--------
+      AddObject "label", "Label2", 0, 40, 81, 17, NdisForm
+      Label2.TabIndex = 2
+      Label2.AutoSize = 0   'False
+      Label2.BackColor = -2147483643
+      Label2.BackStyle = 1
+      Label2.BorderStyle = 0
+      Label2.Caption = "Signal Strength:"
+      Label2.Enabled = -1  'True
+      Label2.Font.Name = "Tahoma"
+      Label2.Font.Size = 8.25
+      Label2.Font.Charset = 0
+      Label2.Font.Weight = 400
+      Label2.Font.Underline = 0   'False
+      Label2.Font.Italic = 0   'False
+      Label2.Font.Strikethrough = 0   'False
+      Label2.ForeColor = -2147483640
+      Label2.Alignment = 0
+      Label2.UseMnemonic = -1  'True
+      Label2.WordWrap = 0   'False
+      '--------
+      AddObject "textbox", "devname", 80, 8, 145, 17, NdisForm
+      devname.TabIndex = 1
+      devname.BackColor = -2147483643
+      devname.BorderStyle = 1
+      devname.Enabled = -1  'True
+      devname.Font.Name = "Tahoma"
+      devname.Font.Size = 8.25
+      devname.Font.Charset = 0
+      devname.Font.Weight = 400
+      devname.Font.Underline = 0   'False
+      devname.Font.Italic = 0   'False
+      devname.Font.Strikethrough = 0   'False
+      devname.ForeColor = -2147483640
+      devname.Text = ""
+      devname.Alignment = 0
+      devname.HideSelection = -1  'True
+      devname.Locked = 0   'False
+      devname.MaxLength = 0
+      devname.MultiLine = 0   'False
+      devname.PasswordChar = ""
+      devname.ScrollBars = 0
+      '--------
+      AddObject "label", "Label1", 0, 8, 81, 17, NdisForm
+      Label1.TabIndex = 0
+      Label1.AutoSize = 0   'False
+      Label1.BackColor = -2147483643
+      Label1.BackStyle = 1
+      Label1.BorderStyle = 0
+      Label1.Caption = "Device Name:"
+      Label1.Enabled = -1  'True
+      Label1.Font.Name = "Tahoma"
+      Label1.Font.Size = 8.25
+      Label1.Font.Charset = 0
+      Label1.Font.Weight = 400
+      Label1.Font.Underline = 0   'False
+      Label1.Font.Italic = 0   'False
+      Label1.Font.Strikethrough = 0   'False
+      Label1.ForeColor = -2147483640
+      Label1.Alignment = 0
+      Label1.UseMnemonic = -1  'True
+      Label1.WordWrap = 0   'False
+      '--------
+   End If
+   NdisForm_Form.Visible = True
+   NdisForm_Load
+End Sub  'NdisForm_Show
+
+Sub NdisForm_Hide
+   If IsEmpty(NdisForm_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit sub
+   End If
+   On Error Resume Next
+   NdisForm_From.visible = False
+   NdisForm_Unload
+End Sub 'NdisForm_Hide
+
+'Sub NdisFormShowMenu
+   'SetMenu...
+'End Sub 'NdisForm_ShowMenu
+
+
+'*** End Generated Code ***

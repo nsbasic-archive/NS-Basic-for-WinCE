@@ -1,0 +1,112 @@
+VERSION 5.00
+Object = "{E66AF347-1732-4395-A64E-5FB8F6659701}#1.2#0"; "RGridCtrl.dll"
+Begin VB.Form Form1 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "Form1"
+   ClientHeight    =   5085
+   ClientLeft      =   60
+   ClientTop       =   840
+   ClientWidth     =   4110
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   5085
+   ScaleWidth      =   4110
+   ShowOK          =   -1  'True
+   Begin RGRIDCTRLLibCtl.Grid Grid1 
+      Height          =   4035
+      Left            =   0
+      TabIndex        =   0
+      Top             =   0
+      Width           =   3600
+      _cx             =   -859039538
+      _cy             =   -859038771
+      Enabled         =   -1  'True
+      Rows            =   5
+      FixedRows       =   1
+      Cols            =   4
+      FixedCols       =   1
+      BackColor       =   -2147483643
+      BackColorBkg    =   8421504
+      BackColorFixed  =   -2147483633
+      GridLines       =   0
+      GridLinesFixed  =   2
+      GridColor       =   12632256
+      GridColorFixed  =   0
+      AllowUserResizing=   3
+      ScrollBars      =   3
+      BorderStyle     =   1
+      ScrollTrack     =   0   'False
+      ForeColor       =   -2147483640
+      ForeColorFixed  =   -2147483630
+      ForeColorSel    =   255
+      BackColorSel    =   -2147483643
+      RowHeightMin    =   15
+      AllowBigSelection=   0   'False
+      SelectionMode   =   0
+      GridLineWidth   =   1
+      FontBold        =   0   'False
+      FontItalic      =   0   'False
+      FontName        =   "TimesNewRoman"
+      FontSize        =   8
+      FontStrikeThrough=   0   'False
+      FontUnderline   =   0   'False
+      FontWidth       =   0
+      FixedFontBold   =   0   'False
+      FixedFontItalic =   0   'False
+      FixedFontName   =   "TimesNewRoman"
+      FixedFontSize   =   8
+      FixedFontStrikeThrough=   0   'False
+      FixedFontUnderline=   0   'False
+      FixedFontWidth  =   0
+      FixedAlignment  =   1
+      WordWrap        =   0   'False
+      HighLight       =   1
+      RegistrationCode=   ""
+   End
+End
+Attribute VB_Name = "Form1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+Private Sub Form_Load()
+    Grid1.TextMatrix(0, 0 + Grid1.FixedCols) = "Product"
+    Grid1.TextMatrix(0, 1 + Grid1.FixedCols) = "Description"
+    Grid1.TextMatrix(0, 2 + Grid1.FixedCols) = "Price"
+    Grid1.ColWidth(0) = 8
+    Grid1.ColWidth(1) = 65
+    Grid1.ColWidth(2) = 90
+    Grid1.ColWidth(3) = 60
+    
+    Dim i As Integer
+    
+    Grid1.Rows = Grid1.FixedRows + 20
+    For i = 0 To 19
+        Grid1.Col = 0
+        Grid1.Row = i
+        Grid1.Text = "Product " & i + 1
+        Grid1.CellFontUnderline = True
+        Grid1.CellFontBold = True
+        Grid1.CellForeColor = &HC00000
+        
+        Grid1.Col = 1
+        Grid1.Row = i
+        Grid1.Text = "Description " & i + 1
+        
+        Grid1.Col = 2
+        Grid1.Row = i
+        Grid1.Text = FormatNumber(Rnd * 100, 2) & "        "
+        Grid1.CellLoadPicture "\buy.bmp"
+        Grid1.CellPictureAlignment = rgridAlignRightCenter
+        
+        Grid1.RowHeight(i + Grid1.FixedRows) = 17
+    Next i
+    Grid1.ColAlignment(2 + Grid1.FixedCols) = rgridAlignRightCenter
+    
+End Sub
+
+Private Sub Form_OKClick()
+    App.End
+End Sub

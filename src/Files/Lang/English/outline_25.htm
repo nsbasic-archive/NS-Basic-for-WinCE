@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_25_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_25_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>DATEPART                                                            Function</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DATEPART</span></font>(<i><span style='font-style:italic;'>interval</span></i>,
+<i><span style='font-style:italic;'>date</span></i>[, <i><span style='font-style:italic;'>firstdayofweek</span></i>[,
+<i><span style='font-style:italic;'>firstweekofyear</span></i>]])</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DATEPART returns a number specifying a part of the given
+date. The required parameter, <i><span
+style='font-style:italic;'>interval</span></i>,
+determines the part of date which is measured and returned. The optional
+parameter <i><span style='font-style:italic;'>firstdayofweek</span></i> is Sunday, if not
+specified The optional <i><span
+style='font-style:italic;'>firstweekofyear</span></i>
+is the week containing January 1, if not specified.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM DATEPART Example</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'DATEPART returns a number</span></font>frompartofadate</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM QuarterPart, MonthPart, DayPart</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>QuarterPart = DATEPART(&quot;q&quot;, NOW)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>MonthPart = DATEPART(&quot;m&quot;, NOW)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DayPart = DATEPART(&quot;d&quot;, NOW)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;Today is day &quot; &amp; DayPart</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;of month &quot; &amp; MonthPart</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT &quot;in quarter &quot; &amp;
+QuarterPart</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>Today is day 18</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>of month 8</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>in quarter 3</span></font></p>
+
+<p class=code><i><font size=1
+face="Courier New"><span style='font-size:8.0pt;font-style:italic;'>(sample output from August 18,
+1998)</span></font></i></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>DATEADD, DATEDIFF</span></font></p>
+
+</div>
+
+</body>
+
+</html>

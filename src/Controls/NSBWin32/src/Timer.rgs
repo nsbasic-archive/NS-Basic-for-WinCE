@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.win32.Timer.1 = s 'NSBasic Timer Class'
+	{
+		CLSID = s '{ACE050A1-EEF9-435B-8D29-0D676727188B}'
+	}
+	NSBasic.win32.Timer = s 'NSBasic Timer Class'
+	{
+		CLSID = s '{ACE050A1-EEF9-435B-8D29-0D676727188B}'
+		CurVer = s 'NSBasic.win32.Timer.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {ACE050A1-EEF9-435B-8D29-0D676727188B} = s 'NSBasic Timer Class'
+		{
+			ProgID = s 'NSBasic.win32.Timer.1'
+			VersionIndependentProgID = s 'NSBasic.win32.Timer'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F1072A90-2DF5-49BC-BDFB-2B604FDB9598}'
+		}
+	}
+}

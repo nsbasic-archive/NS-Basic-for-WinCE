@@ -1,0 +1,56 @@
+
+
+Sub Form1_Load
+   AddObject "NSBasic.win32.ComDlg", "Dlg"
+End Sub
+
+Sub CommandButton1_Click
+   If Not Dlg.ShowOpen() Then
+      MsgBox "Cancelled"
+   End If
+End Sub
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "File"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\Desk\TestSuites\File\File.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "CommandButton", "CommandButton1", 512, 16, 108, 21, Form1
+      CommandButton1.Caption = "Open file"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "NSBasic.win32.ComDlg.1", "NSComDlg1", 24, 24, 160, 136, Form1
+      '--------
+      AddObject "MSComDlg.CommonDialog.1", "CommonDialog1", 24, 184, 144, 120, Form1
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

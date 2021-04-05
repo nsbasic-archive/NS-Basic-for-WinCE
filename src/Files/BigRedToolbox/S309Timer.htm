@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309Timer Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>S309Timer</P>
+</FONT><FONT FACE="Arial"><P>A Timer Control</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>September 21, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+<HR>
+
+<body bgcolor="#FFFFFF">
+
+<p>The S309Timer.ocx version <font color="#FF0000">1.4</font> provides a
+timer ActiveX control like the one provided with Visual Basic. It allows you to generate events that are sent to your program based on the schedule you specify.
+
+<H4>Object Creation</H4>
+<CODE>addobject "S309.Timer.1","Timer1",0,0</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/S309Timer.htm">S309Timer</A> - Demo of timer functions
+</UL>
+
+<BR><BR><BR>
+<table border="2" cellpadding="5" frame="BOX">
+  <tr>
+    <th colspan="3"><font color="#0080FF"><big><strong>Properties</strong></big></font></th>
+  </tr>
+  <tr>
+    <td><font color="#0080FF"><strong>Name</strong></font></td>
+    <td><strong><font color="#0080FF">Value</font></strong></td>
+    <td><strong><font color="#0080FF">Description</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Count</strong></td>
+    <td><em><strong>-1</strong>, 0, &gt; 0</em></td>
+    <td>Set or returns the number of times a timer event will be generated. If the <strong>Count</strong>
+    property is greater than 0, the value will be decremented at every <strong>Timer</strong>
+    event until the value reaches 0.<div align="center"><center><table border="1">
+      <tr>
+        <td align="center"><font color="#0080FF"><strong>Count</strong></font></td>
+        <td><font color="#0080FF"><strong>Description</strong></font></td>
+      </tr>
+      <tr>
+        <td align="center">-1</td>
+        <td>Unlimited Timer events</td>
+      </tr>
+      <tr>
+        <td align="center">0</td>
+        <td>No Timer Events</td>
+      </tr>
+      <tr>
+        <td align="center">&gt; 0</td>
+        <td>Timer events until the value of the <strong>Count</strong> property is 0.</td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+  <tr>
+    <td><strong>Interval</strong></td>
+    <td><em><strong>0</strong>-65535</em></td>
+    <td>The <strong>Interval</strong> in milliseconds between <strong>Timer</strong> events.
+    1000=one second.</td>
+  </tr>
+  <tr>
+    <td><strong>Enabled</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Starts or stops the <strong>Timer</strong>. </td>
+  </tr>
+  <tr>
+    <td><strong>Tag</strong></td>
+    <td><em>variant</em></td>
+    <td>User defined.</td>
+  </tr>
+  <tr>
+    <td><strong>VersionMajor</strong></td>
+    <td>integer</td>
+    <td>Returns the major version of the S309Timer.<em> </em><strong><font color="#FF0000">(Read
+    Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>VersionMinor</strong></td>
+    <td>integer</td>
+    <td>Returns the minor version of the S309Timer.<em> </em><strong><font color="#FF0000">(Read
+    Only)</font></strong></td>
+  </tr>
+  <tr>
+    <th colspan="3"><font color="#0080FF"><big><strong>Events</strong></big></font></th>
+  </tr>
+  <tr>
+    <td><font color="#0080FF"><strong>Name</strong></font></td>
+    <td>&nbsp;</td>
+    <td><strong><font color="#0080FF">Description</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Timer</strong></td>
+    <td>&nbsp;</td>
+    <td>If <strong>Enabled=True</strong> and <strong>Interval&gt;0</strong>, then the <strong>Timer</strong>
+    event will be fired every <strong>Interval.</strong></td>
+  </tr>
+</table>
+
+<p><big><big><strong>Files Included</strong></big></big></p>
+
+<p>S309Timer.ocx - the ActiveX control<br>
+S309Timer.html - the documentation (this file).<br>
+S309Timer.nsb - a very simple NS Basic example using the timer ActiveX control.</p>
+
+<p><big><big><strong>Installation of Timer ActiveX control on Windows CE</strong></big></big></p>
+
+<p>Transfer the ocx file for your processor to the \Windows directory</p>
+
+<p>Register the control on Windows CE by doing:</p>
+
+<p>Start - Run - regsvrce.exe \Windows\S309Timer.ocx</p>
+
+<p>You should get a return code of 0.</p>
+<H4>How to register objects on Palm-size devices:</H4>
+
+<UL COMPACT>
+	<LI>Bring up the on screen keyboard.
+	<LI>Tap on the task bar on the bottom
+	<LI>Enter run23 on the keyboard.
+	<LI>An Open dialog box will appear and you can type the regsvrce.exe command.
+</UL>
+
+<P>- or -
+
+<P>Use NS Basic/CE's SHELLEXECUTE command. There's an example in the 
+Handbook.
+
+<p><big><big><strong>Using the Timer ActiveX control in NS Basic</strong></big></big></p>
+
+<p><font color="#0080FF">AddObject &quot;S309.Timer.1&quot;,&quot;Timer1&quot;,0,0<br>
+Timer1.interval = 1000 'pop every second<br>
+Timer1.enabled = True ' start the timer.</font></p>
+
+<p><font color="#0080FF">sub Timer1_Timer()<br>
+&nbsp; print cstr(now)<br>
+end sub</font></p>
+
+<p>&quot;Timer1&quot; can be any name<br>
+&quot;,0,0&quot; can be anything, but must be present. I am using mfc and could not get it
+to work with out an x and y coord.<br>
+</p>
+
+<p><big><big>The latest version of the S309Timer ActiveX control can be found <a
+href="http://members.xoom.com/S309">here</a>.</big></big></p>
+</body>
+</html>

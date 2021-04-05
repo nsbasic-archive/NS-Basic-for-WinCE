@@ -1,0 +1,8 @@
+Dim AppEXEName: AppEXEName = "SerialComms"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\SerialComms.nsb"
+Project.AddModule "main", ".\SerialComms.nsb"
+Project.AddResourceFile "MSCEComm","{controls}\MSCEComm.dll","3","True","True","0"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

@@ -1,0 +1,91 @@
+' API Object demonstration by Mark Gamber
+' Written usng NS Basic, September 1999
+' This just runs through some of the features
+' of the object with no apparent direction.
+
+' *** Flags for use with the GetWindow method
+gwHWNDFIRST = 0
+gwHWNDLAST = 1
+gwHWNDNEXT = 2
+gwHWNDPREV = 3
+gwHWNDOWNER = 4
+gwHWNDCHILD = 5
+
+' *** Flags for use with the showWindow method
+swHide = 0
+swShowNormal = 1
+swShowNoActivate = 4
+swShow = 5
+swMinimize = 6
+swShowMaximized = 11
+swMaximize = 12
+swRestore = 13
+
+' *** Flags for use with the SystemColor method
+colorScrollbar = 0
+colorBackground = 1
+colorActiveCaption = 2
+colorInactiveCaption = 3
+colorMenu = 4
+colorWindow = 5
+colorWindowFrame = 6
+colorMenuText = 7
+colorWindowText = 8
+colorCaptionText = 9
+colorActiveBorder = 10
+colorInactiveBorder = 11
+colorAppWorkspace = 12
+colorHighlight = 13
+colorHighlightText = 14
+colorBtnFace = 15
+colorBtnShadow = 16
+colorGrayText = 17
+colorBtnText = 18
+colorInactiveCaptionText = 19
+colorBtnHighlight = 20
+color3DDKShadow = 21
+color3DLight = 22
+colorInfoText = 23
+colorInfoBK = 24
+
+' **********************************************************************
+' *** Create the API object
+addobject "MGCEWin32.API", "API", 0, 0, 0, 0
+addobject "TextBox", "Text", 10, 10, 100, 20
+
+' *** Assuming this file is called "APITest.nsb", find this window
+lWnd = API.FindWindow( "APITest.nsb" )
+' Give it a proper caption
+API.WindowText( lWnd ) = "API Test"
+
+' *** Set focus to the textbox and send it some keys
+Text.SetFocus
+s = Chr(16) & "T" & Chr(16) & "EST"
+API.SendKeys s, 1
+
+' *** Mess with system colors
+oldColor = API.SystemColor( colorActiveCaption )
+API.SystemColor( colorActiveCaption ) = 255
+MsgBox "Red Captions?"
+API.SystemColor( colorActiveCaption ) = oldColor
+
+' *** Display class name of this window
+MsgBox API.ClassName( lWnd ), vbOKOnly, "Window's Class Name"
+
+' *** Find some child and peer windows and display their classes
+' *** First, get the first child of the main (OUTPUT) window
+lChild = API.GetWindow( lWnd, gwHWNDCHILD )
+MsgBox API.ClassName( lChild ), vbOKOnly, "Child Class"
+' *** Now get it's first child window
+lChild = API.GetWindow( lChild, gwHWNDCHILD )
+MsgBox API.ClassName( lChild ), vbOKOnly, "Child Class"
+' *** Find a couple peer windows and display their classes
+lChild = API.GetWindow( lChild, gwHWNDNEXT )
+MsgBox API.ClassName( lChild ), vbOKOnly, "Next Class"
+lChild = API.GetWindow( lChild, gwHWNDNEXT )
+MsgBox API.ClassName( lChild ), vbOKOnly, "Next Class"
+lChild = API.GetWindow( lChild, gwHWNDNEXT )
+MsgBox API.ClassName( lChild ), vbOKOnly, "Next Class"
+
+' *** Minimize main window and quit
+API.showWindow lWnd, swMinimize

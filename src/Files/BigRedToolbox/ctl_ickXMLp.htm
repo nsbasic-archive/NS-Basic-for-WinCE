@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>ickXMLp Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;ickXMLp Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/ickxmlp.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The ickXMLp component implements a lexical XML parser for manipulating XML
+(and/or HTML) documents.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The ickXMLp component parses XML documents.  XML (Extensible Markup Language)
+is becoming a standard for exchanging any type of information.  You
+can get more information about XML at the World Wide Web Consortium
+under http://www.w3.org .<P>The component takes pieces of XML code through the <b>InputText</b> property,
+until <b>Reset</b> is set to true,
+parses it and fires events like <b>BeginElement</b>, <b>EndElement</b>,
+<b>Text</b>, <b>Meta</b>, <b>PI</b>, etc.  The user can evaluate
+entities inside the <b>EvalEntity</b> event.<P>The attributes can be accessed through the <b>AttrCount</b>,
+<b>AttrName</b>, and
+<b>AttrValue</b> properties during the <b>BeginElement</b>
+and <b>EndElement</b> events.<P>You can control the firing of events through the <b>FlushOnEOL</b> and
+especially the <b>Reset</b> properties.
+The <b>PreserveWhiteSpace</b>,
+<b>ExtraNameChars</b>, and
+<b>ExtraSpaceChars</b> properties control how names and white spaces are handled.
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">AttrCount.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size of attribute values array for the current element.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">AttrName.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array of attribute names for the current element.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">AttrValue.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array of attribute values for the current element.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ExtraNameChars.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Extra characters for the parser to consider as name characters.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ExtraSpaceChars.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Extra characters for the parser to consider as white space.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">FlushOnEOL.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+If set, the parser flushes its text buffer after every line of text.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">InputText.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Provides text input to the parser.  Write-only property.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PreserveWhiteSpace.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Controls how the parser treats white space.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Reset.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+When set, the parser initializes itself to its default state.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">BeginElement.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a begin-element tag is encountered in the document.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Comment.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a comment section is encountered.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EndElement.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when an end-element tag is encountered.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EmptyElement.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when an empty element is encountered in the document.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EvalEntity.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired every time an entity needs to be evaluated.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Meta.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a meta section is encountered.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PI.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a processing instruction section is encountered.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SpecialSection.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a special section is encountered.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Text.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired for plain text segments of the input stream.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

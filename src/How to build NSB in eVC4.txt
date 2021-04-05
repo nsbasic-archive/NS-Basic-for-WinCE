@@ -1,0 +1,37 @@
+Creating new project in eVC 4:
+
+1. WCE MFC AppWizard (exe). Use the defaults, except
+- Project Name = Script, select CPU types
+- Single form based
+- Features - ActiveX control, MFC 2.0 compatible commandBar
+Close the project.
+
+
+2. Copy the files from the current live version into the folder for the new project.
+ - all *.h files (overwrite MainFrm.h, resource.h, StdAfx.h, script.h, scriptdoc.h, scriptView.h)
+ - all *.cpp files (overwrite StdAfx.h, MainFrm.cpp, Script.cpp, ScriptDoc.cpp, ScripView.cpp)
+ - script.odl
+ - script_i.c
+ - script.rc
+ - contents of res folder
+
+3. Open the new project and the live version side by side. In the Project Navigator, open the FileView of each.
+
+4. Source Files:
+Add all the *.cpp files to the new project. 5 exist already.
+Add script.odl
+Add script_i.c
+Add script.rc
+
+5. Header Files:
+Add the *.h files to the new project. 7 exist already. 
+
+6. Resource Files:
+Add the *.bmp and *.ico files. 2 exist already.
+
+7. Change Platform to what you are using, i.e. NETBOOKPRO
+In Project Settings, all configs, C/C++, category pch, for all source files, set to Not using PCH
+ (was just for file script_i.c)
+In Project Settings, each config, Link: set output file name to Basic.exe
+In Project Settings, Debug, change Download directory to be "Program Files\ns basic\
+

@@ -1,0 +1,270 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 04: Using ComboBoxes</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 04: Using ComboBoxes</h2>
+      <h3>April 18, 2008</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+      <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p> 
+ 	</td></tr></table>
+<hr>
+
+<h3>Contents:</h3>
+<ol>
+    <li><a href="#Intro">Introduction</a></li>
+    <li><a href="#Creating">Creating a ComboBox</a></li>
+    <li><a href="#Using">Using a ComboBox</a></li>
+    <li><a href="#Methods">Additional Properties, Methods, and Events</a></li>	
+</ol>
+
+<a name="Intro"></a><h2>Introduction</h2>
+
+<p>The purpose of this tutorial is to demonstrate how to add a ComboBox to
+a form using NS Basic/CE. You should have completed Tutorial #1
+before beginning this tutorial. </p>
+
+<p>The program to be developed will start out creating a form with a ComboBox.
+It will then show how to populate the ComboBox and
+detecting when the user has selected a value from the list</p>
+
+<a name="Creating"></a><h2>Creating a ComboBox</h2>
+<h4>1. Creating the Form</h4>
+<p>A ComboBox is really a combination text box and list box. Items in
+the list can be added and removed or selected by the user. The ComboBox
+looks like a single line text box until the user clicks on the box
+causing a drop-down list to appear. The user can select one of the items
+in the list or enter a new value. Events are generated whenever an item
+is selected or changed.</p>
+<ul>
+  <li>Start NS Basic/CE from the Start menu. 
+  <li>At the initial screen select Standard in the New Project dialog box and 
+  click OK</li></ul>
+
+Add a ComboBox to the form: 
+<ul>
+  <li>Click on the ComboBox object in the Toolbox (large grid-looking icon). 
+  <li>Move the cursor to the form where you want the object to appear and click 
+  the left mouse button. 
+  <li>Click on the object to select it. 
+  <li>Set the Name in the Properties window to "cboWeekday"
+  <li>Set ExpandedHeight in the Properties window to 100. This allows the list
+  to expand (drop down) when the user selects it. 
+  <li>Use the mouse to expand the size of Date object horizontally (about twice 
+  its current size) and reposition on the form. </li></ul>
+  
+Add a TextBox to the form: 
+<ul>
+  <li>Click on the TextBox object in the Toolbox ("ab" icon) 
+  <li>Move the cursor to the form and click the left mouse button to place the 
+object on the form 
+  <li>Click on the object to select it. 
+  <li>In the Properties window, change the Name to "txtWeekDay" 
+  <li>Scroll down in the Properties Window and delete the value of Text 
+  <li>Scroll down in the Properties Window and change the value of Locked
+  to True (makes the field read-only) 
+  <li>Use the mouse to expand the size of the TextBox to display the text all on 
+  the same line and reposition on the form. </li></ul>
+
+<p>At this point it's a good idea to save the project. You can save it
+from the File menu or pressing F5 to save and view your completed form.
+Save the project as <i>ComboBoxExample.nsb</i></p>
+
+<br>
+<p align="center"><img src="images/TT04.1.gif" width="571" height="661" alt="" border="0" align="">
+<br>
+
+<h4>2. Creating the Code</h4>
+
+<p>We need to add code to initialize the ComboBox with items for the user
+to select. Since we selected a "Standard" project, NS Basic automatically
+creates the form and any controls (objects) we dragged onto the form. It
+also generates the code to create these objects when the program is started.
+We can't initialize or adjust the properties of these objects until the creation
+process has completed. This is where the Form Load routine comes in. The last
+thing the auto-generated form/object code does is call the form load
+routine (if it exists). This is where we will place our code to initialize
+the form and/or objects. Double click on an empty area of the form and the 
+Code Window opens with "Sub Form1_Load." This is where we will place our
+initialization code</p>
+
+<pre>
+	Option Explicit
+	ShowOKButton True
+
+	Dim i
+
+	Sub Form1_Load
+	    cboWeekDay.style = 2
+
+		For i = vbSUNDAY To vbSATURDAY
+			cboWeekDay.AddItem WeekDayName(i)
+		Next
+	
+		cboWeekDay.ListIndex = WeekDay(Now-1)
+	End Sub </pre>
+
+<br>
+<p align="center"><img src="images/TT04.2.gif" width="416" height="353" alt="" border="0" align="">
+<br>
+
+<ul>
+    <li>The <b>"DIM i"</b> statement declares a variable used as our index</li>
+    <li><b>"cboWeekDay.syle = 2"</b> sets our ComboBox as read-only</li>
+    <li>The <b>For...Next</b> loop initializes the ComboBox with the days of the week.
+	The <b>vb</b> names are predefined constants.</li>
+    <li>The last line sets the Index to the current weekday using <b>NOW</b>. This
+	sets the initial selection to the current day of the week.</li>
+</ul> 
+
+<h4>3. Testing the Program</h4>
+
+<p>Press F5 to save and start the program.</p>
+
+<br>
+<p align="center"><img src="images/TT04.3.gif" width="323" height="486" alt="" border="0" align="">
+<img src="images/TT04.4.gif" width="312" height="487" alt="" border="0" align="">
+<br>
+
+<a name="Using"></a><h2>Using a ComboBox</h2>
+<p>The ComboBox program we just built allows the user to click on the list
+and select a day of the week but does nothing with the selection. Lets 
+now modify our code to detect when the user has clicked on the box and
+display the selection.</p>
+
+<h4>1. Extending the Code</h4>
+
+<p>Double click on the ComboBox and the Code Window will open with the Change
+event subroutine. Change "_Change" to "_Click" so we detect whenever the
+user clicks on the combo box instead of actually changing the text.
+Add the following code
+to read the current ComboBox selection and place it in the TextBox.</p>
+
+<pre>
+	Sub cboWeekDay_Click
+	   txtWeekDay.Text = cboWeekDay.Text
+	End Sub </pre>
+
+<br>
+<p align="center"><img src="images/TT04.5.gif" width="416" height="371" alt="" border="0" align="">
+<br>
+
+<p>This code change will update the text box every time the user clicks
+on the combo box.</p>
+
+<h4>2. Testing the Program</h4>
+
+<p>Press F5 to save and start the program.</p>
+
+<br>
+<p align="center"><img src="images/TT04.6.gif" width="308" height="491" alt="" border="0" align="">
+<br>
+
+<a name="Methods"></a><h2>Additional Properties, Methods, and Events</h2>
+<p>Like all objects, ComboBox has a number of properties, methods,
+and events for using and configuring the ComboBox. You can see all of
+these in the NS Basic Handbook or by viewing the online documentation.
+Listed here are some of the more common ones you will use in your programs.</p>
+
+<p>Common ComboBox Properties (see documentation for a full list)</p>
+<ul>
+    <li><b>ListCount</b> - Returns number of items in the list </li>
+    <li><b>ListIndex</b> - Returns or sets the Index of the currently selected item in the list</li>
+    <li><b>List(n)</b> - Returns or sets the item in the list at Index n</li>
+	<li><b>Text</b> - Returns or sets the text of the selected item</li>
+    <li><b>NewIndex</b> - Returns the Index of the item most recently added to the list</li>
+    <li><b>Style</b> - Sets the list as editable (0), or read-only (2)</li>
+    <li><b>ExpandedHeight</b> - Height of the ComboBox when expanded</li>
+</ul>
+
+<p>ComboBox Events</p>
+<ul>
+    <li><b>Change</b> - Triggered when the user enters a item in the list box</li>
+    <li><b>Click</b> - Triggered when the user clicks on an item in the list</li>
+    <li><b>DropDown</b> - Triggered when the user clicks on the ComboBox</li>
+    <li><b>GotFocus</b> - Triggered when focus is on the ComboBox</li>
+    <li><b>LostFocus</b> - Triggered when focus is removed from the ComboBox</li>
+    <li><b>Timer</b> -- Triggered when the preset interval for the Timer has elapsed</li>
+</ul> 
+
+<p>ComboBox Methods (functions)</p>
+<ul>
+    <li><b>AddItem</b> - Adds a new item to the list</li>
+    <li><b>Clear</b> - Clears all items from the list</li>
+    <li><b>Hide</b> - Hides the ComboBox from view (Visible = False)</li>
+    <li><b>Move</b> - Moves the object to new x, y location</li>
+    <li><b>RemoveItem</b> - Removes an item from the list</li>
+    <li><b>SetFocus</b> - Sets the focus on the ComboBox (for keyboard selection)</li>
+    <li><b>Show</b> - Shows the ComboBox (Visible = True)</li>
+</ul> 
+
+<p>We now want to make one additional change to our ComboBox example using
+some of the items mentioned above. We will add a button (cmdChange)
+and change it's caption to "Change List". Whenever the button is pressed,
+the currently selected list item will be removed from it's current 
+location in the list and placed at the end of the list with an  "*"
+character added to the end. In this set of code I've added comment
+lines to help understand what the code is doing.</p>
+	
+<p>Note: The Index numbers for items in the list start at 0. ListCount
+returns the total number of items which means the last item in the list
+will be one less than the value returned by ListCount.</p>
+
+  <p>Your code should look like the following:</p>
+
+<blockquote><pre>
+Option Explicit
+ShowOKButton True
+
+Dim i
+
+Sub Form1_Load
+   cboWeekDay.style = 2
+
+	For i = vbSUNDAY To vbSATURDAY
+		cboWeekDay.AddItem WeekDayName(i)
+	Next
+	
+	cboWeekDay.ListIndex = WeekDay(Now-1)
+End Sub
+Sub cboWeekDay_Click
+   txtWeekDay.Text = cboWeekDay.Text
+End Sub
+
+Sub cmdChange_Click
+   Dim value
+   ' Get the selected list item
+   value = cboWeekDay.Text
+   ' Remove the selected list item
+   cboWeekDay.RemoveItem(cboWeekDay.ListIndex)
+   ' Add back the text with a "*" at the end
+   cboWeekDay.AddItem value & "*"
+   ' Select the last item in the list
+   cboWeekDay.ListIndex = cboWeekDay.ListCount-1
+End Sub
+</pre></blockquote>
+
+<br>
+<p align="center"><img src="images/TT04.7.gif" width="415" height="556" alt="" border="0" align="">
+<br>
+
+<h4>2. Testing the Program</h4>
+<p>Press F5 to save and start the program.</p>
+
+<br>
+<p align="center"><img src="images/TT04.8.gif" width="321" height="486" alt="" border="0" align="">
+<br>
+
+</BODY>
+</HTML>
+  
+  
+  

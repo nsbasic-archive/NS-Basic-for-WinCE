@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<TITLE>Tech Note 35: Issues and Workarounds</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="17%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="83%" VALIGN="TOP">
+	  <h2>Tech Note 35: Issues and Workarounds</h2>
+	  <h3>April 3, 2006</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<B><FONT FACE="Helvetica" SIZE=4><A NAME="Bugs"></A><P>Notes and Warnings</P></font></B>
+
+
+<OL>
+	<LI>EmCE: This is an emulator for VBScript that runs on the desktop, which 	<LI>Programs created using the desktop IDE can be opened in the device IDE (and vice versa). However, the device Visual Designer cannot be used to edit programs created using the desktop IDE.
+	<LI>Under Windows 98SE, opening a project by double clicking on it can have inconsistant results. Open it from NS Basic's file dialog if you are having problems.
+</OL>
+
+<B><FONT FACE="Helvetica" SIZE=4><P>Known Problems that are Microsoft's</P>
+</font></B>
+
+<OL>
+	<LI><CODE>INPUTBOX</CODE> does not size properly on Palm-size PC screen and does not work on Pocket PC and HPC 2000. This command is built into Microsoft's software. You can use the InputBox function that is part of the DialogX control to do the same thing. Putting this in your program will override the faulty InputBox function. (DialogX also provides additional functionality not contained in InputBox.)
+	<pre>
+	FUNCTION INPUTBOX(prompt, title, default)
+	  IF ISEMPTY(NSBIB) THEN
+	    ADDOBJECT "DialogX", "NSBIB_Dlg", 0, 0, 0, 0
+	    SET NSBIB=NSBIB_Dlg
+	  END IF  
+	  INPUTBOX = NSBIB.InputBox(prompt, title, default)
+	END FUNCTION  'INPUTBOX
+
+	X=InputBox("Message area", "INPUTBOX Example", "Default Text")</pre>
+
+	<LI>CommonDialog ActiveX Control on Palm-size PC: the <CODE>showColor</CODE> method is not supported and the <CODE>showFont</CODE> method not resized for Palm-size screen. Microsoft has admitted this is a result of working to get that product out quickly.
+	<LI>On HP 680 devices, the <CODE>INPUTBOX</CODE> function causes an Out of Memory error. The cause appears to be HP using a bad build of <CODE>VBScript.dll</CODE> in their ROM. Use the Script68 install module to fix this.
+	<LI>On Palm-size devices, concatenating a string to a boolean causes an error.
+	<LI>The <CODE>EVAL</CODE> statement doen't work on some devices. This appears to be a problem in Microsoft's compiler. Workaround: use <CODE>Execute</CODE> instead.
+	<LI>Date Object: Do not use a MSGBOX statement inside the Change event: it goes into a click event loop as MSGBOX generates its own events.
+	<LI>FormatNumber and FormatCurrency functions on Pocket PC yield incorrect results. Here is some code to correct this (thanks to Charl Van Schoick <cdvs&copy; charter.net>)
+<pre>
+Function formatNum(n,d,l,p,g)
+  formatNum=fixformat(formatnumber(abs(n),d,l),n,d,l,p,g,0)
+End Function
+
+Function formatCur(n,d,l,p,g)
+  formatCur=fixformat(formatcurrency(abs(n),d,l),n,d,l,p,g,1)
+End Function
+  
+Function fixformat(fn,n,d,l,p,g,a)
+  If g Then
+     g=mid(",.",instr(".,",mid(cstr(1/10),2,1)),1)
+     l=Len(fn)
+     If d Then l=l-d-1
+     While l>3+a
+        l=l-3
+        fn=mid(fn,1,l) & g & mid(fn,l+1)
+     Wend
+  End If
+  If n<0 Then
+       If p Then
+       fn="(" & fn & ")"
+   Else
+       fn="-" & fn
+    End If
+   End If
+  fixformat=fn
+End Function
+</pre>
+		
+	</OL>
+
+</BODY>
+</HTML>

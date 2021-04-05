@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>IMAP Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;IMAP Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/imap.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The IMAP control is used to communicate with IMAP servers
+using the IMAP (Internet Message Access) protocol.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The IMAP control implements a standard IMAP client as specified
+in RFC 1730 and RFC 2060.<P>The first step in using the control is specifying a <b>MailServer</b>, a
+<b>User</b> to connect as, and a <b>Password</b> to authenticate with.  After
+that, one or more requests may be sent to the server via the <b>Action</b>
+property.  Results are retrieved through events and a number of key
+properties.<P>Normally, after connecting to the server, a <b>Mailbox</b> is selected
+(or examined) using the corresponding <b>Action</b> code.  After the
+<b>Mailbox</b> is selected, <b>MessageCount</b> and <b>RecentMessageCount</b>
+show the number of messages in the mailbox, and <b>MailboxFlags</b> show
+the flags pertaining to the mailbox.<P>A number of operations may be performed by the server in response
+to commands sent via the <b>Action</b> property.  The main arguments for
+most commands is the <b>Mailbox</b> property or the <b>MessageSet</b> property.  
+The <b>MessageSet</b> property denotes either a single message, or a range
+of messages.  Other arguments are specified through other properties such 
+as <b>SearchCriteria</b>, <b>MessageFlags</b>, etc.<P>Responses are received through events such as <b>MessageInfo</b>, 
+<b>MailboxList</b>, and also reflected to properties such as <b>MessageText</b>, 
+<b>MessageSubject</b>, etc.<P>The <b>MessagePart</b> event describes the MIME structure of retrieved messages.
+One <b>MessagePart</b> event is fired for every message part, giving information
+about the particular part.  Later on, message parts may be retrieved
+separately through the appropriate <b>Action</b>.  This speeds up processing,
+by avoiding the need to retrieve full messages from the server.<P>The <b>PITrail</b> event traces the interaction between the client and the
+server.  It includes all exchanges except for transfers of messages, message
+parts, and message headers.<P>This control requires a Winsock 1.1 compliant TCP/IP stack.  This means
+that the Winsock stack installed in the system must have a version of at
+least 1.1.  In particular, Windows 95, 98, and NT machines with Winsock 2.0
+are fully supported.
+ 
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+An action code for the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Command.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Can be used to send additional commands directly to the IMAP server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LastReply.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The last reply from the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalFile.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to a local file for downloading the message body.  If the file exists, it is overwritten (optional).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Mailbox.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Name of the mailbox selected on the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MailboxFlags.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Defined flags in the selected mailbox.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MailPort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The port of the IMAP server (default 143).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MailServer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name or address of the mail server (IMAP server).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageBCc.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array property with the list of BCc recipients of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageCc.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array property with the list of Cc recipients of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageContentEncoding.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The ContentEncoding of the selected message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageContentType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The ContentType of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageCount.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The total number of messages on the Mailbox.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageDate.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The time the message was created.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageDeliveryTime.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The time the message was delivered to the mail server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageFlags.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Flags of the current message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageFrom.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The address of the author of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageHeaders.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+RFC822-encoded headers of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The message id of the current message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageInReplyTo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The unique message ID of the message this one is in reply to.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageNetId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The globally unique id of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageReplyTo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Email address(s) where replies to the message should be sent.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageSender.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The address of the sender of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageSet.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The set of messages to operate on.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The size of the selected message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageSubject.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The subject of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageText.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The body of the retrieved message</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageTo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array property with the list of direct recipients of the message.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">NewMailbox.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The new name of the mailbox during a 'Rename Mailbox' operation.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PartId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The PartId of the part to retrieve.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Password.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The password used to authenticate to the MailServer.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RecentMessageCount.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Number of new messages on the Mailbox.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SearchCriteria.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Search criteria to use for search operations.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">UIDMode.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+If true, permanent message id-s are used instead of the default temporary id-s.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">User.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The user name used to authenticate to the MailServer.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the local host.  When connected, the IP address of the interface through which the connection was made.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SocketHandle.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The handle of the main socket used by the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifying information about the loaded Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockLoaded.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Loads and unloads Winsock on demand.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxDatagramSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size in bytes of the largest UDP datagram that can be sent or received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxSockets.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Maximum number of sockets available to a single process.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockPath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to the Winsock DLL used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The status of the Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Error.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Information about errors during data delivery.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">PITrail.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Traces the commands sent to the mail server, and the respective replies.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MailboxList.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired for each mailbox received through the various 'List Mailbox' actions.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessageInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired with information for the message(s) retrieved by the server.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">MessagePart.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired for each message part when a 'Get Message Info' action is performed.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">EndTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when the message or the part data finishes transferring.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">StartTransfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when the message or the part data starts transferring.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Transfer.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired while the message gets transferred from the MailServer.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,102 @@
+Dim nImage
+
+Sub CommandButton1_Click
+   MyTray.Image = 1
+End Sub
+Sub Form1_Load
+   AddObject "NSBasic.win32.Tray", "MyTray"
+   nImage = MyTray.AddImage("traysample.bmp")
+End Sub
+Sub MyTray_Click(sender)
+   Label1.Caption = "Left mouse button Click"
+End Sub
+Sub MyTray_DblClick(sender)
+   Label1.Caption = "Left mouse button double click"
+End Sub
+Sub MyTray_RDblClick(sender)
+   Label1.Caption = "Right mouse button double click"
+End Sub
+Sub MyTray_RClick(sender)
+   Label1.Caption = "Right mouse button click"
+End Sub
+Sub MyTray_KeyDown(sender)
+   Label1.Caption = "Keyboard button has been pressed over the tray icon"
+End Sub
+Sub CommandButton2_Click
+   MyTray.Image = 0
+End Sub
+Sub CommandButton3_Click
+   MyTray.Image = 2
+End Sub
+
+Sub CommandButton4_Click
+   MyTray.Tip = TextBox1.Text
+End Sub
+
+
+
+Sub Form1_Unload
+   MyTray.Image = 0
+End Sub
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Tray"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\smp\Tray\Tray.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "CommandButton", "CommandButton1", 8, 8, 108, 21, Form1
+      CommandButton1.Caption = "Put icon1"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 56, 160, 544, 24, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Try different actions over the tray icon to see  the status here"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton2", 416, 8, 208, 24, Form1
+      CommandButton2.Caption = "Remove the tray icon"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton3", 128, 8, 108, 21, Form1
+      CommandButton3.Caption = "Put icon2"
+      CommandButton3.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton4", 8, 40, 108, 21, Form1
+      CommandButton4.Caption = "Set tooltip text"
+      CommandButton4.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox1", 128, 40, 232, 24, Form1
+      TextBox1.BackColor = 16777215
+      TextBox1.FontSize =  8.25
+      TextBox1.Text = "Hello system tray pardon me notification area ;)"
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

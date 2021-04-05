@@ -1,0 +1,130 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ComCtl - Win32 Unicode Release MinDependency--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /tlb ".\ComCtl.tlb" /h "ComCtl.h" /iid "ComCtl_i.c" /Oicf "E:\NSBCE7\Controls\NSBControls\src\ComCtl.idl""
+Creating command line "rc.exe /l 0x402 /fo"output/ComCtl.res" /d "NDEBUG" "E:\NSBCE7\Controls\NSBControls\src\ComCtl.rc"" 
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB92.tmp" with contents
+[
+/nologo /MT /W3 /O1 /I "..\Include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /D "_ATL_MIN_CRT" /Fp"output/Desk.pch" /Yu"stdafx.h" /Fo"output/" /Fd"output/" /FD /c 
+"E:\NSBCE7\Controls\NSBControls\src\ComCtl.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSBImageList.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSBListImage.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSColumnHeader.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSColumnHeaders.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSColumnItems.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSComCtlColl.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSFont.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSListItem.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSListItems.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSListSubItem.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSListSubItems.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSListView.cpp"
+"E:\NSBCE7\Controls\NSBControls\src\NSListViewEvent.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB92.tmp" 
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB93.tmp" with contents
+[
+/nologo /MT /W3 /O1 /I "..\Include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /D "_ATL_MIN_CRT" /Fp"output/Desk.pch" /Yc"stdafx.h" /Fo"output/" /Fd"output/" /FD /c 
+"E:\NSBCE7\Controls\NSBControls\src\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB93.tmp" 
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB94.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"output/NSBControls.pdb" /machine:I386 /def:".\ComCtl.def" /out:"output/NSBControls.dll" /implib:"output/NSBControls.lib" 
+.\output\ComCtl.obj
+.\output\NSBImageList.obj
+.\output\NSBListImage.obj
+.\output\NSColumnHeader.obj
+.\output\NSColumnHeaders.obj
+.\output\NSColumnItems.obj
+.\output\NSComCtlColl.obj
+.\output\NSFont.obj
+.\output\NSListItem.obj
+.\output\NSListItems.obj
+.\output\NSListSubItem.obj
+.\output\NSListSubItems.obj
+.\output\NSListView.obj
+.\output\NSListViewEvent.obj
+.\output\StdAfx.obj
+.\output\ComCtl.res
+]
+Creating command line "link.exe @C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB94.tmp"
+Creating temporary file "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB95.bat" with contents
+[
+@echo off
+if "%OS%"=="" goto NOTNT
+if not "%OS%"=="Windows_NT" goto NOTNT
+regsvr32 /s /c ".\output\NSBControls.dll"
+echo regsvr32 exec. time > ".\output\regsvr32.trg"
+goto end
+:NOTNT
+echo Warning : Cannot register Unicode DLL on Windows 95
+:end
+]
+Creating command line "C:\DOCUME~1\GEORGE~1\LOCALS~1\Temp\RSPB95.bat"
+Creating Type Library...
+Microsoft (R) MIDL Compiler Version 5.01.0164  
+Copyright (c) Microsoft Corp 1991-1997. All rights reserved.
+Processing E:\NSBCE7\Controls\NSBControls\src\ComCtl.idl
+ComCtl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\oaidl.idl
+oaidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\objidl.idl
+objidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\unknwn.idl
+unknwn.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\wtypes.idl
+wtypes.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\ocidl.idl
+ocidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\oleidl.idl
+oleidl.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\servprov.idl
+servprov.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\urlmon.idl
+urlmon.idl
+Processing C:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\msxml.idl
+msxml.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Compiling...
+ComCtl.cpp
+NSBImageList.cpp
+NSBListImage.cpp
+NSColumnHeader.cpp
+NSColumnHeaders.cpp
+NSColumnItems.cpp
+NSComCtlColl.cpp
+NSFont.cpp
+NSListItem.cpp
+NSListItems.cpp
+NSListSubItem.cpp
+NSListSubItems.cpp
+NSListView.cpp
+NSListViewEvent.cpp
+Generating Code...
+Linking...
+   Creating library output/NSBControls.lib and object output/NSBControls.exp
+NSBControls.exp : warning LNK4070: /OUT:ComCtl.DLL directive in .EXP differs from output filename "output/NSBControls.dll"; ignoring directive
+<h3>Output Window</h3>
+Performing registration
+
+
+
+<h3>Results</h3>
+NSBControls.dll - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

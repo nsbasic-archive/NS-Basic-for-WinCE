@@ -1,0 +1,1884 @@
+Pocket PC - ARM
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE ARM) PPC_ARM_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE ARM) PPC_ARM_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol "DllCanUnloadNow" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllGetClassObject" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllRegisterServer" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllUnregisterServer" should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Pocket PC - SH3
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE SH3) PPC_SH3_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE SH3) PPC_SH3_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol "DllCanUnloadNow" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllGetClassObject" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllRegisterServer" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllUnregisterServer" should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Pocket PC - MIPS
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE MIPS) PPC_MIPS_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE MIPS) PPC_MIPS_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol "DllCanUnloadNow" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllGetClassObject" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllRegisterServer" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllUnregisterServer" should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Palm-size PC - SH3
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE SH3) PALMSIZED_SH3_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE SH3) PALMSIZED_SH3_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 1 warning(s)
+Palm-size PC - MIPS
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE MIPS) PALMSIZED_MIPS_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE MIPS) PALMSIZED_MIPS_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 1 warning(s)
+HPC/Pro - ARM
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE ARM) HPC_ARM_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE ARM) HPC_ARM_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE SH3) HPC_SH3_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE SH3) HPC_SH3_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE SH4) HPC_SH4_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE SH4) HPC_SH4_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE MIPS) HPC_MIPS_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE MIPS) HPC_MIPS_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 1 warning(s)
+HPC 2000 - ARM
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE ARM) HPC2K_ARM_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE ARM) HPC2K_ARM_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol "DllCanUnloadNow" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllGetClassObject" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllRegisterServer" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllUnregisterServer" should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+HPC 2000 - MIPS
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE MIPS) HPC2K_MIPS_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE MIPS) HPC2K_MIPS_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol "DllCanUnloadNow" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllGetClassObject" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllRegisterServer" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllUnregisterServer" should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Pocket PC 2002 - ARM
+Deleting intermediate files and output files for project 'EVC3 - Win32 (WCE ARM) PPC2002_Release'.
+--------------------Configuration: EVC3 - Win32 (WCE ARM) PPC2002_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlg.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol "DllCanUnloadNow" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllGetClassObject" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllRegisterServer" should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol "DllUnregisterServer" should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Pocket PC 2003  
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+A subdirectory or file G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\Binaries\PocketPC2003 already exists.
+Standard SDK - ARMV4 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE ARMV4) CE42_ARMV4_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - ARMV4I 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE ARMV4I) CE42_ARMV4I_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - EMU 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE emulator) CE42_EMU_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE emulator) CE42_EMU_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - MIPSII 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE MIPSII) CE42_MIPSII_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - MIPSIIFP 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE MIPSII_FP) CE42_MIPSIIFP_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - MIPSIV 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE MIPSIV) CE42_MIPSIV_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - MIPSIVFP 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE MIPSIV_FP) CE42_MIPSIVFP_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - SH3 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE SH3) CE42_SH3_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE SH3) CE42_SH3_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - SH4 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE SH4) CE42_SH4_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE SH4) CE42_SH4_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Standard SDK - x86 
+Deleting intermediate files and output files for project 'EVC4 - Win32 (WCE x86) CE42_X86_Release'.
+--------------------Configuration: EVC4 - Win32 (WCE x86) CE42_X86_Release--------------------
+Creating Type Library...
+Desk.idl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+basetsd.h
+ocidl.idl
+oleidl.idl
+Compiling resources...
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+dlldatax.c
+Generating Code...
+Compiling...
+NSComDlg.cpp
+NSComDlgFlags.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+whichplatform.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Generating Code...
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Linking...
+.\Desk.def : warning LNK4222: exported symbol 'DllCanUnloadNow' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllGetClassObject' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllRegisterServer' should not be assigned an ordinal
+.\Desk.def : warning LNK4222: exported symbol 'DllUnregisterServer' should not be assigned an ordinal
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename 'output/NSBComDlg.dll'; ignoring directive
+Build target not copied to remote machine during a batch build.
+
+NSBComDlg.dll - 0 error(s), 5 warning(s)
+Desktop - x86
+Deleting intermediate files and output files for project 'Desk - Win32 Unicode Release MinDependency'.
+--------------------Configuration: Desk - Win32 Unicode Release MinDependency--------------------
+Creating Type Library...
+Microsoft (R) MIDL Compiler Version 5.01.0164  
+Copyright (c) Microsoft Corp 1991-1997. All rights reserved.
+Processing G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\src\Desk.idl
+Desk.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\oaidl.idl
+oaidl.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\objidl.idl
+objidl.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\unknwn.idl
+unknwn.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\wtypes.idl
+wtypes.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\ocidl.idl
+ocidl.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\oleidl.idl
+oleidl.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\servprov.idl
+servprov.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\urlmon.idl
+urlmon.idl
+Processing J:\Program Files\Microsoft Visual Studio\VC98\INCLUDE\msxml.idl
+msxml.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Including osspecific helpers byte order,string lengths, etc. (osspecific.h) - link with: osspecific.cpp
+Defining default machine byte order little endian - COMMON_SYSTEM_BYTEORDER[_XXXX] (osspecific.h)
+Mapping the stand alone os specific routines to the default names (may conflict with Jacked-Objects) - !CC_BYTEORDER_NOSTDPROCNAMES (osspecific.h)
+Inline string conversion enabled - COMMON_STRCONV_INLINE_UTILS (osspecific.h)
+Including basic automation helpers DISPCALLER etc. (automationhlp.h) - link with: automationhlp.cpp
+Including automation types packing classes ccVariant,ccBSTR,ccEXCEPINFO (automationhlp-typepackers.h)
+Including ccBuffer (ccbuffer.h) - link with: ccbuffer.cpp
+Including ccSafeArray (safearrayhelper.h)
+Compiling...
+ComDlgMiniEnum.cpp
+Desk.cpp
+NSComDlg.cpp
+NSComDlgFlags.cpp
+whichplatform.cpp
+Generating Code...
+Linking...
+   Creating library output/NSBComDlg.lib and object output/NSBComDlg.exp
+NSBComDlg.exp : warning LNK4070: /OUT:Desk.DLL directive in .EXP differs from output filename "output/NSBComDlg.dll"; ignoring directive
+Performing registration
+
+NSBComDlg.dll - 0 error(s), 1 warning(s)

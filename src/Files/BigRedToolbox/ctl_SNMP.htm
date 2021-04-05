@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>SNMP Component</TITLE>
+</HEAD>
+
+<BODY TEXT="black" BGCOLOR="white" LINK="#0000EE" ALINK="red">
+
+<P><A HREF="http://www.dev-soft.com/"><IMG SRC="img/dslogob.gif" WIDTH="595" HEIGHT="64" ALIGN="BOTTOM"
+BORDER="0"></A></P>
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP"  NOWRAP BGCOLOR="#0066FF"><B><FONT SIZE="2" COLOR="white" FACE="Verdana">&nbsp;&nbsp;&nbsp;SNMP Component</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+ 
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" BGCOLOR="#FFFBF0">
+	<TR>
+		<TD WIDTH="35" VALIGN="TOP"><IMG SRC="img/snmp.gif" WIDTH="28" HEIGHT="28" ALIGN="BOTTOM" BORDER="0" HSPACE="5" VSPACE="5"></TD>
+		<TD VALIGN="TOP"><FONT SIZE="2" COLOR="green" FACE="Arial, Helvetica">The SNMP control is used to implement SNMP Management Applications and
+SNMP Agent Applications.
+<P></FONT><I><FONT SIZE="1" COLOR="green" FACE="Arial, Helvetica">(NOTE:
+			The following is a very short description. For more information, please consult the help files that come with the
+			respective package.)</FONT></I></TD>
+	</TR>
+</TABLE>
+<FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+The SNMP control implements a standard SNMP Version 1 Manager and/or Agent
+as specified in RFC 1157.<P>The control provides both encoding/decoding and transport capabilities,
+making the task of developing a custom SNMP agent or manager as simple as
+setting a few key properties and handling a few events.  SNMP data, such
+as for instance SNMP object id-s (OID-s) are exchanged as text strings, thus further
+simplifying the task of handling them.<P>The control is activated/deactivated by first setting the <b>LocalPort</b>
+to 161 or 162, depending on whether you want to implement an SNMP agent or
+SNMP manager, and then setting the <b>Active</b> property. 
+This property enables or disables sending or receiving.  It operates completely
+asynchronously.  Messages are sent to
+other agents or managers by using the <b>Action</b> property, and are recieved
+through events such as <b>GetRequest</b>, <b>GetResponse</b>, or <b>Trap</b>.<P>SNMP object ids, types, and values are provided in arrays such as <b>ObjId</b>,
+<b>ObjType</b>, and <b>ObjValue</b>, for both sent and received packets.  <b>ObjCount</b>
+provides the number of elements in each of the arrays.  Other
+packet information is provided through corresponding properties, such as
+<b>Community</b>, or <b>RequestId</b>, or similarly named parameters in events.<P>The control may behave as an SNMP agent or SNMP manager, depending
+on the value of the <b>LocalPort</b> property.  If the control listens to port 161
+it may act as an SNMP agent by responding to SNMP requests from SNMP managers,
+and sending traps through the <b>Action</b> property.  If the <b>LocalPort</b> is set
+to 162, the control listens for SNMP traps, and may send requests to
+SNMP agents listening on port 161.<P>SNMP Traps are received through the <b>Trap</b> event, and may be sent through
+the <b>Action</b> property by specifying appropriate values in the various
+trap properties, such as <b>TrapAgentAddress</b>, <b>TrapEnterprise</b>,
+<b>TrapGenericType</b>, <b>TrapSpecificType</b>, and <b>TrapTimeStamp</b>.<P>This control requires a Winsock 1.1 compliant TCP/IP stack.  This means
+that the Winsock stack installed in the system must have a version of at
+least 1.1.  In particular, Windows 95, 98, and NT machines with Winsock 2.0
+are fully supported.
+ 
+
+
+
+<P><BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;PROPERTIES</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Action.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+An action code for the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Active.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Enables or disables sending and receiving of SNMP packets.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Community.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The community string used to authenticate SNMP packets.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ErrorIndex.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Index of the first variable (object) that caused an error.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ErrorStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Status code for outgoing 'Get-Response' packets.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">InBufferSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The size in bytes of the incoming queue of the socket.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalPort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The UDP port in the local host where the SNMP control listens to.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ObjCount.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Number of objects in the current request.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ObjId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array of OIDs encoded as strings.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ObjType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array of object types.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ObjValue.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Array of object values.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">OutBufferSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The size in bytes of the outgoing queue of the socket.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemoteHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The address of the remote host.  Domain names are resolved to IP addresses.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RemotePort.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The UDP port where the remote SNMP agent is listening.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">RequestId.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The request-id to mark outgoing packets with.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TrapAgentAddress.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The address of the object generating the trap.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TrapEnterprise.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The type of the object generating the trap.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TrapGenericType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The generic type of the trap being sent.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TrapSpecificType.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The specific type of the trap being sent.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">TrapTimeStamp.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Time passed since the agent was initialized (in hundredths of a second).</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">LocalHost.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The name of the local host.  When connected, the IP address of the interface through which the connection was made.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SocketHandle.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The handle of the main socket used by the control.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockInfo.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Identifying information about the loaded Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockLoaded.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Loads and unloads Winsock on demand.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxDatagramSize.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Size in bytes of the largest UDP datagram that can be sent or received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockMaxSockets.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Maximum number of sockets available to a single process.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockPath.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The path to the Winsock DLL used.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">WinsockStatus.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+The status of the Winsock stack.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%" HEIGHT="16">
+	<TR>
+		<TD WIDTH="417" HEIGHT="16" VALIGN="TOP" BGCOLOR="#FFFBF0"><B><FONT SIZE="2" COLOR="green" FACE="Verdana">&nbsp;&nbsp;&nbsp;EVENTS</FONT></B></TD>
+	</TR>
+</TABLE>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">GetNextRequest.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a GetNextRequest packet is received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">GetRequest.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a GetRequest packet is received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">GetResponse.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a GetResponse packet is received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">ReadyToSend.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when the control is ready to send data.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">SetRequest.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a SetRequest packet is received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Trap.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Fired when a SNMP trap packet is received.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+<BR>
+</FONT><B><FONT SIZE="2" FACE="Arial, Helvetica">Error.</FONT></B><I><FONT SIZE="2" FACE="Arial, Helvetica">
+Information about errors during data delivery.</FONT></I><FONT SIZE="2" FACE="Arial, Helvetica"><BR>
+</FONT>
+
+</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER" SIZE="1">
+<FONT SIZE="1" FACE="Arial, Helvetica">Copyright &copy; 1999 </FONT><A HREF="mailto:sales@dev-soft.com"><FONT
+SIZE="1" FACE="Arial, Helvetica">devSoft Inc.</FONT></A><FONT SIZE="1" FACE="Arial, Helvetica"> - All Rights Reserved.<BR>
+devSoft Inc.,&nbsp; P.O.Box 13821 , Research Triangle Park, NC 27709 , USA,</FONT>
+</CENTER>
+
+</BODY>
+
+</HTML>

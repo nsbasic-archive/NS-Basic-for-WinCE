@@ -1,0 +1,45 @@
+HKCR
+{
+	NSBasic.ComDlg.1 = s 'NSBasic ComDlg Class'
+	{
+		CLSID = s '{9DF344D4-66FB-4660-A569-AC8586CFE9FF}'
+		'Insertable'
+	}
+	NSBasic.win32.ComDlg = s 'NSBasic ComDlg Class'
+	{
+		CLSID = s '{9DF344D4-66FB-4660-A569-AC8586CFE9FF}'
+		CurVer = s 'NSBasic.ComDlg.1'
+	}
+    NSBasic.win32.ComDlg.1 = s 'NSBasic ComDlg Class'
+	{
+		CLSID = s '{9DF344D4-66FB-4660-A569-AC8586CFE9FF}'
+		CurVer = s 'NSBasic.ComDlg.1'
+	}
+    NSBasic.ComDlg = s 'NSBasic ComDlg Class'
+	{
+		CLSID = s '{9DF344D4-66FB-4660-A569-AC8586CFE9FF}'
+		CurVer = s 'NSBasic.ComDlg.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {9DF344D4-66FB-4660-A569-AC8586CFE9FF} = s 'NSBasic ComDlg Class'
+		{
+			ProgID = s 'NSBasic.ComDlg.1'
+			VersionIndependentProgID = s 'NSBasic.ComDlg'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 101'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '132497'
+			}
+			'TypeLib' = s '{6A6D1995-8DDD-4262-8C6A-126F176C1362}'
+			'Version' = s '1.0'
+		}
+	}
+}

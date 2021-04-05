@@ -1,0 +1,58 @@
+VERSION 5.00
+Begin VB.Form Form1 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "BenchmarkEVB"
+   ClientHeight    =   3660
+   ClientLeft      =   60
+   ClientTop       =   840
+   ClientWidth     =   3480
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3660
+   ScaleWidth      =   3480
+   ShowOK          =   -1  'True
+   Begin VBCE.CommandButton Command1 
+      Height          =   495
+      Left            =   960
+      TabIndex        =   0
+      Top             =   840
+      Width           =   1215
+      _cx             =   2143
+      _cy             =   873
+      BackColor       =   12632256
+      Caption         =   "Start"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+End
+Attribute VB_Name = "Form1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+Private Sub Command1_Click()
+Dim limit, counter
+limit = DateAdd("S", 10, Now)
+counter = 0
+Command1.Caption = "running..."
+Do Until Now > limit
+counter = counter + 1
+Loop
+Command1.Caption = "Start"
+MsgBox counter / 10, 0, "iterations"
+End Sub
+
+Private Sub Form_OKClick()
+    App.End
+End Sub

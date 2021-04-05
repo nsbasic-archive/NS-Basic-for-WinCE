@@ -1,0 +1,1 @@
+Welcome to the installer for TeklogixScan from TeklogixScanCo. Follow the instructions on the device to complete the installation.

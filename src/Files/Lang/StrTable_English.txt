@@ -1,0 +1,814 @@
+ 100	Abs(number) 'returns the absolute value of Number
+ 101	AddObject ObjectID, varName, [left, top, width, height, [parent]] 'add an object named VarName
+ 102	Array(expression list) 'create an array from a list of elements
+ 103	Asc(string) 'return the ASCII value of a character
+ 104	Atn(number) 'return the arc tangent 
+ 105	CBool(exp) 'Convert to Boolean
+ 106	CByte(exp) 'Convert to Byte type
+ 107	CCur(exp) 'Convert to Currency type
+ 108	CDate(exp) 'Convert to Date type
+ 109	CDbl(exp) 'Convert to Double
+ 110	Chr(number) 'Convert number to character
+ 111	CInt(exp) 'Convert to Integer
+ 112	CLng(exp) 'Convert to Long
+ 113	Cos(exp) 'Return Cosine of exp
+ 114	CreateObject(ObjectID) 'Create an Object
+ 115	CSng(exp) 'Convert to Single 
+ 116	CStr(exp) 'Convert to String
+ 117	Date 'Returns the current system date
+ 118	DateAdd(interval, number, date) 'Add number (defined by interval) to date. See Language Ref for Interval values.
+ 119	DateDiff(interval,d1,day2[,1stdayofwk[, 1stwkofyr]]) 'Return interval between dates. See Language Ref for Interval values.
+ 120	DatePart(interval, day[, 1stdayofwk[, 1stwkofyr]]) 'Return part of current date. See Language Ref for Interval values.
+ 121	DateSerial(year, month, day) 'Returns a Date variable from numeric values
+ 122	DateValue(date) 'Returns a Date variable from a date string.
+ 123	Day(date) 'Returns day (1-31) from a Date variable.
+ 124	Eval(string) 'Returns result of executing string
+ 125	Execute(string) 'Executes string
+ 126	ExecuteFile(string) 'Executes text file
+ 127	Exp(number) 'returns e raised to the value of number.
+ 128	Filter(stringarray, value[, include[, compare]]) 'Returns an array of strings. See Language Reference.
+ 129	Fix(number) 'Returns whole number portion of number.
+ 130	FormatCurrency(exp[, fractionaldigits[, leadingdigit[, parensfornegative[, groupdigits]]]]) 'Returns string. See Language Ref.
+ 131	FormatDateTime(date[, formatname]) 'Returns string. See Language Ref.
+ 132	FormatNumber(exp[, fractionaldigits[, leadingdigit[, parensfornegative[, groupdigits]]]]) 'Returns string. See Language Ref.
+ 133	FormatPercent(exp[, fractionaldigits[, leadingdigit[,parensfornegative[,groupdigits]]]])Hex(number) 'Returns string. See Language Ref.
+ 134	GetObject(pathname, class) 'open a pathname as an object 
+ 135	GetRef(functionName) 'returns reference to a function
+ 136	Hex(number) 'returns hex value as string
+ 137	Hour(time) 'Return hour portion (0-23) of time.
+ 138	InputBox(prmpt[, title[, default[, x[, y]]]]) 'Display an input box and return input.
+ 139	InStr([start, ]string1, string2[, compare]) 'Find one string inside another.
+ 140	InStrRev(string1, string2[, start[, compare]]) 'Find one string inside another. Start search at end.
+ 141	Int(number) 'Return integer portion of number
+ 142	IsArray(exp) 'Is exp an Array?
+ 143	IsDate(exp) 'Is exp a Date?
+ 144	IsEmpty(exp) 'Is exp Empty?
+ 145	IsNull(exp) 'Is exp Null?
+ 146	IsNumeric(exp) 'Is exp a number?
+ 147	IsObject(exp) 'Is exp an Object?
+ 148	Join(stringarray[, delimiter])  'Combine an array of strings into a single string, separated by Delimiter.
+ 149	LBound(array[, dimension]) 'Return lower bound of array.
+ 150	LCase(string) 'Converts string to lower case
+ 151	Left(string, length) 'Returns length characters from left of string.
+ 152	LeftB(string, length) 'Returns length bytes from left of string.
+ 153	Len({string | variable}) 'Returns number of characters in string.
+ 154	LenB({string | variable}) 'Returns number of bytes in string.
+ 155	LoadPicture(filename) 'Returns a picture object
+ 156	Log(number) 'Returns the natural log of number.
+ 157	LTrim(string) 'Returns string without leading spaces
+ 158	Mid(string, start[, length]) 'Return Length characters starting at position Start in String.
+ 159	MidB(string, start[, length]) 'Return Length bytes starting at position Start in String.
+ 160	Minute(time) 'Return the minutes portion (0-59) of time.
+ 161	Month(date) 'Return the month portion (1-12) of date.
+ 162	MonthName(date[, abbreviate]) 'Return month name of date.
+ 163	MsgBox(prompt[, buttons[, title]]) 'Put up a message box. See Language Reference for Buttons.
+ 164	Oct(number) 'Return number converted to an octal string.
+ 165	Replace(target, find, source[, strt[, count[, comp]]]) 'Replace one string with a another.
+ 166	RGB(red, green, blue) 'returns RGB value. Colors are 0-255.
+ 167	Right(string, length) 'Returns the Right characters of String.
+ 168	RightB(string, length) 'Returns the Right bytes of String.
+ 169	Rnd[(number)] 'Returns a random single precision number between 0 and 1.
+ 170	Round(number[, fractionalDigits]) 'Returns Number rounded to the nearest fractionalDigits.
+ 171	RTrim(string) 'Returns String with trailing spaces removed.
+ 172	Second(time) 'Returns seconds portion (0-59) of time.
+ 173	SetLocale(LocaleID) 'sets geographic locale. See Microsoft docs for locale values.
+ 174	SetMenu(menuString[||menuKey], menuList) 'sets current menu .
+ 175	SetParent(child, parent) 'sets the parent of a child object.
+ 176	Sgn(number) 'Returns sign of number (-1, 0, or 1).
+ 177	ShellExecute(verb, file[, parms]) 'Executes another program. Verb is Open or Print.
+ 178	Sin(number) 'Return the sine of Number.
+ 179	Sleep(number) 'Stop all processing for Number of milliseconds.
+ 180	Space(number) 'Returns of string of Number spaces.
+ 181	Split(string[, delimiter[, count[, compare]]]) 'Returns an array of strings from a string.
+ 182	Sqr(number) 'Returns the square root of Number.
+ 183	StrComp(string1,string2[, compare]) 'Compares 2 strings. See Language Reference for more info.
+ 184	String(number, character) 'Returns a string of Number Characters.
+ 185	StrReverse(string) 'Returns the reverse of String.
+ 186	Tan(number) 'Returns the tangent of Number.
+ 187	TimeSerial(hour, minute, second) 'Returns a Time variable computed from parameters.
+ 188	TimeValue(string) 'Returns a Time variable from String.
+ 189	Trim(string) 'Returns string with leading and trailing spaces removed.
+ 190	TypeName(variable) 'Returns the variable type name of Variable in a string.
+ 191	UBound(array[, dimension]) 'Returns upper bound of array.
+ 192	UCase(string) 'Converts string to upper case.
+ 193	VarType(variable) 'Returns the variable type name of Variable as a number.
+ 194	Weekday(date[, firstdayofweek]) 'Returns the integer value of day of week.
+ 195	WeekdayName(number[, abbrev[, 1stdayofwk]) 'Returns the name of the day of the week.
+ 196	Year(date) 'Returns the year portion of the date.
+ 197	GetCommandLine() 'Returns command line used to start
+ 198	GetSerialNumber() 'Returns device serial number
+ 199	SysInfo(number) 'Returns useful information about device.
+1000	&File
+1001	&New Project
+1002	&Open Project...
+1003	&Save Project
+1004	Save Project As...
+1005	&Save
+1006	Save &As...
+1007	Save A&ll
+1008	Print Set&up...
+1009	&Print...
+1010	E&xit
+1011	&Edit
+1012	&Undo
+1013	Redo
+1014	Cu&t
+1015	&Copy
+1016	&Paste
+1017	&Delete
+1018	Select &All
+1019	&Find...
+1020	Find &Next
+1021	R&eplace...
+1022	&Go To Line...
+1023	&View
+1024	&Toolbar
+1025	Status &Bar
+1026	&Refresh
+1027	&Project
+1028	Add &Form
+1029	Add &Menu
+1030	Add &Bitmap
+1031	&Startup Code
+1032	&Termination Code
+1033	&Help Code
+1034	Ma&ke 
+1035	&ActiveSync 
+1036	ActiveSync NS Basic Ru&ntime
+1037	ActiveSync Shared Lib&rary
+1038	P&roperties...
+1039	Set Target Pro&ject
+1040	F&ormat
+1041	&Align
+1042	&Lefts
+1043	&Centers
+1044	&Rights
+1045	&Tops
+1046	&Middles
+1047	&Bottoms
+1048	To &Grid
+1049	&Make Same Size
+1050	&Width
+1051	&Height
+1052	&Both
+1053	&Size To Grid
+1054	&Horizontal Spacing
+1055	&Equal
+1056	&Increase
+1057	&Decrease
+1058	&Remove
+1059	&Vertical Spacing
+1064	&Center In Form
+1065	&Horizontally
+1066	&Vertically
+1067	&Order
+1068	Bring To F&ront
+1069	Move &Forward
+1070	Move &Backward
+1071	&Send To Back
+1072	&Tools
+1073	&Menu Editor
+1074	&Options...
+1075	&Window
+1076	&Toolbox
+1077	P&roperties Window
+1078	&Cascade
+1079	Tile &Horizontal
+1080	Tile &Vertical
+1081	&Windows...
+1082	&Help
+1083	&Register...
+1084	&Language Reference
+1085	&NS Basic Website
+1086	&About NS Basic/CE...
+1087	New
+1088	Open
+1089	Save
+1090	Print
+1091	Undo
+1092	Redo
+1093	Cut
+1094	Copy
+1095	Paste
+1096	Delete
+1097	Find
+1098	Add Form
+1099	Add Bitmap
+1100	Add Module
+1101	&Compile 
+1102	Properties
+1103	Menu Editor
+1104	About Project1
+1105	&System Info...
+1106	OK
+1107	Warning: ...
+1108	Version
+1109	Application Title
+1110	App Description
+1111	Back
+1112	Forward
+1113	Stop
+1114	Refresh
+1115	Home
+1116	Search
+1117	&Address:
+1118	&Project Explorer
+1119	Tech Notes
+1120	NS Basic/CE
+1121	Demonstration Edition
+1122	The Easiest way to program Window CE Devices!
+1123	Buy
+1124	Demo Info
+1125	Find
+1126	&Find What:
+1127	Replace &With:
+1128	Search
+1129	Current &Module
+1130	&Current Project
+1131	Selected &Text
+1132	Find Whole Word &Only
+1133	Match Ca&se
+1134	Find &Next
+1135	Cancel
+1136	&Replace
+1137	Replace &All
+1138	&Install
+1139	&Cancel
+1141	New
+1142	Existing
+1143	Recent
+1144	Don't show this dialog in the f&uture
+1145	&Open
+1146	&Cancel
+1147	File name:
+1148	File of type:
+1149	New Project
+1150	Options
+1151	&Global Path
+1152	&Path to Em CE
+1153	&Browse
+1154	&Launch Em CE at start up
+1155	When NS Basic starts
+1156	Prompt for pr&oject
+1157	Create d&efault project
+1158	&Code Window Prefs...
+1159	Plain Text Font
+1160	Draw &Plain Text Objects
+1161	&Font...
+1162	&Snap to Grid
+1163	&Grid Size:
+1164	&Save before Compile
+1165	&Compile into Fat App
+1166	Set &High Res for HandEra
+1167	After Compiling...
+1168	Send to Em C&E
+1169	Run &Immediately
+1170	&ActiveSync to Device
+1171	Do &Nothing
+1172	B&rowse
+1173	Example
+1174	Project Explorer
+1175	Properties
+1176	Registration
+1177	To obtain the unrestricted version and complete documentation, contact NS BASIC Corporation at our website, http://www.nsbasic.com, and follow the directions for registering the product.
+1178	&Serial Number
+1179	Unregistered Demo
+1180	When you have obtained a Serial Number, enter it into the space above. If you have not legally obtained a serial number, the field must contain the text "Unregistered Demo". See Licence Agreement for complete details.
+1181	Advanced Features
+1182	Show White Space
+1183	Comment
+1184	Uncomment
+1185	Set Repeat Count
+1186	Execute cCommand
+1187	Samples
+1202	Button
+1203	List
+1204	Label
+1205	Field
+1206	PushButton
+1207	Checkbox
+1208	Popup Trigger
+1209	Selector Trigger
+1210	Bitmap
+1211	Gadget
+1212	Repeating Button
+1213	Scrollbar
+1214	Graffiti Shift Indicator
+1215	&Run
+1216	Compile &Options...                            
+1217	Download Runtime
+1218	P&references...
+1219	Start Em C&E
+1220	&Start 
+1221	Return to &Launcher
+1222	Download Shared Library
+1223	Download 
+1224	Copy &Protect
+1301	Project Explorer
+1302	Properties
+1303	Find
+1304	Find/Replace
+1305	The Big Red Toolbox
+1400	Version
+1401	NS Basic/CE
+1403	Warning: This computer program and its documentation are protected by copyright law and international treaties. Unauthorized reproduction, use or distribution of this program, or any portion of it, will result in severe civil and criminal penalties and will be prosecuted to the maximum extent possible under the law. Please see the License Agreement in the NS BASIC Handbook.
+1404	OK
+1405	&System Info...
+1406	\ / : * ? " < > |
+1407	A valid filename cannot contain any of the following characters: \ / : * ? " < > |
+1408	Invalid Property Value
+1409	\a/a[a]a|a+a=a-a(a)a*a&a^a%a$a#a@a!a:a;a'a"a{a}a<a>a,a.a?a a`a~
+1410	Not a legal object name: 
+1411	One or more fonts are missing.  Please reinstall NS Basic/CE.
+1412	Project will not compile without at least one form
+1413	Please locate Em CE.
+1414	&Launch Em CE on start up?
+1440	&General
+1441	General Program Options
+1442	Editor
+1443	Editor Window Options
+1444	&Design Screen
+1445	Design Screen Options
+1446	Compile/Download
+1447	Compile/Download Options
+1450	NSBasicText9
+1451	NSBasicText9B
+1452	NSBasicText12
+1453	NSBasicSymbol9
+1454	NSBasicSymbol11
+1455	NSBasicSymbol7
+1456	NSBasicLED
+1457	NSBasicText12B
+1500	View O&bject
+1501	View C&ode
+1502	View &Startup Code
+1503	View &Termination Code
+1504	View &Code
+1505	&Rename Object
+1506	View &Events Code
+1507	View &Help Code
+1508	&Add
+1509	&Form
+1510	&Menu
+1511	&Bitmap
+1512	&New Module
+1513	&Existing Module...
+1514	Add &MenuBar
+1515	Add &Dropdown
+1516	Add &New Module
+1517	Add &Existing Module...
+1518	&Close Project
+1519	Re&move Bitmap
+1520	Re&move Module
+1521	Add &Resource
+1522	Remove &Resource
+1600	Menu Editor
+1601	Move &Up
+1602	Move Do&wn
+1603	Insert
+1604	Add Menu&Bar
+1605	Insert Dro&pdown
+1606	Add D&ropdown
+1607	&Delete
+1608	Move Up
+1609	Move Down
+1610	Name:
+1611	&Caption:
+1612	Proc Name:
+1613	&Shortcut:
+1614	Menu &Layout
+1618	&Next
+1619	&Cancel
+1620	Menu item must have a caption
+1621	Edit Menu Name
+1622	Add New Menu
+1623	Enter Menu Name
+1624	Add New Menu
+1625	Enter MenuBar name
+1626	Delete Menu
+1627	Do you want to delete this menu?
+1628	Enter Dropdown Name
+1629	Add New MenuBar
+1630	Add New Dropdown
+2000	(None)
+2001	(Icon)
+2002	Project does not contain a bitmap with that ID
+2050	There is already a project open with that name
+2051	A project file exists with that name. Overwrite it?
+2052	Creator ID must contain at least one uppercase character
+2100	 is already designated as the default form of the project.  Do you want to change the default form?
+2150	Project already has a form named: 
+2151	Form origin and dimension are not currently used by NS Basic/CE
+2152	Modal forms are not currently available in NS Basic/CE
+2200	File>Load Image>Image Files (*.gif;*.jpg;*.bmp;*.ico;*.emf;*.wmf)|*.gif;*.jpg;*.bmp;*.ico;*.emf;*.wmf|All Files|*.*>bmp
+2250	Project already has a bitmap named: 
+2300	File>Load Module>Modules (*.cod)|*.cod>cod
+2400	0 - Standard>1 - Standard Bold>2 - Large>3 - Symbol>4 - Symbol 11>5 - Symbol 7>6 - LED>7 - Large Bold
+2450	Project already has an object named: 
+2550	Project does not have a bitmap with that Resource ID
+2551	The bitmap with that Resource ID is already in use
+2700	Another object on this form with the same Group ID is already selected.  Are you sure you want this object to have the same Group ID?
+2701	Another object on this form with the same Group ID is already selected.  Are you sure you want this object to be selected?
+2850	Max Characters must be greater than 0
+2851	A field cannot be sized dynamically with a scrollbar, do you want to remove the scrollbar?
+2852	A field must have multiple lines to use a scrollbar, do you want to remove the scrollbar?
+2950	Number of visible items must be greater than zero
+3050	Min Value must be less than Max Value
+3051	Value must be between Min Value and Max Value
+3100	List Resource Type is not currently available in NS Basic/CE
+3101	Re&move Project
+3102	De&lete Form
+3103	Error...
+3104	Missing SUB or FUNCTION header
+3105	The only statement that can follow a SELECT CASE is the CASE statement.
+3106	Expecting a numeric variable or numeric constant.
+3107	Expecting a variable of type STRING or a string literal surrounded by quote marks. Term and type:
+3108	Missing required levels of subscripting
+3109	Found a term longer than limit of 
+3110	Subscripts must be numeric constants or variables.
+3111	Name used as a subscript is not defined elsewhere.
+3112	Expecting a valid LABEL name.
+3113	Expecting a valid subroutine or function name.
+3114	Module has exceeded size limit.
+3115	Syntax error.
+3116	Compiled code exceeds internal buffer size.
+3117	SUB or FUNCTION not defined: 
+3118	Label not defined:
+3119	Missing END SUB or END FUNCTION statement.
+3120	Right parenthesis found without open left parenthesis.
+3121	Left parenthesis missing after function name.
+3122	Missing right parenthesis at end of function call.
+3123	 needs: 
+3124	 found: 
+3125	Missing left parenthesis at start of function call.
+3126	Missing right parenthesis at end of function call.
+3127	Invalid table object name
+3128	Cannot locate an object with name 
+3129	Invalid Object Name
+3130	Database name cannot be same as project name.
+3131	Expecting a database name variable
+3132	Invalid TYPE name
+3133	TYPE structures cannot be used as database keys.
+3134	Argument is not a valid variable name or literal.
+3135	Incorrect type of variable used:
+3136	Argument is not a valid variable name or literal.
+3137	Incorrect type of variable used:
+3138	Incorrect type of variable used:
+3139	Argument is not a valid variable name or literal.
+3140	Incorrect type of variable used:
+3141	Incorrect type of variable used:
+3142	Incorrect type of variable used:
+3143	Argument is not a valid variable name or literal.
+3144	Incorrect type of variable used:
+3145	Incorrect type of variable used:
+3146	Incorrect type of variable used:
+3147	Incorrect type of variable used:
+3148	Incorrect number of function arguments
+3149	Object does not support that method or property: 
+3150	Must assign function result to a variable name.
+3151	An IF or SELECT CASE statement is not matched with ENDIF or END SELECT.
+3152	Missing right parenthesis: 
+3153	Unidentified command:
+3154	Can't use a constant on the left side of =.
+3155	Can only assign a CTypeDef to another CTypeDef
+3156	Can only assign CtypeDef variables to the same kind of CDefTypeVariable.
+3157	Too many levels of subscripting
+3158	Too many levels of subscripting
+3159	Too many levels of subscripting
+3160	Too many levels of subscripting
+3161	Too many levels of subscripting
+3162	Right and left side of = must be the same type.
+3163	ENDIF found with no IF
+3164	ENDWHILE found with no WHILE
+3165	EXIT SUB not allowed in a function
+3166	EXIT FUNCTION not allowed in a subroutine
+3167	EXIT SUB not allowed in a function
+3168	IF does not have matching ENDIF
+3169	EXIT FUNCTION not allowed in a subroutine
+3170	IF does not have matching ENDIF
+3171	Variable already defined
+3172	TYPE name already defined as a variable
+3173	TYPE name already defined.
+3174	Element of TYPE structure is duplicated
+3175	TYPE definitions cannot contain other TYPE variables.
+3176	Duplicate library object name: 
+3177	Unable to open library .INF file
+3178	Variable already defined
+3179	Too many levels of subscripting
+3180	Can only use DIM statement modifiers on numeric variables.
+3181	Function name same as subroutine or function name.
+3182	DEFINE not needed and may conflict with function definition.
+3183	Function type must be defined with AS clause
+3184	Previous SUB or FUNCTION not terminated by EXIT statement.
+3185	Function name same as paragraph or function name.
+3186	Wrong number of arguments
+3187	Function type must be defined with AS clause
+3188	Function name defined in two places
+3189	Previous SUB or FUNCTION not terminated by EXIT statement
+3190	Subroutine name same as paragraph or function name.
+3191	Subroutine name defined in two places.
+3192	Wrong number of arguments
+3193	Can't use CALL on same line as IF
+3194	Subroutine name same as paragraph name or function name.
+3195	Wrong number of arguments.
+3196	Extra information at end of statement.
+3197	The name given is not a valid menu name.
+3198	Statement too complex.
+3199	NEXT without matching FOR.
+3200	CASE without SELECT CASE.
+3201	CASE with value cannot follow CASE ELSE
+3202	CASE not followed by valid dataname.
+3203	Statement too complex
+3204	END SELECT without SELECT CASE.
+3205	SELECT CASE has no CASE statements
+3206	Can't stack IF statement on the same line.
+3207	IF Statement too complex.
+3208	Statement too complex.
+3209	Duplicate label.
+3210	NEXTFORM name must be in quotes or a string variable.
+3211	Must use name of a form in quotes.
+3212	NEXTFORM references unknown form: 
+3213	Can't redraw this kind of object.
+3214	Table subscript must be numeric
+3215	Transfer tables must be same data type.
+3216	The label cannot be set before the object is displayed.
+3217	Can't hide the Graffiti Shift Indicator.
+3218	The text value cannot be set before the object is displayed.
+3219	Object does not support this action.
+3220	Too many levels of CTypeDef subscripting.
+3221	Module too large.
+3222	Unable to open .INF file.
+3223	Invalid method declaration in .INF file: 
+3224	Not enough arithmetic work variables.
+3225	Not enough string work variables.
+3226	Not enough logical work variables.
+3227	Compile will continue, but is not successful.
+3228	Bad IF logic in the internals of the program.
+3229	Internal compiler error - found function code:
+3230	Compiling...
+3231	Saving...
+3232	Downloading... Stopping current app...
+3233	Downloading...
+3234	Starting app...
+3235	Compile Error
+3236	Form has more than one Pushbutton assigned the same group ID.  Only one member of a Group ID can have Selected status.
+3237	Invalid Form Version: 
+3238	Invalid paste: Form Version
+3239	Invalid menu version:
+3240	Invalid paste: Menu Type
+3241	Invalid paste: Menu Version
+3242	Invalid paste: Menubar Type
+3243	Invaid paste: Menubar version
+3244	Invalid Menubar version: 
+3245	Invaid paste: Dropdown Type
+3246	Invalid paste: Dropdown Version
+3247	Invalid Dropdown Version: 
+3248	Invalid Object Type: 
+3249	Invalid Object Version: 
+3250	Invalid paste: Object Type
+3251	Invalid paste: Object Version
+3252	Module not found: 
+3253	Project name cannot contain double byte characters.
+3254	Error: cannot recognise form object: 
+3255	Invalid Project version: 
+3256	Unable to save project.
+3257	Unable to find module: 
+3258	Illegal Object Type: 
+3259	Error loading project: 
+3260	Bitmap not found: 
+3261	Do you want to hide the Titlebar?
+3262	Enter new form title
+3263	Congratulations! You now have a fully licensed version.
+3264	Reverting to Unregistered Demo. Please reenter your serial number.
+3265	This is a demo copy. It cannot be registered. Please contact NS BASIC Corporation for a registered version.
+3266	Do you want to remove this bitmap?
+3267	Invalid Bitmap Version: 
+3268	Invalid Paste: Bitmap Type
+3269	Invalid Paste: Bitmap Version
+3270	Invalid Button Version: 
+3271	Invalid paste: Button Type
+3272	Invalid paste: Button Version
+3273	Invalid CheckBox version: 
+3274	Invalid paste: Checkbox Type
+3275	Invalid paste: Checkbox Version
+3276	Invalid PushButton version: 
+3277	Invalid paste: PushButton Type
+3278	Invalid paste: PushButton Version
+3279	Invalid Field Version: 
+3280	Invalid Paste: Field Type
+3281	Invalid Paste: Field Version
+3282	Invalid Gadget Version: 
+3283	Invalid paste: Gadget Type
+3284	Invalid paste: Gadget Version
+3285	Invalid Graffit Shift Indicator Version:
+3286	Invalid paste: Shift Indicator Type
+3287	Invalid paste: Shoft Indicator Version
+3288	Invalid Label Version: 
+3289	Invalid paste: Label Type
+3290	Invalid paste: Label Version
+3291	Invalid List Version: 
+3292	Invalid paste: List Type
+3293	Invalid paste: List Version
+3294	Invalid Popup Version: 
+3295	Invalid paste: Popup Type
+3296	Invalid paste: Popup Version
+3297	Invalid Repeater Version: 
+3298	Invalid paste: Repeater Type
+3299	Invalid paste: Repeater Version
+3300	Invalid Scrollbar Version: 
+3301	Invalid paste: Scrollbar Type
+3302	Invalid paste: Scrollbar Version
+3303	Invalid Selector Version: 
+3304	Invalid paste: Selector Type
+3305	Invalid paste: Selector Version
+3306	End of search area reached. Do you want to start from the beginning?
+3307	Invalid Bitmap File Version: 
+3308	Error: Bitmap has zero bytes: 
+3309	Bitmap not found: 
+3310	NS Basic/CE Demo Edition has timed out. It is time to buy a copy.
+3311	Days Remaining 
+3312	Welcome to NS Basic/CE's Demonstration Edition!
+3313	Click the Buy button for more information or to get the latest version of NS Basic/CE with full support and 200 page Handbook.
+3314	This is the full version of NS Basic/CE with some restrictions:
+3315	1. Apps you create will only run for 5 days.
+3316	2. Apps can only be developed on the desktop: not the device.
+3317	3. This demo copy will only run for 30 days.
+3318	4. Shared libraries are not included.
+3319	Be sure to read the release notes for full information on getting started.
+3320	Search text is not found.
+3321	End of seach reached
+3322	Please select a username.
+3323	Program will install on CE device during next ActiveSync.
+3324	Can't find any Usernames to install programs for. Installation cancelled.
+3325	Could not find associated Browser.
+3326	URL failed. Web page not opened.
+3327	Project already open: 
+3328	Unable to open project file: 
+3329	Save 
+3330	Project is already open
+3331	Module has been changed. Do you want to save?
+3332	Download Failed
+3333	Unable to display Help contents.
+3334	Click OK when reset is complete.
+3335	Downloading... Copying...
+3336	Download to Em CE failed.
+3337	No download option selected in Compile/Download Options
+3338	There were errors. Compile is not completed.
+3339	Em CE pathname not valid.
+3340	Could not start app on Em CE: 
+3341	Em CE is not responding. Is it running?
+3342	Some compile error...
+3343	Ready to download to your CE device or Em CE
+3344	Compile Complete
+3345	There were errors. The program will not be downloaded.
+3346	Restart NS Basic to see new language setting.
+3347	Bitmap object has invalid Resource ID: 
+3348	MS Sans Serif
+3349	9
+3350	0
+3351	Variable table overflow. Reduce number of variables and literals.
+3352	Tech Notes
+3353	Print just current module?
+3354	CASE must be followed by a string or numeric literal or a simple variable name. Calculated values or functions are not allowed.
+3355	Add Resource
+3356	Remove Resource
+3357	Add Resource
+3358	CE Files (*.prc;*.pdb;)|*.prc;*.pdb
+3359	Resource
+3360	Resource not found: 
+3361	Error: Resource > 64k:
+3362	Decimal Places must be at least 2 less than Length.
+3363	Form designer code has been modified by the user.
+3364	The project must be saved before it can be run.
+3365	Unable to connect to emulator.
+3366	Unable to find parent menu: 
+3367	Is app open on device? Cannot copy to: 
+3368	ActiveSync not found.
+3369	Program copied to device, but cannot be run. 
+3370	Start
+3371	Launch Em CE Emulator
+3372	Update app on device
+3373	Install Device IDE
+3374	Extra Feature Installers
+3375	Start Program
+3376	On &Emulator
+3377	ActiveSync to &Device
+3378	&Run automatically
+3379	Device Install &Path:
+3380	ActiveSync must be running.
+3381	Install file not found. Locate and click on file directly: 
+3382	Cannot open: File is encrypted.
+3383	File not found, bad .nsp file or serial number not entered.
+3384	NSBasic EmCE
+3385	Load...
+3386	Reset
+3387	Options...
+3388	About NS Basic EmCE...
+3389	Options
+3390	Windows CE Platform
+3391	Pocket PC
+3392	Handheld PC
+3393	Custom
+3394	Screen Size
+3395	&Width:
+3396	H&eight:
+3397	Menu Location
+3398	&Top
+3399	&Bottom
+3400	OK
+3401	Cancel
+3401	Apply
+3402	Version 
+3403	A desktop emulator for NS Basic/CE programs.
+3404	Unable to connect to IDE. Is another copy of 
+3405 	running?
+3406	Error adding Object.
+3407	Error in connection request.
+3408	System Information unavailable at this time.
+3409	&None
+3410	\technotes\images\BigIcon.gif
+3411	What would you like to name this object?
+3412	Emulator must be running
+3413	Copying to device:
+3414	Executing: 
+3415	Unable to get TypeLib info. Please reinstall.
+3416	Menu name can only contain [A-Z, a-z, 0-9, _], and must begin with a letter or an underscore.
+3417	Menu item must have a name (Use - for a menu separator).
+3418	Menu item skipped a level.
+3419	Menu Parse Error: titlebar.
+3420	Unable to create control: 
+3421	Form Factor must be named.
+3422	Form Factor Width must be greater than 0.
+3423	Form Factor Height must be greater than 0.
+3424	Please reinstall NS Basic/CE.
+3425	MNSBCodeMax_Initialize recall.
+3426	Please exit and try again.
+3427	Unable to find Emulator, please reinstall.
+3428	Error Loading Project.
+3429	Print the current module only?
+3430	Name:
+3431	&Width in Pixels:
+3432	&Height in Pixels:
+3433	&Menu at Top
+3434	&Form Factor:
+3435	&Use IDE Font
+3436	
+3437	
+3438	
+3439	&Language
+3440	Set Device
+3441	Device successfully registered.
+3442	Device registration failed. Is ActiveSync running?
+3443	Program created with Demo version of NS Basic/CE.
+3444	Program has timed out.
+3445	&Copy to Clipboard
+3446	&ActiveX Control Manager
+3447	ActiveX Control Manager
+3448	Could not open input file 
+3449	Could not open output file 
+3450	AddScript: BeginUpdateResourceA failed.
+3451	AddScript: UpdateResourceA failed.
+3452	AddScript: Icon failed.
+3453	NS Basic/CE
+3454	Ma&ke
+3461	Unable to open 
+3462	Project File Corrupted!
+3463	Save Error 
+3464	Save Project Properties Error 
+3465	Export Project Error 
+3466	Save Project File Error 
+3467	Export the following files?
+3468	Screen Metrics
+3469	Save before Run
+3470	Save Module As
+3471	Make Project
+3472	Unable to locate string resource file
+3473	ReadMe
+3474	Language
+3475
+3476	&Installer
+3477	Delete Work Files
+3478	Language
+3479	
+3480	Welcome to the installer for %appname% from %companyname%. Follow the instructions on the device to complete the installation.
+3481	This is the End User Licence Agreement (EULA) for %appname% from %companyname%. Please consult %companyname%'s license policies before agreeing and continuing.
+3482	A problem occurred when making the installer. Please look at the log files in the current directory for more information.
+3483	File not found: 
+3484	Create compressed CAB file
+3485	Retain CAB file
+3486	Installer Sucessfully created: 
+3487	Platform
+3488	Get Device Info
+3489	Tutorials
+3490	Open Sample Project...
+3491	Device Processor Type: 
+3492	Device Type: 
+3493	Device OEM Info: 
+3494	Device Version: 
+3495	Info from last device connected:
+3496	Illegal Character in Path: 
+3497	Hi Res Aware (WM)
+3498	'Main' is a reserved name.
+3499	First character must be a letter.
+3500	Name already in use.
+3501	NS Basic/CE Handbook

@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Trackbar Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Trackbar.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' Trackbar demo by Mark Gamber using NS Basic
+
+addobject "MGCEBarsNPops.Trackbar", "HBar", 30, 0, 100, 30
+addobject "MGCEBarsNPops.Trackbar", "VBar", 0, 30, 30, 100
+addobject "CommandButton", "TglTicks", 40, 100, 60, 20
+addobject "Label", "HVal", 40, 40, 60, 20
+addobject "Label", "VVal", 40, 70, 60, 20
+
+TglTicks.Caption = "No Ticks"
+
+HBar.Min = 1
+HBar.Max = 100
+HBar.Value = 1
+VBar.Min = 1
+VBar.Max = 100
+VBar.Value = 1
+
+sub HBar_Change( value )
+   HVal.Caption = value
+end sub
+
+sub VBar_Change( value )
+   VVal.Caption = value
+end sub
+
+sub TglTicks_Click
+   if VBar.Ticks = FALSE then
+      VBar.Ticks = TRUE
+      HBar.Ticks = TRUE
+      TglTicks.Caption = "No Ticks"
+   else
+      VBar.Ticks = FALSE
+      HBar.Ticks = FALSE
+      TglTicks.Caption = "Ticks"
+   end if
+end sub
+</PRE>
+</body>
+</html>

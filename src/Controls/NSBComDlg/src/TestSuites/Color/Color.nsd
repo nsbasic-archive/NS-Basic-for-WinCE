@@ -1,0 +1,85 @@
+Sub CommandButton1_Click
+   NSComDlg1.Flags.FullOpen = FullOpen.Value
+   NSComDlg1.Flags.PreventFullOpen = PreventFullOpen.Value
+   NSComDlg1.Flags.RGBInit = RGBInit.Value
+   If NSComDlg1.ShowColor Then
+      Label2.Caption = NSComDlg1.Color
+      Label3.BackColor = NSComDlg1.Color
+   End If
+End Sub
+Sub Form1_Load
+   NSComDlg1.Reset "Color"
+End Sub
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Color"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\src\TestSuites\Color\Color.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.win32.ComDlg.1", "NSComDlg1", 16, 8, 82, 21, Form1
+      '--------
+      AddObject "CommandButton", "CommandButton1", 104, 8, 108, 21, Form1
+      CommandButton1.Caption = "Choose color"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 16, 40, 56, 21, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Color:"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 80, 40, 104, 24, Form1
+      Label2.BackColor = 12632256
+      Label2.Caption = "0"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label3", 16, 72, 200, 32, Form1
+      Label3.BackColor = 12632256
+      Label3.BorderStyle = 1
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "FullOpen", 320, 8, 144, 24, Form1
+      FullOpen.BackColor = 12632256
+      FullOpen.Caption = "FullOpen"
+      FullOpen.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "PreventFullOpen", 320, 32, 160, 24, Form1
+      PreventFullOpen.BackColor = 12632256
+      PreventFullOpen.Caption = "PreventFullOpen"
+      PreventFullOpen.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "RGBInit", 320, 56, 79, 21, Form1
+      RGBInit.BackColor = 12632256
+      RGBInit.Caption = "RGBInit"
+      RGBInit.FontSize =  8.25
+      RGBInit.Value = 1
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

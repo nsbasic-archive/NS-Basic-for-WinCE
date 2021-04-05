@@ -1,0 +1,1002 @@
+<HTML>
+<HEAD>
+<TITLE>TN06: Communications - TCP/IP and IRDA</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 06: Communications - TCP/IP and IRDA</h2>
+	  <h5>
+      <H3>April 02, 2008</H3>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<p>The NetStreams control is used for TCP/IP and IRDA communications. It is included with NS Basic. The information in the document is for the most part copied from the official NetStreams <a href="http://www.newobjects.com/pages/ndl/NetStreams/NetStreams.htm"> documentation</a> on NewObject's website. For further information, please refer to the official documentation. The information on this page is copyright ZmeY soft and published with their permission.
+
+<p>Background: This control replaces the Winsock control in NS Basic/CE and NS Basic/Desktop. Code written using this control is interoperable between both NS Basic products. It's a newer control than Winsock, and does not have any redistribution restrictions.
+
+<p>The TCP/IP control can be used for all forms of communication under TCP/IP: exchanging data between sockets, http, email and more. It can also be used for IRDa communication.
+
+<p>The methods and properties documented here are a subset of the full capabilities of this control. To see the rest of the features, look at the full documentation from NewObjects. The features not included here will still work well with NS Basic, but are for advanced users.
+
+<p>The methods and properties to manage TCP/IP communications are in three groups. The NetStreams contol itself is used to create a socket. Once established, the actual passing of data back and forth is handled by the same functions as in the <a href="TN08.htm" target="_top"> File System Control</a>, so it will be familiar to many developers.</p>
+
+<p>TCP/IP communications implement a simple method of sending text back and forth. There are various protocols designed for different functions built on this method, such as http to get web pages, pop for sending mail, etc. Each of these uses a standard port number - see <a href="#AppendixA" target="_top">Appendix A</a> for a list of these ports.
+
+<P>This control can also be used for IRDA connections. Please see the NetStreams documentation for more information.
+
+<p><b>Installation:</b> This control requires that NetStreams.dll and  NewObjectsPack1.dll be installed and registered.<br>
+<p><b>Creation:</b> <pre>AddObject "newObjects.net.NSMain", "NS"
+AddObject "newObjects.utilctls.SFMain", "FS"</pre>
+        
+        <table border="0" cellspacing="1">
+          <tr>
+            <td valign="top" align="left"><img src="images/collection.gif" width="16" height="16"
+            alt="collection.gif (368 bytes)"></td>
+            <td valign="top" align="left"><a href="#GetHost.htm"><strong>GetHost</strong></a></td>
+            <td valign="top" align="left">Returns a socket address</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#NewSocket.htm"><strong>NewSocket</strong></a></td>
+            <td valign="top" align="left">Creates a socket for an address</td>
+          </tr>
+          
+          <tr><td>Socket Options</td></tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Socket.htm"><strong>Socket</strong></a></td>
+            <td valign="top" align="left">Initializes the socket
+            object.</td>
+          </tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Bind.htm"><strong>Bind</strong></a></td>
+            <td valign="top" align="left">Binds the socket to an address.</td>
+          </tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Connect.htm"><strong>Connect</strong></a></td>
+            <td valign="top" align="left">Connects to the listening socket on the remote machine.</td>
+          </tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Listen.htm"><strong>Listen</strong></a></td>
+            <td valign="top" align="left">Puts socket in listening state.</td>
+          </tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Accept.htm"><strong>Accept</strong></a></td>
+            <td valign="top" align="left">Returns a new connection.</td>
+          </tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Close.htm"><strong>Close</strong></a></td>
+            <td valign="top" align="left">Closes the socket.</td>
+          </tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#LastError.htm"><strong>LastError</strong></a></td>
+            <td valign="top" align="left">Returns the last error.</td>
+          </tr>
+          
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Socket.htm"><strong>Select</strong></a></td>
+            <td valign="top" align="left">Returns info about the socket.</td>
+          </tr>
+          
+         
+          
+          <tr><td>Connection Options</td></tr>  
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#SetStream.htm"><b>SetStream</b></a></td>
+              <td valign="top" align="left">Initializes the connection for reading and writing.</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#Blocking.htm"><b>Blocking</b></a></td>
+              <td valign="top" align="left">Sets whether the connection should wait for response.</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#ReadText.htm"><b>ReadText</b></a></td>
+              <td valign="top" align="left">Reads text from the file (line,
+                specified number of characters or the entire file)</td>
+            </tr>
+            <tr>
+              <td valign="top" align="left"><img border="0" src="images/method.gif" width="17" height="16"></td>
+              <td valign="top" align="left"><a href="#WriteText.htm"><b>WriteText</b></a></td>
+              <td valign="top" align="left">Writes text to the File.</td>
+            </tr>
+            
+          <tr><td>Sample Code</td></tr>  
+            <tr>
+              <td valign="top" align="left"></td>
+              <td valign="top" align="left"><a href="#http"><b>http</b></a></td>
+              <td valign="top" align="left">Simple program to get a web page.</td>
+            <tr>
+              <td valign="top" align="left"></td>
+              <td valign="top" align="left"><a href="#TCPClient2"><b>TCPClient2</b></a></td>
+              <td valign="top" align="left">Simple program to implement a client.</td>
+            <tr>
+              <td valign="top" align="left"></td>
+              <td valign="top" align="left"><a href="#TCPServer2"><b>TCPServer2</b></a></td>
+              <td valign="top" align="left">Simple program to implement a server.</td>
+            <tr>
+              <td valign="top" align="left"></td>
+              <td valign="top" align="left"><a href="#msrv"><b>msrv</b></a></td>
+              <td valign="top" align="left">More complex web server</td>
+            </tr>
+
+
+          <tr><td>Appendix</td></tr>  
+            <tr>
+              <td valign="top" align="left"></td>
+              <td valign="top" align="left"><a href="#AppendixA"><b>A</b></a></td>
+              <td valign="top" align="left">List of Standard Port Numbers</td>
+
+ </table>
+
+<HR noshade size="1"><A Name="GetHost.htm">
+            <H4>GetHost</h4>
+            <b>Syntax:</b>
+              Set addr = NS.GetHost(address)
+              <p>Sets up the address for the socket.
+      		  <p><b>Details</b>
+              <p>address - can be a string or an integer (long 4 byte)
+              value. The passed value can be an IP address or a DNS name. If it
+              is an IP the returned address object will be initialized with it.
+              If it is a DNS name a name lookup will be performed which may
+              result in an error if the lookup is unsuccessful.
+              <blockquote>
+                <p>You can pass for example:<br>
+                &quot;www.myserver.com&quot; - a DNS name to be resolved<br>
+                &quot;192.168.1.12&quot; - an IP to be packet in address
+                object<br>
+                &amp;HC0A8010C - an integer containing IP address to be
+                packed into an address object.
+              </blockquote>
+			  <p><b>Comments:</b><p>Using
+              this method you do not have to care about what you have IP or a
+              DNS name. The returned value will be IP address ready for further usage. IRDA devices lookup
+              requires certain limited resources and is implemented as option
+              query through the Socket object in order to avoid tempting
+              the developers write code that will involve more resources
+              allocation.</td>
+          </tr>
+
+<HR noshade size="1"><A Name="NewSocket.htm">
+          <h4>NewSocket</h4>
+          <p><b>Syntax:</b>
+              <p>Set socket = NS.NewSocket</p>
+              <p>Creates a new uninitialized Socket
+              object.
+          </tr>
+
+<HR noshade size="1"><A Name="Socket.htm">
+          <h4>Socket</h4>
+            <b>Syntax</b>
+              <p>bSuccess = socket.Socket
+              <p>Initialize the socket.
+              <p>bSuccess - A Boolean value indicating the success or
+              failure of the operation. If False (Failure) is returned the
+              LastError property can be checked for the error text.
+          </tr>
+
+<HR noshade size="1"><A Name="Connect.htm">
+          <h4>Connect</h4>
+            <b>Syntax</b>
+            <p>bSuccess = socket.Connect(address)
+            <p>Connects the client to
+              a listening socket on the remote machine with the address
+              specified.
+              <p>address - is an initialized address.
+              <blockquote>
+                <p>IP: The address should be initialized with IP address
+                and a port number. It can be obtained from GetHost
+                <p>IRDA:
+                The address of the device and the ServiceName must be specified.
+                The device address can be obtained by using IRDADeviceInfo
+                object and the SocketStream's GetOption method (See the
+                IRDADeviceInfo on NetObject's site for more information how to do it).
+              </blockquote>
+
+<HR noshade size="1"><A Name="Bind.htm">
+          <h4>Bind</h4>
+            <b>Syntax</b>
+            <p>bSuccess = socket.Bind(address)<p>Binds the socket to the address
+              specified. If the bind is successful True is returned and if not
+              the method will return False and the LastError can be queried for
+              the error text.<p>address - is an initialized address.
+              <blockquote>
+                <p>IP protocol: Usually the address should specify IP and a port
+                number. However one of them or both can be zeros. If that case
+                for a zero IP the socket will be bound to all the local machine
+                IP interfaces. If the port is 0 a free port will be selected by
+                the system. It can be queried through the SocketAddress
+                property.
+                <p>IRDA: The address should be zero, but the ServiceName
+                must be set. That is the service name the other devices will try
+                to connect to when they are looking for the service you
+                provide.
+				</blockquote>
+				
+<HR noshade size="1"><A Name="Listen.htm">
+          <h4>Listen</h4>
+            <b>Syntax</b>
+              <p>bSuccess = socket.Listen([backlog])
+              <p>Called after successful binding (see <a href="#Bind">Bind</a>)
+              to an address. If successful this method puts the socket in a
+              listening state and the incoming connection requests are queued
+              for processing. The system queues a number of connection requests. To get one from the queue you must call the Accept method.</p>
+              
+              <p>bSuccess - A Boolean value indicating the success or
+              failure of the operation. If False (Failure) is returned the
+              LastError property can be checked for the error text.</p>
+              
+              <p>backlog - optional. Numeric value specifying the size of the
+              queue for the incoming connection requests. The allowed maximum
+              may very from protocol to protocol and and the OS. In most cases
+              applications written with maximum portability in mind should skip
+              it and rely on the defaults in order to avoid the need of
+              adjustment for each OS/protocol.
+
+<HR noshade size="1"><A Name="Accept.htm">
+          <h4>Accept</h4>
+            <b>Syntax</b>
+            <p>Set new_socket = socket.Accept</b>
+              <p>Returns a newly accepted connection. Can be called after the
+              socket is bound (Bind) and is in listening mode (Listen).
+              The returned object is a Socket as well. It
+              is connected to the connecting party (the client) and can be
+              used immediately for data transfer. It can be queried also for the
+              addresses of the other side (PeerAddress) and the local address (SocketAddress).
+
+<HR noshade size="1"><A Name="Close.htm">
+          <h4>Close</h4>
+            <b>Syntax</b>
+              <p>bSuccess = socket.Close</b><p>Closes the socket. By default all
+              sockets are configured to disconnect gracefully when closed
+              <p>The returned success/failure
+              Boolean value is of very little use as it is not much you can do
+              if an error occurs - if this happens it is a failure in the
+              machine's socket stack.
+
+<HR noshade size="1"><A Name="Select.htm">
+		  <H4>Select</a></H4>
+            <b>Syntax:</b>
+              <p>v = object.Select( [timeout [, r [, w [, e]]]])
+              <p>Obtains information about the state of the SocketStream object.
+              Rarely needed in blocking mode, but vital in non-blocking
+              mode.&nbsp;</p>
+              <p>Parameters:</p>
+              <p>timeout - (default 0). Timeout in seconds specifying how long
+              the system may wait to complete the state obtaining
+              operation.&nbsp;</p>
+              <p>r, w, e - all are Boolean and True by default (if omitted).
+              They specify which characteristics should be obtained - r - ready
+              to read, w - ready to write, e - error state.</p>
+			  <p>The bits
+              indicating each of the above states are as follows:<br>
+              bit 0 - error<br>
+              bit 1 - write<br>
+              bit 2 - read</p>
+              <p>Remarks:</p>
+              <p>Note that the names of these states were defined long ago and
+              they do not exactly represent the applications for which they are
+              used most frequently today. It is recommended to read the MSDN
+              chapters for them. Here is short explanation of what they indicate
+              in various cases:</p>
+              <p>read</p>
+              <ul>
+                <li>If Listen has been called and a connection is pending,
+                  Accept will succeed.
+                <li>Data is available for reading.
+                <li>Connection has been closed/reset/terminated.</li>
+              </ul>
+              <p>write
+              <ul>
+                <li>If processing a Connect call (non-blocking), connection has
+                  succeeded.
+                <li>Data can be sent.</li>
+              </ul>
+              <p>error
+              <ul>
+                <li>If processing a Connect call (non-blocking), connection
+                  attempt failed.
+              </ul>
+          
+
+<HR noshade size="1"><A Name="LastError.htm">
+          <h4>LastError</h4>
+            <b>Syntax</b>
+            <p>v = socket.LastError
+              <p>Returns the error text for the last error. The value is
+              meaningful only after an error indicated by the return result of
+              one of the object's methods. If called after a successful
+              operation the property may still hold the text for the previous
+              error - do not use this property to determine the success of the
+              last operation.
+
+<HR noshade size="1"><A Name="SetStream.htm">
+          <h4>SetStream</h4>
+            <b>Syntax</b>
+            <p>v = conn.SetStream(socket)
+              <p>Initializes the connection for reading and writing. The socket must be connected.
+
+<HR noshade size="1"><A Name="Blocking.htm">
+		  <h4>Blocking</h4>
+		    <b>Syntax:</b>
+              <p>object.Blocking = value<br>
+              v = object.Blocking
+              <p>Gets/Sets whether the calls should be blocked if the other side is not ready. By default the
+              SocketStreams are created in blocking mode (the property will
+              return True if not set before). If you want to change the
+              SocketStream to non-blocking you should set this property to
+              False, usually right after NewSocket is used to create the socket.</td>
+          </tr>
+
+
+<HR noshade size="1"><A Name="ReadText.htm">
+<H4>ReadText</H4> <p>Reads
+          text from the connection.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>variable = conn.ReadText(numChars)</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <numChars - Number of characters to read or a special
+          constant:<br>
+          <i>positive number</i> - the specified number of characters will be
+          read.<br><br>
+          <i>negative numbers</i> have special meaning:<br>
+          -2 - The entire file (or remaining portion of it
+          depending on the current position) is read as single string<br>
+          -1 - One line of text is read. The text line is
+          assumed to end with the line separator as it is specified by the textLineSeparator.
+          property.<br>
+          -3 - Advanced version of the previous (-1). This
+          reads one line but applies more heuristic logic - recommended if you
+          work with text files created by unknown operating system (e.g. the
+          line separator can be different).</p>
+        </blockquote>
+
+<HR noshade size="1"><A Name="WriteText.htm">
+<H4>WriteText</H4><p>Writes the
+          string to the connection.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>conn.WriteText string [, option]</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p>string - The string to write.
+          <p>option - Defines how the text will be written:<br>
+          0 (default) - just write the string &quot;as is&quot;<br>
+          1 - Write the string and place &quot;new line&quot; separator after
+          it.</p>
+        </blockquote>
+
+
+<HR noshade size="1"><A Name="Samples">
+<h4><P>Samples</P></h4>
+
+These samples show the critical TCP/IP code. They are not complete programs. Complete programs are in the NetStreams folder in the NS Basic Samples folder. Note that real world implementations should have stronger error detection and recovery.
+
+<h4>Sample 1: http <A Name="http"></h4><pre>
+'Show how to use http using NetStreams
+
+'This program retrieves a web page
+ShowOKButton True 'for CE
+
+AddObject "newObjects.net.NSMain", "NSMain"
+AddObject "newObjects.utilctls.SFStream","conn"
+
+Sub CommandButton1_Click
+    Set addr = nsMain.GetHost(address.Text)
+    msg.Text = "Connecting to: " & addr.TextAddress
+    
+    addr.Port = 80 'http
+    
+    Set socket = nsMain.NewSocket
+    If Not socket.Socket Then
+        msg.Text= "Error: " & socket.lastError & vbCrLf & msg.Text
+        Exit Sub
+    End If   
+    If Not socket.Connect(addr) Then
+        msg.Text= "Error: " & socket.lastError & vbCrLf & msg.Text
+        Exit Sub
+    End If
+           
+    conn.SetStream socket
+   
+    ' Post request
+    Msg.text = "GET " & page.text & " HTTP/1.0" & vbCrLf & "Host: " & address.text & vbCrLf & Msg.text
+    conn.WriteText "GET " & page.text & " HTTP/1.0" & vbCrLf & "Host: " & address.text & vbCrLf & vbCrLf
+    Msg.text = "Waiting for response:"& vbCrLf & Msg.text
+    Do
+       s = conn.ReadText(-2)
+       Msg.text = s & vbCrLf & Msg.text
+    Loop While s <> ""
+                
+    msg.Text= "Done." & vbCrLf & msg.Text
+    socket.Close
+End Sub
+</pre>
+
+<HR noshade size="1"><A Name="Samples">
+<h4>Sample 2: TCPClient2 <A Name="TCPClient2"></h4><pre>
+ShowOKButton True 'Set minimize button to close app
+'This program acts as a client. It establishes contact with the server,
+'sends it a message, then waits for the reply.
+
+Dim socket, state, strm
+
+On Error resume next
+AddObject "newObjects.net.NSMain", "NSMain"
+If err Then 
+   MsgBox "AXPack1.dll not installed. Please check the ReadMe file's section on ""Install Device Components"" for more information.",,"Winsock"
+   Bye
+End If
+On Error Goto 0
+
+AddObject "newObjects.utilctls.SFStream", "strm"
+
+Sub cmdConnect_Click
+    'First, set up the address
+    Set addr = nsMain.GetHost(tbIP.Text)
+    addr.Port = CInt(tbPort.text)
+    
+    'Create the socket and coonect to it
+    Set socket = nsMain.NewSocket
+    If Not socket.Socket Then
+        tbStatus.Text = "Error: " & socket.lastError & vbCrLf & msg.Text
+        Exit Sub
+    End If   
+    If Not socket.Connect(addr) Then
+        tbStatus.Text = "Error: " & socket.lastError & vbCrLf & msg.Text
+        Exit Sub
+    End If           
+ 
+    tbStatus.Text =  "Connected to " & addr.TextAddress
+    state = "Connected"
+    
+    'set up the object that reads and write to the socket
+    strm.SetStream socket   
+End Sub
+
+Sub cmdDisconnect_Click
+   If state = "Connected" Then
+      socket.close
+      state = ""
+      tbStatus.Text = "Connection closed."
+   End If  
+End Sub
+
+Sub cmdSend_Click
+  'Normally would have some checking here
+  strm.WriteText tbData.text,1
+  cmdSend.Timer=1000
+End Sub
+
+Sub cmdClear_Click
+    tbReceived.text=""
+End Sub
+
+Sub cmdSend_Timer
+   'This sub checks for incoming data
+   If state="Connected" Then
+     line = ""
+ 		 Do While socket.Select And &H04
+ 		   'append characters to the buffer as long as they come in
+ 		   'in the real world, a limit would be a good idea
+			char = strm.ReadText(1)
+			line = line & char
+		Loop
+		If Len(line)>0 Then
+		   tbReceived.text = line & tbReceived.text
+		End If
+ 	End If
+End Sub
+
+
+<pre>
+
+
+
+<HR noshade size="1"><A Name="Samples">
+<h4>Sample 3: TCPServer2 <A Name="TCPServer2"></h4><pre>
+'TCPServer2
+'This sample shows how to use the NetStreams control to talk to a device.
+
+'Use this sample with the TcpClient samples that come in NS Basic/CE and
+'NS Basic/Palm.
+
+AddObject "newObjects.net.NSMain", "NSMain"
+AddObject "newObjects.utilctls.SFStream","conn"
+Dim listener, so, state, connection, strm
+
+Sub cmdClear_Click()
+    lbStatus.Clear
+End Sub
+
+Sub cmdClose_Click()
+   If state = "Connected" Then
+      connection.close
+      state = "Listening"
+      fldState.text = "State is " & state & " " & listener.Select
+      lbStatus.AddItem "Connection closed."
+   End If  
+   'listener.close 
+   'Bye
+End Sub
+
+Sub Form1_Load()
+    'Establish the socket connection
+   
+    'Create a new non-blocking socket
+    Set listener = nsMain.NewSocket
+    listener.blocking = False
+    
+    'Initialize the socket. 
+    If Not listener.Socket("AF_INET","SOCK_STREAM","IPPROTO_TCP") Then
+        lbStatus.AddItem "Socket Error: " & listener.lastError
+        Exit Sub
+    End If   
+    lbStatus.AddItem "Socket Created"
+    
+    'Prepare the address For binding
+    Set bindAddress = NSMain.NewAddress
+    bindAddress.AddressFamilyName = "AF_INET"
+    bindAddress.Port = 1010
+     
+     
+    'Try To bind
+    b = listener.Bind(bindaddress)
+    If Not b Then
+        lbStatus.AddItem  "Bind Error: " & listener.LastError
+        Exit Sub
+    End If
+    lbStatus.AddItem "Socket Bound"
+           
+    b=listener.listen
+    If Not b Then
+        lbStatus.AddItem  "Listen Error: " & listener.LastError
+        Exit Sub
+    End If
+    lbStatus.AddItem "Listening..."
+    state = "Listening"
+    lbStatus.Timer=1000 'send an event every second
+End Sub
+
+
+Sub lbStatus_Timer
+	fldState.text = "State is " & state & " " & listener.Select
+   Select Case State
+   Case "Listening":
+       If listener.Select And &H04 Then
+         Set connection = listener.Accept
+         Set strm = CreateObject("newObjects.utilctls.SFStream")
+         strm.setstream connection
+         lbStatus.AddItem "Connected"
+         state = "Connected"
+       End If
+   Case "Connected":
+      line = ""
+ 		Do While connection.Select And &H04
+			char = strm.ReadText(1)
+			line = line & char
+		Loop
+		If Len(line)>0 Then
+		   lbStatus.AddItem line
+	      strm.WriteText "Thank you!",1
+		End If
+ 		End Select
+End Sub
+
+</pre>
+
+<HR noshade size="1"><A Name="Samples">
+<h4>Sample 4: http <A Name="msrv"></h4>
+
+This program sets up a server that can handle multiple connections. It is pure VBScript. It will run pretty much without change under NS Basic, but check it through before using it.
+<pre>
+' Global variables loaded from arguments or configuration
+Dim listenPort
+listenPort = 8118 ' Defaults
+serverPassword = "SrvPass"
+sleepTime = 200
+maxMsgLen = 4096
+
+' Overridable functions
+
+' On Success: Returns the User Name
+' On Failure: Returns empty string
+' Currently a single server password is used but this function can be changed to use some database
+Function AuthenticateUser(ByVal user, ByVal password, socket, cons)
+	On Error Resume Next
+	AuthenticateUser = ""
+	If Trim(password) = serverPassword And Trim(user) <> ""	Then AuthenticateUser = user
+End Function
+
+
+' Implementation
+
+Set sf = CreateObject("newObjects.utilctls.SFMain")
+Set Sleeper = CreateObject("newObjects.utilctls.COMSleeper")
+Set NSMain = CreateObject("newObjects.net.NSMain")
+Set varDict = CreateObject("newObjects.utilctls.varDictionary")
+varDict.itemsAssignmentAllowed = True
+varDict.enumItems = True
+varDict.allowUnnamedValues = True
+varDict.allowDuplicateNames = True
+
+Function Max(x,y)
+	Max = x
+	If y > x Then Max = y
+End Function
+Function Min(x, y)
+	Min = x
+	If y < x Then Min = y
+End Function
+
+Sub Msg(s)
+	WScript.Echo s
+End Sub
+
+' s - Socket, strm - stream to send
+Function NewConnection(s)
+	Dim o
+	Set o = varDict.CreateNew
+	o.Add "Socket", s
+	Dim strm
+	Set strm = CreateObject("newObjects.utilctls.SFStream")
+	strm.SetStream s
+	o.Add "Stream", strm
+	o.Add "Msg",""
+	o.Add "Authenticated", False
+	o.Add "User", ""
+	SendMessage o, "Enter <username> <password> and press enter."
+	Set NewConnection = o
+End Function
+
+
+Function GetMessageFromBuff(s)
+	Dim nCr,r
+	nCr = Max(InStr(s,vbCr),InStr(s,vbLf))
+	If nCr > 0 Then
+		r = Left(s,nCr)
+		s = Mid(s,nCr + 1)
+		nCr = Min(InStr(r,vbCr),InStr(r,vbLf)) - 1
+		GetMessageFromBuff = Left(r,nCr)
+	Else
+		GetMessageFromBuff = ""
+	End If
+End Function
+
+Sub ReadIncomingData(src,cons)
+	On Error Resume Next
+	Dim t, itm, arr
+	Dim state
+	Dim iters
+	iters = 0
+	
+	Do
+		state = src("Socket").Select
+		If state And &H04 Then
+			t = src("Stream").ReadText(256)
+			If Err.Number <> 0 Then
+				t = ""
+				Exit Do
+			End If
+			If t = "" Then Exit Do
+			src("Msg") = src("Msg") & t
+			If iters > 1000 Then
+				Msg "DEBUG: Over 1000 attempts to read incoming data on the same socket!"
+				Exit Do
+			End If
+			' Size check
+			If Len(src("Msg")) > maxMsgLen Then
+				Msg "DEBUG: Message buffer full! Forcing send."
+				src("Msg") = src("Msg") & vbCrLf
+		  	    Exit Do
+			End If
+		Else
+			Exit Do
+		End If
+		iters = iters + 1
+	Loop
+	
+	Dim sTemp
+	sTemp = src("Msg")
+	t = GetMessageFromBuff(sTemp)
+	src("Msg") = sTemp
+		  		
+	If t <> "" Then
+		If Not src("Authenticated") Then
+			' Try to authenticate
+			arr = Split(t," ")
+			If IsArray(arr) And UBound(arr) = 1 Then
+				Msg "Authenticating " & t & " User=[" & arr(0) & "] Pass=[" & arr(1) & "]"
+				
+				Dim usr
+				usr = AuthenticateUser(arr(0),arr(1),src("Socket"), cons)
+				
+				If usr <> "" Then
+					src("Authenticated") = True
+					src("User") = usr
+					Msg "User " & usr & " from " & src("Socket").PeerAddress.TextAddress & " Authenticated"
+					t = ""
+					SendHelp src
+					BroadcastMessage "#Server: " & src("User") & " logged in. Total users: " & cons.Count, cons
+				Else
+					src("Stream").WriteText "Invalid password", 1
+					Msg "User " & arr(0) & " from " & src("Socket").PeerAddress.TextAddress & " failed to authentcate"
+		  		src("Socket").Close		  	
+				End If
+		  Else
+		  	Msg "User from " & src("Socket").PeerAddress.TextAddress & " invalid syntax"
+		  	src("Stream").WriteText "Please input: username password", 1
+		  	src("Socket").Close		  	
+			End If	
+		End If
+	End If
+	
+	If src("Authenticated") And t <> "" Then
+		If Left(t,1) = "#" Then
+			' A command
+			t = Mid(t,2)
+			arr = Split(t," ")
+			If IsArray(arr) And UBound(arr) >= 0 Then
+				Select Case UCase(arr(0))
+					Case "U"
+						t = ""
+						For I = 1 To cons.Count
+							t = t & cons(I)("User") & " "
+						Next
+						SendMessage src, t
+					Case "X"
+						BroadcastMessage "User " & src("User") & " is exiting", cons
+						src("Socket").Close
+					Case "L"
+						t = ""
+						For I = 1 To cons.Count
+							t = t & cons(I)("User") & " (" & cons(I)("Socket").PeerAddress.TextAddress & ")" & vbCrLf
+						Next
+						SendMessage src, t
+					Case "P"
+					  If UBound(arr) >= 1 Then
+					  	For I = 1 To cons.Count
+					  		If cons(I)("User") = Trim(arr(1)) Then
+					  			SendMessage cons(I), src("User") & " to " & Mid(t,3)
+					  		End If
+					  	Next
+						Else
+							SendMessage src, "Error: Please spcify username (#P User <message>)"
+						End If
+						t = ""
+					Case Else
+						SendMessage src, "#Server: Unrecognized command"
+						SendHelp src
+				End Select
+			End If
+		Else
+			' Translate the message
+			Msg "Spreading from " & src("User") & ": " & t
+			For Each itm in cons
+			  state = itm("Socket").Select
+			  If CBool(state And &H02) And (Not (src Is itm)) And itm("Authenticated") Then
+			  	Err.Clear
+					itm("Stream").WriteText src("User") & ": " & t, 1
+					If Err.Number <> 0 Then itm("Socket").Close
+				End If
+			Next
+	  End If
+	End If
+End Sub
+
+Sub BroadcastMessage(s,cons)
+	On Error Resume Next
+	Msg "Broadcasting: " & s
+	For Each itm in cons
+	  state = itm("Socket").Select
+	  If CBool(state And &H02) And itm("Authenticated") Then
+	  	Err.Clear
+			itm("Stream").WriteText s, 1
+			If Err.Number <> 0 Then itm("Socket").Close
+		End If
+	Next
+End Sub
+Sub SendMessage(s,m)
+	On Error Resume Next
+	Msg "Sending to " & s("User") & ": " & m
+	state = s("Socket").Select
+	If state And &H02 Then
+		Err.Clear
+		s("Stream").WriteText m, 1
+		If Err.Number <> 0 Then s("Socket").Close
+	End If
+End Sub
+
+Sub SendHelp(src)
+    SendMessage src, "#Server: Valid commands are:"
+    SendMessage src, "#Server: #U   - Lists all the current users"
+	SendMessage src, "#Server: #L   - Lists all the current users with their addresses"
+	SendMessage src, "#Server: #X   - Exit"
+	SendMessage src, "#Server: Any input not starting with # will be sent to all the connected users."
+End Sub
+
+Sub Main
+
+	Dim b ' Helper variables
+	Dim listener, bindAddress ' Sockets and dispatchers
+
+	Msg "Creating listening socket ..."
+	Set listener = NSMain.NewSocket
+	listener.Blocking = False
+	b = listener.Socket("AF_INET","SOCK_STREAM","IPPROTO_TCP")
+	If Not b Then
+      Msg "Cannot initialize the listener: " & listener.LastError
+      Exit Sub
+  End If
+  
+  Msg "Determining the listen address ..."
+  Set bindAddress = NSMain.NewAddress
+  bindAddress.AddressFamilyName = "AF_INET"
+  bindAddress.Port = listenPort
+  bindAddress.TextAddress = "0.0.0.0"
+  
+  Msg "Binding to 0.0.0.0:" & listenPort
+  b = listener.Bind(bindAddress)
+  If Not b Then
+      Msg "Cannot listen on port " & listenPort
+      Msg "Error: " & listener.LastError
+      Exit Sub
+  End If
+  
+  Msg "Starting to listen for connections ..."
+  b = listener.Listen
+  If Not b Then
+    Msg "Cannot listen: " & listener.LastError
+    Exit Sub
+  End If
+
+	Dim c ' A new connection
+	Dim cons ' The accepted connections
+	Dim state, I
+
+	Set cons = varDict.CreateNew
+
+  Do
+  	' Msg "  Checking listener"
+  	state = listener.Select
+  	
+  	If state And &H04 Then
+  		' New connection
+  		Set c = listener.Accept
+  		Msg "Accepted new connection from " & c.PeerAddress.TextAddress
+  		cons.Add "", NewConnection(c)
+  		Msg "Connections: " & cons.Count
+  	End If
+
+	' Look for errors
+	' Msg "  Looking for errors"
+	For I = cons.Count To 1 Step -1
+		If Not cons(I)("Socket").Valid Then
+			Msg "Disconnecting " & cons(I)("User")
+		  cons.Remove I
+		Else
+			On Error Resume Next
+			state = cons(I)("Socket").Select
+			If state And &H01 Or Err.Number <> 0 Then
+				Msg "Disconnecting " & cons(I)("User")
+				cons.Remove I
+			End If
+			On Error GoTo 0
+	  End If
+	Next
+  	
+  	' Cycle through the connections to see if there is anything to read
+  	' Msg "  Spread data"
+  	On Error Resume Next
+  	For Each c In cons
+  		Err.Clear
+  	  If c("Socket").Valid Then
+	  		state = c("Socket").Select
+	  		If Err.Number <> 0 Then state = 0 ' Skip the cycle
+	  		If state And &H04 Then
+	  			' Data can be read
+	  			ReadIncomingData c, cons
+	  		End If
+	    End If
+  	Next
+  	Sleeper.Sleep(sleepTime)
+  	' Msg "Connections: " & cons.Count
+  Loop
+End Sub
+</pre>
+
+
+<HR noshade size="1"><A Name="AppendixA">
+<B><FONT FACE="Helvetica" SIZE=4><P>Appendix A: List of Standard Port Numbers</P>
+</font></B>
+To get the commands supported by each port, consult the relevant RFC documentation. A complete list of RFC documents is at <A HREF="http://www.faqs.org/rfcs/">http://www.faqs.org/rfcs/</A>.
+<PRE>
+tcpmux          1/tcp                           # TCP port multiplexer (RFC1078)
+echo            7/tcp
+echo            7/udp
+discard         9/tcp           sink null
+discard         9/udp           sink null
+systat          11/tcp          users
+daytime         13/tcp
+daytime         13/udp
+netstat         15/tcp
+qotd            17/tcp          quote
+chargen         19/tcp          ttytst source
+chargen         19/udp          ttytst source
+ftp             21/tcp
+telnet          23/tcp
+smtp            25/tcp          mail
+time            37/tcp          timserver
+time            37/udp          timserver
+rlp             39/udp          resource        # resource location
+nameserver      42/tcp          name            # IEN 116
+whois           43/tcp          nicname
+domain          53/tcp          nameserver      # name-domain server
+domain          53/udp          nameserver
+mtp             57/tcp                          # deprecated
+bootps          67/udp          bootp           # bootp server
+bootpc          68/udp                          # bootp client
+tftp            69/udp
+gopher          70/tcp
+rje             77/tcp          netrjs
+finger          79/tcp
+link            87/tcp          ttylink
+webserver       80/tcp
+supdup          95/tcp
+hostnames       101/tcp         hostname        # usually from sri-nic
+tsap            102/tcp                         # part of ISODE.
+pop2            109/tcp                         # old pop port
+pop             110/tcp         pop3 postoffice
+sunrpc          111/tcp
+sunrpc          111/udp
+ident           113/tcp         auth tap authentication
+sftp            115/tcp
+uucp-path       117/tcp
+nntp            119/tcp         readnews untp   # USENET News Transfer Protocol
+ntp             123/udp         ntpd
+imap            143/tcp
+snmp            161/udp                         # network time protocol
+snmp-trap       162/udp
+smux            199/tcp</PRE>
+
+</body>
+</html>
+

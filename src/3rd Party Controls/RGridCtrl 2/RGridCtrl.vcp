@@ -1,0 +1,1192 @@
+# Microsoft eMbedded Visual Tools Project File - Name="RGridCtrl" - Package Owner=<4>
+# Microsoft eMbedded Visual Tools Generated Build File, Format Version 6.02
+# ** DO NOT EDIT **
+
+# TARGTYPE "Win32 (WCE SH3) Dynamic-Link Library" 0x8102
+# TARGTYPE "Win32 (WCE x86em) Dynamic-Link Library" 0x7f02
+# TARGTYPE "Win32 (WCE x86) Dynamic-Link Library" 0x8302
+# TARGTYPE "Win32 (WCE ARM) Dynamic-Link Library" 0x8502
+# TARGTYPE "Win32 (WCE MIPS) Dynamic-Link Library" 0x8202
+
+CFG=RGridCtrl - Win32 (WCE x86em) Release MinDependency
+!MESSAGE This is not a valid makefile. To build this project using NMAKE,
+!MESSAGE use the Export Makefile command and run
+!MESSAGE 
+!MESSAGE NMAKE /f "RGridCtrl.vcn".
+!MESSAGE 
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
+!MESSAGE 
+!MESSAGE NMAKE /f "RGridCtrl.vcn" CFG="RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+!MESSAGE 
+!MESSAGE Possible choices for configuration are:
+!MESSAGE 
+!MESSAGE "RGridCtrl - Win32 (WCE x86em) Debug" (based on "Win32 (WCE x86em) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE ARM) Release MinDependency" (based on "Win32 (WCE ARM) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE MIPS) Release MinDependency" (based on "Win32 (WCE MIPS) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE SH3) Release MinDependency" (based on "Win32 (WCE SH3) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE x86em) Release MinDependency" (based on "Win32 (WCE x86em) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency" (based on "Win32 (WCE ARM) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency" (based on "Win32 (WCE MIPS) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE x86) Debug" (based on "Win32 (WCE x86) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE x86) Release MinDependency" (based on "Win32 (WCE x86) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002" (based on "Win32 (WCE ARM) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002" (based on "Win32 (WCE x86) Dynamic-Link Library")
+!MESSAGE "RGridCtrl - Win32 (WCE ARM) Debug" (based on "Win32 (WCE ARM) Dynamic-Link Library")
+!MESSAGE 
+
+# Begin Project
+# PROP AllowPerConfigDependencies 0
+# PROP Scc_ProjName ""
+# PROP Scc_LocalPath ""
+# PROP ATL_Project 1
+
+!IF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Debug"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "X86EMDbg"
+# PROP BASE Intermediate_Dir "X86EMDbg"
+# PROP BASE CPU_ID "{D6518FF4-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "Output/Debug/PPC/X86EM"
+# PROP Intermediate_Dir "Output/Debug/PPC/X86EM"
+# PROP CPU_ID "{D6518FF4-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "i486" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/Debug/PPC/X86EM" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "i486" /r
+CPP=cl.exe
+# ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "i486" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "_USRDLL" /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Yu"stdafx.h" /Gz /c
+# ADD CPP /nologo /W3 /Zi /Od /I "./Header Files" /I "./Output/Debug/PPC/X86EM" /I "./" /D "DEBUG" /D "i486" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "_USRDLL" /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Yu"stdafx.h" /Gz /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /stack:0x10000,0x1000 /dll /debug /windowsce:emulation /MACHINE:IX86
+# ADD LINK32 /nologo /stack:0x10000,0x1000 /dll /debug /out:"DLLs/Debug/PPC/X86EM/RGridCtrl.dll" /windowsce:emulation /MACHINE:IX86
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ARMRelMinDependency"
+# PROP BASE Intermediate_Dir "ARMRelMinDependency"
+# PROP BASE CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/PPC/Arm"
+# PROP Intermediate_Dir "Output/MinDep/PPC/Arm"
+# PROP CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/PPC/Arm" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I "./Header Files" /I "./Output/MinDep/PPC/Arm" /I "./" /D "_USRDLL" /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# SUBTRACT CPP /WX
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC/Arm/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "MIPSRelMinDependency"
+# PROP BASE Intermediate_Dir "MIPSRelMinDependency"
+# PROP BASE CPU_ID "{D6519010-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/PPC/MIPS"
+# PROP Intermediate_Dir "Output/MinDep/PPC/MIPS"
+# PROP CPU_ID "{D6519010-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /r
+# ADD RSC /l 0x409 /i "./Output/MinDep/PPC/MIPS" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /r
+CPP=clmips.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I "./Header Files" /I "./Output/MinDep/PPC/MIPS" /I "./" /D "_USRDLL" /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /subsystem:$(CESubsystem) /MACHINE:MIPS
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC/MIPS/RGridCtrl.dll" /subsystem:$(CESubsystem) /MACHINE:MIPS
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "SH3RelMinDependency"
+# PROP BASE Intermediate_Dir "SH3RelMinDependency"
+# PROP BASE CPU_ID "{D6519020-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/PPC/SH3"
+# PROP Intermediate_Dir "Output/MinDep/PPC/SH3"
+# PROP CPU_ID "{D6519020-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "SHx" /d "SH3" /d "_SH3_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/PPC/SH3" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "SHx" /d "SH3" /d "_SH3_" /r
+CPP=shcl.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /subsystem:$(CESubsystem) /MACHINE:SH3
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC/SH3/RGridCtrl.dll" /subsystem:$(CESubsystem) /MACHINE:SH3
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "X86EMRelMinDependency"
+# PROP BASE Intermediate_Dir "X86EMRelMinDependency"
+# PROP BASE CPU_ID "{D6518FF4-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/PPC/X86em"
+# PROP Intermediate_Dir "Output/MinDep/PPC/X86em"
+# PROP CPU_ID "{D6518FF4-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "i486" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/PPC/X86em" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "i486" /r
+CPP=cl.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "i486" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Gz /Oxs /c
+# ADD CPP /nologo /W3 /I "./" /I "./Header Files" /I "./Output/MinDep/PPC/X86em" /D "_USRDLL" /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "i486" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Gz /Oxs /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /stack:0x10000,0x1000 /dll /windowsce:emulation /MACHINE:IX86
+# ADD LINK32 /nologo /stack:0x10000,0x1000 /dll /out:"DLLs/MinDep/PPC/X86em/RGridCtrl.dll" /windowsce:emulation /MACHINE:IX86
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ARMHPC2K Release MinDependency"
+# PROP BASE Intermediate_Dir "ARMHPC2K Release MinDependency"
+# PROP BASE CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/HPC2000/Arm"
+# PROP Intermediate_Dir "Output/MinDep/HPC2000/Arm"
+# PROP CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/HPC2000/Arm" /i "./" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# SUBTRACT BASE CPP /WX
+# ADD CPP /nologo /W3 /I "./Header Files" /I "./Output/MinDep/HPC2000/Arm" /I "./" /D "_USRDLL" /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Fp"Output/MinDep/PPC/Arm/RGridCtrl.pch" /Yu"stdafx.h" /Fo"Output/MinDep/PPC/Arm/" /Oxs /M$(CECrtMT) /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC/Arm/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/HPC2000/Arm/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "MIPSHPC2K Release MinDependency"
+# PROP BASE Intermediate_Dir "MIPSHPC2K Release MinDependency"
+# PROP BASE CPU_ID "{D6519010-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/HPC2000/MIPS"
+# PROP Intermediate_Dir "Output/MinDep/HPC2000/MIPS"
+# PROP CPU_ID "{D6519010-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/HPC2000/MIPS" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /r
+CPP=clmips.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I "./" /I "./Header Files" /I "./Output/MinDep/HPC2000/MIPS" /D "_USRDLL" /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC/MIPS/RGridCtrl.dll" /subsystem:$(CESubsystem) /MACHINE:MIPS
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/HPC2000/MIPS/RGridCtrl.dll" /subsystem:$(CESubsystem) /MACHINE:MIPS
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Debug"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "X86Dbg"
+# PROP BASE Intermediate_Dir "X86Dbg"
+# PROP BASE CPU_ID "{D6518FF3-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "Output/Debug/PPC2002/X86EM"
+# PROP Intermediate_Dir "Output/Debug/PPC2002/X86EM"
+# PROP CPU_ID "{D6518FF3-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/Debug/PPC2002/X86EM" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
+CPP=cl.exe
+# ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "_USRDLL" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "_WIN32_WCE_CEPC" /YX /Gs8192 /GF /c
+# ADD CPP /nologo /W3 /Zi /Od /I "./Header Files" /I "./Output/Debug/PPC2002/X86EM" /I "./" /D "DEBUG" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "_USRDLL" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "_WIN32_WCE_CEPC" /Yu"stdafx.h" /Gs8192 /GF /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /debug /subsystem:$(CESubsystem) /MACHINE:IX86
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /debug /out:"DLLs/Debug/PPC2002/X86EM/RGridCtrl.dll" /subsystem:$(CESubsystem) /MACHINE:IX86
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "X86Release MinDependency"
+# PROP BASE Intermediate_Dir "X86Release MinDependency"
+# PROP BASE CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/PPC2002/X86em"
+# PROP Intermediate_Dir "Output/MinDep/PPC2002/X86em"
+# PROP CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/PPC2002/X86em" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
+CPP=cl.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_WIN32_WCE_CEPC" /Yu"stdafx.h" /Gs8192 /Oxs /M$(CECrtMT) /c
+# SUBTRACT BASE CPP /WX
+# ADD CPP /nologo /W3 /I "./" /I "./Header Files" /I "./Output/MinDep/PPC2002/X86em" /D "_USRDLL" /D "$(CePlatform)" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_WIN32_WCE_CEPC" /Yc /Gs8192 /Oxs /M$(CECrtMT) /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC2002/Arm/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC2002/X86em/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:IX86
+# SUBTRACT LINK32 /pdb:none
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "ARMRelease MinDependency 2002"
+# PROP BASE Intermediate_Dir "ARMRelease MinDependency 2002"
+# PROP BASE CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/PPC2002/Arm"
+# PROP Intermediate_Dir "Output/MinDep/PPC2002/Arm"
+# PROP CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/PPC2002/Arm" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# SUBTRACT BASE CPP /WX
+# ADD CPP /nologo /W3 /I "./" /I "./Output/MinDep/PPC2002/Arm" /I "./Header Files" /D "_USRDLL" /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /D "_ATL_MIN_CRT" /D "_ATL_STATIC_REGISTRY" /FR /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
+# SUBTRACT CPP /WX
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC/Arm/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC2002/Arm/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "X86Release MinDependency 2002"
+# PROP BASE Intermediate_Dir "X86Release MinDependency 2002"
+# PROP BASE CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "Output/MinDep/PPC2002/X86em"
+# PROP Intermediate_Dir "Output/MinDep/PPC2002/X86em"
+# PROP CPU_ID "{D6518FFC-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/MinDep/PPC2002/X86em" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
+CPP=cl.exe
+# ADD BASE CPP /nologo /W3 /D "_USRDLL" /D "$(CePlatform)" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_WIN32_WCE_CEPC" /Yc /Gs8192 /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I "./Header Files" /I "./Output/MinDep/PPC2002/X86em" /I "./" /D "_USRDLL" /D "$(CePlatform)" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /D "_WIN32_WCE_CEPC" /D "__WCE2002_VERSION_" /FR /Yc /Gs8192 /Oxs /M$(CECrtMT) /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC2002/X86em/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:IX86
+# SUBTRACT BASE LINK32 /pdb:none
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /out:"DLLs/MinDep/PPC2002/X86em/RGridCtrl.dll" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:IX86
+# SUBTRACT LINK32 /pdb:none
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Debug"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "ARMDbg"
+# PROP BASE Intermediate_Dir "ARMDbg"
+# PROP BASE CPU_ID "{D6518FF3-710F-11D3-99F2-00105A0DF099}"
+# PROP BASE Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "Output/Debug/PPC2002/ARM"
+# PROP Intermediate_Dir "Output/Debug/PPC2002/ARM"
+# PROP CPU_ID "{D6518FF3-710F-11D3-99F2-00105A0DF099}"
+# PROP Platform_ID "{8A9A2F80-6887-11D3-842E-005004848CBA}"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+RSC=rc.exe
+# ADD BASE RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+# ADD RSC /l 0x409 /i "./Header Files" /i "./Output/Debug/PPC2002/ARM" /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
+CPP=clarm.exe
+# ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "_USRDLL" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /Gs8192 /GF /c
+# ADD CPP /nologo /W3 /Zi /Od /I "./Header Files" /I "./Output/Debug/PPC2002/ARM" /I "./" /D "DEBUG" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "_USRDLL" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /Gs8192 /GF /c
+MTL=midl.exe
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /debug /subsystem:$(CESubsystem) /MACHINE:ARM
+# SUBTRACT BASE LINK32 /incremental:no
+# ADD LINK32 /nologo /base:"0x00100000" /stack:0x10000,0x1000 /entry:"_DllMainCRTStartup" /dll /debug /out:"DLLs/Debug/PPC2002/ARM/RGridCtrl.dll" /subsystem:$(CESubsystem) /MACHINE:ARM
+# SUBTRACT LINK32 /pdb:none
+
+!ENDIF 
+
+# Begin Target
+
+# Name "RGridCtrl - Win32 (WCE x86em) Debug"
+# Name "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+# Name "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+# Name "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+# Name "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+# Name "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+# Name "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+# Name "RGridCtrl - Win32 (WCE x86) Debug"
+# Name "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+# Name "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+# Name "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+# Name "RGridCtrl - Win32 (WCE ARM) Debug"
+# Begin Group "Source Files"
+
+# PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+# Begin Source File
+
+SOURCE=".\Source Files\Cell.cpp"
+
+!IF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Debug"
+
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\Debug\PPC\X86EM\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+
+# PROP Intermediate_Dir "Output/MinDep/PPC/Arm"
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+NODEP_CPP_CELL_=\
+	".\Output\MinDep\PPC\Arm\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+NODEP_CPP_CELL_=\
+	".\Output\MinDep\PPC\MIPS\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+NODEP_CPP_CELL_=\
+	".\Output\MinDep\PPC\SH3\RGridCtrl.h"\
+	
+# ADD CPP /I "./Header Files" /I "./Output/MinDep/PPC/SH3" /I "./"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+
+# PROP BASE Intermediate_Dir "Output/MinDep/PPC/Arm"
+# PROP Intermediate_Dir "Output/MinDep/PPC/Arm"
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+NODEP_CPP_CELL_=\
+	".\Output\MinDep\HPC2000\Arm\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+NODEP_CPP_CELL_=\
+	".\Output\MinDep\HPC2000\MIPS\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Debug"
+
+# PROP Intermediate_Dir "Output/Debug/PPC2002/X86EM"
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\Debug\PPC2002\X86EM\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+
+# PROP BASE Intermediate_Dir "Output/MinDep/PPC/Arm"
+# PROP Intermediate_Dir "Output/MinDep/PPC/Arm"
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+# ADD CPP /Yu"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+
+# PROP BASE Intermediate_Dir "Output/MinDep/PPC/Arm"
+# PROP Intermediate_Dir "Output/MinDep/PPC/Arm"
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\MinDep\PPC2002\Arm\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+
+# PROP BASE Intermediate_Dir "Output/MinDep/PPC/Arm"
+# PROP Intermediate_Dir "Output/MinDep/PPC/Arm"
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+# ADD BASE CPP /Yu"stdafx.h"
+# ADD CPP /Yu"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Debug"
+
+# PROP BASE Intermediate_Dir "Output/Debug/PPC2002/ARM"
+# PROP Intermediate_Dir "Output/Debug/PPC2002/ARM"
+DEP_CPP_CELL_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\StdAfx.h"\
+	
+NODEP_CPP_CELL_=\
+	".\Output\Debug\PPC2002\ARM\RGridCtrl.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=".\Source Files\Grid.cpp"
+
+!IF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Debug"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\Debug\PPC\X86EM\RGridCtrl.h"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_GRID_=\
+	".\Output\MinDep\PPC\Arm\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_GRID_=\
+	".\Output\MinDep\PPC\MIPS\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_GRID_=\
+	".\Output\MinDep\PPC\SH3\RGridCtrl.h"\
+	
+# ADD CPP /I "./Header Files" /I "./Output/MinDep/PPC/SH3" /I "./"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\MinDep\PPC\X86em\RGridCtrl.h"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_GRID_=\
+	".\Output\MinDep\HPC2000\Arm\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_GRID_=\
+	".\Output\MinDep\HPC2000\MIPS\RGridCtrl.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Debug"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\Debug\PPC2002\X86EM\RGridCtrl.h"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+# ADD CPP /Yu"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\MinDep\PPC2002\Arm\RGridCtrl.h"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\MinDep\PPC2002\X86em\RGridCtrl.h"\
+	".\RGridCtrlCP.h"\
+	
+# ADD BASE CPP /Yu"stdafx.h"
+# ADD CPP /Yu"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Debug"
+
+DEP_CPP_GRID_=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_GRID_=\
+	".\Output\Debug\PPC2002\ARM\RGridCtrl.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=".\Source Files\RGridCtrl.cpp"
+
+!IF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Debug"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\Debug\PPC\X86EM\RGridCtrl.h"\
+	".\Output\Debug\PPC\X86EM\RGridCtrl_i.c"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_RGRID=\
+	".\Output\MinDep\PPC\Arm\RGridCtrl.h"\
+	".\Output\MinDep\PPC\Arm\RGridCtrl_i.c"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_RGRID=\
+	".\Output\MinDep\PPC\MIPS\RGridCtrl.h"\
+	".\Output\MinDep\PPC\MIPS\RGridCtrl_i.c"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_RGRID=\
+	".\Output\MinDep\PPC\SH3\RGridCtrl.h"\
+	".\Output\MinDep\PPC\SH3\RGridCtrl_i.c"\
+	
+# ADD CPP /I "./Header Files" /I "./Output/MinDep/PPC/SH3" /I "./"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_RGRID=\
+	".\Output\MinDep\HPC2000\Arm\RGridCtrl.h"\
+	".\Output\MinDep\HPC2000\Arm\RGridCtrl_i.c"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_RGRID=\
+	".\Output\MinDep\HPC2000\MIPS\RGridCtrl.h"\
+	".\Output\MinDep\HPC2000\MIPS\RGridCtrl_i.c"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Debug"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\Debug\PPC2002\X86EM\RGridCtrl.h"\
+	".\Output\Debug\PPC2002\X86EM\RGridCtrl_i.c"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+# ADD CPP /Yu"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\Output\MinDep\PPC2002\Arm\RGridCtrl.h"\
+	".\Output\MinDep\PPC2002\Arm\RGridCtrl_i.c"\
+	".\RGridCtrlCP.h"\
+	
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+# ADD BASE CPP /Yu"stdafx.h"
+# ADD CPP /Yu"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Debug"
+
+DEP_CPP_RGRID=\
+	".\Header Files\Cell.h"\
+	".\Header Files\CStockPropImpl2.h"\
+	".\Header Files\Grid.h"\
+	".\Header Files\StdAfx.h"\
+	".\RGridCtrlCP.h"\
+	
+NODEP_CPP_RGRID=\
+	".\Output\Debug\PPC2002\ARM\RGridCtrl.h"\
+	".\Output\Debug\PPC2002\ARM\RGridCtrl_i.c"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=".\Source Files\RGridCtrl.def"
+# End Source File
+# Begin Source File
+
+SOURCE=.\RGridCtrl.idl
+
+!IF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Debug"
+
+# ADD MTL /nologo /h "Output/Debug/PPC/X86EM/RGridCtrl.h" /iid "Output/Debug/PPC/X86EM/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203 /Oicf
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+
+# ADD MTL /h "Output/MinDep/PPC/Arm/RGridCtrl.h" /iid "Output/MinDep/PPC/Arm/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+
+# ADD MTL /h "Output/MinDep/PPC/MIPS/RGridCtrl.h" /iid "Output/MinDep/PPC/MIPS/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+
+# ADD MTL /h "Output/MinDep/PPC/SH3/RGridCtrl.h" /iid "Output/MinDep/PPC/SH3/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+
+# ADD MTL /h "Output/MinDep/PPC/X86em/RGridCtrl.h" /iid "Output/MinDep/PPC/X86em/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+
+# ADD BASE MTL /h "Output/MinDep/PPC/Arm/RGridCtrl.h" /iid "Output/MinDep/PPC/Arm/RGridCtrl_i.c"
+# SUBTRACT BASE MTL /mktyplib203
+# ADD MTL /h "Output/MinDep/HPC2000/Arm/RGridCtrl.h" /iid "Output/MinDep/HPC2000/Arm/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+
+# ADD BASE MTL /h "Output/MinDep/PPC/MIPS/RGridCtrl.h" /iid "Output/MinDep/PPC/MIPS/RGridCtrl_i.c"
+# SUBTRACT BASE MTL /mktyplib203
+# ADD MTL /h "Output/MinDep/HPC2000/MIPS/RGridCtrl.h" /iid "Output/MinDep/HPC2000/MIPS/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Debug"
+
+# ADD MTL /h "Output/Debug/PPC2002/X86EM/RGridCtrl.h" /iid "Output/Debug/PPC2002/X86EM/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+
+# ADD BASE MTL /h "Output/MinDep/PPC/Arm/RGridCtrl.h" /iid "Output/MinDep/PPC/Arm/RGridCtrl_i.c"
+# SUBTRACT BASE MTL /mktyplib203
+# ADD MTL /h "Output/MinDep/PPC2002/X86em/RGridCtrl.h" /iid "Output/MinDep/PPC2002/X86em/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+
+# ADD BASE MTL /h "Output/MinDep/PPC/Arm/RGridCtrl.h" /iid "Output/MinDep/PPC/Arm/RGridCtrl_i.c"
+# SUBTRACT BASE MTL /mktyplib203
+# ADD MTL /h "Output/MinDep/PPC2002/Arm/RGridCtrl.h" /iid "Output/MinDep/PPC2002/Arm/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+
+# ADD BASE MTL /h "Output/MinDep/PPC2002/X86em/RGridCtrl.h" /iid "Output/MinDep/PPC2002/X86em/RGridCtrl_i.c"
+# SUBTRACT BASE MTL /mktyplib203
+# ADD MTL /h "Output/MinDep/PPC2002/X86em/RGridCtrl.h" /iid "Output/MinDep/PPC2002/X86em/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Debug"
+
+# ADD BASE MTL /h "Output/Debug/PPC2002/ARM/RGridCtrl.h" /iid "Output/Debug/PPC2002/ARM/RGridCtrl_i.c"
+# SUBTRACT BASE MTL /mktyplib203
+# ADD MTL /h "Output/Debug/PPC2002/ARM/RGridCtrl.h" /iid "Output/Debug/PPC2002/ARM/RGridCtrl_i.c"
+# SUBTRACT MTL /mktyplib203
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=".\Source Files\StdAfx.cpp"
+
+!IF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Debug"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD CPP /I "./Header Files" /I "./Output/MinDep/PPC/SH3" /I "./" /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD BASE CPP /Yc"stdafx.h"
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD BASE CPP /Yc"stdafx.h"
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Debug"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD BASE CPP /Yc"stdafx.h"
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD BASE CPP /Yc"stdafx.h"
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD BASE CPP /Yc"stdafx.h"
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Debug"
+
+DEP_CPP_STDAF=\
+	".\Header Files\StdAfx.h"\
+	
+# ADD BASE CPP /Yc"stdafx.h"
+# ADD CPP /Yc"stdafx.h"
+
+!ENDIF 
+
+# End Source File
+# End Group
+# Begin Group "Header Files"
+
+# PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=".\Header Files\Cell.h"
+# End Source File
+# Begin Source File
+
+SOURCE=".\Header Files\CStockPropImpl2.h"
+# End Source File
+# Begin Source File
+
+SOURCE=".\Header Files\Grid.h"
+# End Source File
+# Begin Source File
+
+SOURCE=".\Header Files\resource.h"
+# End Source File
+# Begin Source File
+
+SOURCE=.\RGridCtrlCP.h
+# End Source File
+# Begin Source File
+
+SOURCE=".\Header Files\StdAfx.h"
+# End Source File
+# End Group
+# Begin Group "Resource Files"
+
+# PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+# Begin Source File
+
+SOURCE=".\Resource Files\grid.bmp"
+# End Source File
+# Begin Source File
+
+SOURCE=".\Resource Files\Grid.rgs"
+# End Source File
+# Begin Source File
+
+SOURCE=".\Resource Files\RGridCtrl.rc"
+
+!IF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Debug"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) Release MinDependency"
+
+# PROP Intermediate_Dir "Output/MinDep/PPC/MIPS"
+# ADD BASE RSC /l 0x409 /i "Resource Files"
+# SUBTRACT BASE RSC /i "./Output/MinDep/PPC/MIPS"
+# ADD RSC /l 0x409 /i "Resource Files" /i "Output/MinDep/PPC/MIPS"
+# SUBTRACT RSC /i "./Output/MinDep/PPC/MIPS"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE SH3) Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86em) Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) HPC2K Release MinDependency"
+
+# ADD BASE RSC /l 0x409 /i "Resource Files"
+# SUBTRACT BASE RSC /i "./Header Files" /i "./Output/MinDep/HPC2000/Arm" /i "./"
+# ADD RSC /l 0x409 /i "Resource Files" /i "Output/MinDep/HPC2000/Arm"
+# SUBTRACT RSC /i "./Header Files" /i "./Output/MinDep/HPC2000/Arm" /i "./"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE MIPS) HPC2K Release MinDependency"
+
+# PROP BASE Intermediate_Dir "Output/MinDep/PPC/MIPS"
+# PROP Intermediate_Dir "Output/MinDep/HPC2000/MIPS"
+# ADD BASE RSC /l 0x409 /i "Resource Files"
+# SUBTRACT BASE RSC /i "./Header Files" /i "./Output/MinDep/HPC2000/MIPS"
+# ADD RSC /l 0x409 /i "Resource Files" /i "Output/MinDep/HPC2000/MIPS"
+# SUBTRACT RSC /i "./Header Files" /i "./Output/MinDep/HPC2000/MIPS"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Debug"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Release MinDependency 2002"
+
+# ADD BASE RSC /l 0x409 /i "Resource Files"
+# SUBTRACT BASE RSC /i "./Header Files" /i "./Output/MinDep/PPC2002/Arm"
+# ADD RSC /l 0x409 /i "Resource Files" /i "Output/MinDep/PPC2002/Arm"
+# SUBTRACT RSC /i "./Header Files" /i "./Output/MinDep/PPC2002/Arm"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE x86) Release MinDependency 2002"
+
+# ADD BASE RSC /l 0x409 /i "Resource Files"
+# SUBTRACT BASE RSC /i "./Header Files" /i "./Output/MinDep/PPC2002/X86em"
+# ADD RSC /l 0x409 /i "Resource Files" /i "Output/MinDep/PPC2002/X86em"
+# SUBTRACT RSC /i "./Header Files" /i "./Output/MinDep/PPC2002/X86em"
+
+!ELSEIF  "$(CFG)" == "RGridCtrl - Win32 (WCE ARM) Debug"
+
+# ADD BASE RSC /l 0x409 /i "Resource Files"
+# SUBTRACT BASE RSC /i "./Header Files" /i "./Output/Debug/PPC2002/ARM"
+# ADD RSC /l 0x409 /i "Resource Files"
+# SUBTRACT RSC /i "./Header Files" /i "./Output/Debug/PPC2002/ARM"
+
+!ENDIF 
+
+# End Source File
+# End Group
+# End Target
+# End Project

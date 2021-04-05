@@ -1,0 +1,39 @@
+Object/Property Table
+
+CheckBox: Alignment, BackColor, Bottom, Caption, FontBold, FontItalic, 
+FontName, FontSize, FontStrikethru, FontUnderline, ForeColor, Height, 
+Left, Right, TabStop, Text, Top, Value*, Visible (read-only), Width
+
+ComboBox: BackColor, Bottom, Caption, FontBold, FontItalic, FontName, 
+FontSize, FontStrikethru, FontUnderline, Height, IntegralHeight, Left, 
+ListCount (read-only), ListIndex, NewIndex, Right, Sorted, Style, 
+TabStop, Text, Top, Visible (read-only), Width
+
+CommandButton: BackColor, Bottom, Caption, FontBold, FontItalic, 
+FontName, FontSize, FontStrikethru, FontUnderline, ForeColor, Height, 
+Left, Right, TabStop, Text, Top, Visible (read-only), Width
+
+Label: Alignment, BackColor, Bottom, Caption, FontBold, FontItalic, 
+FontName, FontSize, FontStrikethru, FontUnderline, ForeColor, Height, 
+Left, Right, TabStop, Text, Top, Visible (read-only), Width
+
+ListBox: BackColor, Bottom, FontBold, FontItalic, FontName, FontSize, 
+FontStrikethru, FontUnderline, ForeColor, Height, IntegralHeight, Left, 
+ListCount (read-only), ListIndex, NewIndex, Right, ScrollBars, Sorted, 
+TabStop, Top, Visible (read-only), Width
+
+OptionButton: Alignment, BackColor, Bottom, Caption, FontBold, 
+FontItalic, FontName, FontSize, FontStrikethru, FontUnderline, ForeColor, 
+Height, Left, Right, TabStop, Text, Top, Value, Visible (read-only), Width
+
+TextBox: BackColor, Bottom, Caption, FontBold, FontItalic, FontName, 
+FontSize, FontStrikethru, FontUnderline, ForeColor, Height, Left, 
+MaxLength, MultiLine, Right, TabStop, Text, Top, Value, Visible 
+(read-only), Width
+
+   {
+      NSBP_BACKCOLOR, NSBP_BOTTOM, NSBP_CAPTION, NSBP_FONTBOLD, NSBP_FONTITALIC,
+      NSBP_FONTNAME, NSBP_FONTSIZE, NSBP_FONTSTRIKETHRU, NSBP_FONTUNDERLINE,
+      (NSBP_FONTWEIGHT), NSBP_FORECOLOR,  NSBP_HEIGHT, NSBP_LEFT, NSBP_RIGHT,
+      NSBP_TABSTOP, NSBP_TEXT, NSBP_TOP, NSBP_VISIBLE, NSBP_WIDTH,
+   }

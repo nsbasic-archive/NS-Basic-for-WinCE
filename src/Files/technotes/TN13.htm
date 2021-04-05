@@ -1,0 +1,5269 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 13: PictureBox Control</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h1>Tech Note 13: PictureBox Control</h1>
+	  <h3>April 08, 2009
+	  </h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<h2>Overview</h2>
+
+<p>The NS Basic PictureBox control (NSCEPictureBox.ocx) is available for NS Basic/Desktop and NS Basic/CE version 6 or later. It replaces the Microsoft PictureBox control (MSCEPicture.dll) and the S309 PictureBox (S309PictureBox.ocx). All functions in the older controls should work the same way in this control.
+
+<h4>NS Basic/CE</h4>
+AddObject "PictureBox" uses this control. As a result, older programs will automatically start using the control. However, if you used the long form of the name, "PictureBox.PictureBox", it will always use the Microsoft PictureBox control (MSCEPicture.dll). If you want to be sure you get this control, use AddObject "NSCEPictureBox.NSCEPictureBoxCtrl.1",...
+
+<h4>NS Basic/Desktop</h4>
+AddObject "PictureBox" uses a lightweight version of this control which is built into your program, much like the other intrinsic controls. To use the full control described in this Tech Note, use AddObject "NSCEPictureBox.NSCEPictureBoxCtrl.1",... or add it to the Toolbox in the IDE using the ActiveX Control Manager.
+
+<h4>General</h4>
+If your program uses this control, you will also need to redistribute NSCEPictureBox.ocx and register it on the target machine.
+
+<P>The PictureBox is also used as a container for forms. As a result, the functions in PictureBox are directly available for use on any form.
+
+Here is a list of features in NS Basic's PictureBox:
+
+			<ul>
+
+  			  <li>Display Bitmap (bmp and 2bp), Gif, Jpeg,&nbsp;and XBM image files.</li>
+			  <li>Display bitmap resources from resource files, including common bitmaps such as FileOpen and FileClose.</li>
+			  <li>Capture and display an image of the physical screen.</li>
+			  <li>Save an image as a bitmap file.</li>
+			  <li>Display and animate playing cards like the ones used in the Solitaire game provided with Windows CE. </li>
+			  <li>Clip, Invert colors, Mirror, Resize, Rotate, and Scroll an image.</li>
+			  <li>Display any image with a transparent color.</li>
+			  <li>Provide access to individual pixels in the image.</li>
+			  <li>Specify colors using RGB or QBColor notation.</li>
+			  <li>Overlay one image on top of another.</li>
+			  <li>Draw lines, rectangles, circles, polygons, and round rectangles.</li>
+			  <li>Change the color depth of an image.</li>
+			  <li>Refresh the Desktop Wallpaper.</li>
+			  <li>Support better drawing, See DrawMouseMoveLineEx.</li>
+			  <li>Support 64K color displays.</li>
+			  <li>Support Drawing Text.</li>
+			  <li>Support Command Button emulation.</li>
+			  <li>Support Label emulation.</li>
+			  <li>Use Scroll Bars.</li>
+			  <li>Display icon resources from executable files, resource files, and icon (*.ico) files.</li>
+			  <li>Support the PictureBox on the NS Basic Toolbar.</li>
+			  <li>Tap and hold support for the Pocket PC.</li>
+			</ul>
+			<p>The PictureBox maintains the picture being displayed as an image, which is not necessarily the same width and/or height as the PictureBox. You can have the PictureBox automatically size itself to the width and height of the image or have the image stretched or shrunk to the size of the PictureBox when displayed. All drawing and pixel manipulation is done on the image.</p>
+
+<h2>Tips</h2>
+
+<ol>
+	<li>			If your image does not load, try setting the property.ImageLoadBufferSize = 4096</li>
+	<li>			Use .DrawMouseMoveLine or .DrawMouseMoveLineEx methods in the _MouseDown, _MouseMove and _MouseUp events to draw smother lines with the</li>
+	<li>			The LostFocusX and GotFocusX events need to be used to track the focus of the control.</li>
+</ol>
+
+<h2>PictureBox Reference
+
+
+			<table width="150" border="0" cellspacing="5" cellpadding="0" align="center">
+			  <tr>
+				<td class="contents"><a href="#properties">Properties</a></td>
+			  </tr>
+			  <tr>
+				<td class="contents"><a href="#events">Events</a></td>
+			  </tr>
+			  <tr>
+				<td class="contents"><a href="#methods">Methods</a></td>
+			  </tr>
+			</table>
+		</td><td>&nbsp;</td></tr>
+	  </table>
+	  <table width="660" border="0" cellspacing="0" cellpadding="0" align="center">
+		<tr>
+		  <td>
+			<p><a name="properties"></a></p>
+			<h3 align="center">Properties</h3>
+			<table width="720" border="0" cellspacing="20" cellpadding="0">
+			  <tr>
+				<td>
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9">AnimationAvailable</td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Returns True if animation is available for the image displayed. <strong><font
+
+    color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>AnimationInterval</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em><strong>0</strong>-65535</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns a value indicating whether the PictureBox will animate the image
+
+    displayed with the <strong>PlayingCard</strong> property The <strong>AnimationInterval</strong>
+
+    is in milliseconds. Setting the <strong>AnimationInterval</strong> property to a value
+
+    greater than 0 will enable the animation. 1000=one second.<em> Currently only available
+
+    with the <strong>PlayingCard</strong></em> <em>property set to 62 (<font color="#000000">Haunted
+
+    Castle</font>), 63(<font color="#000000">Bubbling Fish</font>), 64 (<font color="#000000">Cheating
+
+    Hand</font>), 65(<font color="#000000">Helpful Robot</font>), with the <strong>WildCard</strong>
+
+    property set to True, or with the <strong>PlayingCard</strong></em> <em>property set to
+
+    any of the face cards or 53 (the Joker).</em></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>Appearance</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em>-4, -3, -2, -1,<strong> 0</strong>, 1, 2, 3, 4</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns a value indicating the appearance of the PictureBox. <em>The <strong>Appearance</strong>
+
+    property has no effect if <strong>BorderStyle</strong> property is not set to 1.</em>
+					    <div
+
+    align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td colspan="2" rowspan="2"><font color="#0080FF">Interactions between<strong> BorderStyle</strong>
+
+        and <strong>Appearance</strong> properties.</font></td>
+								<td colspan="2" align="center"><font color="#0080FF"><strong>BorderStyle</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="56">0</td>
+								<td align="center" width="251">1</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td rowspan="9" align="center" width="69"><font color="#0080FF"><strong>Appearance</strong></font></td>
+								<td align="center" width="11">4</td>
+								<td width="56">No Border</td>
+								<td width="251">Single Line Border Including Scrollbars</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11">3</td>
+								<td width="56">No Border</td>
+								<td width="251">3D Raised Border Including Scrollbars&nbsp;</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11">2</td>
+								<td width="56">No Border</td>
+								<td width="251">3D Raised Border (Tiles)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11">1</td>
+								<td width="56">No Border</td>
+								<td width="251">3D Raised Border (Soft)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11"><strong>0</strong></td>
+								<td width="56">No Border</td>
+								<td width="251">Single Line Border</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11">-1</td>
+								<td width="56">No Border</td>
+								<td width="251">3D Sunken Border (Soft)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11">-2</td>
+								<td width="56">No Border</td>
+								<td width="251">3D Sunken Border (Tiles)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11">-3</td>
+								<td width="56">No Border</td>
+								<td width="251">3D sunken Border Including Scrollbars</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="11">-4</td>
+								<td width="56">No Border</td>
+								<td width="251">3D sunken Border Frame Including Scrollbars</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>AutoRefresh</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em><strong>True</strong>|False</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns a value indicating whether the PictureBox will automatically refresh
+
+    after image manipulation.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>AutoSize</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns a value indicating whether the PictureBox will automatically change to
+
+    the size of the image being displayed.#</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>BackColor</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em>color</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns the background color of the PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>BitmapOnClipboard</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Returns True if there is a bitmap image on the clipboard. <strong><font
+
+    color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>BorderStyle</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em><strong>0</strong>, 1</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns a value indicating the border style of the PictureBox. Can
+
+      be used with
+
+    the <strong>Appearance</strong> property to display 3D borders.
+					    <div align="center">
+						  <center>
+						    <table
+
+    border="1">
+
+      						  <tr>
+
+        					    <td align="center"><font color="#0080FF"><strong>BorderStyle</strong></font></td>
+								<td align="center"><font color="#0080FF"><strong>Description</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center"><strong>0</strong></td>
+								<td>No Border</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">1</td>
+								<td>Single line border</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>Caption</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em>string</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns the caption to be used when in command button mode<strong>.</strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="187">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>Center</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em><strong>0</strong>, 1, 2, 3</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Sets or returns a value indicating whether the PictureBox will automatically center
+
+    the image being displayed in the PictureBox.
+					    <div align="center">
+						    
+						  <table border="1">
+
+      						  
+							<tr>
+
+        					    
+							  <td><font color="#0080FF"><strong>Center</strong></font></td>
+							  <td align="center"><font color="#0080FF"><strong>Horizontally</strong></font></td>
+							  <td align="center"><font color="#0080FF"><strong>Vertically</strong></font></td>
+							</tr>
+
+      						  
+							<tr>
+
+        					    
+							  <td align="center"><strong>0</strong></td>
+							  <td align="center">No</td>
+							  <td align="center">No</td>
+							</tr>
+
+      						  
+							<tr>
+
+        					    
+							  <td align="center">1</td>
+							  <td align="center">Yes</td>
+							  <td align="center">No</td>
+							</tr>
+
+      						  
+							<tr>
+
+        					    
+							  <td align="center">2</td>
+							  <td align="center">No</td>
+							  <td align="center">Yes</td>
+							</tr>
+
+      						  
+							<tr>
+
+        					    
+							  <td align="center">3</td>
+							  <td align="center">Yes</td>
+							  <td align="center">Yes</td>
+							</tr>
+    					    
+						  </table>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>Clip</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Values</span>:</div>
+					  </td>
+					  <td><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns a value indicating whether the image should be clipped when it is
+
+    loaded when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+
+    ResourceBitmapID</strong> properties. Only a portion of the image is kept and it is not
+
+    resized. Used with the <strong>ClipHeigh</strong>t, <strong>ClipLeft</strong>, <strong>ClipTop</strong>,
+
+    and <strong>ClipWidth</strong> <strong>FillColor</strong> properties. You can increase the
+
+    size of the overall image without resizing the existing image. The new area not covered by
+
+    the clipped existing image will be filled with the color in the <strong>FillColor</strong>
+
+    property.</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>ClipHeight</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns the number of pixels from top edge of original image to bottom edge of
+
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipLeft</strong>,
+
+    <strong>ClipTop</strong>, and <strong>ClipWidth</strong> properties.</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>ClipLeft</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns the number of pixels from left edge of original image to left edge of
+
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipHeigh</strong>t,<strong>
+
+    ClipTop</strong>, and <strong>ClipWidth</strong> properties.</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>ClipTop</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns the number of pixels from top edge of original image to top edge of
+
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipHeigh</strong>t,<strong>
+
+    ClipLeft</strong>, and <strong>ClipWidth</strong> properties.</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>ClipWidth</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns the number of pixels from left edge of original image to right edge of
+
+    image to clip. Used with the <strong>ClipImage </strong>method, <strong>Clip</strong>, <strong>ClipHeigh</strong>t,<strong>
+
+    ClipLeft</strong>,&nbsp; and <strong>ClipTop</strong> properties.</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>CommandButton</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns the whether the PictureBox control should behave
+
+      like a command button.</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>CommonBitmapID</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns a value indicating which Common Controls Bitmap should or is being
+
+    shown. <em>Set <strong>CommonBitmapType</strong> property before setting <strong>CommonBitmapID</strong>
+
+    property. Setting this property will cause the image to be loaded and displayed in the
+
+    PictureBox.</em>
+					  	  <div align="center">
+						    <center>
+						  	  <table border="1" callpadding="5" frame="Box">
+
+      						    <tr>
+
+        					  	  <th><font color="#0080FF">CommonBitmapID</font></th>
+								  <th colspan="2"><font color="#0080FF">CommonBitmapType</font></th>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">&nbsp;</td>
+								  <td align="center"><font color="#0080FF"><strong>-1 or 1</strong></font></td>
+								  <td align="center"><font color="#0080FF"><strong>-2 or 2</strong></font></td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">&nbsp;</td>
+								  <td align="center" colspan="2"><font color="#0080FF"><strong>Bitmap Description</strong></font></td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center"><strong>-1</strong> <strong><font color="#FF0000">(Read Only)</font></strong></td>
+								  <td>No Bitmap</td>
+								  <td>No Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">0</td>
+								  <td>Cut Bitmap</td>
+								  <td>Large Icons Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">1</td>
+								  <td>Copy Bitmap</td>
+								  <td>Small Icons Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">2</td>
+								  <td>Paste Bitmap</td>
+								  <td>List Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">3</td>
+								  <td>Undo Bitmap</td>
+								  <td>Details Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">4</td>
+								  <td>Redo Bitmap</td>
+								  <td>Sort By Name Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">5</td>
+								  <td>Delete Bitmap</td>
+								  <td>Sort By Size Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">6</td>
+								  <td>File New Bitmap</td>
+								  <td>Sort By Date Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">7</td>
+								  <td>File Open Bitmap</td>
+								  <td>Sort By Type Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">8</td>
+								  <td>File Save Bitmap</td>
+								  <td>Parent Folder Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">9</td>
+								  <td>Print Preview Bitmap</td>
+								  <td>Net Connect Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">10</td>
+								  <td>Properties Bitmap</td>
+								  <td>Net Disconnect Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">11</td>
+								  <td>Help Bitmap</td>
+								  <td>New Folder Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">12</td>
+								  <td>Find Bitmap</td>
+								  <td><em>Illegal value</em></td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">13</td>
+								  <td>Replace Bitmap</td>
+								  <td><em>Illegal value</em></td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">14</td>
+								  <td>Print Bitmap</td>
+								  <td><em>Illegal value</em></td>
+								</tr>
+
+    					  	  </table>
+							</center>
+						  </div>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>CommonBitmapType</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<div align="left">Sets or returns a value indicating which Type Common Controls bitmap should or is
+
+    being shown. <em>Set <strong>CommonBitmapType</strong> property before setting <strong>CommonBitmapID</strong>
+
+    property.</em>
+					  	  <div align="center">
+						    <center>
+						  	  <table border="1">
+
+      						    <tr>
+
+        					  	  <th><font color="#0080FF">CommonBitmapType</font></th>
+								  <th><font color="#0080FF">Description</font></th>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">-2</td>
+								  <td>Disabled View Bitmaps</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">-1</td>
+								  <td>Disabled Standard Bitmaps</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center"><strong>0</strong></td>
+								  <td>No Bitmap</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">1</td>
+								  <td>Enabled Standard Bitmaps</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">2</td>
+								  <td>Enabled View Bitmaps</td>
+								</tr>
+
+    					  	  </table>
+							</center>
+						  </div>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FillColor</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>color</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						
+							  
+						<div align="left">Sets or returns the fill color to be used when manipulating an image in the
+
+    PictureBox. This property defaults to the color white.
+</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FillStyle</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em><strong>0</strong>, 1</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						
+							  
+						<div align="left">Sets or returns the fill style to be used when manipulating an image in the
+
+    PictureBox.
+					  	  <div align="center">
+						    <center>
+						  	  <table border="1">
+
+      						    <tr>
+
+        					  	  <td align="center"><font color="#0080FF"><strong>FillStyle</strong></font></td>
+								  <td><font color="#0080FF"><strong>Description</strong></font></td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center"><strong>0</strong></td>
+								  <td>Solid - Will be filled in the color in the <strong>FillColor</strong> property.</td>
+								</tr>
+
+      						    <tr>
+
+        					  	  <td align="center">1</td>
+								  <td>Transparent - the background will show through.</td>
+								</tr>
+
+    					  	  </table>
+							</center>
+						  </div>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="51">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FocusRect</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns whether a focus rectangle should be drawn when the PictureBox has focus.
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FocusRectIndentBottom</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels the focus rectangle will be
+
+      indented from the bottom edge of the control.&nbsp;					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FocusRectIndentLeft</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels the focus rectangle will be
+
+      indented from the left edge of the control.&nbsp;				  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FocusRectIndentRight</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels the focus rectangle will be
+
+      indented from the right edge of the control.&nbsp;			  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FocusRectIndentTop</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels the focus rectangle will be
+
+      indented from the top edge of the control.&nbsp;		  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FontBold</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the <b>BOLD</b> setting of the font.	  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FontItalic</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the <i>ITALIC </i>setting of the font.  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>FontName</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>string</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the name of the font. </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>FontSize</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the point size setting of the font.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>FontStrikethru</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the <strike>STRIKETHRU</strike> setting of the
+
+      font.&nbsp;</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>FontTransparent</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns whether the text background will be transparent.&nbsp;</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>FontUnderline</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the <u>UNDERLINE</u> setting of the font.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>FontWeight</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the FONTWEIGHT setting of the font.&nbsp;</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ForeColor</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>color</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the foreground color to be used when drawing text in the
+
+    PictureBox.&nbsp;</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>hBitmap</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the HBITMAP of the image. This should only be used to set the hBitmap
+
+    property of one PictureBox to the hBitmap property of another PictureBox. This is
+
+    used to copy the image from one PictureBox to another PictureBox. <em>Setting this
+
+    property will cause the image to be loaded and displayed in the PictureBox.</em></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>Height</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels from the top edge to the bottom edge of the
+
+    PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>hFont</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the HFONT to be used when drawing text. This should only be used to set the
+
+      hFont
+
+    property of one PictureBox to the hFont property of another PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>HScrollPosition</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the horizontal scrollbar position.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>hWnd</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the hWnd of the PictureBox control. <strong><font
+
+    color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageBitsPerPixel</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating the number of bits per pixel (color depth) of the
+
+    image<em>. </em>
+					    <div align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td width="50%" align="center"><font color="#0080FF"><strong>Bits Per Pixel</strong></font></td>
+								<td width="50%" align="center"><font color="#0080FF"><strong>Number Of Colors</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">1</td>
+								<td width="50%" align="center">2</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">2</td>
+								<td width="50%" align="center">4</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">4</td>
+								<td width="50%" align="center">16</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">8</td>
+								<td width="50%" align="center">256</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">16</td>
+								<td width="50%" align="center">65,535</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">24</td>
+								<td width="50%" align="center">16,777,216</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageHeight</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the height of the image from the file.<strong><font color="#FF0000"> (Read
+
+    Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageLoadBitsPerPixel</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating the number of bits per pixel (color depth) of the
+
+    image to use when <font color="#000000">loading images with the <strong>Picture</strong>
+
+    property. (</font>If<strong> ImageLoadBufferSize = 0</strong>, <strong>ImageLoadBitsPerPixel</strong>
+
+    might be ignored.)
+					    <div align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td width="50%" align="center"><font color="#0080FF"><strong>Bits Per Pixel</strong></font></td>
+								<td width="50%" align="center"><font color="#0080FF"><strong>Number Of Colors</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">1</td>
+								<td width="50%" align="center">2</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">2</td>
+								<td width="50%" align="center">4</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">4</td>
+								<td width="50%" align="center">16</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">8</td>
+								<td width="50%" align="center">256</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">16</td>
+								<td width="50%" align="center">65,535</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">24</td>
+								<td width="50%" align="center">16,777,216</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageLoadBufferSize</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<font color="#000000">Returns or sets the buffer size used when loading an image with
+
+    the <strong>Picture</strong> property. (Default: </font><strong>ImageLoadBufferSize = 0</strong>,
+
+    which will use the height and width from the file instead of <strong>ImageLoadMaxHeight </strong>and
+
+    <strong>ImageLoadMaxWidth</strong> properties and will attempt to use the bits per pixel
+
+    value from the file instead of <strong>ImageLoadBitsPerPixel</strong> property when
+
+    loading images with the <strong>Picture</strong> property.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageLoaded</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns True if the PictureBox currently has an image loaded.<em> </em><strong><font
+
+    color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageLoadMaxHeight</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<font color="#000000">Return or sets the maximum image height when loading images with
+
+    the <strong>Picture</strong> property. (</font>If<strong> ImageLoadBufferSize = 0</strong>,
+
+    <strong>ImageLoadMaxHeight</strong> will be ignored.)</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageLoadMaxWidth</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						<font color="#000000">Return or sets the maximum image width when loading images with
+
+    the <strong>Picture</strong> </font>property. (If<strong> ImageLoadBufferSize = 0</strong>,
+
+    <strong>ImageLoadMaxWidth</strong> will be ignored.)</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>ImageWidth</strong></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the width of the image from the file.<strong><font color="#FF0000"> (Read
+
+    Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>Invert</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether the colors of the image will be inverted when loaded into the PictureBox when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard, ResourceBitmapID</strong> properties. This may not work properly on Windows CE 4.2 and Pocket PC 2003 devices. The workaround is to add this line of code:
+						<pre>
+						if picturebox.pixel(0,0)=0 then picturebox.InvertImage
+						</pre>
+						</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>Left</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels from the left edge of the output window to the
+
+    left edge of the PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>Mirror</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em><strong>0</strong>, 1, 2, 3</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether the picture will be mirrored in the
+
+    PictureBox when loading the image with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+
+    ResourceBitmapID</strong> properties or the <strong>MirrorImage</strong> method.
+					    <div
+
+    align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td align="center"><font color="#0080FF"><strong>Mirror</strong></font></td>
+								<td align="center"><font color="#0080FF"><strong>Horizontally</strong></font></td>
+								<td align="center"><font color="#0080FF"><strong>Vertically</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center"><strong>0</strong></td>
+								<td align="center">No</td>
+								<td align="center">No</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">1</td>
+								<td align="center">Yes</td>
+								<td align="center">No</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">2</td>
+								<td align="center">No</td>
+								<td align="center">Yes</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">3</td>
+								<td align="center">Yes</td>
+								<td align="center">Yes</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>MouseMovePoints</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>0, 1, <strong>2</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the mode of dealing with extra mouse move points.<br>
+
+    				    <div align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td align="center"><font color="#0080FF">MouseMovePoints</font></td>
+								<td align="center"><font color="#0080FF">Description</font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">0</td>
+								<td align="center">
+								  <div align="left">Do not capture or use extra mouse move points. <em>This option takes
+
+        the fewest CPU cycles.</em></div>
+								</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">1</td>
+								<td align="center">
+								  <div align="left">Capture extra mouse move points and send them through the <strong>MouseDown</strong>
+
+          <em>event. This option takes the most CPU cycles.</em></div>
+								</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center"><strong>2</strong></td>
+								<td align="center">
+								  <div align="left">Capture extra mouse move points and make them available to <strong>DrawMouseMoveLines</strong>,
+
+        &nbsp; <strong>DrawMouseMoveLinesEx</strong>, and <strong>GetMouseMovePoint</strong>
+
+        methods, but do not send them through the <strong>MouseMove</strong> event.<em> This
+
+        option is the best trade off between CPU cycles and amount of detail in drawing.</em></div>
+								</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>MouseMovePointsCount</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the number of mouse move points stored for the <strong>DrawMouseMoveLines</strong>,
+
+    &nbsp; <strong>DrawMouseMoveLinesEx</strong>, and <strong>GetMouseMovePoint</strong>
+
+    methods. <strong><font color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>Name</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>string</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the name of the PictureBox. <strong><font color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>OnToolbar</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether the
+
+      PictureBox should place itself on the NS Basic Toolbar. <font color="#FF0000"><strong>(NS
+
+      Basic Only) Does not work with Pocket PC's yet.</strong></font></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>Overlay</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether the image being loaded should be overlaid
+
+    on the existing image when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+
+    ResourceBitmapID</strong> properties.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="3" class="command" height="9" bgcolor="#EEEEEE"><strong>OverlayLeft</strong></td>
+					</tr>
+					<tr>
+					  <td width="50" height="13">&nbsp;</td>
+					  <td width="80" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="50">&nbsp;</td>
+					  <td width="80" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels from left edge of original image to left edge of
+
+    new image. Used with the <strong>Overlay </strong>and<strong> OverlayTop</strong>
+
+    properties.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>OverlayTop</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels from top edge of original image to top edge of
+
+    new image. Used with the <strong>Overlay </strong>and<strong> OverlayLeft</strong>
+
+    properties.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>OverlayTransparentColor</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em><strong>-1, </strong>color</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns or sets the color to be used as a transparent color when overlaying the image.
+
+    No transparent color will be used if this property is set to -1.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="16">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>ParentHWnd</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer, read only</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the HWnd of the parent window.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>PenFillStyle</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>0, <strong>1</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the pen fill style to be used when manipulating an image in the
+
+    PictureBox and the <strong>PenStyle</strong> property =&nbsp; 2.
+					    <div align="center">
+						  <table
+
+    border="1">
+
+      					    <tr>
+
+        					  <td align="center"><font color="#0080FF"><strong>PenFillStyle</strong></font></td>
+							  <td>
+								<div align="center"><font color="#0080FF"><strong>Description</strong></font></div>
+							  </td>
+							</tr>
+
+      					    <tr>
+
+        					  <td align="center">0</td>
+							  <td>Solid - Will be filled in the color in the <strong>BackColor</strong> property.</td>
+							</tr>
+
+      					    <tr>
+
+        					  <td align="center"><strong>1</strong></td>
+							  <td>Transparent - the background will show through.</td>
+							</tr>
+
+    					  </table>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>PenStyle</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>0, <strong>1</strong>, 2</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the pen style to be used when drawing a line with a width of 1. If the
+
+    <strong>DrawWidth</strong> property&nbsp; &gt; 1 then the <strong>PenStyle</strong>
+
+    property is assumed to be 1.
+					    <div align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td align="center"><font color="#0080FF"><strong>PenStyle</strong></font></td>
+								<td><font color="#0080FF"><strong>Description</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">0</td>
+								<td>No Line</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center"><strong>1</strong></td>
+								<td>Solid Line</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">2</td>
+								<td>Dash Line</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>Picture</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>string</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Set or Returns a string with name of image file.<br>
+
+    <em>Setting this property will cause the image to be loaded and displayed in the
+
+    PictureBox.</em></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>Pixel(<em>x</em>, <em>y</em>)</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>color</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Set or returns the color of the pixel in the image at the position specified by <strong><em>x</em></strong>
+
+    and <strong><em>y</em></strong>. <strong>Note</strong>: The <strong><em>x</em></strong>
+
+    and <em><strong>y</strong></em> are coordinates on the image which may or may not
+
+    correspond to the coordinates of the PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>PlayingCard</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the numeric id of a playing card to display. <em>Setting this property
+
+    will cause the image to be loaded and displayed in the PictureBox.</em>
+					    <div align="center">
+						  <center>
+						    <table
+
+    border="1" width="579" height="1761">
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="38"><font color="#0080FF"><strong>PlayingCard</strong></font></td>
+								<td align="center" width="153" height="38"><font color="#0080FF"><strong>Description</strong></font></td>
+								<td align="center" width="105" height="38"><font color="#0080FF"><strong>Animation
+
+          Available HPC</strong></font></td>
+								<td align="center" width="107" height="38"><font color="#0080FF"><strong>Animation
+
+          Available PPC</strong></font></td>
+								<td align="center" width="106" height="38"><font color="#0080FF"><strong>Animation
+
+          Available Desktop</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="38">1-13</td>
+								<td width="153" height="38">Ace through King of Clubs</td>
+								<td width="105" height="38">True (Jack, Queen, and King)</td>
+								<td width="107" height="38">False</td>
+								<td width="106" height="38">True (Jack, Queen, and King)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="38">14-26</td>
+								<td width="153" height="38">Ace through King of Diamonds</td>
+								<td width="105" height="38">True (Jack, Queen, and King)</td>
+								<td width="107" height="38">False</td>
+								<td width="106" height="38">True (Jack, Queen, and King)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="38">27-39</td>
+								<td width="153" height="38">Ace through King of Hearts</td>
+								<td width="105" height="38">True (Jack, Queen, and King)</td>
+								<td width="107" height="38">False</td>
+								<td width="106" height="38">True (Jack, Queen, and King)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="38">40-52</td>
+								<td width="153" height="38">Ace through King of Spades</td>
+								<td width="105" height="38">True (Jack, Queen, and King)</td>
+								<td width="107" height="38">False</td>
+								<td width="106" height="38">True (Jack, Queen, and King)</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">53</td>
+								<td width="153" height="76">Ghost Card Back (Desktop)<br>
+
+          Same as 153 (HPC, HPC PRO and PPC)&nbsp;</td>
+								<td width="105" height="76"></td>
+								<td width="107" height="76"></td>
+								<td width="106" height="76">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">54</td>
+								<td width="153" height="76">Thatched 1 Card Back (Desktop)<br>
+
+          Same as 154 (HPC, HPC PRO and PPC)&nbsp;</td>
+								<td width="105" height="76"></td>
+								<td width="107" height="76"></td>
+								<td width="106" height="76">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">55</td>
+								<td width="153" height="76">Thatched 2 Card Back (Desktop)<br>
+
+          Same as 155 (HPC, HPC PRO and PPC)&nbsp;</td>
+								<td width="105" height="76"></td>
+								<td width="107" height="76"></td>
+								<td width="106" height="76">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">56</td>
+								<td width="153" height="76">Helpful Robot Card Back (Desktop)<br>
+
+          Same as 156 (HPC, HPC PRO and PPC)&nbsp;</td>
+								<td width="105" height="76"></td>
+								<td width="107" height="76"></td>
+								<td width="106" height="76">True</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">57</td>
+								<td width="153" height="76">Roses Card Back (Desktop)<br>
+
+          Same as 157 (HPC, HPC PRO and PPC)&nbsp;</td>
+								<td width="105" height="76"></td>
+								<td width="107" height="76"></td>
+								<td width="106" height="76">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">58</td>
+								<td width="153" height="76">Flowers 1 Card Back (Desktop)<br>
+
+          Same as 158 (HPC, HPC PRO and PPC)&nbsp;</td>
+								<td width="105" height="76"></td>
+								<td width="107" height="76"></td>
+								<td width="106" height="76">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">59</td>
+								<td width="153" height="76">Flowers 2 Card Back (Desktop)<br>
+
+          Same as 159 (HPC, HPC PRO and PPC)&nbsp;</td>
+								<td width="105" height="76"></td>
+								<td width="107" height="76"></td>
+								<td width="106" height="76">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="38">60</td>
+								<td width="153" height="38">Fishes 1 Card Back (Desktop)</td>
+								<td width="105" height="38"></td>
+								<td width="107" height="38"></td>
+								<td width="106" height="38">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="152">61</td>
+								<td width="153" height="152">Fishes 2 Card Back (Desktop)<br>
+
+          WIN32_WCE Horse card back (HPC)<br>
+
+        Rocket Ship (HPC PRO, HPC 2000)<br>
+
+        Dragon card back (PPC)</td>
+								<td width="105" height="152">True (False on HPC)</td>
+								<td width="107" height="152">True (False on Palmsize PC)</td>
+								<td width="106" height="152">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="114">62</td>
+								<td width="153" height="114">Card Back 10 (Desktop)<font color="#000000"><br>
+
+          Haunted Castle</font> card back (HPC)<br>
+
+        Pyramid card back (PPC)</td>
+								<td width="105" height="114">True</td>
+								<td width="107" height="114">True</td>
+								<td width="106" height="114">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="95">63</td>
+								<td width="153" height="95">Haunted Castle Card Back (Desktop)<font color="#000000"><br>
+
+          Bubbling Fish</font> card back (HPC)<br>
+
+        ? card back (PPC)</td>
+								<td width="105" height="95">True</td>
+								<td width="107" height="95">True</td>
+								<td width="106" height="95">True</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="76">64</td>
+								<td width="153" height="76">Beach Card Back (Desktop)<font color="#000000"><br>
+
+          Cheating Hand</font> card back</td>
+								<td width="105" height="76">True</td>
+								<td width="107" height="76">True</td>
+								<td width="106" height="76">True</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="114">65</td>
+								<td width="153" height="114">Cheating Hand Card Back (Desktop)<font color="#000000"><br>
+
+          Helpful Robot</font> card back (HPC)<br>
+
+        Clover card back (PPC)</td>
+								<td width="105" height="114">True</td>
+								<td width="107" height="114">False</td>
+								<td width="106" height="114">True</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="57">66</td>
+								<td width="153" height="57">Sailboat card back (HPC, HPC PRO, PPC)</td>
+								<td width="105" height="57">&nbsp;False</td>
+								<td width="107" height="57">True</td>
+								<td width="106" height="57"></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="19">67</td>
+								<td width="153" height="19">X card (Desktop)</td>
+								<td width="105" height="19"></td>
+								<td width="107" height="19"></td>
+								<td width="106" height="19">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="19">68</td>
+								<td width="153" height="19">O card (Desktop)</td>
+								<td width="105" height="19"></td>
+								<td width="107" height="19"></td>
+								<td width="106" height="19">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="38">78</td>
+								<td width="153" height="38">O card (HPC, HPC PRO, PPC)</td>
+								<td width="105" height="38">False</td>
+								<td width="107" height="38">False</td>
+								<td width="106" height="38"></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="16">79</td>
+								<td width="153" height="16">X card (HPC, HPC PRO, PPC)</td>
+								<td width="105" height="16">False</td>
+								<td width="107" height="16">False</td>
+								<td width="106" height="16"></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="19">80</td>
+								<td width="153" height="19">Ghost card&nbsp; (HPC, HPC PRO, PPC)</td>
+								<td width="105" height="19">False</td>
+								<td width="107" height="19">False</td>
+								<td width="106" height="19"></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="19">153</td>
+								<td width="153" height="19">Joker</td>
+								<td width="105" height="19">True</td>
+								<td width="107" height="19">False</td>
+								<td width="106" height="19">True</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="19">154</td>
+								<td width="153" height="19">Blank card</td>
+								<td width="105" height="19">False</td>
+								<td width="107" height="19">False</td>
+								<td width="106" height="19">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="19">155</td>
+								<td width="153" height="19">Blank face card</td>
+								<td width="105" height="19">False</td>
+								<td width="107" height="19">False</td>
+								<td width="106" height="19">False</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center" width="74" height="57">156-159</td>
+								<td width="153" height="57">Suit cards <br>
+
+        (Clubs, Diamonds, Hearts, Spades)</td>
+								<td width="105" height="57">False</td>
+								<td width="107" height="57">False</td>
+								<td width="106" height="57">False</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>Resize</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating the whether the image will be resized (stretched or
+
+    shrunk) when loading the image with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+
+    ResourceBitmapID</strong> properties. Used with the <strong>ResizeHeigh</strong>t and <strong>ResizeWidth</strong>
+
+    properties.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>ResizeHeight</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the number of pixels from top edge to bottom edge of the resized
+
+      image. Used with the <strong>ResizeImage </strong>method, <strong>Resize </strong>and <strong>ResizeWidth</strong>
+
+    properties.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>ResizeWidth</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Set or returns the number of pixels from left edge to right edge of the resized
+
+      image. Used with the <strong>ResizeImage </strong>method, <strong>Resize </strong>and <strong>ResizeHeight</strong>
+
+    properties.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="86">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>ResourceBitmapID</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the numeric resource id of a bitmap in an executable to display.<br>
+
+    <em>Set the <strong>ResourceFile</strong> property before setting this property. Setting
+
+    this property will cause the image to be loaded and displayed in the PictureBox.</em></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="86">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>ResourceBitmapIDstr</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>string</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the string resource id of a bitmap in an executable to display. (Available Version 1.3)<br>
+
+    <em>Set the <strong>ResourceFile</strong> property before setting this property. Setting this property will cause the image to be loaded and displayed in the PictureBox.</em></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="9" bgcolor="#EEEEEE"><strong>ResourceFile</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>string</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a string with name of resource file (.dll, .ocx, .cpl, etc...) in
+
+    which to get the bitmap resource from. <em>Set the <strong>ResourceBitmapID</strong>
+
+    property after setting this property.</em></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ResourceFileLoaded</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns a value indicating the whether a resource file has been successfully loaded. <em>Set
+
+    the <strong>ResourceBitmapID</strong>  or <strong>ResourceIconID </strong>properties
+
+      before reading this property. </em><strong><font
+
+    color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ResourceIconID</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						ReturSets or returns the numeric resource id of an icon in an executable to display.<br>
+
+    <em>Set the <strong>ResourceFile</strong> property before setting this property. Setting
+
+    this property will cause the image to be loaded and displayed in the PictureBox.</em></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Rotate</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em><strong>0</strong>, 90, 180, 270</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating the rotation of the picture in the PictureBox when
+
+    loading the image with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+
+    ResourceBitmapID</strong> properties or the <strong>RotateImage</strong> method.
+					    <div
+
+    align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td align="center"><font color="#0080FF"><strong>Rotate</strong></font></td>
+								<td align="center"><font color="#0080FF"><strong>Description</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center"><strong>0</strong></td>
+								<td>No rotation will be done</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">90</td>
+								<td>Rotate image 90 degrees clockwise</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">180</td>
+								<td>Rotate image 180 degrees clockwise</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">270</td>
+								<td>Rotate image 270 degrees clockwise</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScaleMode</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em><b>3</b></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating the Scale Mode of the PictureBox. Currently only
+
+    Scale Mode 3 is supported.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScreenBitsPerPixel</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns a value indicating the number of bit per pixel (color depth) of the physical
+
+    screen<em>. </em><strong><font color="#FF0000">(Read Only)</font></strong>
+					    <div
+
+    align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td width="50%" align="center"><font color="#0080FF"><strong>Bits Per Pixel</strong></font></td>
+								<td width="50%" align="center"><font color="#0080FF"><strong>Number Of Colors</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">1</td>
+								<td width="50%" align="center">2</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">2</td>
+								<td width="50%" align="center">4</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">4</td>
+								<td width="50%" align="center">16</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">8</td>
+								<td width="50%" align="center">256</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">16</td>
+								<td width="50%" align="center">65,535</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td width="50%" align="center">24</td>
+								<td width="50%" align="center">16,777,216</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScreenHeight</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns a value indicating the number of pixels from the top edge to the bottom edge
+
+    of the physical screen<em>. </em><strong><font color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScreenLeft</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the number of pixels from left edge of the physical screen to left edge of the
+
+    PictureBox. <strong><font color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScreenTop</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the number of pixels from top edge of the physical screen to top edge of the
+
+    PictureBox.<em> </em><strong><font color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScreenWidth</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns a value indicating the number of pixels from the left edge to the right edge
+
+    of the physical screen.<em>. </em><strong><font color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Scroll</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether the image should be scrolled when it is
+
+    loaded when used with the <strong>hBitmap, Picture</strong>, <strong>PlayingCard,
+
+    ResourceBitmapID</strong> properties. Used with the <strong>ScrollX</strong> and <strong>ScrollY</strong>
+
+    properties. </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScrollBars</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether scroll bars will
+
+      be displayed on the PictureBox control.
+
+      				    <div align="center">
+
+        				  <center>
+
+        				    <table border="1">
+
+          					  <tr>
+
+            				    <td width="33%" align="center">ScrollBars</td>
+								<td width="33%" align="center">Horizontal</td>
+								<td width="34%" align="center">Vertical</td>
+							  </tr>
+
+          					  <tr>
+
+            				    <td width="33%" align="center">0</td>
+								<td width="33%" align="center">No</td>
+								<td width="34%" align="center">No</td>
+							  </tr>
+
+          					  <tr>
+
+            				    <td width="33%" align="center">1</td>
+								<td width="33%" align="center">Yes</td>
+								<td width="34%" align="center">No</td>
+							  </tr>
+
+          					  <tr>
+
+            				    <td width="33%" align="center">2</td>
+								<td width="33%" align="center">No</td>
+								<td width="34%" align="center">Yes</td>
+							  </tr>
+
+          					  <tr>
+
+            				    <td width="33%" align="center">3</td>
+								<td width="33%" align="center">Yes</td>
+								<td width="34%" align="center">Yes</td>
+							  </tr>
+
+        				    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScrollX</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns a value indicating the number of pixels to scroll the image horizontally.<em>.
+
+    </em>Used with the <strong>Scroll</strong> and <strong>ScrollY</strong> properties and the
+
+    <strong>ScrollImage </strong>method.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>ScrollY</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns a value indicating the number of pixels to scroll the image vertically.<em>.</em>
+
+    Used with the <strong>Scroll</strong> and <strong>ScrollX</strong> properties and the <strong>ScrollImage
+
+    </strong>method.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Stretch</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether the PictureBox will stretch (or shrink) the
+
+    display of the image to the size of the PictureBox. This will not change the size of the
+
+    image, but will stretch or shrink the display of it.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Tag</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>variant</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						User defined.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>TapAndHoldEventEnabled</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True/<b>False</b></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Turns on the TapAndHoldEvent.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Top</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Set or returns the number of pixels from the top edge of the output window to the top
+
+    edge of the PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>TransparentColor</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em><strong>-1, </strong>color</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns or sets the color to be used as a transparent color when displaying the image.
+
+    No transparent color will be used if this property is set to -1.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>UseJPEGBitsPerPixel</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns or sets a value indicating whether the BitsPerPixel
+
+      value in the JPEG file should be used.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Version</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the version of the PictureBox (i.e. 207).<i><em> </em></i><font color="#FF0000"><strong>(Read
+
+    Only)</strong></font></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>VersionMajor</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the major version of the PictureBox (i.e. 2). <strong><font color="#FF0000">(Read
+
+    Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>VersionMinor</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Returns the minor version of the PictureBox (i.e. 7).<em> </em><strong><font
+
+    color="#FF0000">(Read Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Visible</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em><strong>True</strong>|False</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns value indicating whether the PictureBox is visible.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>VScrollPosition</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns the vertical scrollbar position.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>WaitCursor</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>True|<strong>False</strong></em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Set or returns a value indicating whether the PictureBox will display a Wait Cursor
+
+    while loading, mirroring, saving, or rotating the image.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>Width</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Set or returns the number of pixels from the left edge to the right edge of the
+
+    PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr>
+					  <td colspan="2" class="command" height="10" bgcolor="#EEEEEE"><strong>WildCard</strong></td>
+					</tr>
+					<tr>
+					  <td width="130" height="13">
+						<div align="right" class="rowhead">Values:</div>
+					  </td>
+					  <td height="13"><em>integer</em></td>
+					</tr>
+					<tr>
+					  <td width="130" valign="top">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>
+						Sets or returns a value indicating whether a &quot;WILD&quot; indicator should appear
+
+    on the image. <em>This a intended to be used with the images displayed with the <strong>PlayingCard</strong>
+
+    property. The indicator can be animated with the <strong>AnimationInterval</strong>
+
+    property.</em>
+					    <div align="center">
+						  <center>
+						    <table border="1">
+
+      						  <tr>
+
+        					    <td align="center"><font color="#0080FF"><strong>WildCard</strong></font></td>
+								<td align="center"><font color="#0080FF"><strong>Description</strong></font></td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center"><strong>0</strong></td>
+								<td>No indicator</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">1</td>
+								<td>Horizontal Indicators</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">2</td>
+								<td>Vertical Indicators</td>
+							  </tr>
+
+      						  <tr>
+
+        					    <td align="center">3</td>
+								<td>Center Indicator</td>
+							  </tr>
+
+    					    </table>
+						  </center>
+						</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			</table>
+			<h3 align="center"><a name="events"></a>Events</h3>
+			<table width="720" border="0" cellspacing="20" cellpadding="0">
+			  <tr>
+				<td>
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>Click</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em></em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Standard Click event.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>DblClick</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em></em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Standard Double Click event.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>GotFocus<br>
+
+    GotFocusX</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em></em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Standard GotFocus event. Use GotFocusX in NS Basic</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><b>HScroll</b></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em>nSBCode, bRefresh, nPos, nMove, nMin, nMax, nPage, nCX, nCY</em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Event called upon user scrolling.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>KeyDown</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td>keycode, shift</td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Standard KeyDown event.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>KeyPress</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td>keycode, shift</td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Standard KeyPress event.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="52">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>KeyUp</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td>keycode, shift</td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Standard KeyUp event.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>LostFocus<br>
+
+    LostFocusX</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td>&nbsp;</td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Standard LostFocus event. Use LostFocusX in NS Basic.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>MouseDown</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em>button, shift, x, y</em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>PictureBox is in contact with stylus or input device.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>MouseMove</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em>button, shift, x, y</em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Stylus or input device is moved while in contact with the PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>MouseUp</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em>button, shift, x, y</em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Stylus is lifted from PictureBox, or input device breaks contact with PictureBox.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>TapAndHold</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em>button, shift, x, y</em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>The user has done a &quot;tap and hold&quot; on the
+
+      PictureBox. The property TapAndHoldEnabled must be set to True.<strong><font color="#FF0000">(Pocket PC Only)</font></strong></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><strong>VBCEAutoSize</strong></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td><em>width, height</em></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Called when the PictureBox control needs to resize itself and VBCE container will not
+
+    let it. The <strong>Width</strong> and <strong>Height</strong> properties of the
+
+    PictureBox control should be set in this event.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			  <tr>
+				<td height="18">
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr bgcolor="#EEEEEE">
+					  <td colspan="3" class="command" height="9"><b>VScroll</b></td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">args</span>:</div>
+					  </td>
+					  <td>nSBCode, bRefresh, nPos, nMove, nMin, nMax, nPage, nCX, nCY</td>
+					</tr>
+					<tr>
+					  <td width="130">
+						<div align="right"><span class="rowhead">Description</span>:</div>
+					  </td>
+					  <td>Event called upon user scrolling.</td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			</table>
+			<h3 align="center"><a name="methods"></a>Methods</h3>
+			<div align="center">
+			  <center>
+
+
+
+				<table width="720" border="0" cellspacing="20" cellpadding="0">
+			  	  <tr>
+				    <td>
+				  	  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>AboutBox</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em></em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Displays the About Box for the PictureBox control.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td height="18">
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Animate</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em></em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Does the animation of the image if the<strong> AnimationAvailable</strong> property is
+
+    set to True.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td height="18">
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>CaptureScreen</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em></em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Loads a copy of the physical screen into the image and displays it in the PictureBox.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td height="18">
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>ClipImage</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em></em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Clips the image that is displayed in the PictureBox control using the <strong>ClipHeigh</strong>t,
+
+    <strong>ClipLeft</strong>, <strong>ClipTop</strong>, <strong>ClipWidth</strong>, and <strong>FillColor</strong>
+
+    properties.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td height="18">
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Cls</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em></em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Clears the image from the PictureBox control.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td height="18">
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Copy</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em></em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Copies the image from the PictureBox control to the clipboard. Returns True if an
+
+    image was copied.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>CreateImage</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>width</em>, <em>height</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Creates an image of the specified size and of the color specified in the <strong>FillColor</strong>
+
+    property.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawCircle</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>x, y, radius [, color [, aspectratio]]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a circle centered on <strong>x</strong>, <strong>y</strong> with a radius of <strong>radius</strong>
+
+    and the aspect ratio of <strong>aspectratio</strong>.&nbsp; Set <strong>aspectratio</strong>
+
+    to 1 for a normal circle. The circle is drawn with color <strong>color</strong> and filled
+
+    in with the <strong>FillColor</strong> property. Used with <strong>FillStyle</strong>, <strong>FillColor</strong>,
+
+    <strong>PenStyle</strong>, and <strong>PenFillStyle</strong> properties.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawIcon</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>file [,[id] [,largesize]]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws an icon from a file (an executable, a dll, or an ico
+
+      file). <i>id</i> should be 0 or the resource id of the icon. <i>largesize</i>
+
+      should be true if you want to use the large icon from the resource. <em>Calling
+
+      this method will cause the icon to be loaded and displayed in the
+
+      PictureBox.</em></td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawLine</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>fromX, fromY, toX, toY [, color [, box [, fill]]]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a line from (<em>fromX</em>, <em>fromY</em>) to (<em>toX</em>, <em>toY</em>)
+
+    with <em>color. </em>If <i>box</i> is true, this will draw a box using the
+
+      coordinates to specify opposite corners. If <i>box </i>and<i> Fill</i> are
+
+      true it will draw a box and fill it with the same color used to draw it.
+
+      You can also use <strong>DrawRoundRect</strong> with arcwidth = 0 and archeight =
+
+    0 to draw a box.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawMouseMoveLine</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>color</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a line using the mouse move points with <em>color.</em></td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawMouseMoveLineEx</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>fromX, fromY, toX, toY, color</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a line from (<em>fromX</em>, <em>fromY</em>) to the mouse move points stored to
+
+    (<em>toX</em>, <em>toY</em>) with <em>color. </em></td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawPicture</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>filename, x1, x2 [, width1, height1 [, x2, y2, width2, height2 [,rasterop]]]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws part or all of a image file on the PictureBox.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			  	  <tr>
+				    <td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawPoint</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>x, y [, color]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a pixel at <strong>x</strong>, <strong>y</strong> with color <strong>color</strong>.
+
+    This is the same as <strong>Pixel</strong>(x,y) = color</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawPolygon</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>points [, color]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a polygon of <strong>points</strong> vertices connected by straight lines. The
+
+    polygon is drawn with color <strong>color</strong> and filled in with the <strong>FillColor</strong>
+
+    property. The<strong> points</strong> can be from 2 to 20. The polygon is closed
+
+    automatically by drawing a line from the last vertex to the first. Used with <strong>FillStyle</strong>,
+
+    <strong>FillColor</strong>, <strong>PenStyle</strong>, and <strong>PenFillStyle</strong>
+
+    properties and <strong>SetPointArray</strong> method.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawPolyLines</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>points [, color]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a series of line by connecting the specified number of <strong>points</strong>.
+
+    The lines are drawn with color <strong>color</strong>.&nbsp; The<strong> points</strong>
+
+    can be from 2 to 20. Used with <strong>FillStyle</strong>, <strong>FillColor</strong>, <strong>PenStyle</strong>,
+
+    and <strong>PenFillStyle</strong> properties and <strong>SetPointArray</strong> method.
+    <pre>
+AddObject "picturebox","P",1,1,100,100
+p.SetPointArray 1,1,1
+p.SetPointArray 2,1,50
+p.setPointArray 3,50,50
+p.setPointArray 4,50,1
+p.drawPolygon 4</pre></td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawRoundRect</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>left, top, right, bottom [, arcwidth, archeight [, color]]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a rectangle with color <strong>color</strong> bounded by<strong> left</strong>, <strong>top</strong>
+
+    and <strong>right</strong>, <strong>bottom</strong> with rounded corners of <strong>arcwidth</strong>
+
+    width and <strong>archeight </strong>height. Setting <strong>arcwidth</strong> and <strong>archeight</strong>
+
+    to 0 will draw a normal rectangle. The round rectangle is drawn with color <strong>color</strong>
+
+      and filled in with the <strong>FillColor</strong> property. Used with <strong>FillStyle</strong>,
+
+    <strong>FillColor</strong>, <strong>PenStyle</strong>, and <strong>PenFillStyle</strong>
+
+    properties.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>DrawText</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>text [, x, y [, color]]</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Draws a line of <b> text</b> at optional coordinates <b>x, y</b> using
+
+      optional color <b>color</b>.&nbsp;</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>GetMouseMovePoint</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>point, x, y</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Returns the <em>x</em> and <em>y</em> coordinates of <em>point. Point </em>can be from
+
+    0 to the value return from the <strong>MouseMovePoints</strong> property - 1.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>IntensityBlue</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>color</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Returns the blue intensity from a color.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>IntensityGreen</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>color</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Returns the green intensity from a color.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>IntensityRed</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>color</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Returns the red intensity from a color.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>InvertImage</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Inverts the colors of the image that is displayed in the PictureBox.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>MirrorImage</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Mirrors the image that is displayed in the PictureBox using the <strong>Mirror</strong>
+
+    property setting.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Hide</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Hides the PictureBox and sets the <strong>Visible</strong> property to False.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Move</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>left, top, width, height</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Move the PictureBox to new <strong>left</strong> and <strong>top</strong> location and
+
+    resizing to <strong>width</strong> and <strong>height</strong>.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Paste</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Copies the image from the clipboard to the PictureBox control. Returns True if an
+
+    image was pasted.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>QBColor</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>colorcode</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Returns a color based on the <em><strong>colorcode</strong></em>&nbsp; used by earlier
+
+    versions of Basic.
+					  		<div align="center">
+							  <center>
+						  		<table border="1">
+
+      							  <tr>
+
+        					  		<td width="50%" align="center"><font color="#0080FF"><strong>ColorCode</strong></font></td>
+									<td width="50%"><font color="#0080FF"><strong>Description</strong></font></td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">0</td>
+									<td width="50%">Black</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">1</td>
+									<td width="50%">Blue</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">2</td>
+									<td width="50%">Green</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">3</td>
+									<td width="50%">Cyan</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">4</td>
+									<td width="50%">Red</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">5</td>
+									<td width="50%">Magenta</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">6</td>
+									<td width="50%">Yellow</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">7</td>
+									<td width="50%">White</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">8</td>
+									<td width="50%">Gray</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">9</td>
+									<td width="50%">Light Blue</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">10</td>
+									<td width="50%">Light Green</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">11</td>
+									<td width="50%">Light Cyan</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">12</td>
+									<td width="50%">Light Red</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">13</td>
+									<td width="50%">Light Magenta</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">14</td>
+									<td width="50%">Light Yellow</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td width="50%" align="center">15</td>
+									<td width="50%">Bright White</td>
+								  </tr>
+
+    					  		</table>
+							  </center>
+							</div>
+						  </td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Refresh<br>
+
+      RefreshX</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Redraws the image in the PictureBox control.. Use RefreshX in VBCE.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>RefreshDesktopWallpaper</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Causes the Desktop to redraw the wallpaper.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>ReleaseCapture</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Deactivates the PictureBox to receive the all mouse input. </td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>ResizeImage</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Resizes the image in the PictureBox control using the <strong>ResizeHeight</strong>
+
+    and <strong>ResizeWidth</strong> properties.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>RGB</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>red</em>, <em>green</em>, <em>blue</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Returns a color comprised of the <em><strong>red</strong></em>, <em><strong>green</strong></em>,
+
+    and <em><strong>blue</strong></em> intensities.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>RotateImage</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Rotates the image that is displayed in the PictureBox using the <strong>Rotate</strong>
+
+    property setting.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>SaveImageToFile</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>filename, filetype</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>Save the image in the PictureBox as a .bmp file to the <em>filename</em> specified.<em>
+
+    Filename is a string, filetype is an integer. The path specified in the filename <strong>MUST</strong>
+
+    already exist. Returns True if the file was saved, otherwise returns False.</em>
+					  		<div
+
+    align="center">
+							  <center>
+						  		<table border="1">
+
+      							  <tr>
+
+        					  		<td align="center"><strong><font color="#0080FF">filetype</font></strong></td>
+									<td align="center"><strong><font color="#0080FF">Description</font></strong></td>
+									<td align="center"><strong><font color="#0080FF">Extension That Should Be Used</font></strong></td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td align="center"><font color="#000000">0</font></td>
+									<td align="center"><font color="#000000">Bitmap </font></td>
+									<td align="center"><font color="#000000">.bmp</font></td>
+								  </tr>
+
+    					  		</table>
+							  </center>
+							</div>
+						  </td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>ScrollImage</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Scrolls the image in the PictureBox using the <strong>ScrollX</strong> and <strong>ScrollY</strong>
+
+    properties.
+</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>SetCapture</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Activates the PictureBox to receive the all mouse input. </td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>SetFocus</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Activates the PictureBox to receive the focus. </td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>SetPointArray</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>index, x, y</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Sets the pointarray <strong>index</strong> to <strong>x</strong> and <strong>y</strong>.
+
+    Used with the <strong>DrawPolyLines</strong> and <strong>DrawPolygon</strong> methods. The<strong>
+
+    index</strong> can be from 1 to 20.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>Show</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>&nbsp;</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Makes the PictureBox visible and sets the <strong>Visible</strong> property to True.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>TextHeight</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>string</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Returns the height of the string using the current font.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>TextWidth</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td>string</td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Returns the width of the string using the current font.</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+				  <tr>
+					<td>
+					  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					    <tr bgcolor="#EEEEEE">
+					  	  <td colspan="3" class="command" height="9"><strong>ZOrder</strong></td>
+						</tr>
+					    <tr>
+					  	  <td width="130">
+						    <div align="right" class="rowhead">Parameter(s):</div>
+						  </td>
+						  <td><em>position</em></td>
+						</tr>
+					    <tr>
+					  	  <td width="130" valign="top">
+						    <div align="right"><span class="rowhead">Description</span>:</div>
+						  </td>
+						  <td>
+								Places the PictureBox control at the front or back of the z-order.
+					  		<div align="center">
+							  <center>
+						  		<table
+
+    border="1">
+
+      							  <tr>
+
+        					  		<td align="center" rowspan="2"><font color="#0080FF"><strong>ZOrder Position</strong></font></td>
+									<td align="center">0</td>
+									<td align="center">PictureBox will be placed at the front of the z-order</td>
+								  </tr>
+
+      							  <tr>
+
+        					  		<td>1</td>
+									<td>PictureBox will be placed at the back of the z-<em>order. Unfortunately, using <strong>ZOrder
+
+        1</strong> with NS Basic, the PictureBox is placed behind the output window.</em></td>
+								  </tr>
+
+    					  		</table>
+							  </center>
+							</div>
+					</td>
+						</tr>
+				  	  </table>
+					</td>
+				  </tr>
+			    </table>
+				</center>
+			</div>
+			<p>&nbsp;</p>
+</td>
+		</tr>
+	  </table>
+
+<B><h2><P>Sample Code</h2>
+</font></B><P><IMG SRC="images/TN07.GIF" WIDTH=431 HEIGHT=125></P>
+<P>&nbsp;</P>
+<CODE><PRE>rem Play around with some picturebox functions
+
+output.backcolor=vbwhite
+output.scalemode=3
+output.drawpicture "\windows\startup.bmp",300,0
+output.drawcircle 150,150,25
+output.drawcircle 250,100,25
+output.drawText "this is drawtext"
+output.drawText "this is some more drawtext"
+print
+print
+
+addObject "picturebox","pic",200,0,50,50
+pic.borderstyle=1
+
+sub pic_click
+  print "pic click"
+  pic.move 1200,1200
+end sub
+
+sub output_click
+  print "click in Output" 
+end sub
+
+sub output_mousedown(button, shift, x, y)
+  print "mouse down: button:" &amp; button &amp; " Shift:" &amp;  shift &amp; " X:" &amp; x &amp; " Y:" &amp; y
+end sub</PRE></CODE></BODY>
+</HTML>

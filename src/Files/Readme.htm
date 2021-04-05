@@ -1,0 +1,512 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>NS Basic/CE 8.2 Release Notes</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF"
+vlink="#800080">
+
+<table border="0" cellspacing="0" width="478">
+<TBODY>    <tr>
+        <td valign="top" width="22%"><img
+        src="images/BigIcon.GIF"
+        width="86" height="103"></td>
+        <td valign="top" width="78%"><font size="5"
+        face="Verdana"><b>NS Basic/CE 8.2 Release Notes</b></font><p><font size="5"
+        face="Verdana"><b>February 12, 2010</b></font><font size="4"
+        face="Verdana"><b> </b></font></p>
+        <p><font size="2" face="Verdana"><b>Copyright 2010 NS
+        BASIC Corporation</b></font></p>
+        </td>
+    </tr>
+</TBODY></table>
+<hr>
+<font face="Verdana" size=2> <i>Please read this document. We love getting questions from people who have done so!</i>
+</FONT><FONT FACE="Verdana" size=2>
+<P><h3>Contents</h3>
+
+<OL COMPACT>
+	<LI><A HREF="Readme.htm#Overview">Overview</a>
+	<LI><A HREF="Readme.htm#Installing">Installation</a>
+	<LI><A HREF="Readme.htm#sample">How to run a sample program</a>
+	<LI><A HREF="Readme.htm#Requirements">Requirements</a>
+	<LI><A HREF="Readme.htm#New">What's New</a><br>
+	    <A HREF="Readme.htm#New800">8.0.0</a><br>
+	    <A HREF="Readme.htm#New801">8.0.1</a><br>
+	    <A HREF="Readme.htm#New802">8.0.2</a><br>
+	    <A HREF="Readme.htm#New810">8.1.0</a><br>
+	    <A HREF="Readme.htm#New811">8.1.1</a><br>
+	    <A HREF="Readme.htm#New812">8.1.2</a><br>
+	    <A HREF="Readme.htm#New820">8.2.0</a><br>
+	<LI><A HREF="Readme.htm#Notes">Notes and Warnings</a>
+	<LI><A HREF="Readme.htm#documentation">Documentation</a>
+	<LI><A HREF="Readme.htm#support">Support</a>
+</OL>
+<P><h3>Welcome to NS Basic/CE 8!</h3>
+
+<P>NS Basic/CE 8 is a major update to NS Basic/CE. It adds a variety of new features and fixes a number of bugs. Major enhancements are:
+<OL>
+	<li>Gradient Buttons
+	<li>Creation of installers
+	<lI>Vastly simplified installation and distribution of apps
+	<LI>No separate runtime required
+	<lI>Embedded resources
+	<LI>HTML control
+	<li>Lots of other stuff as well. Read on below for more...
+</OL>
+
+See the <A HREF="Readme.htm#New">"What's New"</A> section for a detailed list. If you are a current user upgrading to 8.1, reading the What's New section is essential.
+
+
+<P>
+<P>Please visit our web site for the latest version of this <a HREF="http://www.nsbasic.com/ce/info/Readme.htm">document</a>. You'll see the latest installation notes and updated news. 
+<p>NS Basic/CE is a commercial software product, licensed subject to the License Agreement that must be must be agreed to before installation. The Agreement also appears in the NS Basic/CE Handbook.
+
+<b><p>If you are using the Demonstration Edition</p></b>
+Welcome! You're running a complete copy of NS Basic/CE with just a few restrictions:
+<OL>
+	<LI>The Demo will only run for 30 days.
+	<LI>You can develop on the desktop, not the device.
+	<LI>Apps you create will run on a device for 5 days.
+	<LI>The line numbers on error messages when running on the device are 8 higher than in your actual listing. 
+</OL>
+To keep the download size down, we have lots more stuff on the website. Check the <A HREF="Readme.htm#documentation">Documentation</a> and 
+<A HREF="Readme.htm#support">Support</a> sections below for important help.
+
+
+<b><p>NS Basic/CE Features</p></b>
+
+<UL>
+	<LI>Easy to use, standard and structured BASIC 
+	<LI>Over a dozen screen objects 
+	<LI>Create buttons, fields, popups and more 
+	<LI>Serial, IR and internet communications 
+	<LI>Math and trigonometric function support 
+	<li>Automatic creation of device installers
+	<LI>Royalty free 
+	<LI>Built in database support 
+	<LI>Supports virtually all touchcreen devices built since 2003
+	<LI>Program and run on either the desktop or the device itself
+	<LI>Lots of sample code 
+	<LI>200 page Handbook
+</UL>
+
+The easiest way to program Windows CE devices!
+
+<HR>
+
+<H3><A NAME="Overview"></A>1. Overview</H3>
+
+NS Basic/CE is made up of the following components:<br><br>
+<TABLE BORDER=1 CELLSPACING=0 cellpadding=1>
+	<TR>
+		<td><font face="verdana" size=2>Desktop IDE</TD> <td><font face="verdana" size=2>Allows you to write programs on the desktop. You can then  download them to your device or the Microsoft Device Emulator, and test. The Desktop IDE can also be used to install the Device IDE.</TD>
+	</TR>
+	<TR>
+		<td><font face="verdana" size=2>Device IDE</TD> <td><font face="verdana" size=2>Lets you write programs on your device. You can run them directly from the Device IDE. This app includes the Device Visual Designer.</TD>
+	</TR>
+	<TR>
+		<td><font face="verdana" size=2>Device Visual Designer</TD> <td><font face="verdana" size=2>Lets you design the objects on your form, interactively. When you are done, the Visual Designer will generate the appropriate code and add it to your program.</TD>
+	</TR>
+	<TR>
+		<td><font face="verdana" size=2>ActiveX Controls</TD> <td><font face="verdana" size=2>ActiveX controls add functionality to NS Basic programs. You will find documentation and installation instructions under the Help menu for the Tech Notes and The Big Red Toolbox. You can add additional ActiveX controls to your program using the ActiveX Control Manager under the Tools menu in the IDE.</TD>
+	</TR>
+</TABLE>
+
+<p>
+<br><br><hr>
+
+<h3><A NAME="Installing"></A>2. Installation</H3>
+</B>
+
+<B><P>Step 1: Install the Desktop IDE</P></B>
+<OL COMPACT>
+	<LI>Run NSBasic_CE.exe. 
+You may see the message "The publisher cannot be determined due to the problem below: Authenticode signature not found." It's safe to ignore this message.
+	<LI>Enter your serial number into Register... under the Help menu. (Not in Demo version)
+</OL>
+
+<B><P>Step 2: Install Device IDE (Optional)</B>
+
+<p>If you want to use the Device IDE to do coding on the device itself, establish an ActiveSync connection, choose "Install Device IDE" from NS Basic/CE's Run menu, then follow the prompts on the screen and the device.
+
+<p>If your device is not running Windows Mobile, select the proper Platform in Tool...Options...Compile/Download.
+
+<B><P>Step 3: Install Emulator (Optional)</b>
+
+<p>NS Basic/CE supports the Microsoft Device Emulator. If you would like to test programs on the desktop, you can download this separately from Microsoft. Read all about installing and using it in Tech Note 23, under the Help menu or <a href="http://www.nsbasic.com/ce/info/technotes/TN23.htm" target="_top">on the net</a>.
+<P>If you have problems during installation, see <A HREF="http://www.nsbasic.com/ce/info/technotes/TN01.htm">Tech Note 1</A>. The solution is probably there.
+
+<hr>
+ 
+<p><B><FONT FACE="Verdana" SIZE=3>
+<A NAME="sample"></A>3. How to run a sample program</p></font></b>
+
+<ol>
+	<li>Start NS Basic/CE 8.2
+	<lI>From the File Menu, select Open Sample Project...
+	<lI>Choose HelloWorldStandard.
+	<li>Make sure you have a device connected via ActiveSync.
+	<li>Click Start in the Run Menu and follow the prompts.</li>
+	<li>Hello World will be on the Program menu of your device.</li>
+</ol>
+There is a list of Tutorials on the Help menu that will help you get going.
+
+<b><p>3a. How to create and run a sample program in the Device IDE: (optional)</p></b>
+<p><font size=1>(full version of NS Basic/CE only)</font>
+
+<ol>
+	<li>Start Basic and choose Benchmark from the list that appears.</li>
+	<li>Tap on the green GO button.</li>
+	<li>In ten seconds, the benchmark will complete. It counts loops per second - it will give you can idea how many statements NS Basic/CE can execute per second.</li>
+	<li>Tap OK to view and modify the source code.</li>
+</ol>
+<p>You could also start a new program, add this statement<pre>
+	MsgBox "Hello World"
+</pre> and run.
+<hr>
+
+<H3><A NAME="Requirements"></A>4. Requirements</H3>
+<p>You can develop programs using NS Basic/CE on the following platforms:
+<UL>
+	<LI>Windows 7
+	<LI>Windows Vista
+	<LI>Windows XP
+	<LI>Windows 2000
+	<LI>Any Windows Mobile or Windows CE device listed below
+	<LI>Macintosh using Virtual PC, VMWare or Parallels
+	<LI>Linux using Win4Lin or VmWare
+</UL>
+<p>Microsoft ActiveSync 4.5 (or later) or Windows Mobile Device Center (for Vista) required.
+
+<p>Programs written in NS Basic/CE will run on the following devices. For the full list, see <a href="http://www.nsbasic.com/ce/info/technotes/TN21.htm" target="_top">Tech Note 21</a>.
+<UL>
+	<LI>Windows Phone 6.5 Professional and Classic devices
+	<LI>Windows Embedded Mobile 6.0 devices
+	<LI>Windows Mobile 6.0 and 6.1 Professional and Classic devices.
+	<LI>Windows Mobile 5.0 devices (including Phone Edition)
+	<LI>Windows CE.NET 4.2 ARM XScale Processors
+	<LI>Windows Mobile 2003 Second Edition
+	<LI>Windows Mobile 2003 Phone Edition
+	<LI>Windows Mobile 2003
+</UL>
+
+<hr>
+<h3><A NAME="New"></A>5. What's New</h3>
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New821"></A>
+<P>8.2.1</B></FONT>
+<ol>
+	<li>IDE: Extra PictureBox object no longer appears in ToolBox.
+	<li>IDE: Full list of properties appears for NSCEPictureBox.
+	<li>Runtime: Problem with some Windows CE 6.0 systems fixed.
+</OL>
+
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New820"></A>
+<P>8.2.0</B></FONT>
+<ol>
+	<li>IDE: Command line compile option added. See docs below.
+	<li>IDE: PNG Icon will also be looked for in the .ico file folder.
+	<li>IDE: Setting Optionbutton Alignment to 2 (center) no longer gets an error.
+	<li>IDE: Preserve is highlited as a keyword.
+	<li>IDE: Label object now has visible property
+	<li>IDE: New version of exProperties control (5.2.0.2)
+	<li>Installer: Bug in link to program fixed when installDir<>program name.
+	<li>Installer: DirToInclude can now be a list of directories, so more than one can be installed.
+	<li>Installer: If installDir is not specified, Shortcut is now created properly.
+	<li>Installer: Installer file is now named with the app's Title property.
+</OL>
+
+<p><B><FONT FACE="Verdana" SIZE=3>
+Documentation Changes for Version 8.2.0
+</B></FONT>
+<OL> 
+	<li><p>You can now compile an NS Basic program from the command line. The format is nsbasic programName -compile. The programName should be a full path. Example:<br>
+c:\program files\nsbasic\ce\nsbasic "c:\my projects\sample.nsb" -compile
+</ol>
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New812"></A>
+<P>8.1.2</B></FONT>
+<ol>
+	<li>IDE: If you open another project, files in old project are now closed.
+	<li>IDE: Occasional crash on exit fixed.
+	<li>Installer: Extra entry in Start Menu not created when project title is blank.
+	<li>Installer: Recent file list is no longer overwritten.
+	<li>PictureBox: now sizes fonts properly in Hi Res mode.
+	<li>Runtime: New Constant: AppBuildStamp contains the build date and time.
+	<li>Runtime: New Function: SysInfo returns useful device information.
+	<LI>Runtime: WinCE devices without PIE installed fixed.
+	<li>Tech Note 30: fixed image.
+</OL>
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New811"></A>
+<P>8.1.1</B></FONT>
+<ol>
+	<lI>Support added for Windows Mobile 6.5 Start Screen png icons.
+	<lI><a href="http://www.nsbasic.com/ce/info/technotes/TN30.htm" target="_top">Tech Note 30</a> updated with information on WM 6.5 icons.
+	<lI>Installer: Start Screen update no longer requires a reset in most cases.
+	<li>IDE: Error 91 when doing View Code fixed. 
+	<li>IDE: Problems with application icon fixed. 
+</OL>
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New810"></A>
+<P>8.1.0</B></FONT>
+<ol>
+	<li>New Control: HTMLView. See <a href="http://www.nsbasic.com/ce/info/technotes/TN42.htm" target="_top">Tech Note 42</a>.
+	<li>IDE: Project now has Hi Res Aware property - see below.
+	<li>IDE: Project now has Dir To Install property - see below.
+	<li>IDE: Code Window: Now shows 16 lines in dropdown instead of 8.
+	<li>IDE: Extra blank lines are not longer added on each save.
+	<li>IDE: Form did not save Picture property. 
+	<li>IDE: Loop is now highlighted as a keyword.
+	<li>IDE: Error 6 when selecting system color for gradient button fixed.
+	<li>IDE: Pocket PC VGA added to Option > Design Screen sizes.
+	<li>IDE: Bug when opening NS Basic/Desktop projects fixed.
+	<li>IDE: Better messages when object names are rejected in Properties.
+	<li>IDE: Error when pasting PictureBoxes and Gradient Buttons fixed.
+	<li>eVB2nsb: a number of enhancements have been made.
+	<li>Installer does not overwrite newer Basic.exe. 
+	<li>Installer was deleting all files ending in .DAT
+	<li>New Function: SendMessageString - see below.
+	<li>PictureBox: DrawText was not sized properly on some devices (NSBCEPicturebox.ocx 1.3.2)
+	<li>Runtime: Fat executable now produced - see below.
+	<li>Runtime: Illegal character when loading program fixed.
+	<li>Runtime and IDE: Icon cleaned up.
+	<lI>New Tech Note: <a href="http://www.nsbasic.com/ce/info/technotes/TN42.htm" target="_top">42 Using the HTMLview control</a>
+	<li>New Sample: HTMLview
+</ol>
+
+<p><B><FONT FACE="Verdana" SIZE=3>
+Documentation Changes for Version 8.1.0
+</B></FONT>
+<OL> 
+	<li><p>Hi Res Support: Some Windows Mobile devices have a screen size larger than 240x320. Devices with VGA screens are 480 x 640, for example. NS Basic/CE programs running on devices with different screen sizes have always looked exactly the same: the 240x320 coordinates are mapped on the VGA screen so everything is still in the same place and the screen completely filled. 
+	<p>However, it is possible to use the extra pixels. By setting HiRes Aware to True in Project Properties, your program will treat the screen as it actually is 480 x 640. This will let you create smaller objects and smaller text.
+	<p>If you want your project to be Hi Res aware, but still run on regular devices, check output.height and output.width in your Form_Load routine. Adjust object bounds and font sizes if necessary.
+	
+	<li><p>Dir To Install: Lets you specify a directory to be installed with your app. In Project Properties, you can now enter in the name of a folder in the project's directory. This folder (and its contents) will be included in the installer. It will be put into the home directory of your app on the device. This is a handy feature if you have a number of files to be included with your app, such as data, sounds or images: you no longer have to specify the name of each of these files.
+	
+	<li><p>SendMessageString(): This function works just like SendMessage(), but allows a string as the last argument.
+	
+	<li><p>Fat Executables: NS Basic/CE now produces a single exe file which contains the NS Basic runtime. While it increases the size of the program by about 200k, it eliminates the installation of \Program Files\nsbasic\Basic.exe, saving the same amount. One less directory is created in \Program Files and many registry entries are eliminated. The net result is a simpler installation. Launch times should also go down.
+	
+	<li><p>Icons: To replace the default NS Basic icon in your app, create a .ico file and put its name into the Icon property in Project Properties. Which sizes are needed depending on what devices you are supporting. If you want to support all devices, you will need at least the following: 16x16, 21x21, 32x32, 43x43 and 64x64. A good free tool for making .ico files is <a href="http://icofx.ro/" target="_top">IcoFX</a>.
+</OL
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New802"></A>
+<P>8.0.2</B></FONT>
+<ol>
+	<li>Compiler: Projects with installer resources are smaller.
+	<li>IDE runs as Administrator so installer can be made.
+	<li>IDE: Bold on GradientButtons fixed.
+	<li>IDE: Changing platforms no longer requires resetting resource paths.
+	<li>IDE: CheckBox.Alignment can no longer be set to Center.
+	<li>IDE: Opening a sample project closes project already open.
+	<li>IDE: Paste Gradient Button fixed.
+	<li>IDE: Paths to resources in \Controls\ are no longer relative.
+	<li>New Sample: TeklogixScan for Teklogix devices.
+	<li>PictureBox 1.3.1 included
+	<li>PictureBox: Gradient Buttons now appear on older Window Mobile devices.
+	<li>PictureBox: Gradient Buttons now appear on Windows CE devices.
+</ol>
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New801"></A>
+<P>8.0.1</B></FONT>
+<ol>
+	<li>Platform set properly in demo.
+	<li>Projects saved to root directory of a drive load OK now.
+	<li>Special characters are not allowed in pathname when creating installer.
+	<li>EULA and ReadMe in app directory no longer overwritten.
+	<li>F6 key now does Install App To Device.
+</ol>
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="New800"></A>
+<P>8.0.0</B></FONT>
+<ol>
+	<li>Embed pictures, sound and files as resources.
+	<lI>Gradient Buttons give a slick look and feel to Apps.
+	<li>Automatic creation of device installers.
+	<li>Smaller executables - programs are up to 1/3 smaller than before.
+	<li>Smaller download - The complete NS Basic/CE is now just 15 megs.
+	<li>IDE: Alignment can now be set to center on some additional objects.</li>
+	<li>IDE: More properties now have pickers.</li>
+	<lI>IDE: Now uses XP theme.
+	<li>IDE: Resources can be added to Project Explorer. (see below)</li>
+	<li>IDE: Loaded apps go on recent files list, not just saved ones.
+	<li>IDE: New options to start program. (see below)
+	<li>IDE: New programs have "ShowOkButton True".
+	<li>IDE: New project properties for creating installers.
+	<lI>Device IDE: Serial number automatically set on installation.
+	<li>Options: Square and landscape screen sizes added.
+	<lI>Options: Device directory removed - now automatic.
+	<lI>Options: New Installer screen (see below)
+	<li>NSCEPictureBox: ResourceBitmapIDstr added. (see below)</li>
+	<li>NSCEPictureBox: Upgraded to Version 1.3.</li>
+	<li>Runtime: New function: CreateShortcut. See below.</li>
+	<li>Runtime: New function: GetResource. See below.</li>
+	<li>Runtime: PlaySound can now play sounds that are saved as resources.</li>
+	<li>Runtime: PictureBox can now display bitmaps that are saved as resources.</li>
+	<lI>Runtime: Error when exiting app on 6.1.4 devices fixed.
+	<lI>Sample added: GradientButton
+	<li>Sample added: Resources
+	<lI>Sample added: NetStreams (replacement for Microsoft's old Winsock)
+	<li>Samples: reorganized and cleaned up.
+	<lI>Samples added to File menu.
+	<li>Help: Tutorials added to Help menu.
+	<li>Tech Note added: 41 Using Adobe Flash with NS Basic.</li>
+	<li>Tech Notes 30 on installers completely redone.
+	<lI>Tech Notes: some missing ones added.
+	<li>Installers: Support for devices before Windows CE 4.2 dropped.
+	<li>Installers: SQLite3 is now included.
+	<lI>Installers: More modern look and feel, multiple language support.
+	<lI>Installers: On recent devices, uninstalling one app will not affect others.
+	<li>Installation: Reduced from over 60 megs to 15.
+	<lI>Installation: NS Basic/CE desktop installer now uses Inno Setup.
+	<lI>Installation: Device controls are in \Program Files\nsbasic\CE\Controls
+	<li>Installation: Samples are in \My Documents\NSBasic Samples\CE
+	<li>Installation: The registry entry for .nsb has been corrected.
+</ol>
+
+<p><B><FONT FACE="Verdana" SIZE=3>
+Documentation Changes for Version 8.0.0
+</B></FONT>
+<OL>
+	<lI>Gradient buttons: This new style of button gives apps a modern look and feel. The background color of the button transitions smoothly from one color to another, either vertically or horizontally. It is also useful as a background image. Complete details are in the Language Reference. See the "Gradient" sample as well.
+	<p><img src="technotes/images/gradientbuttons.bmp">
+	<p>At this time, gradient buttons are supported by Windows Mobile 5 and newer devices.
+	
+	<li><p>Options Installer Screen: This screen controls options for creating the installer. If you have a Windows Mobile device, you probably do not need to change them. There is more information in <a href="http://www.nsbasic.com/ce/info/technotes/TN30.htm" target="_top">Tech Note 30</a>.
+	
+	<li><p>Starting a program: The options on the Run menu have changed.
+	    <p>Start: Saves your work, creates an exe file that can run on the device, then creates an installer for it. If "Run Automatically" is set in Options, the installer is started.
+	    <p>Update App on Device: Use this if your app is already installed on the device and you just want to update your program's exe. If "Run Automatically" is set in Options, the app is started.
+	    <P>Install Device IDE: The Device IDE is install and its serial number is set. You only need to do this if you want to program on the device.
+	
+	<li><p>Resources: Resources are files that are associated with your project, to either be installed in the program's folder or embedded directly in your exe file. For more information on files to be installed, see <a href="http://www.nsbasic.com/ce/info/technotes/TN30.htm" target="_top">Tech Note 30</a>. Embedded files are covered next...
+		
+	<li>Embedding Files: You can now embed files in the main exe file, to be extracted and used and runtime. This results in a number of interesting possibilities:
+	<ul>
+	<li>	Controls can be extracted, save as files and registered at runtime - simplifying or even eliminating the need for an installer.</li>
+	<li>	Bitmaps can saved in the exe and displayed using a PictureBox - no separate file needs to be installed.</li>
+	<li>	Sounds can be embedded in the exe and played, again without needing to install a separate file.</li>
+	<li>	Store data for your program in the exe for use during runtime.
+	</ul>
+	To embed a file, add it as a Resource to the project. The GetResource function can be used to extract it, save it or register it.
+	<li><p>GetResource(Name[, [filename, register]])
+
+	<p>This powerful function allows you to do a number of things to resources contained in your app. The resources must already exist in your app: they must first be added in the IDE as Resources of type 'File' in the Project Explorer of the IDE.
+
+	<p>Use this function to:
+	<ul>
+	<li>	Read the contents of a resource into a string in your program.</li>
+	<li>	Copy the contents of a resource into a file.</li>
+	<li>	Register and unregister controls.</li>
+	<li>	Install an ActiveX control and register it.</li>
+	</ul>
+	<p>Complete documentation can be found in the Language Reference. See the "Resources" sample for more info.
+	
+	<lI><p>CreateShortcut(Shortcut name, target path) 
+	<p>Creates a directory shortcut to an executable. Returns true if successful, false if it cannot create the shortcut or it already exists. The target path should include quote marks, so it can be parsed properly. 
+
+	<p>Example:
+	<pre>
+'This will create a link in the Programs folder to your program.
+err = CreateShortcut("\Windows\Start Menu\Programs\My Test.exe", """" & currentPath & """")
+	</pre>
+	<lI><p>NSCEPictureBox.ResourceBitmapIDstr: This property gives the name of a bitmap (.bmp) resource to be displayed in a picturebox. The .ResourceFile property must also be set with the name of the file (an exe or dll) that contains the bitmap resource. It is similar to the .ResourceBitmapID resource, which only takes a resource number. The name must be in upper case.
+	<p>Example:
+	<pre>myPicturebox.ResourceBitmapIDstr = "GRADIENTBUTTON"</pre>
+	See the "Resources" sample for more info.
+	
+	<li><p>Support for older versions of Windows CE has been dropped: The installers for NS Basic were getting unncessarily complex: Windows CE devices as far back as 1996 were being supported. NS Basic/CE 8.1 supports devices using Windows CE 4.2 and later. Pocket PC 2003 and all Windows Mobile devices with touchscreens are supported, as well as Windows Mobile Embedded devices.  
+	
+	<li><p>Compatibility: NS Basic/CE 7 programs (and earlier) should load into NS Basic/CE 8.1 with no problem. NS Basic/CE 8.1 programs will not open in earlier versions, so keep a backup!
+</OL>
+
+<HR>
+
+<B><FONT FACE="Verdana" SIZE=3>
+<A NAME="Notes"></A><P>6. Notes and Warnings</H2>
+</B></FONT>
+
+<OL>
+	<LI>Programs created using the desktop IDE can be opened in the device IDE (and vice versa). However, the device Visual Designer cannot be used to edit programs created using the desktop IDE.
+	<LI>Use ActiveSync 4.5.0 or later.
+	<LI>The minimize button on Windows Mobile doesn't close your app: it just minimizes it. (That's Microsoft's implementation). The old version of your app is still running. You need to close the current app before downloading the new one. The easiest way to do this is to use Settings... System... Memory... Active Programs to kill the currently running one before downloading the new one.
+
+<P>If you add the statement <code>ShowOKButton True</code> at the beginning of your program, the X in the top right will change to an OK button. Tapping that will close your app.
+
+<p>There are also freeware apps, like TaskMgr from <a href="http://www.dotfred.net/TaskMgr.htm" target="_top">http://www.dotfred.net/TaskMgr.htm</a> that make this easier by going on the taskbar.
+	<LI>Starting with Windows Mobile 5 devices, OptionButton groups are not working properly on OptionButton objects that are added using the Forms designer. They work properly if added using the AddObject command in your Form_Open code. (We will fix this of course!)
+
+
+</OL>
+
+
+<hr>
+<p><b>Known Problems that are Microsoft's</B>
+
+<OL>
+	<LI>INPUTBOX does not size properly on most devices. This command is built into Microsoft's software. You can use the InputBox function that is part of the DialogX control to do the same thing. Putting this in your program will override the faulty InputBox function. (DialogX also provides additional functionality not contained in InputBox.)
+	<font size=3><pre>
+	DIM NSBIB
+	FUNCTION INPUTBOX(prompt, title, default)
+	  IF ISEMPTY(NSBIB) THEN
+	    ADDOBJECT "DialogX", "NSBIB_Dlg", 0, 0, 0, 0
+	    SET NSBIB=NSBIB_Dlg
+	  END IF  
+	  INPUTBOX = NSBIB.InputBox(prompt, title, default)
+	END FUNCTION  'INPUTBOX
+
+	X=InputBox("Message area", "INPUTBOX Example", "Default Text")</pre></font>
+
+	<LI>The EVAL statement doen't work on some devices. This appears to be a problem in Microsoft's compiler. Use the Execute statement instead.
+	<LI>Date Object: Do not use a MSGBOX statement inside the Change event: it goes into a click event loop as MSGBOX generates its own events.
+</OL>
+<hr>
+
+<A NAME="documentation"></A>
+
+	<B><FONT FACE="Verdana" SIZE=4><P>7. Documentation</FONT></B>
+<OL>
+	<LI>The NS Basic/CE Handbook. It is shipped with each copy of NS Basic/CE. It is approximately 240 pages and details all commands, functions and statement, with example for each of them.
+	<LI>The Language Reference under the Help menu contains a summary of all statements, functions, objects and constants.
+	<Li>Samples: A good selection of sample programs is installed in<br> \My Documents\NSBasic Samples\CE\. You can also get to them directly from the File Menu. There are samples contributed by  users in the Files section of our <A HREF="http://www.groups.yahoo.com/group/nsbasic-ce">NS Basic/CE Web Board</A>.
+	<LI>Tech Notes: Detailed information on a number of topics is posted in a series of <A HREF="http://www.nsbasic.com/ce/info/technotes/">Tech Notes</A>, in the Desktop IDE Help menu and posted on our web site.
+	<LI>The Big Red Toolbox: A collection of controls and utilities submitted by NS Basic/CE users. Available on the <A HREF="http://www.nsbasic.com/ce/info/BigRedToolbox/">Website</A>, or <a HREF="BigRedToolbox/index.htm">on the CD.</a>
+	<LI>Tutorials: Under the Help Menu, you'll find a list of tutorials to help get you started.</P>
+</OL>
+
+<HR>
+<B><FONT FACE="Verdana" SIZE=4><P><A NAME="support"></A>
+<P>8. Support</FONT></B>
+
+<P>We're committed to delivering the best possible support. The following resources are available:</P>
+<OL>
+	<LI>The <A HREF="http://www.groups.yahoo.com/group/nsbasic-ce">NS Basic/CE Web Board</A>. Post questions and comments, and get answers in a public forum. The best and fastest way!
+	<LI>Email Support: Send your questions to <A HREF="mailto:support@nsbasic.com">support@nsbasic.com</A>
+	<LI><A HREF="http://nsbasic.com/ce/info/technotes/">Tech Notes</A>: The Tech Notes posted on our web site give additional and specialized information on a wide variety of topics.
+	<LI><A HREF="http://www.nsbasic.com/ce/support/downloads.html">Updates</A>: From time to time, we may offer updates to NS Basic/CE modules for download at no charge. Check to be sure you're up to date!
+	<LI><A HREF="http://support.microsoft.com/servicedesks/msdn/default.htm">Microsoft On Line Help</A>: Since NS Basic/CE uses the Windows CE VBScript Engine, your issue might be something that Microsoft has addressed in its Support Online section. If you enter "VBCE" or "eVB" as your question, you'll see a complete list of VBScript for CE issues.</P>
+
+</OL>
+We do not offer support by phone. Many problems involve looking at code and many solutions involve complex web addresses that don't communicate well by voice. Try the email support - it works better and we do our best to respond quickly!
+
+<HR>Copyright 2009 NS BASIC Corporation</BODY>
+</HTML>
+
+
+

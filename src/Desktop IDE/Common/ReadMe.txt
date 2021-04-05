@@ -1,0 +1,1 @@
+This folder contains files that are common to NS Basic/CE and NS Basic/Desktop.

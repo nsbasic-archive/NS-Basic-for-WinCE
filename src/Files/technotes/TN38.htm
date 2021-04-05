@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 38: Adding Controls to the NS Basic Toolbar</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 38: Adding Controls to the NS Basic Toolbar</h2>
+	  <h3>June 27, 2002</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+Contributed by <A HREF="mailto:a.yakhnin&copy; worldnet.att.net" TARGET="_top">Alex Yakhnin,</A> Software Developer, Morganville, NJ.
+
+<p><i>This Tech Note applies to Pocket PC units. It is not applicable to Pocket PC 2002.</i>
+
+<P>Since the introduction of the Mark Gamber's Win32 API object, unlimited possibilities have been opened for NS Basic developers to expand the boundaries of this tool. Many of us would like to place some controls on the Toolbar, freeing up some more display space for our applications. As a first step, let's place a CommandButton on a Toolbar:
+
+<P><B>Sample 1</B><br>
+<IMG SRC="images/TN25a.gif" ALT="sample" WIDTH="240" HEIGHT="320">
+<IMG SRC="images/TN25b.gif" ALT="sample" WIDTH="240" HEIGHT="320">
+
+<P>(Before running this sample, please save it under the name "<CODE>TlbButton.nsb</CODE>")
+
+<pre>
+Option Explicit
+
+'Declare variables and objects
+AddObject "MGCEWin32.API","API"
+AddObject "CommandButton","cmdTool", 50, 3, 20, 20
+cmdTool.BackColor = 12632256 ' Gray
+cmdTool.Caption="OK"
+
+Dim AppWnd
+Dim tlbWnd
+
+'Get Application Window Handle
+AppWnd = API.FindWindow("TlbButton.nsb")
+'Get ToolBar Window Handle
+tlbWnd = API.ChildWindowFromPoint(AppWnd, 0, 0)
+
+'Assign to our Button a new Parent
+API.WindowParent(cmdTool.hWnd) = tlbWnd
+
+Sub cmdTool_Click
+  MsgBox "Tool Button Clicked"
+End Sub
+
+</pre>
+
+<P>Now, lets try to add an Icon button to a Toolbar. For this purposes we can use PictureBox control with loaded "bmp" file in it. 
+<P>"But PictureBox doesn't have a window handle property!" you say.
+<P>Absolutely correct, and the knowledge of the Windows API's will come to our help again. The trick is in knowing that the main application window that is created by NS Basic has 2 children: ToolBar and Dialog and all controls that are added to the project become, actually, the children of the Dialog window:
+
+<P><B>Sample 2</B><br>
+<IMG SRC="images/TN25c.gif" ALT="sample" WIDTH="240" HEIGHT="320">
+<IMG SRC="images/TN25d.gif" ALT="sample" WIDTH="240" HEIGHT="320">
+
+<P>(Before running this sample, please save it under the name "<CODE>TlbIcon.nsb</CODE>")
+
+<pre>
+Option Explicit
+
+'Declare variables and objects
+AddObject "MGCEWin32.API","API"
+AddObject "PictureBox","picTool", 50, 3, 21, 21
+' Load picture file into control ( Make sure that the file exists in your system)
+picTool.DrawPicture "\Windows\property.2bp",0,0
+picTool.BorderStyle = 0
+
+Dim AppWnd
+Dim dialogWnd
+Dim pictWnd
+
+'Get Application Window Handle
+AppWnd = API.FindWindow("TlbIcon.nsb")
+'Get ToolBar Window Handle
+tlbWnd = API.ChildWindowFromPoint(AppWnd, 0, 0)
+' Get Dialog Window handle
+dialogWnd = API.ChildWindowFromPoint(AppWnd, 100, 100)
+'Get PictureBox handle using dialogWnd as a Parent and PictureBox
+coordinates
+pictWnd = API.ChildWindowFromPoint(dialogWnd, 50, 3)
+
+'Assign to our Icon a new Parent
+API.WindowParent(pictWnd) = tlbWnd
+
+Sub picTool_Click
+  MsgBox "Tool Icon Clicked"
+End Sub
+
+' Lets Change BorderStyle to show that it was clicked
+Sub picTool_MouseDown(b, s, x, y)
+   picTool.BorderStyle = 1
+End Sub
+
+' Restore BorderStyle
+Sub picTool_MouseUp(b, s, x, y)
+   picTool.BorderStyle = 0
+End Sub
+</pre>
+
+
+
+<P><A HREF="mailto:a.yakhnin&copy; worldnet.att.net" TARGET="_top">Alex Yakhnin, Software Developer</A>, Morganville, NJ
+
+

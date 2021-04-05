@@ -1,0 +1,859 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="Microsoft Word 98">
+<TITLE>Tech Note 03a: ADOCE and Alternatives</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 3a: ADOCE and Alternatives</h2>
+	  <h3>October 13, 2008
+	  </h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr size="1" noshade>
+
+<blockquote>
+  <p>For more information on this control, see Microsoft's documentation on 
+<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/adoce31/html/adowlcm.asp"> their website</a></p>
+</blockquote>
+<hr noshade size="1">
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD VALIGN="TOP">
+
+
+<P>ADOCE is Microsoft's Active Data Object for Windows CE. It is an SQL-like data base ActiveX object that allows interchange with Microsoft Access databases on the desktop.
+
+<P>Use of it is fairly straightforward. Complete documentation on using ADOCE itself is beyond the scope of this Tech Note. Comprehensive documentation is available from Microsoft, as well as other sources: this document is concerned with the interface to ADOCE.
+
+<p>Future Windows Mobile devices will not support ADOCE. If you're using ADOCE, it might be wise to look into some of the alternatives:
+<ul>
+	<li>SQLite: <<a href="http://www.nsbasic.com/ce/info/technotes/TN34.htm" target="_top">http://www.nsbasic.com/ce/info/technotes/TN15.htm</a>></li>
+	<li>Sybase UltraLite: <<a href="http://www.sybase.com/detail?id=47971" target="_top">http://www.sybase.com/detail?id=47971</a>></li>
+	<li>SQL Server CE: <<a href="http://www.microsoft.com/sql/ce/default.asp" target="_top">http://www.microsoft.com/sql/ce/default.asp</a>><br>
+	There is a short sample <a href="#mssql">later in this Tech Note</a>. Implementation is similar to eMbedded Visual Basic, as described <a href="http://www.devbuzz.com/content/zinc_eVB_sql2000_and_RDA_pg1.asp" target="_top">in this article</a>.
+</ul>
+
+</TR>
+<TR><TD VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="TOP">
+<p>Windows Mobile 5: The official word from Microsoft is that ADOCE is not supported on Windows Mobile 5.0. However, there is an unsupported installer for these devices that seems to work properly. Please note a change that has to be made to the desktop Windows registry for this to work properly: it is documented in the ReadMe that displays during installation. You can download the installer <a href="http://www.nsbasic.com/pub/ce/6/installers/ADOCE.WM5.exe" target="_top">here</a>.
+
+<p>HPC 2000, Pocket PC and Pocket PC and Windows Mobile units: Have ADOCE preinstalled. For other units, download the installer from the <A HREF="http://www.nsbasic.com/ce/support/downloads.html">downloads</A> section of this website. HPC units will need these files downloaded; HPC/Pro units generally will not. 
+<P><A HREF="http://www.microsoft.com/msdownload/cetools/ppcsdk_color.asp" TARGET="_top">ADOCE for Windows CE 2.11 Palm-size PC</A> is now available from Microsoft. We've added some notes from Greg Kelley on using ADOCE on palm-size units to the end of this document.</P>
+</TD>
+</TR>
+<TR><TD VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+
+<TR><TD VALIGN="TOP">
+<H4><P>Documentation</H4></TD>
+</TR>
+<TR><TD VALIGN="TOP">
+<P>1. There are some useful articles on this site. They are written for eVB, but work just as well for NS Basic/CE:  <A HREF="http://www.devbuzz.com">http://www.devbuzz.com</A></TD>
+</TR>
+<TR><TD VALIGN="TOP">
+<P>2. Microsoft has an article titled "<A HREF="http://msdn.microsoft.com/library/techart/adoce.htm" TARGET="_top">Developing Data Access Applications for Microsoft Windows CE with ADOCE</A>"
+<TR><TD VALIGN="TOP">
+<P>3. Tony Scarpelli has contributed "<A HREF="TN03a.101.htm" TARGET="_top">ADOCE 102: An Introduction</A>".
+</TR>
+<TR><TD VALIGN="TOP">
+	  <P>4. Microsoft has an article called "<A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnppc2k/html/ppc_rogrammers.asp" TARGET="_top">ADOCE for ADO Programmers</A>".
+</TR>
+<TR><TD VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+
+<TR><TD VALIGN="TOP">
+<P><H4>Notes and Quirks</H4></TD>
+</TR>
+<TR><TD VALIGN="TOP">
+<ol>
+	<li>An easy query that will work on any device or version is
+	<pre>
+	Select * from mSysTables</pre>
+	This will select information from the internal ADOCE database. It's an easy to test if ADOCE is working.
+	<li>Pocket PC devices (including Windows Mobile) may give a message that ADOCE is not installed when you try to initialize it. This is an incorrect error message from the operating system. It just means that you are trying to open ADOCE the wrong way. See "Object Creation", below.
+	<li>Very Bad Things happen if you don't do proper housekeeping. These can result in the runtime hanging or the entire system running out of memory. Here are a few of things to be careful not to do:
+	<br>a. Don't do a MoveNext or MoveBack past the bounds of the file.
+	<br>b. Don't issue a Close call on an object that isn't open.
+	<br>c. Don't try to touch the Fields array of a recordset that has BOF or EOF true.
+	<li>Use the CreateObject method to get the ADO object - don't use AddObject.</li>
+	<LI>Don't Set the ADOCE object you create using CreateObject to Nothing. It
+	will cause a memory leak.
+	<li>To try out the sample, you can use the command mSysTables or mSysFields. Do not try the Add and Delete buttons out on these - they are system databases!</li>
+	<li>If you NEVER installed Windows CE Services 2.x, but HAVE installed ActiveSync 3.0, ADOCE may choke during the installation warning you that ADOCE cannot install because Windows CE Services is not present.  To work around this problem, open the ADOCE.STF file and change the following line:
+<br><CODE><P>2  Windows CE Services 2.0  CustomAction  "adosetup.dll, AddAppSrch,""Required,C:\,ceappmgr.exe,2.0,3 4""" to:
+<br>2  Windows CE Services 2.0  CustomAction  "adosetup.dll, AddAppSrch,""Required,C:\,ceappmgr.exe,3.0,3 4"""	</CODE></li>
+	<li>Don't leave the first argument of RS.Open blank. Put the name of the table in. Example: RS.Open "MyTable",DBName,2,3</li>
+	<li>Make sure that reading a record completes properly before reading another record. If you do not do so, you can get a message like "\Windows\msdaer.dll" is not installed on this device."
+	<li>In Windows Mobile 2003 (Pocket PC 2003), Microsoft  changed the internal format of the Pocket Database file (.cdb). If you wish to use a Pocket Database file (.cdb), created in a Windows CE 3.0 or a Pocket PC 2002 environment, you will need to convert it by using the database conversion program provided by Microsoft. See <A HREF="http://www.microsoft.com/downloads/details.aspx?familyid=636008aa-a011-4188-a1aa-4dd723e315bf&amp;displaylang=en
+">http://www.microsoft.com/downloads/details.aspx?familyid=636008aa-a011-4188-a1aa-4dd723e315bf&displaylang=en
+</A>
+</ol>
+</TD></TR>
+
+</TABLE>
+<HR>
+<P><H4>Object Creation</H4>
+To open file ADOCE recordset object, do the following:<br>
+
+<CODE>Set RS = CreateObject("adoce.recordset")</CODE>
+
+<P>For all Pocket PC devices, including Windows Mobile devices, you should use:<br>
+
+<CODE>Set RS = CreateObject("adoce.recordset.3.0")</CODE><br>
+or<br>
+<CODE>Set RS = CreateObject("adoce.recordset.3.1")</CODE>
+<P>&nbsp;</P>
+
+<HR>
+<H4><P>Methods</P></H4>
+<TABLE BORDER CELLSPACING=1 WIDTH=476>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><CODE>RS.addNew</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>No arguments. Start sequence of adding fields. Starts a new record.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.close</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>Closes the current database</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.delete</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>Deletes current record. Remember to move to another one.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.fields</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>("myFieldName")=value</code>. Change value of field in current record.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.move</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>NumRecords, Start</code> where <CODE>NumRecords</CODE> is the number of records to move and can be zero or negative as well as a positive number and <CODE>Start</CODE> is 0 for starting with the current record (default), 1 is starting with the first record and 2 is starting with the last record.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.moveFirst</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>Move to first record</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.moveLast</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>Move to last record</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.moveNext</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>Move to next record</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.movePrevious</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>Move to previous record</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.open</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>Source, active connection, cursor type, lock type, options</P>
+<P>Opens a database or sends an SQL command to the database. </P>
+<P><B>Source</b>: Required, string.</P>
+<P>Can be name or SQL Command, depending on options flag. For more on SQL commands, see below.</P>
+<P><B>active connection</b>: options, always "", or can be database name</P>
+<P><B>cursor type</b>: optional, integer</P>
+<P><CODE>adOpenForwardOnly</code>: 0. Can only move forward thru data</P>
+<P><CODE>adOpenKeySet</code>: 1. Can move in any direction.</P>
+<P><B>Lock type</b>: optional, integer</P>
+<P><CODE>AdLockReadOnly</code>: 1. Read only</P>
+<P><CODE>AdLockOptimistic</code>: 3. Read, write, modify, delete OK.</P>
+<P><B>Options</b>: optional, integer</P>
+<P><CODE>AdCmdText</code>: 1. Source is an SQL statement</P>
+<P><CODE>AdCmdTable</code>: 2. Source is a table name</P>
+<P><CODE>AdCmdStoredProc</code>: 4. Source is stored procedure (not implemented)</P>
+<P><CODE>AdCmdUnknown</code>: 8. Source type is unknown.
+<P><b>Example: open a database and do a selection</b><br>
+<code>rs.open "select * from 3752j","\my documents\db1.cdb"
+</code></P></TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>RS.update</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P>No arguments. Writes current record out to table.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica" SIZE=4><P>Properties</P></font></B>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="41%" VALIGN="TOP">
+<P><CODE>RS.BOF </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>beginning of file. True/False</TD>
+</TR>
+<TR><TD WIDTH="41%" VALIGN="TOP">
+<CODE><P>RS.EOF </CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>end of file. True/False</TD>
+</TR>
+<TR><TD WIDTH="41%" VALIGN="TOP">
+<CODE><P>RS.Fields("myFieldName").value</CODE></TD>
+<TD WIDTH="59%" VALIGN="TOP">
+<P>Returns value of a field in current record</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<B><FONT FACE="Helvetica" SIZE=4><P>SQL Commands</P>
+</font></B><P>The ability to do SQL (Standard Query Language) commands is what makes ADO so powerful. There are lots of books and resources that describe SQL. Not all parts are currently supported by ADOCE, but the following subset should work OK.</P>
+<P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><CODE>CREATE INDEX PRIMARYKEY ON</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>myTableName myFieldName</code><BR>
+Creates a primary index. Needed for synchronization.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>CREATE TABLE</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>myTableName (FieldList)</code><BR>
+Creates a new table. Be careful how you choose names in FieldList: some name, such as DESC are keywords. The FieldList is a list of field names and types, i.e. (company int, name varchar(9)). Valid types include INT, FLOAT, BIT, VARCHAR, DATETIME and TEXT)</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>DELETE</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>myTableName WHERE myFieldName='Kenny'</code><BR>
+Deletes records which qualify. If no WHERE clause, deletes all.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>DROP TABLE</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>MyTableName</code>. <BR>
+Deletes the table.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>INSERT INTO</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>myTableName (fieldList) (valueList)</code><BR>
+You can also use AddNew/fields/update methods to do the same thing.</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<CODE><P>SELECT</CODE></TD>
+<TD WIDTH="78%" VALIGN="TOP">
+<P><CODE>* FROM myTableName WHERE myFieldName LIKE 'Ken' ORDER BY myFieldName1 myFieldName2 myFieldName3</code><BR>
+Selects and sorts list of records to be used.</TD>
+</TR>
+</TABLE>
+
+<B><FONT FACE="Helvetica" SIZE=4><P>&nbsp;</P>
+<P>ADO and Pocket Access</font></B>
+<P>For those of you attempting to use ADO and Pocket
+Access here is a simple example of how this is done. Hats off to Matt
+Woodward and John Riekena at Microsoft for their help.
+
+This example loads the names from the Employees table in the Northwind
+database located in "My Documents".
+
+<pre>Private Sub cmbTest_Click()
+  Dim EmployeeRS
+
+' Setup an error handler.
+  On Error Then Resume Next
+
+' Retrieve data from the Employee table.
+  Set EmployeeRS = CreateObject("adoce.recordset")
+  EmployeeRS.Open "SELECT * FROM Employees", "\My Documents\Northwind.cdb",
+adOpenDynamic, adLockOptimistic
+
+' Loop through the recordset loading names into a combo box.
+  Do While Not EmployeeRS.EOF
+    cmbEmployees.AddItem EmployeeRS.Fields("LastName") & ", " &
+EmployeeRS.Fields("FirstName")
+    EmployeeRS.MoveNext
+  Loop
+
+' Select the first employee in the list.
+  cmbEmployees.ListIndex = 0
+
+End Sub
+</pre>
+
+<B><FONT FACE="Helvetica" SIZE=4><P>&nbsp;</P>
+<P>ADO and External Databases</font></B>
+<P>ADOCE on H/PC Pro does support external databases.  To utilize them you pass
+the filename of the external database as a string in the connection
+parameter.  Larry posted something about this recently, but a recap doesn't
+hurt.
+
+<p>ADOCE also supports the create database syntax "create database
+'\database.cdb'" and "drop database '\database.cdb'".  Here's a bit of
+sample code that always recreates a a database with a table called t1 in it:
+<pre>
+    ' include constants from Appendix A below as needed
+
+    On Error Resume Next
+
+    rs.Open "drop database '\ado.cdb'"
+    On Error GoTo 0
+
+    rs.Open "create database '\ado.cdb'"
+    rs.Open "create table t1 (c1 integer, c2 varchar(200))", "\ado.cdb"
+
+    rs.Open "select c1, c2 from t1", "\ado.cdb", adOpenDynamic, adLockOptimistic
+
+    rs.AddNew
+    rs.Fields("c1") = 1
+    rs.Fields(1) = "t1 -- One"
+    rs.Update
+
+    rs.AddNew
+    rs.Fields("c1") = 2
+    rs.Fields(1) = "Xt1 -- Two"
+    rs.Update
+
+    rs.AddNew
+    rs.Fields("c1") = 3
+    rs.Fields(1) = "t1 -- Three"
+    rs.Update
+
+    rs.AddNew
+    rs.Fields("c1") = 4
+    rs.Fields(1) = "Xt1 -- Four"
+    rs.Update
+
+    rs.AddNew
+    rs.Fields("c1") = 5
+    rs.Fields(1) = "t1 -- Five"
+    rs.Update
+
+    rs.AddNew
+    rs.Fields("c1") = 6
+    rs.Fields(1) = "t1 -- Six"
+    rs.Update
+
+    rs.Close
+
+</pre>
+
+<B><FONT FACE="Helvetica" SIZE=4><P>&nbsp;</P>
+<P>Sample Code </P>
+</font></B><PRE>
+<IMG SRC="images/Adoce.GIF" WIDTH=428 HEIGHT=160>
+
+
+This program allows the User to enter a SQL command eg Create table, Select etc.
+'In the case of a command that produces a recordset (ie select) then the first three fields
+'of the recordset are displayed. The user may Add new records, modify existing data or
+'delete existing records.
+
+Option Explicit
+'-----------------------------------------------------------
+' ADO Cursor Types
+'-----------------------------------------------------------
+Const adOpenForwardOnly = 0
+Const adOpenKeyset = 1
+'-----------------------------------------------------------
+' ADO Lock Types
+'-----------------------------------------------------------
+Const adLockReadOnly = 1
+Const adLockOptimistic = 3
+
+dim cmdAddNew_enabled, cmdDelete_enabled, sqlCommand, rs_opened, num_fields, RS
+rs_opened = 0
+sqlCommand=""
+form_load
+on error resume next
+set RS=createObject("adoce.recordset")
+if err then
+  err.clear
+  set RS=createObject("adoce.recordset.3.0") 'for Pocket PC
+end if  
+if err then
+  msgBox "Active Data Objects (ADOCE) must be installed for this sample to work. Please check the Tech Notes for more information."
+  err.clear
+  bye
+end if
+on error goto 0
+
+Sub Execute_Click()
+  On Error Resume Next
+  Dim fcol
+  cmdaddnew_Enabled = False
+  cmdDelete_Enabled = False
+
+  If rs_opened = 1 Then ' previous command has used the Recordset object. Close the old one
+    RS.Close
+    If Err Then ChkErr
+    rs_opened = 0
+  End If
+'
+'Open the ADOCE Recordset using the SQL statement that the user has typed in.
+'Using adOpenKeyset to allow backward scrolling and adLockOptimistic to allow
+'entry of data into the database
+'
+  RS.Open txtsql.text, , adOpenKeyset, adLockOptimistic
+  txtResult.cls
+  txtResult.drawText Hex(Err) &amp; " -" &amp; Err.Description
+  if err then exit sub
+  Set fcol = RS.fields
+  Num_fields = fcol.Count
+  
+  If Num_fields Then
+    '
+    'If the Recordset returned has fields then assume that the sql statement was a Select
+    'and has returned a recordset to browse. If Num_fields has no value then the SQL will
+    'still have been executed eg a create table command.
+ 
+    'Disable / Enable the Addnew button if the Addnew method is supported for this recordset
+    cmdaddnew_Enabled = RS.supports(adAddNew)
+ 
+    'Disable / Enable the Delete button if the delete method is supported for this recordset
+    cmdDelete_Enabled = RS.supports(adDelete)
+    rs_opened = 1
+    RefreshForm
+  End If
+End Sub
+
+Sub RefreshForm() 'This routine transfers the data to the form
+  dim s
+  'On Error Resume Next
+  Dim NumFieldstoDisplay
+  Dim fcol    ' FIELDS COLLECTION
+  Dim fld     ' FIELD
+  Dim lp      ' Loop value
+
+'Display Status bar information
+  txtcrecs.cls
+  txtcrecs.drawtext "Record #" &amp; RS.absoluteposition &amp; " of " &amp; RS.recordcount &amp; " records."
+
+'Create field object for fastest access
+  Set fcol = RS.fields
+'
+'loop thru the field collection and display each field
+
+  NumFieldstoDisplay = min(12, Num_fields)
+  s=""
+  For lp = 1 To NumFieldstoDisplay
+    'create field object from the fields collection
+    Set fld = fcol(lp - 1)
+    If Err Then ChkErr
+
+    s=s &amp; fld.name
+    s=s &amp; ":" &amp; fld.value
+    s=s &amp; vbCrLf
+  Next
+  txtField1.cls
+  txtField1.fontname="arial"
+  txtField1.fontsize=8
+  txtField1.drawtext s
+End Sub
+
+Sub addnew_Click()
+  if cmdAddNew_enabled=false then exit sub
+  On Error Resume Next
+  Dim NumFieldstoDisplay, lp, f(3)
+
+  NumFieldstoDisplay = min(2, Num_fields)
+  If NumFieldstoDisplay  0 Then
+ 
+    'swap the data from the form into an Array
+    f(1) = txtField1
+    If NumFieldstoDisplay = 1 Then f(2) = txtField2
+    If NumFieldstoDisplay = 2 Then f(3) = txtField3
+ 
+    'Transfer the data to the field value property prior to the update. 
+    'Remember that the Fields collection is Zero based.
+    RS.addnew
+    For lp = 1 To NumFieldstoDisplay
+      RS.fields(lp - 1).Value = f(lp)
+      If Err.Number Then ChkErr
+    Next
+ 
+    RS.Update
+    If Err.Number Then ChkErr
+  End If
+End Sub
+
+Sub Delete_Click()
+  if cmdDelete_enabled=false then exit sub
+  On Error Resume Next
+  RS.Delete
+  If Err &lt;&gt; 0 Then ChkErr
+  cmdDelete_Enabled = False
+  RefreshForm
+End Sub
+
+Sub ChkErr()
+  On Error Resume Next
+  If Err.Number &lt;&gt; 0 Then
+    MsgBox "Error: " &amp; Hex(Err) &amp; " -" &amp; Err.Description
+  End If
+End Sub
+
+Sub cmdMoveFirst_Click()
+  if rs_opened=0 then exit sub
+  On Error Resume Next
+  RS.MoveFirst
+  If Err &lt;&gt; 0 Then ChkErr
+  RefreshForm
+End Sub
+
+Sub cmdMoveLast_Click()
+  if rs_opened=0 then exit sub
+  On Error Resume Next
+  RS.MoveLast
+  If Err &lt;&gt; 0 Then ChkErr
+  RefreshForm
+End Sub
+
+Sub cmdMoveNext_Click()
+  if rs.absolutePosition=rs.recordCount then exit sub
+  On Error Resume Next
+  RS.MoveNext
+  If RS.EOF Then RS.MoveLast
+  If Err &lt;&gt; 0 Then ChkErr
+  RefreshForm
+End Sub
+
+Sub cmdMovePrev_Click()
+  if rs.absolutePosition&lt;=1 then exit sub
+  On Error Resume Next
+  RS.moveprevious
+  If RS.BOF Then RS.MoveFirst
+  If Err &lt;&gt; 0 Then ChkErr
+  RefreshForm
+End Sub
+
+Sub Form_Load() 'set up screen objects
+
+  addObject "textbox","txtsql",10,10,300,18
+  txtsql.text= "<Enter an SQL command>"
+
+  addObject "picturebox","txtField1",10,30,300,98
+  txtField1.borderstyle=1
+  
+  addObject "commandButton","Execute",320,10,60,18
+  addObject "commandButton","AddNew",320,30,60,18
+  addObject "commandButton","Delete",320,50,60,18
+
+  addObject "picturebox","txtResult",10,132,300,18
+  txtResult.borderStyle=1
+
+  addObject "commandButton","cmdMoveFirst",320,112,30,18
+  cmdMoveFirst.text= "&lt;&lt;"
+  addObject "commandButton","cmdMovePrev",350,112,15,18
+  cmdMovePrev.text="&lt;"
+  addObject "picturebox","txtcrecs",320,132,120,18
+  txtcrecs.borderstyle=1
+  addObject "commandButton","cmdMoveNext",395,112,15,18
+  cmdMoveNext.text= ""
+  addObject "commandButton","cmdMoveLast",410,112,30,18
+  cmdMoveLast.text= ""
+
+End Sub
+
+Function min(a, b)
+  min = a
+  If b &lt; a then min=b
+End function
+
+
+
+Here is a small procedure that implements a "browse file" based on external
+variables only. It is contributed by Gilbert Vuilleumier, gilbert.vuilleumier&copy; span.ch. 
+
+Parameters are:
+Filename     Database File name
+F_ID         Array that will receive the recordset
+Filter       Database filter
+Gridx        Grid object name
+Lines        Number of apparent lines of the grid
+Cols         Columns descriptor bi-dimensionnal array, 
+             one line for each column of the grid,
+             Each line contains 3 elements: title (not used),
+             width,column number
+PS           is a 4-element array that contains X-pos, y-pos, width,
+             height of the grid object
+
+Sub BrowsePanel(FileName, F_Id, R_Set, Filter, Gridx, Lines, Cols, PS )
+'**********************************************************************
+  VBCEutil.WaitCursor True
+  dim Ix,Jx,SQLC,S,X,Y,L,H                                              '
+Create a drop list from a structured data file
+  Set R_Set = CreateObject("adoce.recordset")
+  if Filter ="" then
+    SQLC = "SELECT * from " &amp; FileName
+  else
+    SQLC = "SELECT * from " &amp; FileName &amp; " WHERE " &amp; Filter
+  end if
+  R_Set.open SQLC ,vbNullString,1, 1
+  If R_Set.RecordCount&gt;0 Then
+    R_Set.MoveFirst
+    F_Id = R_Set.GetRows()
+  Else
+   F_Id = array("")
+  End If
+  Execute "NewGrid  = not IsObject(" &amp; Gridx &amp; ")"
+  if NewGrid  then
+    AddObject "GridCtrl.GridCtrl.1",Gridx,PS(0),PS(1),PS(2),PS(3)
+  Else
+    X = PS(0) * 15
+    Y = PS(1) * 15
+    L = PS(2) * 15
+    H = PS(3) * 15
+    Execute Gridx &amp; ".Move " &amp; X &amp; "," &amp; Y &amp; "," &amp; L &amp; "," &amp; H
+'    GR_ID.Move 0,30
+    Execute Gridx &amp; ".CellBackColor = vbWhite"
+  end if
+  Execute Gridx &amp; ".Rows = " &amp; R_Set.RecordCount
+  Execute Gridx &amp; ".Cols = " &amp;  1+ Ubound(Cols(0))
+  For Ix=0 to Ubound(Cols)
+    Jx = Cols(Ix)(1) * 13.5
+    Execute Gridx &amp; ".ColWidth(" &amp; Ix &amp; ") = " &amp; Jx         ' twips-&gt;pixels conversion
+  Next 'Ix
+  For Jx=0 To R_Set.RecordCount-1
+    For Ix=0 to Ubound(Cols(0))
+      S = F_Id(Ix,Jx)
+      Execute Gridx &amp; ".TextMatrix(" &amp; Jx &amp; "," &amp; Ix &amp; ") = " &amp; chr(34) &amp; S &amp; chr(34)
+    Next 'Ix
+  Next 'Jx
+  R_Set.close
+  set R_Set = nothing
+  Dim code
+  code = "sub " &amp; Gridx &amp; "_EnterCell" &amp; vbCrLf &amp; Gridx &amp; ".CellBackColor =vbRed" &amp;_
+vbCrLf &amp; "N_Categ.Text = GR_ID.TextMatrix(GR_ID.RowSel,1)" &amp; vbCrLf &amp; "End Sub" &amp; vbCrLf
+'  Execute code
+  code = "sub " &amp; Gridx &amp; "_LeaveCell" &amp; vbCrLf &amp; Gridx &amp; ".CellBackColor = vbWhite" &amp;_
+vbCrLf &amp; "End Sub" &amp; vbCrLf
+  Execute code
+  VBCEutil.WaitCursor False
+End Sub
+</PRE>
+<B><FONT FACE="Helvetica" SIZE=4><P>Appendix A: List of ADO Constants </P>
+</font></B><PRE>
+'-----------------------------------------------------------
+' Declarations For VBA Errors
+'-----------------------------------------------------------
+  Const vbErrInvalidArg = 5
+  Const vbErrOverflow = 6
+  Const vbErrOutOfMemory = 7
+  Const vbErrOutOfRange = 9
+  Const vbErrTypeMismatch = 13
+  Const vbErrOutOfStringSpace = 14
+  Const vbErrObjectNotSet = 91
+  Const vbErrUnInitForLoop = 92
+  Const vbErrBadUseOfNull = 94
+  Const vbErrObjectRequired = 424
+  Const vbErrCantCreate = 429
+  Const vbErrNotSupported = 438
+  Const vbErrInvalidAssignment = 450
+  Const vbErrNotCollection = 451
+'-----------------------------------------------------------
+' Declarations For ADO Errors
+'-----------------------------------------------------------
+  Const adErrInvalidArgument = &amp;HBB9
+  Const adErrNoCurrentRecord = &amp;HBCD
+  Const adErrIllegalOperation = &amp;HC93
+  Const adErrFeatureNotAvailable = &amp;HCB3
+  Const adErrItemNotFound = &amp;HCC1
+  Const adErrObjectNotSet = &amp;HD5C
+  Const adErrDataConversion = &amp;HD5D
+  Const adErrObjectClosed = &amp;HE78
+  Const adErrObjectOpen = &amp;HE79
+  Const adErrProviderNotFound = &amp;HE7A
+  Const adErrInvalidParamInfo = &amp;HE7C
+  Const adErrInvalidConnection = &amp;HE7D
+'-----------------------------------------------------------
+' ADO Cursor Types
+'-----------------------------------------------------------
+  Const adOpenUnspecified = -1
+  Const adOpenForwardOnly = 0
+  Const adOpenKeyset = 1
+  Const adOpenDynamic = 2
+  Const adOpenStatic = 3
+  Const DEFCursor = 0
+'-----------------------------------------------------------
+' ADO Lock Types
+'-----------------------------------------------------------
+  Const adLockUnspecified = -1
+  Const adLockReadOnly = 1
+  Const adLockPessimistic = 2
+  Const adLockOptimistic = 3
+  Const adLockBatchOptimistic = 4
+  Const DEFLock = 1  ' check what should be the default lock type
+  Const DEFOption = " "
+'-----------------------------------------------------------
+' ADO Field Attributes
+'-----------------------------------------------------------
+  Const adFldMayDefer = 2
+  Const adFldUpdatable = 4
+  Const adFldUnknownUpdatable = 8
+  Const adFldFixed = 16
+  Const adFldIsNullable = 32
+  Const adFldMayBeNull = 64
+  Const adFldLong = 128
+  Const adFldRodID = 256
+'-----------------------------------------------------------
+' ADO Field Types
+'-----------------------------------------------------------
+  Const adWChar = 130
+  Const adBinary = 128
+  Const adInteger = 3
+  Const adSmallInt = 2
+  Const adDouble = 5
+  Const adDate = 7
+  Const adUnsignedSmallInt = 18
+  Const adUnsignedInt = 19
+  Const adUnknown = -1
+'-----------------------------------------------------------
+' ADO Supports() Types
+'-----------------------------------------------------------
+  Const adAddNew = 16778240
+  Const adApproxPosition = 16384
+  Const adBookMark = 8192
+  Const adDelete = 16779264
+  Const adHoldRecords = 256
+  Const adMovePrevious = 512
+  Const adResync = 131072
+  Const adUpdate = 16809984
+  Const adUpdateBatch = 65536
+'-----------------------------------------------------------
+' ADO Absolute Page/Absolute Position Special Constants
+'-----------------------------------------------------------
+  Const adPosUnknown = -1
+  Const adPosBOF = -2
+  Const adPosEOF = -3
+'-----------------------------------------------------------
+' ADO Edit Modes
+'-----------------------------------------------------------
+  Const adEditNone = 0
+  Const adEditInProgress = 1
+  Const adEditAdd = 2
+
+
+</pre>
+
+
+<h4>ADOCE for Palm-size PC</h4>
+(notes from Greg Kelly)
+
+
+<p>I downloaded the Palm-PC SDK v1.2 yesterday from MS and did a custom install
+of only the ADOCE files.  In \Program Files\WINCE SDK\wce211\ms palm size
+pc\adoce\ is the file MSCEADODT.DLL and in the mips41 folder are 5 more
+files:
+
+<ul>
+	<li>adoce.dll</li>
+	<li>adocedb.dll</li>
+	<li>adocereg.dll</li>
+	<li>adoceres.dll</li>
+	<li>adosync.dll</li>
+</ul>
+
+
+<p>I copied all 6 of these to the PPC and registered adoce.dll
+
+<p>The nsBasic "View Controls.vb" app when run now shows ADO at the top of the
+list.
+
+<p>I use a db manager app called FlashBackDB from developerone.com and it now
+shows four additional files (created when I registered adoce.dll?):
+
+<ul>
+	<li>MSysFields</li>
+	<li>MSysIndexes</li>
+	<li>MSysProcs</li>
+	<li>MSysTables</li>
+</ul>
+
+<p>I modified some nsBasic sample code (to enter a SQL string and manipulate
+tables) and reformatted it for the PPC (will send to nsBasic later).  With
+this, I was able to do a select on the MSysTables and see the four records
+in it.
+
+<p>I created some small apps using nsBasic with the ADO Control that:
+
+<ul>
+	<li>create a table (now shows up in the FlashBackdb list of tables)</li>
+	<li>deletes a table (removes from db list)</li>
+	<li>enter, update, delete records in the table.</li>
+</ul>
+
+<p>I was also able to create and manipulate external db files (Pocket Access
+format .cdb)
+
+<p>INTERACTION OF WIN-CE SERVICES 2.2:
+
+<p>You can do 3 out of the possible 4 scenarios of file transfer:
+
+<p>1. Create an Access .mdb file and do an Import with Win-CE Svcs Mobile
+Devices which converts the file to a Pocket Access .cdb file on the PPC.
+
+<p>2. Copy a .mdb file from Desktop to PPC and it automatically converts it to
+.cdb
+
+<p>3. Do an Export with Win-CE Svcs Mobile Devices which lists tables in the CE
+Data Store that were created ONLY with ADOCE (excluding the Msys* tables)
+and creates a .mdb file on the Desktop.
+
+<p>I can't find ANY way to Import/Export/Copy a .mdb file to a CE Data Store
+table.  This means that when you create an app that uses a data table, you
+will have to use an external .cdb file or create the table from sourcecode
+if you want it in the CE Data Store.
+
+
+<a name="mssql"></a>
+<h4>Sample for accessing Microsoft SQL from NS Basic/CE</h4>
+<pre>
+Dim objADO
+Dim objRs
+Dim strSQL
+Dim strUserID
+
+SqlOdbc="sql"
+'Create ADO Object
+Set objADO = CreateObject("ADODB.Connection")
+
+' **** Open MS SQL DB by ADO ***
+objADO.Open="SQL"
+
+
+'Set SQL
+strSQL="SELECT * from daily "
+
+'Set DynaSet(RecordSet) Object
+Set objRS = objADO.Execute(strSQL)
+
+
+'Show records data
+Do Until objRS.Eof = True
+
+'Show the field
+Print objRS(0),objRS(1),objRS(2),objRS(3) 
+
+'move next record
+objRS.MoveNext
+
+Loop
+
+
+'Close ADO
+objADO.Close
+</pre>
+</BODY>
+</HTML>

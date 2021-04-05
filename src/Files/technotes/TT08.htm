@@ -1,0 +1,183 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 08: Using TCP/IP to Obtain Stock Quotes</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 08: Using TCP/IP to Obtain Stock Quotes</h2>
+      <h3>September 20, 2009</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+      <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p> 
+ 	</td></tr></table>
+<hr>
+
+<h3>Contents:</h3>
+<ol>
+    <li><a href="#Intro">Introduction</a></li>
+    <li><a href="#How">How is it Done?</a></li>
+    <li><a href="#Form">Creating the Form</a></li>
+    <li><a href="#Coding">Adding the Code</a></li>
+    <li><a href="#Testing">Testing the Program</a></li>	
+</ol>
+
+<a name="Intro"></a><h2>Introduction</h2>
+
+<p>The purpose of this tutorial is to demonstrate adding networking functionality
+to your NS Basic/CE programs. You should have completed Tutorial #1
+before beginning this tutorial. </p>
+
+<p>The program to be developed uses the NewObjects ActiveX Net Stream
+control to open a socket and obtain stock quotes from Yahoo.com. The
+NewObjects Storage and File control is used to send and received data from the
+Yahoo server.</p>
+
+<a name="How"></a><h2>How is it Done?</h2>
+<p>Including network support in your application starts as simply as adding NewObjects ActiveX control as a resource to your program. Select Project > Add Resource, then select newObjectsPack1.dll.</p>
+  
+<p>(For a complete reference on the methods above, make sure you read the <a href="http://www.nsbasic.com/desktop/info/technotes/TN06.htm">
+Tech Note 06: Communications - TCP/IP and IRDA</a> and
+ <a href="http://www.nsbasic.com/desktop/info/technotes/TN08.htm">
+ Tech Note 08: File I/O Control - SFStream</a>.)</p>
+
+<p>Working with TCP/IP protocols is similar to reading/writing files from
+the file system. There are basically three steps used to talk to a server:</p>
+<ol type ="1">
+  <li>First you have to open it (socket), </li>
+  <li>Then you send commands and read data to/from it, </li>
+  <li>and finally you close it (socket).</li>
+</ol>
+
+<p>Because you are dealing with a remote system and not a local file, you have 
+  a "<font color="#ff0000">timeout</font>" feature. It simply means 
+  that if your application does not hear from the remote machine for a specified 
+  period of time it will give up. </p>
+<p>You must also specify to which service you want to connect in that remote machine, 
+  and that's the concept behind "<font color="#ff0000">port</font>". 
+  Different ports provides different services, for instance, </p>
+<ul>
+  <li>Webserver usually listens on port 80, </li>
+  <li>Mail server accepts messages for delivery on port 25 (SMTP service), 
+    and </li>
+  <li>Email client connects on the server's port 110 to retrieve your mail 
+    using the POP3 protocol. </li>
+</ul>
+
+<a name="Form"></a><h2>Creating the Form</h2>
+<p>Start a new "Standard" project and save it as <i>HttpStocks.nsb</i></p>
+
+Create the following controls on the form:
+<ul>
+  <li>Create a TextBox and call it "txtMsg". Change Multiline to True.
+  Change Scrollbars to 3 (both vertical and horizontal). Delete the 
+  field after the Text property.</li>
+  <li>Create a CommandButton and call it "cmdFetch". Change the Caption
+  to "Fetch".</li>
+ <li>Create a TextBox and call it "txtSymbol". Change the 
+ Text property field to "AAPL".</li>  
+</ul>
+  
+<p>The form should look like the following:</p>
+<p align="center"><img src="images/TT08.1.gif" width="578" height="821" alt="" border="0" align="">>
+
+<a name="Coding"></a><h2>Adding the Code</h2>
+<p>In this project we will simply connect to the Yahoo server and send a request
+to return the latest information on the stock symbol entered (Apple is the
+default case).</p>
+
+<p>Enter the following code in the Code Window (you can copy and paste
+this code):</p>
+
+<p align="center"><textarea name="textfield" cols="80" rows="20" wrap="OFF">
+Option Explicit
+ShowOKButton True 'for CE
+' Shows how to read stock quotes from Yahoo.com
+
+AddObject "newObjects.net.NSMain", "NSMain"
+AddObject "newObjects.utilctls.SFStream","conn"
+
+Sub cmdFetch_Click
+	Dim Host, addr, socket
+	Dim s
+	Dim Symbol
+	
+	Symbol = txtSymbol.Text
+	
+	Host = "download.finance.yahoo.com"
+    Set addr = nsMain.GetHost(Host)
+    txtMsg.Text = "Connecting to: " & Host
+    
+    addr.Port = 80 'http port
+    Set socket = nsMain.NewSocket
+    
+    If Not socket.Socket Then
+        txtMsg.Text= "Error: " & socket.lastError & vbCrLf & txtMsg.Text
+        Exit Sub
+    End If   
+    
+    If Not socket.Connect(addr) Then
+        txtMsg.Text= "Error: " & socket.lastError & vbCrLf & txtMsg.Text
+        Exit Sub
+    End If
+           
+    conn.SetStream socket
+   
+    txtMsg.text = "GET quote for " & Symbol & vbCrLf & txtMsg.text
+    conn.WriteText "GET /d/quotes.cvs?f=sd1t1l1c1&e=.cvs&s=" & Symbol & vbCrLf
+    
+    txtMsg.text = "Waiting for response:"& vbCrLf & txtMsg.text
+    s = conn.ReadText(-2)
+    txtMsg.text = s & vbCrLf & txtMsg.text
+                
+    txtMsg.Text= "Done." & vbCrLf & txtMsg.Text
+    socket.Close
+End Sub
+</textarea>
+  
+<p align="center"><img src="images/TT08.2.gif" width="718" height="826" alt="" border="0" align="">
+
+<p>Now let's analyze the code, line by line:</p>
+<ul>
+  <li>Lines 4 and 5 define the Net Stream object (NSMain) and the
+  Storage and File object (SFStream).</li>
+  <li>Lines 14 and 15 define the Yahoo server address (URL)
+  and gets the IP address of the server (calling GetHost).</li>
+  <li>On line 19 we open the connection to "server" on port 80.</li>
+  <li>Line 31 initializes the Socket connection for reading and writing.</li>
+  <li>Line 34 Sends a "Get" command to the server requesting the quote
+  information.</li> 
+  <li>Line 37 waits for a response from the server (read a line of data)</li>
+  <li>The Socket is closed on line 41. </li>
+</ul>
+
+
+<p>Line number 34 deserves a little explanation:
+</p><pre>    conn.WriteText = "GET /d/quotes.csv?f=sd1t1l1c1&amp;e=.cvs&amp;s=" &amp; Symbol &amp; vbCrLf
+</pre>
+
+<p>That message will cause the host (Yahoo) to give the symbol, the
+date, the time of last trade, the latest price, and the change in
+dollars from the opening price for Apple Computer. These are
+respectively coded with s, d1, t1, l1 and c1. (I'm not sure where Yahoo
+officially publishes these codes but this article from the Motley Fool
+shows many of them: <a href="http://boards.fool.com/Message.asp?mid=18825035" target="_top">http://boards.fool.com/Message.asp?mid=18825035</a>)
+</p>
+
+<a name="Testing"></a><h2>Testing the Program</h2>
+<p>Press F5 to save and start the program. Clicking on Fetch should show 
+something similar to the image below. The program defaults to return the
+Apple stock price (AAPL) but you can enter your own stock symbol in the upper
+text box.</p>
+
+<p align="center"><img src="images/TT08.3.gif" width="319" height="487" alt="" border="0" align="">
+</BODY>
+</HTML>
+  
+  
+  

@@ -1,0 +1,46 @@
+Sub CommandButton1_Click
+   
+End Sub
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Test"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\COMDLG\prj\Desk\TestSuites\OFN\Test.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.win32.ComDlg.1", "NSComDlg1", 48, 32, 104, 56, Form1
+      '--------
+      AddObject "CommandButton", "CommandButton1", 160, 32, 108, 21, Form1
+      CommandButton1.Caption = "CommandButton1"
+      CommandButton1.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

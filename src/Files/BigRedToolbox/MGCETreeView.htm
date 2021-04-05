@@ -1,0 +1,376 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>MGCETreeView Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCETreeView</P>
+</FONT><FONT FACE="Arial"><P>A enhanced TreeView Control</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>September 21, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD><BR>
+		</TR>
+</TABLE>
+<HR>
+MGCETreeView - TreeView Object for Windows CE<BR>
+		
+Written by Mark Gamber, September 1999<BR><BR>
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+		
+<HR>
+<IMG SRC="images/TreeEx2Detail.JPG" ALT="" WIDTH="202" HEIGHT="101">
+<P>MGCETreeView provides a TreeView control to programs which use controls
+of this type, such as NS Basic. In addition to "standard" treeview functionality, 
+this control also supports a "context menu", displayed when the control 
+is tapped while pressing the Alt key.Note that this object is NOT plug-in 
+compatible with Microsoft's TreeView ActiveX object for Windows CE.
+
+
+<P>A word about the mysterious "item":
+<P>The word "item" is used quite a bit when describing the following
+properties, methods and events provided by this control. In reality, an
+"item" is simply a 32 bit numeric value, but it is NOT something you can
+add or subtract to or from another item, nor is it something that will be
+of any use to anything but the treeview control since it's a treeview
+node identifier. When adding a new item to the tree, there is no reference
+already there, so use zero as the parent or insertion point of the first
+item. The item returned will be a valid item which may then be used to
+add more items after or within that initial item. As a reference, the
+Microsoft Treeview control maintains items in the treeview using the "node"
+object. MGCETreeView maintains the items in the same manner, but reduces
+the complexity by removing the "node" item.
+
+
+<H4>Object Creation</H4>
+
+		<CODE>AddObject "MGCETreeView.TreeView", "Tree", 10, 10, 400, 160</CODE>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/TreeEx2.htm">TreeEx2</A> - Simple demo of Tree Control
+	<LI><A HREF="samples/TreeEx.htm">TreeEx</A> - Registry viewer using Tree Control
+</UL>
+
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>AllowEdit</TD> <TD>Set AllowEdit to TRUE (non-zero) to allow the user to edit items in the treeview directly by tapping a selected item. FALSE (zero) prevents the user from directly changing an item. The default value is FALSE.<P>
+		<CODE>Tree.AllowEdit = TRUE<BR>
+		iCanEdit = Tree.AllowEdit</CODE></TD>
+	</TR>
+	<TR>
+		<TD>AllowEvent</TD> <TD>The treeview control supports several events, many of which may be allowed or denied at the time they occur through this write-only property. When set to TRUE (non-zero), an event is allowed to occur. For example, a user may expand a tree or edit an item. When set to FALSE, the event is denied and the action does not occur. The default value for this property is set using the AllowEventAsDefault property.<P>
+		<CODE>sub Tree_Expanding( item )<BR>
+		&nbsp;&nbsp;if Tree.ItemText( item ) = "Can't Open" then<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;Tree.AllowEvent = FALSE<BR>
+		&nbsp;&nbsp;end if<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>AllowEventAsDefault</TD> <TD>This property value is used by the treeview control for events that you do not specifically handle. As an example, if you do not want the user to do anything unless you specifically allow them to do so, you would set this property to FALSE (zero). The default value is TRUE (non-zero) which allows all events unless specifically told otherwise via the AllowEvent property within an event handler.<P>
+		<CODE>i = Tree.AllEventAsDefault<BR>
+		Tree.AllowEventAsDefault = FALSE </CODE></TD>
+	</TR>
+	<TR>
+		<TD>AutoExpand</TD> <TD>When set to TRUE (non-zero), a tree item automatically expands when selected. In addition, any other expanded tree items are closed when the new item is opened. The default value is FALSE.<P>
+		<CODE>Tree.AutoExpand = TRUE<BR>
+		iAutoExpand = Tree.AutoExpand</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Border</TD> <TD>TRUE displays a border around the control, FALSE removes the border. The default value is TRUE.<P>
+		<CODE>Tree.Border = FALSE<BR>
+		hasBorder = Tree.Border</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Child</TD> <TD>The read-only Child property retrieves the first child of a tree item specified.<P>
+		<CODE>child = Tree.Child( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Count</TD> <TD>This read-only property retrieves the number of items in a tree.<P>
+		<CODE>iCount = Tree.Count</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FirstItem</TD> <TD>The FirstItem property retrieves the first item in the tree. This is a read-only property.<P>
+		<CODE>firstItem = Tree.FirstItem </CODE></TD>
+	</TR>
+	<TR>
+		<TD>FirstVisible</TD> <TD>This retrieves the first visible item in the tree and, if possible, scrolls a specified item so it is the first visible item.<P>
+		<CODE>fVisible = Tree.FirstVisible<BR>
+		Tree.FirstVisible = thisItem</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontBold</TD> <TD>Set this property to TRUE to display text using a bold font, or FALSE to display text using a normal font. The default is FALSE.<P>
+		<CODE>Tree.FontBold = TRUE<BR>
+		iIsBold = Tree.FontBold</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontName</TD> <TD>Set and retrieve the name of the font to use with the control. The default is "Arial".<P>
+		<CODE>Tree.FontName = "Courier New"<BR>
+		sFont = Tree.FontName</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontSize</TD> <TD>Set and retrieve the height of the font to use with the control. The default is 12.<P>
+		<CODE>Tree.FontSize = 18<BR>
+		iSize = Tree.FontSize</CODE></TD>
+	</TR>
+	<TR>
+		<TD>HasButtons</TD> <TD>"Buttons" are the "+" and "-" boxes to the left of a tree item that has child items. You may enable these by setting this property to TRUE or remove them by setting the property to FALSE. The default value is TRUE.<P>
+		<CODE>Tree.HasButtons = TRUE<BR>
+		iHasButtons = Tree.HasButtons</CODE></TD>
+	</TR>
+	<TR>
+		<TD>HasLines</TD> <TD>The connecting lines between items may be enabled and disabled using this property. TRUE enables the lines, FALSE removes the lines and the default value is TRUE.<P>
+		<CODE>Tree.HasLines = FALSE<BR>
+		iLines = Tree.HasLines</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Indent</TD> <TD>Indent specifies the number of pixels tree items are indented per level. The default value is 19.</TD>
+	</TR>
+	<TR>
+		<TD>ItemImage</TD> <TD>You may specify what image is displayed by a tree item using the ItemImage property. Images must be enabled and loaded.<P>
+		<CODE>Tree.ItemImage( item ) = 1<BR>
+		iImage = Tree.ItemImage( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemSelectedImage</TD> <TD>Use this property to set and retrieve the image (if any) displayed when a tree item is selected.<P>
+		<CODE>Tree.ItemSelectedImage( item ) = firstImage<BR>
+		iSelImage = Tree.ItemSelectedImage( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemText</TD> <TD>Set and retrieve text associated with a tree item.<P>
+		<CODE>Tree.ItemText( item ) = "Yeeee ha!"<BR>
+		itemTxt =Tree.ItemText( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemValue</TD> <TD>Set and retrieve a user defined 32 bit value associated with a tree item. This value is not used by the control itself.<P>
+		<CODE>Tree.ItemValue( item ) = 100<BR>
+		iValue = Tree.ItemValue( item ) </CODE></TD>
+	</TR>
+	<TR>
+		<TD>NextSibling</TD> <TD>This read-only property retrieves the next item in a tree that is on the same level as a specified item.<P>
+		<CODE>nextItem = Tree.NextSibling( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>NextVisible</TD> <TD>Read-only property used to retrieve the next visible item in a tree given a specified item.<P>
+		<CODE>nextVisible = Tree.NextVisible( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Parent</TD> <TD>Read-only property used to retrieve the parent item of a specified item.<P>
+		<CODE>parentItem = Tree.Parent( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>PreviousSibling</TD> <TD>Read-only property used to retrieve a previous item on the same level as a specified item.<P>
+		<CODE>p = Tree.PreviousSibling( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>PreviousVisible</TD> <TD>Use this read-only property to retrieve the previous visible item of a specified item.<P>
+		<CODE>pv = Tree.PreviousVisible( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RootLines</TD> <TD>In addition to connecting lines between items, connecting lines between top level (root) items may be enabled and disabled using this property. FALSE removes the connecting lines and TRUE, the default, displays the connecting lines.<P>
+		<CODE>Tree.RootLines = FALSE<BR>
+		iRootLines = Tree.RootLines </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Select</TD> <TD>Retrieve or set an item selection state.<P>
+		<CODE>Tree.Select = item<BR>
+		iSelectedItem = Tree.Select </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionDisplay</TD> <TD>This property determines how a selected item is displayed when focus is moved away from the treeview control. Set to TRUE (non-zero) to retain selection display when focus is lost or FALSE to lose the selection display. The default value is TRUE.<P>
+		<CODE>Tree.SelectionDisplay = FALSE<BR>
+		i = Tree.SelectionDisplay </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Style</TD> <TD>Set and retrieve what style is used when drawing an edge around the control. This is separate from the border which is enabled and disabled using the Border property. Style values are:
+		<CODE><UL COMPACT>
+			<LI>0: No edge.		
+			<LI>1: "Sunken" edge.		
+			<LI>2: "Raised" edge.
+		</UL>
+
+		Tree.Style = 2<BR>
+		iStyle = Tree.Style </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Tabstop</TD> <TD>When set to TRUE (non-zero), the control is included in a window's tab order. Set to FALSE (zero), the control may not be reached via Tab. The default value is TRUE.<P>
+		<CODE>Tree.Tabstop = TRUE<BR>
+		iCanTab = Tree.Tabstop </CODE></TD>
+	</TR>
+	<TR>
+		<TD>TreePath</TD> <TD>This read-only property retrieves the full "path" from a specified item back to the top level item.<P>
+		<CODE>sPath = Tree.TreePath( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>UseImages</TD> <TD>Set this property to TRUE if you want the treeview control to display images. FALSE removes the images. The default value is TRUE.<P>
+		<CODE>iUsesImages = Tree.UseImages<BR>
+		Tree.UseImages = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>UseSelectedImages</TD> <TD>When set to TRUE, the treeview displays images with selected items. Set to FALSE to disable image display along selected items. The default value is TRUE.<P>
+		<CODE>i = Tree.UseSelectedImages<BR>
+		Tree.UseSelectedImages = TRUE </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Returns the current version number of the control as an integer.</TD>
+	</TR>
+</TABLE>
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>AddContextItem</TD> <TD>Add an item to the treeview context menu. The menu will not appear unless there is at least one item. If the string begins with a dash (-), the menu item added is a separator.<P>
+		<CODE>Tree.AddContextItem "First Item" </CODE></TD>
+	</TR>
+	<TR>
+		<TD>AddImage</TD> <TD>The treeview control uses images stored in an "image list" which is automatically created along with the control. You may add images to this image list using this method. The first image added to the list is referred to as one (1) and each image afterwards is referred to as 2, 3, 4 and so on. Images should be 16 colors and 16x16 in size.<P>
+		<CODE>Tree.AddImage "\smimage.bmp"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>AddItem</TD> <TD>Use the AddItem method to add items to a treeview control. The first optional parameter, Parent, may be omitted if there is no parent (a top level item) and the second optional parameter, InsertAfter, may be zero if nothing is to come before the new item on it's given level within the tree. The return value is the number of the item added. Parameter three is text to display in the item followed by a 32 bit user defined value. The last two parameters determine the image numbers to use with the control and are also optional.<P> The return value may be used to add new items that appear after the new item or within it as an expandable tree.<P>
+		<CODE>newItem = Tree.AddItem( ,, "Top level item" )<BR>
+		Tree.AddItem , newItem, "Comes After first one"<BR>
+		Tree.Additem newItem, 0, "Branches off of the first item"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Clear</TD> <TD>Remove all items from a treeview by calling this method.<P>
+		<CODE>Tree.Clear</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ClearContext</TD> <TD>Remove all items from the treeview context menu.<P>
+		<CODE>Tree.ClearContext</CODE></TD>
+	</TR>
+	<TR>
+		<TD>CollapseItem</TD> <TD>You may collapse an expanded tree item by calling this method.<P>
+		<CODE>Tree.CollapseItem item</CODE></TD>
+	</TR>
+	<TR>
+		<TD>DeleteItem</TD> <TD>Delete an item from the tree control.<P>
+		<CODE>Tree.DeleteItem  item</CODE></TD>
+	</TR>
+	<TR>
+		<TD>EndEdit</TD> <TD>When the treeview is in "edit mode" by either a user tapping a selected item or programmatically, the edit mode may be ended by calling this method. A parameter determines if the changes made at that point are denied or allowed. TRUE discards any changes and FALSE allows changes to be made to the control.<P>
+		<CODE>Tree.EndEdit TRUE    ' Dump any changes</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ExpandItem</TD> <TD>A tree item may be expanded to show items within it by calling this method.<P>
+		<CODE>Tree.ExpandItem item</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Hide</TD> <TD>Hide the treeview control.<P>
+		<CODE>Tree.Hide</CODE></TD>
+	</TR>
+	<TR>
+		<TD>MakeVisible</TD> <TD>MakeVisible ensures that a specified item is visible by expanding any trees and scrolling the item into view.<P>
+		<CODE>Tree.MakeVisible item</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RemoveContextItem</TD> <TD>This removes an item from the treeview context menu and the item identifier passed is the position, starting with one, of the item to remove.<P>
+		<CODE>Tree.RemoveContextItem 2</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RemoveImage</TD> <TD>RemoveImage removes an image from the control's image list.<P>
+		<CODE>Tree.RemoveImage 2</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>This method gives the control input focus.<P>
+		<CODE>Tree.SetFocus</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Show</TD> <TD>Display the tree control.<P>
+		<CODE>Tree.Show</CODE></TD>
+	</TR>
+	<TR>
+		<TD>StartEdit</TD> <TD>StartItem programmatically begins the treeview "edit mode" using a specified item. The return value is the window handle of the edit control.<P>
+		<CODE>hedit = Tree.StartEdit( item )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ToggleItem</TD> <TD>If a specified item is collapsed, it is expanded. If it is expanded, then it is collapsed.<P>
+		<CODE>Tree.ToggleItem item</CODE></TD>
+	</TR>
+</TABLE>
+
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>Changed</TD> <TD>When selection is changed from one treeview item to another, this event is fired and passes the item losing selection and the item getting selection. If the AllowEvent property is set to FALSE within the event's handler, the change is denied.<P>
+		<CODE>sub Tree_Changed( olditem, newitem )<BR>
+		&nbsp;&nbsp;if Tree.ItemText( newitem ) = "Don't Select" then Tree.AllowEvents = FALSE<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Changing</TD> <TD>This event is fired when selection is changing but before it has actually changed. Set the AllowEvent property in this event's handler to prevent the selection change from happening.<P>
+		<CODE>sub Tree_Changing( olditem, newitem )<BR>
+		&nbsp;&nbsp;if Tree.ItemText( newitem ) = "Don't Select" then Tree.AllowEvents = FALSE<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Collapsed</TD> <TD>When an expanded tree item is collapsed, this event is called and passes the item that was collapsed. Set the AllowEvent property in the event handler to prevent the item from collapsing.<P>
+		<CODE>sub Tree_Collapse( item )<BR>
+		&nbsp;&nbsp;DispLabel.Caption = "Item " & Tree.ItemText( item ) & " collapsed"<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Collapsing</TD> <TD>This is the same as the Collapsed event except that Collapsing occurs before the item is actually collapsed.<P>
+		<CODE>sub Tree_Collapsing( item )<BR>
+		&nbsp;&nbsp;if Tree.ItemValue( item ) = -1 then<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tree.AllowEvent = FALSE<BR>
+		&nbsp;&nbsp;end if<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ContextMenu</TD> <TD>This event is fired when a context menu selection is made. If the menu is closed without selecting an item, the event does not occur. The first parameter passed is the treeview item identifier where the control was tapped or zero if it was not tapped over an item. The second parameter is the text of the selected menu item.<P>
+		<CODE>sub Tree_ContextMenu( item, text )<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;if item then<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MsgBox text & " was tapped over " & Tree.ItemText( item )<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;else<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MsgBox text & " was tapped over nothing"<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;end if<BR>
+		end sub </CODE></TD>
+	</TR>
+	<TR>
+		<TD>EndEdit</TD> <TD>When AllowEdit is enabled, a user may edit a tree item by tapping a selected item. When the user presses Enter, this event is fired, passing the item and new text entered by the user. If AllowEvent is set to FALSE from within the event handler, the change is not allowed and the item reverts back to its original text. If the user cancels the edit, the event is not fired.<P>
+		<CODE>sub Tree_EndEdit( item, text )<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;if text = "Nope" then Tree.AllowEvent = FALSE<BR>
+		end sub </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Expanded</TD> <TD>This event is fired after a tree item has been expanded. You may prevent the item from staying expanded by setting AllowEvent to FALSE from within this event's handler.<P>
+		<CODE>sub Tree_Expanded( item )<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;Tree.AllowEvent = FALSE   ' Don't let anything expand!<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Expanding</TD> <TD>Same as the Expanded event except that this event is fired before the item is actually expanded.<P>
+		<CODE>sub Tree_Expanding( item )<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;Disp.Caption = "Item " & Tree.ItemText( item ) & " expanding"<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Keypress</TD> <TD>When a key is pressed while the control has input focus, this event is fired and passes the key value. AllowEvent has no effect on this event.<P>
+		<CODE>sub Tree_Keypress( key )<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;Disp.Caption = "Key " & Chr( key ) & " was pressed"<BR>
+		end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>StartEdit</TD> <TD>When the user initiates the changing of an item by tapping a selected item, this event is fired, passing the item about to be placed into edit mode. Set AllowEvent within this event's handler to deny edit mode.<P>
+		<CODE>sub Tree_StartEdit( item )<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;Tree.AllowEvent = FALSE  ' Don't edit anything yet<BR>
+		end sub</CODE></TD>
+	</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,547 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="API">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FindWindow">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ReleaseCapture">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SendMessage">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SendMessageText">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="WindowFromPoint">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ChildWindowFromPoint">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PostMessage">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Focus">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Capture">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="EnableKeyboard">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="WindowText">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SystemColor">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="TopMost">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetWindow">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ClassName">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ShowWindow">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetAsyncKeyState">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SendKeys">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetMemoryStatus">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetStorageStatus">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetPowerStatus">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SystemParameters">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CreateShortcut">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="AddToRecent">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetSpecialFolder">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetShortcutTarget">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FindWindowByClass">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ClipText">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Version">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CursorPos">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SystemVersion">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="WindowLong">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Ticks">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SystemTime">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="LocalTime">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="WindowParent">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="OSType">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RAS">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Remote access">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Dialing">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Modems">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PhoneBook">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Entries">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Connections">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Entry">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RASConState">
+		<param name="Name" value="RASConState object">
+		<param name="Local" value="rasconstate.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="State">
+		<param name="Name" value="RASConState object">
+		<param name="Local" value="rasconstate.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ErrorNumber">
+		<param name="Name" value="RASConState object">
+		<param name="Local" value="rasconstate.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DeviceType">
+		<param name="Name" value="RASConState object">
+		<param name="Local" value="rasconstate.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DeviceName">
+		<param name="Name" value="RASConState object">
+		<param name="Local" value="rasconstate.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Refresh">
+		<param name="Name" value="RASConState object">
+		<param name="Local" value="rasconstate.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RASEntry">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Name">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CallbackNumber">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="UserName">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Domain">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Password">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Validate">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PhoneNumber">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Connect">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Disconnect">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Load">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Update">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Delete">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="HasPassword">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="IsActive">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Status">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ResetState">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Registry">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Value">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Key">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Path">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ValueType">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GetPathName">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CreatePath">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DeletePath">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DeleteValue">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="UseRawBinary">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="HexWithSpaces">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ReturnEmptyForEnumEnd">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="win32">
+		<param name="Name" value="Win32 components overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Windows API">
+		<param name="Name" value="Win32 components overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Creation">
+		<param name="Name" value="Win32 components overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Prog IDs">
+		<param name="Name" value="Win32 components overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Compatibility">
+		<param name="Name" value="Win32 components overview">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Timer">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="interval">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="tag">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Start">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Stop">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="OnTimer">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Tray">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="notification area">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="shell notification area">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Image">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="AddImage">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RemoveImage">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Tip">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PtOrRect">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="left">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="right">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="top">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="bottom">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="x">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="y">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+</UL>
+</BODY></HTML>

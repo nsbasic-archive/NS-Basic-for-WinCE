@@ -1,0 +1,319 @@
+<HTML>
+<HEAD>
+<TITLE>Tech Note 41: Using Adobe Flash with NS Basic</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><img src="images/BigIcon.GIF" width="86" height="103" alt=""></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 41: Using Adobe Flash with NS Basic</h2>
+	  <h5>
+      <H3>March 10, 2009</H3>
+      <H5>© 2010 NS BASIC Corporation. All rights reserved.</H5></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+<i>Contributed by <A HREF="mailto:ian.hatton@motorola.com" TARGET="_top">Ian Hatton</A>, Motorola UK</i><br><br>
+
+<img src="images/TN41.05.png" alt="" align="left">   
+<img src="images/TN41.06.png" alt="">
+
+<p><h3>Overview</h3>
+
+<p>The Macromedia Flash Player 7 for Pocket PC (<a href="http://www.adobe.com/products/flashplayer_pocketpc/downloads/player.html" target="_top">http://www.adobe.com/products/flashplayer_pocketpc/downloads/player.html</a>) is an ActiveX control which can be easily incorporated into a NS Basic application as follows:
+
+<p>1. Install Flash Player 7
+
+<p>2. Declare the ActiveX object in your application as follows:
+
+<pre>
+AddObject "ShockwaveFlash.ShockwaveFlash", "Flash1", 10, 10, 100, 100
+</pre>
+
+The above will define a Flash player window which is 100 x 100 pixels in size located at +10,+10 from the top left corner of the screen.
+
+<p>The player supports Flash files in SWF format which can be loaded and played using the command:
+
+<pre>
+Flash1.movie="file://\my documents\myflashfile.swf"
+</pre>
+
+Several other actions are available as shown below:
+
+<pre>
+Flash1.stop  ' pause playback
+Flash1.play  ' resume playback
+Flash1.zoom(50) ' zoom in 
+Flash1.zoom(200) ' zoom out 
+Flash1.rewind ' rewind to beginning
+</pre>
+
+
+<h3>Sample Application</h3>
+
+Some of these are demonstrated in the sample flash player application below:
+
+<pre>
+AddObject "NSBasic.ComDlg","dialog",0,0,0,0
+AddObject "ShockwaveFlash.ShockwaveFlash", "ShockwaveFlash1", 0, 0, 240, 270
+Menu = ARRAY("File","Play","Stop","About","Exit")
+SETMENU "Titlebar", Menu
+
+Sub play_click
+  Shockwaveflash1.play
+End Sub
+
+Sub stop_click
+  Shockwaveflash1.stop
+End Sub
+
+Sub about_click
+  Msgbox("NSB Flash Player v1")
+End Sub
+
+Sub exit_click
+  Bye
+End Sub
+
+
+Sub file_click
+
+  dialog.DialogTitle = "Pick a Flash file to open"
+  dialog.InitDir = "\storage card"
+  dialog.Filter = "SWF|*.swf"
+  dialog.FilterIndex = 1
+  dialog.Flags = &H1000 Or &H800 'path and file must exist
+  dialog.filename = "" 'initialize
+
+  'Generate error if cancel is pressed
+  dialog.CancelError = True
+  On Error Resume Next
+  dialog.ShowOpen
+
+  'Determine action to take after dialog is dismissed
+  If Err.Number = 0 Then
+    txtFileName = dialog.filename
+  Else
+    If Err.Number = 32755 Then MsgBox "Canceled"                        
+  End If
+
+  Shockwaveflash1.movie="file://"+txtfilename
+
+End Sub
+</pre>
+
+
+<h3>Documentation</h3>
+
+<b>Scripting with Flash Player and ActiveX</b>
+
+<p>The documentation below describes the scripting interface for the Flash Player ActiveX control. This control handles playback of Flash content on Windows machines which support ActiveX.
+
+<p>Experienced scripters should read the article <a href="http://www.adobe.com/support/flash/publishexport/scriptingwithflash/" target="_top">Scripting with Flash</a> for an overview of JavaScript methods which can control the Flash Player. Beginning scripters may benefit more from the example-based TechNotes "An example of communication between JavaScript and Adobe Flash Player" (<a href="http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_15683&amp;sliceId=2" target="_top">TechNote 15683</a>) and "An example of communication between Macromedia Flash 5 movies through JavaScript" (<a href="http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_15692&amp;sliceId=1" target="_top">TechNote 15692</a>).
+<br><br>
+
+<table>
+	<tr>
+		<td>PropertiesReadyState (get only)</td> <td>0=Loading, 1=Uninitialized, 2=Loaded, 3=Interactive, 4=Complete.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>TotalFrames (get only)</td> <td>Returns the total number of frames in the movie. This is not available until the movie has loaded. Wait for ReadyState = 4.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>FrameNum (get or set)</td> <td>The currently displayed frame of the movie. Setting this will advance or rewind the movie.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Playing (get or set)</td> <td>True if the movie is currently playing, false if it is paused.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Quality (get or set)</td> <td>The current rendering quality (0=Low, 1=High, 2=AutoLow, 3=AutoHigh). This is the same as the QUALITY parameter.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ScaleMode (get or set)</td> <td>Scale mode (0=ShowAll, 1= NoBorder, 2 = ExactFit). This is the same as the SCALE parameter.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>AlignMode (get or set)</td> <td>The align mode consists of bit flags. (Left=+1, Right=+2, Top=+4, Bottom=+8). This is the same as the SALIGN parameter.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>BackgroundColor (get or set)</td> <td>Override the background color of a movie. An integer of the form red*65536+green*256+blue use -1 for the default movie color.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Loop (get or set)</td> <td>True if the animation loops, false to play once. Same as the MOVIE parameter.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Movie (get or set)</td> <td>The URL source for the Flash Player movie file. Setting this will load a new movie into the control. Same as the MOVIE parameter.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>MethodsPlay()</td> <td>Start playing the animation.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Stop()</td> <td>Stop playing the animation.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Back()</td> <td>Go to the previous frame.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Forward()</td> <td>Go to the next frame.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Rewind()</td> <td>Go to the first frame.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>SetZoomRect(int left, int top, int right, int bottom)</td> <td>Zoom in on a rectangular area of the movie. Note that the units of the coordinates are in twips (1440 units per inch). To calculate a rectangle in Flash, set the ruler units to Points and multiply the coordinates by 20 to get TWIPS.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Zoom(int percent)</td> <td>Zoom the view by a relative scale factor. Zoom(50) will double the size of the objects in the view. Zoom(200) will reduce the size of objects in the view by one half.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Pan(int x, int y, int mode)</td> <td>Pan a zoomed in movie. The mode can be: 0 = pixels, 1 = % of window.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>EventsOnProgress(int percent)</td> <td>Generated as the Flash Player movie is downloading.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>OnReadyStateChange(int state)</td> <td>Generated when the ready state of the control changes. The possible states are 0=Loading, 1=Uninitialized, 2=Loaded, 3=Interactive, 4=Complete.</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>FSCommand(string command, string args)</td> <td>This event is generated when a GetURL action is performed in the movie with a URL and the URL starts with "FSCommand:". The portion of the URL after the : is provided in command and the target is provided in args. This can be used to create a response to a frame or button action in the Shockwave Flash movie.</td>
+	</tr>
+</table>
+
+
+<h3>Flash Media</h3>
+
+  There are numerous sources for Flash SWF files on the web including the following:
+
+
+<ul>
+	<li><a href="http://www.cell11.com/mobile_games/flash-1.html" target="_top">http://www.cell11.com/mobile_games/flash-1.html</a></li>
+	<li><a href="http://www.flashgames247.com" target="_top">http://www.flashgames247.com</a>/</li>
+	<li><a href="http://www.sothink.com/product/swfeasy/samples/index.htm" target="_top">http://www.sothink.com/product/swfeasy/samples/index.htm</a></li>
+</ul>
+
+   
+<h3>Suggested Uses</h3>
+
+   This control can be used to add high quality multimedia to an NS Basic application e.g.
+
+<ul>
+	<li>games</li>
+	<li>text animations</li>
+	<li>cartoon animations</li>
+	<li>video files</li>
+	<li>utilities such as a timer, unit convertor etc</li>
+</ul>
+ 
+
+<h3>More Sample Screenshots<h3>
+
+<img src="images/TN41.01.png" alt="">   
+<img src="images/TN41.02.png" alt="">
+<img src="images/TN41.03.png" alt="">   
+<img src="images/TN41.04.png" alt="">
+<img src="images/TN41.07.png" alt="">   
+<img src="images/TN41.08.png" alt="">
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+

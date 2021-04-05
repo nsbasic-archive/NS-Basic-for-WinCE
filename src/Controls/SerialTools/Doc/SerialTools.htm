@@ -1,0 +1,1329 @@
+<HTML>
+<HEAD>
+<TITLE>SerialTools Reference for NS Basic</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>SerialTools Reference for NS Basic</h2>
+	  <h5>
+      <H3>April 4, 2006</H3>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<p>The information in the document is for the most part copied from the official <a href="http://www.franson.com/serialtools/reference_manual.asp?class=&item=">SerialTools documentation</a> on Franson's website. For further information, please refer to the official documentation. The information on this page is copyright Franson Technology AB and published with their permission.
+
+<p>A good place to get started is to read about the <a href="#Port"><font face=courier>Port</font></a> class.
+
+<p>We have included sample NS Basic code for some of the commands. If you have additional sample code we can add, please send it to <a href="mailto:support@nsbasic.com" target="_top">support@nsbasic.com</a>.<p>
+
+
+<p>A License key is necessary to use SerialTools. The license key is contained in the same email as your NS Basic license key. Please keep this key confidential. You may distribute SerialTools with your NS Basic application for no additional charge.
+
+<p>Additional Technical support can be found in Franson's user forums:
+<ul>
+	<li>	<a href="http://www.franson.com/forum/forum.asp?FORUM_ID=8 target="_top">FAQ for SerialTools</a></li>
+	<li>	<a href="http://www.franson.com/forum target="_top">Browse the Technical support forum</a></li>
+	<li>	<a href="http://www.franson.com/forum/search.asp target="_top">Search the Technical support forum</a></li>
+</ul>
+
+<p>To instantiate SerialTools in an NS Basic/CE program, use the following code:
+<pre>
+AddObject "serialce.port.1","objPort"
+AddObject "serialce.license","objlicense"
+    
+objLicense.LicenseKey = "substitute licence key here"
+</pre>
+
+<p>To instantiate SerialTools in an NS Basic/Desktop program, use the following code:
+<pre>
+AddObject "serialxp.port.1","objPort"
+AddObject "serialxp.license","objlicense"
+    
+objLicense.LicenseKey = "substitute licence key here"
+</pre>
+
+<p>With the exception of the InfraRed property, all the Properties, Methods and Events in SerialTools work the same way in NS Basic/CE and NS Basic/Desktop.
+
+<hr>
+	
+	<b>Class</b>
+<ul>
+	<li>	<a href="#Port">Port</a></b></li>
+</ul>
+	
+	<b>Properties</b>
+<ul>
+	<li>	<a href="#BaudRate">BaudRate</a></li>
+	<li>	<a href="#Break">Break</a></li>
+	<li>	<a href="#BufferSize">BufferSize</a></li>
+	<li>	<a href="#ByteSize">ByteSize</a></li>
+	<li>	<a href="#ComPort">ComPort</a></li>
+	<li>	<a href="#CTS">CTS</a>
+	<li>	<a href="#DCD">DCD</a></li>
+	<li>	<a href="#DSR">DSR</a></li>
+	<li>	<a href="#DTR">DTR</a></li>
+	<li>	<a href="#Enabled">Enabled</a></li>
+	<li>	<a href="#EndTrigger">EndTrigger</a></li>
+	<li>	<a href="#Handshake">Handshake</a></li>
+	<li>	<a href="#InfraRed">InfraRed</a></li>
+	<li>	<a href="#List">List</a>
+	<li>	<a href="#NoEvents">NoEvents</a></li>
+	<li>	<a href="#Parity">Parity</a></li>
+	<li>	<a href="#RI">RI</a></li>
+	<li>	<a href="#RTS">RTS</a></li>
+	<li>	<a href="#StartTrigger">StartTrigger</a></li>
+	<li>	<a href="#StopBits">StopBits</a></li>
+	<li>	<a href="#Timeout">Timeout</a></li>
+</ul>
+
+	
+
+	<b>Methods</b>
+
+<ul>
+	<li>	<a href="#ByteArrayToString">ByteArrayToString</a></li>
+	<li>	<a href="#Purge">Purge</a></li>
+	<li>	<a href="#Read">Read</a></li>
+	<li>	<a href="#StringToByteArray">StringToByteArray</a></li>
+	<li>	<a href="#Write">Write</a></li>
+</ul>
+
+	
+
+	<b>Events</b>
+
+<ul>
+	<li><a href="#OnCTS">OnCTS</a></li>
+	<li><a href="#OnDCD">OnDCD</a></li>
+	<li><a href="#OnDSR">OnDSR</a></li>
+	<li><a href="#OnForceClose">OnForceClose</a></li>
+	<li><a href="#OnRead">OnRead</a></li>
+	<li><a href="#OnRI">OnRI</a></li>
+	<li><a href="#OnWritten">OnWritten</a></li>
+</ul>
+
+ 		
+<hr noshade size="1">
+<a name="Port"></a>
+<h2>Port</h2>
+<p>The <font face=courier>Port</font> class contains the core functionallity to access the serial port.
+
+<p>Set a baudrate using <font face=courier>Port.<a href="#BaudRate">BaudRate</a></font> and the port number using <font face=courier>Port.<a href="#ComPort">ComPort</a></font>. <font face=courier>Port.<a href="#Enabled">Enabled</a></font> opens the specified serial port for reading and writing.
+
+<p>Data is <b>read</b> from the port with the <font face=courier>Port.<a href="#OnRead">OnRead</a></font> event or the <font face=courier>Port.<a href="#Read">Read</a></font> method and you <b>write</b> data using <font face=courier>Port.<a href="#Write">Write</a></font>.
+
+<p>By using <font face=courier>Port.<a href="#StartTrigger">StartTrigger</a></font> and <font face=courier>Port.<a href="#EndTrigger">EndTrigger</a></font> SerialTools can help you with simple <b>parsing of the data</b>.
+
+<p><font face=courier>Port.<a href="#Timeout">Timeout</a></font> can be used for timeout handling.
+
+<p>If you want to read and write <b>binary data</b> take a closer look at <font face=courier>Port.<a href="#ByteArrayToString">ByteArrayToString</a></font> and <font face=courier>Port.<a href="#StringToByteArray">StringToByteArray</a></font>.
+
+<p>For more advanced control of the serial port and handshaking options see methods and properties.
+
+
+
+<hr noshade size="1">
+<a name="BaudRate"></a>
+<h2>BaudRate</h2>
+
+
+<br>
+Sets the baud rate of the serial port. The default value is 9600 baud.<br>
+<br>
+See also <font face=courier>Port.<a href="#ComPort">ComPort</a></font> and <font face=courier>Port.<a href="#Enabled">Enabled</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.BaudRate = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.BaudRate<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Long (Variant)</td>
+<td>Baud rate.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="Break"></a>
+<h2>Break</h2>
+
+<br>
+Inserts and removes break for serial port.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.Break = <i>Value</i><br> 
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>Enable/Disable break.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="BufferSize"></a>
+<h2>BufferSize</h2>
+
+Sets the input buffer size. Default value is 0.<br>
+<br>
+BufferSize returns the number of bytes in the serial buffer that are still not parsed.<br>
+<br> 
+<b>NOTE!</b> If you set BufferSize to a value different from 0 then OnRead will not be called
+until BufferSize bytes of data has been
+received. By default BufferSize is set to 0, which means this feature is disabled.<br>
+<br>
+See <font face=courier>Port.<a href="#OnRead">OnRead</a></font> for how this functionallity is used.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.BufferSize = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.BufferSize<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Long (Variant)</td>
+<td>Input buffer size.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="ByteSize"></a>
+<h2>ByteSize</h2>
+
+<br>
+Sets number of bits in one byte, can be set ot 7 or 8. Default value is 8.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.ByteSize = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.ByteSize<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Long (Variant)</td>
+<td>Number of bits in one byte.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="ComPort"></a>
+<h2>ComPort</h2>
+<br>
+Specifies which serial port to use. The default value is 1.<br>
+<br>
+On Windows CE / Pocket PC this is a value between 0 and 9. Note that COM0: is a possible
+COM port in Windows CE!<br>
+<br>
+For Windows this is a value between 1 and 255.<br>  
+<br>
+See also <font face=courier>Port.<a href="#BaudRate">BaudRate</a></font> and <font face=courier>Port.<a href="#Enabled">Enabled</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.ComPort = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.ComPort<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Long (Variant)</td>
+<td>Comm port.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="CTS"></a>
+<h2>CTS</h2>
+<br>
+Reads the value of CTS (Clear To Send).<br>
+<br>
+See <font face=courier>Port.<a href="#OnCTS">OnCTS</a></font> for more info.<br>
+<br>
+<b>Syntax</b><br>
+<i>Value</i> = <i>object</i>.CTS<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>State of CTS.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="DCD"></a>
+<h2>DCD</h2>
+<br>
+Reads the value of DCD (Data Carrier Detected).<br>
+<br>
+See <font face=courier>Port.<a href="#OnDCD">OnDCD</a></font> for more info.<br>
+<br>
+<b>Syntax</b><br>
+<i>Value</i> = <i>object</i>.DCD<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>State of DCD.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="DSR"></a>
+<h2>DSR</h2>
+<br>
+Reads the value of DSR (Data Set Ready).<br>
+<br>
+See <font face=courier>Port.<a href="#OnDSR">OnDSR</a></font> for more info.<br>
+<br>
+<b>Syntax</b><br>
+<i>Value</i> = <i>object</i>.DSR<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>State of DSR.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="DTR"></a>
+<h2>DTR</h2>
+<br>
+Sets the value of DTR (Data Termial Ready). Cannot be set if <font face=courier>Port.<a href="#Handshake">Handshake</a></font>
+is set to <font face=courier>Handshake.DTR</font><br>
+<br>
+<b>Note!</b> Some devices and terminal programs demands this property to be set to true or else
+they will not transmit any data to be received by SerialTools.
+In SerialTools 1.20 (and later) DTR is set to true by default.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.DTR = <i>Value</i><br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>State of DTR.</td>
+</tr>
+</table><br><br>
+
+    
+
+<hr noshade size="1">
+<a name="Enabled"></a>
+<h2>Enabled</h2>
+<br>
+Opens or closes the serial port specified by <font face=courier>Port.<a href="#ComPort">ComPort</a></font>.<br>
+<br>
+Sample:<br>
+<table class=text border=0 bgcolor=#dddddd width="100%">
+<tr><td>
+<pre><font face=courier size=2>
+objPort.BaudRate = 4800
+objPort.ComPort = 2
+objPort.Enabled = True		' Starts serial port.
+
+objPort.Write("Some data written to serial port")
+</pre>
+</td></tr></table><br><br>
+<br>
+
+
+If the component is running inside a browser a dialog box will be shown to the user when 
+Enabled is set to true. This dialog box asks the user if he allows a connection to the serial port
+or not.<br>
+<br>
+
+<b>NOTE!</b> You must disable the port by setting <font face=courier>Enabled</font> to false before you 
+unload the form you got the <font face=courier>Port.<a href="#OnRead">OnRead</a></font> event handler on.
+And you must call <font face=courier>Port.<a href="#Dispose">Dispose</a></font> after you have finished using the port object
+or else wont the application exit properly.<br>
+<br>
+<b>NOTE!</b> COM3 on Windows CE is often a infra red port. <font face=courier>Port.<a href="#InfraRed">InfraRed</a></font> must be set to
+true for IR ports on Windows CE.<br>
+<br>
+See also <font face=courier>Port.<a href="#OnRead">OnRead</a></font> and <font face=courier>Port.<a href="#Write">Write</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.Enabled = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.Enabled<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>true </td>
+</tr>
+</table><br><br>
+<br>
+<br>
+
+
+
+<hr noshade size="1">
+<a name="EndTrigger"></a>
+<h2>EndTrigger</h2>
+<br>
+Sets end trigger. Default value is null.<br>
+<br>
+See <font face=courier>Port.<a href="#OnRead">OnRead</a></font> for how this functionallity is used.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.EndTrigger = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.EndTrigger<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>String (Variant)</td>
+<td>End trigger.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="HandShake"></a>
+<h2>HandShake</h2>
+<br>
+Sets low level handshake method. Default value is <font face=courier>Handshake.None</font>.<br>
+<br>
+<b>RTS/CTS</b>. Low level method of controlling sending of data. Set this property
+to <font face=courier>Handshake.<a href="reference_manual.asp?class=Handshake&item=RTS">RTS</a></font> to use RTS/CTS.<br>
+<br>
+<b>DSR/DTR</b>. Low level method of controlling reception of data. Set this property
+to <font face=courier>Handshake.<a href="reference_manual.asp?class=Handshake&item=DSR">DSR</a></font> to use DSR/DTR.<br>
+<br>
+<b>XON/XOFF</b>. Set this property to <font face=courier>Handshake.<a href="reference_manual.asp?class=Handshake&item=XonXoff">XonXoff</a></font><br>
+<br>
+The values can be or:ed together.<br>
+<br>
+See also the <a href="reference_manual.asp?class=Handshake"><font face=courier>Handshake</font></a> enumaration.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.Handshake = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.Handshake<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td><a href="reference_manual.asp?class=Handshake"><font face=courier>Handshake</font></a></td>
+<td>Type of used low level handshake. 0=None, 1=RTS, 2=DTR, 4=XonXoff</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="InfraRed"></a>
+<h2>InfraRed</h2>
+<br>
+Enables communication with a IR port on Windows CE.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.InfraRed = <i>Value</i><br> 
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>Enable/Disable IR on Windows CE.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="List"></a>
+<h2>List</h2>
+<br>
+Port enumaration. Returns a byte array of all available ports in the system. 
+Very useful when making a dropdown
+or similar for the user to select a serial port from.<br>
+<br>
+<b>Syntax</b><br>
+<i>list</i> = SerialCE.Port.List<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>list</td>
+<td>Byte() </td>
+<td>Byte array containing the index of all available ports in the system.</td>
+</tr>
+</table><br><br>
+
+
+
+
+<hr noshade size="1">
+<a name="NoEvents"></a>
+<h2>NoEvents</h2>
+<br>
+<br>
+Set this to true (default false) if you won't use events.<br>
+<br>
+If NoEvents is set to true you can use <font face=courier>Port.<a href="#Read">Read</a></font>.<br>
+<br>
+If NoEvents is set to false (default) you can use the events <font face=courier>Port.<a href="#OnRead">OnRead</a></font>,
+  <font face=courier>Port.<a href="#OnWritten">OnWritten</a></font>, etc.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.NoEvents = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.NoEvents<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>Events on or off.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="Parity"></a>
+<h2>Parity</h2>
+<br>
+Sets parity. Default value is <font face=courier>Parity.No</font>.<br>
+<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.Parity = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.Parity<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td><a href="reference_manual.asp?class=Parity"><font face=courier>Parity</font></a> </td>
+<td>Type of parity. 0=No, 1=Odd, 2=Even, 3=Mark, 4=Space</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="RI"></a>
+<h2>RI</h2>
+<br>
+Reads the value of RI (Ring Indicator).<br>
+<br>
+See <font face=courier>Port.<a href="#OnRI">OnRI</a></font> for more info.<br>
+<br>
+<b>Syntax</b><br>
+<i>Value</i> = <i>object</i>.RI<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>State of RI.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="RTS"></a>
+<h2>RTS</h2>
+<br>
+Sets the value of RTS (Request To Send). Cannot be set if <font face=courier>Port.<a href="#Handshake">Handshake</a></font>
+is set to <font face=courier>Handshake.RTS</font><br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.RTS = <i>Value</i><br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Boolean (Variant)</td>
+<td>State of RTS.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="StartTrigger"></a>
+<h2>StartTrigger</h2>
+<br>
+Sets start trigger. Default value is null.<br>
+<br>
+See <font face=courier>Port.<a href="#OnRead">OnRead</a></font> for how this functionallity is used.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.StartTrigger = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.StartTrigger<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>String (Variant)</td>
+<td>String (Variant) to trigger reception of data on.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="StopBits"></a>
+<h2>StopBits</h2>
+<br>
+Sets number of stop bits. Default value is <font face=courier>StopBits.One</font>.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.StopBits = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.StopBits<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td><a href="reference_manual.asp?class=StopBits"><font face=courier>StopBits</font></a></td>
+<td>Number of stop bits. Use 0 for 1 bit, 1 for 1.5 bits, 2 for 2 bits.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="TimeOut"></a>
+<h2>TimeOut</h2>
+<br>
+Time in <b>miliseconds</b> before a timeout event is generated. 
+A value of 0 means that the timeout functionallity is disabled.
+Default value is 0.<br>
+<br>
+See <font face=courier>Port.<a href="#OnRead">OnRead</a></font> and <font face=courier>Port.<a href="#OnWritten">OnWritten</a></font> for more info.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.Timeout = <i>Value</i><br>
+<i>Value</i> = <i>object</i>.Timeout<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Long (Variant)</td>
+<td>Timeout in miliseconds. 0 to disable.</td>
+</tr>
+</table><br><br>
+<hr>
+
+<h1>Methods...</h1>
+
+<hr noshade size="1">
+<a name="ByteArrayToString"></a>
+<h2>ByteArrayToString</h2>
+<br>
+If you want to write anything else than ascii strings 
+(ascii value equals 1-127) you first need to create a byte array and then convert the
+array to a string using this <b>static</b> function. The string can then be used in 
+<font face=courier>Port.<a href="#Write">Write</a></font>, <font face=courier>Port.<a href="#StartTrigger">StartTrigger</a></font> and 
+<font face=courier>Port.<a href="#EndTrigger">EndTrigger</a></font>.<br>
+<br>
+Sample:<br>
+<table class=text border=0 bgcolor=#dddddd width="100%">
+<tr><td>
+<pre><font face=courier size=2>
+objPort.BaudRate = 4800
+objPort.ComPort = 2
+objPort.Enabled = True		' Starts serial port.
+
+binary_data = Array(&H81, &H82)
+
+' Write binary data
+objPort.Write(SerialCE.Port.ByteArrayToString(binary_data))
+</pre>
+</td></tr></table><br><br>
+<br>
+Note that it will not work to build your own "binary string" using chr(). You must use this function!<br>
+<br>
+
+<br>
+See also <font face=courier>Port.<a href="#StringToByteArray">StringToByteArray</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+<i>str</i> = SerialCE.Port.ByteArrayToString ( <i>ByteArray</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>str</td>
+<td>String (Variant)</td>
+<td>Byte array converted to a string.</td>
+</tr><tr>
+<td><i>ByteArray</td>
+<td>byte[]</td>
+<td>Byte array to be converted.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="Purge"></a>
+<h2>Purge</h2>
+<br>
+Resets all data in input and output buffers.<br>
+<br>
+<b>Syntax</b><br>
+<i>object</i>.Purge ( )<br>
+<i>object</i>.Purge ( InBuffer, OutBuffer )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr>
+<tr>
+<td><i>InBuffer</td>
+<td>Long (Variant)</td>
+<td>Purge in buffer if true.</td>
+</tr>
+<tr>
+<td><i>OutBuffer</td>
+<td>Long (Variant)</td>
+<td>Purge out buffer if true.</td>
+</tr>
+</table><br><br>
+
+
+<hr noshade size="1">
+<a name="Read"></a>
+<h2>Read</h2>
+<br>
+Reads data from the serialport. Cannot be used if  <font face=courier>Port.<a href="#NoEvents">NoEvents</a></font> is set to true (ActiveX).<br>
+<br>
+Read has two versions. The first takes a BufferSize and TimeOut as arguments.
+Setting BufferSize to 0 will return all data in serial buffer. But if the serial
+buffer is empty it will wait until something has arrived. TimeOut determines how long to wait (in miliseconds).
+Set TimeOut to 0 to disable time out.<br>
+<br>
+The second version takes StartTrigger, EndTrigger and TimeOut as arguments.
+Read will parse the serial buffer and return data according to the rules specified for
+<font face=courier>Port.<a href="#OnRead">OnRead</a></font>. If no matching data is found in the serial buffer TimeOut determines
+how long to wait before returning null / Nothing.<br>
+<br>
+On time out Read() always returns null / Nothing.<br>
+<br>
+If a Bluetooth connection is interrupted during Read, an exception is thrown and the port is closed.  A Bluetooth connection
+is typically interrupted if the Bluetooth device is turned of or if it gets out of reach.
+See also <font face=courier>Port.<a href="#OnForceClose">OnForceClose</a></font> for more info on how to handle Bluetooth interruption.<br>
+<br>
+<b>Syntax 1</b><br>
+<i>Value</i> = <i>object</i>.Read ( <i>BufferSize</i>, <i>Timeout</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>String (Variant)</td>
+<td>Data received from serial port. Nothing/null if no data received.</td>
+</tr><tr>
+<td><i>BufferSize</td>
+<td>Long (Variant)</td>
+<td>See OnRead for details.</td>
+</tr><tr>
+<td><i>Timeout</td>
+<td>Long (Variant)</td>
+<td>See OnRead for details.</td>
+</tr>
+</table><br><br>
+<br>
+<b>Syntax 2</b><br>
+
+<i>Value</i> = <i>object</i>.Read2 ( <i>StartTrigger</i>, <i>EndTrigger</i>, <i>Timeout</i> )<br>
+
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>String (Variant)</td>
+<td>Data received from serial port. Nothing/null if no data received.</td>
+</tr><tr>
+<td><i>StartTrigger</td>
+<td>String (Variant)</td>
+<td>See OnRead for details.</td>
+</tr><tr>
+<td><i>EndTrigger</td>
+<td>String (Variant)</td>
+<td>See OnRead for details.</td>
+</tr><tr>
+<td><i>Timeout</td>
+<td>Long (Variant)</td>
+<td>See OnRead for details.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="StringToByteArray"></a>
+<h2>StringToByteArray</h2>
+<br>
+If you want to read anything else than ascii strings 
+(that is ascii value 0-127) you need to convert the received string to a byte array
+using this <b>static</b> function. The string has been received by
+<font face=courier>Port.<a href="#Read">Read</a></font> or <font face=courier>Port.<a href="#OnRead">OnRead</a></font>.<br>
+<br>
+Sample:<br>
+<table class=text border=0 bgcolor=#dddddd width="100%">
+<tr><td>
+<pre><font face=courier size=2>
+objPort.BaudRate = 4800
+objPort.ComPort = 2
+objPort.Enabled = True		' Starts serial port.
+
+string_data = objPort.Read(0, 5000)
+' Received binary data
+binary_data = SerialCE.Port.StringToByteArray(string_data)
+</pre>
+</td></tr></table><br><br>
+<br>
+Note that it will not work to build your own byte array, e.g. using String.ToCharArray().
+You must use this function.<br>
+
+<br>
+See also <font face=courier>Port.<a href="#ByteArrayToString">ByteArrayToString</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+<i>ByteArray</i> = SerialCE.Port.StringToByteArray ( <i>Str</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>ByteArray</td>
+<td>byte[]</td>
+<td>Byte array converted from a string.</td>
+</tr><tr>
+<td><i>Str</td>
+<td>String (Variant)</td>
+<td>String (Variant) to be converted.</td>
+</tr>
+</table><br><br>
+
+
+
+
+<hr noshade size="1">
+<a name="Write"></a>
+<h2>Write</h2>
+<br>
+Writes data to the serial port. Write returns after data is written to the port.
+<font face=courier>Write</font> takes a string as an argument, to convert binary data to a string see 
+<font face=courier>Port.<a href="#ByteArrayToString">ByteArrayToString</a></font>.<br>
+<br>
+Write returns the number of bytes actually written. If write fails zero is returned.
+Write will time out and return after the time specified in <font face=courier>Port.<a href="#Timeout">Timeout</a></font><br>
+<br>
+If an event handler for <font face=courier>Port.<a href="#OnWritten">OnWritten</a></font> is specified, then Write will
+return instantly with zero as return code, and OnWritten will be called with the number of
+bytes actually written to the serial port driver. If the attempt to write timed out
+OnWritten will have zero as argument.<br>
+<br>
+
+See also <font face=courier>Port.<a href="#Enabled">Enabled</a></font> and <font face=courier>Port.<a href="#OnWritten">OnWritten</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+<i>BytesWritten</i> = <i>object</i>.Write ( <i>Value</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>object</td>
+<td>SerialCE.Port</td>
+<td>An object that evaluates to an SerialCE.Port object.</td>
+</tr>
+<tr>
+<td><i>Value</td>
+<td>String (Variant)</td>
+<td>Data to be written to the serial port.</td>
+</tr>
+<tr>
+<td><i>BytesWritten</td>
+<td>Long (Variant)</td>
+<td>Bytes written.</td>
+</tr>
+</table><br><br>
+<hr>
+
+
+
+<H1>Events...</h1>
+
+
+<hr noshade size="1">
+<a name="OnCTS"></a>
+<h2>OnCTS</h2>
+<br>
+Event that is called when CTS (Clear To Send) changes value. CTS is traditionally used by modems 
+to answer a RTS (Request To Send) request from the computer.<br>
+<br>
+See <font face=courier>Port.<a href="#Handshake">Handshake</a></font> for more info on RTS/CTS handshake.<br>
+<br>
+For most cases you don't need to bother about this event.<br>
+<br>
+See also <font face=courier>Port.<a href="#CTS">CTS</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+obj_OnCTS ( <i>State</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>obj</td>
+<td>&nbsp;</td>
+<td>Event source.</td>
+</tr><tr>
+<td><i>State</td>
+<td>Boolean (Variant)</td>
+<td>State of CTS.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="OnDCD"></a>
+<h2>OnDCD</h2>
+<br>
+Event that is called when DCD (Data Carrier Detected) changes value. DCD is traditionally used by modems 
+to make the computer aware of that a valid carrier is found on the phone line.<br>
+<br>
+DCD is also known as RLSD (Receive Line Signal Detected).
+For most cases you don't need to bother about this event.<br>
+<br>
+See also <font face=courier>Port.<a href="#DCD">DCD</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+obj_OnDCD ( <i>State</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>obj</td>
+<td>&nbsp;</td>
+<td>Event source.</td>
+</tr><tr>
+<td><i>State</td>
+<td>Boolean (Variant)</td>
+<td>State of DCD.</td>
+</tr>
+</table><br><br>
+
+
+
+
+<hr noshade size="1">
+<a name="OnDSR"></a>
+<h2>OnDSR</h2>
+<br>
+Called when DSR (Data Set Ready) changes value. DSR is traditionally used by modems 
+when they are ready to transmitt data from the modem to the computer. The computer then
+answers by setting DTR to true. See <font face=courier>Port.<a href="#Handshake">Handshake</a></font> for more info
+on DTR/DSR handshake.<br>
+<br>
+For most cases you don't need to bother about this event.<br>
+<br>
+See also <font face=courier>Port.<a href="#DSR">DSR</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+obj_OnDSR ( <i>State</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>obj</td>
+<td>&nbsp;</td>
+<td>Event source.</td>
+</tr><tr>
+<td><i>State</td>
+<td>Boolean (Variant)</td>
+<td>State of DSR.</td>
+</tr>
+</table><br><br>
+
+
+
+
+<hr noshade size="1">
+<a name="OnForceClose"></a>
+<h2>OnForceClose</h2>
+<br>
+This event is very useful to handle Bluetooth errors, removed USB serial adapters and simular
+none static serial ports.<br>
+<br>
+Event that is called when a serial port is closed in an unexpected way.
+If you are using a Bluetooth serial port this will happen if the Bluetooth device is
+turned off or gets out of reach. Before this event is called the port has been closed.
+To reestablish the connection you need to reopen the port.<br>
+<br>
+OnForceClose is called with the Win32 error code that caused serial port to fail.
+When a Bluetooth device is turned of or gets out of reach this value is typically 31.<br>
+<br>
+Not all BT/USB serial port drivers generate a Win32 error when the device is removed
+from the system, therefor should you application also check for timeouts.<br>
+<br>
+<b>Syntax</b><br>
+obj_OnForceClose ( <i>Value</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>obj</td>
+<td>&nbsp;</td>
+<td>Event source.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>Long (Variant)</td>
+<td>Win32 error code that was the cause of the closed port.</td>
+</tr>
+</table><br><br>
+
+
+
+
+<hr noshade size="1">
+<a name="OnRead"></a>
+<h2>OnRead</h2>
+<br>
+Event that is raised when data is received on the serial port.<br>
+<br>
+OnRead is called when data has been received on the serial port.<br>
+<br> 
+<b>Timeout.</b> If <font face=courier>Port.<a href="#Timeout">Timeout</a></font> is set to a value different from 0 (default)
+OnRead is called with null  as argument if no data has been received during the
+time interval specified by <font face=courier>Timeout</font>. Timeout is specified in miliseconds.<br>
+<br>
+<b>Buffer size.</b> Use <font face=courier>Port.<a href="#BufferSize">BufferSize</a></font> to specify how many bytes should be received 
+before OnRead is called (default 0 - disabled).<br>
+<br>
+<b>Simple parsing.</b> If <font face=courier>Port.<a href="#EndTrigger">EndTrigger</a></font> is set to a value different from null (default).
+OnRead will be called when the specified string is found in the input from the serial port.
+This is very usefull if you got data with a known format coming in to the serial port.
+If <font face=courier>EndTrigger</font> is used <font face=courier>BufferSize</font> is ignored.<br>
+If <font face=courier>Port.<a href="#StartTrigger">StartTrigger</a></font> is set to a value different from null (default). All data is ignored
+until the specified string is found in the serial port input. If both <font face=courier>StartTrigger</font> and
+<font face=courier>EndTrigger</font> is used only data between (including the triggers themself) the triggers will
+be passed on to OnRead. If <font face=courier>EndTrigger</font> is null, OnRead will be called when <font face=courier>BufferSize</font> 
+bytes has been received. If <font face=courier>EndTrigger</font> is null <font face=courier>StartTrigger</font> must be "retriggered"
+each time OnRead is called or else OnRead will be called with data each time the input buffer is full.<br>
+<br>
+OnRead is called with a string as argument. 
+To convert this string to binary data see <font face=courier>Port.<a href="#StringToByteArray">StringToByteArray</a></font>
+and to convert from binary data to a string see <font face=courier>Port.<a href="#ByteArrayToString">ByteArrayToString</a></font><br>
+<br>
+See also <font face=courier>Port.<a href="#OnForceClose">OnForceClose</a></font> for more info on how to handle Bluetooth interruption.<br>
+<br>
+
+<br>
+See also <font face=courier>Port.<a href="#Enabled">Enabled</a></font> and <font face=courier>Port.<a href="#Read">Read</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+obj_OnRead ( <i>Value</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>obj</td>
+<td>&nbsp;</td>
+<td>Event source.</td>
+</tr><tr>
+<td><i>Value</td>
+<td>String (Variant)</td>
+<td>Data read from the serial port.</td>
+</tr>
+</table><br><br>
+
+
+
+<hr noshade size="1">
+<a name="OnRI"></a>
+<h2>OnRI</h2>
+<br>
+Event that is called when RI (Ring Indicator) changes value. RI is traditionally used by modems 
+to make the computer aware of that someone is calling the modem.<br>
+<br>
+For most cases you don't need to bother about this event.<br>
+<br>
+See also <font face=courier>Port.<a href="#RI">RI</a></font>.<br>
+<br>
+<b>Syntax</b><br>
+obj_OnRI ( <i>State</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>obj</td>
+<td>&nbsp;</td>
+<td>Event source.</td>
+</tr><tr>
+<td><i>State</td>
+<td>Boolean (Variant)</td>
+<td>State of RI.</td>
+</tr>
+</table><br><br>
+
+
+
+
+<hr noshade size="1">
+<a name="OnWritten"></a>
+<h2>OnWritten</h2>
+<br>
+<br>
+Called when data has been sucessfully written to the serial driver using 
+<font face=courier>Port.<a href="#Write">Write</a></font> or the write operation has timed out.<br> 
+<br>
+Note that this does not mean the data has been written to the serial port, only that it has been
+successfully passed on to the serial port driver. However in most cases this is the same thing.<br>
+<br>
+<b>Syntax</b><br>
+obj_OnWritten ( <i>BytesWritten</i> )<br>
+<br>
+<table class=text border="1">
+<tr>
+<td><b>Part</td>
+<td><b>Type</td>
+<td><b>Description</td>
+</tr><tr>
+<td><i>obj</td>
+<td>&nbsp;</td>
+<td>Event source.</td>
+</tr><tr>
+<td><i>BytesWritten</td>
+<td>Long (Variant)</td>
+<td>Number of bytes written. Zero on error.</td>
+</tr>
+</table><br><br>
+
+</body>
+</html>
+

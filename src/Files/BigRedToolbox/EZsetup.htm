@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>EZSetup Utility</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>EZSetup v1.0</P>
+</FONT><FONT FACE="Arial"><P>A WinCE Setup App Creation Tool</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>September 24, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+NS Basic is (c) Copyright NS Basic Corporation<BR>
+Windows CE is (c) Copyright Microsoft Corporation<BR>
+EZSetup is (c) Copyright 1999 Scott Ludwig.<NR>
+<HR>
+<P>If you are a WinCE author and are looking for an inexpensive way to create / obtain a setup program, look at EZSetup! 
+
+<P>Once you have created your .cab files (as described in the WinCE SDK), you are ready to use EZSetup. EZSetup takes your .cab files and *outputs* a compressed, self-contained, self-extracting Windows setup program that will set up your WinCE software. NS Basic/CE uses this tool for its setup requirements. The result is a single executable that will set up your WinCE app simply by clicking on the download link! You provide EZSetup with a readme.txt file, a eula.txt file (end-user license agreement), and your .ini & .cabs, and it'll output a setup program ready to be used. It is really simple to use. Save yourself the time and effort trying to make your own setup program or purchasing expensive alternatives!
+<P>EZSetup is free software, released under the <A HREF="http://www.gnu.org/copyleft/gpl.html" TARGET="_top">Gnu Public License</A>.
+
+<H4>Installation</H4>
+
+Download the file and install it on your desktop. There is no installer: all you need is the file as downloaded.
+<H4>Usage</H4>
+
+<CODE>ezsetup &lt;-i inifilename> &lt;-r readme.txt> &lt;-e eula.txt> &lt;-o outputexe></CODE>
+
+<P>Creates a compressed, self-contained and self-extracting Win32 gui setup application that when run on your desktop PC will install a WinCE application to a WinCE 2.x and above device. To operate, ezsetup simply needs your .ini and .cab files, a readme.txt file and a eula.txt file. 
+
+<P>(For more info on .ini and .cab files, see the WinCE SDK documentation).
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>&lt;-i&nbsp;inifilename></TD> <TD>This parameter specifies the .ini file used as part of CE App Mgr setup. The .cab files specified in this .ini file are expected to be in the same directory as the .ini file, and are read in by ezsetup.</TD>
+	</TR>
+	<TR>
+		<TD>&lt;-r-i&nbsp;readme.txt></TD> <TD>Specify a readme.txt file that will appear as the first dialog in the gui setup program.</TD>
+	</TR>
+	<TR>
+		<TD>&lt;-e-i&nbsp;eula.txt></TD> <TD>Specify an end-user license agreement that will appear as the second dialog in the gui setup program.</TD>
+	</TR>
+	<TR>
+		<TD>&lt;-o-i&nbsp;outputexe></TD> <TD>This parameter specifies the output name of the resulting compressed auto-extracting setup executable.</TD>
+	</TR>
+</TABLE>
+<P>Note: This tool runs on Windows NT or Windows 2000 and later versions only. The executables it produces will run on any Windows platform. If you are interested, the source code is also available. Visit the <A HREF="http://www.eskimo.com/%7Escottlu/win/index.html" TARGET="_top">EZSetup website</A>.
+
+<H4>Examples</H4>
+
+<P>Create a Pocket Chess setup file
+
+<P><CODE>ezsetup -i chess.ini -r readme.txt -e eula.txt -o PocketChessSetup.exe</CODE>
+
+<P>Create the NS Basic/CE Updater file. Note that this script includes creating the .cab files using CABWIZ.
+
+<pre>
+"D:\Program Files\Microsoft Visual Studio\vb98\vbce\cabwiz.exe"
+"E:\210\Updater\BASIC.inf" /err err.log /cpu HPC_SH3 HPC_MIPS HPCPro_ARM
+HPCPro_SH3 HPCPro_SH4 HPCPro_MIPS PPC_SH3 PPC_MIPS
+
+del *.DAT
+
+d:\apps\ezsetup -i Basic.ini -r BASICReadme.txt -e e:\210\all\license.txt -o
+Update210.exe
+
+del *.CAB
+<pre>
+
+</BODY>
+</HTML>

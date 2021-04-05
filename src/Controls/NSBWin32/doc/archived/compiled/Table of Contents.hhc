@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NSBasic Win32">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+    <UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="API object">
+		<param name="Local" value="api.htm">
+    </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RAS object">
+		<param name="Local" value="ras.htm">
+    </OBJECT>
+    <UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RASEntry object">
+		<param name="Local" value="rasentry.htm">
+    </OBJECT>
+    <UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RASConState object">
+		<param name="Local" value="rasconstate.htm">
+    </OBJECT>
+    </UL>
+    </UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Registry object">
+		<param name="Local" value="registry.htm">
+    </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Timer object">
+		<param name="Local" value="timer.htm">
+    </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Tray object">
+		<param name="Local" value="tray.htm">
+    </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PtOrRect object">
+		<param name="Local" value="ptrect.htm">
+    </OBJECT>
+    </UL>
+</UL>
+</BODY></HTML>

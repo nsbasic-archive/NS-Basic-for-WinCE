@@ -1,0 +1,7 @@
+Dim AppEXEName: AppEXEName = "GradientButton"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\GradientButton.nsb"
+Project.AddModule "main", ".\GradientButton.nsb"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

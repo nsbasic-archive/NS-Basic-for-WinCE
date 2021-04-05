@@ -1,0 +1,3 @@
+This is a short text file.
+
+A much bigger file would work too.

@@ -1,0 +1,7 @@
+Dim AppEXEName: AppEXEName = "FullScreen"
+Dim AppPath: AppPath = "C:\Documents and Settings\George BigXP\My Documents\NSBasic Samples\CE\FullScreen.nsb"
+Project.AddModule "main", ".\FullScreen.nsb"
+Project.EULA = ""
+Project.InstallDir = ""
+Project.ReadMe = ""
+Project.icon = ""

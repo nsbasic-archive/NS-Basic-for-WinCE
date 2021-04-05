@@ -1,0 +1,89 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%Provider%
+CESignature="$Windows CE$"
+
+[CEStrings]
+AppName = "NS BASIC Showcase"
+InstallDir = "\Program Files"
+
+[CEDevice.PocketPC]
+ProcessorType = 2577; StrongArm processors
+VersionMin = 4.2
+VersionMax = 100.0
+BuildMax = 0xE0000000
+
+[SourceDisksNames]
+1 = , "Common Files",, e:\nsbce6\Files\DemoApp
+2 = , "images",, e:\nsbce6\Files\DemoApp\Images
+
+[SourceDisksNames.PocketPC]
+3 =, "ARM files",, e:\nsbce6\600\PocketPC2003
+
+; CPU-independent source files...
+[SourceDisksFiles]
+NS Basic Showcase.nsb = 1
+BigIcon.GIF = 2
+burgee2.jpg = 2
+nsbasicce.gif = 2
+wcelogohpc.gif = 2
+weplogo.gif = 2
+ppcmag2005.gif = 2
+wepgold.gif = 2
+
+; CPU-specific source files...
+basic.exe = 3
+NSCEPictureBox.dll = 3
+Vbscript.dll = 3
+
+[DefaultInstall]
+AddReg = AddRegistry.All
+
+[DefaultInstall.PocketPC]
+CopyFiles = Files.NSBASIC,Files.images,Files.Windows
+CEShortcuts =Shortcuts.Menu
+CESelfRegister=NSCEPictureBox.dll,vbscript.dll
+
+; Ouput directories for files & shortcuts
+[DestinationDirs]
+Files.NSBASIC = 	0,%InstallDir%\NSBasic
+Files.images =          0,%InstallDir%\NSBasic\images
+Files.Windows =	        0,%CE2%
+DefaultDestDir = 	0,%InstallDir%
+
+; Install into \Program Files\NSBasic"
+[Files.NSBasic]
+"NS Basic Showcase.nsb"
+"basic.exe"
+
+; Install into \Windows
+[Files.Windows]
+"Vbscript.dll",,,0x00000010
+"NSCEPictureBox.dll",,,0x00000010
+
+; Install into \program files\nsbasic\images
+[Files.images]
+"BigIcon.GIF"
+"burgee2.jpg"
+"nsbasicce.gif"
+"wcelogohpc.gif"
+"weplogo.gif"
+"ppcmag2005.gif"
+"wepgold.gif"
+
+; Install into \windows\Programs
+[Shortcuts.Menu]
+"BASIC Showcase",0,"NS Basic Showcase.nsb",%CE11%
+
+; Create document associations...
+[AddRegistry.All]
+HKCR, ".nsb", "Default", 0, "nsbfile"
+HKCR, "nsbfile", "Default", 0, "NS Basic/CE Program"
+HKCR, "nsbfile\DefaultIcon", "Default", 0, "%InstallDir%\NSBasic\basic.exe,0"
+HKCR, "nsbfile\Shell\Open\Command", "Default", 0, """%InstallDir%\NSBasic\basic.exe"" ""%%1"""
+
+
+; Misc. strings...
+[Strings]
+Provider = "NSB"
+

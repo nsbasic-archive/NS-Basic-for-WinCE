@@ -1,0 +1,54 @@
+Checklist:
+	Download latest version of Tech Notes from website.
+	Check for any new Tech Notes
+	Update the Help files
+
+Standard Edition:
+	This version gets put on the website for download.
+	(check that "Allow Registration" is True)
+	Compiled file is \NSBCE6\NSBCEIDE.exe
+        Move latest eVB2NSB to \files\tools
+	Use NSBCE.eps and build normally.
+	Rename NSBasic_CE5full.exe and upload to website.
+	Upload installers as well.
+
+Thin Edition:
+	This version gets put on the website for download.
+	Empty the Installers folder except for ezsetup and installers.txt
+	Save as NSBCE_thin.eps and build normally.
+	Rename NSBasic_CE.exe and upload to website.
+
+CD Edition:
+	Open NSBCE.eps and delete password entry:
+	Setup Dialog - delete "Password"
+	Save as NSBCE_nopw.eps, then build normally.
+	Rename NSBasic_CE and move to CD folder on LittleNT.
+	Also move ReadMe and Installers.
+
+Demo Edition:
+	Open IDE in VB.
+	In Project Properties, Change "ccaAllowRegistration" to 0
+	Compile as NSCEIDE.exe
+	Load NSBCE_nopw.eps
+	Empty the Installers folder, except for RuntimeFat.ppc.exe
+	Save as NSBCE_demo.eps and build normally.
+	Rename NSCEDemo.exe and upload to website.
+
+Device Installer
+	1. Device IDE
+	   Set version in resource Dialog\IDD_About... and Version and 
+		script.h:kVersionString.
+		resource\version\vs_version_info several places
+	   run NSBasic CE\Compile.bat in Device IDE folder.
+           you should see 11 output files.
+	   new HPC versions cannot be built.
+	   check CompileErr.txt for messages
+		aygshell messages don't seem to matter
+		afxwin1.inl messages don't seem to matter
+	   copy the folders in the 600 folder to Big2k\nsbce6\600.
+	2. Any changes needed to Device IDE\Basic Installer? Recompile.
+	   Put Basic Installer.vb into 600\All 
+	3. Build device installers 
+	   \FilesDevice\makeAllInstallers makes all dev and runtime installers.
+  	   Move contents of \installers to ftp site
+	   Move contents of \installers to littleNT\NSBCE\CD folder

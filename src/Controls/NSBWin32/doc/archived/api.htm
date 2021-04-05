@@ -1,0 +1,583 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="API,FindWindow,ReleaseCapture,SendMessage,SendMessageText,WindowFromPoint,ChildWindowFromPoint,PostMessage,Focus,Capture,EnableKeyboard,WindowText,SystemColor,TopMost,GetWindow,ClassName,ShowWindow,GetAsyncKeyState,SendKeys,GetMemoryStatus,GetStorageStatus,GetPowerStatus,SystemParameters,CreateShortcut,AddToRecent,GetSpecialFolder,GetShortcutTarget,FindWindowByClass,ClipText,Version,CursorPos,SystemVersion,WindowLong,Ticks,SystemTime,LocalTime,WindowParent,OSType">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/">
+<title>API object</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- #include file="includes/header.htm" -->  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <h3>Overview</h3>
+            <p>The API object provides easy-to-use access to certain Win32 API
+            functions which may be needed by applications that need to perform
+            some advanced tasks. While useful in scenarios where the standard
+            NSBasic features are not enough the API object requires careful
+            usage and some basic level of understanding of the Win32 API. Wrong
+            usage will not harm the system, but may cause some inconveniences to
+            the interactive user or unexpected behavior of the application or
+            the affected windows of other applications. It is recommended to
+            consult MSDN for details about the particular methods and
+            properties. To make this easier the most of the API object's members
+            are named after the closest Win32 API function.</p>
+            <h3>Names and abbreviations</h3>
+            <p>In the members reference below:<br>
+            <b>wnd</b> - is a long integer value which represents a handle of a
+            window. Once obtained from a property or method it can be used as
+            parameter to another member which takes as an argument window
+            handle. Generally wnd = 0 is an invalid window handle value (no
+            window found for instance).<br>
+            <b>object</b> - is a previously created API object.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  FindWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.FindWindow(title)</td>
+                <td bgcolor="#FFFFFF" valign="top">Finds a top level window with
+                  the specified <b>title</b> and returns its handle. If such
+                  window is not found 0 is returned.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  ReleaseCapture</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ReleaseCapture()</td>
+                <td bgcolor="#FFFFFF" valign="top">Releases the mouse capture
+                  (See also Capture).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  SendMessage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>r =object.SendMessage(wnd,msg,wParam,lParam)</td>
+                <td bgcolor="#FFFFFF" valign="top">Sends message to a window and
+                  returns the result. This method cannot be used for windows of
+                  other applications.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  WindowFromPoint</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.WindowFromPoint(X,Y)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the handle of the
+                  window at point X,Y (in screen coordinates).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  ChildWindowFromPoint</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.ChildWindowFromPoint(wnd,X,Y)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the handle of the
+                  child window of <b>wnd</b> at point X,Y (in screen
+                  coordinates). Wnd is the parent window whose children are
+                  searched.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  PostMessage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>r =object.PostMessage(wnd,msg,wParam,lParam)</td>
+                <td bgcolor="#FFFFFF" valign="top">Posts message to the
+                  specified window. In contrast to SendMessage this method can
+                  be used over windows of other applications.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  ForegroundWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.ForegroundWindow<br>
+                  object.ForegroundWindow = wnd</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the foreground
+                  window.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Focus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Focus = wnd<br>
+                  wnd = object.Focus</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the window which
+                  owns the keyboard focus.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Capture</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Capture = wnd<br>
+                  wnd = object.Capture</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the window which
+                  has the mouse capture. To release capture call ReleaseCapture
+                  (see above).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  EnableKeyboard</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.EnableKeyboard
+                  = boolValue<br>
+                  var = object.EnableKeyboard</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the enabled state
+                  of the hardware keyboard. Works only on Windows CE based
+                  devices with hardware keyboard.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  WindowText</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.WindowText(wnd)
+                  = stringValue<br>
+                  var = object.WindowText(wnd)</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the text of the
+                  specified window. Usually the window text is displayed in its
+                  caption. Specific windows (such as edit boxes, labels and so
+                  on) display their window text otherwise - as content, as label
+                  and so on.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  SystemColor</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SystemColor(lColor)
+                  = colorValue<br>
+                  var = object.SystemColor(lColor)</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets a system wide color
+                  constant specified by lColor. Note that this changes the color
+                  for all the applications! The different OS versions support
+                  some common Windows color values and some specific to the
+                  particular OS. Lookup GetSysColor in MSDN for more
+                  information. Some of the most common color constants are:<br>
+ COLOR_SCROLLBAR         0<br>
+ COLOR_BACKGROUND        1<br>
+ COLOR_ACTIVECAPTION     2<br>
+ COLOR_INACTIVECAPTION   3<br>
+ COLOR_MENU              4<br>
+ COLOR_WINDOW            5<br>
+ COLOR_WINDOWFRAME       6<br>
+ COLOR_MENUTEXT          7<br>
+ COLOR_WINDOWTEXT        8<br>
+ COLOR_CAPTIONTEXT       9<br>
+ COLOR_ACTIVEBORDER      10<br>
+ COLOR_INACTIVEBORDER    11<br>
+ COLOR_APPWORKSPACE      12<br>
+ COLOR_HIGHLIGHT         13<br>
+ COLOR_HIGHLIGHTTEXT     14<br>
+ COLOR_BTNFACE           15<br>
+ COLOR_BTNSHADOW         16<br>
+ COLOR_GRAYTEXT          17<br>
+ COLOR_BTNTEXT           18<br>
+ COLOR_INACTIVECAPTIONTEXT 19<br>
+ COLOR_BTNHIGHLIGHT      20&nbsp;<br>
+                  The colorValue can be constructed this way:<br>
+                  <b>B * &amp;H10000 + G * &amp;H100 + R</b><br>
+                  Where R, G and B are the Blue, Green and Red component
+                  (0-255).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  TopMost</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.TopMost = wnd</td>
+                <td bgcolor="#FFFFFF" valign="top">Makes the specified window
+                  &quot;top most&quot;.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd = object.GetWindow(wnd,type)</td>
+                <td bgcolor="#FFFFFF" valign="top">Retrieves a window that is in
+                  the specified relation (type) to the given window (wnd). <b>type</b>
+                  can be:<br>
+ GW_HWNDFIRST        0<br>
+ GW_HWNDLAST         1<br>
+ GW_HWNDNEXT         2<br>
+ GW_HWNDPREV         3<br>
+ GW_OWNER            4<br>
+ GW_CHILD            5</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  ClassName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var =
+                  object.ClassName(wnd)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the Window class name
+                  of the specified window.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  ShowWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowWindow(wnd,cmd)</td>
+                <td bgcolor="#FFFFFF" valign="top">Changes the window presence.
+                  For example hides or shows it. The cmd can be:<br>
+ SW_HIDE             0<br>
+ SW_SHOWNORMAL       1<br>
+ SW_NORMAL           1<br>
+ SW_SHOWMINIMIZED    2<br>
+ SW_SHOWMAXIMIZED    3<br>
+ SW_MAXIMIZE         3<br>
+ SW_SHOWNOACTIVATE   4<br>
+ SW_SHOW             5<br>
+ SW_MINIMIZE         6<br>
+ SW_SHOWMINNOACTIVE  7<br>
+ SW_SHOWNA           8<br>
+ SW_RESTORE          9<br>
+ SW_SHOWDEFAULT      10<br>
+ SW_FORCEMINIMIZE    11</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetAsyncKeyState</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>state = object.GetAsyncKeyState(lKey)</td>
+                <td bgcolor="#FFFFFF" valign="top">Retrieves the state of a
+                  keyboard key. lKey specifies the keyboard key to query. While
+                  the function can query wide variety of state information we
+                  list here only some of the features. For more information see GetAsyncKeyState
+                  in MSDN.<br>
+                  lKey codes for some keyboard keys:<br>
+ VK_LSHIFT &amp;HA0<br>
+ VK_RSHIFT &amp;HA1<br>
+ VK_LCONTROL &amp;HA2<br>
+ VK_RCONTROL &amp;HA3<br>
+ VK_LMENU &amp;HA4<br>
+ VK_RMENU &amp;HA5<br>
+                  VK_F1 &amp;H70<br>
+                  continuous to<br>
+ VK_F24 &amp;H87<br>
+ VK_SHIFT &amp;H10 (shift any)<br>
+ VK_CONTROL &amp;H11 (control - any)<br>
+ VK_MENU &amp;H12 (alt - any)<br>
+ VK_PAUSE &amp;H13<br>
+ VK_CAPITAL &amp;H14 (caps lock)
+                  <p>The returned result can be used this way to determine if
+                  the key is down or up.<br>
+                  If state &gt;= &amp;H80000000 Then<br>
+                  &nbsp; ' Key is down<br>
+                  Else<br>
+                  &nbsp; ' Key is up<br>
+                  End If&nbsp;</p>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  SendKeys</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SendKeys(strKeys
+                  [,boolSilent])</td>
+                <td bgcolor="#FFFFFF" valign="top">Sends a keyboard stroke to
+                  the window that has the focus. On Widnows CE If boolSilent is
+                  True no clicking sounds are made.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetMemoryStatus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetMemoryStatus(type)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains information about the
+                  system/program memory.<br>
+                  type can be:<br>
+                  0 - Total physical memory<br>
+                  1 - Available physical memory<br>
+                  2 - Total page file<br>
+                  3 - Available page file<br>
+                  4 - Total virtual memory (for the process)<br>
+                  5 - Available virtual memory (for the process)<br>
+                  6 - System memory load in percents (0 - 100)&nbsp;<br>
+                  In order to support both CE and desktop systems the function
+                  uses different numeric types for the returned value. On
+                  desktops it will most often return double precision floating
+                  point value because the long integer values are not enough for
+                  the modern machines.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetStorageStatus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetStorageStatus(info
+                  [, path])</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains storage information.<br>
+                  info can be:<br>
+                  0 - Total size of the storage in bytes<br>
+                  1 - Free bytes on the storage<br>
+                  2 - Free bytes on the storage available to the user.<br>
+                  If the <b>path</b> argument is omitted the function returns:<br>
+                  On desktop: information about the volume containing the
+                  current directory<br>
+                  On CE devices: Information about the internal object store.<br>
+                  If <b>path</b> is present it should be a string denoting a
+                  path on the storage device/volume for which you want to obtain
+                  information (it doesn't matter which directory is specified -
+                  it is enough to be sure that it is on the device/volume of
+                  interest).<br>
+                  Usually info = 2 will return the same information as 1, but on
+                  systems where that have disk quoting enabled it will indicate
+                  the space available to the current user.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetPowerStatus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetPowerStatus(param)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains information about the
+                  system power status.<br>
+                  <b>param</b> can be:&nbsp;<br>
+                  0 - Is on AC power (0 -no, 1 - yes, 255 - unknown)<br>
+                  1 - Battery (1 - high, 2 - low, 4 - critical, 8 - charging,
+                  128 - no battery, 255 - unknown)<br>
+                  2 - Battery life (0 - 100% or 255 if unknown)<br>
+                  3 - Battery life time (in seconds or -1 meaning unknown)<br>
+                  4 - Battery full life time in seconds or -1 if unknown.<br>
+                  Windows CE only:<br>
+                  5 - Backup battery flag - like 1<br>
+                  6 - Backup Battery life (0 - 100% or 255 if unknown)<br>
+                  7 - Backup Battery life time (in seconds or -1 meaning
+                  unknown)<br>
+                  8 - Backup Battery full life time in seconds or -1 if unknown.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  SystemParameters</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SystemParameters(which)
+                  = newVal<br>
+                  var = object.SystemParameters(which)&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Get set some system
+                  parameters.<br>
+                  which can be:<br>
+                  0 - Work area returns/sets a <b><a href="ptrect.htm">rectangle</a></b>
+                  describing the work area<br>
+                  Windows CE only:<br>
+                  1 - Gets/Sets the idle timeout for which the device will stay
+                  on after it has been waked up. Returns the timeout for the
+                  current situation - no matter which is it.<br>
+                  2 - Gets/Sets the idle timeout for which the device will stay
+                  on after it has been waked up when on external power.<br>
+                  3 - Gets/Sets the idle timeout for which the device will stay
+                  on after it has been waked up when on battery power.&nbsp;<br>
+                  4 - Gets (only) - platform type as string<br>
+                  5 - Gets (only) - OEM information as string<br>
+                  To set the work area you must first get it than change the
+                  returned object and assign it back. Example:<br>
+                  rect = api.SystemParameters(0)<br>
+                  rect.Left = rect.Left + 20<br>
+                  Set api.SystemParameters(0) = rect<br>
+                  This code shrinks the work area by 20 pixels on the left. The
+                  best way to describe the work area is to say that it is the
+                  screen area which is available to maximized windows. On the
+                  different OS versions and devices this may have also some
+                  additional effects.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  CreateShortcut</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.CreateShortcut(spath,tpath)</td>
+                <td bgcolor="#FFFFFF" valign="top">Creates shortcut named <b>spath</b>
+                  pointing to the file/directory <b>tpath</b>. Note that you
+                  should name the shortcut with .LNK file extension to make sure
+                  it is correctly displayed and used by the shell. spath and
+                  tpath must be full path names.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  AddToRecent</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.AddToRecent(path)</td>
+                <td bgcolor="#FFFFFF" valign="top">Adds the specified path/file
+                  to the recent files/documents.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetSpecialFolder</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = GetSpecialFolder(type)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains the full path to the
+                  specified special folder. Note that the different OS versions
+                  support quite a lot of specific special folders. The type
+                  values listed below are only for the most common ones. Check
+                  MSDN for the specific ones if you wish to use them. The
+                  function will work with future versions of the OS - by
+                  supplying the correct constant you will be able to obtain the
+                  folder of interest even if it does not existed at the time
+                  this library was built.<br>
+                  type can be:<br>
+                  0 - Desktop<br>
+                  2 - Programs (in the start menu)<br>
+                  5 - Personal/My Documents<br>
+                  6 - Favorites<br>
+                  7 - Startup<br>
+                  8 - Recent<br>
+                  9 - Send to<br>
+                  11 - Start menu<br>
+                  10 - desktop directory<br>
+                  14 - Fonts<br>
+                  15 - Templates<br>
+                  26 - Application data<br>
+                  Note that together with CreateShortcut you can find
+                  appropriate location and create shortcut there.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  GetShortcutTarget</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetShortcutTarget(spath)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains the target to which
+                  the specified shortcut points. <b>spath</b> is the full path
+                  name of the shortcut file. Note that the shell hides the
+                  shortcut's file extension which is .LNK</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  FindWindowByClass</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd = object.FindWindowByClass(strClass)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the first found top
+                  level window of the given Window class.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  ClipText</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ClipText =
+                  value<br>
+                  var = object.ClipText&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the text to/from
+                  the clipboard. When set the clipboard is cleared from any
+                  previous content and the assigned text is placed in it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  CursorPos</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Set obj =
+                  object.CursorPos</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a <b><a href="ptrect.htm">point</a></b>
+                  object holding the screen coordinates of the mouse cursor.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  SystemVersion</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var =
+                  object.SystemVersion&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the OS version as
+                  long integer.<br>
+                  Major version is var / &amp;H10000<br>
+                  Minor version is var And &amp;HFFFF</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  WindowLong</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.WindowLong(wnd,lLong)
+                  = value<br>
+                  var = object.WindowLong(wnd,lLong)&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets a value associated
+                  with the given window. The value is long integer (vbLong). <b>Use
+                  with extreme care!!!</b> Some of the values associated with
+                  the windows hold internal pointers to code that handles the
+                  window and changing them may crash the application to which
+                  the window belongs. Check carefully MSDN before using this
+                  method - see GetWindowLong/SetWindowLong and the related
+                  comments.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  Ticks</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.Ticks</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the ticks count since
+                  the system start up. 1 - tick is 1 millisecond.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  SystemTime</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SystemTime =
+                  value<br>
+                  var = object.SystemTime</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the system time</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  LocalTime</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.LocalTime =
+                  value<br>
+                  var = object.LocalTime</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the local time</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  WindowParent</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.WindowParent(wnd)
+                  = wndParent<br>
+                  wnd = object.WindowParent(wndToQuery)</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the parent window
+                  of an window. Use with extreme care !!! Changing the parent of
+                  an window may lead to unpredictable results including
+                  application crash. You should have good knowledge about the
+                  behavior of the affected windows.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  OSType</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.OSType</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a string identifying
+                  the OS type:<br>
+                  9x - The OS is Windows 95/98/ME<br>
+                  NT - The OS is NT4/Win2k/XP or later<br>
+                  CE - The OS is Windows CE.<br>
+                  Can be used when you are creating code that must work on
+                  different platforms. Determining the OS Type your code will be
+                  able to avoid or use features specific to a particular
+                  platform.&nbsp; </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  Hibernate</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_Hibernate()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when the system
+                  resources are running low and the application should attempt
+                  to free as much as possible. (Windows CE only) </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  ColorChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_ColorChange()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when one or more of the
+                  system colors are changed. </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  FontChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_FontChange()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when a new font has
+                  been added/changed/deleted from the system&nbsp; </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  PaletteChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_PaletteChange()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired only on systems using
+                  graphics mode with palettes. Fires when the system palette
+                  changes. </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/event.gif" width="16" height="17">
+                  SettingsChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_SettingsChange(which)</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when a system setting
+                  is changed. <b>which</b> contains the setting index. </td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- #include file="includes/footer.htm" -->
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,868 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 10a: ADOCE</TITLE>
+<META NAME="Version" CONTENT="8.0.4915">
+<META NAME="Date" CONTENT="June 19, 2001">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 10a: <br>
+		ADOCE 102: An Introduction</h2>  <h3>Jun 8, 2004
+
+</h3>
+	  <h5>by Tony Scarpelli 
+</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr>
+
+<blockquote>
+  <p>For more information on this control, see Microsoft's documentation on 
+<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/adoce31/html/adowlcm.asp"> their website</a></p>
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>Attached is a tool that allows a user to see how ADOCE works on the Palm PC in NSBasic.
+
+<P>I have noticed that there are a lot of people who are trying to learn how to do ADOCE. It can be a very confusing subject. I am still trying to figure it all out myself, and I have been writing database applications a very long time.
+
+<P>This program has a lot of examples and generic subs that allow programmers to do simple things, like seeing what tables and indexes are available on the system, etc.
+
+<P>This is a freeware program and freely given to the programming community. I hope it will be useful to everyone.
+
+<P><A HREF="mailto:SCARPT&copy; MAIL.MMC.ORG" TARGET="_top">Tony Scarpelli </A>
+<BR><BR>
+
+<H4><P>Program Listing</H4>
+(This program can also be downloaded in <A HREF="http://www.nsbasic.com/pub/ce/samples/Adotests.zip" >executable format</A>.)
+
+<PRE>
+'ADOCETest.nsb
+'Tony Scarpelli, 71535.306&copy; compuserve.com
+'My variables: g-global l-local
+'                  n-number c-character
+'                  l-logical a-array
+
+'This test app revolves around xyEmployees
+
+'-----------------------------------------------------
+Option Explicit
+
+Dim glTableExists, glCreateOK, glOpenOK, glAddRecOK
+Dim glUpdRecOK, glDelTableOK
+Dim gnNumTables, gcTableName, gcDefaultTable, recTable
+Dim gaTableList(), gaFieldList(), gnNumFields
+Dim gaGridSize()
+Const t = True
+Const f = False
+gcTableName = ""
+gcDefaultTable = "xyEmployees"
+KeyboardStatus=0
+
+'-----------------------------------------------------
+' ADO Cursor Types
+'------------------------------------------------------
+Const adOpenUnspecified = -1
+Const adOpenForwardOnly = 0
+Const adOpenKeyset = 1
+Const adOpenDynamic = 2
+Const adOpenStatic = 3
+Const DEFCursor = 0
+'------------------------------------------------------
+' ADO Lock Types
+'------------------------------------------------------
+Const adLockUnspecified = -1
+Const adLockReadOnly = 1
+Const adLockPessimistic = 2
+Const adLockOptimistic = 3
+Const adLockBatchOptimistic = 4
+Const DEFLock = 1  'check what should be the default lock type
+Const DEFOption = " "
+'=======================
+
+  ADDOBJECT "Label", "lblMessage", 5, 5, 224, 18
+lblMessage.BorderStyle=1
+lblMessage.Backcolor=vbYellow
+lblMessage.Forecolor=vbBlue
+  '--------
+ADDOBJECT "grid","GridView", 5, 25, 226, 73
+GridView.Scrollbars=3
+  '--------
+'This should be offscreen
+ADDOBJECT "ListBox", "lstDisp", 2000, 30, 226, 66
+lstDisp.Scrollbars=2
+lstDisp.BorderStyle=1
+  '--------
+ADDOBJECT "CommandButton", "cmdListTables", 5, 105, 65, 18
+  cmdListTables.Caption = "List Tables"
+  cmdListTables.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdViewRecs", 72, 105, 84, 18
+  cmdViewRecs.Caption = "View Records"
+  cmdViewRecs.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdViewFields", 158, 105, 74, 18
+  cmdViewFields.Caption = "View Fields"
+  cmdViewFields.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdCreateTable", 5, 130, 93, 18
+  cmdCreateTable.Caption = "Create Table"
+  cmdCreateTable.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdDelTable", 130, 130, 89, 18
+  cmdDelTable.Caption = "Delete Table"
+  cmdDelTable.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdAddRec", 5, 155, 93, 18
+  cmdAddRec.Caption = "Add Record"
+  cmdAddRec.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdChange", 130, 155, 88, 18
+  cmdChange.Caption = "Change Rec 2"
+  cmdChange.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdOpen", 5, 180, 77, 18
+  cmdOpen.Caption = "Open Table"
+  cmdOpen.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdClose", 85, 180, 76, 18
+  cmdClose.Caption = "Close Table"
+  cmdClose.BackColor = vbCyan
+  '--------
+ADDOBJECT "CommandButton", "cmdQuit", 167, 180, 66, 18
+  cmdQuit.Caption = "Quit"
+  cmdQuit.BackColor = vbRed
+  '--------
+ADDOBJECT "CommandButton", "cmdListIndexes", 5, 205, 77, 18
+  cmdListIndexes.Caption = "List Indexes"
+  cmdListIndexes.BackColor = vbYellow
+  '--------
+ADDOBJECT "CommandButton", "cmdDelIndex", 130, 205, 89, 18
+  cmdDelIndex.Caption = "Delete Index"
+  cmdDelIndex.BackColor = vbYellow
+  '--------
+
+'-----------------------------------------------------
+Sub cmdAddRec1_Click()
+  'Add a test record
+  AddRecord1
+End Sub
+
+Sub cmdAddRec2_Click()
+  'Add a second test record
+  AddRecord2
+End Sub
+
+Sub cmdAddRec_Click()
+  AddRecord
+End Sub
+
+Sub cmdChange_Click()
+  'Modify the second record, tests update
+  ChangeRecord2
+End Sub
+
+Sub cmdClose_Click()
+  'Close an open table
+  CloseTable
+End Sub
+
+Sub cmdCreateTable_Click()
+  'Create a test table
+  CreateTable
+End Sub
+
+Sub cmdDelTable_Click()
+  'Tests Drop
+  DeleteTable
+End Sub
+
+Sub cmdDelIndex_Click()
+  'Tests Drop
+  DeleteIndex
+End Sub
+
+Sub cmdListTables_Click()
+  'List all tables in MSysTables
+  ListTables
+End Sub
+
+Sub cmdListIndexes_Click()
+  'List all tables in MSysIndexes
+  ListIndexes
+End Sub
+
+Sub cmdOpen_Click()
+  'Tests open
+  OpenTable
+End Sub
+
+Sub cmdQuit_Click()
+  KeyboardStatus=1
+  bye
+End Sub
+
+Sub cmdViewFields_Click()
+  'View all the fields in a record
+  ViewFields
+  'GetFields
+End Sub
+
+Sub cmdViewRecs_Click()
+  'View all the records in a table
+  ViewRecs
+End Sub
+
+'-----------------------------------------------------
+Sub Form_Load()
+  glTableExists = f
+  glCreateOK = f
+  glOpenOK = f
+  
+  lblMessage = "Click on button for option"
+  
+End Sub
+
+'-----------------------------------------------------
+Sub ListTables()
+  'List all tables in MSysTables
+  lblMessage.Caption = "Getting Tables..."
+  Dim rs, rc, strList, r
+  glOpenOK = f
+  'Clear out grid display
+  GridView.Clear
+  GridView.ScrollBars = 2    'Vert
+  GridView.Cols = 1
+  GridView.ColAlignment(-1) = 0   'left
+  GridView.ColWidth(0) = 1200
+  
+  On Error Resume Next
+  Set rs = CreateObject("adoce.recordset")
+  
+  rs.open "MSysTables", "", adOpenKeyset, adLockOptimistic
+  
+  If (Err.Number <> 0) Then
+    MsgBox "An error occured while opening table." & vbCrLf & Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+  
+  rc = rs.RecordCount
+  gnNumTables = rc
+  For r = 0 To rc - 1
+    ReDim Preserve gaTableList(r)
+    gaTableList(r) = rs.Fields("TableName").Value
+    rs.movenext
+  Next
+  rs.Close
+  Set rs = Nothing
+  
+  'Display the list in grid
+  For r = 0 To gnNumTables - 1
+    GridView.Rows = r + 1  'Add row
+    GridView.TextMatrix(r, 0) = gaTableList(r)
+  Next
+  lblMessage.Caption = "ADOCE Tables in MSysTables"
+End Sub
+
+'-----------------------------------------------------
+Sub ListIndexes()
+  'List all tables in MSysIndexes
+  lblMessage.Caption = "Getting Indexes..."
+  Dim rs, rc, strList, r
+  glOpenOK = f
+  'Clear out grid display
+  GridView.Clear
+  GridView.ScrollBars = 2    'Vert
+  GridView.Cols = 1
+  GridView.ColAlignment(-1) = 0   'left
+  GridView.ColWidth(0) = 1200
+  
+  On Error Resume Next
+  Set rs = CreateObject("adoce.recordset")
+  
+  rs.open "MSysIndexes", "", adOpenKeyset, adLockOptimistic
+  
+  If (Err.Number <> 0) Then
+    MsgBox "An error occured while opening table." & vbCrLf & Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+  
+  rc = rs.RecordCount
+  gnNumTables = rc
+  For r = 0 To rc - 1
+    ReDim Preserve gaTableList(r)
+    gaTableList(r) = rs.Fields("IndexName").Value
+    rs.movenext
+  Next
+  rs.Close
+  Set rs = Nothing
+  
+  'Display the list in grid
+  For r = 0 To gnNumTables - 1
+    GridView.Rows = r + 1  'Add row
+    GridView.TextMatrix(r, 0) = gaTableList(r)
+  Next
+  lblMessage.Caption = "ADOCE Indexes in MSysIndexes"
+End Sub
+
+'-----------------------------------------------------
+Sub GetTables()
+  'Put the list of tables into a global array
+  Dim rs, rc, strList, r
+  
+  On Error Resume Next
+  Set rs = CreateObject("adoce.recordset")
+  
+  rs.open "MSysTables", "", adOpenKeyset, adLockOptimistic
+  
+  If (Err.Number <> 0) Then
+    MsgBox "An error occured while opening table." & vbCrLf & Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+  
+  rc = rs.RecordCount
+  gnNumTables = rc
+  
+  'Put each table name into array
+  For r = 0 To rc - 1
+    ReDim Preserve gaTableList(r)
+    gaTableList(r) = rs.Fields("TableName").Value
+    rs.movenext
+  Next
+  rs.Close
+  Set rs = Nothing
+End Sub
+
+'-----------------------------------------------------
+Sub CheckForTable()
+  'Check to see if there is a table already in the list
+  Dim r
+  glTableExists = f
+  For r = 0 To gnNumTables - 1
+    If gaTableList(r) = gcTableName Then
+      glTableExists = t
+      Exit Sub
+    End If
+  Next
+End Sub
+
+'-----------------------------------------------------
+Sub CreateTable()
+  'Create a new table
+  'First check to see if a table exists in global array
+  gcTableName = gcDefaultTable
+  CheckForTable
+  
+  'If the table exists, warn user
+  If glTableExists = t Then
+    MsgBox "This table already exists, you may need to delete it first.", , "Notice"
+    Exit Sub
+  End If
+  
+  On Error Resume Next
+  Set recTable = CreateObject("adoce.recordset")
+  
+  recTable.open "CREATE TABLE " & gcTableName & " (EmployeeID text, Name text, DateHired datetime, Evaluation text)"
+  
+  If (Err.Number <> 0) Then
+    MsgBox "An error occured while creating the table." & vbCrLf & Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+  
+  recTable.Close
+  ListTables
+  lblMessage.Caption = "Table created!"
+  
+End Sub
+
+'-----------------------------------------------------
+Sub OpenTable()
+  'Open a table in the global variable gcTableName
+  Dim strSQL
+  glOpenOK = f
+  
+' Setup an error handler.
+  On Error Resume Next
+
+' Open the table.
+  Set recTable = CreateObject("adoce.recordset")
+  
+  strSQL = gcTableName
+  
+  'strSQL = "select * from foodfile order by descrip"
+
+    recTable.open strSQL, "", adOpenKeyset, adLockOptimistic
+
+' Check to see if an error occurred while opening the table.
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred while opening the table." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+  
+  glOpenOK = t
+  lblMessage.Caption = gcTableName & " opened."
+  
+End Sub
+
+'-----------------------------------------------------
+Sub CloseTable()
+  'Close the open table
+  On Error Resume Next
+  
+  recTable.Close
+  
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred while opening the table." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+  
+  Set recTable = Nothing
+  glOpenOK = f
+  GridView.Clear
+  lblMessage.Caption = gcTableName & " closed."
+  
+End Sub
+
+'-----------------------------------------------------
+Sub AddRecord()
+  'Add a new record
+  
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  Dim lnNumRecs, cnt
+  glAddRecOK = f
+  
+  On Error Resume Next
+  
+  lnNumRecs = recTable.RecordCount
+  cnt = lnNumRecs + 1
+  
+  recTable.addnew
+  
+  recTable.Fields("EmployeeID") = "00" & Trim(CStr(cnt))
+  recTable.Fields("Name") = "Name" & Trim(CStr(cnt))
+  recTable.Fields("DateHired") = "01/0" & Trim(CStr(cnt)) & "/1999"
+  recTable.Fields("Evaluation") = Trim(CStr(cnt)) & "-Hired"
+  
+  recTable.Update
+
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred adding a record." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+    
+  glAddRecOK = t
+  ViewRecs
+
+End Sub
+
+'-----------------------------------------------------
+Sub AddRecord1()
+  'Add a new test record
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  glAddRecOK = f
+  
+  On Error Resume Next
+  
+  recTable.addnew
+  
+  recTable.Fields("EmployeeID") = "001"
+  recTable.Fields("Name") = "Joe Blow"
+  recTable.Fields("DateHired") = "01/01/1999"
+  recTable.Fields("Evaluation") = "Hired"
+  
+  recTable.Update
+
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred adding a record." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+    
+  glAddRecOK = t
+  ViewRecs
+
+End Sub
+
+'-----------------------------------------------------
+Sub AddRecord2()
+  'Add a second test record
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  glAddRecOK = f
+  
+  On Error Resume Next
+  
+  recTable.addnew
+  
+  recTable.Fields("EmployeeID") = "002"
+  recTable.Fields("Name") = "Jane Doe"
+  recTable.Fields("DateHired") = "02/02/1999"
+  recTable.Fields("Evaluation") = "Hired with proviso"
+  
+  recTable.Update
+
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred adding a record." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+    
+  glAddRecOK = t
+  ViewRecs
+
+End Sub
+
+'-----------------------------------------------------
+Sub ViewRecs2()
+  'Display the records in a table in a list
+  Dim cnt, i, lcString
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  If recTable.RecordCount = 0 Then
+    MsgBox "There are no records in this table.", , "Notice"
+    Exit Sub
+  End If
+  
+  'Put field list into array
+  GetFields
+
+  'Set number of columns for grid & and other properties
+  lstDisp.Clear
+
+  'Put field names into top (0) row
+  lcString = ""
+  For i = 0 To gnNumFields - 1
+    lcString = lcString & "|" & gaFieldList(i)
+  Next
+  lstDisp.AddItem lcString
+  
+  'Start at first record
+  recTable.movefirst
+  cnt = 1
+  Do While Not recTable.EOF
+    lcString = ""
+    For i = 0 To gnNumFields - 1
+      lcString = lcString & "|" &  recTable.Fields(gaFieldList(i)).Value
+    Next
+    lstDisp.AddItem lcString
+    recTable.movenext
+    cnt = cnt + 1
+  Loop
+  
+End Sub
+
+'-----------------------------------------------------
+Sub ViewRecs()
+  'Display the records in a table in a grid
+  Dim cnt, i, lcStr, lcType
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  If recTable.RecordCount = 0 Then
+    MsgBox "There are no records in this table.", , "Notice"
+    Exit Sub
+  End If
+  
+  lblMessage.caption = "Listing records for " & gcTableName & "..."
+  
+  'Put field list into array
+  GetFields
+
+  'Set number of columns for grid & and other properties
+  GridView.Clear
+  GridView.ScrollBars = 3           'Both Horiz & Vert
+  GridView.Cols = gnNumFields       'Set # or cols
+  GridView.Col = 0                  'Start at col 0
+  GridView.Row = 0                  'Start at row 0
+  GridView.ColSel = gnNumFields - 1 'End at the last col
+  GridView.FillStyle = 1            'Repeat for all cols
+  GridView.ColAlignment(-1) = 0     'Align all left
+  'GridView.CellFontBold = True      'Set bold
+  GridView.CellFontUnderline = True 'Set underline
+  
+  'Put field names into top (0) row
+  For i = 0 To gnNumFields - 1
+    GridView.TextMatrix(0, i) = gaFieldList(i)
+  Next
+  
+  'Start at first record
+  recTable.movefirst
+  cnt = 1
+  Do While Not recTable.EOF
+    GridView.Rows = cnt + 1         'Add another row
+    For i = 0 To gnNumFields - 1
+      lcStr = recTable.Fields(gaFieldList(i)).Value
+      lcType=TypeName(lcStr)
+      if lcType="Null" then
+        lcStr=""
+      end if
+      GridView.TextMatrix(cnt, i) = lcStr
+    Next
+    recTable.movenext
+    cnt = cnt + 1
+  Loop
+  
+  lblMessage.caption = gcTableName & " listing"
+  
+End Sub
+
+'-----------------------------------------------------
+Sub ChangeRecord2()
+  'Modify the second record to test update
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  glUpdRecOK = f
+  
+  On Error Resume Next
+  
+  recTable.movefirst
+  recTable.movenext
+  
+  recTable.Update "Evaluation", "Hired"
+
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred updating a record." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+    
+  glUpdRecOK = t
+  ViewRecs
+
+End Sub
+
+'-----------------------------------------------------
+Sub DeleteTable()
+  'Delete a table using Drop
+  Dim llDelOK
+  glDelTableOK = f
+  
+  If Mid(gcTableName, 1, 4) = "MSys" Then
+    MsgBox "Sorry, can't delete this table.", , "Notice"
+    Exit Sub
+  End If
+  
+  If gcTableName = "" Then
+    MsgBox "Please pick a table to delete.", , "Notice"
+    Exit Sub
+  End If
+  
+  llDelOK = MsgBox("Are you sure you want to delete " & gcTableName & "?", vbYesNo + vbQuestion, "Warning")
+  If llDelOK = 7 Then
+    Exit Sub
+  End If
+  
+  On Error Resume Next
+  Set recTable = CreateObject("adoce.recordset")
+  
+  recTable.open "drop table " & gcTableName
+  
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred deleting the table." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+    
+  glDelTableOK = t
+  glOpenOK = f
+  Set recTable = Nothing
+  ListTables
+
+End Sub
+
+'-----------------------------------------------------
+Sub DeleteIndex()
+  'Delete an Index using Drop
+  Dim llDelOK
+  glDelTableOK = f
+  
+  If gcTableName = "" Then
+    MsgBox "Please pick an Index to delete.", , "Notice"
+    Exit Sub
+  End If
+  
+  llDelOK = MsgBox("Are you sure you want to delete " & gcTableName & "?", vbYesNo + vbQuestion, "Warning")
+  If llDelOK = 7 Then
+    Exit Sub
+  End If
+  
+  On Error Resume Next
+  Set recTable = CreateObject("adoce.recordset")
+  
+  recTable.open "drop Index " & gcTableName
+  
+  If (Err.Number <> 0) Then
+    MsgBox "An error occurred deleting the index." & vbCrLf & _
+    Err.Number & " - " & Err.Description
+    Err.Clear
+    Exit Sub
+  End If
+    
+  glDelTableOK = t
+  glOpenOK = f
+  Set recTable = Nothing
+  ListIndexes
+
+End Sub
+
+'-----------------------------------------------------
+Sub GridView_Click()
+  'Get name of table & display it
+  'List of table names kept in array gaTableList
+  gcTableName = GridView.Text
+  lblMessage.Caption = gcTableName
+End Sub
+
+'-----------------------------------------------------
+Sub ViewFields()
+  'Display all the fields in a table
+  Dim n, lcString
+  lcString = ""
+  
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  If recTable.Fields.Count = 0 Then
+    MsgBox "There are no fields in this table.", , "Notice"
+    Exit Sub
+  End If
+
+  For n = 0 To recTable.Fields.Count - 1
+    lcString = lcString & CStr(n) & " - " & recTable.Fields(n).Name & vbCrLf
+  Next
+  MsgBox lcString, , "List of fields"
+  
+End Sub
+
+'-----------------------------------------------------
+Sub GetFields()
+  'Put all the fields in a table into an array
+  Dim n, lcString
+  lcString = ""
+  
+  If glOpenOK = f Then
+    MsgBox "Please open table first", , "Notice"
+    Exit Sub
+  End If
+  
+  If recTable.Fields.Count = 0 Then
+    MsgBox "There are no fields in this table.", , "Notice"
+    Exit Sub
+  End If
+
+  For n = 0 To recTable.Fields.Count - 1
+    ReDim Preserve gaFieldList(n)
+    gaFieldList(n) = recTable.Fields(n).Name
+    'lcString = lcString & CStr(n) & " - " & gaFieldList(n) & vbCrLf
+  Next
+  
+  'MsgBox lcString, , "List of " & CStr(n) & " fields"
+  
+  gnNumFields = n
+  
+End Sub
+
+'=======================
+  'Test program without any controls
+  
+  'List all tables in MSysTables
+  'ListTables
+  
+  'Put the tables into a global array
+  'GetTables
+  
+  'Check to see if a table exists in global array
+  'gcTableName = "xyEmployees"
+  'CheckForTable
+  
+  'If the table exists, delete it
+  'If glTableExists = t Then
+  '  DeleteTable
+  '  If glDelTableOK = t Then
+  '    ListTables
+  '  End If
+  'End If
+  
+  'If the table doesn't exist then create it
+  'CheckForTable
+  'If glTableExists = f Then
+  '  CreateTable
+  'End If
+  
+  'If the table exists then open it
+  'GetTables
+  'CheckForTable
+  'If glTableExists = t Then
+  '  OpenTable
+  'End If
+  
+  'If the table opened all right, add a record
+  'If glOpenOK = t Then
+  '  MsgBox "Table Opened OK", , "ADOCE Test"
+  '  'CloseTable
+  '  AddRecord1
+  '  If glAddRecOK = t Then
+  '    ViewRecs
+  '    AddRecord2
+  '    If glAddRecOK = t Then
+  '      ViewRecs
+  '      If glAddRecOK = t Then
+  '        ChangeRecord2
+  '        ViewRecs
+  '      End If
+  '    End If
+  '   Else
+  '    MsgBox "AddRecord failed", , "ADOCE Test"
+  '  End If
+  '  CloseTable
+  'Else
+  '  MsgBox "Table Failed to open", , "ADOCE Test"
+  'End If
+
+'=======================
+
+
+</pre></BODY>
+</HTML>

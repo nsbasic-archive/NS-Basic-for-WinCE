@@ -1,0 +1,353 @@
+------------ Pocket PC ------------- 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE ARM) Release'.
+--------------------Configuration: VNSB - Win32 (WCE ARM) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE SH3) Release'.
+--------------------Configuration: VNSB - Win32 (WCE SH3) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE MIPS) Release'.
+--------------------Configuration: VNSB - Win32 (WCE MIPS) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+------------ PPC ------------- 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE SH3) Release'.
+--------------------Configuration: VNSB - Win32 (WCE SH3) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE MIPS) Release'.
+--------------------Configuration: VNSB - Win32 (WCE MIPS) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+------------ HPC 2000 ------------- 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE ARM) Release'.
+--------------------Configuration: VNSB - Win32 (WCE ARM) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE MIPS) Release'.
+--------------------Configuration: VNSB - Win32 (WCE MIPS) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+------------ HPC/Pro ------------- 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE ARM) Release'.
+--------------------Configuration: VNSB - Win32 (WCE ARM) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE SH3) Release'.
+--------------------Configuration: VNSB - Win32 (WCE SH3) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE SH4) Release'.
+--------------------Configuration: VNSB - Win32 (WCE SH4) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE MIPS) Release'.
+--------------------Configuration: VNSB - Win32 (WCE MIPS) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+E:\NSBCE6\VNSB\Source\VNSBDoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+------------ Pocket PC 2003 ------------- 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE ARMV4) Release'.
+--------------------Configuration: VNSB - Win32 (WCE ARMV4) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+e:\nsbce6\vnsb\source\vnsbdoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Standard SDK - ARMV4 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE ARMV4) Release'.
+--------------------Configuration: VNSB - Win32 (WCE ARMV4) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+e:\nsbce6\vnsb\source\vnsbdoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Standard SDK - ARMV4i 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE ARMV4I) Release'.
+--------------------Configuration: VNSB - Win32 (WCE ARMV4I) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+e:\nsbce6\vnsb\source\vnsbdoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)
+Standard SDK - MIPSII 
+Deleting intermediate files and output files for project 'VNSB - Win32 (WCE MIPSII) Release'.
+--------------------Configuration: VNSB - Win32 (WCE MIPSII) Release--------------------
+Compiling resources...
+Compiling...
+CodeDlg.cpp
+ComObjectDlg.cpp
+MainFrm.cpp
+MenuEditorDlg.cpp
+NSBForm.cpp
+NSBFormObjectView.cpp
+PropEditorDlg.cpp
+SelectObjectDlg.cpp
+StdAfx.cpp
+VNSB.cpp
+VNSBDlg.cpp
+VNSBDoc.cpp
+e:\nsbce6\vnsb\source\vnsbdoc.cpp(463) : warning C4101: 'dwChecksumSeed' : unreferenced local variable
+VNSBView.cpp
+Generating Code...
+Linking...
+Build target not copied to remote machine during a batch build.
+
+VNSB.exe - 0 error(s), 1 warning(s)

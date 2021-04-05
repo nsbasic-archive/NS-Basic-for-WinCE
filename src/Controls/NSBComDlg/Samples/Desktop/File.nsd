@@ -1,0 +1,86 @@
+Sub CommandButton1_Click
+   If NSComDlg1.ShowOpen Then
+      TextBox1.Text = NSComDlg1.FileName      
+   End If
+End Sub
+
+Sub Form1_Load
+   NSComDlg1.Reset "File"
+End Sub
+Sub CommandButton2_Click
+   NSComDlg1.Flags.OverwritePrompt = PromptExists.Value
+   If NSComDlg1.ShowSave Then
+      TextBox1.Text = NSComDlg1.FileName      
+   End If
+End Sub
+
+Sub CommandButton3_Click
+   NSComDlg1.helpFile = "c:\program files\nsbasic\palm\lang\english.chm"
+   NSComDlg1.HelpCommand = 3
+   NSComDlg1.HelpContext = 0
+   NSComDlg1.ShowHelp
+End Sub
+
+
+'*** Begin Generated Code ***
+
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "NSBasic.ComDlg.1", "NSComDlg1", 8, 8, 82, 21, Form1
+      '--------
+      AddObject "CommandButton", "CommandButton1", 96, 8, 108, 21, Form1
+      CommandButton1.Caption = "Open file"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton2", 208, 8, 108, 21, Form1
+      CommandButton2.Caption = "Save file"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox1", 8, 72, 528, 24, Form1
+      TextBox1.BackColor = 16777215
+      TextBox1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 8, 48, 80, 24, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Selected file:"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "CheckBox", "PromptExists", 8, 112, 144, 24, Form1
+      PromptExists.BackColor = 12632256
+      PromptExists.Caption = "Prompt if the file exists"
+      PromptExists.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton3", 148, 176, 108, 21, Form1
+      CommandButton3.Caption = "CommandButton3"
+      CommandButton3.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***
+

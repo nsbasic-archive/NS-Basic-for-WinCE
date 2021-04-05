@@ -1,0 +1,72 @@
+How to create a PictureBox.ocx project
+
+These are for eVC4. They work OK in eVC3 too. There are differences from the description below, but things pretty much work out OK if you ignore them.
+
+1) Open EVC3
+
+2) Choose New -> Project -> WCE MFC ActiveX Control Wizard
+
+3) Choose Location... NSCEPictureBox (the folder containing evc4, desktop, src, and rsc).
+
+4) Project name: NSCEPictureBox (yes, the same).  Leave all other settings as default.
+
+5) Press OK, get dialogue "Step 1 of 2."  Change nothing; press Next ->
+
+6) Get dialogue "Step 2 of 2."  Change threading model to "both."  Press Finish.
+
+7) Should say something like "A class ID already exists in the registry.  Use existing class IDs for all 
+classes?"  Press "yes."  Also dismiss the New Project Information box.
+
+8) Exit EVC3.
+
+9) Manually change the name of the NSCEPictureBox folder (the one inside the other NSCEPictureBox 
+folder and parallel to evc4) to evc3.
+
+10) Go into the evc3 folder and delete all files except
+
+NSCEPictureBox.vcw
+NSCEPictureBox.vcl
+NSCEPictureBox.vcb
+NSCEPictureBox.vcp
+
+So, basically, keep NSCEPictureBox.vc*
+
+It doesn't matter if you keep the subfolder for the Debug executable and stuff.
+
+11) Start EVC3 again.
+
+12) Open the new project workspace in the evc3 folder and go to the FileView in the project panel.
+
+13) Delete all the files from the project panel.  Don't delete the folders, though.
+
+14) Project->add to project->files
+
+15) On the Insert Files Into Project, navigate to the src directory.
+
+16) Change the file type to all files.
+
+17) Add all the files (but not the folders).
+
+18) Repeat 14-18 for the rsc directory, but this time add the first two files (i.e., don't add thumbs.db).
+
+19) In the project panel, delete file_ver.cpp from the project.
+
+20) In the project panel, delete gifTransparent.txt and all files after that, including the OC files.
+
+21) Click on NSCEPictureBox Files in the project panel.
+
+22) Choose Settings...
+
+23) Click on the C/C++ tab.
+
+24) From the list of options, remove the following:
+
+/Fp"ARMV4Dbg/NSCEPictureBox.pch"
+/Yu"stdafx.x"
+
+Unless your fonts are weird, they should be on one line (scroll down a couple of lines in the text box.)
+
+25) In the same panel, turn on "Not using Precompiled Headers".
+
+Now it should work.  There's one warning that you may get about not being able to change the offset of 
+an address.  Ignore it.

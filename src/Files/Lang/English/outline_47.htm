@@ -1,0 +1,391 @@
+<html>
+
+<head>
+<meta name=Generator content="Microsoft Office HTML Filter 2.0">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=themeData href="outline_47_files/themedata.thmx">
+<link rel=colorSchemeMapping href="outline_47_files/colorschememapping.xml">
+<style>
+<!--
+ 
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h4
+	{
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	text-decoration:underline;}
+span.Heading4Char
+	{
+	font-family:"Arial","sans-serif";
+	font-weight:bold;
+	text-decoration:underline;}
+p.code, li.code, div.code
+	{
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Courier New";}
+.MsoPapDefault
+	{
+	margin-bottom:10.0pt;
+	line-height:115%;}
+-->
+</style>
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<h4><b><u><font size=1 face=Arial><span
+style='font-size:8.0pt'>Format                                                                 Functions</span></font></u></b></h4>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FORMATCURRENCY</span></font>(<i><span style='font-style:italic;'>expression</span></i>[,
+<i><span style='font-style:italic;'>fractionaldigits</span></i>[,</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                <i><span style='font-style:italic;'>leadingdigit</span></i>[, <i><span
+style='font-style:italic;'>parensfornegative</span></i>[,
+<i><span style='font-style:italic;'>groupdigits</span></i>]]]])</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FORMATDATETIME</span></font>(<i><span style='font-style:italic;'>date</span></i>[,
+<i><span style='font-style:italic;'>formatname</span></i>])</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FORMATNUMBER</span></font>(<i><span style='font-style:italic;'>expression</span></i>[,
+<i><span style='font-style:italic;'>fractionaldigits</span></i>[,</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                <i><span style='font-style:italic;'>leadingdigit</span></i>[, <i><span
+style='font-style:italic;'>parensfornegative</span></i>[,
+<i><span style='font-style:italic;'>groupdigits</span></i>]]]])</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FORMATPERCENT</span></font>(<i><span style='font-style:italic;'>expression</span></i>[,
+<i><span style='font-style:italic;'>fractionaldigits</span></i>[,</p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>                <i><span style='font-style:italic;'>leadingdigit</span></i>[, <i><span
+style='font-style:italic;'>parensfornegative</span></i>[,
+<i><span style='font-style:italic;'>groupdigits</span></i>]]]])</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Description</span></font></b></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FORMATCURRENCY, FORMATNUMBER, and FORMATPERCENT return a
+string obtained by formatting the given expression as a currency, number, or
+percent. The required parameter, <i><span
+style='font-style:italic;'>expression</span></i>, is
+any valid expression of the given type. The optional parameter, <i><span style='font-style:italic;'>fractionaldigits</span></i>, is a numeric expression representing the
+number of digits to print after the decimal, the default is -1 which uses the
+system settings. The optional parameters, <i><span
+style='font-style:italic;'>leadingdigit</span></i>, <i><span style='font-style:italic;'>parensfornegative</span></i>, and <i><span
+style='font-style:italic;'>groupdigits</span></i>,
+are numeric expressions or constants, see below. <i><span style='font-style:italic;'>leadingdigit</span></i>
+specifies whether a leading zero is printed for numbers with only fractional
+parts. <i><span style='font-style:italic;'>parensfornegative</span></i>, specifies if negative
+values are to be printed with enclosing parentheses. <i><span style='font-style:italic;'>groupdigits</span></i>
+specifies if numbers are to be printed in groups using the systems group
+delimiter</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Table&nbsp;</span></font></b><b><span style='font-weight:bold;'>11</span></b><b><span style='font-weight:bold;'>: Tristate values</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.8pt;border-collapse:collapse;
+ border:none;'>
+ <tr height=17 style='height:12.9pt'>
+  <td width=106 height=17 valign=top bgcolor="#B3B3B3" style='width:79.35pt;
+  border:solid windowtext 1.0pt;
+  background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;height:12.9pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Name</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top bgcolor="#B3B3B3" style='width:42.05pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:12.9pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Value</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top bgcolor="#B3B3B3" style='width:94.6pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:12.9pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Description</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>True</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>-1</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>True</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>False</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>0</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>False</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>UseDefault</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>-2</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Use system settings</span></font></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><font size=2 face=GillSans><span style='font-size:11.0pt;
+line-height:115%;font-family:GillSans'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>FORMATDATETIME returns a string obtained by formatting a
+date. The required parameter, <i><span
+style='font-style:italic;'>date</span></i>, is any
+valid expression that represents a date. The optional parameter, <i><span style='font-style:italic;'>formatname</span></i>, is a numeric expression or constant that
+specifies how the date is formatted.</span></font></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Table</span></font></b><b><font face="Times New Roman"><span style='font-family:"Times New Roman","serif";
+font-weight:bold;'>&nbsp;</span></font></b><b><span style='font-weight:bold;'>12</span></b><b><span style='font-weight:bold;'>: formatname constants</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.8pt;border-collapse:collapse;
+ border:none;'>
+ <tr height=19 style='height:14.25pt'>
+  <td width=106 height=19 valign=top bgcolor="#B3B3B3" style='width:79.35pt;
+  border:solid windowtext 1.0pt;
+  background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;height:14.25pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Constant</span></font></p>
+  </td>
+  <td width=56 height=19 valign=top bgcolor="#B3B3B3" style='width:42.05pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:14.25pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Value</span></font></p>
+  </td>
+  <td width=126 height=19 valign=top bgcolor="#B3B3B3" style='width:94.6pt;
+  border:solid windowtext 1.0pt;border-left:none;background:#B3B3B3;padding:0in 1.8pt 0in 1.8pt;
+  height:14.25pt'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Description</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbGeneralDate</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>0</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Short date, Long time</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbLongDate</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>1</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Long date</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbShortDate</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>2</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Short date</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbLongTime</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>3</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Long time</span></font></p>
+  </td>
+ </tr>
+ <tr height=17 style='height:13.0pt;'>
+  <td width=106 height=17 valign=top style='width:79.35pt;border:solid windowtext 1.0pt;
+  border-top:none;
+  padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>vbShortTime</span></font></p>
+  </td>
+  <td width=56 height=17 valign=top style='width:42.05pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>4</span></font></p>
+  </td>
+  <td width=126 height=17 valign=top style='width:94.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 1.8pt 0in 1.8pt;height:13.0pt;'>
+  <p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+  line-height:115%'>Short time</span></font></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>&nbsp;</span></font></b></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Example</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>REM Format Functions </span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>DIM UseDefault</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>UseDefault=-2</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Currency</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATCURRENCY(-3.5, -1, _</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>       TristateUseDefault,
+True)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATCURRENCY(123456, 0,</span></font>True,
+False, True)</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Date/Time</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATDATETIME(NOW)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATDATETIME(Birthdate, vbLongDate)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'General Numbers</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATNUMBER(-0.1429, 6,</span></font>False)</p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATNUMBER(987654.321, 3, True,
+False, True)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>'Percentages</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATPERCENT(0.007, 2, False)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>PRINT FORMATPERCENT(1234.56, 0,</span></font>True,
+False, False)</p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Output</span></font></b></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>($3.50)</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>$123,456</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>8/18/1998 10:44 PM</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>August 18, 1998</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>-.142900</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>987,654.321</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>.70%</span></font></p>
+
+<p class=code><font size=1 face="Courier New"><span style='font-size:8.0pt'>123456%</span></font></p>
+
+<p class=MsoNormal><i><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-style:italic;'>(sample output is system dependant)</span></font></i></p>
+
+<p class=MsoNormal><b><font size=2
+face=Calibri><span style='font-size:11.0pt;line-height:115%;font-weight:bold;'>Related Items</span></font></b></p>
+
+</div>
+
+</body>
+
+</html>

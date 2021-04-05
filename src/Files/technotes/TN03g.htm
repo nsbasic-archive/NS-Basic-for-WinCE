@@ -1,0 +1,772 @@
+﻿<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 03g: Using the Grid Object</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+	  <h2>Tech Note 03g: Using the Grid Object</h2 >
+	  <h3>April 02, 2008
+	  </h3>
+	  <P>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<blockquote>
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">
+There is additional documentation on Microsoft's website.</A>
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>The Grid Object displays and operates on tabular data. It allows complete flexibility to sort, merge, and format tables containing strings. It is included as part of the "ActiveX Control Objects 1.0" download, available at Microsoft's web site. See <A HREF="TN02.htm">Tech Note 02</A> for more information on how to load this module onto your system.</P>
+<P>It can be used to implement a "sorting" data display that groups information by category, allowing the user to modify the order in which information is presented or to create a spreadsheet.</P>
+
+<P>To create a Grid Object, use a command such as the following:</P>
+<P>&#9;<CODE>addObject "Grid","Grid",0,0,215,150</code></P>
+<H4>Properties</H4>
+<P>Properties either set or return values. The syntax is</P>
+<CODE><P>msgbox Grid.CellAlignment 'get the current CellAlignment</P>
+<P>Grid.CellAlignment=9 'set the CellAlignment to general</P>
+</CODE><P>Most properties refer to the current cell or all selected cells. The <CODE>FillStyle</CODE> property sets this.</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<P>Property Name</TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellAlignment&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Sets/Returns how value are aligned in cells<BR>
+0 Left Top<BR>
+1 Left Center (default for strings)<BR>
+2 Left Bottom<BR>
+3 Center Top<BR>
+4 Center Center<BR>
+5 Center Bottom<BR>
+6 Right Top<BR>
+7 Right Center (default for numbers)<BR>
+8 Right Bottom<BR>
+9 General: Left Ctr for strings, Rt Ctr for number</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellBackColor&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Color</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellForeColor </CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Color</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellFontBold</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellFontItalic </CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False&#9;&#9;&#9;</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellFontName</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>String name of font</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellFontSize</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Fontsize in points</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellFontStrikeThrough</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellFontUnderline</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellHeight</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>height of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellLeft</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>left of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellTop</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>top of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellWidth</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>width of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>CellTextStyle</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>text style<BR>
+0 Flat (normal text)<BR>
+1 Raised<BR>
+2 Inset<BR>
+3 Raised Light<BR>
+4 Inset Light</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Clip</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Set/returns contents of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Col</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Col position of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Row&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Row position of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ColAlignment&#9;&#9;&#9;&#9;&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Sets alignment for specified row: see CellAlignment <BR>
+GridCtrl1.ColAlignment(2)=9</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ColData</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Assigns a specific number to col<BR>
+GridCtrl1.ColData(2)=3</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>RowData</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Assigns a specific number to row <BR>
+GridCtrl1.RowData(1)=4&#9;&#9;&#9;&#9;</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ColisVisible</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False<BR>
+GridCtrl1.ColisVisible(1)</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ColPos&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns distance from upper left corner</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ColPosition</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Moves a column<BR>
+GridCtrl1.ColPosition(1)=2</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>RowPosition&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Moves a row<BR>
+GridCtrl1.RowPosition(1)=2</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Cols&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets the number of columns </TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Rows</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>or sets the number of rows </TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ColSel&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets the current selected column</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>RowSel</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets the current selected row</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ColWidth</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets the column width in twips<BR>
+GridCtrl1.ColWidth(1)=1440</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>FillStyle</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>0:operations affect current cell, 1:selected cells</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>FocusRect</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>0:no box, 1:light box, 2:heavy box</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ForeColor</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>color</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ForeColorSel&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>color</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>GridColor</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>color</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>GridLines</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Defines how lines look between cells<BR>
+0 No Lines. No lines in between cells.<BR>
+1 Lines(default for GridLines). Sets line style between cells to normal lines.<BR>
+2 Inset Lines. Sets line style between cells to inset lines.<BR>
+3 Raised Lines. Sets line style between cells to raised lines</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>GridLineWidth</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Values from 0 to 10</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>HighLight</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>0 don't hilite, 1 always, 2 if object has focus</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>LeftCol</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets the leftmost visible cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Redraw</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False. Redraw after each change?</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>RowHeight</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Returns or stes height of specified row<BR>
+GridCtrl1.RowHeight(1)=1440</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>RowHeightMin</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>Mimimum height for a row</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>RowIsVisible</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False<BR>
+GridCtrl1.RowIsVisible(1)</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>RowPos</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns distance from upper left corner</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ScrollBars</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>0 none, 1 horizontal, 2 vertical, 3 both</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>ScrollTrack</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False. Update object while using scrollbar?</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>SelectionMode&#9;</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>0 normal selection, 1 by row, 2 by column</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Sort</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>sorts rows base on current selection<BR>
+0 None<BR>
+1 Generic Ascending. Guesses whether text is string or number<BR>
+2 Generic Descending.<BR>
+3 Numeric Ascending. Converts strings to numbers.<BR>
+4 Numeric Descending<BR>
+5 String Ascending. Case insensitive<BR>
+6 String Descending. Case insensitive<BR>
+7 String Ascending. Case sensitive<BR>
+8 String Descending. Case sensitive<BR>
+9 Custom. Uses Compare event to compare rows</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Text</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets contents of current cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>TextArray</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets cell specified by cellIndex<BR>
+cellIndex is calculated as row*cols + col<BR>
+GridCtrl1.TextArray(cellIndex)</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>TextMatrix</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets value of specified cell<BR>
+GridCtrl1.TextMatrix(r,c)</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>TextStyle</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>One of the following:<BR>
+0 Flat (normal text)<BR>
+1 Raised<BR>
+2 Inset<BR>
+3 Raised Light<BR>
+4 Inset Light</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>TopRow</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns or sets the topmost visible cell</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>Version</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>returns the version of the Grid Control</TD>
+</TR>
+<TR><TD WIDTH="29%" VALIGN="TOP">
+<CODE><P>WordWrap</CODE></TD>
+<TD WIDTH="71%" VALIGN="TOP">
+<P>True/False</TD>
+</TR>
+</TABLE>
+
+<H4>&nbsp;</H4>
+<H4>Methods</H4>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<P>Method Name </TD>
+<TD WIDTH="19%" VALIGN="TOP">
+<P>Arguments </TD>
+<TD WIDTH="64%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<CODE><P>AddItem</CODE></TD>
+<TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>item[,index] </CODE></TD>
+<TD WIDTH="64%" VALIGN="TOP">
+<P>Adds a row. Use a tab separated string for multiple columns. If index not specified, new row goes at end.</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<CODE><P>Clear</CODE></TD>
+<TD WIDTH="19%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="64%" VALIGN="TOP">
+<P>clears all cells</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<CODE><P>HideGridLines</CODE></TD>
+<TD WIDTH="19%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="64%" VALIGN="TOP">
+<P>Hides the lines between the grid cells</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<CODE><P>Move</CODE></TD>
+<TD WIDTH="19%" VALIGN="TOP">
+<code><P>left[,top][,width][,height]</code></TD>
+<TD WIDTH="64%" VALIGN="TOP">
+<P>Move the grid to new coordinates. Since there is no hide or show, this can be used to move a grid offscreen. Units are in twips: there are 15 twips per pixel.</TD>
+</TR>
+<TR><TD WIDTH="17%" VALIGN="TOP">
+<CODE><P>RemoveItem&#9;</CODE></TD>
+<TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>index</CODE></TD>
+<TD WIDTH="64%" VALIGN="TOP">
+<P>Deletes the specified row.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<H4>Events</H4>
+<P>&nbsp;</P>
+<P>Events cause subroutines in your program to be called, if they exist. You should name the subroutine <CODE>&lt;objectName&gt;_evenName</CODE>.</P>
+<P>&nbsp;</P>
+<P>For example, to capture leaving a cell in GridCtrl1, you will need</P>
+<CODE><P>&#9;sub Grid_LeaveCell<BR>
+&#9;&#9;'your code<BR>
+&#9;end sub</P>
+</CODE><P>&nbsp;</P>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<P>Event Name </TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>Arguments </TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>Click </CODE></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<CODE><P></CODE></TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Cell clicked in</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>Compare </CODE></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<CODE><P>row1,row2</CODE></TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Called by Sort with option 9. Return minus 1 if row1 is less, 0 if equal, 1 if row1 is greater than row2.</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>EnterCell&#9;</CODE></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Called when selecting a cell.</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>LeaveCell&#9;</CODE></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Called when de selecting a cell</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>RowColChange&#9;</CODE></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Called when cell changes</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>Scroll&#9;&#9;&#9;</CODE></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Called when object is scrolled</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<CODE><P>SelChange&#9;&#9;</CODE></TD>
+<TD WIDTH="16%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="65%" VALIGN="TOP">
+<P>Called when selection is changed.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<H4>Remarks</H4>
+<P>&nbsp;</P>
+<P>1. The Row and Col properties specify the current cell in a Grid. You can specify the current cell in code, or the user can change it at run time using the mouse or the arrow keys. The Text property references the contents of the current cell.</P>
+<P>2. If a cell's text is too long to be displayed in the cell, and the WordWrap property is set to True, the text wraps to the next line within the same cell. To display the wrapped text, you may need to increase the cell's column width (ColWidth property) or row height (RowHeight property).</P>
+<P>3. The Cols and Rows properties are used to determine the number of columns and rows in a Grid control.</P>
+<P>4. Russ Smith, an NS Basic/CE user, notes on the topic of getting two grids to scroll together:</P>
+<P>I solved the problem of having a title grid that appears to scroll with the record grid. The following Sub is called when I first load the record grid and every time the _Scroll() method is called. When I load the grid, I set recTitle.colData(0) to -1 to force a redraw.</P>
+<pre><P>Sub ShowTitles()
+  If recTitle.colData(0)&lt;&gt;recGrid.leftCol Then
+    recTitle.redraw = False
+    recTitle.cols = RS.fields.Count 'just to be sure we have enough slots
+    Dim gC
+    gC = recGrid.leftCol
+    Do
+      recTitle.textMatrix(0,gC-recGrid.leftCol)=RS.fields(gC).name
+      gC=gC+1
+    Loop While recGrid.ColIsVisible(gC)
+    recTitle.colData(0)=recGrid.leftCol
+    recTitle.Cols = gC-recGrid.leftCol
+    recTitle.redraw = True
+  End If
+End Sub
+</pre>
+As you can see, it really doesn't scroll the other grid, but the titles appear over the appropriate columns so I'm happy. I tried setting recTitle.leftCol to recGrid.leftCol but it just ignored it.</P>
+<P>5. If you're feeding data from an ADOCE database into a Grid control, Russ notes:</P>
+<P>If you use recGrid.rowData(idx) to store RS.absolutePosition as you load the grid with record data, the following code sets the record pointer to the same record as is selected in the grid:</P>
+<CODE><P>RS.Move recGrid.rowData(recGrid.rowSel)-1, adBookmarkFirst</P>
+</CODE>
+<P>6. If you change the any one of the bounds properties (Left, Top, Width, Height, the other 3 will be set to -1. Microsoft has no plans to correct this bug.
+<p>7. Bill Heintz <a href="mailto:wiliamh63&copy; verizon.net" target="_top">wiliamh63&copy; verizon.net</a> suggests: Remark #4 mentions the work of programmer Russ Smith.  This solution is workable.
+
+<p>Unfortunately, I wanted to create a spreadsheet like application with a row header and a column header that could scroll.   I wanted to allow for different sized columns and rows.  I could not for the life of me determine why Microsoft wouldn’t allow the you to intercept the _Scroll() method and then tell your titles to move accordingly.  Microsoft wouldn’t allow you to move the title rows unless they had their own scroll bars.
+
+<p>The solution is to first set-up the title grid objects.  Make sure your row title bar has the vertical scroll bar by setting: GridRowTitles.ScrollBars = 2.  The column titles need the horizontal scroll bar: GridColTitles.ScrollBars = 1.  Lastly, draw the main grid object on top, covering the title scroll bars.  Set this grid area to accept both scrolls.
+
+<p>This code then accepts the main scroll and aligns the title rows accordingly:
+
+<pre>sub ScrollGrid_scroll()
+'scroll grid, scroll titles when grid scrolled
+ if GridRowTitles.TopRow <> ScrollGrid.TopRow then
+  GridRowTitles.TopRow= ScrollGrid.TopRow
+ end if
+ if GridColTitles.LeftCol <> ScrollGrid.LeftCol then
+ GridColTitles.LeftCol= ScrollGrid.LeftCol
+ end if
+end sub</pre>
+
+<p>The Grid objects accept user clicks and will scroll in response.  To prevent the headers from doing this, simply disable input: 
+
+<pre>GridColTitles.enabled = false
+GridRowTitles.enabled = false</pre>
+
+See Sample Program 2 below.
+
+<HR>
+<H4>Sample Program 1</H4>
+<PRE>
+Rem demonstrate use of Grid Object
+Option Explicit
+addobject "gridctrl.gridctrl.1","grid",0,0,215,150
+grid.cols=3
+grid.rows=9
+makeButton "Text","Text",225,30,50,20
+makeButton "Clear","Clear",225,0,50,20
+makeButton "Bold","B",300,0,20,20
+makeButton "Italic","I",325,0,20,20
+makeButton "Underline","U",350,0,20,20
+makeButton "Strike","S",375,0,20,20
+form_load
+
+Private Sub makeButton(name, prompt, x,y,w,h)
+  addObject "commandButton",name &amp; "Btn",x,y,w,h
+  execute name &amp; "Btn.Text=" &amp; chr(34) &amp; prompt &amp; chr(34)
+end sub
+
+Sub BoldBtn_Click()
+  Dim n
+  n = grid.CellFontBold
+  If n Then
+    grid.CellFontBold = False
+  Else
+    grid.CellFontBold = True
+  End If
+End Sub
+
+Sub ClearBtn_Click()
+  grid.Clear
+End Sub
+
+Sub Form_Load()
+  grid.TextMatrix(0, 0) = "Kenny"
+  grid.TextMatrix(1, 0) = "Carmen"
+  grid.TextMatrix(2, 0) = "Kyle"
+  grid.TextMatrix(3, 0) = "Eric"
+      
+  grid.TextMatrix(0, 1) = "Grossman"
+  grid.TextMatrix(1, 1) = "Crabtree"
+  grid.TextMatrix(2, 1) = "Garrison"
+  grid.TextMatrix(3, 1) = "Cartman"
+      
+  grid.TextMatrix(0, 2) = "Denver"
+  grid.TextMatrix(1, 2) = "Boulder"
+  grid.TextMatrix(2, 2) = "South Park"
+  grid.TextMatrix(3, 2) = "Lakeview"
+   
+  grid.FillStyle = 1
+  grid.Row = 0
+  grid.Col = 0
+  grid.ColSel = 2
+  grid.CellFontBold = True
+  grid.CellFontUnderline = True
+  grid.Col = 0
+End Sub
+
+Sub ItalicBtn_Click()
+  Dim n
+  n = grid.CellFontItalic
+  If n Then
+    grid.CellFontItalic = False
+  Else
+    grid.CellFontItalic = True
+  End If
+End Sub
+
+Sub StrikeBtn_Click()
+  Dim n
+  n = grid.CellFontStrikeThrough
+  If n Then
+    grid.CellFontStrikeThrough = False
+  Else
+    grid.CellFontStrikeThrough = True
+  End If
+End Sub
+
+Sub TextBtn_Click()
+  grid.Text = inputBox("Input Text","Grid Object")
+End Sub
+
+Sub UnderlineBtn_Click()
+  Dim n
+  n = grid.CellFontUnderline
+  If n Then
+    grid.CellFontUnderline = False
+  Else
+    grid.CellFontUnderline = True
+  End If
+End Sub</PRE>
+
+
+<HR>
+<H4>Sample Program 2</H4>
+This sample uses the above to demonstrate the smooth scrolling with different sized columns and rows:<br>
+(Submitted by Bill Heintz <a href="mailto:wiliamh63&copy; verizon.net" target="_top">wiliamh63&copy; verizon.net</a>)
+<pre>
+
+option explicit
+
+dim MaxRows, MaxCols
+MaxRows = 31
+MaxCols = 15
+MainForm_Show  'Default Form
+
+'*******Main Routine*********
+call startUp
+call LoadBlock
+'*******End Main Routine*********
+
+'******* Routines **********
+sub LoadBlock()
+  'populates the table
+ dim i, j
+  for j = 0 to MaxCols
+   for i = 0 to MaxRows
+    ScrollGrid.textmatrix(i,j) = i & "," & j
+   next 'i
+   'replace with yyour own code: give columns different widths:
+   ScrollGrid.colwidth(j)= 350 + j * 20
+   GridColTitles.colwidth(j)= 350 + j * 20
+ 
+ next 'j
+ 'can have different row heights, too:
+ ScrollGrid.rowheight(12)= 350
+ GridRowTitles.rowheight(12)= 350
+ 
+ 'to set to 0,0
+ ScrollGrid.Row = 0
+ ScrollGrid.Col = 0
+ GridRowTitles.Row = 0
+end sub
+'************************
+sub setRow(myRow)
+ 'sets-up current grid row parameters
+ ScrollGrid.RowHeight(myRow) = 203
+ GridRowTitles.RowHeight(myRow) = 203
+ GridRowTitles.Col = 0
+ GridRowTitles.Row = myRow
+ GridRowTitles.CellAlignment = 7
+ ScrollGrid.CellFontName = "Courier New"
+ GridRowTitles.textmatrix(MyRow,0) = MyRow 
+end sub 'setRow
+'************************
+sub startUp
+ dim i,j
+ 'set-up grid - Col width you set
+ GridRowTitles.ColWidth(0) = 353
+ for i = 0 to MaxRows 
+  setRow(i)
+ next 'i
+ for j = 0 to MaxCols
+  GridColTitles.textmatrix(0,j) = j
+  ScrollGrid.ColWidth(j) = 270
+  GridColTitles.ColWidth(j) = 270
+ next 'j 
+ GridColTitles.enabled = false
+ GridRowTitles.enabled = false
+end sub  'startUp
+'******* End Routines ******
+
+'*******Grid Routines ********
+sub ScrollGrid_scroll()
+'scroll grid, scroll titles when grid scrolled
+ if GridRowTitles.TopRow <> ScrollGrid.TopRow then
+  GridRowTitles.TopRow= ScrollGrid.TopRow
+ end if
+ if GridColTitles.LeftCol <> ScrollGrid.LeftCol then
+ GridColTitles.LeftCol= ScrollGrid.LeftCol
+ end if
+end sub
+'******* End Grid Routines ****
+
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "ScrollGrid"
+Dim AppPath: AppPath = "C:\Documents and Settings\heintzwf\my documents\Private\Personal\NSItems\Projects\ScrollGrid.txt"
+
+MainForm_Show 'Default Form
+
+Dim MainForm_Temp
+Sub MainForm_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(MainForm_Temp) Then
+      AddObject "Frame", "MainForm_Form", 0, 0, Output.Width, Output.Height
+      MainForm_Form.Visible = False
+      MainForm_Form.BackColor = 12632256
+      AddObject "PictureBox", "MainForm", 0, 0, 0, 0, MainForm_Form
+      MainForm.BorderStyle = 0
+      MainForm.Move 0, 0, MainForm_Form.Width * 15, MainForm_Form.Height * 15
+      Set MainForm_Temp = MainForm
+      MainForm_Form.Caption = "MainForm"
+   
+      Execute "AddObject " & chr(34) & "GridCtrl.GridCtrl" & chr(34) & ", " & chr(34) & "GridColTitles" & chr(34) & ", 24, 16, 204, 38, MainForm_Form"
+      GridColTitles.Cols = 16
+      GridColTitles.Rows = 1
+      GridColTitles.ScrollBars = 1
+      '--------
+      Execute "AddObject " & chr(34) & "GridCtrl.GridCtrl" & chr(34) & ", " & chr(34) & "GridRowTitles" & chr(34) & ", 0, 32, 104, 129, MainForm_Form"
+      GridRowTitles.CellAlignment = 7
+      GridRowTitles.Cols = 1
+      GridRowTitles.Rows = 32
+      GridRowTitles.ScrollBars = 2
+      GridRowTitles.ScrollTrack = True
+      '--------
+      Execute "AddObject " & chr(34) & "GridCtrl.GridCtrl" & chr(34) & ", " & chr(34) & "ScrollGrid" & chr(34) & ", 24, 32, 217, 142, MainForm_Form"
+      ScrollGrid.Cols = 16
+      ScrollGrid.Rows = 32
+      '--------
+   End If
+   MainForm_Form.Visible = True
+   MainForm_Load
+End Sub  'MainForm_Show
+
+Sub MainForm_Hide
+   If IsEmpty(MainForm_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   MainForm_Form.Visible = False
+   MainForm_Unload
+End Sub  'MainForm_Hide
+
+'*** End Generated Code ***
+</pre>
+</BODY>
+</HTML>

@@ -1,0 +1,1 @@
+These files are the property of Microsoft, Inc. and are redistributed under the terms of the eMbedded Visual Basic 3.0 EULA.

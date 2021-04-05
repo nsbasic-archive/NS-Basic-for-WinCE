@@ -1,0 +1,327 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>MGCEListView Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>MGCEListView</P>
+</FONT><FONT FACE="Arial"><P>An enhanced ListView Control</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>November 4, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+MGCEListView - ListView Object for Windows CE<BR>
+Written by Mark Gamber, October 1999<BR><BR>
+
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+<HR>
+<IMG SRC="images/ListViewDetail.JPG" ALT="" WIDTH="307" HEIGHT="163"><P>MGCEListView provides a ListView control to programs which use controls
+of this type, such as NS Basic. Note that this object is NOT plug-in
+compatible with the Microsoft ListView object for Windows CE. Like
+the Listview control itself, MGCEListView is a somewhat complex object
+which requires some understanding of the basic listview control.
+
+<P>A Listview control is somewhere between a listbox and a grid. It is
+a two-dimensional control, like a grid, but doesn't allow the user to
+change anything anywhere at any time like a grid. In addition, a listview
+ allows varying views, such as large icons, small icons and
+listings, as is demonstrated by simply changing the view of files in
+Explorer which uses a listview control. In effect, there is only one
+column in a listview control. Therefore, rather than referring to items
+in a listview by row and column, as you would with a grid, items are
+referred to as "items" and "subitems". An "item" is data appearing in
+the leftmost column of a listview when placed in report (or "detailed")
+mode and is the column which contains data a user may directly edit.
+Columns within the same row are referred to as "subitems" and contain
+data the user cannot directly change. Going back to Explorer, the "item"
+column is that which displays the file name. Other columns, such as
+"Size", "Type" and "Attributes", are all "subitems". "Attributes", for
+example, would be subitem four in Explorer (The desktop version of
+Explorer!). The explanation above is for the purpose of understanding
+the following object documentation.
+
+<P>In addition to text data, a Listview control can make use of images.
+This is done through with "image lists" which are nothing more than
+just that: Lists of images. MGCEListView maintains two image lists, one
+for small images (16x16 pixels) and a second for large images (32x32
+pixels). You may use one, both or neither of these image lists as your
+project demands. An image list simply maintains the images for you
+in memory in a numbered list. When adding bitmap files to an image
+list, the first image added is image one and the count increases by
+one for every image you add to the list. If you add ten images to an
+image list and you want to use the last image you added, you want to
+use image ten and so on.
+
+<P>It's important to understand that the MGCEListView is based on the Windows
+Listview common control. For a more indepth look at what a listview
+control is and how it works, refer to Microsoft documentation on the
+control. MGCEListView enhances the control slightly for the purpose of its
+use as an object under Windows CE, but it's still a Windows ListView
+common control underneath it all.
+
+
+<H4>Installation</H4>
+
+<P>Connect your Windows CE device to your desktop using ActiveSync. On the desktop, run the program MGCEListview.exe. Follow the instructions on the screen to complete the installation. 
+<HR>
+
+<H4>Object Creation</H4>
+<CODE>AddObject "MGCEListView.ListView", "LView", 10, 10, 400, 160</CODE>
+
+<HR>
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/ListView.htm">ListView</A> - Demo of Listview functions
+</UL>
+
+<H4>Methods</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>AddContextItem</TD> <TD>Adds an item to the context menu. If the item begins with a dash(-), a separator is added to the menu.<P><CODE>LView.AddContextItem "Item &1"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>AddLgImage</TD> <TD>AddLgImage adds an image to the "large image list". The image must be a standard Windows bitmap file. 16 colors is recommended.<P><CODE>LView.AddLgImage "\lgimg1.bmp"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>AddSmImage</TD> <TD>AddSmImage adds an image to the "small image list". The image must be a standard Windows bitmap file. 16 colors is recommended.<P><CODE>LView.AddSmImage "\smimg1.bmp"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Arrange</TD> <TD>Arrange items in Icon View using. Use 0 for default alignment, one to align along the left edge of the control, two to align along the top of the control and five to align along a default grid.<P><CODE>lvAlignDefault = 0<BR> lvAlignLeft = 1<BR> lvAlignTop = 2<BR> lvAlignGrid = 5<BR> LView.Arrange lvAlignDefault </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Clear</TD> <TD>Clear removes all data from the control.<P><CODE>LView.Clear</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ClearContext</TD> <TD>Removes all items from the context menu.<P><CODE>LView.ContextClear</CODE></TD>
+	</TR>
+	<TR>
+		<TD>DeleteColumn</TD> <TD>DeleteColumn removes a column, the leftmost being column one, from the control. Columns are displayed when the control is in "Report View". The column parameter is optional.<P><CODE>LView.DeleteColumn 1</CODE></TD>
+	</TR>
+	<TR>
+		<TD>DeleteItem</TD> <TD>DeleteItem removes a row of data from the control, the topmost row being row one. All columns in the row are removed. The row parameter is optional.<P>LView.DeleteItem iRow</TD>
+	</TR>
+	<TR>
+		<TD>EnsureVisible</TD> <TD>Use this method to be certain that an item is visible.<P><code>LView.EnsureVisible 1</code></TD>
+	</TR>
+	<TR>
+		<TD>SetFocus</TD> <TD>Gives the control input focus.<P><CODE>LView.SetFocus</CODE></TD>
+	</TR>
+	<TR>
+		<TD>InsertColumn</TD> <TD>InsertColumn adds a new column in the specified position, starting with one. The column text, width and image are also specified with InsertColumn. Note: The first image in an image list is number one. If you do not want an image in the column header, use zero as the image number. The column number, width and image parameters are optional and default to zero.<P><CODE>LView.InsertColumn iColumn, "Column 1", iWidth, iImage</CODE></TD>
+	</TR>
+	<TR>
+		<TD>InsertItem</TD> <TD>InsertItem adds a data item to the control at the specified position, the first position being one. The item's text, image and a user defined value are also specified with InsertItem. If you do not want an image displayed with the text, use zero as the imagenum parameter. The Row, Image and Value parameters are optional and default to zero. This method returns the postion the item was inserted: useful when using a sorted listview.<P><CODE>i=LView.InsertItem iRow, "Item 1", iImage, iTagValue</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RemoveContextItem</TD> <TD>Removes an item from the context menu based on it's index, starting with one.<P><CODE>LView.RemoveContextItem 1</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RemoveLgImage</TD> <TD>Remove an image from the Large Image List.<P><CODE>LView.RemoveLgImage 3</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RemoveSmImage</TD> <TD>Remove an image from the Small Image List.<P><CODE>LView.RemoveSmImage iImage</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetItem</TD> <TD>SetItem does double duty in that it modifies data anywhere in the listview as well as adding subitems to an existing row of data. The row and column parameters, both starting at one, specify the position in the control. "text" is data to display in the listview and the imagenum refers to the number of an image within an image list to display with the text. Use zero if you do not want an image. The Row, Column, Image and Value parameters are optional and default to zero.<P><CODE>LView.SetItem iRow, iCol, "data", iImage, iTagValue</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SetColumn</TD> <TD>SetColumn modifies an existing column header which is displayed when the listview is in "Report View" mode.<P><CODE>LView.SetColumn iColNum, "Column", iWidth, iImage</CODE></TD>
+	</TR>
+</TABLE>
+
+<HR>
+
+<H4>Properties</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>AllowEvent</TD> <TD>Certain events may be allowed or cancelled depending on this property's setting from within the event handler. For these events, set AllowEvent to TRUE to allow the event to continue or FALSE to cancel the event and discard any changes that come from the event. This is a write-only property and the default value is based on the value of the AllowEventAsDefault property.<P><CODE>LView.AllowEvent = FALSE</CODE> 
+	</TR>
+	<TR>
+		<TD>AllowEventAsDefault</TD> <TD>This property is used as the default value of events which are not specifically handled or do not set the AllowEvent property. The default is TRUE which allows all events to continue by default.<P><CODE>LView.AllowEventAsDefault = FALSE<BR>iCurrentDef = LView.AllowEventAsDefault</CODE></TD>
+	</TR>
+	<TR>
+		<TD>BackColor</TD> <TD>BackColor sets the background color for parts of the listview control containing data.<P><CODE>clr = LView.BackColor<BR>LView.BackColor = ( 255 * 65536 )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Border</TD> <TD>Enables and disables the border. Use zero for no border, any other number to display a border.<P><CODE>LView.Border = TRUE<BR>b = LView.Border</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Checkboxes</TD> <TD>Enables and disables checkboxes in the first column of the control. Use zero to disable checkboxes, any other number to display checkboxes.<P><CODE>LView.Checkboxes = TRUE<BR>c = LView.Checkboxes</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Checked</TD> <TD>Read-only. A value of zero indicates that a row's checkbox is unchecked. Any other value indicates that the checkbox is checked. This property cannot be set, only read and is undetermined if checkboxes are not enabled at the time.<P><CODE>iChecked = LView.Checked( 4 )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ColumnCount</TD> <TD>The read-only ColumnCount property returns the number of columns
+currently displayed within a listview control.<P><CODE>iCount = LView.ColumnCount</CODE><BR></TD>
+	</TR>
+	<TR>
+		<TD>ColumnOrder</TD> <TD>An array of integer values is used to set and retrieve the display order of columns displayed when in "Report Mode". See the program code below for an example of setting and retriving the column order.<P><CODE>colorder = Array( 3, 2, 1 )<BR>LView.ColumnOrder = colorder<BR>cols = LView.ColumnOrder<BR>for i = 1 to UBound( cols )<BR>print cols( i )<BR>next</CODE><BR></TD>
+	</TR>
+	<TR>
+		<TD>ColumnImage</TD> <TD>Set and retrieve the image number current in use by an item or subitem.<P><CODE>img = LView.ColumnImage<BR>LView.ColumnImage = 1</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ColumnText</TD> <TD>Set and retrieve the displayed text of an item or subitem.<P><CODE>s = LView.ColumnText( 1, 1 )<BR>LView.ColumnText( 1, 2 ) = "Subitem 1"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ColumnWidth</TD> <TD>Set and retrieve the pixel width of any individual column.<P><CODE>i = LView.ColumnWidth( 1 )<BR>LView.ColumnWidth( 1 ) = 120</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Count</TD> <TD>The number of items (subitems are not included) may be retrieved by reading this property. Setting the property forces the listview control to allocate memory to contain that number of items rather than its allocating memory for every item added as it is added to the control.<P><CODE>print "There are " & CStr( LView.Count ) & " items"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>EditItems</TD> <TD>When set to zero, the user may not directly edit data in the first column of the control. Set to any other number, the user may edit the data by clicking on a selected item.<P><CODE>LView.EditItems = 0<BR>iEdit = LView.EditItems</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontBold</TD> <TD>	TRUE (non-zero) selects a bold font, FALSE (zero) selects a normal font<P><CODE>	LView.FontBold = TRUE<BR>
+	b = LView.FontBold</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontName</TD> <TD>Specifies the name of a font to apply to the listview control.<P><CODE>LView.FontName = "Arial"<BR>
+	s = LView.FontName</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FontSize</TD> <TD>Specify the size of a font to apply to the listview control.<P><CODE>	LView.FontSize = 12<BR>
+	iFontSize = LView.FontSize</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FindText iStart, "text"</TD> <TD>Read-only, FindText locates an item containing the specified text, returning the row in which it was found. Set iStart to one to begin at the first row. The search is not exact. If you specify "Fin" and one item contains "Find this" and another, greater in number contains "Fin", it will find "Find this" first.<P><CODE>iItem = LView.FindText( 1, "test" )</CODE></TD>
+	</TR>
+	<TR>
+		<TD>FullRowSelect</TD> <TD>Set to a non-zero number to select an entire row of data if any column in that row is selected. Set to zero, only the leftmost column is selected regardless of what is selected in that row by the user.<P><CODE>LView.FullRowSelect = 1<BR>iSel = LView.FullRowSelect</CODE></TD>
+	</TR>
+	<TR>
+		<TD>GridLines</TD> <TD>Set to a non-zero number to display grid lines between each row and column in the control. Set to zero to eliminate these lines.<P><CODE>LView.GridLines = FALSE<BR>i = LView.GridLines</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ImageLists</TD> <TD>MGCEListView maintains two images lists, one for small images and another for large images. In order to use the image lists, you need to add images, then apply the image lists to the listview, which is the purpose of the ImageLists property. Set this property to zero if you do not use the image lists at all. Otherwise, one will apply the small image list to the control, two will apply the large image list to the control and four will apply small images to the column header. You may use any combination of these. For example, to use only small images in the listview and its header, you would use 1 + 4 or five.<P><CODE>lvSmallImages = 1<BR>lvLargeImages = 2<BR>lvHeaderImages = 4<BR>LView.ImageLists = lvSmallImages + lvLargeImages + lvHeaderImages<BR>i = LView.ImageLists</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemImage</TD> <TD>Set and retrieve the image number currently in use by an item or subitem.<P>LView.ItemImage( 1, 1 ) = 2<BR><CODE>iImage = LView.ItemImage( 1, 2 ) = 1</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemText</TD> <TD>Set and retrieve the text displayed by an item or subitem.<P><CODE>s = LView.ItemText( 2, 3 )<BR>LView.ItemText( 3, 3 ) = "Los Alamos"</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemValue</TD> <TD>Set and retrieve a 32 bit value associated with an item or subitem. This value is user defined and has no meaning to the control itself.<P><CODE>i = LView.ItemValue( 1, 3 )<BR>LView.ItemValue( 3, 3 ) = 0</CODE></TD>
+	</TR>
+	<TR>
+		<TD>LgImageCount</TD> <TD>Read-only, this retrieves the number of images in the large image list.<P><CODE>iCount = LView.LgImageList</CODE></TD>
+	</TR>
+	<TR>
+		<TD>RowsPerPage</TD> <TD>A read-only property which returns the number of rows of data that will completely fit vertically within the control without scrolling when the control is in list or report views. When in another view, the value returned is the number of items currently contained by the control.<P><CODE>iVRows = LView.RowsPerPage</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Select</TD> <TD>Set and retrieve the selected state of a row. Non-zero indicates that an item is selected or to be selected. Zero indicates that an item is not selected or to be deselected.<P><CODE>iSel = LView.Select( 12 )<BR>LView.Select( iRow ) = TRUE </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectedCount</TD> <TD>Read-only value which returns the number of selected items in the listview control.<P><CODE>ISelCount = LView.SelectedCount </CODE></TD>
+	</TR>
+	<TR>
+		<TD>Selection</TD> <TD>Set Selection to zero if you only want a single item selected at any given time. A non-zero setting allows multiple items to be selected.<P><CODE>iSelType = LView.Selection<BR>LView.Selection = TRUE </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SelectionDisplay</TD> <TD>When set to zero, the display of a selected item is lost when the listview control loses focus. The selection itself is not lost and is again displayed when the control regains focus. Set to a non-zero number, the control displays selected items as selected regardless of focus.<P><CODE>i = LView.SelectionDisplay<BR>LView.SelectionDisplay = FALSE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>SmImageCount</TD> <TD>Read-only, this returns the number of items in the small image list.<P><CODE>iCount = LView.SmImageCount</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Sort</TD> <TD>Set to zero if you don't care about sorting. Set to one, sorting is done is ascending order. Set to -1, sorting is done in descending order.<P><CODE>LView.Sort = -1<BR>iSort = LView.Sort</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Style</TD> <TD>Set and retrieve the Style property which determines how the edge of the control is displayed. This is different from the Border property.<P>Styles include: 
+<UL COMPACT>
+	<LI>0: No edge
+	<LI>1: "Sunken" edge
+	<LI>2: "Raised" edge
+</UL>
+<CODE>LView.Style = 2 iStyle = LView.Style </CODE></TD>
+	</TR>
+	<TR>
+		<TD>SubItemImages</TD> <TD>When set to zero, subitems (columns other than the leftmost) do not display images even if an image is specified for data displayed in those columns. Setting this property to a non-zero number enables image display in those columns.<P><CODE>iUsesImages = LView.SubItemImages<BR>LView.SubItemImages = TRUE</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Tabstop</TD> <TD>Set this property to TRUE (non-zero) to include the control in the tab order. FALSE removes it from the tab order and the default is TRUE.<P><CODE>LView.Tabstop = TRUE<BR>iIsTabOrdered = LView.Tabstop </CODE></TD>
+	</TR>
+	<TR>
+		<TD>TextColor</TD> <TD>Set and retrieve the color used when displaying text. <CODE>clr = LView.TextColor<BR>LView.TextColor = 255</CODE></TD>
+	</TR>
+	<TR>
+		<TD>TopIndex</TD> <TD>	A read-only property which returns the index of the first visible item when the control is in list or report views.
+<CODE>iItem = LView.TopIndex/CODE></TD>
+	</TR>
+	<TR>
+		<TD>View</TD> <TD>Set and retrieve the current view. Use zero for "Large Icon view", one for "Report View", two for "Small Icon view" and three for "List View".<P><CODE>lvIcon = 0<BR>lvReport = 1<BR>lvSmallIcon = 2<BR>lvList = 3<BR>LView.View = lvReport<BR>iView = LView.View</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Version</TD> <TD>Gets the version number of the control as an integer.</TD>
+	</TR>
+</TABLE>
+
+<HR>
+
+<H4>Events</H4>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="1" >
+	<TR>
+		<TD>ColumnClick</TD> <TD>When the user clicks upon a column, this event is called and passes the column number that was clicked upon, staring with one for the leftmost column.<P><CODE>sub LView_ColumnClick( lColumn )<BR>print "Column " & CStr( lColumn ) & " was clicked"<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ContextMenu</TD> <TD>The ContextMenu event is called when an item is selected from the listview context menu. The listview item over which the menu was displayed (may be zero for no item) and the text of the selected menu item is passed to the event handler.<P><CODE>sub LView_ContextMenu( item, text )<BR>MsgBox text & " was selected from the menu"<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>EndEdit</TD> <TD>When the EditItems property is set, the user may directly change data in the first column of the listview control. When that data is changed, this event occurs which passes the row and column that was changed. In addition, new data, if any, is also passed to the event handler. The text can be empty ("") if the user cancelled the change or entered nothing into the edit box. By default, changes are allowed to be reflected by the control itself but setting AllowEvent to FALSE from within the handler or setting AllowEventAsDefault to FALSE will prevent changes from showing in the control.<P><CODE>sub LView_EndEdit( row, column, textstring )<BR>print "The item at " & CStr( row ) & "," & CStr( column ) & " wants to be " & textstring<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>EndHeaderDrag</TD> <TD>Columns may be resized by the user dragging a border edge. When the user finishes dragging the edge and resizing the column, this event is fired, passing along the identifier of the resized column.<P><CODE>	sub LView_EndHeaderDrag( item )<BR>
+		MsgBox "Column " & CStr( item ) & " has been resized"<BR>
+	end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>HeaderDrag</TD> <TD>This event is called as a column header is being resized by the user dragging a column edge. The event receives the column identifier.<P><CODE>	sub LView_HeaderDrag( item )<BR>
+		print "Column " & CStr( item ) & " is being dragged"<BR>
+	end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemActivate</TD> <TD>Double-clicking an item in the listview control causes this event. The row and column that was double-clicked is passed to the event.<P><CODE>sub LView_ItemActivate( row, column )<BR>print "The item at " & CStr( row ) & "," & CStr( column ) & " was double-clicked"<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>ItemClick</TD> <TD>Clicking upon an item in the listview control triggers this event which passes the row and column of the item that was clicked upon.<P><CODE>sub LView_ItemClick( row, column )<BR>print "The item at " & CStr( row ) & "," & CStr( column ) & " was clicked"<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>Keypress</TD> <TD>Pressing a key while the object has input focus triggers this event, passing the value of the key pressed along with it.<P><CODE>sub LView_Keypress( lKey )<BR>print Chr( lKey ) & " was pressed"<BR>LView.SetFocus<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>PostClick</TD> <TD>If checkboxes are enabled and a checkbox value is changed, the value is not actually updated until after the ItemClick event. The PostClick event is slightly delayed, allowing accurate polling of a checkbox.<P><CODE>sub LView_PostClick( item, subitem )<BR>iVal = LView.Checked( item )<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>StartDragSelect</TD> <TD>Multiple items in a listview control may be selected by moving the stylus to draw a "box" around the items. The start of this process triggers this event which may be cancelled by setting AllowEvent to FALSE from within the event handler.<P><CODE>sub LView_StartDragSelect<BR>LView.AllowEvent = FALSE<BR>end sub</CODE></TD>
+	</TR>
+	<TR>
+		<TD>StartEdit</TD> <TD>When the listview control enters "edit mode", this event is triggered and the item about to enter edit mode is passed to the event. The event may be cancelled by setting AllowEvent to FALSE from within the handler. Only items may use edit mode, not subitems.<P><CODE>sub LView_StartEdit( item )<BR>LView.AllowEvent = TRUE<BR>end sub</CODE></TD>
+	</TR>
+</TABLE>
+
+<HR>
+<H4>Change Log</H4>
+<P>10/5/99: Fixed Hide, Show
+<P>10/10/99: Added ColumnCount, FontBold, FontName, FontSize, RowsPerPage, TopIndex, EndHeaderDrag and HeaderDrag.
+<P>10/28/99: ItemImage and ItemValue now can be set, and PostClick event added.
+<P>11/4/99: InsertItem now returns the position where inserted
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,117 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%Provider%
+CESignature="$Windows CE$"
+
+[CEStrings]
+AppName = "MSCE Controls"
+InstallDir = "\Program Files"
+
+
+[CEDevice.WM]
+ProcessorType = 2577; StrongArm processors
+VersionMin = 4.2
+VersionMax = 100.0
+BuildMax = 0xE0000000
+
+[CEDevice.HPC_1824]
+ProcessorType = 1824; Windows CE 4.1 42ARMi devices (Sigmarion III)
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_2336]
+ProcessorType = 2336; Windows CE 4.2 42ARMV4T devices (Advantech, Handera)
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_2577]
+ProcessorType = 2577; Windows CE 4.2 42ARMV4 devices (NetbookPro, Workabout Pro, MobilePro)
+VersionMin = 4.0
+VersionMax = 100.0
+
+[CEDevice.HPC_4000]
+ProcessorType = 4000; Windows CE 4.2 MIPSII (AMD AU1100)
+VersionMin = 4.0
+VersionMax = 100.0
+
+
+[SourceDisksNames.WM]
+2 =, "ARM files",, e:\NSBCE8\Files\Controls\WM
+
+[SourceDisksNames.HPC_1824]
+2 =, "HPC 1824 files",, e:\NSBCE8\Files\Controls\1824
+[SourceDisksNames.HPC_2336]
+2 =, "HPC 2577 files",, e:\NSBCE8\Files\Controls\2577
+[SourceDisksNames.HPC_2577]
+2 =, "HPC 2577 files",, e:\NSBCE8\Files\Controls\2577
+[SourceDisksNames.HPC_4000]
+2 =, "HPC 4000 files",, e:\NSBCE8\Files\Controls\4000
+
+
+; CPU-independent source files...
+[SourceDisksFiles]
+
+; CPU-specific source files...
+finance.dll = 2
+MSCEComDlg.dll = 2
+MSCEComm.dll = 2
+MSCEFile.dll = 2
+MSCEGrid.dll = 2
+MSCEImage.dll = 2
+MSCEImageList.dll = 2
+MSCEListView.dll = 2
+MSCETabStrip.dll = 2
+MSCETreeView.dll = 2
+MSCEPicture.dll = 2
+MSCEWinSock.dll = 2
+PimTlb.dll = 2
+
+
+[DefaultInstall]
+
+[DefaultInstall.WM]
+CopyFiles = Files.Goodies
+CESelfRegister=MSCEFile.dll,MSCEpicture.dll,MSCEWinSock.dll,finance.dll,MSCEComDlg.dll,MSCEComm.dll,MSCEGrid.dll,MSCEImage.dll,MSCEImageList.dll,MSCEListView.dll,MSCETabStrip.dll,MSCETreeView.dll
+
+[DefaultInstall.HPC_1824]
+CopyFiles = Files.Goodies
+CESelfRegister=MSCEFile.dll,MSCEWinSock.dll,finance.dll,MSCEComDlg.dll,MSCEComm.dll,MSCEGrid.dll,MSCEImage.dll,MSCEImageList.dll,MSCEListView.dll,MSCEPicture.dll,MSCETabStrip.dll,MSCETreeView.dll
+
+[DefaultInstall.HPC_2336]
+CopyFiles = Files.Goodies
+CESelfRegister=MSCEFile.dll,MSCEWinSock.dll,finance.dll,MSCEComDlg.dll,MSCEComm.dll,MSCEGrid.dll,MSCEImage.dll,MSCEImageList.dll,MSCEListView.dll,MSCEPicture.dll,MSCETabStrip.dll,MSCETreeView.dll
+
+[DefaultInstall.HPC_2577]
+CopyFiles = Files.Goodies
+CESelfRegister=MSCEFile.dll,MSCEWinSock.dll,finance.dll,MSCEComDlg.dll,MSCEComm.dll,MSCEGrid.dll,MSCEImage.dll,MSCEImageList.dll,MSCEListView.dll,MSCEPicture.dll,MSCETabStrip.dll,MSCETreeView.dll
+
+[DefaultInstall.HPC_4000]
+CopyFiles = Files.Goodies
+CESelfRegister=MSCEFile.dll,MSCEWinSock.dll,finance.dll,MSCEComDlg.dll,MSCEComm.dll,MSCEGrid.dll,MSCEImage.dll,MSCEImageList.dll,MSCEListView.dll,MSCEPicture.dll,MSCETabStrip.dll,MSCETreeView.dll
+
+; Ouput directories for files & shortcuts
+[DestinationDirs]
+Files.Goodies = 		0,%CE2%
+DefaultDestDir = 		0,%InstallDir%
+
+
+; Install into \Windows
+[Files.Goodies]
+"Finance.dll",,,0x00000010
+"MSCEComDlg.dll",,,0x00000010
+"MSCEComm.dll",,,0x00000010
+"MSCEFile.dll",,,0x00000010
+"MSCEGrid.dll",,,0x00000010
+"MSCEImage.dll",,,0x00000010
+"MSCEImageList.dll",,,0x00000010
+"MSCEListView.dll",,,0x00000010
+"MSCEPicture.dll",,,0x00000010
+"MSCETabStrip.dll",,,0x00000010
+"MSCETreeView.dll",,,0x00000010
+"MSCEWinSock.dll",,,0x00000010
+"PimTlb.dll",,,0x00000010
+
+
+; Misc. strings...
+[Strings]
+Provider = "NSB"

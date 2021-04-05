@@ -1,0 +1,202 @@
+{ MAIN:
+    (string)ParserDefinitions=defs.cfg
+    (string)TempFile=aspc.tmp
+    (string)ProjectName=ASPCPrj
+    (int)Build=26
+    (int)SaveFullPaths=0
+    (int)DbgBuild=0
+    (string)Readme=
+} MAIN;
+{ ASPToPlain:
+    (string)Parser=ASP
+    (string)SSIParser=SSI
+    (string)Response.Write=Response.Write
+    (string)SiteRoot=
+} ASPToPlain;
+{ VBStoVB:
+    (string)ASPOutputPath=compiled
+    (string)VBOutputPath=VBProject
+    (string)Parser=VBS
+    (string)StatementParser=STMT
+    (string)VBSymbols=VBSymbols.aspc-symbols
+    { EnvironmentObjects:
+        (int)Application=1
+        (int)Request=1
+        (int)Response=1
+        (int)Server=1
+        (int)Session=1
+    } EnvironmentObjects;
+} VBStoVB;
+{ Files:
+    { 0:
+        (string)File=img\collection.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 0;
+    { 1:
+        (string)File=img\event.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 1;
+    { 2:
+        (string)File=img\gem.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 2;
+    { 3:
+        (string)File=img\gem_blue2.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 3;
+    { 4:
+        (string)File=img\gem_green2.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 4;
+    { 5:
+        (string)File=img\gem_red.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 5;
+    { 6:
+        (string)File=img\method.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 6;
+    { 7:
+        (string)File=img\obj.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 7;
+    { 8:
+        (string)File=img\pixel.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 8;
+    { 9:
+        (string)File=img\prop_r.GIF
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 9;
+    { 10:
+        (string)File=img\prop_ro.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 10;
+    { 11:
+        (string)File=img\prop_rw.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 11;
+    { 12:
+        (string)File=img\prop_w.GIF
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 12;
+    { 13:
+        (string)File=img\up.gif
+        (string)Process=Copy
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 13;
+    { 14:
+        (string)File=comdlg.htm
+        (string)Process=SSIToHTML
+        (int)CompileTimeUseDefault=1
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 14;
+    { 15:
+        (string)File=comdlgflags.htm
+        (string)Process=SSIToHTML
+        (int)CompileTimeUseDefault=1
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 15;
+    { 16:
+        (string)File=start.htm
+        (string)Process=SSIToHTML
+        (int)CompileTimeUseDefault=1
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 16;
+    { 17:
+        (string)File=styles.css
+        (string)Process=Copy
+        (int)Exclude=0
+        (int)CompileTimeUseDefault=0
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 17;
+    { 18:
+        (string)File=cenotes.htm
+        (string)Process=SSIToHTML
+        (int)CompileTimeUseDefault=1
+        { VARIABLES:
+        } VARIABLES;
+        { CTSCONFIG:
+        } CTSCONFIG;
+    } 18;
+} Files;
+{ VARIABLES:
+    (string)CopyRightText=Copyright 2006 NSBasic Corporation
+} VARIABLES;
+{ CompileTimeScripting:
+    (string)IncludeDir=scripts
+    (int)ScriptSelection=2
+    (string)LibraryFile=\newObjects\HTMLHelpMan\HTMLHelpMan.aspc-ctslib
+    (string)CompileTimeScript=\newObjects\HTMLHelpMan\helpman.vbs
+    (string)CompileTimeScriptLanguage=VBScript
+    (string)LibraryName=newObjects.HTMLHelpManager
+    { CTSCONFIG:
+    } CTSCONFIG;
+} CompileTimeScripting;

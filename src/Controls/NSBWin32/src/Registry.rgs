@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.win32.Registry.1 = s 'NSBasic Registry Class'
+	{
+		CLSID = s '{602E25DA-DBE7-4358-A542-1DFEC6793443}'
+	}
+	NSBasic.win32.Registry = s 'NSBasic Registry Class'
+	{
+		CLSID = s '{602E25DA-DBE7-4358-A542-1DFEC6793443}'
+		CurVer = s 'NSBasic.win32.Registry.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {602E25DA-DBE7-4358-A542-1DFEC6793443} = s 'NSBasic Registry Class'
+		{
+			ProgID = s 'NSBasic.win32.Registry.1'
+			VersionIndependentProgID = s 'NSBasic.win32.Registry'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F1072A90-2DF5-49BC-BDFB-2B604FDB9598}'
+		}
+	}
+}

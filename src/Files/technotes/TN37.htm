@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 37: Event Driven/Object Oriented Programming</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="82%" VALIGN="TOP">
+	  <h2>Tech Note 37: Event Driven Object Oriented Programming with NS Basic/CE</h2>
+	  <h3>June 20, 2002</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+Contributed by <A HREF="mailto:Serg&copy; VisualNewt.com" TARGET="_top">Serge Koren</A>.
+
+<P>NS Basic/CE is event driven; that means that events happen outside of the standard concept of main-line code. Think of events as interrupts. They interrupt your program, and your program responds. You can't "test" for an event in NSBasic. NSBasic doesn't have the concept of an event queue that you can get to. Think of it this way. You design your GUI, and apart from initialization *all* your code should respond to a user-generated event. *BUT* the event happens when it happens. There is no way to predict *what* event will occur (which button, or list or grid is tapped) or *when* that event will occur. Your program has to respond to whatever event occurs *whenever* that event occurs. You can't force an event, without doing a lot of non-essential (and to the user confusing) user-interface manipulation. 
+
+<P>The point is, I guess, don't force the user to react to your program. Have the program react to your user. If you are writing code that forces the user to do something in a specific order, then it's probably the wrong design for a user-event-driven system (such as WindowsCE, Windows95/98/NT, MacOS, PalmOS, etc.) Most modern system give the user the freedom to do what the user wants, not what the program wants the user to do. It's a different mindset, but it makes for a better (and simpler) program in the long run.
+
+<P>Some systems (Windows95/98/NT, MacOS, etc.) have the concept of an event queue where you can actually test for an event (by sitting in an event-loop in your main-line code). Even most of these systems are moving away from this method of doing stuff. Why spin CPU cycles sitting in an event loop? Just have the object respond to an event whenever it gets one. It comes down to object-oriented-programming. Objects know how to react to events. The program is just used to set up and initialize the objects. The program shouldn't care about events. A listbox should know how to respond to listbox events. Grids should know about grid events. A command button shouldn't have to worry about what a gridbox does with gridbox events. A command box *could* tell a gridbox to respond to gridbox events, but a button shouldn't respond to an event that is supposed to be handled by another type of object. 
+
+<P>If there is an event handle it. Don't sit and loop while nothing is happening. If you need a timer use a timer (to time something directly or indirectly). Loops are for doing something a number of times. Not to time things or wait for something to happen. 
+
+<P>The other problem with using a loop to control an app is that a loop in an event-driven system is independent of other things going on in the user interface. That is, they run in parallel (unless they hog the cpu). A loop will hog the cpu *until* something happens. Not a good idea, and not easily doable on WinCE if at all.
+
+
+<P><A HREF="mailto:Serg&copy; VisualNewt.com" TARGET="_top">Serge Koren</A>
+
+

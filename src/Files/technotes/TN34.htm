@@ -1,0 +1,242 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="Microsoft Word 98">
+<TITLE>Tech Note 34: Cool Things</TITLE>
+<META NAME="Version" CONTENT="8.0.4915">
+<META NAME="Date" CONTENT="1/20/98">
+<META NAME="Template" CONTENT="HD:Applications:Microsoft Office 98:Templates:Web Pages:Blank Web Page">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="20%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="80%" VALIGN="TOP">
+	  <h2>Tech Note 34: <br>
+		Cool Things you can do with NS Basic/CE </h2>	  <h3>June 26, 2007</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<hr size="1" noshade>
+
+<P>&nbsp;</P>
+<P>The NS Basic/CE environment has been designed so there's a lot of power in some very simple instructions. Once you've got the hang of it, there are some advanced things you can do with NS Basic/CE that would be tough to do in most other languages.</P>
+<P>Here are some of the cool things we've discovered. <a href="mailto:support&copy; nsbasic.com">Let us know</a> if you come up with other things!</P>
+<P>&nbsp;</P>
+<H4>1. Use <CODE>EXECUTE</CODE> to use parameters as references</H4>
+<CODE><PRE>Private Sub setupButton(name, text)
+  execute name &amp; ".borderstyle=1"
+  execute name &amp; ".drawText" &amp; chr(34) &amp; text &amp; chr(34)
+end sub</PRE>
+</CODE><P>This subroutine sets the name of a button to <CODE>text</CODE> and draws a line around the box. It is called with the name of the button and the text you want to show. <CODE>CHR(34)</CODE> is the quote sign (").</P>
+<P><CODE>EXECUTE</code> takes a string and feeds it to the interpreter, just as if it were a statement in your program.</P>
+<P>If you do</P>
+<CODE><P>SetupButton("myButton","Tap here")</P>
+</CODE><P>This is what gets executed within the subroutine:</P>
+<CODE><P>myButton.drawText "Tap Here"</P></code>
+<P>The two execute statements could actually be combined into a single statement, by concatenating a return (vbCrLF) between the two strings.</P>
+<P>&nbsp;</P>
+<H4>2. Create Objects on the fly</H4>
+<P>NS Basic/CE lets you create objects at any time, not just when you build the project. Building on our previous example, here's a subroutine that creates the button object as well as sets it up:</P>
+<PRE><code>Private Sub setupButton(name, text, x,y,w,h)
+  addObject "PictureBox",name, x,y,w,h
+  execute name &amp; ".borderstyle=1"
+  execute name &amp; ".drawText" &amp; chr(34) &amp; text &amp; chr(34)
+end sub</code></PRE>
+<P>Since we can create objects only as needed, memory requirements can be kept lower. It may also may it easier to design the UI.</P>
+<P>&nbsp;</P>
+<H4>3. Create subroutines on the fly</H4>
+<P>This one is really wild, and builds on the previous two Cool Things. The following code creates n buttons on the screen, all of them clickable:</P>
+<PRE><code>
+Option Explicit
+dim count,i
+count=inputbox("How many do you want?")
+for i=1 to count
+  makeButton "B" &amp; i,cstr(i),i
+next
+&nbsp;
+Private Sub makeButton(name, prompt,b)
+  dim code
+  addObject "PictureBox",name &amp; "Btn",(b mod 25)*25, int(i/25)*25,20,20
+
+  execute name &amp; "Btn.borderstyle=1"
+  execute name &amp; "Btn.drawText" &amp; chr(34) &amp; prompt &amp; chr(34)
+  code="sub " &amp; name &amp; "Btn_click()" &amp; vbcrlf &amp; "print " &amp; chr(34) &amp; "click at " &amp; name &amp; chr(34) &amp; vbcrlf &amp; "end sub"
+  execute code
+end sub</code></PRE>
+<P>&nbsp;</P>
+<P>In this case, we're doing everything we did in the first two. However, we're taking advantage of one additional thing: The runtime environment is composed of both the variables and the code. In Cool Thing 1, we modified the values of variables in the runtime from our program. In this one, we're actually modifying the code, by adding a subroutine for each button that we create. When the button is then tapped, the event is sent to the new subroutine we created.</P>
+<P>&nbsp;</P>
+
+<P><H4>4. Use Control Arrays</H4><p></P>
+<P>It is not obvious that you can create control arrays in NS Basic. This program creates 6 commandbuttons and executes a set command to put them into an array called cmdButtons. (Contributed by Terry Myhrer)</P>
+<PRE><code>option explicit
+
+dim cmdButtons(5), index
+
+updatescreen
+
+for index = 0 to 5
+  MakeButton(index)
+  cmdButtons(index).caption = "Button " & cstr(index)
+next
+
+sub ButtonClick(byval number)
+  if cmdButtons(number).caption = "Clicked" then
+    cmdButtons(number).caption = "Button " & cstr(number)
+  else
+    cmdButtons(number).caption = "Clicked" 
+  end if
+end sub
+
+sub MakeButton(byval number)
+  dim name, code
+  name = "btnButton" & cstr(number)
+  addobject "CommandButton", name, 10, number * 30, 100, 25
+  execute " Set cmdButtons(" & cstr(number) & ") = " & name
+  code = "Sub " & name & "_Click()" & vbcrlf & "  ButtonClick " & cstr(number) & vbcrlf & "end sub"
+  execute code
+end sub   
+</CODE></PRE>
+
+<P><H4>5. How to make multiline CommandButtons using WindowLong</H4><p></P>
+It's possible to make a button with several words allow CR breaking and have multiple lines. (Dave Joyce)
+<pre>
+Const BS_MULTILINE = &H00002000
+</pre>
+in Form_Load, do the following (This can be done in another sub, but then you have to move the object at least 1 pixel to get it to redraw and use the new setting)
+<pre>
+CommandButton1.WindowLong(0) = BS_MULTILINE
+</pre>
+WindowLong is a powerful feature to manipulate the appearance of objects. You'll need to look at Microsoft's documentation to get the full information.
+
+<P><H4>6. How to control tabbing explicitly</H4><p></P>
+
+Objects that are children do not always tab as expected. Also, sometimes you may want to use a tab order that is different than usual. Here's a technique from Dave Joyce that puts you in control.
+<pre>
+Dim nextCtrl
+
+sub activeCtrl_GotFocus
+    nextCtrl = "otherControl"
+end sub
+
+sub output_keyup (keycode, shift)
+    if keycode = 9 then '9 is tab key
+       keycode = 0 'should prevent system from firing anything
+       execute nextctrl & ".SetFocus"
+    end if
+end sub
+</pre>
+If your controls are out of order, the 
+execute line fires but then the keycode 9 goes to the system and refires 
+the setFocus to the systems next in the creation order control list and 
+then end result is that focus doesn't go to the nextCtrl. Keep reading - the next item is also important...
+
+<P><H4>7. Setting ComboBox.ListIndex on manual entry</H4><p></P>
+
+The user keyboard entry into a combobox control could be one on the list or may not be, but the simple fact of entry does not select the combobox.ListIndex to match. Enter this little routine. Note you can use a for loop to go through all the List values but the result is the same, ListIndex gets reset. (Dave Joyce)
+<pre>
+Declare "Function SendMessageStr Lib ""Coredll"" Alias ""SendMessageW"" 
+(ByVal HWND As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal 
+lParam As String) As Long"
+
+Dim bReset
+
+Const CB_FINDSTRING = &H14C
+Const CB_FINDSTRINGEXACT = &H158
+Const CB_SETEDITSEL = &H0142
+
+sub combobox_change
+    if bReset then exit sub 'prevents endless loops
+    bReset = true
+    getIdx "combobox"
+    bReset = false
+end sub
+
+sub getIdx(ctrl)
+   Dim idx
+    'finds the idx of the exact match (case insensitive)  inside the combobox.List
+   Execute "idx = sendMessageStr(" & ctrl & ".hwnd, CB_FINDSTRINGEXACT, 0 , " & ctrl & ".Text)"
+   If idx > -1 Then 'only assign when match found otherwise constantly resetting to -1
+      Execute ctrl & ".Listindex = " & idx 'setting the ListIndex causes the box to select all text
+     'following turns off text selection inside control
+      Execute "SendMessageStr " & ctrl & ".hwnd, CB_SETEDITSEL, 0, -1"
+   End If
+end sub
+</pre>
+This getIdx routine is called when the user types into a combobox text 
+window which fires the onChange event. The problem is, setting the 
+ListIndex inside of the onChange event only lasts inside the event, once 
+the event dies, the ListIndex becomes what is was before the getIdx routine.
+
+<p>SOLUTION
+
+<p>I fought this and the tabbing with all sorts of possible tags, 
+techniques and procedures until I suddenly realized I had to do both of 
+these procedure after the subroutine in which they are called. My 
+solution is to delay execution of my routine until after the system has 
+finished with its routine by using the NSBasic timer feature.
+
+<p>To the 1st Example add a timer event, this technique does not require re 
+ordering creation of controls.
+<pre>
+Dim nextCtrl
+
+sub activeCtrl_GotFocus
+    nextCtrl = "otherControl"
+end sub
+
+sub activeCtrl_Timer
+    activeCtrl.Timer = 0  'turn off timer event so it fires only once
+    if nextCtrl = "" then exit sub 'prevents invalid code
+    execute nextCtrl & ".SetFocus" 'because using generic nextCtrl this routine can be used by any other tabbing event
+end sub
+
+sub otherCtrl_GotFocus
+    nextCtrl = "activeCtrl"  'same keyup event will allow tabbing back to activeCtrl regardless of creation order
+end sub
+
+sub output_keyup (keycode, shift)
+    if keycode = 9 then '9 is tab key
+       keycode = 0 'should prevent system from firing anything
+       execute activeCtrl.Timer = 25 'now your setFocus happens just after the system setFocus
+    end if
+end sub
+</pre>
+To the 2nd Example again add a timer event and add another global variable.
+<pre>
+Dim bReset, thisCtrl 'by adding this variable you can use the routine in 
+'the one timer event from other comboboxes without duplicating timer events
+
+Const CB_FINDSTRING = &H14C
+Const CB_FINDSTRINGEXACT = &H158
+Const CB_SETEDITSEL = &H0142
+
+sub combobox_change
+    if bReset then exit sub 'prevents endless loops
+    thisCtrl = "combobox"
+    combobox.Timer = 25 'timer event fires in 25 ms, plenty of time for system to complete ending the change event
+end sub
+
+sub combobox_Timer
+    combobox.Timer = 0 'turn off timer so it only fires once
+    bReset = true 'the code below will cause a onChange event this flag allows our code to exit gracefully
+    getIdx thisCtrl 'generic call using thisCtrl allows code to be reused by other comboboxes
+    bReset = false 'reenables the rest of the onChange event based on user input
+end sub
+
+sub getIdx(ctrl)
+   Dim idx
+   Execute "idx = sendMessageStr(" & ctrl & ".hwnd, CB_FINDSTRINGEXACT, 0 , " & ctrl & ".Text)"
+   If idx > -1 Then
+      Execute ctrl & ".Listindex = " & idx
+      Execute "SendMessageStr " & ctrl & ".hwnd, CB_SETEDITSEL, 0, -1"
+   End If
+end sub
+</pre>
+</BODY>
+</HTML>

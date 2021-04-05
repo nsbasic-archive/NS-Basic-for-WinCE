@@ -1,0 +1,167 @@
+<HTML>
+<HEAD>
+<TITLE>TN19: Regular Expression Control </TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 19: Regular Expression Control</h2>
+	  <h5>
+      <H3>February 01, 2007</H3>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+
+<h2>Introduction</h2>
+NS Basic/CE comes with a reasonably good set of functions for string manipulation. However, people who have used other programming languages such as Perl know that there are much more powerful pattern matching and replacement functions. A standard for this is Regular Expressions. Starting with NS Basic/CE 7.0, NS Basic/CE has a built in regular expression object. It should be available on all devices running Windows CE 4.0 and later, however there are reports that this is not consistant. Test on your device before spending a lot of time on this control.
+
+<p>Regular Expressions were originally developed as part of UNIX. They can be cryptic and difficult to learn, but they allow sophisticated pattern matching in strings. 
+
+<p>Regular Expressions are quite involved (it is possible to buy whole books devoted to their use!). If you google on "Regular Expresssions", you can get quite a bit more information about this powerful tool.
+
+<h2>Using the RegEx Object</h2>
+Support for Regular Expressions is implemented in the RegExp object. Let's do a simple example to show how it works. Suppose we have this string:
+
+
+<pre>StringToSearch = "http://www.nsbasic.com"</pre>
+The RegExp object can then be created:
+<pre>AddObject "RegExp", "RegularExpressionObject"</pre> or
+<pre>Set RegularExpressionObject = New RegExp</pre>
+
+<h2>RegEx Properties</H2>
+This object has three properties: 
+<ul>
+	<li><i>Pattern</i> specifies the Regular Expression that should be searched for. See the "List of all Pattern characters" below for more information.</li>
+	<li><i>IgnoreCase</i> should be True or False depending on whether the search should be case sensitive (the default is True). </li>
+	<li><i>Global</i> is True if the search should match all occurrences of the pattern, or False if just the first occurrence should be matched.</li>
+</ul>
+<pre>With RegularExpressionObject
+  .Pattern = ".com"
+  .IgnoreCase = True
+  .Global = True
+End With</pre>
+
+<h2>RegEx Methods</h2>
+RegExp can do 3 things to a string: Text, Execute and Replace. Here is how each of them work.
+
+<p><b>Test</b>
+
+<p>This uses the Test method of the RegExp object to see if the Regular Expression is found in the StringToSearch string.
+<pre>res = RegularExpressionObject.Test(StringToSearch)</pre>
+The Test method will return True if the Regular Expression was found, and False if it was not found.
+
+<pre>If res Then
+  Print RegularExpressionObject.Pattern & " was found in " & StringToSearch
+Else
+  Print RegularExpressionObject.Pattern & " was not found in " & StringToSearch
+End If</pre>
+
+<p><b>Execute</b>
+<p>The RegExp Execute method is a more sophisticated version of the Test method. As well as seeing if the Regular Expression is found within a string, it will also return the number of matches made within that string, and at which positions in the string the matches were found. It returns its result in an object, so the results can be enumerated in a For Each loop.
+<pre>StringToSearch = "The answer to life, the universe and everything is 42."
+
+Set RegularExpressionObject = New RegExp
+
+With RegularExpressionObject
+  .Pattern = "the"
+  .IgnoreCase = True
+  .Global = True
+End With
+
+Set res = RegularExpressionObject.Execute(StringToSearch)
+
+If res.Count > 0 Then
+  For Each item in res
+    Print item.Value & " was matched at position " & item.FirstIndex
+  Next
+Else
+  Print RegularExpressionObject.Pattern & " was not found in the string: " & StringToSearch
+End If</pre>
+
+As with the Test method, the RegExp’s  <i>Global</i> and <i>IgnoreCase</i> properties are useful.
+
+<p><b>Replace</b>
+<p>This can be used to replace a part of a string using Regular Expression matching. For example, in the script below, each case of "a" is replaced by "o".
+<pre>InitialString = "My name is Zaphod"
+
+Set RegularExpressionObject = New RegExp
+
+With RegularExpressionObject
+  .Pattern = "a"
+  .IgnoreCase = True
+  .Global = True
+End With
+
+ReplacedString = RegularExpressionObject.Replace(InitialString, "o")
+
+Print "Replaced " & InitialString & " with " & ReplacedString
+
+</pre>
+
+<h2>Real life Regular Expressions</h2>
+So far, there is nothing here that couldn't already be done with other NS Basic/CE functions. The power of Regular Expressions only become apparent when more complex situations are encountered. For example, the function below will strip out all the HTML tags from strings:
+
+<pre>Function stripHTMLtags(HTMLstring)
+  Set RegularExpressionObject = New RegExp  
+  With RegularExpressionObject
+    .Pattern = "<[^>]+>"
+    .IgnoreCase = True
+    .Global = True
+  End With
+  stripHTMLtags = RegularExpressionObject.Replace(HTMLstring, "")
+End Function</pre>
+The function can then be called using something like:
+<pre>Print stripHTMLtags("<B>This <I>is</I> <TT style=""background-color: rgb(0,255,255)"">some</TT><FONT COLOR=#FF00FF> HTML</FONT></B>")</pre>
+The function works because it replaces HTML tags with a null character. HTML tags are identified using the Regular Expression held in the Pattern property. This is a sequence of special characters. This means that a HTML tag should start with a "<". It should then contain one or more characters except for a greater than sign ">". This is indicated by enclosing the greater than sign in square brackets, and using the plus sign (which means match the preceding character one or more times. The ^ symbol denotes that the character should NOT appear. Finally, it should contain a greater than sign to close the HTML tag.
+
+<p>The dollar sign is used to look for matches at the end of a string, so the following will look for .com at the end of a string:
+<pre>.Pattern = ".com$"</pre>
+Use a bar to specify that several expressions should be matched. The following will match .co.uk or .com at the end of a string:
+<pre>.Pattern = ".gov|.com$"</pre>
+
+<h2>List of all Pattern characters</h2>
+
+<table border=1 CELLSPACING=0 cellpadding=1>
+<th>Character</th> 
+<th>Description</th> </tr>
+       
+<tr> <td> <p> \ </p> </td> <td> <p>Marks the next character as either a special character or a literal. For example, "n" matches the character "n". "\n" matches a newline character. The sequence "\\" matches "\" and "\(" matches "(".</p> </td> </tr>
+<tr> <td> <p> ^ </p> </td> <td> <p>Matches the beginning of input.</p> </td> </tr>
+<tr> <td> <p> $ </p> </td> <td> <p>Matches the end of input.</p> </td> </tr>
+<tr> <td> <p> * </p> </td> <td> <p>Matches the preceding character zero or more times. For example, "zo*" matches either "z" or "zoo".</p> </td> </tr>
+<tr> <td> <p> + </p> </td> <td> <p>Matches the preceding character one or more times. For example, "zo+" matches "zoo" but not "z".</p> </td> </tr>
+<tr> <td> <p> ? </p> </td> <td> <p>Matches the preceding character zero or one time. For example, "a?ve?" matches the "ve" in "never". </p> </td> </tr>
+<tr> <td> <p>.</p> </td> <td> <p>Matches any single character except a newline character. </p> </td> </tr>
+<tr> <td> <p> (pattern)</p> </td> <td> <p>Matches <i>pattern</i> and remembers the match. The matched substring can be retrieved from the resulting Matches collection, using Item [0]...[n]. To match parentheses characters ( ), use "\(" or "\)".</p> </td> </tr>
+<tr> <td> <p>x|y</p> </td> <td> <p>Matches either <i>x</i> or <i>y</i>. For example, "z|wood" matches "z" or "wood". "(z|w)oo" matches "zoo" or "wood". </p> </td> </tr>
+<tr> <td> <p>{<i>n</i>}</p> </td> <td> <p> <i>n</i> is a nonnegative integer. Matches exactly <i>n</i> times. For example, "o{2}" does not match the "o" in "Bob," but matches the first two o's in "foooood".</p> </td> </tr>
+<tr> <td> <p>{<i>n</i>,} </p> </td> <td> <p> <i>n</i> is a nonnegative integer. Matches at least <i>n</i> times. For example, "o{2,}" does not match the "o" in "Bob" and matches all the o's in "foooood." "o{1,}" is equivalent to "o+". "o{0,}" is equivalent to "o*".</p> </td> </tr>
+<tr> <td> <p> { <i>n</i> , <i>m</i> } </p> </td> <td> <p> <i>m</i> and <i>n</i> are nonnegative integers. Matches at least <i>n</i> and at most <i>m</i> times. For example, "o{1,3}" matches the first three o's in "fooooood." "o{0,1}" is equivalent to "o?".</p> </td> </tr>
+<tr> <td> <p> [ <i>xyz</i> ] </p> </td> <td> <p>A character set. Matches any one of the enclosed characters. For example, "[abc]" matches the "a" in "plain". </p> </td> </tr>
+<tr> <td> <p> [^ <i>xyz</i> ] </p> </td> <td> <p>A negative character set. Matches any character not enclosed. For example, "[^abc]" matches the "p" in "plain". </p> </td> </tr>
+<tr> <td> <p> [ <i>a-z</i> ] </p> </td> <td> <p>A range of characters. Matches any character in the specified range. For example, "[a-z]" matches any lowercase alphabetic character in the range "a" through "z". </p> </td> </tr>
+<tr> <td> <p> [^ <i>m-z</i> ] </p> </td> <td> <p>A negative range characters. Matches any character not in the specified range. For example, "[m-z]" matches any character not in the range "m" through "z". </p> </td> </tr>
+<tr> <td> <p>\b </p> </td> <td> <p>Matches a word boundary, that is, the position between a word and a space. For example, "er\b" matches the "er" in "never" but not the "er" in "verb". </p> </td> </tr>
+<tr> <td> <p>\B </p> </td> <td> <p>Matches a non-word boundary. "ea*r\B" matches the "ear" in "never early". </p> </td> </tr>
+<tr> <td> <p>\d </p> </td> <td> <p>Matches a digit character. Equivalent to [0-9]. </p> </td> </tr>
+<tr> <td> <p>\D </p> </td> <td> <p>Matches a non-digit character. Equivalent to [^0-9]. </p> </td> </tr>
+<tr> <td> <p>\f </p> </td> <td> <p>Matches a form-feed character. </p> </td> </tr>
+<tr> <td> <p>\n </p> </td> <td> <p>Matches a newline character. </p> </td> </tr>
+<tr> <td> <p>\r </p> </td> <td> <p>Matches a carriage return character. </p> </td> </tr>
+<tr> <td> <p>\s </p> </td> <td> <p>Matches any white space including space, tab, form-feed, etc. Equivalent to "[ \f\n\r\t\v]".</p> </td> </tr>
+<tr> <td> <p>\S </p> </td> <td> <p>Matches any nonwhite space character. Equivalent to "[^ \f\n\r\t\v]". </p> </td> </tr>
+<tr> <td> <p>\t </p> </td> <td> <p>Matches a tab character. </p> </td> </tr>
+<tr> <td> <p>\v </p> </td> <td> <p>Matches a vertical tab character. </p> </td> </tr>
+<tr> <td> <p>\w </p> </td> <td> <p>Matches any word character including underscore. Equivalent to "[A-Za-z0-9_]". </p> </td> </tr>
+<tr> <td> <p>\W </p> </td> <td> <p>Matches any non-word character. Equivalent to "[^A-Za-z0-9_]". </p> </td> </tr>
+<tr> <td> <p> \num </p> </td> <td> <p>Matches <i>num</i>, where <i>num</i> is a positive integer. A reference back to remembered matches. For example, "(.)\1" matches two consecutive identical characters. </p> </td> </tr>
+<tr> <td> <p> \ <i>n</i> </p> </td> <td> <p>Matches <i>n</i>, where <i>n</i> is an octal escape value. Octal escape values must be 1, 2, or 3 digits long. For example, "\11" and "\011" both match a tab character. "\0011" is the equivalent of "\001" &amp; "1". Octal escape values must not exceed 256. If they do, only the first two digits comprise the expression. Allows ASCII codes to be used in regular expressions.</p> </td> </tr>
+<tr> <td> <p>\x<i>n</i></p> </td> <td> <p>Matches <i>n</i>, where <i>n</i> is a hexadecimal escape value. Hexadecimal escape values must be exactly two digits long. For example, "\x41" matches "A". "\x041" is equivalent to "\x04" &amp; "1". Allows ASCII codes to be used in regular expressions.</p> </td> </tr></table>

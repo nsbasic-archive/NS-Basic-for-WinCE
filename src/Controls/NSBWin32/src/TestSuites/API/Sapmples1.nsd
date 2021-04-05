@@ -1,0 +1,269 @@
+Private rc
+Sub ClipGet_Click
+   TextBox1.Text = api.ClipText
+End Sub
+
+Sub Form1_Load
+  AddObject "NSBasic.win32.api", "api"
+End Sub
+
+Sub ClipSet_Click
+   api.ClipText = TextBox1.Text
+End Sub
+Sub CommandButton1_Click
+   Set rc = api.SystemParameters(0)
+   WLeft.Text = rc.Left
+   WTop.Text = rc.Top
+   WRight.Text = rc.Right
+   WBottom.Text = rc.Bottom
+End Sub
+Sub CommandButton2_Click
+   If IsObject(rc) Then
+      rc.Left = WLeft.Text
+      rc.Top = WTop.Text
+      rc.Right = WRight.Text
+      rc.Bottom = WBottom.Text
+      Set api.SystemParameters(0) = rc
+   Else
+      MsgBox "Get the work area first!"
+   End If
+End Sub
+
+Sub CommandButton3_Click
+   TextBox3.Text = api.GetShortcutTarget(TextBox2.Text)   
+End Sub
+
+Sub CommandButton4_Click
+   api.CreateShortcut TextBox2.Text,TextBox3.Text
+End Sub
+
+Sub CommandButton5_Click
+   TextBox4.Text = api.GetSpecialFolder(0)
+End Sub
+
+Sub CommandButton6_Click
+   api.ForegroundWindow = api.FindWindow(TextBox5.Text)
+End Sub
+
+Sub CommandButton7_Click
+   TextBox5.Text = api.WindowText(api.ForegroundWindow)
+End Sub
+
+Sub CommandButton8_Click
+   TextBox6.Text = api.LocalTime
+End Sub
+
+Sub CommandButton9_Click
+   TextBox8.Text = api.GetStorageStatus(0,Textbox7.Text)
+   TextBox9.Text = api.GetStorageStatus(1,Textbox7.Text)
+End Sub
+
+Sub CommandButton10_Click
+   TextBox10.Text = api.GetPowerStatus(0)
+   TextBox11.Text = api.GetPowerStatus(1)
+   TextBox12.Text = api.GetPowerStatus(2)
+   TextBox13.Text = api.GetPowerStatus(3)
+   TextBox14.Text = api.GetPowerStatus(4)
+End Sub
+
+
+'*** Begin Generated Code ***
+
+Dim AppEXEName: AppEXEName = "Sapmples1"
+Dim AppPath: AppPath = "G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\prj\Desk\TestSuites\API\Sapmples1.nsd"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If Not IsObject(Form1_Temp) Then
+      AddObject "Form", "Form1", 0, 0, 640, 480
+      Form1.Visible = False
+      Form1.Caption = "Form1"
+      Set Form1_Temp = Form1
+
+      AddObject "TextBox", "TextBox1", 8, 8, 160, 56, Form1
+      TextBox1.BackColor = 16777215
+      TextBox1.FontSize =  8.25
+      TextBox1.Multiline = True
+      '--------
+      AddObject "CommandButton", "ClipGet", 176, 8, 108, 21, Form1
+      ClipGet.Caption = "Get clip text"
+      ClipGet.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "ClipSet", 176, 40, 108, 21, Form1
+      ClipSet.Caption = "Set clip text"
+      ClipSet.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "WLeft", 8, 112, 56, 24, Form1
+      WLeft.BackColor = 16777215
+      WLeft.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "WTop", 40, 80, 56, 24, Form1
+      WTop.BackColor = 16777215
+      WTop.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "WRight", 72, 112, 56, 24, Form1
+      WRight.BackColor = 16777215
+      WRight.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "WBottom", 40, 144, 56, 24, Form1
+      WBottom.BackColor = 16777215
+      WBottom.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton1", 176, 88, 108, 21, Form1
+      CommandButton1.Caption = "Get WorkArea"
+      CommandButton1.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton2", 176, 120, 108, 21, Form1
+      CommandButton2.Caption = "Set WorkArea"
+      CommandButton2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox2", 8, 192, 272, 24, Form1
+      TextBox2.BackColor = 16777215
+      TextBox2.FontSize =  8.25
+      TextBox2.Text = "(enter full path to a shortcut)"
+      '--------
+      AddObject "CommandButton", "CommandButton3", 8, 256, 108, 21, Form1
+      CommandButton3.Caption = "Resolve shortcut"
+      CommandButton3.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox3", 8, 224, 272, 24, Form1
+      TextBox3.BackColor = 16777215
+      TextBox3.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton4", 128, 256, 108, 21, Form1
+      CommandButton4.Caption = "Create shortcut"
+      CommandButton4.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox4", 8, 288, 272, 24, Form1
+      TextBox4.BackColor = 16777215
+      TextBox4.FontSize =  8.25
+      TextBox4.Text = "TextBox4"
+      '--------
+      AddObject "CommandButton", "CommandButton5", 8, 320, 108, 21, Form1
+      CommandButton5.Caption = "Get desktop path"
+      CommandButton5.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton6", 8, 392, 136, 24, Form1
+      CommandButton6.Caption = "Set Foreground window"
+      CommandButton6.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox5", 8, 360, 272, 24, Form1
+      TextBox5.BackColor = 16777215
+      TextBox5.FontSize =  8.25
+      TextBox5.Text = "Notepad - Untitled"
+      '--------
+      AddObject "CommandButton", "CommandButton7", 152, 392, 128, 24, Form1
+      CommandButton7.Caption = "Get Foreground window"
+      CommandButton7.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox6", 416, 8, 216, 24, Form1
+      TextBox6.BackColor = 16777215
+      TextBox6.FontSize =  8.25
+      TextBox6.Text = "TextBox6"
+      '--------
+      AddObject "CommandButton", "CommandButton8", 416, 40, 108, 21, Form1
+      CommandButton8.Caption = "Get local time"
+      CommandButton8.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox7", 336, 88, 69, 21, Form1
+      TextBox7.BackColor = 16777215
+      TextBox7.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox8", 416, 120, 168, 24, Form1
+      TextBox8.BackColor = 16777215
+      TextBox8.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton9", 416, 88, 108, 21, Form1
+      CommandButton9.Caption = "Get storage status"
+      CommandButton9.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label1", 352, 120, 56, 21, Form1
+      Label1.BackColor = 12632256
+      Label1.Caption = "Size:"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 352, 152, 56, 21, Form1
+      Label2.BackColor = 12632256
+      Label2.Caption = "Free:"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox9", 416, 152, 168, 24, Form1
+      TextBox9.BackColor = 16777215
+      TextBox9.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "CommandButton10", 344, 200, 114, 21, Form1
+      CommandButton10.Caption = "Power status"
+      CommandButton10.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "TextBox10", 424, 232, 160, 24, Form1
+      TextBox10.BackColor = 16777215
+      TextBox10.FontSize =  8.25
+      TextBox10.Text = "TextBox10"
+      '--------
+      AddObject "TextBox", "TextBox11", 424, 264, 160, 24, Form1
+      TextBox11.BackColor = 16777215
+      TextBox11.FontSize =  8.25
+      TextBox11.Text = "TextBox11"
+      '--------
+      AddObject "TextBox", "TextBox12", 424, 296, 160, 24, Form1
+      TextBox12.BackColor = 16777215
+      TextBox12.FontSize =  8.25
+      TextBox12.Text = "TextBox12"
+      '--------
+      AddObject "TextBox", "TextBox13", 424, 328, 160, 24, Form1
+      TextBox13.BackColor = 16777215
+      TextBox13.FontSize =  8.25
+      TextBox13.Text = "TextBox13"
+      '--------
+      AddObject "TextBox", "TextBox14", 424, 360, 160, 24, Form1
+      TextBox14.BackColor = 16777215
+      TextBox14.FontSize =  8.25
+      TextBox14.Text = "TextBox14"
+      '--------
+      AddObject "Label", "Label3", 344, 232, 56, 21, Form1
+      Label3.BackColor = 12632256
+      Label3.Caption = "AC status"
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label4", 344, 264, 72, 24, Form1
+      Label4.BackColor = 12632256
+      Label4.Caption = "Battery flag"
+      Label4.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label5", 344, 296, 72, 24, Form1
+      Label5.BackColor = 12632256
+      Label5.Caption = "Battery life"
+      Label5.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label6", 344, 328, 72, 24, Form1
+      Label6.BackColor = 12632256
+      Label6.Caption = "Batt. life time"
+      Label6.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label7", 344, 360, 72, 24, Form1
+      Label7.BackColor = 12632256
+      Label7.Caption = "Batt. full time"
+      Label7.FontSize =  8.25
+      '--------
+   End If
+   Form1.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If Not IsObject(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+'*** End Generated Code ***

@@ -1,0 +1,73 @@
+' Demonstration of the registry functions in MGCEWin32
+' Written by Mark Gamber using NS Basic
+
+' Registry root keys. Everything else is based on these
+CLASSES_ROOT = 0
+CURRENT_USER = 1
+LOCAL_MACHINE =2
+USERS = 3
+
+'Registry types supported by this object
+REG_SZ = 1
+REG_BINARY = 3
+REG_DWORD = 4
+REG_MULTI_SZ = 7
+
+' ******** Create the registry object
+addobject "MGCEWin32.Registry", "Registry", 0, 0, 0, 0
+
+' ******** Create HKEY_CURRENT_USER\Software\Test path
+Registry.Key = CURRENT_USER
+Registry.Path = "Software\Test"
+Registry.CreatePath
+
+' ******** First, add a REG_MULTI_SZ type using an array
+
+Registry.Name = "TestValue"      ' Use a value called TestValue
+Registry.ValueType = REG_MULTI_SZ    ' Setting a multi-string
+v = Array( 1, 2, "Three", 4 )               ' Set up an array of values
+Registry.Value = v                            ' Add array to the registry
+
+
+' ******** Now read back the array we just added
+s = Registry.Value
+MsgBox CStr( UBound( s ) ) & " items in array", vbOKOnly, "Array Size"
+for i = 1 to UBound( s )                       ' Display each array item
+   MsgBox s( i ), vbOKOnly, "Array Value " & CStr( i )
+next
+
+Registry.ValueType = REG_DWORD
+Registry.Value = "10"
+MsgBox Registry.Value, vbOKOnly, "DWORD Value"
+
+' ******** New let's play around with a binary value
+
+Registry.ValueType = REG_BINARY           '  Specify registry type as BINARY
+Registry.Name = "BinValue"
+Registry.Value = "FFFEFDFC00010203"      ' Give value a Hex string
+
+s = Registry.Value                                     ' Read back binary value we just set
+MsgBox s, vbOKOnly, "Binary Value"          ' Display the hex string
+
+i = 0
+on error resume next
+while Err.number = 0
+   MsgBox Registry.GetValueName( i ), vbOKOnly, "Created Key"
+   i = i + 1
+wend
+
+Registry.DeleteValue                                  ' Delete the binary value
+Registry.Name = "TestValue"                      ' Delete the original array value
+Registry.DeleteValue
+
+Registry.DeletePath                                    ' Delete the Software\Test path we added
+
+Registry.Path = ""
+i = 0
+on error resume next
+while Err.Number = 0
+   MsgBox Registry.GetPathName( i ), vbOKOnly, "Paths in CURRENT_USER"
+   i = i + 1
+wend
+
+bye

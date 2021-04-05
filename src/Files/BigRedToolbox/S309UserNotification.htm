@@ -1,0 +1,245 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309UserNotification Control</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=477>
+<TR><TD WIDTH="23%" VALIGN="TOP">
+<P><IMG SRC="images/BRT.jpg" WIDTH=95 HEIGHT=128></TD>
+<TD WIDTH="77%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=6><P>The Big Red Toolbox </P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>S309UserNotification</P>
+</FONT><FONT FACE="Arial"><P>A control that puts up a Windows CE User Notification</P>
+</FONT><FONT FACE="Helvetica" SIZE=2><P>September 26, 1999</P>
+<P>Copyright 1999 NS BASIC Corporation</B></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+NS Basic is (c) NS Basic Corporation<BR>
+Windows CE is (c) Microsoft Corporation<BR>
+<HR>
+
+<body bgcolor="#FFFFFF">
+
+<p>The S309UserNotification.ocx <font color="#FF0000">version 1.3</font>
+provides an ActiveX control that can display a Windows CE User Notification dialog box
+(the same dialog used for reminders).</p><BR><BR><BR>
+
+<H4>Object Creation</H4>
+<CODE>AddObject "S309.UserNotification.1","un",0,0</CODE>
+
+
+<H4>Samples</H4>
+	<UL COMPACT>
+	<LI><A HREF="samples/S309UserNotification.htm">S309UserNotification</A> - Demo of User Notification functions
+</UL>
+
+<table border="2" cellpadding="5" frame="BOX">
+  <tr>
+    <th colspan="3"><font color="#0080FF"><big><strong>Properties</strong></big></font></th>
+  </tr>
+  <tr>
+    <td><font color="#0080FF"><strong>Name</strong></font></td>
+    <td><font color="#0080FF"><strong>Values</strong></font></td>
+    <td><font color="#0080FF"><strong>Description</strong></font></td>
+  </tr>
+  <tr>
+    <td><strong>AppName</strong></td>
+    <td><em>string</em></td>
+    <td>A string that contains the name of an executable that is used to get an icon for the
+    dialog at notification time when using the Set method or that is to be executed when using
+    the RunAppAtTime Method.</td>
+  </tr>
+  <tr>
+    <td><strong>DateTime</strong></td>
+    <td><em>variant</em></td>
+    <td>Any variant that can be converted to a date and time.</td>
+  </tr>
+  <tr>
+    <td><strong>Dialog</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Determines whether a dialog box should be displayed at notification time.</td>
+  </tr>
+  <tr>
+    <td><strong>DialogText</strong></td>
+    <td><em>string</em></td>
+    <td>The text for the dialog to display.</td>
+  </tr>
+  <tr>
+    <td><strong>DialogTitle</strong></td>
+    <td><em>string</em></td>
+    <td>The title for the dialog to display.</td>
+  </tr>
+  <tr>
+    <td><strong>LED</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Determines whether the LED will flash on the Windows CE machine.</td>
+  </tr>
+  <tr>
+    <td><strong>Left</strong></td>
+    <td><em>integer</em></td>
+    <td>Pixels from the left edge of the output window to left edge of ActiveX control.<em>GetUserPreferences
+    method uses this to determine where to display the dialog. It will try to center the
+    dialog on top of the control.</em></td>
+  </tr>
+  <tr>
+    <td><strong>Repeat</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Repeat playing the SoundFile for 10-15 seconds if Sound=True.</td>
+  </tr>
+  <tr>
+    <td><strong>Sound</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Determines whether to play a sound at notification time.</td>
+  </tr>
+  <tr>
+    <td><strong>SoundFile</strong></td>
+    <td><em>string</em></td>
+    <td>The name of the .wav file to play. If you are using GetUserPreferences method this
+    should be the name a the .wav file only, not the path, name, and extension.</td>
+  </tr>
+  <tr>
+    <td><strong>Tag</strong></td>
+    <td><em>variant</em></td>
+    <td>User defined.</td>
+  </tr>
+  <tr>
+    <td><strong>Top</strong></td>
+    <td><em>integer</em></td>
+    <td>Pixels from top edge of output window to top edge of ActiveX control.<em>GetUserPreferences
+    method uses this to determine where to display the dialog. It will try to center the
+    dialog on top of the control.</em></td>
+  </tr>
+  <tr>
+    <td><strong>VersionMajor</strong></td>
+    <td>integer</td>
+    <td>Returns the major version of the S309UserNotification.<em> </em><strong><font
+    color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>VersionMinor</strong></td>
+    <td>integer</td>
+    <td>Returns the minor version of the S309UserNotification<em>. </em><strong><font
+    color="#FF0000">(Read Only)</font></strong></td>
+  </tr>
+  <tr>
+    <td><strong>Vibrate</strong></td>
+    <td><em>True|<strong>False</strong></em></td>
+    <td>Determines whether to vibrate the Windows CE machine at notification time.</td>
+  </tr>
+</table>
+
+<table border="2" cellpadding="5" frame="BOX">
+  <tr>
+    <th colspan="4"><font color="#0080FF"><big><strong>Methods</strong></big></font></th>
+  </tr>
+  <tr>
+    <td><font color="#0080FF"><strong>Name</strong></font></td>
+    <td><strong><font color="#0080FF">Parameter(s)</font></strong></td>
+    <td><font color="#0080FF"><strong>Return Value</strong></font></td>
+    <td><font color="#0080FF"><strong>Description</strong></font></td>
+  </tr>
+  <tr>
+    <td><strong>AboutBox</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Displays the About Box for this ActiveX control.</td>
+  </tr>
+  <tr>
+    <td><strong>Clear</strong></td>
+    <td>The <em>handle</em> returned from the Set method.</td>
+    <td><em>True|False</em></td>
+    <td>Cancels the UserNotification specified by <em>handle</em>. Returns False if there were
+    errors.</td>
+  </tr>
+  <tr>
+    <td><strong>GetUserPreferences</strong></td>
+    <td>&nbsp;</td>
+    <td><em>True|False</em></td>
+    <td>Displays a dialog box allowing the user to specify preferences for sound, soundfile,
+    repeat, dialogbox, and LED. If True is returned the user changed one or more options and
+    the changes are reflected in the Properties for this control.</td>
+  </tr>
+  <tr>
+    <td><strong>Handle</strong></td>
+    <td>The AppName specified with the RunAppAtTime or Set methods.</td>
+    <td><em>True|False</em></td>
+    <td>This method will notify Windows CE that the program has handled the notification
+    events and will turn off the task bar annunciator and flashing LED. <em>(I have found that
+    if I Dialog=False and use the Set method the LED does not stop flashing on some units). </em>Returns
+    False if there were errors.</td>
+  </tr>
+  <tr>
+    <td><strong>RunAppAtTime</strong></td>
+    <td>&nbsp;</td>
+    <td><em>True|False</em></td>
+    <td>Will execute the program specified in the AppName property at the time specified in
+    the DateTime property. Returns False if there were errors.</td>
+  </tr>
+  <tr>
+    <td><strong>Set</strong></td>
+    <td>0 for a new event or <em>handle</em> of event to modify.</td>
+    <td><em>handle</em></td>
+    <td>Will set or modify a User Notification. Returns 0 if there were errors.</td>
+  </tr>
+</table>
+
+<p><big><big><strong>Files Included</strong></big></big></p>
+
+<p>S309UserNotification.ocx - the ActiveX control<br>
+S309UserNotification.html - the documentation (this file).<br>
+S309UserNotification.nsb - a sample NS Basic program.</p>
+
+<p><big><strong><big>Installation of S309UserNotification ActiveX control on Windows CE</big></strong></big></p>
+
+<p>Transfer the ocx file for your processor to the \Windows directory</p>
+
+<p>Register the control on Windows CE by doing:</p>
+
+<p>Start - Run - regsvrce.exe \Windows\S309UserNotification.ocx</p>
+
+<p>You should get a return code of 0.</p>
+<H4>How to register objects on Palm-size devices:</H4>
+
+<UL COMPACT>
+	<LI>Bring up the on screen keyboard.
+	<LI>Tap on the task bar on the bottom
+	<LI>Enter run23 on the keyboard.
+	<LI>An Open dialog box will appear and you can type the regsvrce.exe command.
+</UL>
+
+<P>- or -
+
+<P>Use NS Basic/CE's SHELLEXECUTE command. There's an example in the 
+Handbook.
+
+<p><big><big><strong>Using the S309UserNotification ActiveX control in NS Basic</strong></big></big></p>
+
+<p><font color="#0080FF">Dim Handle<br>
+AddObject &quot;S309.UserNotification.1&quot;, &quot;un&quot;, xpos, ypos<br>
+un.Dialog = True<br>
+un.Sound = True<br>
+un.SoundFile = &quot;Alarm2&quot;<br>
+un.LED = True<br>
+un.Repeat = False<br>
+un.GetUserPreferances()<br>
+if un.Dialog then<br>
+&nbsp; un.DialogTitle = &quot;This is the Title&quot;<br>
+&nbsp; un.DialogText = &quot;This is the Text&quot;<br>
+end if<br>
+un.AppName = &quot;S309UserNotification.ocx&quot;&nbsp;&nbsp; ' display icon from
+executable<br>
+un.DateTime = now + timeserial(0,0,5)&nbsp;&nbsp; ' show in 5 seconds.<br>
+Handle = un.Set(0)&nbsp; ' create a new event</font></p>
+
+<p>&quot;un&quot; can be any name<br>
+xpos is the x-coord<br>
+ypos is the y-coord<br>
+</p>
+
+<p><big><big>The latest version of the S309UserNotification ActiveX control can be found <a
+href="http://members.xoom.com/S309">here</a>.</big></big></p>
+</body>
+</html>

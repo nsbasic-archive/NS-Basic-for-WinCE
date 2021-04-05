@@ -1,0 +1,240 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Tutorial 06: Reading and Writing Data</title>
+<link rel="stylesheet" href="/style2.css">
+</head>
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff">
+<table cellspacing="0" width="550" border="0">
+  
+  <tr>
+    <td valign="top" width="17%"><img height="103" src="images/BigIcon.GIF" width="86"></td>
+    <td valign="top" width="83%">
+      <h2>Tutorial 06: Reading and Writing Data</h2>
+      <h3>September 20, 2009</h3>
+      <h5>© 2010 NS BASIC Corporation. All rights reserved. </h5>
+      <p><em>Contributed by Tom Newman, Mission Peak Designs</em></p> 
+ 	</td></tr></table>
+<hr>
+
+<h3>Contents:</h3>
+<ol>
+    <li><a href="#Intro">Introduction</a></li>
+    <li><a href="#Starting">Getting Started</a></li>	
+    <li><a href="#Form">Creating the Form</a></li>
+  	<li><a href="#Code">Creating the Code</a> </li>
+  	<li><a href="#Writing">Writing String Data</a> </li>	
+	<li><a href="#Reading">Reading String Data</a> </li>
+	<li><a href="#Testing">Testing the Program</a> </li>	
+ </ol>
+
+<a name="Intro"></a><h2>Introduction</h2>
+
+<p>The purpose of this tutorial is to demonstrate reading and writing data
+to a file using NS Basic/CE. You should have completed Tutorial #1
+before beginning this tutorial. </p>
+
+<p>The program to be developed uses NewObject's ActiveX Storage and
+File control to create, write, and read files. This tutorial will create
+a program that writes and reads string data to a file.</p>
+
+<a name="Starting"></a><h2>Getting Started</h2>
+<p>Including file reading/writing support in your application starts as simply as adding NewObjects ActiveX control as a resource to your program. Select Project > Add Resource, then select newObjectsPack1.dll.</p>
+  
+<p>(For a complete reference on the methods above, make sure you read the <a href="http://www.nsbasic.com/desktop/info/technotes/TN08.htm">
+Tech Note 08: File I/O Control - SFStream</a> and
+ <a href="http://www.nsbasic.com/desktop/info/technotes/TN08a.htm">
+ Tech Note 08a: File I/O Control with Fields - SFRecord</a>)</p>
+ 
+<a name="Form"></a><h2>Creating the Form</h2>
+<p>Start a new "Standard" project and save it as <i>FileIO.nsb</i></p>
+
+Create the following controls on the form:
+<ul>
+  <li>Create a CommandButton and call it "cmdCreate". Change the Caption
+  to "Create a File".</li>
+  <li>Create a CommandButton and call it "cmdWrite". Change the Caption
+  to "Write 1000 Records".</li>
+  <li>Create a CommandButton and call it "cmdRead". Change the Caption
+  to "Read 1000 Records".</li>
+  <li>Create a CommandButton and call it "cmdRandomRead". Change the Caption
+  to "Do 1000 Random".</li> 
+  <li>Create a CommandButton and call it "cmdDelete". Change the Caption
+  to "Delete a File".</li>           
+  <li>Create a TextBox and call it "txtMsg". Change Multiline to True.
+  Change Scrollbars to 2 (vertical scrollbars). Delete the 
+  field after the Text property.</li>
+</ul>
+
+<p>The form should look like the following:</p>
+<p align="center"><img src="images/TT06.1.gif" width="576" height="764" alt="" border="0" align="">
+
+<a name="Code"></a><h2>Creating the Code</h2> 
+<p>First off we will create code that initializes our program and creates
+and deletes our test file.</p>
+
+<p>Enter the following code in the Code Window (you can copy and paste
+this code):</p>
+
+<p align="center"><textarea name="textfield" cols="80" rows="20" wrap="OFF">
+Option Explicit
+'Demonstrate how to use do simple File I/O
+'See Tech Note 08
+ShowOKButton True		' for CE programs, no-op for desktop
+
+' Global variables
+Dim filename
+
+Sub Form1_Load
+   AddObject "newObjects.utilctls.SFMain", "fs"
+   filename = "MyFile.txt"
+End Sub
+
+Sub cmdCreate_Click
+	Dim file
+	
+   If fs.fileExists(FileName) Then
+      txtMsg.text = "File already exists" & vbCrLf & txtMsg.text
+   Else
+      Set file = fs.createFile(fileName)
+      txtMsg.text = "File created" & vbCrLf & txtMsg.text
+   End If
+End Sub
+
+Sub cmdDelete_Click
+	Dim file
+	
+   If Not fs.fileExists(FileName) Then
+      txtMsg.text = "File does not exists" & vbCrLf & txtMsg.text
+   Else
+	  fs.deleteFile(fileName)
+      txtMsg.text = "File deleted" & vbCrLf & txtMsg.text
+   End If
+End Sub
+
+Sub cmdWrite_Click
+	Dim i, file
+	
+   If Not fs.fileExists(fileName) Then
+      txtMsg.text = "File does not exist" & vbCrLf & txtMsg.text
+      Exit Sub
+   End If
+   
+   Set file = fs.OpenFile(filename)
+   For i = 1 To 1000
+      file.WriteText "This is record " & i, 1 'write with newLine at end
+   Next
+   txtMsg.text = "1000 records written." & vbCrLf & txtMsg.text
+   txtMsg.text = "File is " & file.stats.size & " bytes" & vbCrLf & txtMsg.text
+   file.close
+End Sub
+
+Sub cmdRead_Click
+	Dim i, file, rec
+	
+   If Not fs.fileExists(fileName) Then
+      txtMsg.text = "File does not exist" & vbCrLf & txtMsg.text
+      Exit Sub
+   End If
+   
+   Set file = fs.OpenFile(filename)
+   i = 0
+   Do
+      rec = File.ReadText(-1) 'read until line separator
+      i = i + 1
+   Loop Until File.EOS
+   
+   txtMsg.text = I & " records read." & vbCrLf & txtMsg.text
+   file.close
+End Sub
+
+Sub cmdRandomRead_Click
+	Dim i, file, rec, filesize
+	
+   If Not fs.fileExists(fileName) Then
+      txtMsg.text = "File does not exist" & vbCrLf & txtMsg.text
+      Exit Sub
+   End If
+   
+   Set file = fs.OpenFile(filename)
+   fileSize = file.stats.size
+   For i=1 To 1000
+      file.Pos = 1 + Rnd()*fileSize
+      rec = File.ReadText(-1) 'read until line separator
+   Next
+   
+   txtMsg.text = I-1 & " random records read." & vbCrLf & txtMsg.text
+   file.close
+End Sub
+</textarea>
+
+<p align="center"><img src="images/TT06.2.gif" width="745" height="646" alt="" border="0" align="">
+<p>Now let's analyze the code, line by line:</p>
+<ul>
+  <li>Line 8 is the Form1_Load routine and is called after the form and
+  controls have been created.</li>
+  <li>Line 9 creates our Storage and File object (SFMain).</li>
+  <li>Line 13 is the cmdCreate_Click routine called from the "Create a File"
+  button. This routine creates our test file if it doesn't already exist.</li>
+  <li>Line 24 is the cmdDelete_Click routine called from the "Delete a File"
+  button. This routine deletes our test file if it exists.</li>
+</ul>
+
+<a name="Writing"></a><h2>Writing String Data</h2>
+<p>Next we will create code that writes 1000 records (strings) to
+our test file.</p>
+<p align="center"><img src="images/TT06.3.gif" width="745" height="361" alt="" border="0" align="">
+<p>Now let's analyze the code, line by line:</p>
+<ul>
+  <li>Line 35 is the cmdWrite_Click routine called from the "Write 1000
+  Records" button.</li>
+  <li>Line 38 verifies that the file exists.</li>
+  <li>Line 43 opens the file.</li>
+  <li>Line 45 uses WriteText to write one string to the file. (WriteText
+  writes the end of line character at the end of the write.)</li>
+  <li>Line 49 closes the file after writing 1000 strings.</li>    
+</ul>
+
+<a name="Reading"></a><h2>Reading String Data</h2>
+<p>Next we will create code that reads 1000 records (strings) from
+our test file and follow that up by code that reads 1000 random records.</p>
+
+<p align="center"><img src="images/TT06.4.gif" width="745" height="708" alt="" border="0" align="">
+<p>Now let's analyze the code, line by line:</p>
+<ul>
+  <li>Line 52 is the cmdRead_Click routine called from the "Read 1000
+  Records" button.</li>
+  <li>Line 55 verifies that the file exists.</li>
+  <li>Line 60 opens the file.</li>
+  <li>Line 63 uses ReadText to read one record (string) from the file.
+  (ReadText reads up until the end of line character is found.)</li>
+  <li>Line 65 loops reading the file until End of File (EOF) is found.</li>
+  <li>Line 68 closes the file.</li>
+  
+  <li>Line 71 is the cmdRandom_Click routine called from the "Do 1000
+  Random" button.</li>
+  <li>Line 74 verifies that the file exists.</li>
+  <li>Line 79 opens the file.</li>
+  <li>Line 80 gets the size of the file.</li>
+  <li>Line 82 computes a random position in the file and uses Pos to set
+  the file pointer to that position.</li>
+  <li>Line 83 uses ReadText to read one record (string) from the file
+  (starting at the random position).</li>
+  <li>Line 84 loops until 1000 random reads have occurred.</li>
+  <li>Line 87 closes the file.</li>          
+</ul>
+
+
+<a name="Testing"></a><h2>Testing the Program</h2>
+<p>Press F5 to save and start the program. Your results should look similar 
+to the image below. The program creates a file (MyFile.txt) and writes/reads
+1000 strings. The last button deletes the file.</p>
+
+<p align="center"><img src="images/TT06.5.gif" width="316" height="486" alt="" border="0" align="">
+
+</BODY>
+</HTML>
+  
+  
+  

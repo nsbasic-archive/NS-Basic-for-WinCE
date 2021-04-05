@@ -1,0 +1,464 @@
+<HTML>
+<HEAD>
+<TITLE>TN09: FileSystem Control</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 09: File System Control</h2>
+	  <h5>
+      <H3>April 02, 2008</H3>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<p>This control is used to access and organize disks, directories and files. It  is included with NS Basic. The information in the document is for the most part copied from the official <a href="http://www.newobjects.com/pages/ndl/ndl.asp?file=StoragesAndFiles/SFFS.htm"> documentation</a> on NewObject's website. For further information, please refer to the official documentation. The information on this page is copyright ZmeY soft and published with their permission.
+
+<p>Background: This control replaces the MSCEFile control in NS Basic/CE and the FileSystemObject (FSO) in NS Basic/Desktop. Code written using this control is interoperable between both NS Basic products.
+
+<p>The File System Control is used to access and organize the disks, directories and files of a system. It is also used to open files for access - see Tech Note 08 for more information on Files.
+
+<p>The methods and properties documented here are a subset of the full capabilities of this control. To see the rest of the features, look at the full documentation from NewObjects. The features not included here will still work well with NS Basic, but are for advanced users.
+
+<p>The SFMain object is very similar to Microsoft's FileSystemObject (FSO). Many of its methods and properties duplicate the behaviour of the similar members of the FSO. However this library provides abstraction and access techniques which include more than just files and directories, therefore SFMain object differs from FSO but has the equivalent role - a root object providing general information and access to the other objects. In typical case you create it and all the other objects you may need later, are created by calling some method of the SFMain object.</p>
+
+<p><b>Installation:</b> This control requires that NewObjectsPack1.dll be installed and registered.<br>
+<p><b>Creation:</b> <pre>AddObject "newObjects.utilctls.SFMain", "FS"</pre>
+        
+        <table border="0" cellspacing="1">
+          <tr>
+            <td valign="top" align="left"><img src="images/collection.gif" width="16" height="16"
+            alt="collection.gif (368 bytes)"></td>
+            <td valign="top" align="left"><a href="#drives.htm"><strong>Drives</strong></a></td>
+            <td valign="top" align="left">Collection of the logical drives</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#CreateDirectory.htm"><strong>CreateDirectory</strong></a></td>
+            <td valign="top" align="left">Creates a directory in the file system.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#CreateFile.htm"><strong>CreateFile</strong></a></td>
+            <td valign="top" align="left">Creates file in the file system and returns a SFStream
+            object for it.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#OpenFile.htm"><strong>OpenDirectory</strong></a></td>
+            <td valign="top" align="left">Opens a Directory and returns an object for it.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#OpenFile.htm"><strong>OpenFile</strong></a></td>
+            <td valign="top" align="left">Opens a file from the file system and returns a SFStream
+            object for it</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#FileExists.htm"><strong>FileExists</strong></a></td>
+            <td valign="top" align="left">Checks if the file exists.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#FolderExists.htm"><strong>FolderExists</strong></a></td>
+            <td valign="top" align="left">Checks if the folder exists.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#Exists.htm"><strong>Exists</strong></a></td>
+            <td valign="top" align="left">Checks if the file or folder exists.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#DeleteFile.htm"><strong>DeleteFile</strong></a></td>
+            <td valign="top" align="left">Deletes the file from the file system. </td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#DeleteFolder.htm"><strong>DeleteFolder</strong></a></td>
+            <td valign="top" align="left">Deletes the folder and its contents.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#CopyFile.htm"><strong>CopyFile</strong></a></td>
+            <td valign="top" align="left">Copies file(s).</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#GetDriveName.htm"><strong>GetDriveName</strong></a></td>
+            <td valign="top" align="left">Returns the drive part of a path.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#GetExtensionName.htm"><strong>GetExtensionName</strong></a></td>
+            <td valign="top" align="left">Returns the extension of the file name.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><a href="#GetFileName.htm"><strong>GetFileName</strong></a></td>
+            <td valign="top" align="left">Returns the file name from a given path.</td>
+          </tr>
+          <tr>
+            <td valign="top" align="left"><img src="images/method.gif" width="17" height="16"
+            alt="method.gif (107 bytes)"></td>
+            <td valign="top" align="left"><b><a href="#GetFilePath.htm">GetFilePath</a></b></td>
+            <td valign="top" align="left">Returns the path name of the directory
+              containing the file.</td>
+          </tr>
+        </table>
+<p><b>Note:</b> Not all methods are supported on all platforms.
+
+<HR noshade size="1"><A Name="drives.htm">
+<h4>Drives </h4>
+<p>Returns a collection of SFDrive objects - one for each drive on the system.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>Set drvs = FS.Drives</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+Set drvs = FS.Drives
+For Each drv In drvs
+   MsgBox drv.DriveLetter &amp; &quot; - &quot; &amp; drv.FreeSpace &amp; &quot; bytes&quot; &amp; &quot;&lt;BR&gt;&quot;
+Next </pre>
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>The following properties are returned in the Drive object: DriveType, DriveLetter, FileSystem, FreeSpace, SerialNumber, TotalSize, VolumeName. On CE devices, only the main store is returned.</p>
+          </blockquote>
+
+<HR noshade size="1"><A Name="CreateDirectory.htm">
+<h4>CreateDirectory </h4>
+<p>Create a new directory.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>Set Dir = FS.CreateDirectory(path[, flags])</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+Set Dir = FS.CreateDirectory("C:\myDir)
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>Flags are:
+			<ul>
+				<li>0 -	Fail if directory already exists (default)</li>
+				<li>4096 - If directory exists, delete and recreate.</li>
+			</ul>
+            
+          </blockquote>
+
+<HR noshade size="1"><A Name="CreateFile.htm">
+<h4>CreateFile </h4>
+<p>Create a new file.  Returns a File (SFStream) Object.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>Set newFile = FS.CreateFile(path[, flags])</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+Set newFile = FS.CreateFile("C:\myDir\Temp.txt")
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>Flags are:
+			<ul>
+				<li>0 -	Fail if file already exists (default)</li>
+				<li>4096 - If file exists, delete and recreate.</li>
+			</ul>
+            
+          </blockquote>
+
+<HR noshade size="1"><A Name="OpenDirectory.htm">
+<h4>OpenDirectory </h4>
+<p>Open an existing Directory.  Returns a Directory (SFStorage) Object.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>Set Dir = FS.OpenDirectory(path[, flags])</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+Set Dir = FS.OpenDirectory"C:\myDir")
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>Flags are:
+			<ul>
+				<li>0 -	Read Only (default)</li>
+				<li>1 - Write Only</li>
+				<lI>2 - Read and Write
+				<lI>64 - Fully shared
+				<li>48 - Read is forbidden for other apps
+				<li>32 - Write if forbidden for other apps
+				<li>16 - Other apps get an error if they try to open
+			</ul>
+            Useful members of the returned object include
+			<ul>
+				<li>Dir.contents - list of files and directories in the directory</li>
+				<li>Dir.Stats</li>
+				<li>Dir.Remove</li>
+				<li>Dir.CopyTo</li>
+			</ul>
+			(There are others as well - see <a href="http://www.newobjects.com/pages/ndl/StoragesAndFiles/SFStorage.htm" target="_top">full documentation</a>)
+          </blockquote>
+
+<HR noshade size="1"><A Name="OpenFile.htm">
+<h4>OpenFile </h4>
+<p>Open an existing file.  Returns a File (SFStream) Object.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>Set Dir = FS.OpenFile(path[, flags])</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+Set Dir = FS.OpenFile("C:\myDir\Temp.txt")
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>Flags are:
+			<ul>
+				<li>0 -	Read Only (default)</li>
+				<li>1 - Write Only</li>
+				<lI>2 - Read and Write
+				<lI>64 - Fully shared
+				<li>48 - Read is forbidden for other apps
+				<li>32 - Write if forbidden for other apps
+				<li>16 - Other apps get an error if they try to open
+				<li>18 - Exclusive and Read Write (default)
+			</ul>
+            
+          </blockquote>
+
+<HR noshade size="1"><A Name="FileExists.htm">
+<h4>FileExists </h4>
+<p>Check if a file exists.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>FileExists(path)</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <pre>
+If FS.FileExists("C:\myDir\Temp.txt") then MsgBox "File Exists"
+          </pre>
+          <h4>Remarks:</h4>
+          <blockquote>Returns True if file exists.
+          </blockquote>
+
+<HR noshade size="1"><A Name="FolderExists.htm">
+<h4>FolderExists </h4>
+<p>Check if a folder exists.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>FolderExists(path)</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <pre>
+If FS.FolderExists("C:\myDir") then MsgBox "Folder Exists"
+          </pre>
+          <h4>Remarks:</h4>
+          <blockquote>Returns True if folder exists.
+          </blockquote>
+
+<HR noshade size="1"><A Name="Exists.htm">
+<h4>Exists </h4>
+<p>Check if a file or folder exists.</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>Exists(path)</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <pre>
+If FS.Exists("C:\myDir") then MsgBox "Folder or Folder Exists"
+          </pre>
+          <h4>Remarks:</h4>
+          Return Values:
+			<ul>
+				<li>0 - Does not exist</li>
+				<li>-1- folder exists</li>
+				<li>1	- file exists</li>
+			</ul>
+			
+<HR noshade size="1"><A Name="DeleteFile.htm">
+<h4>DeleteFile</h4>
+<p>Delete an existing file.  </p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>FS.DeleteFile(path[, BoolForce])</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+FS.DeleteFile("C:\myDir\Temp.txt")
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>Set BoolForce to True to delete even if file is Read only. Default is false.            
+          </blockquote>
+
+<HR noshade size="1"><A Name="DeleteFolder.htm">
+<h4>DeleteFolder</h4>
+<p>Delete an existing folder and all its contents, recursively.  </p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>FS.DeleteFolder(path[, BoolForce])</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+FS.DeleteFolder("C:\myDir")
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>Set BoolForce to True to delete even if Read only. Default is false.            
+          </blockquote>
+          
+<HR noshade size="1"><A Name="CopyFile.htm">
+<h4>CopyFile </h4>
+          <p>Copies file (or files if wildcards are used) into the file system.</p>
+        <h4>Syntax:</h4>
+        <blockquote>
+          <p>FS.CopyFile( source, destination [, fReplace = True])</p>
+        </blockquote>
+        <h4>Parameters:</h4>
+        <blockquote>
+          <p><b>source</b> - Source file full path name or path with wildcards.</p>
+          <p><b>destination</b> - Destination full path name of a file or
+          directory. No wildcards are allowed in this parameter. If wildcards
+          are used in the <b>source</b> parameter the <b>destination</b> should
+          be a directory.</p>
+          <p><b>fReplace</b> - Optional Boolean flag. The default value is True.
+          Indicates if file replace is allowed in the destination if a file with
+          the same name already exists in that location.</p>
+        </blockquote>
+        <h4>Examples:</h4>
+        <blockquote>
+          <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+FS.CopyFile(&quot;C:\Directory\*.txt&quot;,&quot;C:\MyTexts&quot;)
+' Copy all the text files
+FS.CopyFile(&quot;C:\a.txt&quot;,&quot;C:\b.txt&quot;)
+' Copy a.txt into b.txt file</pre>
+        </blockquote>
+        <h4>Remarks:</h4>
+        <blockquote>
+          <p>If fReplace is set to False the method will fail if a file with the
+          same name exists in the destination location.</p>
+          <p>Using full path names for both source and the destination allows
+          the application to copy the selected file under new file name.</p>
+          <p>If wildcards are used in the source and a full file path (not
+          directory) is used in the destination parameter no error will occur
+          but the source files matching the wildcards will be copied one by one
+          over the same file and the last one will remain as result.</p>
+          <p>For copy/move operations across the different storage types see the
+          members of SFStorage and SFStream objects.</p>
+          <p>If the parameters contain non-full path names (file names or
+          relative paths) they are assumed relative to the current work
+          directory as usual.</p>
+        </blockquote>
+ 
+
+<HR noshade size="1"><A Name="GetDrive.htm">
+<h4>GetDrive</h4>
+<p>Extracts the drive name portion of the path</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>var = FS.GetDrive(path)</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+myDriveName = FS.GetDrive("C:\myDir\Temp.txt") 'result is "C:"
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>
+            <p>Returns a string containing the drive name portion from the path parameter. In case of mapped drive it will be C:, D: etc. In case of network path it will be something like \\server\share\. The method never fails. Instead an empty string will be returned if the path does not contain recognizable drive name portion.
+
+			<p>The method supports mapped and windows networking paths (\\server\share\...). 
+				
+			<p>This method performs only textual analysis - there is  no guarantee that the returned value matches any existing drive on the system.        
+          </blockquote>
+
+
+<HR noshade size="1"><A Name="GetExtensionName.htm">
+<h4>GetExtensionName</h4>
+<p>Extracts the extension name portion of the path</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>var = FS.GetExtensionName(path)</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+myExtensionName = FS.GetExtensionName("C:\myDir\Temp.txt") 'result is ".txt"
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>The file name extension is the portion of the file name after the last "." character in the last file or directory name in the path. The path parameter can be full path, relative path or file/directory name only. If no extension presents an empty string will be returned.
+
+		<p>In most cases directories are named not using extensions in their names. However "name extension" term is applicable for them as well - and can be quite useful for certain applications.
+          </blockquote>
+
+<HR noshade size="1"><A Name="GetFileName.htm">
+<h4>GetFileName</h4>
+<p>Extracts the file name portion of the path</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>var = FS.GetFileName(path)</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+myExtensionName = FS.GetFileName("C:\myDir\Temp.txt") 'result is "Temp"
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>The method can be used to extract file or directory names as well. Its behavior for directories depends on the syntax used - if there is trailing "\" in the passed path specification the file/directory name is empty.
+
+		  <p>Note that the analysis performed is textual - the operation can be performed on existing and non-existing objects. This allows the method to be used in code intended to "plan" future file/directory creation tasks for example.
+          </blockquote>
+
+<HR noshade size="1"><A Name="GetFilePath.htm">
+<h4>GetFilePath</h4>
+<p>Extracts the path name portion of the path</p>
+          <h4>Syntax:</h4>
+          <blockquote>
+            <p>var = FS.GetFilePath(path)</p>
+          </blockquote>
+          <h4>Examples:</h4>
+          <blockquote>
+            <pre class="sample">AddObject &quot;newObjects.utilctls.SFMain&quot;, "Main"
+myPathName = FS.GetFilePath("C:\myDir\Temp.txt") 'result is "C:\myDir"
+          </blockquote>
+          <h4>Remarks:</h4>
+          <blockquote>The method can be used to extract file or directory names as well. Its behavior for directories depends on the syntax used - if there is trailing "\" in the passed path specification the file/directory name is empty.
+
+		  <p>Note that the analysis performed is textual - the operation can be performed on existing and non-existing objects. This allows the method to be used in code intended to "plan" future file/directory creation tasks for example.
+          </blockquote>
+
+
+</body>
+</html>
+

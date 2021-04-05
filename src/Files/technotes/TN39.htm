@@ -1,0 +1,388 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 39: Using APIs to create Popup Forms and Dialogs</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="82%" VALIGN="TOP">
+	  <h2>Tech Note 39: Using APIs to create Popup Forms and Dialogs</h2>
+	  <h3>May 28, 2008</h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.</h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+Contributed by <A HREF="mailto:a.yakhnin&copy; worldnet.att.net" TARGET="_top">Alex Yakhnin,</A> Software Developer, Morganville, NJ. Updated in 2008 by Manfred from Germany.
+
+
+<P><B>Summary</B>
+
+<P>NSBasic Visual Designer allows developers to create different 'logical' forms in the application by assigning controls to an array and hiding or showing the controls during the run-time. But these 'logical' forms doesn't allow to create a Popup forms or Dialogs that don't take the whole screen area. The purpose of this article is to show how to implement this functionality using API object (NSBWin32.dll).
+
+
+
+<P><B>More Information</B>
+
+<P>Almost every object in the Windows operating system is a window, i.e. forms, buttons, labels, textboxes etc..., that are created with the certain attributes or styles. It is possible, though, to change those window styles during the run-time and get the look and behavior that are needed for the application. The NSBasic.win32.api object implements .WindowLong method that wraps up SetWindowLong and GetWindowLong API calls and could be used for these purposes. The steps to create a Popup form will be to change the existing control to behave like a form and assign to it all other controls that we want to show on the form. We can achieve the latter using .WindowParent method of the API object, changing the 'parent' for these controls. I see that Label control will be the perfect candidate for the 'parent' form. So we are armed enough to create a simple popup form that asks for a string to search:<BR><BR>
+
+<IMG SRC="images/TN39a.gif" ALT="sample" WIDTH="240" HEIGHT="320">
+
+<P><B>Sample 1</B>
+
+<PRE>
+'****************************************************************************
+'***
+'***  25.01.08 ML, Dialogbox Testing
+'***  Based on old Tech Note 39: Using APIs to create Popup Forms and Dialogs
+'***  requires NSBWIN32 to be installed on PPC
+'***  tested with MDE2.0 (WM5) and HP iPAQ rx1950 (WM5)
+'***
+'****************************************************************************
+Option Explicit
+
+ShowOKButton True
+Call Setup_Form
+Call Setup_DBox
+Call Setup_DBox2
+
+'Activate WS_CAPTION, which normally should be the default
+CB1.Value = True
+CB2.Value = True
+CB3.Value = True
+Call BApply_Click
+
+'***************** Setup Form **********************************************
+Sub Setup_Form
+   AddObject "CheckBox","CB1",0,0,100,16
+   CB1.Caption = "BORDER"
+   AddObject "CheckBox","CB2",0,16,100,16
+   CB2.FontSize = 8
+   CB2.Caption = "CAPTION"
+   CB2.Enabled = False
+   AddObject "CheckBox","CB3",0,32,100,16
+   CB3.Caption = "DLGFRAME"
+   AddObject "CheckBox","CB4",0,48,100,16
+   CB4.Caption = "SYSMENU !!"
+   AddObject "CheckBox","CB5",0,64,100,16
+   CB5.Caption = "THICKFRAME"
+   AddObject "CheckBox","CB6",0,80,100,16
+   CB6.Caption = "VSCROLL"
+   AddObject "CheckBox","CB7",0,96,100,16
+   CB7.Caption = "HSCROLL"
+
+   AddObject "CheckBox","CB11",0,120,100,16
+   CB11.Caption = "CLIENTEDGE"
+   AddObject "CheckBox","CB12",0,136,100,16
+   CB12.Caption = "CAPTIONOKBTN"
+
+   AddObject "Label","LB1",100,0,140,32
+   LB1.BackColor = &HC0C0C0
+   LB1.Caption   = "Check desired options and Click Apply"
+   LB1.Fontsize  = 8
+
+   AddObject "CommandButton","BApply",0,160,100,18
+   BApply.Caption = "Apply"
+   AddObject "CommandButton","BShow",0,190,100,18
+   BShow.Caption = "Show DBox"
+
+   AddObject "CommandButton","BShow2",0,210,100,18
+   BShow2.Caption = "Show DBox2"
+
+   AddObject "NSBasic.win32.API", "API"
+End Sub
+
+'****************** Form Events ********************************************
+
+'Window styles
+Const WS_BORDER      = &H800000     'Has Border
+Const WS_CAPTION     = &HC00000     'Has Titlebar = BORDER + DLGFRAME, movable
+Const WS_DLGFRAME    = &H400000     'Dialogbox
+Const WS_SYSMENU     = &H80000      'x-Button, pressing destroys Window
+Const WS_POPUP       = &H80000000   'hangs system, need warmstart
+Const WS_THICKFRAME  = &H40000      'user sizable + movable Window
+Const WS_VSCROLL     = &H200000     'scrollbar, but somehow not functional
+Const WS_HSCROLL     = &H100000     'scrollbar, but somehow not functional
+
+'Extended window styles winuser.h
+Const WS_EX_CLIENTEDGE   = &H200      'user movable Window
+Const WS_EX_CAPTIONOKBTN = &H80000000 'Ok-Button in title, raises frmFind_Click
+
+' Style Flags
+Const GWL_STYLE   = (-16)
+Const GWL_EXSTYLE = (-20)
+
+Dim Style, ExStyle, oBox
+
+Sub BApply_Click
+   If DBox.Visible Then 
+      Set oBox = Dbox
+   Else
+      Set oBox = Dbox2
+   End If
+   Style = CLng(0)
+   If CB1.Value Then Style = Style Or WS_BORDER
+   If CB2.Value Then Style = Style Or WS_CAPTION
+   If CB3.Value Then Style = Style Or WS_DLGFRAME
+   If CB4.Value Then Style = Style Or WS_SYSMENU
+   If CB5.Value Then Style = Style Or WS_THICKFRAME
+   If CB6.Value Then Style = Style Or WS_VSCROLL
+   If CB7.Value Then Style = Style Or WS_HSCROLL
+   API.WindowLong(oBox.hWnd, GWL_STYLE) = Style
+   If (Style And WS_CAPTION) = WS_CAPTION Then
+      'Title bar is present, we hide the labeltext, but not the title ;)
+      oBox.ForeColor = oBox.BackColor
+   Else
+      oBox.ForeColor = vbBlack
+   End If
+
+   ExStyle = CLng(0)
+   If CB11.Value Then ExStyle = ExStyle Or WS_EX_CLIENTEDGE
+   If CB12.Value Then ExStyle = ExStyle Or WS_EX_CAPTIONOKBTN
+   API.WindowLong(oBox.hWnd, GWL_EXSTYLE) = ExStyle
+End Sub
+
+Sub BShow_Click
+   If     DBox2.Visible Then DBox2.Hide
+   If Not DBox.Visible  Then Dbox.Show
+End Sub
+
+Sub BShow2_Click
+   If     DBox.Visible  Then DBox.Hide
+   If Not DBox2.Visible Then Dbox2.Show
+End Sub
+
+Sub CB1_Click
+   'CAPTION = BORDER + DLGFRAME
+   CB2.value = CB1.value And CB3.value
+End Sub
+
+Sub CB3_Click
+   'CAPTION = BORDER + DLGFRAME
+   CB2.value = CB1.value And CB3.value
+End Sub
+
+'***************** Setup Dialogbox *****************************************
+Sub Setup_DBox
+   AddObject "Label",         "DBox",     100,100,140,140
+   DBox.BackColor = vbYellow
+   DBox.Caption   = "I'am the DBox"
+   
+   AddObject "Label",         "DboxFind",  10, 15,100, 18, DBox
+   DboxFind.BackColor = 12632256
+   DboxFind.Caption   = "Enter Text:"
+   '--------
+   AddObject "TextBox",       "DboxInput", 10, 40,115, 18, DBox
+   DboxInput.BorderStyle = 1
+   DboxInput.SetFocus
+   '--------
+   AddObject "CommandButton", "DboxOk",    10, 70, 55, 18, DBox
+   DboxOk.BackColor = 12632256
+   DboxOk.Caption = "&OK"      '& doesn't make much sense on PPCs
+   '--------
+   AddObject "CommandButton", "DboxCancel",80, 70, 55, 18, DBox
+   DboxCancel.BackColor = 12632256
+   DboxCancel.Caption = "&Cancel"
+   DBox.Hide
+End Sub
+
+'***************** Dialogbox Events *****************************************
+Sub DboxOk_Click
+   'When no text was entered the msgbox hides instead of DBox ??
+   If DboxInput.Text <> "" Then MsgBox DboxInput.Text
+   DBox.Hide
+End Sub
+
+Sub DboxCancel_Click
+   DBox.Hide
+End Sub
+
+Sub DBox_Click
+   If (Style And WS_DLGFRAME) = 0 Then
+      MsgBox "No Title Bar present, clicked anywhere in Box"
+   Else
+      MsgBox "Clicked Ok-Button in titlebar"
+   End If
+End Sub
+
+Sub DBOX_GotFocus
+   'Never happens
+   MsgBox "DBOX_GotFocus"
+End Sub
+
+'***************** Setup Dialogbox2 *****************************************
+'***************** Setup Dialogbox2 (Progressbar) ***************************
+Sub Setup_DBox2
+   AddObject "Label",         "DBox2",     100,100,140,140
+   DBox2.BackColor = vbYellow
+   DBox2.Caption   = "DBox2-Progressbar"
+   
+   AddObject "Label",         "Dbox2Info",  10, 15,110, 18, DBox2
+   Dbox2Info.BackColor = vbmagenta
+   Dbox2Info.Caption   = "Info"
+   '--------
+   Call PBar_Init(10, 40, 125, 18, DBox2)
+   '--------
+   AddObject "CommandButton", "Dbox2Start",   10, 70, 55, 18, DBox2
+   Dbox2Start.BackColor = &HC0C0C0
+   Dbox2Start.Caption = "Start"
+   '--------
+   AddObject "CommandButton", "Dbox2Cancel",  80, 70, 55, 18, DBox2
+   Dbox2Cancel.BackColor = &HC0C0C0
+   Dbox2Cancel.Caption = "Cancel"
+   '--------
+   AddObject "CommandButton", "Dbox2Stop",    10, 90, 55, 18, DBox2
+   Dbox2Stop.BackColor = &HC0C0C0
+   Dbox2Stop.Caption = "Stop"
+   Call ButtonEnable(DBox2Stop,False)
+   'DBox2.Hide
+End Sub
+
+Sub ButtonEnable(ByRef ctl, enable)
+   ctl.enabled = enable
+   If ctl.Tag = "" Then ctl.Tag = ctl.BackColor
+   If enable Then
+      'ctl.Backcolor = &Hc0c0c0
+      ctl.Backcolor = ctl.Tag
+   Else
+      ctl.Backcolor = vbblack
+   End If
+End Sub
+
+'***************** Dialogbox2 Events *****************************************
+Sub DBox2_Click
+   If (Style And WS_DLGFRAME) = 0 Then
+      MsgBox "No Title Bar present, clicked anywhere in Box"
+   Else
+      MsgBox "Clicked Ok-Button in titlebar"
+   End If
+End Sub
+
+Sub Dbox2Cancel_Click
+   DBox2Stop_Click()
+   DBox2.Hide
+End Sub
+
+Const Maxrounds = 100
+Dim Rounds
+Sub DBox2Start_Click()
+   DBox2Start.Timer = 200
+   Call ButtonEnable(DBox2Stop, True)
+   Call ButtonEnable(DBox2Start,False)
+   Rounds = 0
+   Call PBAR_Show()
+End Sub
+
+Sub DBox2Start_Timer()
+   Rounds = Rounds + 1
+   If Rounds > MaxRounds Then
+      Call DBox2Stop_Click()
+      exit Sub
+   End If
+   Call PBar_Progress(Rounds * 100 / Maxrounds, "")
+End Sub
+
+Sub DBox2Stop_Click()
+   DBox2Start.Timer = 0
+   Call ButtonEnable(DBox2Stop, False)
+   Call ButtonEnable(DBox2Start,True)
+End Sub
+
+
+'********************************************************************************************************************************
+'***  
+'***	23.01.08 Poor Man's Progressbar ML
+'***
+'********************************************************************************************************************************
+Dim GPB1, GPB2
+
+Public Sub PBar_Hide
+   GPB1.Visible = False
+   GPB2.Visible = GPB1.Visible
+End Sub
+
+Public Sub PBar_Init(ByVal Left, ByVal Top, ByVal Width, ByVal Height,ByRef Parent)
+   AddObject "Label", "GPB1", Left, Top, Width, Height, Parent
+   GPB1.Visible     = False
+   GPB1.BorderStyle = 1
+   AddObject "Label", "GPB2", Left+1, Top+1, Width-2, Height-1, Parent
+   GPB2.Visible     = GPB1.Visible
+   GPB2.BackColor   = vbBlue
+   GPB2.ForeColor   = vbWhite
+End Sub
+
+Public Sub PBar_Progress(ByVal Percent, ByVal txt)
+   If GPB1.Visible = False Then Call PBar_Show
+   If txt = "" Then
+      GPB2.Caption   = Percent & "%"
+   Else
+      GPB2.Caption = txt
+   End If
+   GPB2.Width = (GPB1.Width - 2) * Percent / 100
+   'very strange, this has to be done when WS_BORDER is active
+   'if not the Label will walk out of the box downwards
+   'Demo: you can watch this when you Check "BORDER" without "DLGFRAME"
+   If (Style And WS_CAPTION) = WS_CAPTION Then
+      GPB2.Left = GPB1.Left-1
+      GPB2.Top = GPB1.Top-24
+   End If
+End Sub
+
+Public Sub PBar_Show
+   GPB1.Visible = True
+   GPB2.Width   = 0
+   GPB2.Visible = GPB1.Visible
+   GPB2.Left    = GPB1.Left + 1
+   GPB2.Top     = GPB1.Top + 1
+End Sub
+
+
+
+
+
+
+
+</PRE>
+
+The following options have an effect on WM5 devices:
+<table>
+	<tr>
+		<td>BORDER</td> <td>Draws a thin border around the box</td>
+	</tr>
+	<tr>
+		<td>CAPTION</td> <td>(= BORDER + DLGFRAME) layout like MsgBox with titlebar, makes box movable</td>
+	</tr>
+	<tr>
+		<td>SYSMENU</td> <td>Displays X-button in the titlebar, pressing this button destroys the box-window </td>
+	</tr>
+	<tr>
+		<td>THICKFRAME</td> <td>Draws 3D-border around the box, makes box sizable</td>
+	</tr>
+	<tr>
+		<td>SCROLL</td> <td>Displays scrollbars in the box, but scrolling does not seem to work (perhaps someone wants to investigate that further)</td>
+	</tr>
+	<tr>
+		<td>CLIENTEDGE</td> <td>Draws 3D-border around the box, but not sizable</td>
+	</tr>
+	<tr>
+		<td>CAPTIONOKBTN</td> <td>Displays Ok-button in the titlebar (CAPTION must be set), clicking fires Dbox_Click event</td>
+	</tr>
+</table>
+
+
+
+<IMG SRC="images/TN39b.gif" ALT="sample" WIDTH="240" HEIGHT="320">
+
+
+<P>All buttons actually work! We are even able to catch the click on the "OK" button: frmFind_Click event will be working. But, we will have some problems with the "X" (Close) button: If you click on this button our form will be actually destroyed by the Windows without giving us any chance to do a clean up work and it is not possible to catch this event. Plus, our application wouldn't know that the controls where destroyed and will not allow us to recreate them with the same name. So, I suggest you do not use this feature.
+
+
+
+<P><A HREF="mailto:a.yakhnin&copy; worldnet.att.net" TARGET="_top">Alex Yakhnin, Software Developer</A>, Morganville, NJ and Manfred, somewhere in Germany.
+
+

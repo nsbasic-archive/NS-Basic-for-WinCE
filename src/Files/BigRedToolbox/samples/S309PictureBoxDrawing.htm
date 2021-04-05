@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309PictureBoxDrawing Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309PictureBoxDrawing.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+option explicit
+dim Menu, bDialog, gstrTitle, gstrURL
+
+gstrTitle = "S309PictureBox Drawing Example"
+gstrURL = "http://members.xoom.com/S309"
+Menu = array("&File||File","|",gstrTitle,"|",gstrURL)
+setmenu "TitleBar",Menu
+Menu = array("E&xit||mnuFileExit")
+setmenu "File",Menu
+
+if (Output.Width mod 2) = 1 then
+ Output.Move 0, 0, (Output.ScaleX(Output.Width + 1, 3,1)), (Output.ScaleY(Output.Height, 3, 1))
+end if    
+output.backcolor=vbgreen
+updatescreen
+
+addobject "s309.picturebox.1","picBox",5,30,output.width,output.height - 25
+picBox.backcolor=vbwhite
+
+addobject "ComboBox","cmbDraw",5,5,200,200
+cmbDraw.style = 2
+cmbDraw.additem "Select an object to draw"
+cmbDraw.additem "Draw Rectangle"
+cmbDraw.additem "Draw Round Rectangle"
+cmbDraw.additem "Draw Polygon"
+cmbDraw.listindex = 0
+
+picBox.ZOrder 0
+
+sub mnuFileExit_Click()
+  bye
+end sub
+sub cmbDraw_Click()
+  picBox.cls
+  select case cmbDraw.listindex
+    case 1
+       picbox.fillcolor = vbblue
+       picbox.drawwidth = 5
+       picBox.DrawRoundRect 5, 5, picBox.width - 10, picBox.height - 10, 0, 0, vbred
+    case 2
+       picbox.fillcolor = vbred
+       picbox.drawwidth = 5
+       picBox.DrawRoundRect 5, 5, picBox.width - 10, picBox.height - 10, 30,30, vbblue
+    case 3
+       picBox.setpointarray 1, 87, 50
+       picBox.setpointarray 2, 50, 75
+       picBox.setpointarray 3, 50, 125
+       picBox.setpointarray 4, 87, 150
+       picBox.setpointarray 5, 125, 125
+       picBox.setpointarray 6, 125, 75
+       picBox.fillstyle = 0
+       picBox.fillcolor = vbred
+       picBox.drawpolygon 6, vbblue
+   end select      
+end sub
+ 
+</PRE>
+</body>
+</html>

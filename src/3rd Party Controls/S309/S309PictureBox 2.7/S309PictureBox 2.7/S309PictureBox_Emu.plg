@@ -1,0 +1,72 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: S309PictureBox - Win32 (WCE x86em) Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "NDEBUG" /tlb "Emu/S309PictureBox.tlb" /mktyplib203 /o "NUL" /win32 "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.odl""
+Creating command line "rc.exe /l 0x409 /fo"Intermediate/S309PictureBox.res" /i "Emu" /d UNDER_CE=200 /d "UNICODE" /d "_UNICODE" /d "WIN32" /d "STRICT" /d _WIN32_WCE=200 /d "H/PC Ver. 2.00" /d "_WIN32_WCE_EMULATION" /d "INTERNATIONAL" /d "USA" /d "INTLMSG_CODEPAGE" /d "NDEBUG" /d "_AFXDLL" "C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.rc"" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP86.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D UNDER_CE=200 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "NDEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox_Emu.pch" /Yu"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBox.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxCtl.cpp"
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\S309PictureBoxPpg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP86.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP87.tmp" with contents
+[
+/nologo /MT /W3 /O2 /D UNDER_CE=200 /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "STRICT" /D _WIN32_WCE=200 /D "H/PC Ver. 2.00" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "NDEBUG" /D "x86" /D "i486" /D "_x86_" /D "_AFXDLL" /D "_MBCS" /Fp"Intermediate/S309PictureBox_Emu.pch" /Yc"stdafx.h" /Fo"Intermediate/" /c 
+"C:\Source\WindowsCE\ActiveX\S309PictureBox\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP87.tmp" 
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP88.tmp" with contents
+[
+imgdecmp.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /dll /incremental:no /pdb:"Emu/S309PictureBox.pdb" /machine:I386 /def:".\S309PictureBox.def" /out:"Emu/S309PictureBox.ocx" /implib:"Emu/S309PictureBox.lib" /windowsce:emulation 
+.\Intermediate\S309PictureBox.obj
+.\Intermediate\S309PictureBoxCtl.obj
+.\Intermediate\S309PictureBoxPpg.obj
+.\Intermediate\StdAfx.obj
+.\Intermediate\S309PictureBox.res
+]
+Creating command line "link.exe @C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP88.tmp"
+<h3>Output Window</h3>
+Creating Type Library...
+S309PictureBox.odl
+oaidl.idl
+objidl.idl
+unknwn.idl
+wtypes.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+S309PictureBox.cpp
+S309PictureBoxCtl.cpp
+S309PictureBoxPpg.cpp
+Generating Code...
+Linking...
+   Creating library Emu/S309PictureBox.lib and object Emu/S309PictureBox.exp
+Creating temporary file "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP8F.bat" with contents
+[
+@echo off
+mkdir  ".\Emu HPC"
+xcopy ".\Emu\*.*" ".\Emu HPC\"
+del /q ".\Emu\*.*"
+rmdir ".\Emu"
+]
+Creating command line "C:\DOCUME~1\tmyhrer\LOCALS~1\Temp\RSP8F.bat"
+
+A subdirectory or file .\Emu HPC already exists.
+Overwrite C:\Source\WindowsCE\ActiveX\S309PictureBox\Emu HPC\S309PictureBox.exp (Yes/No/All)? ?,#
+Overwrite C:\Source\WindowsCE\ActiveX\S309PictureBox\Emu HPC\S309PictureBox.exp (Yes/No/All)? 
+
+
+
+<h3>Results</h3>
+S309PictureBox.ocx - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

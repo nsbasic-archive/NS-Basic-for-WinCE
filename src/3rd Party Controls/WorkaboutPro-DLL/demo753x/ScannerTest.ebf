@@ -1,0 +1,397 @@
+VERSION 5.00
+Begin VB.Form ScannerTest 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "scanner Test"
+   ClientHeight    =   3615
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   3480
+   ControlBox      =   -1  'True
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3615
+   ScaleWidth      =   3480
+   Begin VBCE.CommandButton OK 
+      Height          =   375
+      Left            =   960
+      TabIndex        =   11
+      Top             =   2760
+      Width           =   855
+      _cx             =   1508
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "OK"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.CommandButton disable 
+      Height          =   375
+      Left            =   1440
+      TabIndex        =   10
+      Top             =   2160
+      Width           =   1215
+      _cx             =   2143
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "Disable it"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.CommandButton enable 
+      Height          =   375
+      Left            =   240
+      TabIndex        =   9
+      Top             =   2160
+      Width           =   975
+      _cx             =   1720
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "Enable it"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.TextBox isenabled 
+      Height          =   255
+      Left            =   2400
+      TabIndex        =   8
+      Top             =   1560
+      Width           =   735
+      _cx             =   1296
+      _cy             =   450
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.Label Label4 
+      Height          =   255
+      Left            =   1560
+      TabIndex        =   7
+      Top             =   1560
+      Width           =   735
+      _cx             =   1296
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Enabled:"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.TextBox present 
+      Height          =   255
+      Left            =   960
+      TabIndex        =   6
+      Top             =   1560
+      Width           =   495
+      _cx             =   873
+      _cy             =   450
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.Label Label3 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   5
+      Top             =   1560
+      Width           =   735
+      _cx             =   1296
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Present:"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.TextBox symb 
+      Height          =   255
+      Left            =   1200
+      TabIndex        =   4
+      Top             =   1080
+      Width           =   1935
+      _cx             =   3413
+      _cy             =   450
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.Label Label2 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   3
+      Top             =   1080
+      Width           =   975
+      _cx             =   1720
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Symbology:"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.TextBox Scancode 
+      Height          =   255
+      Left            =   1200
+      TabIndex        =   2
+      Top             =   720
+      Width           =   2055
+      _cx             =   3625
+      _cy             =   450
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.Label Label1 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   1
+      Top             =   720
+      Width           =   855
+      _cx             =   1508
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Scanned:"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.CommandButton Firescanner 
+      Height          =   375
+      Left            =   720
+      TabIndex        =   0
+      Top             =   120
+      Width           =   1935
+      _cx             =   3413
+      _cy             =   661
+      BackColor       =   12632256
+      Caption         =   "Fire Scanner"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+End
+Attribute VB_Name = "ScannerTest"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+Dim internalPresent As Variant
+Dim externalPresent As Variant
+Dim isScannerEnabled As Variant
+
+Private Sub disable_Click()
+    ScannerObject.SetScannerEnabled (False)
+    isenabled = ScannerObject.isScannerEnabled
+End Sub
+
+Private Sub enable_Click()
+    ScannerObject.SetScannerEnabled (True)
+    isenabled = ScannerObject.isScannerEnabled
+    
+End Sub
+
+Private Sub Firescanner_Click()
+    Dim rVal
+    rVal = ScannerObject.Scan() ' action button
+End Sub
+
+Private Sub Form_Load()
+     Set ScannerObject = CreateObjectWithEvents("scannerX.Scanner", "SC_") ' create the control
+     Dim rVal
+     rVal = ScannerObject.RegisterWithScanner() 'register the control for events by creating the callback function
+     internalPresent = ScannerObject.isInternalScannerPresent
+     externalPresent = ScannerObject.isExternalScannerPresent
+     
+     If internalPresent = "Yes" Then
+        If externalPresent = "Yes" Then
+            present = "YY"
+        Else
+            present = "YN"
+        End If
+     Else
+        If externalPresent = "Yes" Then
+            present = "NY"
+        Else
+            present = "NN"
+        End If
+     End If
+     
+     isenabled = ScannerObject.isScannerEnabled
+     
+     
+     
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+    Dim rVal
+    rVal = ScannerObject.DeRegisterWithScanner() ' when we get out is a good way to removing the calback functions
+End Sub
+
+
+
+
+
+

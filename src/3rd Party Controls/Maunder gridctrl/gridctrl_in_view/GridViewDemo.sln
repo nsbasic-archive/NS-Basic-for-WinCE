@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GridViewDemo", "GridViewDemo.vcproj", "{5469FC3C-E5B5-4CA5-A2B4-EAAA38ECE0CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{5469FC3C-E5B5-4CA5-A2B4-EAAA38ECE0CF}.Debug.ActiveCfg = Debug|Win32
+		{5469FC3C-E5B5-4CA5-A2B4-EAAA38ECE0CF}.Debug.Build.0 = Debug|Win32
+		{5469FC3C-E5B5-4CA5-A2B4-EAAA38ECE0CF}.Release.ActiveCfg = Release|Win32
+		{5469FC3C-E5B5-4CA5-A2B4-EAAA38ECE0CF}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

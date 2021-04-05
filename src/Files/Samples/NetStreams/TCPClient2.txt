@@ -1,0 +1,204 @@
+ShowOKButton True 'Set minimize button to close app
+'This program acts as a client. It establishes contact with the server,
+'sends it a message, then waits for the reply.
+
+Dim socket, state, strm
+
+On Error resume next
+AddObject "newObjects.net.NSMain", "NSMain"
+If err Then 
+   MsgBox "AXPack1.dll not installed. Please check the ReadMe file's section on ""Install Device Components"" for more information.",,"Winsock"
+   Bye
+End If
+On Error Goto 0
+
+AddObject "newObjects.utilctls.SFStream", "strm"
+
+Sub cmdConnect_Click
+    'First, set up the address
+    Set addr = nsMain.GetHost(tbIP.Text)
+    addr.Port = CInt(tbPort.text)
+    
+    'Create the socket and coonect to it
+    Set socket = nsMain.NewSocket
+    If Not socket.Socket Then
+        tbStatus.Text = "Error: " & socket.lastError & vbCrLf & msg.Text
+        Exit Sub
+    End If   
+    If Not socket.Connect(addr) Then
+        tbStatus.Text = "Error: " & socket.lastError & vbCrLf & msg.Text
+        Exit Sub
+    End If           
+ 
+    tbStatus.Text =  "Connected to " & addr.TextAddress
+    state = "Connected"
+    
+    'set up the object that reads and write to the socket
+    strm.SetStream socket   
+End Sub
+
+Sub cmdDisconnect_Click
+   If state = "Connected" Then
+      socket.close
+      state = ""
+      tbStatus.Text = "Connection closed."
+   End If  
+End Sub
+
+Sub cmdSend_Click
+  'Normally would have some checking here
+  strm.WriteText tbData.text,1
+  cmdSend.Timer=1000
+End Sub
+
+Sub cmdClear_Click
+    tbReceived.text=""
+End Sub
+
+Sub cmdSend_Timer
+   'This sub checks for incoming data
+   If state="Connected" Then
+     line = ""
+ 		 Do While socket.Select And &H04
+ 		   'append characters to the buffer as long as they come in
+ 		   'in the real world, a limit would be a good idea
+			char = strm.ReadText(1)
+			line = line & char
+		Loop
+		If Len(line)>0 Then
+		   tbReceived.text = line & tbReceived.text
+		End If
+ 	End If
+End Sub
+
+
+
+
+
+
+
+
+'*** Begin Generated Code ***
+
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(Form1_Temp) Then
+      AddObject "Frame", "Form1_Form", 0, 0, Output.Width, Output.Height
+      Form1_Form.Visible = False
+      Form1_Form.BackColor = 12632256
+      AddObject "PictureBox", "Form1", 0, 0, 0, 0, Form1_Form
+      Form1.BorderStyle = 0
+      Form1.Move 0, 0, Form1_Form.Width * 15, Form1_Form.Height * 15
+      Set Form1_Temp = Form1
+      Form1_Form.Caption = "Form1"
+   
+      AddObject "Label", "Label1", 0, 0, 60, 20, Form1_Form
+      Label1.Alignment = 1
+      Label1.BackColor = 12632256
+      Label1.Caption = "IP Address:"
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 0, 20, 60, 20, Form1_Form
+      Label2.Alignment = 1
+      Label2.BackColor = 12632256
+      Label2.Caption = "Port:"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label3", 0, 40, 60, 20, Form1_Form
+      Label3.Alignment = 1
+      Label3.BackColor = 12632256
+      Label3.Caption = "Status:"
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "cmdConnect", 4, 64, 52, 20, Form1_Form
+      cmdConnect.Caption = "Connect"
+      cmdConnect.FontSize =  8.25
+      cmdConnect.BackColor = 12632256
+      '--------
+      AddObject "CommandButton", "cmdDisconnect", 108, 64, 60, 20, Form1_Form
+      cmdDisconnect.Caption = "Disconnect"
+      cmdDisconnect.FontSize =  8.25
+      cmdDisconnect.BackColor = 12632256
+      '--------
+      AddObject "Label", "Label4", 4, 92, 32, 20, Form1_Form
+      Label4.BackColor = 12632256
+      Label4.Caption = "Send:"
+      Label4.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label5", 4, 116, 88, 16, Form1_Form
+      Label5.BackColor = 12632256
+      Label5.Caption = "Received Data:"
+      Label5.FontSize =  8.25
+      '--------
+      AddObject "CommandButton", "cmdSend", 60, 64, 44, 20, Form1_Form
+      cmdSend.Caption = "Send"
+      cmdSend.FontSize =  8.25
+      cmdSend.BackColor = 12632256
+      '--------
+      AddObject "CommandButton", "cmdClear", 128, 112, 44, 20, Form1_Form
+      cmdClear.Caption = "Clear"
+      cmdClear.FontSize =  8.25
+      cmdClear.BackColor = 12632256
+      '--------
+      AddObject "TextBox", "tbData", 36, 92, 132, 16, Form1_Form
+      tbData.BackColor = 16777215
+      tbData.FontSize =  8.25
+      tbData.Text = "Hello World"
+      '--------
+      AddObject "TextBox", "tbReceived", 4, 132, 240, 32, Form1_Form
+      tbReceived.BackColor = 16777215
+      tbReceived.FontSize =  8.25
+      tbReceived.Multiline = True
+      '--------
+      AddObject "TextBox", "tbIP", 72, 0, 128, 20, Form1_Form
+      tbIP.BackColor = 16777215
+      tbIP.FontSize =  8.25
+      tbIP.Text = "192.168.123.107"
+      '--------
+      AddObject "TextBox", "tbPort", 72, 20, 128, 20, Form1_Form
+      tbPort.BackColor = 16777215
+      tbPort.FontSize =  8.25
+      tbPort.Text = "1010"
+      '--------
+      AddObject "TextBox", "tbStatus", 72, 40, 128, 20, Form1_Form
+      tbStatus.BackColor = 16777215
+      tbStatus.FontSize =  8.25
+      '--------
+   End If
+   On Error Goto 0
+   Form1_Form.Visible = True
+   callIfExists("Form1_Load")
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If IsEmpty(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   Form1_Form.Visible = False
+   callIfExists("Form1_Unload")
+End Sub  'Form1_Hide
+
+Sub CallIfExists(theSub)
+Dim s
+   If ScriptEngineMajorVersion < 5 Then
+      Execute("On Error Resume Next:"&theSub) 'attempt to execute it
+   Else
+      On Error Resume Next
+      Set s = GetRef(theSub)
+      If err.Number <> 0 Then Exit Sub 'it does not exist
+      On Error GoTo 0
+      Execute (theSub) 'execute it
+   End If
+End Sub
+
+'*** End Generated Code ***
+

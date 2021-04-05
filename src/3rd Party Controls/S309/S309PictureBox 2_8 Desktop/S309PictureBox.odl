@@ -1,0 +1,239 @@
+// S309PictureBox.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (S309PictureBox.tlb) that will become a resource in
+// S309PictureBox.ocx.
+
+#include <olectl.h>
+
+[ uuid(8F4A927F-908E-4e3a-99A5-24E5582F3FEA), version(2.8),
+  helpfile("S309PictureBox208.hlp"),
+  helpstring("Software 309 PictureBox 2.8"),
+  control ]
+library S309PICTUREBOX208
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CS309PictureBox
+
+	[ uuid(C5620B0B-1CAB-4bce-B13B-D1072CE34BB0),
+	  helpstring("Dispatch interface for Software 309 PictureBox 2.8"), hidden ]
+	dispinterface _DS309PictureBox
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CS309PictureBox)
+			[id(1), nonbrowsable] boolean AnimationAvailable;
+			[id(2)] long AnimationInterval;
+			[id(3)] short Appearance;
+			[id(4)] boolean AutoRefresh;
+			[id(5)] boolean AutoSize;
+			[id(DISPID_BACKCOLOR), bindable, requestedit] OLE_COLOR BackColor;
+			[id(6), nonbrowsable] boolean BitmapOnClipboard;
+			[id(7)] short BorderStyle;
+			[id(8)] short Center;
+			[id(9)] boolean Clip;
+			[id(10)] long ClipHeight;
+			[id(11)] long ClipLeft;
+			[id(12)] long ClipTop;
+			[id(13)] long ClipWidth;
+			[id(14)] short CommonBitmapID;
+			[id(15)] short CommonBitmapType;
+			[id(16)] long DrawWidth;
+			[id(17)] OLE_COLOR FillColor;
+			[id(18)] short FillStyle;
+			[id(19)] long Height;
+			[id(20), nonbrowsable] long ImageHeight;
+			[id(21)] long ImageLoadBufferSize;
+			[id(22)] long ImageLoadMaxHeight;
+			[id(23)] long ImageLoadMaxWidth;
+			[id(24), nonbrowsable] boolean ImageLoaded;
+			[id(25), nonbrowsable] long ImageWidth;
+			[id(26)] boolean Invert;
+			[id(27)] long Left;
+			[id(28)] short Mirror;
+			[id(29)] BSTR Name;
+			[id(30)] boolean Overlay;
+			[id(31)] long OverlayLeft;
+			[id(32)] long OverlayTop;
+			[id(33)] OLE_COLOR OverlayTransparentColor;
+			[id(34)] short PenFillStyle;
+			[id(35)] short PenStyle;
+			[id(36)] BSTR Picture;
+			[id(37)] short PlayingCard;
+			[id(38)] boolean Resize;
+			[id(39)] long ResizeHeight;
+			[id(40)] long ResizeWidth;
+			[id(41)] long ResourceBitmapID;
+			[id(42)] BSTR ResourceFile;
+			[id(43)] short Rotate;
+			[id(44)] short ScaleMode;
+			[id(45), nonbrowsable] short ScreenBitsPerPixel;
+			[id(46), nonbrowsable] long ScreenHeight;
+			[id(47), nonbrowsable] long ScreenLeft;
+			[id(48), nonbrowsable] long ScreenWidth;
+			[id(49), nonbrowsable] long ScreenTop;
+			[id(50)] boolean Stretch;
+			[id(51)] VARIANT Tag;
+			[id(52)] long Top;
+			[id(53)] OLE_COLOR TransparentColor;
+			[id(54)] boolean Visible;
+			[id(55)] boolean WaitCursor;
+			[id(56)] long Width;
+			[id(57)] short WildCard;
+			[id(58), nonbrowsable] long hBitmap;
+			[id(59), nonbrowsable] boolean ResourceFileLoaded;
+			[id(60), nonbrowsable] short ImageBitsPerPixel;
+			[id(61), nonbrowsable] short ImageLoadBitsPerPixel;
+			[id(62)] boolean Scroll;
+			[id(63)] long ScrollX;
+			[id(64)] long ScrollY;
+			[id(65), nonbrowsable] long MouseMovePointsCount;
+			[id(66)] short MouseMovePoints;
+			[id(67)] float Version;
+			[id(68)] boolean FontBold;
+			[id(69)] boolean FontItalic;
+			[id(70)] BSTR FontName;
+			[id(71)] boolean FontStrikethru;
+			[id(72)] boolean FontUnderline;
+			[id(73)] boolean FontTransparent;
+			[id(DISPID_FORECOLOR), bindable, requestedit] OLE_COLOR ForeColor;
+			[id(74)] long FontWeight;
+			[id(75)] long FontSize;
+			[id(DISPID_HWND)] OLE_HANDLE hWnd;
+			[id(76)] boolean FocusRect;
+			[id(77)] long FocusRectIndentLeft;
+			[id(78)] long FocusRectIndentRight;
+			[id(79)] long FocusRectIndentTop;
+			[id(80)] long FocusRectIndentBottom;
+			[id(81)] boolean CommandButton;
+			[id(DISPID_CAPTION), bindable, requestedit] BSTR Caption;
+			[id(82), nonbrowsable] long hFont;
+			[id(83)] short ScrollBars;
+			[id(84), nonbrowsable] long HScrollPosition;
+			[id(85), nonbrowsable] long VScrollPosition;
+			[id(86), nonbrowsable] boolean OnToolbar;
+			[id(87)] long ResourceIconID;
+			[id(88)] boolean UseJPEGBitsPerPixel;
+			[id(89), nonbrowsable] VARIANT ByteArray;
+			[id(90)] boolean TapAndHoldEventEnabled;
+			[id(91)] BSTR PlayingCardsDll;
+			[id(92)] BSTR VersionString;
+			[id(93), nonbrowsable] BSTR Headers;
+			[id(94), nonbrowsable] long URLFlags;
+			[id(95)] boolean URLFlagPassive;
+			[id(96)] boolean URLFlagCache;
+			[id(97)] boolean URLFlagReload;
+			[id(98)] BSTR URLAgent;
+			[id(99)] long ImageLoadScalePercent;
+			[id(100)] long FontEscapement;
+			[id(101)] long FontOrientation;
+			[id(102), nonbrowsable] long hIcon;
+			[id(103)] boolean AutoDetectTransparency;
+			[id(104)] long ResourceIconHeight;
+			[id(105)] long ResourceIconWidth;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CS309PictureBox)
+			[id(106)] void Animate();
+			[id(107)] void CaptureScreen();
+			[id(108)] void ClipImage();
+			[id(109)] void Cls();
+			[id(110)] boolean Copy();
+			[id(111)] void CreateImage(long nX, long nY);
+			[id(112)] void Hide();
+			[id(113)] void InvertImage();
+			[id(114)] void MirrorImage();
+			[id(115)] void Move(long nX, long nY, long nW, long nH);
+			[id(116)] boolean Paste();
+			[id(152), propget] OLE_COLOR Pixel(long nX, long nY);
+			[id(152), propput] void Pixel(long nX, long nY, OLE_COLOR nNewValue);
+			[id(117)] OLE_COLOR QBColor(short nColorCode);
+			[id(DISPID_REFRESH)] void Refresh();
+			[id(118)] void ResizeImage();
+			[id(119)] void RotateImage();
+			[id(120)] void SetFocus();
+			[id(121)] void SetPointArray(long nIndex, long nX, long nY);
+			[id(122)] void Show();
+			[id(123)] void ZOrder(short nPosition);
+			[id(124)] boolean SaveImageToFile(BSTR szFileName, short nFileType);
+			[id(125)] OLE_COLOR RGB(short nRed, short nGreen, short nBlue);
+			[id(126)] short IntensityRed(OLE_COLOR ocColor);
+			[id(127)] short IntensityGreen(OLE_COLOR ocColor);
+			[id(128)] short IntensityBlue(OLE_COLOR ocColor);
+			[id(129)] void ScrollImage();
+			[id(130)] void RefreshDesktopWallpaper();
+			[id(131)] void SetCapture();
+			[id(132)] void ReleaseCapture();
+			[id(133)] void DrawMouseMoveLinesEx(long nStartX, long nStartY, long nEndX, long nEndY, OLE_COLOR ocColor);
+			[id(134)] void DrawMouseMoveLines(OLE_COLOR ocColor);
+			[id(135)] boolean GetMouseMovePoint(short nPoint, long* nX, long* nY);
+			[id(136)] void RefreshX();
+			[id(137)] long TextWidth(BSTR szText);
+			[id(138)] long TextHeight(BSTR szText);
+			[id(139)] void DrawCircle(long nX, long nY, float flRadius, [in, optional] VARIANT vocColor, [in, optional] VARIANT vflAspect);
+			[id(140)] void DrawLine(long nFromX, long nFromY, long nToX, long nToY, [in, optional] VARIANT vocColor, [in, optional] VARIANT vBox, [in, optional] VARIANT vFill);
+			[id(141)] void DrawPoint(long nX, long nY, VARIANT vocColor);
+			[id(142)] void DrawPolygon(short nPoints, VARIANT vocColor);
+			[id(143)] void DrawRoundRect(long nLeft, long nTop, long nRight, long nBottom, [in, optional] VARIANT vnWidth, [in, optional] VARIANT vnHeight, [in, optional] VARIANT vocColor);
+			[id(144)] void DrawPolyLines(short nPoints, [in, optional] VARIANT vocColor);
+			[id(145)] void DrawText(BSTR szText, [in, optional] VARIANT vnX, [in, optional] VARIANT vnY, [in, optional] VARIANT vocColor);
+			[id(146)] void DrawPicture(BSTR szName, long nX, long nY, [in, optional] VARIANT vnWidth, [in, optional] VARIANT vnHeight, [in, optional] VARIANT vnX2, [in, optional] VARIANT vnY2, [in, optional] VARIANT vnWidth2, [in, optional] VARIANT vnHeight2, [in, optional] VARIANT vnRasterOp);
+			[id(147)] boolean DrawIcon(BSTR szFile, [in, optional] VARIANT vIconID, [in, optional] VARIANT vLarge, [in, optional] VARIANT vocColor, [in, optional] VARIANT vDrawType);
+			[id(148)] void StopUrlStream();
+			[id(149)] void Data(VARIANT varData, [in, optional] VARIANT varDataLength);
+			[id(150)] long URL(BSTR lpszURL, [in, optional] VARIANT vUser, [in, optional] VARIANT vPassword);
+			[id(151)] void DrawTextInRect(BSTR Text, [in, optional] VARIANT Left, [in, optional] VARIANT Top, [in, optional] VARIANT Width, [in, optional] VARIANT Height, [in, optional] VARIANT Color);
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CS309PictureBox
+
+	[ uuid(9C86DD38-57D0-4a7a-B1D5-7A74F968EBE5),
+	  helpstring("Event interface for Software 309 PictureBox 2.8") ]
+	dispinterface _DS309PictureBoxEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CS309PictureBox)
+			[id(DISPID_CLICK)] void Click();
+			[id(DISPID_DBLCLICK)] void DblClick();
+			[id(1)] void LostFocusX();
+			[id(2)] void GotFocusX();
+			[id(DISPID_MOUSEDOWN)] void MouseDown(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			[id(DISPID_MOUSEMOVE)] void MouseMove(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			[id(DISPID_MOUSEUP)] void MouseUp(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			[id(3)] void HScroll(long nSBCode, BOOL* bRefresh, long* nPos, long* nMove, long nMin, long nMax, long nPage, long nCX, long nCY);
+			[id(4)] void VScroll(long nSBCode, BOOL* bRefresh, long* nPos, long* nMove, long nMin, long nMax, long nPage, long nCX, long nCY);
+			[id(DISPID_KEYDOWN)] void KeyDown(short* KeyCode, short Shift);
+			[id(DISPID_KEYPRESS)] void KeyPress(short* KeyAscii);
+			[id(DISPID_KEYUP)] void KeyUp(short* KeyCode, short Shift);
+			[id(5)] void TapAndHold(short Button, short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CS309PictureBox
+
+	[ uuid(281CE428-7111-4bf0-AEDC-37D2AA900204),
+	  helpstring("Software 309 PictureBox 2.8"), control ]
+	coclass S309PictureBox
+	{
+		[default] dispinterface _DS309PictureBox;
+		[default, source] dispinterface _DS309PictureBoxEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

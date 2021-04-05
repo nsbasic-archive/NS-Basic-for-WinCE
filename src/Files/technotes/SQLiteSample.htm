@@ -1,0 +1,1596 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=Title
+content="' The following code is an example of how SQLite can be used with NSBasic/CE">
+<meta name=Keywords content="">
+<meta http-equiv=Content-Type content="text/html; charset=macintosh">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="SQLiteSample_files/filelist.xml">
+<title>' The following code is an example of how SQLite can be used with
+NSBasic/CE</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Brian E Popp</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>George Henne</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:Created>2007-11-19T19:11:00Z</o:Created>
+  <o:LastSaved>2007-11-19T19:11:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>1757</o:Words>
+  <o:Characters>10015</o:Characters>
+  <o:Company>Pioneer</o:Company>
+  <o:Lines>83</o:Lines>
+  <o:Paragraphs>20</o:Paragraphs>
+  <o:CharactersWithSpaces>12299</o:CharactersWithSpaces>
+  <o:Version>11.773</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:DoNotUseHTMLParagraphAutoSpacing/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseWord97LineBreakingRules/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+&copy; font-face
+	{font-family:"Times New Roman";
+	panose-1:0 2 2 6 3 5 4 5 2 3;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:50331648 0 0 0 1 0;}
+&copy; font-face
+	{font-family:"Courier New";
+	panose-1:0 2 7 3 9 2 2 5 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:50331648 0 0 0 1 0;}
+&copy; font-face
+	{font-family:Calibri;
+	mso-font-alt:"Times New Roman";
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611985 1073750139 0 0 159 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Calibri;}
+table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+&copy; page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 45.0pt 1.0in .75in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US style='tab-interval:.2in'>
+
+<div class=Section1>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ SQLite Examples for new users<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ This was written by a new user of SQLite
+in an effort to help others not familiar with SQLite<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ become productive with minimum time spent
+on researching its use. There may be, and probably<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ are, better ways to do this; but this
+works. The following code was lifted from a working program<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ and modified for this example, but was not
+run in a test. Errors, if any, should be easy to correct <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ when testing. It was written in NSBasic/CE
+and has examples on how to:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' <b>create, read, write, rewrite, sort and
+delete specific records within a file</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'>, called a Table
+in SQLite<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Note that the terminology used in SQLite
+is different from other access methods:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ <b>TABLE</b></span><span style='font-size:
+9.0pt;font-family:"Courier New";color:green;layout-grid-mode:line'> is used
+instead of <b>FILE</b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ <b>INSERT OR REPLACE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> is used instead of <b>WRITE</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'> or <b>REWRITE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ <b>SELECT</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> is used instead of <b>READ</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ I use <b>RECORD</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> to describe one unique set of <b>FIELDS</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> or <b>ELEMENTS</b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'> within a <b>TABLE [File]</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' Green is used for comments</span><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;layout-grid-mode:line'>' Blue is used for Sub names and Sub exits<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' The following are the Public variables
+used for this example:</span><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public SQLiteString<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public DatabaseObject<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Current_Record_Set <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Current_Record_Number <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public DoubleQuotes<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public SingleQuotes<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public <span style='color:black'>NameToBeDeleted</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public HoldListBoxLine<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public ConstantThreeZeros<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Today_YYYYMMDD<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Today_MM<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Today_DD<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' <b>Table [File]</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> structure where data from the <b>Table</b></span><span style='font-size:
+9.0pt;font-family:"Courier New";color:green;layout-grid-mode:line'> is moved
+after it is accessed<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ You must do the moving &#8211; see <b>Read_ENTIRE_NAME_TABLE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_NameFirstLast<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_YearMonthDayYYYYMMDD<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_Territory<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_Area<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_CharacterField1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_CharacterField2<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_CharacterField3<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_NumericField1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_NumericField2<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_NumericField3<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_Available1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_Available2<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>Public Element_Available3<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>Sub Screen_Load</span><span style='font-size:
+9.0pt;font-family:"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>ConstantNull = “”<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>ConstantThreeZeros
+= “000”<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";color:black;layout-grid-mode:line'>DoubleQuotes =
+Chr(34)</span><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'> <span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='color:green'>' equals &quot;<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>SingleQuotes = Chr(39)</span> <span style='mso-tab-count:
+3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style='color:green'>'
+equals '</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Get today’s date in YYYMMDD format<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>Today_MM = Month(Now)<span style='mso-tab-count:1'> </span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>If
+Len(Today_MM) &lt; 2 Then<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Today_MM
+= &quot;0&quot; &amp; Today_MM<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Today_DD
+= Day(Now)<span style='mso-tab-count:1'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>If
+Len(Today_DD) &lt; 2 Then<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Today_DD
+= &quot;0&quot; &amp; Today_DD<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Today_YYYYMMDD
+= Year (Now) &amp; Today_MM &amp; Today_DD<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' Add database &#8211; The <b>Table [or
+File]</b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'> is named <b>NAME, </b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'>but can be called anything. There <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ can be (and usually are) many different <b>Tables</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> within a database, each with a varying number<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ of <b>Fields or Elements</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ NOTE:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' <b>On Error Goto 0</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> disables error handling routine<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' <b>On Error Resume Next</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> executes next statement regardless<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ In testing I found this necessary to use
+in case the database was not closed due to an abort:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error resume next<span
+style='mso-tab-count:12'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>DatabaseObject.close<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error Goto 0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Note: It is not necessary to name this
+object <b>“DatabaseObject”.</b></span><span style='font-size:9.0pt;font-family:
+"Courier New";color:green;layout-grid-mode:line'> It can be named anything, but
+must<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ be declared Public as follows:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Public SomethingILikeToCallIt<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘<span style='mso-tab-count:1'>&nbsp; </span>AddObject
+&quot;newObjects.sqlite3.dbutf8&quot;,&quot; SomethingILikeToCallIt &quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ which will also work<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>AddObject
+&quot;newObjects.sqlite3.dbutf8&quot;,&quot;DatabaseObject&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>If DatabaseObject.Open(&quot;DatabaseObject&quot;)
+Then<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun: yes">&nbsp;&nbsp; </span><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp; </span>DatabaseObject.AutoType
+= True <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun: yes">&nbsp;&nbsp; </span><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp; </span>DatabaseObject.TypeInfoLevel
+= 4<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Else<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun: yes">&nbsp;&nbsp; </span><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp; </span>MsgBox &quot;Error on
+DatabaseObject.Open: &quot; &amp; DatabaseObject.lastError &amp; &quot;Contact
+Vendor&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style='mso-tab-count:1'>&nbsp; </span>Call
+Stop_Program<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>End If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error resume next<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Set
+Current_Record_Set=DatabaseObject.Execute(&quot;Select * from NAME&quot;)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error Goto 0<span
+style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun: yes">&nbsp;</span><span
+style='mso-tab-count:1'>&nbsp; </span><span style='color:green'>' Create the
+database if it doesn't exist yet - should be executed only ONCE<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span></span><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>If
+Left(DatabaseObject.lasterror, 13)=&quot;no such table&quot; Then<span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in;text-indent:.2in'><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'>Call
+CreateDatabase<span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>End If<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'><span style='mso-tab-count:
+1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>End Sub</span><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>'<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>C<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>R<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>E<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>A<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>T<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>E<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>D<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>A<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>T<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>A<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>B<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>A<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>S<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>E<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>'<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>C<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>R<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>E<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>A<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>T<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>E<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>D<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>A<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>T<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>A<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>B<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>A<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>S<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>E</span><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>Sub CreateDatabase</span><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>'<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>N<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>A<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>M<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>E<span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>T<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>a<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>b<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>l<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>e<span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Note: On my computer I had trouble with
+the continuation bar: _ If that happens, do not use them<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ and put everything on one line in the NS
+Basic editor<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Just start adding <b>TABLES<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><b>‘</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ It is not necessary to name the <b>Fields
+or Elements</b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'> starting with <b>“SQL_”.</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> This was done for clarity in the<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ program and to distinguish them from
+Public variables where they are moved after the <b>SELECT [READ]</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Public variables start with <b>“Element_” </b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'>in this example<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ This is how to delete a <b>TABLE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'>, useful to have a button to do this when testing:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'>On Error resume next<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'>Set
+Current_Record_Set=DatabaseObject.Execute(&quot;DROP TABLE If EXISTS NAME</span><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'>&quot;)<span
+style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ This creates a <b>TABLE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> named <b>NAME</b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>SQLiteString=&quot;CREATE
+TABLE NAME _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>(&quot;&quot;
+SQL_NameFirstLast&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_YearMonthDayYYYYMMDD&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot; SQL_Territory
+&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_Area&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot; SQL_CharacterField1&quot;&quot;,
+_<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_CharacterField2&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_CharacterField3&quot;&quot;, _ <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun: yes">&nbsp;&nbsp; </span><span
+style='mso-tab-count:1'>&nbsp;&nbsp; </span>&quot;&quot;
+SQL_NumericField1&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_NumericField2&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_NumericField3&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun: yes">&nbsp;&nbsp; </span><span
+style='mso-tab-count:1'>&nbsp;&nbsp; </span>&quot;&quot;
+SQL_Available1&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_Available2&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;
+SQL_Available3&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style="mso-spacerun: yes">&nbsp;</span><span
+style='mso-tab-count:1'>&nbsp; </span>PRIMARY KEY(&quot;&quot;SQL_YearMonthDayYYYYMMDD
+&quot;&quot;))&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error resume next<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Set
+Current_Record_Set=DatabaseObject.Execute(SQLiteString)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error Goto 0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>If
+DatabaseObject.lasterror&lt;&gt;&quot;&quot; Then<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in;text-indent:.2in'><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'>MsgBox
+&quot;Create NAME Table error &quot; &amp; DatabaseObject.lasterror &amp;
+&quot; Contact Vendor”<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in;text-indent:.2in'><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'>Call
+Stop_Program<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>End If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ This <b>INSERTS</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> <b>[or Writes a record]</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'> into the <b>NAME
+TABLE [or File]</b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'> just created with all values<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Note than <b>INSERT OR REPLACE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> will do just that. This can be used as a <b>WRITE or REWRITE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ in terminology used with other access
+methods<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ <b><i>For illustrative purposes only</i></b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'>, the Public variables which will be moved to the record are initialized,<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ then the record is written to the <b>TABLE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'>, then we <b>SELECT [or READ]</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'> what we just
+wrote:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>Call </span></span><span style='font-size:9.0pt;font-family:
+"Courier New";color:black'>Initialize_Public_Elements<span style='layout-grid-mode:
+line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Call
+Write_NAME_TABLE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span></span><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'>SQLiteString=&quot;SELECT
+* From NAME<span style='color:green'>&quot;</span><span style='color:black'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";color:black;layout-grid-mode:line'>Call
+Read_ENTIRE_NAME_TABLE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ This will display only one name, as we
+have only one record on file:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>If
+Current_Record_Set.Count &gt; 0 Then <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in;text-indent:.2in'><span
+style='font-size:9.0pt;font-family:"Courier New";color:black;layout-grid-mode:
+line'>For NAME_TABLE_INDEX = 1 to Current_Record_Set.count<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";color:black;layout-grid-mode:line'><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Msgbox “Element_FirstLastName=”
+&amp; Element_FirstLastName<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in;text-indent:.2in'><span
+style='font-size:9.0pt;font-family:"Courier New";color:black;layout-grid-mode:
+line'>Next<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>End Sub<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Main routine example
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ Main routine example
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>Sub Main_Routine<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ This code is for <b><i>illustrative
+purposes only</i></b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'> and does not follow a logical flow<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ You can put command buttons to allow the
+user to sort as follows:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ To read <b>TABLE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> sorted by third <b>Field or Element</b></span><span style='font-size:
+9.0pt;font-family:"Courier New";color:green;layout-grid-mode:line'>
+[SQL_Territory]:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>SQLiteString=&quot;SELECT
+* From <span style='color:green'>&quot;&quot;</span>NAME<span style='color:
+green'>&quot;&quot;</span> ORDER BY 3&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Call
+Read_ENTIRE_NAME_TABLE<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>ListBox15_Screen15.Clear<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>ListBox15_Screen15.Height
+= 100<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>If
+Current_Record_Set.Count &gt; 0 Then<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>For
+Current_Record_Number = 1 To Current_Record_Set.Count<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Element_NameFirstLast
+= Current_Record_Set (Current_Record_Number)(1)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Element_Territory
+= Current_Record_Set (Current_Record_Number)(3)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Element_Area
+= Current_Record_Set (Current_Record_Number)(4) <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>HoldListBoxLine
+= Element_Territory &amp; &quot; -- &quot; &amp; Element_Area &amp; &quot; --
+&quot; &amp; Element_NameFirstLast<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style="mso-spacerun:
+yes">&nbsp;</span><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ListBox15_Screen15.AddItem
+HoldListBoxLine<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Next<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ To read <b>TABLE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> sorted by Fourth <b>Field or Element</b></span><span style='font-size:
+9.0pt;font-family:"Courier New";color:green;layout-grid-mode:line'> [SQL_Area]:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>SQLiteString=&quot;SELECT
+* From <span style='color:green'>&quot;&quot;</span>NAME<span style='color:
+green'>&quot;&quot;</span> ORDER BY 4&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:red;layout-grid-mode:line'>‘ NOTE:</span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'> Because this
+example uses a variable defined as Public SQLiteString to pass Information<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ for an <b>INSERT or SELECT</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> it is necessary to <b>not</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'> use the double
+quote [“] in order for it to be<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ interpreted properly. One way to avoid a
+user from entering a double quote in a text field<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ is to change it to a single quote before
+the data is send to SQLite as follows:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>If Len(Txt44_Name.Text) &gt; 0 Then<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Txt44_Name.Text
+= Replace(Txt44_Name.Text, DoubleQuotes,SingleQuotes)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ To <b>DELETE</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> a specific record:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>NameToBeDeleted = “NoName”<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>SQLiteString = &quot;DELETE FROM
+&quot;&quot;NAME&quot;&quot; WHERE &quot;&quot; SQL_NameFirstLast &quot;&quot;
+=<span style="mso-spacerun: yes">&nbsp; </span>&quot;&quot;&quot; &amp;
+NameToBeDeleted &amp; &quot;&quot;&quot;&quot;<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>On
+Error resume next<span style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Set
+Current_Record_Set=DatabaseObject.Execute(SQLiteString)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>On
+Error Goto 0<span style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ You may NOT want this check:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='color:black'>If DatabaseObject.lasterror&lt;&gt;&quot;&quot; Then<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>MsgBox
+&quot;DELETE NAME Table error &quot; &amp; DatabaseObject.lasterror &amp;
+&quot; Contact Vendor - Program must quit&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Call
+Stop_Program<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>MsgBox
+NameToBeDeleted &amp; vbCrLf &amp; &quot;permanently
+deleted&quot;,vbInformation,&quot;Informative&quot;</span><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ To retrieve records with specific data in
+a <b>FIELD or ELEMENT</b></span><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>SQLiteString=&quot;SELECT * From <span style='color:
+green'>&quot;&quot;</span>NAME<span style='color:green'>&quot;&quot;</span>
+Where <span style='color:green'>&quot;&quot;</span> SQL_Area<span
+style='color:green'> &quot;&quot;</span> LIKE (<span style='color:green'>&quot;&quot;</span>&quot;
+&amp; Element_Area &amp; &quot;<span style='color:green'>&quot;&quot;</span>)&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ To retrieve records, sorted, with specific
+data in a FIELD or ELEMENT:</span><span style='font-size:9.0pt;font-family:
+"Courier New";layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'>SQLiteString = &quot;SELECT * From <span
+style='color:green'>&quot;&quot;</span>NAME<span style='color:green'>&quot;&quot;</span>
+Where <span style='color:green'>&quot;&quot;</span>SQL_Area<span
+style='color:green'>&quot;&quot;</span> LIKE (<span style='color:green'>&quot;&quot;</span>&quot;
+&amp; Element_Area &amp; &quot;<span style='color:green'>&quot;&quot;</span>)
+ORDER BY 1&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>End Sub<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' READ Entire NAME File<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' READ Entire NAME File<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' READ Entire NAME File<b><o:p></o:p></b></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>Sub Read_ENTIRE_NAME_TABLE <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>On
+Error resume next<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Set
+Current_Record_Set=DatabaseObject.Execute(SQLiteString)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>On
+Error Goto 0<span style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>If
+Current_Record_Set.count = 0 Then<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Exit
+Sub<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If</span><span style='font-size:9.0pt;font-family:"Courier New";color:blue;
+layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>If
+DatabaseObject.lasterror&lt;&gt;&quot;&quot; Then<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>MsgBox
+&quot;SELECT NAME Table error &quot; &amp; DatabaseObject.lasterror &amp;
+&quot; Contact Vendor - Program must quit&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Call
+Stop_Program<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>End
+If</span><span style='font-size:9.0pt;font-family:"Courier New";color:blue;
+layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ You do not want to use <b>[Current_Record_Set
+(Current_Record_Number)(1), (2),… (7), etc.]</b></span><span style='font-size:
+9.0pt;font-family:"Courier New";color:green;layout-grid-mode:line'> in your
+program if<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ possible. It is much more difficult to
+determine which element you are accessing and should you change the ‘<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ record for any reason all references must
+be changed throughout the program. Better to set each to a variable<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ as follows:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Current_Record_Number
+= 1 <span style='color:green'>‘ Get first record &#8211; This is used for below
+moves<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_FirstLastName
+= Current_Record_Set (Current_Record_Number)(1) <span style='color:green'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_StartDateYYYYMMDD
+= Current_Record_Set (Current_Record_Number)(2)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_Territory
+= Current_Record_Set (Current_Record_Number)(3)<span style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_Area
+= Current_Record_Set (Current_Record_Number)(4)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_CharacterField1
+= Current_Record_Set (Current_Record_Number)(5)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_CharacterField2
+= Current_Record_Set (Current_Record_Number)(6)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_CharacterField3
+= Current_Record_Set (Current_Record_Number)(7)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_NumericField1
+= Current_Record_Set (Current_Record_Number)(8)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_NumericField2
+= Current_Record_Set (Current_Record_Number)(9)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_NumericField3
+= Current_Record_Set (Current_Record_Number)(10)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_Available1
+= Current_Record_Set (Current_Record_Number)(11)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_Available2
+= Current_Record_Set (Current_Record_Number)(12)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>Element_Available3
+= Current_Record_Set (Current_Record_Number)(13)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;layout-grid-mode:line'>End Sub<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' WRITE NAME File<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' WRITE NAME File<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>' WRITE NAME File<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ The <b>“SQL_”</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> names are those used when the <b>TABLE</b></span><span style='font-size:
+9.0pt;font-family:"Courier New";color:green;layout-grid-mode:line'> was created
+and are necessary for this <b>INSERT</b></span><span style='font-size:9.0pt;
+font-family:"Courier New";color:green;layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'>‘ The <b>“Element_”</b></span><span
+style='font-size:9.0pt;font-family:"Courier New";color:green;layout-grid-mode:
+line'> names are Public variables used to hold the values to be inserted into
+the record</span><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy;layout-grid-mode:line'>Sub Write_NAME_TABLE <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green;layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error resume next<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>SQLiteString=&quot;INSERT OR
+REPLACE INTO &quot;&quot;NAME&quot;&quot; <span style='mso-tab-count:1'>&nbsp; </span>_<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>(&quot;&quot;SQL_FirstLastName&quot;&quot;,
+_ <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_StartDateYYYYMMDD&quot;&quot;,
+_<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_Territory&quot;&quot;,
+_<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_Area&quot;&quot;,
+_ <o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+CharacterField1&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+CharacterField2&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+CharacterField3&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+NumericField1&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_ NumericField2&quot;&quot;,
+_<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+NumericField3&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+Available1&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+Available2&quot;&quot;, _<span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;SQL_
+Available3&quot;&quot;) _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>VALUES
+(&quot;&quot;&quot;&amp; Element_NameFirstLast &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_YearMonthDayYYYYMMDD &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_Territory &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_Area &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp; Element_CharacterField1
+&amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_CharacterField2 &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_CharacterField3 &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_NumericField1 &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_NumericField2 &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_NumericField3 &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_ Available1 &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>&quot;&quot;&quot;&amp;
+Element_ Available2 &amp;&quot;&quot;&quot;, _<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>“””&amp; Element_Available3
+&amp;&quot;&quot;&quot;)&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Set
+Current_Record_Set=DatabaseObject.Execute(SQLiteString)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>On Error Goto 0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>If
+DatabaseObject.lasterror&lt;&gt;&quot;&quot; Then<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in;text-indent:.2in'><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'>MsgBox
+&quot;INSERT NAME Table error &quot; &amp; DatabaseObject.lasterror &amp;
+&quot; Contact Vendor” <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.2in;text-indent:.2in'><span
+style='font-size:9.0pt;font-family:"Courier New";layout-grid-mode:line'>Call
+Stop_Program<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>End If<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+layout-grid-mode:line'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;layout-grid-mode:line'>End Sub<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green'>‘ Initialize Element Public variables<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:green'>‘ Initialize Element Public variables</span><span
+style='font-size:9.0pt;font-family:"Courier New"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy'>Sub Initialize_Public_Elements<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_NameFirstLast = “NoName”<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_YearMonthDayYYYYMMDD =
+Today_YYYYMMDD<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_Territory =
+ConstantThreeZeros<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_Area =
+ConstantThreeZeros<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_CharacterField1 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_CharacterField2 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_CharacterField3 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_NumericField1 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_NumericField2 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_NumericField3 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_Available1 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_Available2 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.2in'><span style='font-size:9.0pt;
+font-family:"Courier New";layout-grid-mode:line'>Element_Available3 =
+ConstantNull<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New";
+color:navy'>End Sub<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="Microsoft Word 98">
+<TITLE>Tech Note 03e: Accessing the File System </TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=5>
+	  <h2>Tech Note 03e: Accessing the File System </h2>
+	  </FONT></B>
+	  <h3><B><font face="Helvetica">March 12, 2003</font> <FONT FACE="Helvetica" SIZE=4>
+	  </FONT></B></h3>
+	  <B><FONT FACE="Helvetica" SIZE=4>
+	  <P>&nbsp;</P>
+	  </FONT></B>
+	  <h5><b><font face="Helvetica">© 2010 NS BASIC Corporation. All rights reserved.
+</font></b></h5>
+	</TD>
+</TR>
+</TABLE>
+<hr>
+
+<blockquote>
+  <p>For more information on this control, see Microsoft's 
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">documentation</A>.
+</blockquote>
+<hr noshade size="1">
+<P>The File System can be controlled through NS Basic/CE using the File Control. To create a File System Object, use the following statement:</P>
+<CODE><P>addObject "filesystem"[,"file control name as string"]</P></code>
+<P>The second argument is optional. It allows you to specify the name to use for the object. If you do not specify it, use "File".
+A sample follows showing how the File System Object works.</P>
+<P>&nbsp;</P>
+<H4>File System Methods&nbsp;</H4>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>Type</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<P>Method</TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Description</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<CODE><P>Folder</CODE></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>Dir </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Returns the name of a matching file, directory, or folder.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>MkDir </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Creates a new directory or folder.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>RmDir </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Removes an existing directory or folder.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<CODE><P>File</CODE></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>MoveFile </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Moves a file.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>FileCopy </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Copies a file.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>FileDateTime </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Returns the date and time stamp of a file.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>FileLen </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Returns the length of a file in bytes.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>Kill </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Deletes files from a disk.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<CODE><P>Attributes </CODE></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>GetAttr </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Returns the attributes of a file, directory, or folder.</TD>
+</TR>
+<TR><TD WIDTH="15%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<CODE><P>SetAttr </CODE></TD>
+<TD WIDTH="67%" VALIGN="TOP">
+<P>Sets attribute information for a file.</TD>
+</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<P>&nbsp;&nbsp;</P>
+<H4>Sample Code&nbsp;</H4>
+<P><IMG SRC="images/TN02.GIF" WIDTH=426 HEIGHT=181></P>
+<P>&nbsp;</P>
+<PRE>REM This program demonstrates the use of the File and Filesystem Controls
+
+Option Explicit
+Dim selection
+addObject "filesystem"
+addObject "file"
+
+selection=0
+
+while selection&lt;&gt;9
+  selection=inputbox("Choose test number:" &amp; chr(13) &amp; "1. Attr" &amp; chr(13) &amp; "2. Dir" &amp; chr(13) &amp; "3. Get/Put" &amp; chr(13) &amp; "4. Line Write" &amp; chr(13) &amp; "5. Write/Read" &amp; chr(13) &amp;  "9. End Program", "File System Demo")
+select case selection
+  case 1
+    cmdAttr_click
+  case 2
+    cmdDir_click
+  case 3
+    cmdGetPut_click
+  case 4
+    cmdLineWrite_click
+  case 5
+    cmdWrite_click
+  case else
+    selection=9
+  end select
+wEnd
+
+Private Sub cmdAttr_Click()
+  On Error Resume Next
+  Dim sTheFile
+   
+  sTheFile = inputBox("Enter file name:","ATTR Command")
+   
+  msgbox "GetAttr:" &amp; fileSystem.GetAttr(sTheFile) &amp; chr(13) &amp; "FileDateTime:" &amp; fileSystem.FileDateTime(sTheFile) &amp; chr(13) &amp; "FileLen:" &amp; fileSystem.fileLen(sTheFile),0,"File Attributes for " &amp; sTheFile
+  If Err &lt;&gt; 0 Then
+    MsgBox "Error in GetAttr: " &amp; Err.Description
+    Err.Clear
+  End If
+   
+End Sub
+
+Private Sub cmdDir_Click()
+  Dim sDir, sMsg, input
+
+  input = inputBox("Enter file name (wildcards OK)","DIR Command")
+  sDir = filesystem.dir(input)
+  sMsg = "Directory contents of " &amp; input &amp; ": " &amp; vbCrLf &amp; sDir
+  While (sDir &lt;&gt; "")
+    sDir = fileSystem.Dir()
+    If sDir &lt;&gt; "" Then
+      sMsg = sMsg &amp; ", " &amp; sDir
+    End If
+  Wend
+   
+  msgbox  sMsg
+End Sub
+
+Private Sub cmdGetPut_Click()
+  WriteUsingPut
+  ReadUsingGet
+End Sub
+
+Private Sub cmdLineWrite_Click()
+  Writeline
+  Readline
+End Sub
+
+Private Sub cmdWrite_Click()
+  WriteUsingControl
+  ReadUsingControl
+End Sub
+
+Sub WriteUsingPut()
+  On Error Resume Next
+  Dim myArray
+  ReDim myArray(6)
+  file.Open "ceGetPut.txt", 4, 2, 3, 500 'fsAccessWrite
+
+  myArray(1) = 1
+  myArray(2) = "This is a string"
+  myArray(3) = True
+  myArray(4) = Date
+  myArray(5) = 63.12
+
+  file.Put myArray
+  If Err &lt;&gt; 0 Then
+    MsgBox "Error in WriteUsingPut: " &amp; Err.Description
+    err.clear
+  End If
+
+  myArray(1) = 2
+  myArray(2) = "This is a string2"
+  myArray(3) = True
+  myArray(4) = Date + 1
+  myArray(5) = 63.12
+  file.Put myArray
+
+  myArray(1) = 3
+  myArray(2) = "This is a string3"
+  myArray(3) = True
+  myArray(4) = #11/16/34#
+  myArray(5) = 63.12
+  file.Put myArray
+
+  msgbox "done with Put", 0, "Put"
+  file.Close
+End Sub
+
+Sub ReadUsingGet()
+  Dim myArray,i,msgString
+  On Error Resume Next
+  file.Open "ceGetPut.txt", 4, 1, 3, 500
+  file.Get myArray, 2
+
+  msgString = myArray(1)
+  For i = 2 To UBound(myArray)
+    msgString = msgString &amp; ", " &amp; myArray(i)
+  Next
+
+  msgBox msgString,0,"Contents of ceGetPut.txt"
+  file.Close
+End Sub
+
+Sub WriteUsingControl()
+  Dim myArray
+  ReDim myArray(10)
+
+  myArray(1) = Date
+  myArray(2) = "This is a string with a "" (quote)."
+  myArray(3) = True
+  myArray(4) = #11/16/34#
+  myArray(5) = 63.12
+  myArray(6) = "Text"
+  myArray(7) = Null
+  myArray(8) = ""
+
+  file.Open "ceWrite.txt", 2 'fsModeOutput
+  file.WriteFields myArray
+  file.Close
+End Sub
+
+Sub ReadUsingControl()
+  Dim myArray, msgString, i
+  file.Open "ceWrite.txt", 1 'fsModeInput
+  myArray = file.InputFields(10)
+    
+  msgString = myArray(1)
+  For i = 2 To UBound(myArray, 1)
+    msgString = msgString &amp; ", " &amp; myArray(i)
+  Next
+    
+  msgbox msgString,0,"Contents of ceWrite.txt"
+  file.Close
+End Sub
+
+Sub Writeline()
+  On Error Resume Next
+  file.Open "ceLine.txt", 2 'fsModeOutput
+  If Err &lt;&gt; 0 Then
+    MsgBox "Error in writeline: " &amp; Err.Description
+    Err.Clear
+  End If
+  file.LinePrint "Hier ist unser erste Linie."
+  file.LinePrint "Hier ist unser zweite Linie."
+  file.Close
+End Sub
+
+Sub Readline()
+  file.Open "ceLine.txt", 1 'fsModeInput
+  dim sOut
+  sOut = file.LineInputString()
+  sOut =sOut &amp; Chr(13) &amp; file.LineInputString()
+  msgBox sOut,0,"Contents of ceLine.txt"
+
+  file.Close
+End Sub</PRE>
+<P>&nbsp;</P>
+<P>&nbsp;</P></BODY>
+</HTML>

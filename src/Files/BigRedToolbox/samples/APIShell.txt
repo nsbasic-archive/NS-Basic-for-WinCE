@@ -1,0 +1,36 @@
+'  Demonstration of the special folder and shortcut operations
+'  available from the MGCEWin32.API object.
+
+' Special Folder flags. Note: Some of these may not be available
+' depending on the version of Windows CE in use
+sfDesktop = 0
+sfPrograms = 2
+sfControls = 3
+sfPrinters = 4
+sfPersonal = 5
+sfFavorites = 6
+sfStartup = 7
+sfRecent = 8
+sfSendTo = 9
+sfRecycler = 10
+sfStartMenu = 11
+sfDesktopDir = 16
+sfDrives = 17
+sfNetwork = 18
+sfNethood = 19
+sfFonts = 20
+sfTemplates = 21
+
+' Create the object
+addobject "MGCEWin32.API", "API", 0, 0, 0, 0
+
+' Get desktop directory and use that to make up a shortcut filename
+sPath = API.GetSpecialFolder( sfDesktop ) & "\Windows Directory.lnk"
+
+' Use the filename to create a shortcut to the windows directory
+API.CreateShortcut  sPath, "\Windows"
+
+' Display the target of the shortcut we just created
+s = API.GetShortcutTarget( sPath )
+API.AddToRecent "\windows"
+MsgBox s

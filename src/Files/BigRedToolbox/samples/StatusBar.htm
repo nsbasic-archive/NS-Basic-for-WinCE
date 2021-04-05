@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>StatusBar Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/StatusBar.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+addobject "MGCEBarsNPops.Statusbar", "stat", 0, output.height - 18, output.width, 20
+
+i = output.width / 4
+sectionArray = Array( i * 2, i * 3, i * 4 )
+stat.Sections = sectionArray
+set sectionArray = Nothing
+
+stat.Caption( 1 ) = "Item 1"
+stat.Caption( 2 ) = "Item 2"
+stat.Caption( 3 ) = "Item 3"
+
+wArray = stat.Sections
+iWidth = 0
+for i = 1 to 3
+   s = "Section " & CStr( i ) & " is " & CStr( wArray( i ) - iWidth ) & " in width and reads "
+   s = s & stat.Caption( i )
+   MsgBox s, vbOKOnly, "Test"
+   iWidth = iWidth + ( wArray( i ) - iWidth )
+next
+set wArray = Nothing
+

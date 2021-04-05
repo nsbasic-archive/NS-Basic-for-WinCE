@@ -1,0 +1,442 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>S309PyramidSolitare Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/S309PyramidSolitare.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' S309 Pyramid Solitaire For NS Basic
+' Written by Terry Myhrer, Software 309
+option explicit
+
+dim picCards(30), lblCount(2)
+dim gnShuffledDeck(52), gnCards(30), gnLeft(7), gnPile(2,52), gnCardCovered(30,2), gnStack(100, 1)
+dim gnCardHeight, gnCardWidth, gnWidth(1), gnHeight, gnPileIndex(2), gnSelected(1), gnStackIndex
+dim gstrTitle, gstrURL, gvaMenu, gbHelpDialogLoaded
+
+Output.BackColor = vbGreen
+if (Output.Width mod 2) = 1 then
+ Output.Move 0, 0, (Output.ScaleX(Output.Width + 1, 3,1)), (Output.ScaleY(Output.Height, 3, 1))
+end if    
+
+gstrTitle = "S309 Pyramid Solitaire"
+gstrURL = "http://members.xoom.com/S309"
+
+if bCreateCard0() then
+  Output.DrawText "Please Wait..."
+
+  if card0.ScreenWidth = 240 then
+    gvaMenu = array("&File||File","&Game||Game","&Help||Help")
+  else  
+    gvaMenu = array("&File||File","&Game||Game","&Help||Help","|",gstrTitle,"|",gstrURL)
+  end if  
+  SetMenu "Titlebar", gvaMenu
+  UpdateScreen
+
+  Initialize
+
+  gvaMenu = array("E&xit||mnuFileExit")
+  SetMenu "File", gvaMenu
+  gvaMenu = array("&New Game||mnuGameNew","-","&Undo||mnuGameUndo")
+  SetMenu "Game", gvaMenu
+  gvaMenu = array("&Rules||mnuHelpRules","-","&About||mnuHelpAbout")
+  SetMenu "Help", gvaMenu
+
+  Output.Cls
+  UpdateScreen
+
+  mnuGameNew_Click
+end if
+
+sub mnuHelpRules_Click()
+  dim strText, nError
+  if not gbHelpDialogLoaded then
+    on error resume next
+    err.clear
+    addobject "dialog", "dlgHelp"
+    nError = err.Number
+    on error goto 0
+  end if  
+  if nError <> 0 then
+    strText = "Common Dialogs are not installed on this machine. "
+    strText = strText & "Unable to display help file '" & gstrTitle & ".htc'." & vbcrlf &vbcrlf
+    strText = strText & "Rules for playing Pyramid Solitaire can be found on the internet at:" &vbcrlf
+    strText = strText & "http://www.solitairecentral.com/rules/pyramid_rules.html or " & vbcrlf
+    strText = strText & "http://198.68.10.253/Rick/Solitaire/Rules/PyramidRules.html"
+    msgbox strText, vbinformation, "Rules For " & gstrTitle
+    exit sub
+  end if
+  gbHelpDialogLoaded = True
+  dlgHelp.HelpFile = gstrTitle & ".htc"
+  dlgHelp.ShowHelp
+end sub
+
+sub mnuHelpAbout_Click()
+  dim strText
+  strText = gstrTitle & " 1.1 for NS Basic/CE" & vbcrlf
+  strText = strText & "Written by Terry Myhrer, Software 309" & vbcrlf
+  strText = strText & "Email: software309@pobox.com" & vbcrlf
+  strText = strText & "Web: " & gstrURL
+  msgbox strText, vbinformation,"About " & gstrTitle
+end sub
+
+sub mnuGameNew_Click()
+  dim nIndex1, nIndex2
+  
+  if gnPileIndex(2) > 1 then
+    exit sub
+  end if
+    
+  ShuffleDeck
+  
+  for nIndex1 = 1 to 28
+    gnCards(nIndex1) = gnShuffledDeck(nIndex1)    
+    DisplayCard(nIndex1)
+  next
+  nIndex2 = 24
+  for nIndex1 = 29 to 52
+    gnPile(2 ,nIndex2) = gnShuffledDeck(nIndex1)
+    nIndex2 = nIndex2 - 1
+  next
+  gnPileIndex(0) = 0
+  gnPileIndex(1) = 0
+  gnPileIndex(2) = 24
+  gnSelected(0) = 0
+  gnSelected(1) = 0
+  gnStackIndex = 0
+    
+  DisplayPile 0
+  DisplayPile 1
+  DisplayPile 2
+end sub
+
+sub mnuFileExit_Click()
+  bye
+end sub
+
+sub mnuGameUndo_Click()
+  dim nIndex1, nTemp, nPile
+  
+  if gnStackIndex < 1 then
+    exit sub
+  end if
+  for nIndex1 = 0 to 1
+    if gnSelected(nIndex1) > 0 then
+      DisplayCard gnSelected(nIndex1)
+      gnSelected(nIndex1) = 0
+    end if  
+  next
+  for nIndex1 = 1 to 0 step -1
+    nTemp = gnStack(gnStackIndex, nIndex1)
+    if nTemp = -1 then
+      gnPileIndex(2) = gnPileIndex(2) + 1
+      gnPile(2, gnPileIndex(2)) = gnPile(1, gnPileIndex(1))
+      gnPileIndex(1) = gnPileIndex(1) - 1
+      DisplayPile 1
+      DisplayPile 2
+    elseif nTemp > 52 then
+      nPile = 0
+      while nTemp > 52
+        nTemp = nTemp - 52
+        nPile = nPile + 1
+      wend 
+      gnPileIndex(nPile) = gnPileIndex(nPile) + 1
+      gnPile(nPile, gnPileIndex(nPile)) = gnPile(0, gnPileIndex(0))
+      gnPileIndex(0) = gnPileIndex(0) - 1
+      DisplayPile nPile 
+      DisplayPile 0
+    elseif nTemp > 0 then
+      gnPileIndex(0) = gnPileIndex(0) - 1
+      DisplayCard nTemp
+      DisplayPile 0
+    end if
+  next
+  gnStackIndex = gnStackIndex - 1        
+end sub
+function bCardIsCovered(byval nNumber)
+  dim nIndex1
+
+  if gnCardCovered(nNumber, 0) = 0 then
+    exit function
+  end if
+    
+  for nIndex1 = 0 to 1
+    if picCards(gnCardCovered(nNumber, nIndex1)).Visible then
+      bCardIsCovered = True
+      exit for
+    end if  
+  next
+end function
+function nCardValue(byval nNumber)
+  nCardValue = ((nNumber - 1) mod 13) + 1
+end function
+sub CardClick(byval nNumber)
+  dim nIndex1, bFound, nCount, bNextStack
+  
+  if bCardIsCovered(nNumber) then
+    exit sub
+  end if
+    
+  for nIndex1 = 0 to 1
+    if gnSelected(nIndex1) = nNumber then
+      gnSelected(nIndex1) = 0      
+      picCards(nNumber).InvertImage
+      bFound = True
+      exit for
+    end if  
+  next
+  if not bFound then
+    for nIndex1 = 0 to 1
+      if gnSelected(nIndex1) = 0 then
+        gnSelected(nIndex1) = nNumber      
+        picCards(nNumber).InvertImage
+        bFound = True
+        exit for
+      end if  
+    next
+  end if
+    
+  nCount = 0
+  for nIndex1 = 0 to 1
+    if gnSelected(nIndex1) <> 0 then
+      nCount = nCount + nCardValue(gnCards(gnSelected(nIndex1)))
+    end if  
+  next
+  if nCount = 13 then
+    for nIndex1 = 0 to 1
+      if gnSelected(nIndex1) <> 0 then
+        if not bNextStack then
+          gnStackIndex = gnStackIndex + 1
+          gnStack(gnStackIndex, 0) = 0
+          gnStack(gnStackIndex, 1) = 0
+          bNextStack = True
+        end if
+        gnPileIndex(0) = gnPileIndex(0) + 1
+        gnPile(0, gnPileIndex(0)) = gnCards(gnSelected(nIndex1))
+        if gnSelected(nIndex1) > 28 then
+          gnStack(gnStackIndex, nIndex1) = ((gnSelected(nIndex1) - 28) * 52) + gnCards(gnSelected(nIndex1))
+          gnPileIndex(gnSelected(nIndex1) - 28) = gnPileIndex(gnSelected(nIndex1) - 28) - 1
+          DisplayPile gnSelected(nIndex1) - 28
+        else
+          gnStack(gnStackIndex, nIndex1) = gnSelected(nIndex1)
+          picCards(gnSelected(nIndex1)).Hide
+        end if
+        gnSelected(nIndex1) = 0
+        DisplayPile 0
+      end if  
+    next
+  end if
+end sub
+sub CardDblClick(byval nNumber)
+  dim nIndex1
+  if (nNumber = 30) and (gnPileIndex(2) > 1) then
+    gnPileIndex(1) = gnPileIndex(1) + 1
+    gnPile(1, gnPileIndex(1)) = gnPile(2, gnPileIndex(2))
+    gnPileIndex(2) = gnPileIndex(2) - 1
+    DisplayPile 1
+    DisplayPile 2
+
+    for nIndex1 = 0 to 1
+      if gnSelected(nIndex1) > 28 then
+        gnSelected(nIndex1) = 0      
+        exit for
+      end if  
+    next
+  end if
+  gnStackIndex = gnStackIndex + 1
+  gnStack(gnStackIndex, 0) = -1
+  gnStack(gnStackIndex, 1) = 0
+end sub
+      
+Sub ShuffleDeck()
+   Dim nTemp1, nTemp2, nTemp3
+
+   For nTemp1 = 52 To 2 Step -1
+
+      nTemp2 = nTemp1
+      While (nTemp1 = nTemp2)
+         nTemp2 = Int(Rnd * nTemp1) + 1
+      Wend
+
+      nTemp3 = gnShuffledDeck(nTemp1)
+      gnShuffledDeck(nTemp1) = gnShuffledDeck(nTemp2)
+      gnShuffledDeck(nTemp2) = nTemp3
+
+   Next 
+End Sub
+sub DisplayPile(byval nNumber)
+  if nNumber = 0 then
+    gnCards(0) = gnPile(0, gnPileIndex(0))
+    DisplayCard 0  
+  else
+    gnCards(nNumber + 28) = gnPile(nNumber, gnPileIndex(nNumber))
+    DisplayCard nNumber + 28  
+  end if
+  lblCount(nNumber).caption = gnPileIndex(nNumber)  
+end sub
+sub DisplayCard(byval nNumber)
+  dim nIndex, bInvert, picCard
+  
+  set picCard = picCards(nNumber)
+  nIndex = gnCards(nNumber) 
+  if nIndex = 0 then
+    picCard.BorderStyle = 1
+    picCard.Appearance = -1 
+    picCard.Cls
+  else
+    picCard.BorderStyle = 0
+    picCard.Appearance = 0
+    picCard.PlayingCard = nIndex
+  end if
+  picCard.Show  
+  picCard.Refresh
+end sub
+sub LoadDeck()
+  dim nIndex 
+  
+  for nIndex = 1 to 52
+    gnShuffledDeck(nIndex) = nIndex
+  next 
+end sub
+sub MakeCard(byval nNumber, byval nRow, byval nColumn)
+  dim strName, strCode, picCard
+  
+  strName = "card" & cstr(nNumber)
+  
+  if nNumber > 0 then
+    addobject "S309.PictureBox.1", strName, 0, 0, 0, 0
+    strCode = "sub " & strName & "_click()" & vbcrlf & "  CardClick(" & nNumber &")" & vbcrlf & "end sub"
+    execute strCode
+  end if
+    
+  execute  " set picCards(" & cstr(nNumber) & ") = " & strName
+  
+  set picCard = picCards(nNumber)
+
+  picCard.Hide
+  picCard.Left = nCardLeft(nColumn, nRow)
+  picCard.Top = nCardTop(nRow)
+  picCard.Width = gnCardWidth
+  picCard.Height = gnCardHeight
+  picCard.BackColor = Output.BackColor
+  
+  gnCards(nNumber) = 0
+end sub
+function nCardTop(byval nRow)
+  dim nOffset
+  nOffset = (Output.Height - gnHeight) \ 2
+  nCardTop = ((gnHeight - gnCardHeight) \ 7) * nRow + nOffset
+end function
+function nCardLeft(byval nColumn, byval nRow)
+  dim nOffset, nTemp
+  if (nRow = 0) or ((nRow mod 2) = 1) then
+    nOffset = (Output.Width - gnWidth(1)) \ 2
+    nTemp = (((gnWidth(1) -(gnCardWidth * 7))  \ 8) * nColumn) + (gnCardWidth * (nColumn - 1))
+  else  
+    nOffset = (Output.Width - gnWidth(0)) / 2
+    nTemp = (((gnWidth(0) - (gnCardWidth * 6))  \ 7) * nColumn) + (gnCardWidth * (nColumn - 1))
+  end if  
+  nCardLeft = nTemp + nOffset
+end function
+sub Initialize()
+  dim nIndex1, nIndex2, nIndex3, nLabelTop, nLabelLeft, nLabelWidth, nLabelHeight
+  
+  Randomize
+  
+  nIndex3 = 0
+  for nIndex1 = 1 to 6
+    for nIndex2 = 1 to nIndex1
+      gnCardCovered((nIndex3 + nIndex2), 0) = nIndex3 + nIndex1 + nIndex2
+      gnCardCovered((nIndex3 + nIndex2), 1) = nIndex3 + nIndex1 + nIndex2 + 1
+    next
+    nIndex3 = nIndex3 + nIndex1
+  next  
+  
+  LoadDeck
+
+  Card0.PlayingCard = 1
+  gnCardHeight = Card0.ImageHeight
+  gnCardWidth = Card0.ImageWidth
+  gnHeight = gnCardHeight * 3
+  gnWidth(0) = ((gnCardWidth + 2) * 6) + 2
+  gnWidth(1) = ((gnCardWidth + 2) * 7) + 2
+
+  gnLeft(1) = 3
+  gnLeft(2) = 2
+  gnLeft(3) = 2
+  gnLeft(4) = 1
+  gnLeft(5) = 1
+  gnLeft(6) = 0
+  gnLeft(7) = 0
+
+  MakeCard 0, 0, 1 
+  
+  nIndex3 = 1
+  for nIndex1 = 1 to 7
+    for nIndex2 = 1 to nIndex1
+      MakeCard nIndex3, nIndex1, gnLeft(nIndex1) + nIndex2
+      nIndex3 = nIndex3 + 1
+    next
+  next
+
+  MakeCard 29, 0, 6 
+  MakeCard 30, 0, 7 
+  
+  execute "sub card30_DblClick()" & vbcrlf & "  CardDblClick(30)" & vbcrlf & "end sub"
+    
+  nLabelLeft = nCardLeft(1,0)
+  nLabelTop = picCards(0).Top + gnCardHeight
+  nLabelWidth = gnCardWidth 
+  addobject "label", "label0", nLabelLeft, picCards(0).Top + gnCardHeight, nLabelWidth, 0
+  set lblCount(0) = label0
+  lblCount(0).Alignment = 2
+
+  nLabelLeft = nCardLeft(6,0) + (gnCardWidth \ 2)
+  nLabelWidth = gnCardWidth \ 2
+  addobject "label", "label1", nLabelLeft, picCards(0).Top + gnCardHeight, nLabelWidth, nLabelHeight
+  set lblCount(1) = label1
+  lblCount(1).Alignment = 0
+  
+  nLabelLeft = nCardLeft(7,0)
+  nLabelWidth = gnCardWidth
+  addobject "label", "label2", nLabelLeft, picCards(0).Top + gnCardHeight, nLabelWidth, 0
+  set lblCount(2) = label2
+  lblCount(2).Alignment = 2
+
+  nLabelHeight = nCardTop(5) - (picCards(0).Top + gnCardHeight)
+  for nIndex1 = 0 to 2
+    lblCount(nIndex1).BackColor = Output.BackColor
+    lblCount(nIndex1).FontBold = True
+    lblCount(nIndex1).Caption = ""
+    lblCount(nIndex1).Height = nLabelHeight
+  next  
+end sub  
+function bCreateCard0()
+  dim nVersion, nMinor, nMajor, bReturn
+
+  bReturn = True
+  on error resume next
+  err.clear
+  addobject "S309.PictureBox.1", "card0", 0, 0, 0, 0   
+  if err.number <> 0 then
+    bReturn = False
+  else
+    nMajor = card0.VersionMajor
+    nMinor = card0.VersionMinor
+    nVersion = nMajor + (nMinor / 10)
+    if nVersion < 1.5 then
+      bReturn = False
+    end if
+  end if
+  on error goto 0
+  if not bReturn then
+    strText = "S309PictureBox ActiveX Control Version 1.5 or higher is required for " & gstrTitle & vbcrlf 
+    strText = strText & "Get the latest version from: http://members.xoom.com/S309"
+    msgbox strText, vbinformation, gstrTitle
+  end if  
+  bCreateCard0 = bReturn
+end function
+</PRE>
+</body>
+</html>

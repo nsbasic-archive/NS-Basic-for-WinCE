@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tray Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Tray.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+' Demonstration of the tray image functions in MGCEWin32
+' Written by Mark Gamber using NS Basic
+' NOTE: This assumes you have two 16x16 images in the root
+' directory of your device. If you don't make some, then try it!
+' Be sure to copy the bitmaps from this directory to the device
+' root directory before running this demo!
+
+addobject "MGCEWin32.Tray", "Tray", 0, 0, 0, 0
+addobject "CommandButton", "Img1", 10, 10, 70, 20
+addobject "CommandButton", "Img2", 80, 10, 70, 20
+addobject "CommandButton", "NoImg", 10, 30, 140, 20
+
+Img1.Caption = "Image 1"
+Img2.Caption = "Image 2"
+NoImg.Caption = "Remove Tray Image"
+
+Tray.AddImage "\smimg1.bmp"
+Tray.AddImage "\smimg2.bmp"
+
+sub Img1_Click
+   Tray.Image = 1
+end sub
+
+sub Img2_Click
+   Tray.Image = 2
+end sub
+
+sub NoImg_Click
+   Tray.Image = 0
+end sub
+
+sub Tray_Click( image )
+   MsgBox "Image #" & CStr( image ) & " was clicked"
+end sub
+</PRE>
+</body>
+</html>

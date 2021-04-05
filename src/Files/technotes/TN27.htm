@@ -1,0 +1,149 @@
+<HTML>
+<HEAD>
+<TITLE>Tech Note 27: Using Symbol Devices</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="18%" VALIGN="top">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></P></TD>
+    <TD WIDTH="82%" VALIGN="top">
+	  <h2>Tech Note 27: Using Symbol Devices</h2>
+	  <h5>
+      <H3>April 05, 2009</H3>
+      <H5>© 2010 NS BASIC Corporation. All rights reserved.</H5></h5>
+	</TD>
+</TR>
+</TABLE>
+<HR noshade size="1">
+
+<p>NS Basic/CE works well on devices made by Symbol that are running Windows CE 4.2 or later. If you have an older device, check with Symbol: it may be possible to upgrade it to Windows CE 4.2.
+
+<p>The following code sample shows how to call the Symbol scanner API from a NS Basic application. The pre-requisite for this to work is the Symbol ActiveX installer file which is included in the SMDK v1.0 for the Web . At the time of writing (April 2009) this file is located in the <a href="http://support.symbol.com/support/search.do?cmd=displayKC&docType=kc&externalId=KB100001&sliceId=&dialogID=97306232&stateId=1%200%2097308007" target="_top">Symbol Developer Zone</a>. You should be able to download it without registration. 
+
+<p>Once the SMDK is installed on a development PC, the required ActiveX support is located in the file Symbol.AXO.all.cab located by default in C:\Program Files\Symbol Mobility Developer Kit for the Web\v1.0\Cabs. Once this CAB is installed, the following NSB application code can be used:
+
+<p>Complete documentation on the Symbol control can be found in the SMDK v1.0.
+
+<pre>
+'Symbol.nsb extract: 
+'Complete program is in \Program Files\nbasic\ce\samples.
+
+' NSB Sample application showing how to call Symbol scanner API
+' N.B requires that SymbolAXO.arm.cab Is preinstalled on target device 
+
+' add barcode scanner object to form
+
+Execute "AddObject " & Chr(34) & "symbol.barcodereader.1" & Chr(34) & ", " & Chr(34) & "ScanControl1" & Chr(34) & ", 16, 240, 1, 8, Form1_Form"
+
+Sub Form1_Load
+
+' open scanner API
+   ScanControl1.OpenScanner
+' enable scanning - will allow scanner to be activated by hardware triggers on device
+   ScanControl1.EnableScanning True 
+End Sub
+
+' this event will fire each time the scanner API decodes a label
+
+Sub ScanControl1_ScanComplete(byval bstrBarCode , ByVal bstrSource , ByVal lStatus , ByVal lLabelType, ByVal lDataLength )
+  ' get barcode data
+  TextBox1.Text = bstrBarCode
+  ' get barcode symbology
+  TextBox2.Text = bStrSource
+End Sub
+</pre>
+
+This shows very simply how to call the scanner API from NSB . It should work with both laser scanners and imagers from Symbol and can run on either CE or Windows Mobile OS versions. More advanced functionality such as enabling and disabling specific symbologies and setting length checks for the barcodes has not been tested but should work provided the syntax is correct. 
+
+<p>If certain devices, such as the MC1000, lose power they will cold boot and reset the
+registry. There is a facility to merge registry keys on a boot which
+will restore modified keys but an easier solution is to reinstall the
+NS Basic CAB file by autorunning it on startup e.g if the cab is located in
+the \Application folder, you can place a RUN file in
+\Application\Startup containing the following 2 lines:
+<pre>
+\windows\wceload.exe
+\application\nsb.cab
+</pre>   
+This will reinstall NSB following a cold boot.
+
+<p><b>     The above code is provided as is with no warranties expressed or implied and is not supported directly by Symbol Technologies i.e. use at your own risk.</b>
+
+<h4>Sample Code</h4>
+<i>Contributed by <a href="ecaddy@highpoint.edu" target="_top">Teddy Caddy</a>.</i>
+
+<p>Depending on the model, there is a different DLL for the MSR.  For the
+MC50 and MC70, this file is called 'MSRMC50.dll'.  This file is hard to
+find. You can find it in driver updates on the Symbol support site, but
+you have to look for the part number of the add-on MSR.  For the MC70,
+this part is called 'MSR7000'.  It was a CAB file that I had to copy to
+MC70 and install there.
+
+<p>The app is a 2 page form.  Changing from the default page to the MSR
+page will turn off the scanner (it won't emit a laser).  When you change
+back to the default page, it turns the scanner back on.  Similarly, the
+MSR is turned on/off upon entry/exit of the MSR page.
+
+<p>Here is some sample code. It is part of a complete program called Symbol.nsb that you will find with NS Basic's samples.
+
+<pre>
+' NSB Sample application showing how to call Symbol scanner API
+' N.B requires that SymbolAXO.arm.cab is preinstalled on target device 
+ShowOKButton True 'Set minimize button to close app
+
+' add barcode scanner object to form
+
+AddObject "symbol.barcodereader.1", "ScanControl1", 16, 240, 1, 8
+AddObject "symbol.magstripe", "MagStripe1"
+' open scanner API
+   ScanControl1.OpenScanner
+
+Sub Form1_Load
+  MagStripe1.StopMSR
+' enable scanning - will allow scanner to be activated by hardware triggers on device
+   ScanControl1.EnableScanning True 
+End Sub
+
+' this event will fire each time the scanner API decodes a label
+Sub ScanControl1_ScanComplete(byval bstrBarCode , ByVal bstrSource , ByVal lStatus , ByVal lLabelType, ByVal lDataLength )
+  ' get barcode data
+  TextBox1.Text = bstrBarCode
+  ' get barcode symbology
+  TextBox2.Text = bStrSource
+End Sub
+
+Sub CommandButton1_Click
+ Bye
+End Sub
+
+Sub cmdMsrPage_Click
+	Form1_Hide
+	MSRForm_Show
+End Sub
+
+Sub cmdScanForm_Click
+	MSRForm_Hide
+	Form1_Show
+End Sub
+
+Sub MSRForm_Load
+	ScanControl1.EnableScanning False
+	txtMsrDevices.Text = MagStripe1.GetMSRdevices
+	MagStripe1.StartMSR("MSRMC50.dll")
+End Sub
+
+Sub MagStripe1_MSRReadComplete(ByVal result)
+   txtMsrDevices.Text = result
+End Sub
+
+Sub cmdClear_Click
+   txtMsrDevices.Text = ""
+End Sub
+</pre>
+
+
+</BODY></HTML>

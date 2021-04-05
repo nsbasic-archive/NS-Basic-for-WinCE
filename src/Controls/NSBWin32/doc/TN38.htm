@@ -1,0 +1,1626 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="Keywords" content="Creation,Prog IDs,Compatibility,Common dialogs">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 38: Win32 API Control</TITLE>
+<link rel="stylesheet" href="http://www.nsbasic.com/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+
+	  <h2>Tech Note 38: Win32 API Control</h2>
+	  <h3>July 18, 2006</h3>
+	  <h5>Copyright 2006 NS BASIC Corporation
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<hr>
+
+
+<OL>
+	<LI><a href="#overview">Overview</a><br>
+	<LI><a href="#timer">Timer Object</a><br>
+	<LI><a href="#tray">Tray Object</a><br>
+	<LI><a href="#registry">Registry Object</a><br>
+	<LI><a href="#ras">Remote Access Connection Object (RAS)</a><br>
+	<a href="#rasentry">RAS Entry Object</a><br>
+	<a href="#rasconstate">RAS Connection State Object</a><br>
+	<LI><a href="#api">API Object</a><br>
+	<a href="#ptrect">Point and Rectangle Object</a><br>
+</OL>
+
+<h2><A NAME="overview">1. Overview</h2>
+
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            NSBasic Win32 components provide access to various useful OS
+            features for the NSBasic applications. Currently (version 2.0.1) the following
+            objects are included in this library:
+            <blockquote>
+              <p><img border="0" src="images/obj.gif" width="16" height="16"> <b><a href="#timer">Timer
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.Timer<br>
+                ClassID: {ACE050A1-EEF9-435B-8D29-0D676727188B}<br>
+                Create example: AddObject &quot;NSBasic.win32.Timer&quot;,
+                MyTimer</b></p>
+              </blockquote>
+              <p><img border="0" src="images/obj.gif" width="16" height="16"> <b><a href="#tray">Tray
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.Tray<br>
+                ClassID: {5334D155-E526-4A1D-B03F-86B112DC8D3A}<br>
+                Create example: AddObject &quot;</b><b>NSBasic.win32.Tray</b><b>&quot;,
+                MyTray</b></p>
+              </blockquote>
+              <p><img border="0" src="images/obj.gif" width="16" height="16"> <b><a href="#registry">Registry
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.Registry<br>
+                ClassID: {602E25DA-DBE7-4358-A542-1DFEC6793443}<br>
+                Create example: AddObject &quot;NSBasic.win32.Registry&quot;,
+                MyRegistry</b></p>
+              </blockquote>
+              <p><img border="0" src="images/obj.gif" width="16" height="16"> <b><a href="#ras">RAS
+              Object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.RAS<br>
+                ClassID: {38CE02DD-7A75-4077-A1A8-DEC520CD618A}<br>
+                Create example: AddObject &quot;NSBasic.win32.RAS&quot;, MyRas</b></p>
+                <p><b>See also: <a href="#rasentry">RASEntry object</a> </b>and<b>
+                <a href="#rasconstate">RASConState object</a> </b>which are
+                non-creatable. They are obtained from the RAS object (See Entry,
+                Connections, Entries) and RASEntry.Status respectively</p>
+              </blockquote>
+              <p><img border="0" src="images/obj.gif" width="16" height="16"> <b><a href="#api">API
+              object</a></b></p>
+              <blockquote>
+                <p><b>ProgID: NSBasic.win32.api<br>
+                ClassID: {9217A3CE-4560-45D0-853C-F4CBCAD694C4}<br>
+                Create example: AddObject &quot;NSBasic.win32.api&quot;, MyApi</b></p>
+                <p><b>See also:</b> <b><a href="#ptrect">PtOrRect object</a> </b>which
+                is used by some routines that return/accept point or
+                rectangle.&nbsp;</p>
+              </blockquote>
+            </blockquote>
+                <h3>Creation notes</h3>
+                <p>To use a particular object you need to add it to your
+                application. For example:<br>
+                <b>AddObject &quot;NSBasic.win32.RAS&quot;, &quot;ras&quot;<br>
+                </b>later in the code you use it like this, for example:<br>
+                <b>Set connections = ras.Connections</b></p>
+            <p>In other words you use the ProgID of the object to create it and
+            you specify a name of your choice for the created object.</p>
+                <p>For the most objects the best place to use the AddObject
+                statement is the FormX_Load. However, objects like the Registry
+                for instance are often used only in some specific parts of the
+                application which are not always executed. In such case you can
+                add the object in the routine that begins the task that needs
+                the object and thus save some memory when the object is not
+                needed.</p>
+            <p>The Tray and the Timer object have important events without which
+            their usage is almost meaningless. This makes FormX_Load the best
+            place for their creation.&nbsp;&nbsp; </p>
+            <h3>Supported platforms </h3>
+            <p>The library is available as single DLL named: <b>NSBasicWin32ax.dll</b> </p>
+            <p>Builds are available for: Windows NT4/2000/XP/2003/Vista and
+            later, Palm-sized PC, Handheld PC (all versions), Pocket PC, Pocket
+            PC 2002, 2003/SE, 2005 (WM5) and later, MS Smartphone 2003/WM5 and
+            later, custom CE.NET 4.0 or later based devices. </p>
+            <h3>Compatibility with the old version - MGCEWin32 library. </h3>
+            <p>This library is a reincarnation of the Mark Gamber's MGCEWin32
+            library, written anew from scratch only following the interface
+            layout of the MGCEWin32 library as far as possible. All the
+            creatable objects have a property named Version which return the
+            class version as Major * 100 + Minor. For example 201 is returned
+            for version 2.01. The legacy MGCEWin32 library classes have this
+            property as well and it returns 10X. If you are porting code that
+            uses MGCEWin32 library you can use this property to resolve
+            compatibility issues. Alternatively you can change the code to use
+            the new version and re-pack the application with the new DLL. </p>
+            <p>NSBasicWin32 is almost fully compatible with the older MGCEWin32
+            on usage syntax level, but there are some differences and additions.
+            Some of the changes were needed in order to correct some problems in
+            the old version, others were made in order to improve the usage and
+            implement new features. Still, about 90% of the methods and
+            properties are the same or defined with optional arguments in such
+            manner that will permit old code to run without changes. Major
+            differences can be found only in the RAS object which in contrast to
+            the old version is now a root object of a hierarchy of objects that
+            allow more convenient work with RAS phonebook entries. </p>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+<h2><A NAME="timer">2. Timer Object</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>The Timer object allows you execute events on the interval
+            specified. In most cases, it will be easier to use the Timer property of an intrinsic object instead of this control.</p>
+            <p>The Interval and OnTimer events are equivalent to each other. Use
+            the one you like most.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Interval</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Interval = value<br>
+                  variable = object.Interval</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the timer's
+                  interval in milliseconds. Does not affect the timer if it is
+                  already running. You need to Stop and Start it again in order
+                  this value to take effect.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Tag</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = value<br>
+                  variable = object.Tag</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets an application specified
+                  tag - can be anything. You can use it if you have more than
+                  one timers and you have code that is called to handle similar
+                  operations. This will help you distinguish the timer that have
+                  invoked the operation.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable = object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Start</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Start([Interval])</td>
+                <td bgcolor="#FFFFFF" valign="top">Starts the timer. If you pass
+                  an Interval argument it has the same effect as setting the
+                  Interval property before calling Start.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Stop</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Stop()</td>
+                <td bgcolor="#FFFFFF" valign="top">Stops the timer.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  Interval</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_Interval()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired each time the interval
+                  expires.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  OnTimer</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_OnTimer(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired each time the interval
+                  expires. The parameter is the Timer object itself. Prefer this
+                  event if you want to use one code to handle different timers
+                  which still need to be distinguished at some point.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+<h2><A NAME="tray">3. Tray Object</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>This object allows you put and control icons in the shell/system
+            notification area (often called System Tray).</p>
+            <p>The usage cycle of the object most often follows this pattern:<br>
+            1. One or more bitmaps are added to the object (see AddImage)<br>
+            2. At certain point the application puts an icon from the loaded
+            bitmaps into the tray (See Image property).<br>
+            3. The application handles user actions over the icon in the tray
+            (see the events).<br>
+            4. The application removes the image from the tray (object.Image =
+            0).</p>
+            <p>Do not forget to remove the image from the tray before the
+            application exits or earlier if appropriate. Otherwise the image
+            will remain there until the user passes with the mouse over it or
+            until the shell is restarted (on some CE devices).</p>
+            <p>If you need more than one tray icons you need the same number of
+            Tray objects in your application - each controlling one of the tray
+            icons.</p>
+            <p><b>Hint.</b> By using bitmaps containing many icons you can
+            implement animation or dynamic state indication in the tray.
+            Changing the Image property at run time will immediately change the
+            icon the user sees.&nbsp;</p>
+            <p>Note that on devices/systems with touch screens only Click and
+            DblClick events can actually occur. Although some of these systems
+            may support hold action internally translated to right mouse click
+            this is not common for the system tray support and you cannot count
+            on it when you write code that must run on different touch screen
+            based systems.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Image</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Image = value<br>
+                  variable = object.Image</td>
+                <td bgcolor="#FFFFFF" valign="top">Type: Numeric<br>
+                  Specifies an index of an image/icon in the bitmap (See
+                  AddImage). When set it puts the specified image index into the
+                  system tray or returns the index of the currently shown image.<br>
+                  If an image is already shown in the system tray putting new
+                  index will change it giving you the opportunity to implement
+                  animations or application state indication in the system
+                  tray.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Tag</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = value<br>
+                  variable = object.Tag</td>
+                <td bgcolor="#FFFFFF" valign="top">An application specified
+                  value for its custom usage.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable = object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  AddImage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>image_index =
+                  object.AddImage(bitmapfile_path)</td>
+                <td bgcolor="#FFFFFF" valign="top">Loads a set of icons/images
+                  to the object. The images are in a bitmap. Most often 16x16
+                  images are used. If you want to have 4 different images you
+                  put 4 such images in a single bitmap with size 64x16 from left
+                  to right. Then the first image has index 1 and so forth.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  RemoveImage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.RemoveImage(image_index)</td>
+                <td bgcolor="#FFFFFF" valign="top">Removes an image previously
+                  loaded with AddImage. Use the returned image_index from it to
+                  address it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Tip</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tip =
+                  tool_tip_text<br>
+                  variable = object.Tip</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the tool tip for
+                  the tray icon</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  Click</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub
+                  object_Click(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has clicked the tray
+                  icon with the left mouse button or has pressed space key over
+                  it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  RClick</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_RClick(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has clicked the tray
+                  icon with the right mouse button</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  DblClick</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_DblClick(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has double clicked
+                  the tray icon with the left mouse button or has pressed the
+                  Enter key over it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  RDblClick</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_RDblClick(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">The user has double clicked
+                  the tray icon with the right mouse button.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  KeyDown</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_KeyDown(sender)</td>
+                <td bgcolor="#FFFFFF" valign="top">reserved for future use. </td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+
+<h2><A NAME="registry">4. Registry Object</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>Provides access to the system registry. The object is designed to
+            represent a &quot;current key&quot;. I.e. you can think of the
+            Registry object as attached to the registry key specified by the Key
+            and Path properties. When you work with values the Name property
+            &quot;attaches&quot; the object to the desired value.</p>
+            <p>The object allows enumeration of registry keys, but this features
+            are is not
+            implemented as collections that can be enumerated with For Each
+            statements. The reasons are two - compatibility with the previous
+            version of this object and the fact that the sub-keys enumerated can
+            be too many. Depending on the usage this may lead to allocation of
+            huge amount of system resources for a simple operation. See
+            GetPathName and GetValueName for more information on how to
+            enumerate keys and values.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Key</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Key = value<br>
+                  variable = object.Key</td>
+                <td bgcolor="#FFFFFF" valign="top">
+                  <pre>Sets the registry branch. Common constants:
+Const HKEY_CLASSES_ROOT = &amp;H0
+Const HKEY_CURRENT_USER = &amp;H1
+Const HKEY_LOCAL_MACHINE = &amp;H2
+Const HKEY_USERS = &amp;H3
+Const HKEY_PERFORMANCE_DATA = &amp;H4
+Const HKEY_CURRENT_CONFIG = &amp;H5
+Const HKEY_DYN_DATA = &amp;H6</pre>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Path</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Path = value<br>
+                  variable = object.Path</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/gets the key path name</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Value</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Value = value<br>
+                  variable = object.Value</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/gets the value for the
+                  value with the specified Name (see Name).<br>
+                  <b>Default property.</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Name</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Name = value<br>
+                  variable = object.Name</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the name of the
+                  current value in the current key.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable =
+                  object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  ValueType</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ValueType =
+                  value<br>
+                  variable = object.ValueType</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the type of the
+                  registry value type. When a value is assigned to the Value
+                  property it is converted internally to this type. Common
+                  constants:
+                  <pre>Const REG_SZ = 1
+Const REG_EXPAND_SZ = 2
+Const REG_BINARY = 3
+Const REG_DWORD = 4
+Const REG_DWORD_LITTLE_ENDIAN = 4
+Const REG_DWORD_BIG_ENDIAN = 5
+Const REG_LINK = 6
+Const REG_MULTI_SZ = 7</pre>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetPathName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>enum_path =
+                  object.GetPathName(nKey)</td>
+                <td bgcolor="#FFFFFF" valign="top">Call with nKey = 0 and then
+                  increment nKey to enumerate the sub-keys in the current key.
+                  When there are no more keys an error will occur. If you do not
+                  want On Error statements an empty key name will be returned if
+                  you set the ReturnEmptyForEnumEnd to true.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetValueName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>enum_val =
+                  object.GetPathName(nVal)</td>
+                <td bgcolor="#FFFFFF" valign="top">Call with nVal = 0 and then
+                  increment nVal to enumerate the values in the current key.
+                  When there are no more values an error will occur. If you do
+                  not want On Error statements an empty key name will be
+                  returned if you set the ReturnEmptyForEnumEnd to true.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  CreatePath</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object..CreatePath()</td>
+                <td bgcolor="#FFFFFF" valign="top">Creates a registry key
+                  specified by the Path property with the in the registry branch
+                  specified by the Key property.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  DeletePath</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.DeletePath</td>
+                <td bgcolor="#FFFFFF" valign="top">Deletes the registry key
+                  specified by the Path property with the in the registry branch
+                  specified by the Key property.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  DeleteValue</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.DeleteValue</td>
+                <td bgcolor="#FFFFFF" valign="top">Deletes the value specified
+                  by the Name property from the current key (the key is
+                  determined by the Key and the Path properties).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#C0C0C0" valign="top" colspan="3" nowrap><b>Advanced
+                  features</b></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  UseRawBinary</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.UseRawBinary =
+                  bool_val<br>
+                  variable = object.UseRawBinary&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Default is false.<br>
+                  If set to true the Value property will return binary data
+                  instead of hex decimal textual representation of binary data
+                  for binary (REG_BINARY) values. Useful when you want to pass
+                  the data to a database or another object that requires binary
+                  data (VT_ARRAY | VT_UI1).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  HexWithSpaces</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HexWithSpaces =
+                  bool_val<br>
+                  variable = object.HexWithSpaces&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Default is false.<br>
+                  When the Value property returns the value of a binary value (REG_BINARY),
+                  by default it returns is as hex-decimal string. Id this
+                  property is set to true spaces between the bytes will be
+                  inserted.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  ReturnEmptyForEnumEnd</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ReturnEmptyForEnumEnd
+                  = bool_val<br>
+                  variable = object.ReturnEmptyForEnumEnd&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Default is false.<br>
+                  GetPathName and GetValueName by default generate an error
+                  which can be intercepted with OnError statement when there are
+                  no more keys/values to enumerate. Setting this property to
+                  true changes this behavior and they return empty strings
+                  instead of generating an error.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+<h2><A NAME="ras">5. Remote Access Connection Object (RAS)</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>This object is the root of a foundation of objects that allow the
+            NSBasic application to obtain information and control the Remote
+            Access Connections (RAS) of the system/device. You need to create
+            only this object (<b>NSBasic.win32.RAS</b>), the other objects from
+            the RAS foundation are obtained/created by the its members.</p>
+            <p>While internally the RAS object and the RASEntry objects are able
+            to query the state of the entry (connected or not for instance), be
+            sure to pay attention to the RASEntry members reference in order to
+            ensure that you know when and how the state of the represented RAS
+            entry is current. For example if you obtain a RASEntry object it
+            represents the entry state at the moment in which you have obtained
+            the object. If you keep the object for some time the state of the
+            corresponding RAS entry may change because another application uses
+            it. Use RASEntry.ResetState whenever you need to be absolutely sure
+            that the RASEntry object &quot;knows&quot; what is currently
+            happening with the RAS entry it represents. If you omit this step
+            you may for example attempt to dial already connected entry.</p>
+            <h3>Notes&nbsp;</h3>
+            <p>Currently the RAS objects foundation represents the most common
+            RAS phone book features in all the Windows versions. In future the
+            foundation may be extended to support additional features - such as
+            specifying the RAS device settings and so on. The objects are
+            written with this in mind and compatibility of any NSBasic code that
+            uses them with future versions is guaranteed.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  PhoneBook</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.PhoneBook = value<br>
+                  variable = object.PhoneBook</td>
+                <td bgcolor="#FFFFFF" valign="top">By default it is empty which
+                  means &quot;the default phone book&quot;. Some OS versions
+                  support different phonebooks and you can specify the file name
+                  of a non-default phonebook in this property. Before using it
+                  consult the OS version/variant documentation to see if this it
+                  supports custom phonebooks.&nbsp;<br>
+                  If you do not have special reason to deal with custom
+                  phonebooks leave the property empty - i.e. do not change it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable = object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Entry</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>objEntry =
+                  object.Entry(EntryName)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns <a href="#rasentry"> <b> RASEntry</b></a> object
+                  representing the RAS entry specified by the EntryName from the
+                  current phonebook (see PhoneBook).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+                  Entries</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object =
+                  object.Entries<br>
+                  For Each Entry In object.Entries</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a <b> collection</b> of <a href="#rasentry">
+                  <b>
+                  RASEntry objects</b></a> with all the entries in the current phonebook
+                  (see PhoneBook).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+                  Connections</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object =
+                  object.Connections<br>
+                  For Each Entry In object.Connections</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a <b> collection</b> of <a href="#rasentry">
+                  <b>
+                  RASEntry objects</b></a> currently active connections (connected or in
+                  connecting but in intermediate or erroneous state). You can
+                  think of it as of a collection of the connected RAS phonebook
+                  entries.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+<h2><A NAME="rasentry">5.1 RAS Entry Object</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>Applies to: <a href="#ras">RAS object</a></p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Name</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Name = value<br>
+                  variable = object.Name</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the RAS phonebook
+                  entry's Name</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  CallbackNumber</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.CallbackNumber = value<br>
+                  variable = object.CallbackNumber</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the callback phone
+                  number (or IP/DNS name for VPN connections) for the entry as
+                  string.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  UserName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.UserName = value<br>
+                  variable = object.UserName</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the user name for
+                  the RAS entry</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Domain</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Domain = value<br>
+                  variable = object.Domain</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the domain name for
+                  the RAS entry. Most often it is empty to indicate the default
+                  domain of the RAS server to which the entry connects.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_w.GIF" width="16" height="14">
+                  Password</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Domain = value</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets the password for the
+                  entry. You should call Update if you want to save it within
+                  the phonebook. Be aware that different OS versions may have
+                  different default policies about this - save the password for
+                  the current user, for all users, do not permit saving etc.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  PhoneNumber</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.PhoneNumber =
+                  value<br>
+                  variable = object.PhoneNumber</td>
+                <td bgcolor="#FFFFFF" valign="top"><b>Override</b> phone number
+                  (or IP/DNS name for VPN connections) for the entry. The
+                  entries most often have one or more phone numbers saved in the
+                  RAS phonebook. This property allows you to override the
+                  number(s) from it with a specific phone number before dialing
+                  up. Otherwise this property has no persistent effect over the
+                  entries (i.e. it is not saved)</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Connect</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Connect()</td>
+                <td bgcolor="#FFFFFF" valign="top">Attempts to dial up and
+                  connect the entry.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Disconnect</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Disconnect()</td>
+                <td bgcolor="#FFFFFF" valign="top">Attempts to hang up. Note
+                  that you must have a connected RASEntry object in order this
+                  to succeed. For example such object can be obtained from the <a href="#ras">RAS.Connections</a>
+                  collection. Otherwise you should have called Connect over the
+                  same entry before. See also ResetState.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Load</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Load()</td>
+                <td bgcolor="#FFFFFF" valign="top">Reloads the entry from the
+                  RAS phonebook.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Update</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Update()</td>
+                <td bgcolor="#FFFFFF" valign="top">Updates the entry data in the
+                  RAS phonebook.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Delete</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Delete()</td>
+                <td bgcolor="#FFFFFF" valign="top">Deletes the entry from the
+                  RAS phonebook.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  HasPassword</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HasPassword =
+                  value<br>
+                  variable = object.HasPassword&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean indicating if the
+                  entry has saved password. If you set it to false the saved
+                  password will be deleted when you call Update.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  IsActive</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable =
+                  object.IsActive&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Indicates if the entry is in
+                  active - connected or connecting state. Note that this is not
+                  completely reliable for long periods of time because it
+                  indicates the <b>last known</b> state. If you want to make
+                  sure you are dealing with the current state of the entry call
+                  ResetState or query the entry state through the Status
+                  property.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Status</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>o = object.Status</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns <a href="#rasconstate">RASConState
+                  object</a> which enables you to query details about the
+                  entry's current state. The RASConState object and the entry
+                  object are updated with the current state (i.e. the object
+                  automatically attempts to determine what is happening with
+                  this entry when you read this property - is it connected or
+                  not, what is the status of the connection etc.).&nbsp;&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  ResetState</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ResetState()</td>
+                <td bgcolor="#FFFFFF" valign="top">Attempts to determine the
+                  current state of the entry - updates the connected/connecting
+                  state etc. After calling this method IsActive is ensured to
+                  indicate the current state of the entry.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+<h2><A NAME="rasconstate">5.2 RAS Connection State Object</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>Applies to: <a href="#rasentry">RASEntry<br>
+            </a>Obtained from RASEntry.Status property. When queried from the
+            property the RASEntry object synchronizes the state information for
+            the RAS entry it represents and the returned RASConState object is
+            guaranteed to reflect the current state of the entry. This means it
+            is best to obtain fresh RASConState object from the RASEntry.Status
+            property each time you want to query its state. Using the Refresh
+            method will refresh the state information but only until the current
+            connection is active (if the entry is connected). If the entry has
+            been disconnected and reconnected again the Refresh method will no
+            longer do any useful work - you will need to obtain new RASConState
+            object from the RASEntry of interest. Thus the Refresh method is an
+            useful&nbsp; helper only for phases in which you need to follow a
+            dialing process you have just invoked.</p>
+            <p>You can use the DeviceType/DeviceName as alternative (to
+            RASEntry.IsActive) indicators that a connection is actually in
+            progress. They have non-empty values only if the entry is
+            connected/connecting.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_w.GIF" width="16" height="14">
+                  State</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.State</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the state of the
+                  connection (if connected). Common constants returned:<br>
+                  RASCS_OpenPort<b> = </b>0<b><br>
+                  </b>RASCS_PortOpened = 1<b><br>
+                  </b>RASCS_ConnectDevice = 2<b><br>
+                  </b>RASCS_DeviceConnected = 3<b><br>
+                  </b>RASCS_AllDevicesConnected = 4<b><br>
+                  </b>RASCS_Authenticate<b> = </b>5<b><br>
+                  </b>RASCS_AuthNotify = 6<b><br>
+                  </b>RASCS_AuthRetry = 7<b><br>
+                  </b>RASCS_AuthCallback = 8<b><br>
+                  </b>RASCS_AuthChangePassword = 9<b><br>
+                  </b>RASCS_AuthProject = 10<b><br>
+                  </b>RASCS_AuthLinkSpeed<b> = </b>11<b><br>
+                  </b>RASCS_AuthAck = 12<b><br>
+                  </b>RASCS_ReAuthenticate<b> = </b>13<b><br>
+                  </b>RASCS_Authenticated = 14<b><br>
+                  </b>RASCS_PrepareForCallback =15<b><br>
+                  </b>RASCS_WaitForModemReset = 16<b><br>
+                  </b>RASCS_WaitForCallback = 17<b><br>
+                  </b>RASCS_Projected = 18<b><br>
+                  </b>Note that some OS versions support more values. Consult
+                  MSDN for extended information about the possible values for
+                  the OS version you work with.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_w.GIF" width="16" height="14">
+                  ErrorNumber</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.ErrorNumber</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the error number &gt;
+                  0 (if error has occurred). If you are interested in displaying
+                  particular error messages you can obtain the RAS error list
+                  from raserror.h file from MS Visual C include directory. There
+                  are over 150 different error messages listed in it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_w.GIF" width="16" height="14">
+                  DeviceType</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.DeviceType</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a string representing
+                  the device type used for the connection (if
+                  connected/connecting - empty otherwise).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_w.GIF" width="16" height="14">
+                  DeviceName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>
+                  variable = object.DeviceName</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a string representing
+                  the device name used for the connection (if
+                  connected/connecting - empty otherwise).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  Refresh</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Refresh()</td>
+                <td bgcolor="#FFFFFF" valign="top">Refreshes the status
+                  information (see the notes above).</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+
+<h2><A NAME="api">6. API Object</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <h3>Overview</h3>
+            <p>The API object provides easy-to-use access to certain Win32 API
+            functions which may be needed by applications that need to perform
+            some advanced tasks. While useful in scenarios where the standard
+            NSBasic features are not enough the API object requires careful
+            usage and some basic level of understanding of the Win32 API. Wrong
+            usage will not harm the system, but may cause some inconveniences to
+            the interactive user or unexpected behavior of the application or
+            the affected windows of other applications. It is recommended to
+            consult MSDN for details about the particular methods and
+            properties. To make this easier the most of the API object's members
+            are named after the closest Win32 API function.</p>
+            <h3>Names and abbreviations</h3>
+            <p>In the members reference below:<br>
+            <b>wnd</b> - is a long integer value which represents a handle of a
+            window. Once obtained from a property or method it can be used as
+            parameter to another member which takes as an argument window
+            handle. Generally wnd = 0 is an invalid window handle value (no
+            window found for instance).<br>
+            <b>object</b> - is a previously created API object.</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  FindWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.FindWindow(title)</td>
+                <td bgcolor="#FFFFFF" valign="top">Finds a top level window with
+                  the specified <b>title</b> and returns its handle. If such
+                  window is not found 0 is returned.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  ReleaseCapture</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ReleaseCapture()</td>
+                <td bgcolor="#FFFFFF" valign="top">Releases the mouse capture
+                  (See also Capture).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  SendMessage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>r =object.SendMessage(wnd,msg,wParam,lParam)</td>
+                <td bgcolor="#FFFFFF" valign="top">Sends message to a window and
+                  returns the result. This method cannot be used for windows of
+                  other applications.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  WindowFromPoint</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.WindowFromPoint(X,Y)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the handle of the
+                  window at point X,Y (in screen coordinates).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  ChildWindowFromPoint</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.ChildWindowFromPoint(wnd,X,Y)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the handle of the
+                  child window of <b>wnd</b> at point X,Y (in screen
+                  coordinates). Wnd is the parent window whose children are
+                  searched.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  PostMessage</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>r =object.PostMessage(wnd,msg,wParam,lParam)</td>
+                <td bgcolor="#FFFFFF" valign="top">Posts message to the
+                  specified window. In contrast to SendMessage this method can
+                  be used over windows of other applications.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  ForegroundWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd =
+                  object.ForegroundWindow<br>
+                  object.ForegroundWindow = wnd</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the foreground
+                  window.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Focus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Focus = wnd<br>
+                  wnd = object.Focus</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the window which
+                  owns the keyboard focus.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Capture</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Capture = wnd<br>
+                  wnd = object.Capture</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the window which
+                  has the mouse capture. To release capture call ReleaseCapture
+                  (see above).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  EnableKeyboard</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.EnableKeyboard
+                  = boolValue<br>
+                  var = object.EnableKeyboard</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the enabled state
+                  of the hardware keyboard. Works only on Windows CE based
+                  devices with hardware keyboard.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  WindowText</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.WindowText(wnd)
+                  = stringValue<br>
+                  var = object.WindowText(wnd)</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the text of the
+                  specified window. Usually the window text is displayed in its
+                  caption. Specific windows (such as edit boxes, labels and so
+                  on) display their window text otherwise - as content, as label
+                  and so on.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  SystemColor</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SystemColor(lColor)
+                  = colorValue<br>
+                  var = object.SystemColor(lColor)</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets a system wide color
+                  constant specified by lColor. Note that this changes the color
+                  for all the applications! The different OS versions support
+                  some common Windows color values and some specific to the
+                  particular OS. Lookup GetSysColor in MSDN for more
+                  information. Some of the most common color constants are:<br>
+ COLOR_SCROLLBAR         0<br>
+ COLOR_BACKGROUND        1<br>
+ COLOR_ACTIVECAPTION     2<br>
+ COLOR_INACTIVECAPTION   3<br>
+ COLOR_MENU              4<br>
+ COLOR_WINDOW            5<br>
+ COLOR_WINDOWFRAME       6<br>
+ COLOR_MENUTEXT          7<br>
+ COLOR_WINDOWTEXT        8<br>
+ COLOR_CAPTIONTEXT       9<br>
+ COLOR_ACTIVEBORDER      10<br>
+ COLOR_INACTIVEBORDER    11<br>
+ COLOR_APPWORKSPACE      12<br>
+ COLOR_HIGHLIGHT         13<br>
+ COLOR_HIGHLIGHTTEXT     14<br>
+ COLOR_BTNFACE           15<br>
+ COLOR_BTNSHADOW         16<br>
+ COLOR_GRAYTEXT          17<br>
+ COLOR_BTNTEXT           18<br>
+ COLOR_INACTIVECAPTIONTEXT 19<br>
+ COLOR_BTNHIGHLIGHT      20&nbsp;<br>
+                  The colorValue can be constructed this way:<br>
+                  <b>B * &amp;H10000 + G * &amp;H100 + R</b><br>
+                  Where R, G and B are the Blue, Green and Red component
+                  (0-255).</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  TopMost</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.TopMost = wnd</td>
+                <td bgcolor="#FFFFFF" valign="top">Makes the specified window
+                  &quot;top most&quot;.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd = object.GetWindow(wnd,type)</td>
+                <td bgcolor="#FFFFFF" valign="top">Retrieves a window that is in
+                  the specified relation (type) to the given window (wnd). <b>type</b>
+                  can be:<br>
+ GW_HWNDFIRST        0<br>
+ GW_HWNDLAST         1<br>
+ GW_HWNDNEXT         2<br>
+ GW_HWNDPREV         3<br>
+ GW_OWNER            4<br>
+ GW_CHILD            5</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  ClassName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var =
+                  object.ClassName(wnd)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the Window class name
+                  of the specified window.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  ShowWindow</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowWindow(wnd,cmd)</td>
+                <td bgcolor="#FFFFFF" valign="top">Changes the window presence.
+                  For example hides or shows it. The cmd can be:<br>
+ SW_HIDE             0<br>
+ SW_SHOWNORMAL       1<br>
+ SW_NORMAL           1<br>
+ SW_SHOWMINIMIZED    2<br>
+ SW_SHOWMAXIMIZED    3<br>
+ SW_MAXIMIZE         3<br>
+ SW_SHOWNOACTIVATE   4<br>
+ SW_SHOW             5<br>
+ SW_MINIMIZE         6<br>
+ SW_SHOWMINNOACTIVE  7<br>
+ SW_SHOWNA           8<br>
+ SW_RESTORE          9<br>
+ SW_SHOWDEFAULT      10<br>
+ SW_FORCEMINIMIZE    11</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetAsyncKeyState</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>state = object.GetAsyncKeyState(lKey)</td>
+                <td bgcolor="#FFFFFF" valign="top">Retrieves the state of a
+                  keyboard key. lKey specifies the keyboard key to query. While
+                  the function can query wide variety of state information we
+                  list here only some of the features. For more information see GetAsyncKeyState
+                  in MSDN.<br>
+                  lKey codes for some keyboard keys:<br>
+ VK_LSHIFT &amp;HA0<br>
+ VK_RSHIFT &amp;HA1<br>
+ VK_LCONTROL &amp;HA2<br>
+ VK_RCONTROL &amp;HA3<br>
+ VK_LMENU &amp;HA4<br>
+ VK_RMENU &amp;HA5<br>
+                  VK_F1 &amp;H70<br>
+                  continuous to<br>
+ VK_F24 &amp;H87<br>
+ VK_SHIFT &amp;H10 (shift any)<br>
+ VK_CONTROL &amp;H11 (control - any)<br>
+ VK_MENU &amp;H12 (alt - any)<br>
+ VK_PAUSE &amp;H13<br>
+ VK_CAPITAL &amp;H14 (caps lock)
+                  <p>The returned result can be used this way to determine if
+                  the key is down or up.<br>
+                  If state &gt;= &amp;H80000000 Then<br>
+                  &nbsp; ' Key is down<br>
+                  Else<br>
+                  &nbsp; ' Key is up<br>
+                  End If&nbsp;</p>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  SendKeys</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SendKeys(strKeys
+                  [,boolSilent])</td>
+                <td bgcolor="#FFFFFF" valign="top">Sends a keyboard stroke to
+                  the window that has the focus. On Widnows CE If boolSilent is
+                  True no clicking sounds are made.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetMemoryStatus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetMemoryStatus(type)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains information about the
+                  system/program memory.<br>
+                  type can be:<br>
+                  0 - Total physical memory<br>
+                  1 - Available physical memory<br>
+                  2 - Total page file<br>
+                  3 - Available page file<br>
+                  4 - Total virtual memory (for the process)<br>
+                  5 - Available virtual memory (for the process)<br>
+                  6 - System memory load in percents (0 - 100)&nbsp;<br>
+                  In order to support both CE and desktop systems the function
+                  uses different numeric types for the returned value. On
+                  desktops it will most often return double precision floating
+                  point value because the long integer values are not enough for
+                  the modern machines.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetStorageStatus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetStorageStatus(info
+                  [, path])</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains storage information.<br>
+                  info can be:<br>
+                  0 - Total size of the storage in bytes<br>
+                  1 - Free bytes on the storage<br>
+                  2 - Free bytes on the storage available to the user.<br>
+                  If the <b>path</b> argument is omitted the function returns:<br>
+                  On desktop: information about the volume containing the
+                  current directory<br>
+                  On CE devices: Information about the internal object store.<br>
+                  If <b>path</b> is present it should be a string denoting a
+                  path on the storage device/volume for which you want to obtain
+                  information (it doesn't matter which directory is specified -
+                  it is enough to be sure that it is on the device/volume of
+                  interest).<br>
+                  Usually info = 2 will return the same information as 1, but on
+                  systems where that have disk quoting enabled it will indicate
+                  the space available to the current user.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetPowerStatus</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetPowerStatus(param)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains information about the
+                  system power status.<br>
+                  <b>param</b> can be:&nbsp;<br>
+                  0 - Is on AC power (0 -no, 1 - yes, 255 - unknown)<br>
+                  1 - Battery (1 - high, 2 - low, 4 - critical, 8 - charging,
+                  128 - no battery, 255 - unknown)<br>
+                  2 - Battery life (0 - 100% or 255 if unknown)<br>
+                  3 - Battery life time (in seconds or -1 meaning unknown)<br>
+                  4 - Battery full life time in seconds or -1 if unknown.<br>
+                  Windows CE only:<br>
+                  5 - Backup battery flag - like 1<br>
+                  6 - Backup Battery life (0 - 100% or 255 if unknown)<br>
+                  7 - Backup Battery life time (in seconds or -1 meaning
+                  unknown)<br>
+                  8 - Backup Battery full life time in seconds or -1 if unknown.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  SystemParameters</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SystemParameters(which)
+                  = newVal<br>
+                  var = object.SystemParameters(which)&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Get set some system
+                  parameters.<br>
+                  which can be:<br>
+                  0 - Work area returns/sets a <b><a href="#ptrect">rectangle</a></b>
+                  describing the work area<br>
+                  Windows CE only:<br>
+                  1 - Gets/Sets the idle timeout for which the device will stay
+                  on after it has been waked up. Returns the timeout for the
+                  current situation - no matter which is it.<br>
+                  2 - Gets/Sets the idle timeout for which the device will stay
+                  on after it has been waked up when on external power.<br>
+                  3 - Gets/Sets the idle timeout for which the device will stay
+                  on after it has been waked up when on battery power.&nbsp;<br>
+                  4 - Gets (only) - platform type as string<br>
+                  5 - Gets (only) - OEM information as string<br>
+                  To set the work area you must first get it than change the
+                  returned object and assign it back. Example:<br>
+                  rect = api.SystemParameters(0)<br>
+                  rect.Left = rect.Left + 20<br>
+                  Set api.SystemParameters(0) = rect<br>
+                  This code shrinks the work area by 20 pixels on the left. The
+                  best way to describe the work area is to say that it is the
+                  screen area which is available to maximized windows. On the
+                  different OS versions and devices this may have also some
+                  additional effects.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  CreateShortcut</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.CreateShortcut(spath,tpath)</td>
+                <td bgcolor="#FFFFFF" valign="top">Creates shortcut named <b>spath</b>
+                  pointing to the file/directory <b>tpath</b>. Note that you
+                  should name the shortcut with .LNK file extension to make sure
+                  it is correctly displayed and used by the shell. spath and
+                  tpath must be full path names.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  AddToRecent</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.AddToRecent(path)</td>
+                <td bgcolor="#FFFFFF" valign="top">Adds the specified path/file
+                  to the recent files/documents.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetSpecialFolder</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = GetSpecialFolder(type)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains the full path to the
+                  specified special folder. Note that the different OS versions
+                  support quite a lot of specific special folders. The type
+                  values listed below are only for the most common ones. Check
+                  MSDN for the specific ones if you wish to use them. The
+                  function will work with future versions of the OS - by
+                  supplying the correct constant you will be able to obtain the
+                  folder of interest even if it does not existed at the time
+                  this library was built.<br>
+                  type can be:<br>
+                  0 - Desktop<br>
+                  2 - Programs (in the start menu)<br>
+                  5 - Personal/My Documents<br>
+                  6 - Favorites<br>
+                  7 - Startup<br>
+                  8 - Recent<br>
+                  9 - Send to<br>
+                  11 - Start menu<br>
+                  10 - desktop directory<br>
+                  14 - Fonts<br>
+                  15 - Templates<br>
+                  26 - Application data<br>
+                  Note that together with CreateShortcut you can find
+                  appropriate location and create shortcut there.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  GetShortcutTarget</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.GetShortcutTarget(spath)</td>
+                <td bgcolor="#FFFFFF" valign="top">Obtains the target to which
+                  the specified shortcut points. <b>spath</b> is the full path
+                  name of the shortcut file. Note that the shell hides the
+                  shortcut's file extension which is .LNK</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+                  FindWindowByClass</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>wnd = object.FindWindowByClass(strClass)</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the first found top
+                  level window of the given Window class.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  ClipText</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ClipText =
+                  value<br>
+                  var = object.ClipText&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the text to/from
+                  the clipboard. When set the clipboard is cleared from any
+                  previous content and the assigned text is placed in it.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Version</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Version</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the object version.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  CursorPos</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Set obj =
+                  object.CursorPos</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a <b><a href="#ptrect">point</a></b>
+                  object holding the screen coordinates of the mouse cursor.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  SystemVersion</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var =
+                  object.SystemVersion&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the OS version as
+                  long integer.<br>
+                  Major version is var / &amp;H10000<br>
+                  Minor version is var And &amp;HFFFF</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  WindowLong</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.WindowLong(wnd,lLong)
+                  = value<br>
+                  var = object.WindowLong(wnd,lLong)&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets a value associated
+                  with the given window. The value is long integer (vbLong). <b>Use
+                  with extreme care!!!</b> Some of the values associated with
+                  the windows hold internal pointers to code that handles the
+                  window and changing them may crash the application to which
+                  the window belongs. Check carefully MSDN before using this
+                  method - see GetWindowLong/SetWindowLong and the related
+                  comments.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  Ticks</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.Ticks</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns the ticks count since
+                  the system start up. 1 - tick is 1 millisecond.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  SystemTime</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.SystemTime =
+                  value<br>
+                  var = object.SystemTime</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the system time</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  LocalTime</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.LocalTime =
+                  value<br>
+                  var = object.LocalTime</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the local time</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  WindowParent</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.WindowParent(wnd)
+                  = wndParent<br>
+                  wnd = object.WindowParent(wndToQuery)</td>
+                <td bgcolor="#FFFFFF" valign="top">Gets/Sets the parent window
+                  of an window. Use with extreme care !!! Changing the parent of
+                  an window may lead to unpredictable results including
+                  application crash. You should have good knowledge about the
+                  behavior of the affected windows.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+                  OSType</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>var = object.OSType</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns a string identifying
+                  the OS type:<br>
+                  9x - The OS is Windows 95/98/ME<br>
+                  NT - The OS is NT4/Win2k/XP or later<br>
+                  CE - The OS is Windows CE.<br>
+                  Can be used when you are creating code that must work on
+                  different platforms. Determining the OS Type your code will be
+                  able to avoid or use features specific to a particular
+                  platform.&nbsp; </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  Hibernate</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_Hibernate()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when the system
+                  resources are running low and the application should attempt
+                  to free as much as possible. (Windows CE only) </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  ColorChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_ColorChange()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when one or more of the
+                  system colors are changed. </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  FontChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_FontChange()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when a new font has
+                  been added/changed/deleted from the system&nbsp; </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  PaletteChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_PaletteChange()</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired only on systems using
+                  graphics mode with palettes. Fires when the system palette
+                  changes. </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+                  SettingsChange</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>Sub object_SettingsChange(which)</td>
+                <td bgcolor="#FFFFFF" valign="top">Fired when a system setting
+                  is changed. <b>which</b> contains the setting index. </td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+<h2><A NAME="ptrect">6.1 Point and Rectangle Object</h2>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>This object is returned or accepted by some methods/properties in
+            this library. It represents a rectangle or a point and provides
+            convenient programming interface to the data.</p>
+            <p>The object is non-creatable. If you need to set it to a
+            property/pass as argument you need to obtain it first from the
+            corresponding property or method which queries the information you
+            want to change.&nbsp;</p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Value</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Value(index) = value<br>
+                  object(index) = value<br>
+                  variable = object.Value(index)<br>
+                  variable = object(index)</td>
+                <td bgcolor="#FFFFFF" valign="top">Type: Numeric<br>
+                  Default property.<br>
+                  index can be 0 to 3.&nbsp;<br>
+                  index 0 is equivalent to X and Left<br>
+                  index 1 is equivalent to Y and Top<br>
+                  index 2 is equivalent to Right<br>
+                  index 3 is equivalent to Bottom</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  X</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.X = value<br>
+                  variable = object.X</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the X coordinate of
+                  the represented point.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Y</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Y = value<br>
+                  variable = object.Y</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the Y coordinate of
+                  the represented point.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Left</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Left = value<br>
+                  variable = object.Left</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the left side of
+                  the represented rectangle.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Right</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Right = value<br>
+                  variable = object.Right</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the right side of
+                  the represented rectangle.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Top</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Top = value<br>
+                  variable = object.Top</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the Top side of the
+                  represented rectangle.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+                  Bottom</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Right = value<br>
+                  variable = object.Bottom</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets/Gets the Bottom side of
+                  the represented rectangle.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

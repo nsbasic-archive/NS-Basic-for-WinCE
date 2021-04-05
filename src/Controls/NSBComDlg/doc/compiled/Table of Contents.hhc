@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="NSBasic Win32">
+    </OBJECT>
+    <UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Common dialogs">
+		<param name="Local" value="start.htm">
+    </OBJECT>
+    <UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ComDlg object">
+		<param name="Local" value="comdlg.htm">
+    </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Flags">
+		<param name="Local" value="comdlgflags.htm">
+    </OBJECT>
+    <UL>
+    </UL>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Pocket PC specifics">
+		<param name="Local" value="cenotes.htm">
+    </OBJECT>
+    </UL>
+    </UL>
+</UL>
+</BODY></HTML>

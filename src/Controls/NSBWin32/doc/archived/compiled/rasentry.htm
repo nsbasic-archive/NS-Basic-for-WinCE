@@ -1,0 +1,203 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="Keywords" content="RASEntry,Name,CallbackNumber,UserName,Domain,Password,Validate,PhoneNumber,Connect,Disconnect,Load,Update,Delete,HasPassword,IsActive,Status,ResetState">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="SiteMap" content="NSBasic Win32/RAS object/RASEntry object/.">
+<title>RASEntry object</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- Begin include file includes/header.htm-->
+<tr>
+    <td width="100%">
+      <table border="0" width="100%" cellspacing="0" bgcolor="#96B9C2">
+        <tr>
+          <td width="170" valign="middle" align="center"><b><font color="#000000">NSBasic Win32 objects</font></b></td>
+          <td valign="middle" align="center" nowrap>
+            <h3><font color="#FFFFFF">RASEntry object</font></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\rasentry.htm-->
+  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <p>Applies to: <a href="ras.htm">RAS object</a></p>
+            <h3>Members reference</h3>
+            <table border="0" width="100%" bgcolor="#C0C0C0" cellspacing="1">
+              <tr>
+                <th nowrap valign="top">Name</th>
+                <th nowrap valign="top">Syntax</th>
+                <th nowrap valign="top">Description</th>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Name</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Name = value<br>
+                  variable = object.Name</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the RAS phonebook
+                  entry's Name</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  CallbackNumber</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.CallbackNumber = value<br>
+                  variable = object.CallbackNumber</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the callback phone
+                  number (or IP/DNS name for VPN connections) for the entry as
+                  string.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  UserName</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.UserName = value<br>
+                  variable = object.UserName</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the user name for
+                  the RAS entry</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  Domain</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Domain = value<br>
+                  variable = object.Domain</td>
+                <td bgcolor="#FFFFFF" valign="top">Specifies the domain name for
+                  the RAS entry. Most often it is empty to indicate the default
+                  domain of the RAS server to which the entry connects.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_w.GIF" width="16" height="14">
+                  Password</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Domain = value</td>
+                <td bgcolor="#FFFFFF" valign="top">Sets the password for the
+                  entry. You should call Update if you want to save it within
+                  the phonebook. Be aware that different OS versions may have
+                  different default policies about this - save the password for
+                  the current user, for all users, do not permit saving etc.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  PhoneNumber</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.PhoneNumber =
+                  value<br>
+                  variable = object.PhoneNumber</td>
+                <td bgcolor="#FFFFFF" valign="top"><b>Override</b> phone number
+                  (or IP/DNS name for VPN connections) for the entry. The
+                  entries most often have one or more phone numbers saved in the
+                  RAS phonebook. This property allows you to override the
+                  number(s) from it with a specific phone number before dialing
+                  up. Otherwise this property has no persistent effect over the
+                  entries (i.e. it is not saved)</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  Connect</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Connect()</td>
+                <td bgcolor="#FFFFFF" valign="top">Attempts to dial up and
+                  connect the entry.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  Disconnect</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Disconnect()</td>
+                <td bgcolor="#FFFFFF" valign="top">Attempts to hang up. Note
+                  that you must have a connected RASEntry object in order this
+                  to succeed. For example such object can be obtained from the <a href="ras.htm">RAS.Connections</a>
+                  collection. Otherwise you should have called Connect over the
+                  same entry before. See also ResetState.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  Load</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Load()</td>
+                <td bgcolor="#FFFFFF" valign="top">Reloads the entry from the
+                  RAS phonebook.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  Update</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Update()</td>
+                <td bgcolor="#FFFFFF" valign="top">Updates the entry data in the
+                  RAS phonebook.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  Delete</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.Delete()</td>
+                <td bgcolor="#FFFFFF" valign="top">Deletes the entry from the
+                  RAS phonebook.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_rw.gif" width="36" height="14">
+                  HasPassword</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.HasPassword =
+                  value<br>
+                  variable = object.HasPassword&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Boolean indicating if the
+                  entry has saved password. If you set it to false the saved
+                  password will be deleted when you call Update.</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  IsActive</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>variable =
+                  object.IsActive&nbsp;</td>
+                <td bgcolor="#FFFFFF" valign="top">Indicates if the entry is in
+                  active - connected or connecting state. Note that this is not
+                  completely reliable for long periods of time because it
+                  indicates the <b>last known</b> state. If you want to make
+                  sure you are dealing with the current state of the entry call
+                  ResetState or query the entry state through the Status
+                  property.&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/prop_r.GIF" width="17" height="14">
+                  Status</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>o = object.Status</td>
+                <td bgcolor="#FFFFFF" valign="top">Returns <a href="rasconstate.htm">RASConState
+                  object</a> which enables you to query details about the
+                  entry's current state. The RASConState object and the entry
+                  object are updated with the current state (i.e. the object
+                  automatically attempts to determine what is happening with
+                  this entry when you read this property - is it connected or
+                  not, what is the status of the connection etc.).&nbsp;&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="img/method.gif" width="17" height="16">
+                  ResetState</td>
+                <td bgcolor="#FFFFFF" valign="top" nowrap>object.ResetState()</td>
+                <td bgcolor="#FFFFFF" valign="top">Attempts to determine the
+                  current state of the entry - updates the connected/connecting
+                  state etc. After calling this method IsActive is ensured to
+                  indicate the current state of the entry.</td>
+              </tr>
+            </table>
+            <p>&nbsp; 
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- Begin include file includes/footer.htm-->
+  <tr>
+    <td width="100%" bgcolor="#96B9C2" valign="middle" align="center" nowrap>
+    Copyright 2005 NSBasic Corporation
+    </td>
+  </tr><!-- End include file G:\WORKS\WindowsNT\atl\NSBasic\MGWin32\doc\\rasentry.htm-->
+
+</table>
+
+</body>
+
+</html>

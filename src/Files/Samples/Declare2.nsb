@@ -1,0 +1,235 @@
+'API sample for NSBasic/CE 6.5 and higher
+'John E. Carter - nsb AT jecarter DOT com
+'http://www.jecarter.com/nsbce.html
+
+Declare "Function GetTickCount Lib ""Coredll"" Alias ""GetTickCount"" () As Long"
+'The "ticks" counter "rolls over" after about 49 days of "Power On".
+'Longer times should use a different reference.
+
+Declare "Function GetUserDefaultLangID Lib ""Coredll"" Alias ""GetUserDefaultLangID"" () As Integer"
+Declare "Function GetSystemDefaultLangID Lib ""Coredll"" Alias ""GetSystemDefaultLangID"" () As Integer"
+
+Declare "Function GetForegroundWindow Lib ""Coredll"" Alias ""GetForegroundWindow"" () As Long"
+'Get hWnd of foreground window
+
+Declare "Function GetParent Lib ""Coredll"" Alias ""GetParent"" (ByVal hwnd As Long) As Long"
+'Get parent of specified windom
+
+Declare "Sub SystemIdleTimerReset Lib ""Coredll"" Alias ""SystemIdleTimerReset"" ()"
+'Calling this sub resets the idle AutoOff timer and will keep the PPC on.
+'The call should be made at an interval less than the device timeout setting.  
+'If the timeout is one minute, call the sub every 30 seconds.
+'The backlight will still time out, but the device remains on.
+
+ShowOKButton True
+
+Sub cmdTicks_Click
+   Dim lProc, lProcID, lError, lCID
+   Dim lTicks, lSeconds, lMinutes, lHours, strTime, dLoc
+	Dim hWnd, hParent
+	
+	hWnd = GetForegroundWindow
+	hParent = GetParent(hWnd)
+	tbWnd.Text = hWnd ' & " parent: " & hParent
+	
+   cmdTicks.timer = 5000 'five seconds
+
+   err.Clear
+   
+   lProc = GetUserDefaultLangID
+   tbULang.Text = lProc
+   lProcID = GetSystemDefaultLangID
+   tbSysLang.Text = " " & lProcID
+   lError = GetLastError
+ '  tbError.Text =  " " & lError
+   lTicks = GetTickCount
+   tbTicks.Text =  " " & lTicks
+   lSeconds = lTicks / 1000
+   dLoc = InStr(lSeconds, ".")
+   If dLoc > 1 Then
+      lSeconds = Left(lSeconds, dLoc -1)
+   End If
+   tbTotSeconds.Text =  " " & lSeconds
+   If lSeconds > 3600 Then
+      lHours = lSeconds / 3600
+      dLoc = InStr(lHours, ".")
+      If dLoc > 1 Then
+         lHours = Left(lHours, dLoc -1)
+      End If
+   Else
+      lHours = 0
+   End If
+   tbHours.Text = lHours
+   lSeconds = lSeconds Mod 3600
+   lMinutes = lSeconds / 60
+   dLoc = InStr(lMinutes, ".")
+   If dLoc > 1 Then
+      lMinutes = Left(lMinutes, dLoc -1)
+   End If
+   If lMinutes < 10 Then
+      tbMinutes.Text = "0" & lMinutes
+   Else
+      tbMinutes.Text = lMinutes
+   End If
+   lSeconds = lSeconds Mod 60
+   If lSeconds < 10 Then
+      tbSeconds.Text = "0" & lSeconds
+   Else
+      tbSeconds.Text = lSeconds
+   End If
+
+   'Note that this is inside the button code, thus requiring a user action to start it.
+   SystemIdleTimerReset
+   
+   If err Then
+      MsgBox "Source: " & err.Source & vbcrlf & "Number: " & err.Number & vbcrlf & "Desc: " & "  " & err.Description, 0, "Error Information"
+   end if
+End Sub
+
+Sub mnuAbout_Click
+   MsgBox AppFileDescription & vbcrlf & AppComments & vbcrlf & AppLegalCopyright & vbcrlf & "Version " & AppMajor & "." & AppMinor & "." & AppRevision, 64, AppTitle
+'	hWnd = GetForegroundWindow
+'	hParent = GetParent(hWnd)
+'	tbWnd.Text =  "mb - foreground hWnd:" & hWnd ' & " parent: " & hParent
+   
+End Sub
+
+Sub cmdTicks_Timer
+	PlaySound "startup",0,1 'play async
+  cmdTicks_Click   
+End Sub
+
+
+'*** Begin Generated Code ***
+
+Dim AppComments: AppComments = "Contact nsb@jecarter.com www.jecarter.com"
+Dim AppCompanyName: AppCompanyName = "John Carter"
+Dim AppFileDescription: AppFileDescription = "Demo of some API calls."
+Dim AppLegalCopyright: AppLegalCopyright = "© 2006 - John E. Carter"
+Dim AppMajor: AppMajor = "1"
+Dim AppMinor: AppMinor = "0"
+Dim AppRevision: AppRevision = "11"
+AppTitle = "API Demo"
+
+Form1_Show 'Default Form
+
+Dim Form1_Temp
+Sub Form1_Show
+   Form1_ShowMenu
+   On Error Resume Next
+
+   UpdateScreen
+
+   If IsEmpty(Form1_Temp) Then
+      AddObject "Frame", "Form1_Form", 0, 0, Output.Width, Output.Height
+      Form1_Form.BackColor = 12632256
+      AddObject "PictureBox", "Form1", 0, 0, 0, 0, Form1_Form
+      Form1.BorderStyle = 0
+      Form1.Move 0, 0, Form1_Form.Width * 15, Form1_Form.Height * 15
+      Set Form1_Temp = Form1
+      Form1_Form.Caption = "Form1"
+
+      AddObject "CommandButton", "cmdTicks", 82, 192, 76, 22, Form1_Form
+      cmdTicks.Caption = "Get API Info"
+      cmdTicks.FontSize =  8.25
+      cmdTicks.BackColor = 8454143
+      '--------
+      AddObject "Label", "Label1", 2, 44, 64, 18, Form1_Form
+      Label1.BackColor = 12632256
+      Label1.Caption = "Code Page"
+      Label1.FontBold = True
+      Label1.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label2", 72, 44, 38, 18, Form1_Form
+      Label2.BackColor = 12632256
+      Label2.Caption = "System"
+      Label2.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbSysLang", 110, 44, 34, 18, Form1_Form
+      tbSysLang.BackColor = 16777215
+      tbSysLang.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label3", 158, 44, 26, 18, Form1_Form
+      Label3.BackColor = 12632256
+      Label3.Caption = "User"
+      Label3.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbULang", 184, 44, 40, 18, Form1_Form
+      tbULang.BackColor = 16777215
+      tbULang.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label5", 26, 86, 190, 18, Form1_Form
+      Label5.Alignment = 2
+      Label5.BackColor = 12632256
+      Label5.Caption = "'Power On' time since last reset"
+      Label5.FontBold = True
+      Label5.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label6", 48, 114, 28, 18, Form1_Form
+      Label6.BackColor = 12632256
+      Label6.Caption = "Ticks"
+      Label6.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbTicks", 76, 114, 66, 18, Form1_Form
+      tbTicks.BackColor = 16777215
+      tbTicks.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label7", 32, 138, 44, 18, Form1_Form
+      Label7.BackColor = 12632256
+      Label7.Caption = "Seconds"
+      Label7.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbTotSeconds", 76, 138, 46, 18, Form1_Form
+      tbTotSeconds.BackColor = 16777215
+      tbTotSeconds.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label8", 176, 116, 46, 18, Form1_Form
+      Label8.Alignment = 2
+      Label8.BackColor = 12632256
+      Label8.Caption = "H  M  S"
+      Label8.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbHours", 176, 134, 14, 18, Form1_Form
+      tbHours.BackColor = 16777215
+      tbHours.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbMinutes", 192, 134, 14, 18, Form1_Form
+      tbMinutes.BackColor = 16777215
+      tbMinutes.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbSeconds", 208, 134, 14, 18, Form1_Form
+      tbSeconds.BackColor = 16777215
+      tbSeconds.FontSize =  8.25
+      '--------
+      AddObject "TextBox", "tbWnd", 122, 14, 70, 18, Form1_Form
+      tbWnd.BackColor = 16777215
+      tbWnd.FontSize =  8.25
+      '--------
+      AddObject "Label", "Label4", 30, 14, 92, 18, Form1_Form
+      Label4.BackColor = 12632256
+      Label4.Caption = "foreground hWnd"
+      Label4.FontSize =  8.25
+      '--------
+   End If
+   Form1_Form.Visible = True
+   Form1_Load
+End Sub  'Form1_Show
+
+Sub Form1_Hide
+   If IsEmpty(Form1_Temp) Then
+      Err.Raise 44000, , "Form not loaded"
+      Exit Sub
+   End If
+
+   On Error Resume Next
+   Form1_Form.Visible = False
+   Form1_Unload
+End Sub  'Form1_Hide
+
+Sub Form1_ShowMenu
+   SetMenu "TitleBar", Array("About||mnuAbout")
+End Sub  'Form1_ShowMenu
+
+'*** End Generated Code ***
+
+

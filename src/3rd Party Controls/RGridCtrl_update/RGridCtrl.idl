@@ -1,0 +1,283 @@
+// RGridCtrl.idl : IDL source for RGridCtrl.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (RGridCtrl.tlb) and marshalling code.
+
+#include "olectl.h"
+import "oaidl.idl";
+//import "ocidl.idl";
+
+[
+	uuid(E66AF347-1732-4395-A64E-5FB8F6659701),
+	version(1.2),
+	helpstring("Resco Grid Control 1.2")
+]
+library RGRIDCTRLLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	typedef [uuid(DA0A462B-79ED-4108-89F7-E3E395D755B5), helpstring("AllowUserResizing Constants")]
+    enum AllowUserResizeSettings {
+        rgridResizeNone = 0,
+        rgridResizeColumns = 1,
+        rgridResizeRows = 2,
+        rgridResizeBoth = 3
+    } AllowUserResizeSettings;
+
+	typedef [uuid(BD80FA4E-0200-4893-84C3-6783ED83F7F0), helpstring("Alignment Constants")]
+    enum AlignmentSettings {
+        rgridAlignLeftTop = 0,
+        rgridAlignLeftCenter = 1,
+        rgridAlignLeftBottom = 2,
+        rgridAlignCenterTop = 3,
+        rgridAlignCenterCenter = 4,
+        rgridAlignCenterBottom = 5,
+        rgridAlignRightTop = 6,
+        rgridAlignRightCenter = 7,
+        rgridAlignRightBottom = 8,
+        rgridAlignGeneral = 9
+    } AlignmentSettings;
+
+
+	typedef [uuid(10A94FF1-094C-408b-92E6-7C1E239572A6), helpstring("BorderStyle Constants")]
+    enum BorderStyleSettings {
+        rgridBorderNone = 0,
+        rgridBorderSingle = 1
+    } BorderStyleSettings;
+
+	typedef [uuid(6256A1A9-3EA3-4b6c-B67F-A51E4A17D93A), helpstring("GridLines Constants")]
+    enum GridLineSettings {
+        rgridGridNone = 0,
+        rgridGridFlat = 1,
+        rgridGridInset = 2,
+        rgridGridRaised = 3
+    } GridLineSettings;
+
+	typedef [uuid(BA9ADDE2-6F85-4d99-97C2-85D7F99549C7), helpstring("ScrollBars Constants")]
+    enum ScrollBarsSettings {
+        rgridScrollBarNone = 0,
+        rgridScrollBarHorizontal = 1,
+        rgridScrollBarVertical = 2,
+        rgridScrollBarBoth = 3
+    } ScrollBarsSettings;
+
+	typedef [uuid(32FE6AD0-93F9-4fcf-A985-5C7E0D42055A), helpstring("SelectionMode Constants")]
+    enum SelectionModeSettings {
+        rgridSelectionFree = 0,
+        rgridSelectionByRow = 1,
+        rgridSelectionByColumn = 2
+    } SelectionModeSettings;
+
+	typedef [uuid(C02D50F0-76C8-4256-BAC5-50258F09F6E5)]
+	enum RZOrderConstants
+	{
+		rgridBringToFront = 0,
+		rgridSendToBack = 1
+	} RZOrderConstants;
+
+	typedef [uuid(D126BA58-5230-4ae6-BE21-842158AC9362)]
+	enum RHighlightConstants
+	{
+		rgridHighlightNever = 0,
+		rgridHighlightAlways = 1
+	} RHighlightConstants;
+
+
+	[
+		object,
+		uuid(C9AA3AAC-599F-40EB-AADB-73348B6322A2),
+		dual,
+		helpstring("IGrid Interface"),
+		pointer_default(unique),
+		oleautomation
+	]
+	interface IGrid : IDispatch
+	{
+		[propget, id(1), helpstring("property Rows")] HRESULT Rows([out, retval] long *pVal);
+		[propput, id(1), helpstring("property Rows")] HRESULT Rows([in] long newVal);
+		[propget, id(2), helpstring("property FixedRows")] HRESULT FixedRows([out, retval] long *pVal);
+		[propput, id(2), helpstring("property FixedRows")] HRESULT FixedRows([in] long newVal);
+		[propget, id(3), helpstring("property Cols")] HRESULT Cols([out, retval] long *pVal);
+		[propput, id(3), helpstring("property Cols")] HRESULT Cols([in] long newVal);
+		[propget, id(4), helpstring("property FixedCols")] HRESULT FixedCols([out, retval] long *pVal);
+		[propput, id(4), helpstring("property FixedCols")] HRESULT FixedCols([in] long newVal);
+		[propget, id(5), helpstring("property BackColor")] HRESULT BackColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(5), helpstring("property BackColor")] HRESULT BackColor([in] OLE_COLOR newVal);
+		[propget, id(6), helpstring("property BackColorBkg")] HRESULT BackColorBkg([out, retval] OLE_COLOR *pVal);
+		[propput, id(6), helpstring("property BackColorBkg")] HRESULT BackColorBkg([in] OLE_COLOR newVal);
+		[propget, id(7), helpstring("property BackColorFixed")] HRESULT BackColorFixed([out, retval] OLE_COLOR *pVal);
+		[propput, id(7), helpstring("property BackColorFixed")] HRESULT BackColorFixed([in] OLE_COLOR newVal);
+		[propget, id(8), helpstring("property GridLines")] HRESULT GridLines([out, retval] GridLineSettings *pVal);
+		[propput, id(8), helpstring("property GridLines")] HRESULT GridLines([in] GridLineSettings newVal);
+		[propget, id(9), helpstring("property GridLinesFixed")] HRESULT GridLinesFixed([out, retval] GridLineSettings *pVal);
+		[propput, id(9), helpstring("property GridLinesFixed")] HRESULT GridLinesFixed([in] GridLineSettings newVal);
+		[propget, id(10), helpstring("property GridColor")] HRESULT GridColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(10), helpstring("property GridColor")] HRESULT GridColor([in] OLE_COLOR newVal);
+		[propget, id(11), helpstring("property GridColorFixed")] HRESULT GridColorFixed([out, retval] OLE_COLOR *pVal);
+		[propput, id(11), helpstring("property GridColorFixed")] HRESULT GridColorFixed([in] OLE_COLOR newVal);
+		[propget, id(12), helpstring("property AllowUserResizing")] HRESULT AllowUserResizing([out, retval] AllowUserResizeSettings *pVal);
+		[propput, id(12), helpstring("property AllowUserResizing")] HRESULT AllowUserResizing([in] AllowUserResizeSettings newVal);
+		[propget, id(13), helpstring("property ScrollBars")] HRESULT ScrollBars([out, retval] ScrollBarsSettings *pVal);
+		[propput, id(13), helpstring("property ScrollBars")] HRESULT ScrollBars([in] ScrollBarsSettings newVal);
+		[propget, id(15), helpstring("property BorderStyle")] HRESULT BorderStyle([out, retval] BorderStyleSettings *pVal);
+		[propput, id(15), helpstring("property BorderStyle")] HRESULT BorderStyle([in] BorderStyleSettings newVal);
+		[propget, id(16), helpstring("property ScrollTrack")] HRESULT ScrollTrack([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(16), helpstring("property ScrollTrack")] HRESULT ScrollTrack([in] VARIANT_BOOL newVal);
+		[propget, id(17), helpstring("property ForeColor")] HRESULT ForeColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(17), helpstring("property ForeColor")] HRESULT ForeColor([in] OLE_COLOR newVal);
+		[propget, id(18), helpstring("property ForeColorFixed")] HRESULT ForeColorFixed([out, retval] OLE_COLOR *pVal);
+		[propput, id(18), helpstring("property ForeColorFixed")] HRESULT ForeColorFixed([in] OLE_COLOR newVal);
+		[propget, id(19), helpstring("property ForeColorSel")] HRESULT ForeColorSel([out, retval] OLE_COLOR *pVal);
+		[propput, id(19), helpstring("property ForeColorSel")] HRESULT ForeColorSel([in] OLE_COLOR newVal);
+		[propget, id(20), helpstring("property BackColorSel")] HRESULT BackColorSel([out, retval] OLE_COLOR *pVal);
+		[propput, id(20), helpstring("property BackColorSel")] HRESULT BackColorSel([in] OLE_COLOR newVal);
+		[propget, id(21), helpstring("property RowHeightMin")] HRESULT RowHeightMin([out, retval] long *pVal);
+		[propput, id(21), helpstring("property RowHeightMin")] HRESULT RowHeightMin([in] long newVal);
+		[propget, id(22), helpstring("property TextMatrix"), nonbrowsable] HRESULT TextMatrix([in] long Row, [in] long Col,[out, retval] BSTR *pVal);
+		[propput, id(22), helpstring("property TextMatrix"), nonbrowsable] HRESULT TextMatrix([in] long Row, [in] long Col,[in] BSTR newVal);
+		[propget, id(23), helpstring("property TextArray"), nonbrowsable] HRESULT TextArray([in] long index, [out, retval] BSTR *pVal);
+		[propput, id(23), helpstring("property TextArray"), nonbrowsable] HRESULT TextArray([in] long index, [in] BSTR newVal);
+		[propget, id(24), helpstring("property Row"), nonbrowsable] HRESULT Row([out, retval] long *pVal);
+		[propput, id(24), helpstring("property Row"), nonbrowsable] HRESULT Row([in] long newVal);
+		[propget, id(25), helpstring("property Col"), nonbrowsable] HRESULT Col([out, retval] long *pVal);
+		[propput, id(25), helpstring("property Col"), nonbrowsable] HRESULT Col([in] long newVal);
+		[propget, id(26), helpstring("property CellBackColor"), nonbrowsable] HRESULT CellBackColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(26), helpstring("property CellBackColor"), nonbrowsable] HRESULT CellBackColor([in] OLE_COLOR newVal);
+		[propget, id(27), helpstring("property CellForeColor"), nonbrowsable] HRESULT CellForeColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(27), helpstring("property CellForeColor"), nonbrowsable] HRESULT CellForeColor([in] OLE_COLOR newVal);
+		[propget, id(28), helpstring("property CellAlignment"), nonbrowsable] HRESULT CellAlignment([out, retval] AlignmentSettings *pVal);
+		[propput, id(28), helpstring("property CellAlignment"), nonbrowsable] HRESULT CellAlignment([in] AlignmentSettings newVal);
+		[propget, id(29), helpstring("property CellLeft"), nonbrowsable] HRESULT CellLeft([out, retval] long *pVal);
+		[propget, id(30), helpstring("property CellTop"), nonbrowsable] HRESULT CellTop([out, retval] long *pVal);
+		[propget, id(31), helpstring("property CellWidth"), nonbrowsable] HRESULT CellWidth([out, retval] long *pVal);
+		[propget, id(32), helpstring("property CellHeight"), nonbrowsable] HRESULT CellHeight([out, retval] long *pVal);
+		[propput, id(33), helpstring("property ColAlignment"), nonbrowsable] HRESULT ColAlignment([in] long index, [in] AlignmentSettings newVal);
+		[propget, id(34), helpstring("property Text"), nonbrowsable] HRESULT Text([out, retval] BSTR *pVal);
+		[propput, id(34), helpstring("property Text"), nonbrowsable] HRESULT Text([in] BSTR newVal);
+		[propget, id(35), helpstring("property ColWidth"), nonbrowsable] HRESULT ColWidth([in] long index, [out, retval] long *pVal);
+		[propput, id(35), helpstring("property ColWidth"), nonbrowsable] HRESULT ColWidth([in] long index, [in] long newVal);
+		[propget, id(36), helpstring("property ColIsVisible"), nonbrowsable] HRESULT ColIsVisible([in] long index, [out, retval] VARIANT_BOOL *pVal);
+		[propget, id(37), helpstring("property ColPos"), nonbrowsable] HRESULT ColPos([in] long index, [out, retval] long *pVal);
+		[propget, id(38), helpstring("property RowHeight"), nonbrowsable] HRESULT RowHeight([in] long index, [out, retval] long *pVal);
+		[propput, id(38), helpstring("property RowHeight"), nonbrowsable] HRESULT RowHeight([in] long index, [in] long newVal);
+		[propget, id(39), helpstring("property RowIsVisible"), nonbrowsable] HRESULT RowIsVisible([in] long index, [out, retval] VARIANT_BOOL *pVal);
+		[propget, id(40), helpstring("property RowPos"), nonbrowsable] HRESULT RowPos([in] long index, [out, retval] long *pVal);
+		[propget, id(41), helpstring("property ColSel"), nonbrowsable] HRESULT ColSel([out, retval] long *pVal);
+		[propput, id(41), helpstring("property ColSel"), nonbrowsable] HRESULT ColSel([in] long newVal);
+		[propget, id(42), helpstring("property RowSel"), nonbrowsable] HRESULT RowSel([out, retval] long *pVal);
+		[propput, id(42), helpstring("property RowSel"), nonbrowsable] HRESULT RowSel([in] long newVal);
+		[propget, id(43), helpstring("property AllowBigSelection")] HRESULT AllowBigSelection([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(43), helpstring("property AllowBigSelection")] HRESULT AllowBigSelection([in] VARIANT_BOOL newVal);
+		[propget, id(44), helpstring("property SelectionMode")] HRESULT SelectionMode([out, retval] SelectionModeSettings *pVal);
+		[propput, id(44), helpstring("property SelectionMode")] HRESULT SelectionMode([in] SelectionModeSettings newVal);
+		[propget, id(45), helpstring("property GridLineWidth")] HRESULT GridLineWidth([out, retval] short *pVal);
+		[propput, id(45), helpstring("property GridLineWidth")] HRESULT GridLineWidth([in] short newVal);
+		[propget, id(46), helpstring("property LeftCol"), nonbrowsable] HRESULT LeftCol([out, retval] long *pVal);
+		[propput, id(46), helpstring("property LeftCol"), nonbrowsable] HRESULT LeftCol([in] long newVal);
+		[propget, id(47), helpstring("property TopRow"), nonbrowsable] HRESULT TopRow([out, retval] long *pVal);
+		[propput, id(47), helpstring("property TopRow"), nonbrowsable] HRESULT TopRow([in] long newVal);
+		[propget, id(48), helpstring("property FixedAlignment")] HRESULT FixedAlignment([out, retval] AlignmentSettings *pVal);
+		[propput, id(48), helpstring("property FixedAlignment")] HRESULT FixedAlignment([in] AlignmentSettings newVal);
+		[propget, id(49), helpstring("property CellFontName"), nonbrowsable] HRESULT CellFontName([out, retval] BSTR *pVal);
+		[propput, id(49), helpstring("property CellFontName"), nonbrowsable] HRESULT CellFontName([in] BSTR newVal);
+		[propget, id(50), helpstring("property CellFontSize"), nonbrowsable] HRESULT CellFontSize([out, retval] long *pVal);
+		[propput, id(50), helpstring("property CellFontSize"), nonbrowsable] HRESULT CellFontSize([in] long newVal);
+		[propget, id(51), helpstring("property CellFontBold"), nonbrowsable] HRESULT CellFontBold([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(51), helpstring("property CellFontBold"), nonbrowsable] HRESULT CellFontBold([in] VARIANT_BOOL newVal);
+		[propget, id(52), helpstring("property CellFontItalic"), nonbrowsable] HRESULT CellFontItalic([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(52), helpstring("property CellFontItalic"), nonbrowsable] HRESULT CellFontItalic([in] VARIANT_BOOL newVal);
+		[propget, id(53), helpstring("property CellFontUnderline"), nonbrowsable] HRESULT CellFontUnderline([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(53), helpstring("property CellFontUnderline"), nonbrowsable] HRESULT CellFontUnderline([in] VARIANT_BOOL newVal);
+		[propget, id(54), helpstring("property CellFontWidth"), nonbrowsable] HRESULT CellFontWidth([out, retval] long *pVal);
+		[propput, id(54), helpstring("property CellFontWidth"), nonbrowsable] HRESULT CellFontWidth([in] long newVal);
+		[propget, id(55), helpstring("property CellFontStrikeThrough"), nonbrowsable] HRESULT CellFontStrikeThrough([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(55), helpstring("property CellFontStrikeThrough"), nonbrowsable] HRESULT CellFontStrikeThrough([in] VARIANT_BOOL newVal);
+		[propget, id(56), helpstring("property CellFontName")] HRESULT FontName([out, retval] BSTR *pVal);
+		[propput, id(56), helpstring("property CellFontName")] HRESULT FontName([in] BSTR newVal);
+		[propget, id(57), helpstring("property CellFontSize")] HRESULT FontSize([out, retval] long *pVal);
+		[propput, id(57), helpstring("property CellFontSize")] HRESULT FontSize([in] long newVal);
+		[propget, id(58), helpstring("property CellFontBold")] HRESULT FontBold([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(58), helpstring("property CellFontBold")] HRESULT FontBold([in] VARIANT_BOOL newVal);
+		[propget, id(59), helpstring("property CellFontItalic")] HRESULT FontItalic([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(59), helpstring("property CellFontItalic")] HRESULT FontItalic([in] VARIANT_BOOL newVal);
+		[propget, id(60), helpstring("property CellFontUnderline")] HRESULT FontUnderline([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(60), helpstring("property CellFontUnderline")] HRESULT FontUnderline([in] VARIANT_BOOL newVal);
+		[propget, id(61), helpstring("property CellFontWidth")] HRESULT FontWidth([out, retval] long *pVal);
+		[propput, id(61), helpstring("property CellFontWidth")] HRESULT FontWidth([in] long newVal);
+		[propget, id(62), helpstring("property CellFontStrikeThrough")] HRESULT FontStrikeThrough([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(62), helpstring("property CellFontStrikeThrough")] HRESULT FontStrikeThrough([in] VARIANT_BOOL newVal);
+		[propget, id(63), helpstring("property FixedFontBold")] HRESULT FixedFontBold([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(63), helpstring("property FixedFontBold")] HRESULT FixedFontBold([in] VARIANT_BOOL newVal);
+		[propget, id(64), helpstring("property FixedFontItalic")] HRESULT FixedFontItalic([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(64), helpstring("property FixedFontItalic")] HRESULT FixedFontItalic([in] VARIANT_BOOL newVal);
+		[propget, id(65), helpstring("property FixedFontName")] HRESULT FixedFontName([out, retval] BSTR *pVal);
+		[propput, id(65), helpstring("property FixedFontName")] HRESULT FixedFontName([in] BSTR newVal);
+		[propget, id(66), helpstring("property FixedFontSize")] HRESULT FixedFontSize([out, retval] long *pVal);
+		[propput, id(66), helpstring("property FixedFontSize")] HRESULT FixedFontSize([in] long newVal);
+		[propget, id(67), helpstring("property FixedFontStrikeThrough")] HRESULT FixedFontStrikeThrough([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(67), helpstring("property FixedFontStrikeThrough")] HRESULT FixedFontStrikeThrough([in] VARIANT_BOOL newVal);
+		[propget, id(68), helpstring("property FixedFontUnderline")] HRESULT FixedFontUnderline([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(68), helpstring("property FixedFontUnderline")] HRESULT FixedFontUnderline([in] VARIANT_BOOL newVal);
+		[propget, id(69), helpstring("property FixedFontWidth")] HRESULT FixedFontWidth([out, retval] long *pVal);
+		[propput, id(69), helpstring("property FixedFontWidth")] HRESULT FixedFontWidth([in] long newVal);
+		[propget, id(70), helpstring("property PictureAlignment"), nonbrowsable] HRESULT CellPictureAlignment([out, retval] AlignmentSettings *pVal);
+		[propput, id(70), helpstring("property PictureAlignment"), nonbrowsable] HRESULT CellPictureAlignment([in] AlignmentSettings newVal);
+		[propget, id(71), helpstring("property WordWrap")] HRESULT WordWrap([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(71), helpstring("property WordWrap")] HRESULT WordWrap([in] VARIANT_BOOL newVal);
+		[propget, id(72), helpstring("property HighLight")] HRESULT HighLight([out, retval] RHighlightConstants *pVal);
+		[propput, id(72), helpstring("property HighLight")] HRESULT HighLight([in] RHighlightConstants newVal);
+		[propget, id(73), helpstring("property Redraw"), nonbrowsable] HRESULT Redraw([out, retval] VARIANT_BOOL *pVal);
+		[propput, id(73), helpstring("property Redraw"), nonbrowsable] HRESULT Redraw([in] VARIANT_BOOL newVal);
+		[id(101), helpstring("method Clear")] HRESULT Clear();
+//		[id(102), helpstring("method ZOrder")] HRESULT ZOrder(RZOrderConstants Position);
+//		[id(103), helpstring("method SetFocus")] HRESULT SetFocus();
+//		[id(104), helpstring("method Refresh")] HRESULT Refresh();
+//		[id(105), helpstring("method Move")] HRESULT Move(long Left, long Top, long Width, long Height);
+		[id(106), helpstring("method AddItem")] HRESULT AddItem([in] BSTR Item, [in, optional] VARIANT* index);
+		[id(107), helpstring("method RemoveItem")] HRESULT RemoveItem([in] long index);
+		[propput, id(1000)] HRESULT Enabled([in]VARIANT_BOOL vbool);
+		[propget, id(1000)] HRESULT Enabled([out,retval]VARIANT_BOOL* pbool);		
+		[id(1001), helpstring("method CellLoadPicture")] HRESULT CellLoadPicture([in] BSTR FileName);
+//		[propget, id(10000), helpstring("property RegistrationCode")] HRESULT RegistrationCode([out, retval] BSTR *pVal);
+//		[propput, id(10000), helpstring("property RegistrationCode")] HRESULT RegistrationCode([in] BSTR newVal);
+		[propget, id(10001), helpstring("property hWnd"), nonbrowsable] HRESULT hWnd([out, retval] OLE_HANDLE *pVal);
+	};
+
+	[
+		uuid(D5BF9E6C-D57E-4B4D-991D-2606C01707AF),
+		helpstring("_IGridEvents Interface")
+	]
+	dispinterface _IGridEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method MouseDown")] void MouseDown(short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+		[id(2), helpstring("method MouseMove")] void MouseMove(short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+		[id(3), helpstring("method MouseUp")] void MouseUp(short Shift, OLE_XPOS_PIXELS x, OLE_YPOS_PIXELS y);
+		[id(4), helpstring("method Click")] void Click();
+		[id(5), helpstring("method DblClick")] void DblClick();
+		[id(6), helpstring("method HScroll")] void HScroll();
+		[id(7), helpstring("method VScroll")] void VScroll();
+		[id(8), helpstring("method KeyDown")] void KeyDown(short KeyCode, short Shift);
+		[id(9), helpstring("method KeyUp")] void KeyUp( short KeyCode, short Shift);
+		[id(10), helpstring("method KeyPress")] void KeyPress(short KeyAscii);
+		[id(11), helpstring("method SelChange")] void SelChange();
+		[id(12), helpstring("method RowColChange")] void RowColChange();
+		[id(13), helpstring("method EnterCell")] void EnterCell();
+		[id(14), helpstring("method LeaveCell")] void LeaveCell();
+		[id(15), helpstring("method ColWidthChange")] void ColWidthChange(long Col);
+		[id(16), helpstring("method RowHeightChange")] void RowHeightChange(long Row);
+	};
+
+	[
+		uuid(058E370E-6141-4E41-8B95-846EE04BB303),
+		helpstring("Grid Class")
+	]
+	coclass Grid
+	{
+		[default] interface IGrid;
+		[default, source] dispinterface _IGridEvents;
+	};
+};

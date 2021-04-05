@@ -1,0 +1,2130 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 12: ListView Control</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=550>
+<TR>
+	<TD WIDTH="19%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="81%" VALIGN="TOP">
+	  <h1>Tech Note 12: ListView Control</h1>
+	  <h3>March 07, 2007
+	  </h3>
+	  <h5>© 2010 NS BASIC Corporation. All rights reserved.
+	  </h5>
+	</TD>
+</TR>
+</TABLE>
+<HR>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <!-- #include file="includes/header.htm" -->  
+  <tr>
+    <td width="100%">
+      <table border="0" width="100%">
+        <tr>
+          <td width="99%" valign="top">
+            <h1>NSListView ActiveX Control</h1>
+            <p>This control is part of <a href="TN11a.htm">NS BASIC Controls package</a>. Please see its documentation to get full information about this package.</p>
+            <hr>
+            <blockquote>
+              <p>1. <a href="#Overview">Overview</a></p>
+              <blockquote>
+                <p><a name="The NSListView objects" href="#objects">The
+                NSListView objects</a><br>
+                <a href="#diagram">Object model diagram</a><br>
+                <a href="#general">General notes and remarks</a></p>
+              </blockquote>
+              <p>2. <a href="#reference">Object Reference</a></p>
+              <blockquote>
+                <p><a href="#NSListView">NSListView</a><br>
+                <a href="#ListItems">ListItems</a><br>
+                <a href="#ListItem">ListItem</a><br>
+                <a href="#SubItems">SubItems</a><br>
+                <a href="#SubItem">SubItem</a><br>
+                <a href="#Columns">Columns</a><br>
+                <a href="#Column">Column</a><br>
+                <a href="#ColumnItems">ColumnItems</a><br>
+                <a href="#Results">Results</a></p>
+              </blockquote>
+            </blockquote>
+            <blockquote>
+              <p>3. <a href="#Using">Using the NSListView control</a></p>
+            </blockquote>
+      <h2>1. <a name="Overview">Overview</a> and architecture</h2>
+      <p>The NSListView control exposes the Windows ListView control for the
+      NSBasic applications. For that purpose it has internal object structure in
+      which every ListView element is exposed to the application as an object
+      with appropriate methods and properties.
+      
+      <p>IMPORTANT: The NSListView object does not currently work from the NS Basic ToolBox. To use this control, use an AddObject statement in your Form_Load routine and set the properties you need in code. See the examples for sample code.  
+      
+      <h3>The NSListView <a name="objects"> objects</a></h3>
+      <p>The example lines below assume you have AddObject &quot;NSBasic.comctl.ListView&quot;,
+      &quot;MyListView&quot;, ...</p>
+      <table border="0" cellspacing="1">
+        <tr>
+          <td valign="top"><b><img border="0" src="images/obj.gif" width="16" height="16">
+            <a href="#NSListView">NSListView</a></b></td>
+          <td valign="top">The root object which represents the control as
+            whole.<br>
+            <font color="#006600">
+            example: <b>MyListView.LabelEdit = True</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp; <b><img border="0" src="images/collection.gif" width="16" height="16">
+            <a href="#Columns">Columns</a></b></td>
+          <td valign="top">A collection that holds the columns of the ListView
+            control in report view<br>
+            <font color="#006600">
+            example: <b>colcount = MyListView.Columns.Count</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/obj.gif" width="16" height="16">
+            <b><a href="#Column">Column</a></b></td>
+          <td valign="top">Represents a column in report view<br>
+            <font color="#006600">
+            example1: <b>MyListView.Column(2).Text = &quot;Size (kbytes)&quot;<br>
+            </b>example2: <b>MyListView.Column(&quot;Size&quot;).Text =
+            &quot;Size (kbytes)&quot;</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img border="0" src="images/collection.gif" width="16" height="16"> <b><a href="#ColumnItems">ColumnItems</a></b></td>
+          <td valign="top">A collection of all the items/subitems in the column<br>
+            <font color="#006600">
+            example1: <b>MyListView.Column(2).ColumnItems(5).Text =
+            &quot;20k&quot;<br>
+            </b>example2: <b>MyListView.Column(2)(5).Text = &quot;20k&quot;</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp; <img border="0" src="images/collection.gif" width="16" height="16">
+            <b><a href="#ListItems">ListItems</a></b></td>
+          <td valign="top">A collection of all the items (rows in report view)
+            in the ListView<br>
+            <font color="#006600">
+            example: <b>itmcount = MyListView.ListItems.Count</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" src="images/obj.gif" width="16" height="16">
+            <b><a href="#ListItem">ListItem</a></b></td>
+          <td valign="top">Represent individual item (row in report view).<br>
+            <font color="#006600">
+            example1: <b>MyListView.ListItems(5).Text = &quot;Item 5&quot;<br>
+            </b>example2: <b>MyListView(5).Text = &quot;Item 5&quot;<br>
+            </b>example3: <b>MyListView(&quot;MyItem5&quot;).Text = &quot;Item
+            5&quot;</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img border="0" src="images/collection.gif" width="16" height="16"> <b><a href="#SubItems">SubItems</a></b></td>
+          <td valign="top">A collection of all the subitems of the item in
+            report view<br>
+            <font color="#006600">
+            example: <b>colcount = MyListView.ListItems(5).SubItems.Count</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img border="0" src="images/obj.gif" width="16" height="16"> <b><a href="#SubItem">SubItem</a></b></td>
+          <td valign="top">Represents a subitem object in report view<br>
+            <font color="#006600">
+            example1: <b>MyListView.ListItems(5).SubItems(2).Text =
+            &quot;20k&quot;<br>
+            </b>example2: <b>MyListView(5)(2).Text = &quot;20k&quot;</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp; <img border="0" src="images/obj.gif" width="16" height="16">
+            <b><a href="TN11b.htm">Font</a></b></td>
+          <td valign="top">The font settings for the control (apply to
+            everything) (NSFont object)<br>
+            <font color="#006600">
+            example: <b>MyListView.Font.Bold = True</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp; <img border="0" src="images/obj.gif" width="16" height="16">
+            <b><a href="TN21.htm">Icons</a></b></td>
+          <td valign="top">List of the images used in Icon view (NSImageList
+            object)<br>
+            <font color="#006600">
+            example: <b>MyListView.Icons.LoadBitmap &quot;\MyBitmap.bmp&quot;</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp; <img border="0" src="images/obj.gif" width="16" height="16">
+            <b><a href="TN21.htm">SmallIcons</a></b></td>
+          <td valign="top">List of the images used in SmallIcon and report view
+            (NSImageList object)<br>
+            <font color="#006600">
+            example: <b>MyListView.SmallIcons.LoadBitmap &quot;\MyBitmap.bmp&quot;</b></font></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;&nbsp;&nbsp; <img border="0" src="images/obj.gif" width="16" height="16">
+            <b><a href="TN21.htm">ColumnHeaderIcons</a></b></td>
+          <td valign="top">List of the images used in the column headings in
+            report view (NSImageList object)<br>
+            <font color="#006600">
+            example: <b>MyListView.ColumnHeaderIcons.LoadBitmap &quot;\MyBitmap.bmp&quot;</b></font></td>
+        </tr>
+      </table>
+      <h3>The NSListView object model <a name="diagram"> diagram</a></h3>
+      <p>Click on the object of interest to go to the page describing it.</p>
+      <p><map name="FPMap0">
+      <area href="#NSListView" shape="rect" coords="9, 7, 105, 29">
+      <area href="#Columns" shape="rect" coords="129, 7, 212, 30">
+      <area href="#Column" shape="rect" coords="236, 44, 331, 64">
+      <area href="#Column" shape="rect" coords="345, 43, 440, 65">
+      <area href="#Column" shape="rect" coords="453, 43, 549, 65">
+      <area href="#ColumnItems" shape="rect" coords="228, 92, 331, 111">
+      <area href="#ColumnItems" shape="rect" coords="346, 94, 454, 109">
+      <area href="#ColumnItems" shape="rect" coords="466, 92, 569, 111">
+      <area href="TN11b.htm" shape="rect" coords="105, 44, 200, 66">
+      <area href="TN21.htm" shape="rect" coords="105, 78, 201, 102">
+      <area href="TN21.htm" shape="rect" coords="104, 116, 198, 136">
+      <area href="TN21.htm" shape="rect" coords="105, 150, 261, 173">
+      <area href="#ListItem" shape="rect" coords="56, 283, 138, 305">
+      <area href="#ListItem" shape="rect" coords="57, 356, 138, 377">
+      <area href="#ListItem" shape="rect" coords="274, 151, 357, 173">
+      <area href="#ListItem" shape="rect" coords="272, 187, 356, 210">
+      <area href="#ListItems" shape="rect" coords="10, 236, 103, 256">
+      <area href="#SubItem" shape="rect" coords="501, 139, 584, 161">
+      <area href="#SubItem" shape="rect" coords="501, 175, 584, 196">
+      <area href="#SubItem" shape="rect" coords="285, 317, 370, 342">
+      <area href="#SubItem" shape="rect" coords="383, 320, 464, 341">
+      <area href="#SubItem" shape="rect" coords="476, 321, 558, 341">
+      <area href="#SubItems" shape="rect" coords="165, 283, 248, 306">
+      <area href="#ColumnItems" shape="default">
+      <area href="#ColumnItems" coords="0, 0, 10000, 10000" shape="rect"></map><img border="0" src="images/ListViewObjModel.gif" width="605" height="600" usemap="#FPMap0"></p>
+      <h3>NSListView <a name="general"> general</a> notes and remarks</h3>
+      <p>The control's architecture may look complex at first, but in fact the
+      usage of the control is quite simple. Each element is accessible through
+      an object named after the element it represents thus enabling you to write
+      code without checking the documentation for each line you write. To help
+      you follow the naming convention the ListView terminology is listed below.
+      The same terminology is used in MSDN and the documentation of other
+      ListView ActiveX controls - if you have ever used one you will find it
+      familiar.</p>
+      <blockquote>
+      <p><b>Item</b> - The ListView is a linear collection of items which
+      consist of image, text, state, tag and other data (See also the views
+      below)<br>
+      <b>Column</b> - (visible in report view only) is a column which may have
+      or not have a heading. The items and their subitems are listed in columns.<br>
+      <b>SubItem</b> - (visible in report view only) each item may have subitems
+      - one per each column currently visible in the control.<br>
+      <b>View</b> - 4 views are supported by the control: Icons (sometimes
+      referred as big icons), Small icons, List and Report. The Report view is
+      the most complex one and offers grid-like functionality. NSListView is
+      especially designed to simplify grid-like usage.</p>
+      <h4>The views</h4>
+      <p>Icon view (big icons).<br>
+      <img border="0" src="images/iconview.gif" width="452" height="240"><br>
+      The images from the <b>Icons</b> image list are used, the item text is
+      displayed under the image. If checkboxes are enabled they appear on the
+      left of the image.</p>
+      <p>Small Icons view<br>
+      <img border="0" src="images/smalliconview.gif" width="452" height="241"><br>
+      Much like the Icon view but the images from the <b>SmallIcons</b> image
+      list are used and the item text is displayed on the right. If checkboxes
+      are enabled the checkbox appears on the left side.</p>
+      <p>&nbsp;</p>
+      <p>List view<br>
+      <img border="0" src="images/listview.gif" width="453" height="243"><br>
+      Although similar to the Small Icons view in List view the items are listed
+      sequentially in columns from left to right. The images from the <b>SmallIcons</b>
+      image list are used.</p>
+      <p>Report view<br>
+      <img border="0" src="images/reportview.gif" width="454" height="243"><br>
+      The images from the <b>SmallIcons</b> image list are used. The items are
+      listed vertically in the first column (unless the column order is changed
+      by the application) and the other columns display the corresponding
+      SubItem of the item. If you think of the items as rows you can think of
+      the first column as of rows headers and for the SubItems as cells of a
+      table.</p>
+      </blockquote>
+      <p>All the Items, columns and SubItems can be accessed, changed and
+      otherwise managed no matter the current view. However the columns and the
+      sub items will be visible only in report view.</p>
+            <h2>2. Objects <a name="reference">reference</a></h2>
+            <h3><a name="NSListView">NSListView</a></h3>
+            <blockquote>
+              <p>
+      Represents the NSListView control. Exposes general properties and the
+      objects that control the internal elements of the control.</p>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Objects</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+            <a href="#Columns"><b>
+            Columns</b></a></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set cols = object.Columns</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the <a href="#Columns">Columns
+            collection</a>. It contains all the columns in the control.<br>
+            alias:
+            ColumnHeaders</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+            <b><a href="#ListItems">
+            ListItems</a></b></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set items = object.ListItems</td>
+          <td bgcolor="#FFFFFF" valign="top"><b>Default</b>. Returns the <a href="#ListItems">ListItems</a>
+            collection which contains all the items (<a href="#ListItem">ListItem</a>
+            objects) in the control.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+            <b><a href="TN21.htm">
+            Icons</a></b></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set icons = object.Icons</td>
+          <td bgcolor="#FFFFFF" valign="top"><a href="TN21.htm">NSImageList</a>
+            containing the large icons, which are displayed with the items in
+            the Icon view.<br>
+            By default this image list is initialized with size 32x32</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+            <b><a href="TN21.htm">SmallIcons</a></b></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set icons =
+            object.SmallIcons</td>
+          <td bgcolor="#FFFFFF" valign="top"><a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/ComCtl/doc/TN21.htm">NSImageList</a>
+            containing the small icons, which are displayed with the items in
+            the all the views other than Icon view. The same list is also used
+            when images are displayed with the sub-items.<br>
+            By default this image list is initialized with size 16x16.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+            <b><a href="TN21.htm">ColumnHeaderIcons</a></b></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set icons =
+            object.ColumnHeaderIcons</td>
+          <td bgcolor="#FFFFFF" valign="top"><a href="file:///G:/WORKS/WindowsNT/atl/NSBasic/ComCtl/doc/TN21.htm">NSImageList</a>
+            containing the icons, which are displayed on the column headers.<br>
+            By default this image list is initialized with size 16x16.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/obj.gif" width="16" height="16">
+            <b><a href="TN11b.htm">Font</a></b></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set fnt = object.Font</td>
+          <td bgcolor="#FFFFFF" valign="top">Contains <a href="TN11b.htm">NSFont</a>
+            object that specifies the font used everywhere in the control.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">View and
+            behavior&nbsp;</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            AllowColumnReorder</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.
+            AllowColumnReorder = b<br>
+            b = object.
+            AllowColumnReorder&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables (True)/Disables (False,
+            default) the user to reorder the control's columns in report view by
+            dragging them with the mouse or the stylus.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            View</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.View = v<br>
+            v = object.View&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Puts/Gets the current view mode of
+            the control:<br>
+            0 - (default) Icon view (big icons)<br>
+            1 - Report view<br>
+            2 - Small icons view<br>
+            3 - List view</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            HideSelection</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.
+            HideSelection = b<br>
+            b = object.
+            HideSelection</td>
+          <td bgcolor="#FFFFFF" valign="top">Boolean. Default is True. If set to
+            false the selection in the control is indicated also when the
+            control does not have the focus.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            MultiSelect</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.MultiSelect = b<br>
+            b = object.MultiSelect&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Boolean. Default is True. When set
+            to False only one item can be selected at a time.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Enabled</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Enabled = b<br>
+            b = object.Enabled&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables/Disables the control.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Arrange</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Arrange = a<br>
+            a = object.Arrange&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Integer constant. Specifies how to
+            arrange the items in the control in Icon and Small Icons view only.
+            Has no effect in the other view modes.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            HideColumnHeaders</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.
+            HideColumnHeaders = b<br>
+            b = object.
+            HideColumnHeaders&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Boolean. Default is False. If set
+            to True the column headings are hidden in report view.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            LabelEdit</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.
+            LabelEdit = b<br>
+            b = object.
+            LabelEdit&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Boolean. Default is False. If set
+            to True enables the user to invoke label editing for items by
+            &quot;slow&quot; double click or pressing F2.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            LabelWrap</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.LabelWrap = b<br>
+            b = object.LabelWrap&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Enable/disable the label text
+            wrapping.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Checkboxes</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Checkboxes = b<br>
+            b = object.Checkboxes</td>
+          <td bgcolor="#FFFFFF" valign="top">Enable/disable checkboxes view. If
+            set to True the items are displayed with checkboxes beside them and
+            the user can check/uncheck them. It works in all the views, but is
+            most convenient in report view. In the other view modes the
+            appearance may be a bit confusing for the users. See also the <a href="#ListItem">ListItem</a>.Checked
+            property.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            FullRowSelect</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.FullRowSelect = b<br>
+            b = object.FullRowSelect</td>
+          <td bgcolor="#FFFFFF" valign="top">When set to True in report view the
+            selection mark covers the entire row and not only the item. Often
+            used together with GridLines (see below).&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            SubItemImages</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.SubItemImages = b<br>
+            b = object.SubItemImages</td>
+          <td bgcolor="#FFFFFF" valign="top">When set to True the <a href="#SubItem">SubItem</a>-s
+            display images from the SmallIcons <a href="TN21.htm">image list</a>.
+            See SubItem.Icon for more information.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            SortHeaders</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.SortHeaders = b<br>
+            b = object.
+            SortHeaders&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">True by default. If set to False
+            the headers cannot be clicked and do not fire events. If you want to
+            indicate to the user that the control cannot be sorted use this when
+            going to report view.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            GridLines</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.GridLines = b<br>
+            b = object.GridLines&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">When set to True grid lines are
+            drawn between the rows and the columns. The effect is table like.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            BackColor</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.BackColor = clr<br>
+            clr = object.BackColor</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the background color of
+            the control. Use the RGB function to create color values.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            TextBackColor</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.TextBackColor = clr<br>
+            clr = object.TextBackColor</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the background color of
+            the texts in the control. Use the RGB function to create color
+            values.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            TextColor</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.TextColor = clr<br>
+            clr = object.TextColor</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the color of the texts in
+            the control. Use the RGB function to create color values.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            TrackSelect</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.TrackSelect = b<br>
+            b = object.
+            TrackSelect&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Desktop only, no effect on CE. The
+            item under the mouse cursor is highlighted and if the cursor remains
+            over it some time the item is selected.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            UnderlineCold</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap rowspan="2">object.UnderlineCold
+            = b<br>
+            b = object.UnderlineCold</td>
+          <td bgcolor="#FFFFFF" valign="top" rowspan="2">Desktop only, no effect
+            on CE. The effect is like the link hover effect in IE.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            UnderlineHot</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Top</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Top
+            = v<br>
+            v = object.Top</td>
+          <td bgcolor="#FFFFFF" valign="top">Long integer. Puts/Gets the top
+            coordinate of the control in the form.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Left</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Left
+            = v<br>
+            v = object.Left</td>
+          <td bgcolor="#FFFFFF" valign="top">Long integer. Puts/Gets the left
+            coordinate of the control in the form.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Width</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Width
+            = v<br>
+            v = object.Width</td>
+          <td bgcolor="#FFFFFF" valign="top">Long integer. Puts/Gets the width
+            of the control in the form.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Height</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Height
+            = v<br>
+            v = object.Height</td>
+          <td bgcolor="#FFFFFF" valign="top">Long integer. Puts/Gets the height
+            of the control in the form.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Visible</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Visible
+            = b<br>
+            b = object.Visible</td>
+          <td bgcolor="#FFFFFF" valign="top">Boolean. Gets/puts the visibility
+            flag for the control. Default is True - visible.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Operations,
+            sorting and so on</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            FindItems</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set results =
+            object.FindItems( _<br>
+            &nbsp;&nbsp;&nbsp; text, _<br>
+            &nbsp;&nbsp;&nbsp; [subitems], _<br>
+            &nbsp;&nbsp;&nbsp; [tags], _<br>
+            &nbsp;&nbsp;&nbsp; [partial])<br>
+          </td>
+          <td bgcolor="#FFFFFF" valign="top">Searches through the items and
+            (optionally) the sub-items in the control. Returns a collection of
+            the items and sub-tiems that match the criteria.<br>
+            <b><i>Arguments:</i></b><br>
+            <b>text</b> - String. Text to search<br>
+            <b>subitems</b> - (optional) Boolean. If True both the items and the
+            sub-tiems are searched, default is False<br>
+            <b>tags</b> - (optional) Boolean. If set to True the search is over
+            the value of the item's/sub-item's Tag property and not the Text
+            property. Default is False.<br>
+            <b>partial</b> - (optional) constant:<br>
+            &nbsp;&nbsp;&nbsp; 0 - (default) exact match<br>
+            &nbsp;&nbsp;&nbsp; 1 - partial (match if the string starts with the
+            searched text)<br>
+            &nbsp;&nbsp;&nbsp; 2 - substring (match if the searched text can be
+            found somewhere in the value)
+            <p><b>Returns:</b> a <b><a href="#Results">Results</a></b>
+            collection containing the <a href="#ListItem">ListItem</a> and <a href="#SubItem">SubItem</a>
+            objects that match the criteria.</p>
+          </td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            UnSelectAll</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.UnSelectAll</td>
+          <td bgcolor="#FFFFFF" valign="top">De-selects all the items in the
+            control.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            SelectedItems</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set results =
+            object.SelectedItems</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a <b><a href="#Results">Results</a></b>
+            collection containing all the currently selected items (<a href="#ListItem">ListItem</a>
+            objects)</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            SetFocus</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.SetFocus</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets the keyboard focus to the
+            control. Aside of the obvious usage you may need to call this method
+            when you use on your form a control that gets the focus implicitly
+            after certain operation.&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            SortOrder</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.SortOrder = v<br>
+            v = object.SortOrder&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Integer constant. Specifies the
+            sort order in the control:<br>
+            0 - (default) ascending<br>
+            1 - descending<br>
+            Assigning a value (even reassigning the same) causes resort.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Sorted</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Sorted = b<br>
+            b = object.Sorted&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">When set to True the control is
+            sorted in report view according to the other sorting settings (See
+            SortOrder, SortKey and Column.SortType). Setting the property to
+            True invokes re-sort of the entire control, this can be used when
+            you want to invoke re-sort the control after changing some data in
+            it.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            SortKey</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Integer between 0 and Columns.Count.
+            Specifies the column on which the sorting will be performed.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Tag</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = v<br>
+            Set object.Tag = v<br>
+            v = object.Tag<br>
+            Set v = object.Tag</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables the application to attach a
+            tag to the object.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3"><a name="Events">Events</a></th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap colspan="3">All the events
+            fired by the control have the same syntax:<br>
+            <b>Sub NSListViewX_&lt;EventName&gt;(oEvent)</b><br>
+            &nbsp; ' Handle the event, use oEvent to access the event data.<br>
+            <b>End Sub</b><br>
+            The <b><i>oEvent</i></b> above is an <b><a href="#NSListViewEvent">NSListViewEvent</a></b>
+            object</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnColumnClick</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap rowspan="12"><b>Sub
+            NSListViewX_&lt;EventName&gt;(<font color="#000080">oEvent</font>)</b><br>
+            &nbsp; ' Handle the event,&nbsp;<br>
+            &nbsp; ' use oEvent to access the event data.<br>
+            <b>End Sub</b></td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when a column header is
+            clicked. oEvent.Column is the <a href="#Column">Column</a>
+            clicked.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnBeginLabelEdit</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when the user starts editing
+            an items text label. The <a href="#ListItem">ListItem</a> being
+            edited is oEvent.Item. Also oEvent.Column contains reference to <a href="#Column">Column</a>
+            0. By setting the oEvent.Cancel = True the editing can be refused</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnEndLabelEdit</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when the user finishes
+            editing an items label. The <a href="#ListItem">item</a> being
+            edited is oEvent.Item. Also oEvent.Column contains reference to <a href="#Column">Column</a>
+            0. The oEvent.Text contains the text just entered by the user. By
+            setting the oEvent.Cancel = True the text change is cancelled and
+            the old text remains.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnItemActivate</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when an item is activated.
+            This is when the item is double-clicked, Enter key is pressed while
+            the item has the focus. The <a href="#ListItem">item</a> (ListItem)
+            being activated is oEvent.Item. If the activation is a result of a
+            mouse/tap action oEvent.SubItem contains the <a href="#SubItem">SubItem</a>
+            which has been double-clicked for example. Also oEvent.Column
+            contains reference to the corresponding <a href="#Column">Column</a>.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnKeyDown</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when a keyboard key is
+            pressed in the control. The oEvent.Key contains the key's virtual
+            code.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnMarqueeBegin</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when when the user starts
+            selecting items by dragging a rectangle with the mouse/stylus. By
+            setting the oEvent.Cancel = True the action can be cancelled.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnClick</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when the left mouse button is
+            clicked or when the user taps the touch screen. The oEvent's Item,
+            Column and SubItem properties may contain references to the related
+            objects. If an item (<a href="#ListItem">ListItem</a>) is clicked
+            the SubItem property contains nothing, if a SubItem is clicked the
+            SubItem property contains the clicked <a href="#SubItem">SubItem</a>.
+            The Column property contains the <a href="#Column">Column</a> in
+            which the clicked Item or SubItem is.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnDblClick</td>
+          <td bgcolor="#FFFFFF" valign="top">Like OnClick, but fired on double
+            click.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnRClick</td>
+          <td bgcolor="#FFFFFF" valign="top">Like OnClick but fired on right
+            mouse button click.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnRDblClick</td>
+          <td bgcolor="#FFFFFF" valign="top">Like OnClick but fired on right
+            mouse button double-click.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnReturn</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when the Return key is
+            pressed. No useful information is available in oEvent object.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/event.gif" width="16" height="17">
+            OnItemChanged</td>
+          <td bgcolor="#FFFFFF" valign="top">Fired when the state of an item
+            changes. Any change will cause this event to occur. Use oEvent.Item
+            to query the <a href="#ListItem">ListItem</a>'s properties and
+            determine what the change might be and if it is of any interest</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="ListItems">ListItems</a> collection</h3>
+            <blockquote>
+      A collection that contains all the items (<b><a href="#ListItem">ListItem</a></b> objects) in the control
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b><a href="#NSListView">NSListView</a>.ListItems</b><br>
+        </p>
+      </blockquote>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Methods and properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Add</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>[Set itm =] object.Add(<br>
+            &nbsp;&nbsp;&nbsp; [Index],<br>
+            &nbsp;&nbsp;&nbsp; [Key],<br>
+            &nbsp;&nbsp;&nbsp; [Text],<br>
+            &nbsp;&nbsp;&nbsp; [Icon],<br>
+            &nbsp;&nbsp;&nbsp; [Indent])</td>
+          <td bgcolor="#FFFFFF" valign="top">Adds a new item (<a href="#ListItem">ListItem</a>
+            object) to the control. All the arguments are optional, they are:<br>
+            <b>Index</b> - integer specifying the index for the new item 1 -
+            based. If omitted the item is added as last item.<br>
+            <b>Key</b> - String, the key name for the item. If specified the
+            created ListItem object can be accessed later by name.<br>
+            <b>Text</b> - The text label for the new item.<br>
+            <b>Icon</b> - Image index or name in the image list applicable to
+            the current view (<b>Icons</b> in Icon view, <b>SmallIcons</b> in
+            all the other cases).&nbsp;<br>
+            Indent - Specifies the indent of the item in report view. See <a href="#ListItem">ListItem</a>.Indent</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Clear</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Clear</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes all the items.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Count</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>c = object.Count</td>
+          <td bgcolor="#FFFFFF" valign="top">Integer. Returns the count of the
+            items.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            <b>Item</b></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set itm = object.Item(x)<br>
+            Set itm = object(x)</td>
+          <td bgcolor="#FFFFFF" valign="top"><b>Default</b>. Returns the indexed
+            item (<a href="#ListItem">ListItem</a> object).<br>
+            <b>x</b> - is integer 1-based index or <b>Key</b> name of an item.
+            If more than one item has the same Key the first is returned.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Remove</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Remove x</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes the indexed item (ListItem
+            object) from the control.<br>
+            <b>x</b> - is integer 1-based index or <b>Key</b> name of an item.
+            If more than one item has the same Key the first is removed.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Enumerator</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>For Each o in object<br>
+            Next</td>
+          <td bgcolor="#FFFFFF" valign="top">Enumerates the elements of the
+            collection.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Hierarchy
+            members</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListView</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set NSListView =
+            object.ListView</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns reference to the NSListView
+            control to which this object applies</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="ListItem">ListItem</a> object</h3>
+            <blockquote>
+      <p align="left">
+      Represents an item in the control. In all the view modes except report
+      view the items is all that is shown in the control. In report view the
+      item (ListItem) plays a role very similar to a row in a grid. Its
+      sub-items (see the <a href="#SubItems">SubItems</a> collection) can be
+      considered like the cells in the row, while the item itself is the cell 0
+      or the heading cell of the row.&nbsp;
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b>Set itm = <a href="#NSListView">NSListView</a>.<a href="#ListItems">ListItems</a>.Item(index)</b><br>
+        or<br>
+        <b>Set itm = NSListView.ListItems(index)</b><br>
+        or<br>
+        <b>Set itm = NSListView(index)<br>
+        </b>or<br>
+        <b>Set itm = NSListView(&quot;key&quot;)<br>
+        or<br>
+        For Each itm In NSListView.ListItems<br>
+        &nbsp;&nbsp; ' make use of itm<br>
+        Next</b></p>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Objects</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+            <b><a href="#SubItems">SubItems</a></b></td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set si = object.SubItems</td>
+          <td bgcolor="#FFFFFF" valign="top"><b>Default</b>. Returns the <a href="#SubItems">SubItems</a>
+            collection which enables you to edit the sub-items of this item/row.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Methods and
+            properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            EnsureVisible</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.EnsureVisible
+            [partial]</td>
+          <td bgcolor="#FFFFFF" valign="top">Makes sure that the item is
+            visible. Scrolls the contents of the control as needed. If <i>partial</i>
+            is not omitted and set to True the item is considered visible even
+            if only part of it is in the visible area of the control. <b>Note!</b>&nbsp;
+            This sets the focus to the control.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            StartLabelEdit</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.StartLabelEdit</td>
+          <td bgcolor="#FFFFFF" valign="top">Initiates interactive label editing
+            of the label of this item. Has no effect if the NSListView's
+            LabelEdit property is False.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Checked</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Checked = bval<br>
+            b = object.Checked&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Gets/sets the checked state of the
+            item. Should be used only in checkboxes mode (see <a href="#NSListView">NSListView</a>.Checkboxes
+            property). If Checkboxes is False the result is undefined.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Icon</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Icon = icn<br>
+            icn = object.Icon</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/returns the icon index for the
+            item. The index corresponds to an image in the image list applicable
+            for the current view mode.&nbsp; When set (object.Icon = icn) you
+            can use both numeric index and key name of an image in the image
+            list. When queried numeric index is always returned.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Index</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>i = object.Index</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the index of the item in
+            the control. This is the same index as in the <a href="#ListItems">ListItems</a>
+            collection.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Key</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Key = key_name<br>
+            v = object.Key&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the key name of the item.
+            This name can be used instead of numeric index to access the item in
+            the <a href="#ListItems">ListItems</a> collection. It is not
+            required to specify unique name, but if the name is not unique the
+            first found item with the given key name is returned (see <a href="#ListItems">ListItems</a>
+            collection).</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Selected</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Selected = bval<br>
+            b = object.Selected&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the selected state of the
+            item. See also <a href="#NSListView">NSListView</a>.SelectedItems.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Tag</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = v<br>
+            Set object.Tag = v<br>
+            v = object.Tag<br>
+            Set v = object.Tag</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables the application to attach a
+            tag to the object. It can be used also by the sorting and find
+            methods.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Indent</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Indent = n<br>
+            n = object.Indent&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the indent of the item in
+            report view only. The value specifies image widths, thus small
+            values should be used. Even if you are not using images, adjust the
+            image size in the SmallIcons image list in order to specify what
+            equals to indent=1 (i.e. indent=1 shows the item 1 image widths to
+            the right).&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Text</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Text = str<br>
+            str = object.Text</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the item text.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            X</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.X = v<br>
+            v = object.X&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top" rowspan="2">Sets/gets the items's
+            position in the list view in Icons and Small icons view. Using these
+            two properties you can move the item, arrange manually the items to
+            reflect some kind of grouping etc.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Y</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Y = v<br>
+            v = object.Y&nbsp;</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Hierarchy
+            members</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListItem</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set o = object.ListItem</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to self. As the
+            SubItem object has the same property (which returns the item to
+            which the sub-item belongs) this property can be used in pieces of
+            code where the items and the sub-items are not distinguished from
+            each other.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            IsSubItem</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>b = object.IsSubItem</td>
+          <td bgcolor="#FFFFFF" valign="top">For the ListItem object always
+            returns False.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListView</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set o = object.ListView</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to the
+            NSListView object to which this item belongs.</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="Columns">Columns</a> collection</h3>
+            <blockquote>
+      A collection that contains all the <b>Column</b> objects in the control.
+      Note that the column 0 always exists and cannot be deleted. It can be only
+      changed. Thus the control starts with one column in which the items are
+      listed in report view. All the collections in this control are 1-based,
+      the column 0 is the only exception. To make it more natural the Columns
+      collection behaves as all the other collections in the control if you
+      consider only the explicitly added columns (see the Add method below).
+      Still, in contrast to the other collections it allows usage of index = 0
+      to which the static column 0 corresponds.
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b><a href="#NSListView">NSListView</a>.<a href="#Columns">Columns</a></b><br>
+        or<br>
+        <b>NSListView.ColumnHeaders</b></p>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td><b><font color="#FFFFFF">Name</font></b></td>
+          <td><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Methods and properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Add</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>[Set col =] object.Add (_<br>
+            &nbsp; [index], _<br>
+            &nbsp; [Key], _<br>
+            &nbsp; [Text], _<br>
+            &nbsp; [Width], _<br>
+            &nbsp; [Alignment], _<br>
+            &nbsp; [Icon])</td>
+          <td bgcolor="#FFFFFF" valign="top">Adds/inserts a new column in the
+            control. All the parameters are optional and can be modified later
+            through the <a href="#Column">Column</a> object's properties. There
+            is only one specific exception: <i>if the Icon is not set when the
+            column is created using this method, the column will not support
+            images</i> and any later attempts to set an icon to it will have no
+            effect (see the notes in the <a href="#Using">Using NSListView control</a>
+            section about why this behavior is left as it is in the underlying
+            windows control).<br>
+            The arguments:<br>
+            <b><i>Index</i></b> - the index at which the column will be placed.
+            If omitted the column is appended to the existing columns.<br>
+            <b><i>Key</i></b> -&nbsp; Key name for the column. It can be used in
+            the Columns collection to access the column instead of numeric
+            index.<br>
+            <b><i>Text</i></b> - Initial text for the column header<br>
+            <b><i>Width</i></b> - Initial column width. If omitted 50 pixels is
+            the default width.<br>
+            <b><i>Alignment</i></b> - Initial alignment of the text and the
+            image in the column header. See the <a href="#Column">Column</a>.Alignment
+            for details about the possible values.<br>
+            <b><i>Icon</i></b> - The icon index or key name from the
+            ColumnHeaderIcons image list (See the note above).</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Clear</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Clear</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes all the columns.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Count</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>c = object.Count</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the number of the columns
+            in the control, not counting the column 0. Because of this behavior
+            you can use For ... Next cycles as with the other collections from 1
+            to Count when enumerating the columns you added and from 0 to Count
+            if you want to enumerate also the column 0.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Item</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set col = object.Item(x)<br>
+            Set col = object(x)</td>
+          <td bgcolor="#FFFFFF" valign="top"><b>Default</b>. Returns the column
+            specified by x. X can be integer index from 0 to Count or key name.
+            If the key name is not unique the first column with that Key name is
+            returned.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Remove</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Remove x</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes the column specified by x.
+            X can be integer index from 1 to Count or key name. If the key name
+            is not unique the first column with that Key name is returned. The
+            column 0 cannot be removed.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Enumerator</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>For Each o in object<br>
+            Next</td>
+          <td bgcolor="#FFFFFF" valign="top">Enumerates the elements of the
+            collection.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Hierarchy
+            members</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListView</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set lv = object.ListView</td>
+          <td bgcolor="#FFFFFF" valign="top">Return a reference to the
+            NSListView control to which this object belongs.</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="Column">Column</a> object</h3>
+            <blockquote>
+      Represents a particular column in the control.
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b>Set col = <a href="#NSListView">NSListView</a>.<a href="#Columns">Columns</a>(index)</b><br>
+        or<br>
+        <b>Set col = NSListView.ColumnHeaders(index)</b><br>
+        or<br>
+        <b>Set col = NSListView.Columns(&quot;key&quot;)<br>
+        </b>or<br>
+        <b>Set col = NSListView.ColumnHeaders(&quot;key&quot;)<br>
+        </b>or
+        <b><br>
+        For Each col In NSListView.Columns<br>
+        &nbsp;&nbsp; ' make use of col<br>
+        Next</b></p>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td><b><font color="#FFFFFF">Name</font></b></td>
+          <td><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Objects and collections</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/collection.gif" width="16" height="16">
+            ColumnItems</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set o = object.ColumnItems</td>
+          <td bgcolor="#FFFFFF" valign="top">A collection of all the items or
+            subitems in the column. If this is column 0 the elements are Item
+            objects, if this is column 1 or greater the elements are SubItem
+            objects.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" colspan="3" nowrap>Properties and
+            methods</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Alignment</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Alignment = c<br>
+            c = object.Alignment&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/Gets the text alignment in the
+            column. The allowed values are:<br>
+            0 - NSLVColumnLeft - left aligned (default).<br>
+            1 - NSLVColumnRight - right aligned.<br>
+            2 - NSLVColumnCenter - centered.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Icon</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Icon = icn<br>
+            icn = object.Icon&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the image index which is
+            to be displayed in the column header from the ColumnHeaderIcons
+            image list. <b>icn</b> is&nbsp; 1-based image index in the image
+            list or (when assigned only) it can be also the image's key name in
+            the image list.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Index</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>idx = object.Index</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the column index.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Key</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Key = key_name<br>
+            key_name = object.Key</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets gets the key name of the
+            column. This name can be used later to access the column through the
+            <a href="#Columns">Columns</a> collection. Furthermore the same key
+            name can be used to access the sub-items in that column through the
+            ListItem.<a href="#SubItems">SubItems</a> collection.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Position</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Position = pos<br>
+            pos = object.Position</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the visual order position
+            of the column. This value should be in the same range as the column
+            indices. However, changing the column position does not affect its
+            index. I.e. the visual order of the columns can be different from
+            the internal order.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            SortType</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.SortType = v<br>
+            v = object.SortType&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Defines how the sorting will be
+            done when and if the <a href="#NSListView">NSListView</a>.SortKey is
+            set to the index of this column. The possible values are:<br>
+            0 - Sort as texts by the content of the ListItem/SubItem Text
+            property<br>
+            1 - Sort as numbers by the content of the ListItem/SubItem Text
+            property<br>
+            2 - Sort as texts by the content of the ListItem/SubItem Tag
+            property<br>
+            3 - Sort as numbers by the content of the ListItem/SubItem Tag
+            property<br>
+            When sorted as numbers the text or the tag of the items/sub-items in
+            the column is converted to double precision number and then
+            complared.<br>
+            Using values of 2 and 3 enables you to show visually one data, but
+            sort the items by another data kept in their Tag properties. This is
+            especially useful when you need to format the visually displayed
+            data in user friendly manner which is not good for sorting - for
+            example &quot;100kg&quot; is not a number and worse you may have the
+            values rounded to different scales &quot;100kg&quot;,
+            &quot;1.2t&quot; etc. Keeping a clean value in the Tag property
+            solves the problem.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Tag</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = v<br>
+            Set object.Tag = v<br>
+            v = object.Tag<br>
+            Set v = object.Tag</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables the application to attach a
+            tag to the object. It can be used also by the sorting and find
+            methods.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Text</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Text = str<br>
+            str = object.Text</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the column caption text</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            ShowImage</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.ShowImage = b<br>
+            b = object.ShowImage</td>
+          <td bgcolor="#FFFFFF" valign="top">Specifies if the column shows an
+            image from the ColumnHeaderIcons image list in its header. If an
+            icon is specified when the Columns.Add creates the column or later
+            an image index is assigned to the Icon property this property is set
+            automatically to True. If you want to hide the image in a given
+            column you can set ShowImage to False and back to Ture when you want
+            to show the image again.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Hierarchy
+            properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListView</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set lv = object.ListView</td>
+          <td bgcolor="#FFFFFF" valign="top">Return a reference to the
+            NSListView control to which this object belongs.</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="ColumnItems">ColumnItems</a> collection</h3>
+            <blockquote>
+      A collection that contains all the <b>ListItem</b> or <b>SubItem</b> objects in the Column to
+      which this object belongs
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b><a href="#NSListView">NSListView</a>.<a href="#Columns">Columns</a>(index).ColumnItems</b><br>
+        </p>
+      </blockquote>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td><b><font color="#FFFFFF">Name</font></b></td>
+          <td><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Methods and properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Count</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>c = object.Count</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the number of
+            &quot;rows&quot;. Actually this property returns the number of items
+            in the control because in report view the number of the rows is
+            equal to the number of the items in the control. Thus this value is
+            the same as the value returned by NSListView.<a href="#ListItems">ListItems</a>.Count</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Item</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set itm = object.Item(x)<br>
+            Set itm = object(x)</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the indexed item or
+            sub-item. Depending on the column to which this object belongs the
+            object returned will be <a href="#ListItem">ListItem</a> (for column
+            0) or <a href="#SubItem">SubItem</a> for any other
+            column.&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Enumerator</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>For Each itm In object<br>
+            Next</td>
+          <td bgcolor="#FFFFFF" valign="top">Cycles through all the existing
+            sub-items in the column. Note that the sub-items that have never
+            been set are skipped. I.e. the cycle will enumerate objects &lt;=
+            Count. Thus this syntax is good when you want to enumerate all the
+            non-empty &quot;cells&quot;.</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="SubItems">SubItems</a> collection</h3>
+            <blockquote>
+      A collection that contains all the <b>SubItem</b> objects of the Item to
+      which this object belongs.
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b><a href="#NSListView">NSListView</a>.<a href="#ListItems">ListItems</a>.<a href="#ListItem">Item</a>(index).<a href="#SubItems">SubItems</a><br>
+        </b>or<b><br>
+        NSListView(index).SubItems</b><br>
+        </p>
+      </blockquote>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Methods and properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Clear</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Clear</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes all the sub-items of this
+            item.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Count</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>c = object.Count</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the number of the sub-items
+            of the item. This is always equal to the number of the Columns
+            (without column 0).</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Item</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set o = object.Item(x)<br>
+            Set o = object(x)</td>
+          <td bgcolor="#FFFFFF" valign="top"><b>Default</b>. Returns the
+            addressed sub-item. x can be an integer between 1 and Count or a key
+            name of the <a href="#Column">Column</a> containing the <a href="#SubItem">SubItem</a>.
+            Note that for efficiency the SubItem-s that have been never used are
+            actually not created.<br>
+            <i>Remark</i>: If you want to minimize the memory usage in an
+            NSLitView control containing huge number of rows, but sparsely
+            populated with sub-items avoid using For I = 1 to object.Count
+            cycles over the SubItems collections and prefer For Each cycles.
+            This way you will never invoke creation of objects that would
+            eventually remain empty.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            Remove</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Remove x</td>
+          <td bgcolor="#FFFFFF" valign="top">Removes the <a href="#SubItem">SubItem</a>
+            addressed by x which can be an integer between 1 and Count or a key
+            name of the column in which the sub-item is.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Enumerator</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>For Each o in object<br>
+            Next</td>
+          <td bgcolor="#FFFFFF" valign="top">Enumerates the elements of the
+            collection.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Hierarchy
+            members</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListItem</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set itm = object.ListItem</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to the <a href="#ListItem">ListItem</a>
+            to which this collection belongs.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListView</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set lv = object.ListView</td>
+          <td bgcolor="#FFFFFF" valign="top">Return a reference to the
+            NSListView control to which this object belongs.</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Internal members</th>
+        </tr>
+        <tr>
+          <td bgcolor="#C0C0C0" valign="top" colspan="3" align="center">These
+            members are documented but it is recommended to not use them. They
+            exist to support certain internal features of the control.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#C0C0C0" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            DefinedCount</td>
+          <td bgcolor="#C0C0C0" valign="top" nowrap>c = object.Count</td>
+          <td bgcolor="#C0C0C0" valign="top">Returns the count of the existing
+            sub-items. I.e. the SubItem objects that are currently maintained by
+            the collection and not the number of the columns.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#C0C0C0" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ItemByIndex</td>
+          <td bgcolor="#C0C0C0" valign="top" nowrap>Set sitm =
+            object.ItemByIndex(x)</td>
+          <td bgcolor="#C0C0C0" valign="top">Returns a SubItem by its internal
+            index. This index does not correspond to its visual position.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#C0C0C0" valign="top" nowrap><img border="0" src="images/method.gif" width="17" height="16">
+            RemoveByIndex</td>
+          <td bgcolor="#C0C0C0" valign="top" nowrap>object.RemoveByIndex(x)</td>
+          <td bgcolor="#C0C0C0" valign="top">Removes a SubItem by its internal
+            index. This index does not correspond to its visual position.</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="SubItem">SubItem</a> object</h3>
+            <blockquote>
+      Represents a sub item in the control.
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b>Set subitm = <a href="#NSListView">NSListView</a>.<a href="#ListItems">ListItems</a>.<a href="#ListItem">Item</a>(index).<a href="#SubItems">SubItems</a>(subindex)</b><br>
+        or<br>
+        <b>Set subitm = NSListView.ListItems.Item(index)(subindex)</b><br>
+        or<br>
+        <b>Set subitm = NSListView(index)(subindex)<br>
+        </b>or<br>
+        <b>Set subitm = NSListView.ListItems(index).SubItems(subindex)<br>
+        </b>or<b><br>
+        Set subitm = NSListView(index).SubItems(subindex)<br>
+        </b>or<b><br>
+        Set subitm = NSListView.ListItems(index)(subindex)<br>
+        </b>or<b><br>
+        For Each subitm In NSListView(index).SubItems<br>
+        &nbsp;&nbsp; ' make use of subitm<br>
+        Next<br>
+ </b>or<br>
+        <b>For Each subitm In NSListView.Columns(index).ColumnItems<br>
+        &nbsp;&nbsp; ' make use of subitm<br>
+        Next</b></p>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td nowrap><b><font color="#FFFFFF">Name</font></b></td>
+          <td nowrap><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Methods and properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Icon</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Icon = icn<br>
+            icn = object.Icon&nbsp;</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the image associated with
+            the SubItem. The icn is an index from the SmallIcons image list.
+            When assigned an image key name in the SmallIcons <a href="TN21.htm">image
+            list</a> can be used instead of an index. Note that images are shown
+            with the SubItems only if <a href="#NSListView">NSListView</a>.SubItemImages
+            is set to True.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Index</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>idx = object.Index</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the index of the object in
+            the collection to which it belongs (see <a href="#SubItems">SubItems</a>)</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Key</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>key = object.Key</td>
+          <td bgcolor="#FFFFFF" valign="top">Gets the key name of the column to
+            which the SubItem belongs. The SubItem can be addressed in the <a href="#SubItems">SubItems</a>
+            collection by this name as well as by its column index.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Tag</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Tag = v<br>
+            Set object.Tag = v<br>
+            v = object.Tag<br>
+            Set v = object.Tag</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables the application to attach a
+            tag to the object. It can be used also by the sorting and find
+            methods.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Text</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Text = str<br>
+            str = object.Text</td>
+          <td bgcolor="#FFFFFF" valign="top">Sets/gets the SubItem's text</td>
+        </tr>
+        <tr>
+          <th bgcolor="#FFFFCC" valign="top" nowrap colspan="3">Hierarchy
+            members</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            IsSubItem</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>b = object.IsSubItem</td>
+          <td bgcolor="#FFFFFF" valign="top">Both <a href="#ListItem">ListItem</a>
+            and SubItem objects have this property. For SubItem objects it
+            always returns True while for ListItem objects it always returns
+            False. Sometimes the applications need to work with both ListItems
+            and SubItems as if they are the same, still at some point it may be
+            necessary to distinguish the ListItems from the SubItems - this
+            property enables the application do it without need to query other
+            information. For example this may happen if you use <a href="#NSListView">NSListView</a>.FindItems
+            method to search through the control.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListItem</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set itm = object.ListItem</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to the <a href="#ListItem">ListItem</a>
+            to which this SubItem belongs.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListView</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set lv = object.ListView</td>
+          <td bgcolor="#FFFFFF" valign="top">Return a reference to the
+            NSListView control to which this object belongs.</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="Results">Results</a> collection</h3>
+            <blockquote>
+      Represents a collection of objects returned as result of a search or other
+      operation. The type of the objects in the collection depends on the
+      operation.
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b>Set result = NSBImageList.FindItems(&quot;search what&quot;,True)</b><br>
+        or<br>
+        <b>Set result = NSBImageList.SelectedItems</b><br>
+        </p>
+      </blockquote>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td><b><font color="#FFFFFF">Name</font></b></td>
+          <td><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Methods and properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Count</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>c = object.Count</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the number of the elements
+            in the collection.&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Item</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set itm = object.Item(Index)</td>
+          <td bgcolor="#FFFFFF" valign="top"><b>Default</b>, indexed property.
+            Index is 1 based integer index.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Enumerator</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>For Each itm in object<br>
+            ...<br>
+            Next</td>
+          <td bgcolor="#FFFFFF" valign="top">Cycles through all the elements of
+            the collection.&nbsp;</td>
+        </tr>
+      </table>
+      <h4>&nbsp;</h4>
+            </blockquote>
+      <h3><a name="NSListViewEvent">NSListViewEvent</a> object</h3>
+            <blockquote>
+      Represents the event details. Each event fired by the control provides
+      this object to the event handling routine. Depending on the event some or
+      all of the members of the object may contain information. For example the
+      OnClick event in report view may contain Column, Item and SubItem objects.
+      These will be the SubItem over which the user has clicked, the item to
+      which this SubItem belongs and the Column in which the SubItem is. Thus,
+      the members of the object will always contain references to all the
+      objects related to the event. As there can be only one object of each type
+      related to a particular event there is one member for each type of the
+      control elements.&nbsp;&nbsp;&nbsp;
+      <p>See also the <a href="#Events">Events</a> list for information when
+      each event occurs.</p>
+      <p>Syntax:</p>
+      <blockquote>
+        <p><b>Sub NSListView_Ob&lt;EventName&gt;(oEvent)</b><br>
+        &nbsp; Set itm = oEvent.Item<br>
+        &nbsp; oEvent.Column.Text = &quot;new caption&quot;<br>
+        &nbsp; .....<br>
+        End Sub<br>
+        </p>
+      </blockquote>
+      <h4>Members reference</h4>
+      <table border="0" cellspacing="1" bgcolor="#808000">
+        <tr>
+          <td><b><font color="#FFFFFF">Name</font></b></td>
+          <td><b><font color="#FFFFFF">Syntax</font></b></td>
+          <td><b><font color="#FFFFFF">Description</font></b></td>
+        </tr>
+        <tr>
+          <th colspan="3" nowrap bgcolor="#FFFFCC">Methods and properties</th>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Column</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set c = object.Column</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to the <a href="#Column">Column</a>
+            related to the event if any..<br>
+            Is/Can be non-empty for:<br>
+            OnColumnClick,<br>
+            OnBeginLabelEdit,<br>
+            OnEndLabelEdit,<br>
+            OnItemActivate,<br>
+            OnClick,<br>
+            OnDblClick,<br>
+            OnRClick,<br>
+            OnRDblClick,<br>
+            OnItemChanged</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Item</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set itm = object.Item</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to the <a href="#ListItem">ListItem</a>
+            related to the event if any..<br>
+            Is/Can be non-empty for:<br>
+            OnBeginLabelEdit,<br>
+            OnEndLabelEdit,<br>
+            OnItemActivate,<br>
+            OnClick,<br>
+            OnDblClick,<br>
+            OnRClick,<br>
+            OnRDblClick,<br>
+            OnItemChanged</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            SubItem</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set sitm = object.SubItem</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to the <a href="#SubItem">SubItem</a>
+            related to the event if any..<br>
+            Is/Can be non-empty for:<br>
+            OnItemActivate,<br>
+            OnClick,<br>
+            OnDblClick,<br>
+            OnRClick,<br>
+            OnRDblClick,<br>
+            OnItemChanged</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Text</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>s = object.Text</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the text related to the OnEndLabelEdit
+            event. This is the new text entered by the user.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Key</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>n = object.Key</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns the virtual key code of the
+            keyboard key pressed for the OnKeyDown event.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            ListView</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>Set lv = object.ListView</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns a reference to the ListView
+            control that fired the event.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_r.GIF" width="17" height="14">
+            Event</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>c = object.Event</td>
+          <td bgcolor="#FFFFFF" valign="top">Returns integer constant
+            corresponding to the event. Can be used if you are using a combined
+            event handling routine called to handle more than one type of event.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" valign="top" nowrap><img border="0" src="images/prop_rw.gif" width="36" height="14">
+            Cancel</td>
+          <td bgcolor="#FFFFFF" valign="top" nowrap>object.Cancel = b</td>
+          <td bgcolor="#FFFFFF" valign="top">Enables the event handler to cancel
+            the action that caused the event. Only the <b>OnMarqueeBegin</b>, <b>OnBeginLabelEdit</b>
+            and <b>OnEndLabelEdit</b> events can be cancelled.</td>
+        </tr>
+      </table>
+      <h4>Remarks:</h4>
+      <p>The event handling code often needs to check it one of the Item,
+      SubItem and Column properties of the event object are not empty and
+      contain a reference to an object related to the event. This is usually
+      done this way:</p>
+      <p><b>Sub NSListView_OnClick(oEvent)<br>
+      &nbsp; If Not oEvent.Item Is Nothing Then<br>
+      &nbsp;&nbsp;&nbsp; ' There is an ListItem object related to the
+      event.&nbsp;<br>
+      &nbsp; End If<br>
+      End Sub</b></p>
+      <p>&nbsp;</p>
+            </blockquote>
+      <p>&nbsp;</p>
+      <h2>3. <a name="Using">Using</a> NSListView ActiveX control</h2>
+      <p>The NS BASIC ListView control is easy to use despite the number of the
+      objects in it. Their actual purpose is to represent each element in the
+      control i a convenient way and thus enable you work with it in intuitive
+      way.&nbsp; </p>
+      <p>The ListView is a control that can be used in various ways - it can
+      present simple pictured list of items with text labels, but it can also
+      work like a table/grid and display data in columns with sorting and other
+      extras. Furthermore the control can expose all the items in it as
+      checkboxes, the items (in report/grid view) can be indented and the
+      control may become quite similar to a tree view. All this makes it the
+      control of choice for many tasks. Depending on the application the control
+      can be pre-configured for a certain view only (e.g. as a grid or as icon
+      view), but sometimes it is convenient to enable the user to change between
+      2 or more views. The classic example is the Windows Explorer in which the
+      files can be viewed as big/small icons or in a report view with detailed
+      information about the file in each row. </p>
+      <p>So, where to begin? We will begin with a simple icon view in mind, but
+      we will then move to a report view. One of the most important features of
+      the control is that all the elements are accessible and creatable no
+      matter if the current view shows them or not. For example you can perform
+      tasks that will fill information for the report view while the list is
+      shown as icons - the data you add in the sub items will not be visible
+      until the view is changed to report. This means that the application can
+      always assume that the control is in report/grid view and manage its
+      contents in this manner. So, if the task the application is performing
+      deserves a report view you can think in its terms no matter if it is
+      allowed to change the way the user views the data (thus hiding/unhiding
+      parts of it when the view is changed). </p>
+      <p>Lets start: We assume we have a form (<b>Form1</b>) and a NSListView
+      control is added to it under the name <b>NSListView1 </b>(see how to <a href="TN11a.htm#addtotoolbox">add
+      the control to the toolbox</a>).&nbsp; </p>
+      <p>Let's add a few items for a start: </p>
+      <blockquote>
+        <p><b><font color="#006600">NSListView1.ListItems.Add 1,&quot;Item1
+        Key&quot;,&quot;My item 1&quot;<br>
+        NSListView1.ListItems.Add 2,&quot;Item2 Key&quot;,&quot;My item 2&quot;<br>
+        NSListView1.ListItems.Add , ,&quot;My item 3&quot;</font></b> </p>
+        <p>We add the items through the <a href="#listitems.htm">ListItems</a>
+        collection. The control has many elements and that is why we need to be
+        specific (For example we may add also columns or images). </p>
+        <p>All the arguments of the ListItems.Add method are optional, thus (in
+        the 3-d line above) we decided to omit most of the item parameters. This
+        is what the control will look like after these lines<br>
+        :<img border="0" src="images/tut1.gif" width="312" height="144"> </p>
+        <p>There are no icons? Well, lets load some: </p>
+        <p><b><font color="#006600">NSListView1.Icons.LoadBitmap &quot;bigicons1.bmp&quot;<br>
+        ' note that you may need to specify the full path to the bitmap in the
+        real world</font></b> </p>
+        <p><img border="0" src="images/tut2.gif" width="312" height="144"> </p>
+        <p>By default the items use the first icon from the loaded image. The
+        image we loaded above actually looks like this:<br>
+        <img border="0" src="images/bigicons1.gif" width="128" height="32"><br>
+        The image list is a collection of images all with the same size. When a
+        bitmap is loaded it expects there 1 or more images of the size currently
+        configured. The images are to be ordered from left to right in the
+        bitmap. By default the <b>Icons</b> image list is configured for 32x32
+        pixel images. </p>
+        <p>Now lets change the item images:<br>
+        <b><font color="#006600">NSListView1.ListItems(&quot;Item1
+        Key&quot;).Icon = 1<br>
+        NSListView1.ListItems(&quot;Item2 Key&quot;).Icon = 2<br>
+        NSListView1.ListItems(3).Icon = 3</font></b> </p>
+        <p><img border="0" src="images/tut3.gif" width="312" height="144"> </p>
+        <p>Above we have set keys for some of the items. This means that we can
+        do the same this way: </p>
+        <p><b><font color="#006600">NSListView1.ListItems(1).Icon = 1<br>
+        NSListView1.ListItems(2).Icon = 2<br>
+        NSListView1.ListItems(3).Icon = 3</font></b> </p>
+        <p>So, the keys can be used as item name which can be specified instead
+        of an index. This can be quite useful when the data in the control has
+        no definite order. </p>
+        <p>Let's now do all this again, but&nbsp; in much simpler way - saving
+        some typing work: </p>
+        <p><b><font color="#006600">NSListView1.Icons.LoadBitmap
+        &quot;bigicons1.bmp&quot;<br>
+        Set itm = NSListView1.ListItems.Add(1,&quot;Item1 Key&quot;,&quot;My
+        item 1&quot;)<br>
+        itm.Icon = 1<br>
+        Set itm = NSListView1.ListItems.Add(2,&quot;Item2 Key&quot;,&quot;My
+        item 2&quot;)<br>
+        itm.Icon = 2<br>
+        Set itm = NSListView1.ListItems.Add( , ,&quot;My item 3&quot;)<br>
+        itm.Icon = 3</font></b> </p>
+        <p>The <b>Add</b> method returns the just created item, thus giving us
+        chance to do something more with its properties. We can also use the
+        rest of the optional parameters of the <b>Add</b> method and eliminate
+        the need to specify the item's image on a separate line: </p>
+        <p><b><font color="#006600">NSListView1.ListItems.Add 1,&quot;Item1
+        Key&quot;,&quot;My item 1&quot;, 1<br>
+        NSListView1.ListItems.Add 2,&quot;Item2 Key&quot;,&quot;My item 2&quot;,
+        2<br>
+        <span style="background-color: #FFFF00">NSListView1.ListItems.Add ,
+        ,&quot;My item 3&quot;, 3<br>
+        </span>NSListView1.Icons.LoadBitmap &quot;bigicons1.bmp&quot;</font></b> </p>
+        <p>Let's talk about line 3. It does not specify an index for the created
+        item - where it will be put? The answer is it will be appended at the
+        end of the ListItems collection. Thus skipping the index is equivalent
+        to: </p>
+        <p><b><font color="#006600"><span style="background-color: #FFFF00">NSListView1.ListItems.Add
+        NSListView1.ListItems.Count, ,&quot;My item 3&quot;, 3</span></font></b> </p>
+        <p>Therefore when we add the items sequentially or the order does not
+        matter to the application we can just skip the index. </p>
+        <p>Now suppose we want to cycle through all the items and extract some
+        information from them. For the example we will use their Text property.
+        We can do this in two ways: </p>
+        <p><b><font color="#006600">' Normal cycle<br>
+        For I = 1 to NSListView1.ListItems.Count<br>
+        &nbsp; MsgBox NSListView1.ListItems(I).Text<br>
+        Next</font></b> </p>
+        <p>or </p>
+        <p><b><font color="#006600">' Enumeration<br>
+        For Each I In NSListView1.ListItems<br>
+        &nbsp; MsgBox I.Text<br>
+        Next</font></b> </p>
+        <p>Which way is better? Actually neither is better than the other, the
+        latter needs a bit less code, but aside of that all depends on any other
+        needs that you may have. The second technique is called <b>enumeration</b>.
+        The control exposes enumerations in many places - for the items, for the
+        columns, for the sub items of each item, for the items/sub items in each
+        column and so on. Generally the enumeration is more effective especially
+        if you enumerate sub items (discussed below). </p>
+        <p>Before continue let's change the view. Firs to small icons: </p>
+        <p><b><font color="#006600">NSListView1.View = 2</font></b> </p>
+        <p><img border="0" src="images/tut4.gif" width="312" height="144"> </p>
+        <p>Again no icons, what are we missing? All the other views except Icon
+        view use the <b>SmallIcons</b> image list. We have nothing loaded in it
+        yet, so no icons appear in the control. Let's load another bitmap - with
+        smaller images (16x16 by default): </p>
+        <p><b><font color="#006600">NSListView1.SmallIcons.LoadBitmap &quot;smallicons1.bmp&quot;</font></b> </p>
+        <p>the bitmap looks like this: <img border="0" src="images/smallicons1.gif" width="64" height="16"> </p>
+        <p>and the control after the above line:<br>
+        <img border="0" src="images/tut5.gif" width="312" height="144"> </p>
+        <p>Now let's switch to report view and see what we can do with the
+        control in its most powerful form. </p>
+        <p><b><font color="#006600">NSListView1.View = 1</font></b> </p>
+        <p><img border="0" src="images/tut6.gif" width="312" height="144"> </p>
+        <p>What we see? There is one column with empty caption and all the items
+        are listed one under another in it. The SmallIcons are used. Can we put
+        some caption to that column? Yes: </p>
+        <p><b><font color="#006600">NSListView1.Columns(0).Text = &quot;Items&quot;</font></b> </p>
+        <p>We can also set an icon to that column: </p>
+        <p><b><font color="#006600">NSListView1.Columns(0).Icon = 1</font></b> </p>
+        <p>But remember the columns have separate image list from which their
+        icons are fetched and we have nothing in it yet. so to make the above
+        two lines work we should: </p>
+        <p><b><font color="#006600">NSListView1.ColumnHeaderIcons.LoadBitmap &quot;smallicons1.bmp&quot;<br>
+        NSListView1.Columns(0).Icon = 1<br>
+        NSListView1.Columns(0).Text = &quot;Items&quot;</font></b> </p>
+        <p><img border="0" src="images/tut7.gif" width="312" height="144"> </p>
+        <p>By default the size of the header icons is 16x16 - the same as for
+        the small icons, but you can change that (discussed later). </p>
+        <p>What is important about the report view? It looks like a table or let
+        say a grid control. The NSListView is especially designed to make
+        table-like usage convenient and natural. Now is the time to note some
+        characteristics of the NSListView control. If you have some experience
+        with other ListView controls or with the native Windows control (using C
+        for example) it is very likely that you have some troubles especially if
+        you have attempted dynamic changes of the columns and the items.
+        NSListView hides virtually all the sensitive details and you can safely
+        assume the report view a table/grid. To refine the table abstraction let
+        say that the Items we discussed above play the role of rows and the
+        columns are just columns. Thus the first column is special - it cannot
+        be deleted, the items are listed in it, the column can be changed, but
+        it is always present. </p>
+        <p>That's why the index of the first column is 0 while everything else
+        in the control has 1-based indices. Furthermore the Columns.Count
+        returns only the count of the columns you added without this first
+        column which we will call later column 0. Thus the columns can be
+        assumed to have 1-based indices if you count only the columns you can
+        freely add and delete. </p>
+        <p>Let's add 3 columns: </p>
+        <p><b><font color="#006600">NSListView1.Columns.Add , &quot;Column1
+        Key&quot;,&quot;Column 1&quot;, 50<br>
+        NSListView1.Columns.Add , &quot;Column2 Key&quot;,&quot;Column 2&quot;,
+        50<br>
+        NSListView1.Columns.Add , &quot;Column3 Key&quot;,&quot;Column 3&quot;,
+        100, 2, 4</font></b> </p>
+        <p>If we want to cycle through them we can do it like this: </p>
+        <p><b><font color="#006600">For I = 1 To NSListView1.Columns.Count<br>
+        &nbsp; NSListView1.Columns(I).Text = &quot;My Column &quot; &amp; I<br>
+        Next</font></b> </p>
+        <p>changing their caption text a little. As we said above this cycle
+        will cycle only through the columns we added and will not include the
+        fixed column 0. If we want to include it into the cycle we should change
+        it: </p>
+        <p><b><font color="#006600">For I = </font><font color="#FF0000">0</font><font color="#006600">
+        To NSListView1.Columns.Count<br>
+        &nbsp; NSListView1.Columns(I).Text = &quot;My Column &quot; &amp; I<br>
+        Next</font></b> </p>
+        <p>Now lets use enumeration instead of an index cycle: </p>
+        <p><b><font color="#006600">For Each col In NSListView1.Columns<br>
+        &nbsp; col.Text = &quot;Column &quot; &amp; col.Index<br>
+        Next</font></b> </p>
+        <p><img border="0" src="images/tut8.gif" width="312" height="144"><br>
+        We end up with something like this </p>
+        <p>Both cycles do the same work. When working with columns it is more
+        likely that an index cycle will be better choice because for columns we
+        will need more often to know the exact index. However, we shall see
+        later that the enumerations are generally more convenient for almost
+        everything else. </p>
+        <p>Back to the columns. The Columns.Add method has these parameters:<br>
+        <b>.Add index, Key, Text, Width, Alignment, Icon</b><br>
+        All the arguments are optional, but you must be aware of the specific
+        behavior of the columns about the icons. <i><font color="#006600">If no
+        icon is specified when the column is created (added) no icon can be ever
+        set to that column</font></i>. This behavior of the native Windows
+        control is preserved in the ActiveX for a reason - the icons even empty
+        occupy some space. And this is the only way to get rid of that space.
+        So, if the space in the column's caption is more precious than the
+        opportunity to show icons in the column's header - omit the image
+        argument, but remember that if you assign something to the Icon property
+        of that column nothing will happen. To illustrate that lets cycle
+        through the columns again and try to assign images: </p>
+        <p><b><font color="#006600">For I = </font><font color="#FF0000">0</font><font color="#006600">
+        To NSListView1.Columns.Count<br>
+        &nbsp; NSListView1.Columns(I).Icon = I - 1<br>
+        Next</font></b> </p>
+      <p>Nothing will change no matter that we actually have 4 icons with
+      indices 1-4. If we change the code with which the columns have been
+      created and specify some initial image the cycle will have effect.</p>
+      <p>What is the key for? Like with the items it can be used instead of the
+      index:</p>
+      <p><b><font color="#006600">Set mycolumn = NSListView1.Columns(&quot;Column2 Key&quot;)</font></b><br>
+      will return the same as:<br>
+      <b><font color="#006600">Set mycolumn = NSListView1.Columns(2)</font></b><br>
+      because we keyed that column &quot;Column2 Key&quot; </p>
+        <p>Now let's do something with the &quot;cells&quot; of the table or in the terms of
+      the list view - the sub items. Providing the columns are not reordered
+        (see the Column.Position property) the column 0 (the left most one)
+        contains the items which in the other view modes (icon, small icons and
+        list) are the only visible elements in the work area of the control. To
+        show something in the other columns we need to set some sub-items of
+        some items. Lets do it randomly, because such a code will make use of
+        many of the involved features:</p>
+        <p><b><font color="#006600">Dim Itm, J, o<br>
+    For Each Itm In NSListView1.ListItems<br>
+        &nbsp; Randomize<br>
+        &nbsp; J = Int(NSListView1.Columns.Count * Rnd) + 1<br>
+        &nbsp; <span style="background-color: #FFFF00">Itm(J).Text = "SubItem " &amp; J<br>
+        &nbsp; Itm(J).Icon = Int(4 * Rnd) + 1</span><br>
+    Next</font></b></p>
+        <p>And the result will be something like this:</p>
+        <p><img border="0" src="images/tut9.gif" width="312" height="144"></p>
+        <p>What the code does: It cycles through all the items in the control.
+        Thinking of them as rows you can say it is a cycle through all the rows.
+        For each row a random column is chosen, but never column 0 because it
+        contains the items themselves. And through the item its subitems are
+        accessed. The items are <a href="#ListItem">ListItem</a> objects and
+        their SubItems property gives us access to their sub-items which are <a href="#SubItem">SubItem</a>
+        objects. The SubItems property actually holds a <a href="#SubItems">SubItems</a>
+        collection object thus one of the highlighted lines above can be written
+        this way:</p>
+        <p><b><font color="#006600">Itm.SubItems.Item(J).Text = &quot;SubItem
+        &quot; &amp; J</font></b></p>
+        <p>However the SubItems is a default property of the ListItem object and
+        the Item property of the SubItems collection is its default property and
+        this enables us use the shorter syntax:</p>
+        <p><b><font color="#006600">Itm(J).Text = &quot;SubItem &quot; &amp; J</font></b></p>
+        <p>which exposes the item's sub-items as if they are its array
+        elements.&nbsp;</p>
+        <p>The NSListView attempts to expose the list view functionality in a
+        way that enables you to work with it as with a grid. Of course you
+        should remember that it is not a grid, but the resemblance is very
+        close. So there is one more trick here - the ColumnItems collection. It
+        enables us to access the items or the sub-items from a column. So lets
+        go through all the columns (this time including the column 0 and access
+        every item or sub-item in each column:</p>
+        <p><b><font color="#006600">Dim c,I,J<br>
+        For I = 0 to NSListView1.Columns.Count<br>
+        &nbsp; Set c = NSListView1.Columns(I)<br>
+        &nbsp; For J = 1 To NSListView1.ListItems.Count<br>
+        &nbsp;&nbsp;&nbsp; c.ColumnItems(J).Text = &quot;Col=&quot; &amp; I
+        &amp; &quot;.Row=&quot; &amp; J<br>
+        &nbsp; Next<br>
+        Next</font></b></p>
+        <p>And the result will be pretty much:</p>
+        <p><img border="0" src="images/tut10.gif" width="312" height="144"></p>
+        <p>Now, <b>how to handle events?</b> All the events fired by the control
+        have the same syntax, for instance to handle the OnClick event you need
+        a routine like this:</p>
+        <p><b><font color="#006600">Sub NSListView1_OnClick(oEvent)<br>
+        &nbsp; ........<br>
+        End Sub</font></b> </p>
+        <p>All the events carry one argument - <b><i>oEvent</i></b> in the above
+        example. The argument is not a simple value but an object - <a href="#NSListViewEvent">NSListViewEvent</a>.
+        The object has a few properties among which the <b>Item</b>, <b>SubItem</b>
+        and <b>Column</b> are most interesting. Some or all of these 3 contain
+        references to a <a href="#ListItem">ListItem</a> object (Item property),
+        <a href="#SubItem">SubItem</a> object (SubItem property) and <a href="#Column">Column</a>
+        object (Column property). What means <b>some or all</b> then?</p>
+        <p>The different events concern different elements of the control. For
+        example the user may have clicked an item or a sub-item. The event is
+        the same - OnClick, but the objects causing it may be different. This
+        applies to many of the other events. It is convenient to provide the
+        event handling code with references to all the objects related to the
+        event and thus free the code of the need to deduce them from minimal
+        data (index for example). In the above OnClick event handler we can use:</p>
+        <p><b><font color="#006600">oEvent.Column.Text = &quot;Clicked !!!&quot;</font></b></p>
+        <p>This line will change the caption of the column in which an item or
+        sub-item has been clicked. As you can see the event handler does not
+        need to deduce which column is this - it has a reference to it
+        ready-to-use. Still, there is one more thing to be aware of - depending
+        on the event and how exactly it has occurred the related objects may be
+        different. For instance if an item has been clicked there is no relevant
+        SubItem. Thus in an OnClick event handler that works with SubItem's it
+        may happen that an item has been clicked and there is no relevant
+        sub-item to the event. To find one of these 3 properties contains
+        something one can use code like this:</p>
+        <p><b><font color="#006600">If Not oEvent.SubItem Is Nothing Then<br>
+        &nbsp; ' There is a SubItem in this event - do something with it <br>
+        End If</font></b></p>
+        <p>The same technique is used for any of these 3 properties.</p>
+      </blockquote>
+            <p>&nbsp; </p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+  </tr>
+  <!-- #include file="includes/footer.htm" -->
+</table>
+
+</body>
+
+</html>

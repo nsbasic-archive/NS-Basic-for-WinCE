@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>IPaddress Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/IPaddress.JPG" ALT="ScreenShot" WIDTH="240" HEIGHT="320">
+<pre>
+addobject "MGCENet.IPAddress", "IPAddr", 10, 10, 140, 20
+addobject "CommandButton", "GetAddr", 10, 40, 68, 20
+addobject "CommandButton", "SetAddr", 82, 40, 68, 20
+
+GetAddr.Caption = "Get Addr"
+SetAddr.Caption = "Set Addr"
+
+IPAddr.FontBold = TRUE
+IPAddr.BackColor = ( 65536 * 255 ) + ( 256 * 255 )
+IPAddr.ForeColor = 0
+IPAddr.Value = "255.255.255.255"
+
+sub GetAddr_Click
+   MsgBox IPAddr.Value
+end sub
+
+sub SetAddr_Click
+   IPAddr.Value = "192.168.0.1"
+end sub
+</PRE>
+</body>
+</html>
+

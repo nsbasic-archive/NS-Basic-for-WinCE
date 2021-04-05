@@ -1,0 +1,249 @@
+CPU Types and numbers
+
+ARMV4/StrongArm/SA1100 2577
+ARMV4i/Arm720 1824
+Arm820 2080
+ARM920 2336 (seems to work like 2577)
+ARM_TTDMI 7001
+X86 686
+SH3 10003
+MIPS 4000
+???? 3080
+
+Previous microprocessor type and name 	New microprocessor name
+MIPS/R4100 	MIPSII
+MIPS/IDT32364 	MIPSII
+MIPS/R4300 	MIPSII_FP
+MIPS/MIPSIV 	MIPSIV
+MIPS/MIPSIV_FP 	MIPSIV_FP
+MIPS/R4111 	MIPS16
+ARM/SA1100 	ARMV4
+ARM/ARM720, ARM/ARM920, and other ARM variants 	ARMV4I
+THUMB/ARM720, THUMB/ARM920 and other THUMB variants 	ARMV4T
+SHx/SH3 	SH3
+SHx/SH4 	SH4
+x86/i486 	x86
+
+UniTech HT660e has processor type 2934 (ARM11). None of the installers work.
+
+We don't need MFCCE300, but we do need MFCE400.
+
+To get DeviceProcessorType, connect via ActiveSync then look in Registry
+HCU\software\microsoft\Windows CE Services\DeviceProcessorType
+
+XScale supports the ARM v5 instruction set, however it is also backwards compatible with the ARMv4 instruction set. There are three variants of this:
+
+ARMv4 -> this supports only 32 bit ARMv4 instructions
+ARMv4T -> 'T' stands for Thumb. Thumb is the ARM 16 bit instruction mode
+ARMv4I -> 'I' stands for Interworking. This allows for 32-bit and 16-bit instructions to co-exist
+
+Symbol MC3000
+Windows CE 4.2
+Processor: Intel, PXA270-Intel(R) Bulverde
+DeviceProcessorType: 2577
+DeviceType: SYMBOL WinCE
+ARMV4 machine.
+No VBScript, ADO
+Has MFCCE400.dll
+Compile using 4.2 SDK, Basic.exe itself runs OK, but cannot run any NSB code-
+- gets 80040155 error Interface not registered.
+Problem is that registry entry for VBScript.dll needs key and value {clsid}\InprocServer32\ThreadingModel="both"
+Menu bar on device on top does not appear properly.
+- To run, use Run...Tools...Run
+- To exit, use File...Exit
+- Tools...Execute is too wide - you need to scroll to OK button
+Soft reset on CE 5.0 version: 7+9+power
+Hard reset: keep the power key pressed down ( while the unit is on ) until the unit powers off and reboots . It should then ask for recalibration it it has cold booted. It changed in the CE 5.0 build. It is now 1+9+power ( all three keys must be pressed together) and the decode LED will light very briefly to indicate start of the cold boot sequence. The Integrators guide downloadable from http://www.symbol.com/legacy_manuals/terminal/mc3000.html has more details if required.
+Benchmark: 26125
+Symbol MC3000
+Windows CE 5.0
+Processor: Intel, PXA270-Intel(R) Bulverde 520 mhz
+DeviceProcessorType: 2577
+DeviceType: SYMBOL WinCE
+ARMV4 machine.
+VBScript is not in ROM - but MFC and OLE also do not show.
+
+
+Sigmarion III
+Windows CE 4.1
+CPU type Arm 720: 1824
+Intel Corp., ARM-Intel(R) PXA-255
+Uses ARMI files to compile, though device might be ARM4I.
+Benchmark time is 18677.
+Cannot use same Basic.exe as CPU type 2577.
+Same dlls work, however.
+Hard reset: remove battery, put button in back.
+No ADO in ROM.
+VBScript and MFC are in ROM.
+Builds properly using STANDARDSDK:Win32(WCE ARMV4I) Release
+
+
+Psion Teklogic NetBookPro
+Windows CE 4.2
+CPU Type 2577
+Intel, ARM-PXA255
+VBScript is installed in unit
+Benchmark: 17042
+Does not Build properly using STANDARDSDK:Win32(WCE ARMV4I) Release - it only sort of runs.
+Probably needs Windows CE Default Platform (WinCE 4.2)
+Works OK with Standard build.
+(NETBOOK PRO - USER MANUAL EXCERPT)
+2.9.2 Performing A Hard Reset
+To perform a hard reset:
+- Remove all batteries and AC power.
+- Once the main battery or AC power is applied, the NETBOOK PRO will
+reboot.
+
+Notes:
+1. When performing a hard reset, ensure that the backup batteries are
+removed before the main battery, and replaced last, to avoid
+unnecessarily draining them.
+
+2. Hard resetting the NETBOOK PRO may delete the ActiveSync partnership
+on the NETBOOK PRO. If that occurs, you may delete and re-create the
+partnership on the PC, or create another partnership with a new name.
+Refer to ActiveSync's online help for more detail on this operation.
+
+-------------------------------------------------
+Alternative (undocumented)
+
+Press the reset button
+To switch the unit back on press the [CTRL] [D] and [On/Esc] keys
+altogether until the Boot loader menu shows up.
+
+At this point select option 
+1 - to run the run the main OS
+! - to clean start (reset device settings to manufacture default - e.g.
+reset registry)
+
+
+
+
+Psion Teklogic WorkAboutPro 
+Same as NetBookPro, but needs VBScript installed and registered.
+
+
+NEC MobilePro
+VBScript and ADO not installed.
+MFC, OLE are installed.
+XScale Processor. PXA
+CEDeviceType="Jupiter"
+ProcessorType="2577"
+Has custom SDK from NEC.
+Use ARM in eVC.
+Benchmark is 10492.
+Same installer as NetBookPro and WorkBookPro.
+
+
+Casio ET-500M30 and DT-X10
+Windows CE 4.1 (Build 908)
+CPU Type: Intel Corp., ARM-XScale using ARMV4T mode.
+DeviceProcessorType: 1824
+This device does not work. The MSCE controls are not available in ARMV4T versions.
+Other Casio devices (IT-3000, IT-10) should be OK: they use ARM4 or ARM4I.
+
+Device Emulator, running Pocket PC 2003 SE
+DeviceType="PocketPC"
+DeviceProcessorType=2577
+Uses standard Basic.ppc.exe installer.
+Comes with VBScript 5.5 in ROM - no MsgBox or InputBox statement.
+
+
+Windows Mobile 2005 SmartPhone Emulator
+OS 5.1.1700 (Build 14343.0.0.0)
+CPU Type: ARM920T DeviceEmulator (same as Pocket PC Emulator)
+DeviceProcessorType: 2577
+DeviceType: SmartPhone
+Can look at device registry using PPC2003 Device (not emulator) configuration on eVC4 (!)
+DemoApp installer stops after download to device - unsucessful
+Manually install all files, including PPC version of Basic.exe, mfcce300 and olece300 from Pocket PC 4.2. Put link to Basic.exe into Start Menu. "Cannot find 'basic' or one of its components", which is consistant with MFC not being there.
+But... Install Basic.exe for 2577 devices + MFC4 and the IDE runs. VBscript not registered, however.
+
+
+iMate WM 2005 test device
+OS 5.1.1700 (Build 14334.0.0.0)
+CPU Type: Intel(R) PXA263
+Hard reset: Press ResetButton and hold down CameraButton + RecordButton.
+    Hold them pressed until the "Boot Options" menu appears on the screen.
+
+    Select the options as follows:
+    (for selecting use RecordButton, change values with CameraButton)
+
+    Enable KITL          -> NO
+    Clean Registry Hive  -> YES
+    Format Storage      -> YES
+
+    When done, press DPad and wait until OS starts.
+
+
+Tripod Data Systems (Trimble) Ranger
+-Need to change download path in IDE. Programs need to be in the /Disk folder.
+-VBScript wasn't registered - the script was not doing this.
+
+Advantech 60S
+ARM 920T
+Windows CE 4.20
+Uses own version of ActiveSync 3.7.1 - does not work with 4.0.
+USB AS works OK - you need to go into Settings...PC Connection and change it from Serial. The dialog box for this needs to be closed using the on screen keyboard since the window cannot be scrolled to its close button.
+DeviceProcessorType: 2336
+vbscript is in ROM
+Compile for ARMV4T; does not work
+Try using ARMV4 (2577) - it runs OK!
+The regular 2577 installer works OK with ProcessorType=2336.
+Benchmark 23551.9
+
+Handera RC-131
+CPU: Samsung ARM920
+Windows CE 5.0
+DeviceProcessorType: 2336
+Benchmark: 11814
+Hard reset (inc registry): reset+shift+power
+Hard reset does not remove uninstall list
+VBScript not in ROM, MFC is (may be special build)
+
+DSP Aurora AU1100
+CPU: AMD AU1100 uses MIPSII instruction set, no FPU
+DeviceProcessorType: 4000
+VNScript not in ROM
+No ActiveSync (I think)
+USB cable is master. 
+Losing power hard resets the device.
+Benchmark speed is 12900.
+
+iMate SP3i
+Running SmartPhone 2003 CE 4.2
+Device has a strange file directory structure: everything needs to go in different places. That could be fixed with in the installer, but a bigger problem is that Basic.exe does not run. Attempting to recompile for Smartphone 2003 by putting all the MFC libraries in did not work.
+reset is device off; hold soft key 1 & 2, then push power for about 1 sec. 0 to clear.
+
+Motorola Q
+Running WM5 Smartphone
+Use same files as 2577.
+NSBWin32, NSBControls, NSBComDlg need to be compiled using SmartPhone 2003 SDK.
+Need to include MFCCE400 and OLECE400.
+Programs run, but UI does not work.
+IDE does not work - the UI does not work. Need Task Manager to terminate.
+No way to terminate program other than Bye.
+EXE programs work.
+Benchmark is 10599.
+(also works on WM5 QVGA emulator)
+If program is started while running, a new instance is created.
+
+Torodex Colibri board computer
+CPU PXA270 
+Windows CE 5.0
+DeviceProcessorType2336
+Benchmark 15212
+Vbscript, MFC, OLE are not in ROM.
+All memory lost if power is lost.
+NSCEPictureBox.ocx does not register on installation unless MFC and OLE are installed first.
+Since this device loses all memory when power is interrupted, a custom installer should be developed which includes your app and any NS Basic files that are needed. You can keep this in the \NOR Flash folder and execute it on reboot. In addition to the standard files that NS Basic normally includes, you also need to copy MFCCE400.dll and OLECE400.dll to \Windows.
+For test purposes, you can get NS Basic/CE running by first copying MFCCE400.dll and OLECE400.dll to \Windows, then running the Basic.WINCE.exe installer.
+
+
+Windows Mobile 6.5 ROM versions
+
+Simulator:    21234.5.0.1
+Syvlie's HD2: 21869.5.0.82 French
+Cooked E101:  23506 6.5.1 
+              28003 6.5.3
+Official E101:23518

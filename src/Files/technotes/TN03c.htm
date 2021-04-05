@@ -1,0 +1,678 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Tech Note 03c: Serial Communications</TITLE>
+<link rel="stylesheet" href="/style2.css">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080" bgcolor="#FFFFFF">
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=478>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<P><IMG SRC="images/BigIcon.GIF" WIDTH=86 HEIGHT=103></TD>
+    <TD WIDTH="78%" VALIGN="TOP">
+<B>
+	  <h2><FONT FACE="Helvetica">Tech Note 03c: Serial Communications</font> </h2>
+	  </B>
+	  <h3><B><FONT FACE="Helvetica">January 29, 2007
+</FONT><FONT FACE="Helvetica" SIZE=4>	  
+	  </FONT></B></h3>
+	  <B><FONT FACE="Helvetica" SIZE=4>
+	  <P><b><font face="Helvetica">© 2010 NS BASIC Corporation. All rights reserved.
+</font></b></P>
+	  </FONT></B></TD>
+</TR>
+</TABLE>
+<HR>
+
+<blockquote>
+  <A HREF="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vbceide/htm/controls_1.asp">
+There is additional documentation on Microsoft's website.</A>
+
+<p>This TechNote describes Microsoft's Serial control for Windows CE. There is also a new third party control with additional features available from <a href="http://www.franson.com/serialtools/index.asp?platform=net" target="_top">Franson</a>. It includes support for Bluetooth and has many other improved features. There is some sample code using this control at the end of this Tech Note.
+
+</blockquote>
+<hr noshade size="1">
+<p></p>
+<P>Serial communications are straightforward in NSBasic/CE. They make use of Microsoft's standard COMM control. Make sure it is installed on your Windows CE device and that it is properly set up in the Registry. 
+
+<P>Communications are controlled completely by setting properties in the Comm object. These properties control port setting and are used to input and output characters.</P>
+
+<P>If the Comm object needs to send information back to your program, it will call a subroutine in your program coalled Comm_onComm. This subroutine (which has no arguments) can then check the comm.commEvent property to see why there was a callback. The most common reason is to notify the program that there are characters in the input buffer.</P>
+<P>Remember to turn off Communicate with PC in the Communication settings panel. Otherwise, you will be unable to open the port as Windows CE will already have it open.
+
+<P>To initialize the Comm object, put the following line in your program. If you do not supply the full list of arguments, onComm will not be called.</P>
+<CODE><P>addObject "Comm","comm",0,0,0,0</P>
+</CODE><FONT FACE="Courier New"><P>&nbsp;</P>
+</FONT>
+
+<B><FONT FACE="Helvetica" SIZE=4><P>Notes</P></font></B>
+<i>From <A HREF="kostasb&copy; compulink.gr">Kostas Bouzianas</A></i>
+
+<P>In text mode In/Out buffers represented as strings. In binary mode they are represented as BYTE arrays This can be checked with VarType(Comm.Input or Output) when put Comm.InputMode=0/1 (I did not imagine how useful VarType was before). The problem is that due to VBScript's fuzzy declaration of variables, I could not strictly define a byte array (loss of As Byte), even in most obvious function like Array(cbyte(&HXX),....). Checking by VarType returns 8204 which is array with variant subscripts.
+
+<p>In such a way, Output does not run (OutBufferCount: 0, no OnComm events) while input usually gives a Type mismatch Error.
+
+<P>Finally, transmission/reception on Binary mode was affected by doing the following.:<BR>
+InputMode=0 'Text<BR>
+NullDiscard=False
+
+<P>Transmission: Conversion of bytes to transmit with CHR function
+Concatenation of bytes in a string variable (transmission of all bytes at once)
+
+<P>Reception: InputLen=1 (reception byte by byte)
+Conversion of received strings to numbers by using ASC function and storage in array.
+
+<P>For those developing for peripheral devices: Your application may run but low level signals of handheld may not trigger RS232 port of your peripheral. Make a respective application in desktop for testing.
+
+<p><i>From  <A HREF="mailto:jcgarrido&copy; drop.e.telefonica.net">Juan Garlos Garrido</A></i>
+
+<p>I read the note by Kostas Bouzianas, and he said that the only way of working with comm control in binary mode is setting inputlen by 1, and receive char by char, and this is not really true.
+	
+<p>The ".input" comm Method returns a byte array, and the only
+thing you have to do is assign it to a variant and then use it as an
+array. I've been doing it with my old 2.10 version and works fine. (of
+course, inputlen is 0 in order to receive all characters avalaible)
+
+<p>Here is a sample that demonstrates it (extracted from one of my
+programs). It is a function that receives a packet. Constants for Start
+timeout, character timeout, and function result must be defined outside
+of the function. Com_port is the comm. Control created and opened
+outside of the function.
+
+<pre>
+Function Receive(nr,s)
+'Receives a packet, stopping when  nr characters are received or
+timeout 
+'s contains the packet received, and  the function returns
+'Result_err_TOUT or Result_OK constants
+'Timeout for first character= st_tout* 20 ms
+'Timeout betwen characters= c_tout* 20 ms
+'st_tout and c_tout are global constants
+
+    Dim B 'pointer to input buffer
+    Dim ncr, i,Tim
+    On Error Resume Next   
+    Tim=1
+    Do 
+    'Waits until some characters are avalaible
+        sleep (20) 
+        ncr = com_port.InBufferCount
+        Tim=Tim+1
+    Loop  Until (ncr > 0) Or (tim>st_tout)
+    s = ""
+    If ncr = 0 Then 'time-out
+        receive = Result_err_TOUT        
+        Exit Function
+    Else 'there are characters in the buffer
+        B = com_port.Input
+        For i = 0 To ncr - 1
+            s = s & Chr(b(i))
+        Next
+    End If
+    Tim=1
+    Do Until (Len(s) >= nr) Or (Tim>c_tout)
+    ' Receives full packet
+        sleep(20)
+        ncr = com_port.InBufferCount
+        If ncr > 0 Then
+            Tim=1 'Resets timeout timer
+            B = com_port.Input
+            For i = 0 To ncr ö 1 'get all characters from input buffer
+                s = s & Chr(b(i))
+            Next
+        End If
+        Tim = Tim + 1
+    Loop 
+    Erase B ' dispose memory of input buffer
+    If  Len(s) >= nr then 'Reception completed	
+      receive = Result_OK  ' Pck
+    Else
+       receive = Result_err_TOUT 'Tout
+    End If
+End Function
+</pre>
+
+
+<B><FONT FACE="Helvetica" SIZE=4><P>Properties</P></font></B>
+<TABLE BORDER CELLSPACING=1 WIDTH=478>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<P><FONT FACE="Courier New">comm.commEvent </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>The integer code of the last event. Read only.</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.commID </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>The handle of the comm device. Read only.</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.commPort </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>The comm port (as in com1, com2...). Integer. For example, on a Casio PPC, set this value to 1.</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.DSRHolding </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>State of the DSR line.  </TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.DTREnable </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>State of DTR line. True or false. </TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.Handshaking </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Handshaking protocol<BR>
+0 - none<BR>
+1 - XON/XOFF<BR>
+2 - hardware<BR>
+3 - hardware and XON/XOFF</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.inBufferCount </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Number of characters in input buffer. Read only.</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.input </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Returns characters from input buffer and clears it</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.inputLen </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Number of characters comm.input will return</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.inputMode </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Type of input<BR>
+0 - text<BR>
+1 - binary</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.nullDiscard </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Should null chars be discarded? true or false.  </TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.output </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Output string. Write only.</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.OutBufferCount </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Number of characters in output buffer. Read only.</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.portOpen </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Opens and closes port.  <BR>
+0 - close comm port<BR>
+1 - open comm port</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.RThreshold </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Number of receive characters before onComm event triggered.<BR>
+0 - do not trigger onComm</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.Settings </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>A string of the format "BBBB,P,D,S", where BBBB is the baud, P is the parity, D is the number of data bits, and S is the number of stop bits. The default value is "9600,N,8,1"<br>
+Valid baud rates are 110, 300, 600, 1200, 2400, 9600, 14400, 28800, 38400, 56000, 128000, 256000<br>
+Valid parity values are E,M,N,O,S (Even, Mark, None, Odd, Space)<br>
+Valid data bit values are 4, 5, 6, 7, 8<br>
+Valid stop bit values are 1, 1.5, and 2.</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.sThreshold </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>Number of send characters before onComm event triggered.<BR>
+0 - do not trigger onComm</TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.RTSEnable </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>State of RTS line. True or False.  </TD>
+</TR>
+<TR><TD WIDTH="32%" VALIGN="TOP">
+<FONT FACE="Courier New"><P>comm.settings </FONT></TD>
+<TD WIDTH="68%" VALIGN="TOP">
+<P>baud, parity, databits, stopbits in a string.</TD>
+</TR>
+</TABLE>
+
+
+<B><FONT FACE="Helvetica" SIZE=4><P>CommEvent Errors</P></font></B>
+
+<table border>
+ <tr>
+  <td width=131 valign=top >
+  <p  >Constant</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >Value</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Description</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comNoError</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >0</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >No Error.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventBreak</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1001</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >A break
+  signal was received.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventCTSTO</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1002</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Clear To
+  Send Timeout. The Clear To Send line was lower than the system- specified
+  amount of time used when transmitting a character.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventDSRTO</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1003</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Data Set
+  Ready Timeout. The Data Set Ready line was lower than the system specified
+  amount of time used when to transmitting a character. </p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventFrame</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1004</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Framing
+  error. The hardware detected a framing error.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventOverrun</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1006</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Port
+  overrun. A character was not read from the hardware before the next character
+  arrived and was lost.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventCDTO</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1007</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Carrier
+  detect timeout. The carrier detect line was low for the system specified
+  amount of time while trying to transmit a character. Carrier detect is also
+  known as the receive line signal detect.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventRxOver</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1008</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Receive
+  buffer overflow. There is no room in the receive buffer.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventRxParity</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1009</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Parity
+  error. The hardware detected a parity error.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventTxFull</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1010</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Transmit
+  buffer full. The transmit buffer was full when trying to queue a character.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEventDCB</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1011</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Unexpected
+  error retrieving device control block for the port.</p>
+  </td>
+ </tr>
+</table>
+
+<B><FONT FACE="Helvetica" SIZE=4><P>CommEvent Events</P></font></B>
+
+
+<table border>
+ <tr>
+  <td width=131 valign=top >
+  <p  >Constant</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >Value</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Description</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEvSend</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >1</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >There are
+  fewer than SThreshold
+  number of characters in the transmit buffer.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEvReceive</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >2</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Received RThreshold number of characters. This event is
+  generated continuously until you use the Input property to remove the data
+  from the receive buffer.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEvCTS</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >3</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Change in
+  Clear To Send line.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEvDSR</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >4</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Change in
+  Data Set Ready line. This event is fired only when DSR changes from 1 to 0.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEvCD</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >5</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Change in
+  carrier detect line.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEvRing</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >6</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >Ring
+  detected. Some universal asynchronous receiver-transmitters (UARTs) may not
+  support this event.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=131 valign=top >
+  <p  >comEvEOF</p>
+  </td>
+  <td width=70 valign=top >
+  <p  >7</p>
+  </td>
+  <td width=267 valign=top >
+  <p  >End Of File
+  (ASCII character 26) character received.</p>
+  </td>
+ </tr>
+</table>
+
+
+<FONT FACE="Courier New"><P>&nbsp;</P>
+</FONT><B><FONT FACE="Helvetica" SIZE=4><P>Example</P>
+</font></B><P><IMG SRC="images/TN04.GIF" WIDTH=432 HEIGHT=189></P>
+<P>This program will talk to a terminal emulation program, such as HyperTerminal, running on a PC using the standard synch connnection. There are a few setup things to keep in mind so the program will work.</P>
+<P>1. On your device, go into Settings...Communication Properties...PC Connection. Make sure the box "Allow connection with desktop computer when H/PC is attached is not checked.</P>
+<P>2. On your PC, make sure ActiveSync is not enabled.</P>
+<P>3. Set your terminal emulator for a local connection to the serial port your device is plugged into. Make sure baud, parity, databits and stop bits are all set the same as shown in Properties when running the following program. Also, make sure the handshaking is set the same way.</P>
+<FONT FACE="Courier New"><P>&nbsp;</P>
+</FONT><CODE><PRE>rem Demonstrate serial communications
+'see Tech Note for complete details
+Option Explicit
+dim selection,myString
+addObject "comm","comm",0,0,0,0
+selection=0
+myString=""
+
+while selection&lt;&gt;9
+  selection=inputbox("Choose Operation:" &amp; chr(13) &amp; "1. Open" &amp; chr(13) &amp; "2. Write" &amp; chr(13) &amp; "3. Properties " &amp; chr(13) &amp; "4. Read" &amp; chr(13) &amp; "5. Close" &amp; chr(13) &amp;  "9. End Program", "COMM Demo")
+  select case selection
+  case 1
+    open_click
+  case 2
+    write_click
+  case 3
+    properties_click
+  case 4
+    read_click
+  case 5
+    close_click
+  case else
+    selection=9
+    Comm.PortOpen = 0
+  end select
+wEnd
+
+Private Sub Close_Click()
+  Comm.PortOpen = 0
+End Sub
+
+Private Sub Comm_OnComm()
+  Dim InString
+  Select Case Comm.CommEvent
+  Case 2 ' character In - collect until return is received
+    InString = Comm.Input
+    if asc(InString)=13 then
+      msgBox myString
+      myString=""
+    else
+      myString=myString &amp; InString
+    end if
+  case else
+    msgbox "Other CommEvent Received:" &amp; comm.commEvent
+  End Select
+End Sub
+
+Private Sub Read_click()
+  dim sRead
+  sRead=comm.input
+  msgbox sRead
+end Sub
+ 
+Private Sub Open_Click()  
+  Comm.Rthreshold = 1 'event on every character in
+  Comm.InputMode = 0 'text mode
+  Comm.handshaking=1 '0=none, 1=XON/XOFF, 2=HW
+  Comm.RTSEnable=true
+  comm.DTREnable=true
+  Comm.PortOpen = True
+  if err&lt;&gt;0 then
+    msgbox "Open Comm: " &amp; err.description
+    err.clear
+  end if 
+End Sub
+
+Private Sub Write_Click()
+  Dim myString
+  myString = "This is being sent from CommCtl Test."
+  Comm.Output = myString
+End Sub
+
+Private Sub properties_click()
+  dim sOut, tab, CR
+  tab=chr(9)
+  CR=chr(13)
+  sOut="CommEvent:" &amp; chr(9) &amp; comm.commEvent &amp; space(40) &amp; CR
+  sOut=sOut &amp; "CommID:" &amp; tab &amp; comm.commID &amp; tab &amp; "InputLen:" &amp; chr(9) &amp; comm.inputLen &amp; CR 
+  sOut=sOut &amp; "CommPort:" &amp; tab &amp; comm.commPort &amp; tab &amp; "InputMode:" &amp; comm.inputMode &amp;  CR
+  sOut=sOut &amp; "Handshaking:" &amp; tab &amp; comm.Handshaking &amp; tab &amp; "CTSHolding:" &amp; CR
+  sOut=sOut &amp; "InBufferCount:" &amp; tab &amp; comm.inBufferCount &amp; tab &amp; "DSRHolding:" &amp; comm.DSRHolding &amp; CR
+  sOut=sOut &amp; "OutBufferCount:" &amp; comm.OutBufferCount &amp; tab &amp; "DTREnable:" &amp; comm.DTREnable &amp; CR
+  sOut=sOut &amp; "PortOpen:" &amp; tab &amp; comm.portOpen &amp; tab &amp; "RTSEnable:" &amp; comm.RTSEnable &amp; CR
+  sOut=sOut &amp; "RThreshold:" &amp; tab &amp; comm.RThreshold &amp; tab &amp; "NullDiscard:" &amp; comm.nullDiscard &amp; CR
+  sOut=sOut &amp; "Settings:" &amp; comm.settings
+  msgbox sOut,0,"COMM Properties"
+end Sub</PRE>
+</CODE>
+<B><FONT FACE="Helvetica" SIZE=4><P>Sample using Franson Serial Control</P></font></B>
+
+<pre>
+'Contributed by Michael Newett
+
+'This example works for Pocket PC or Desktop devices, with any length 
+'of file, any baudrate, serial or bluetooth.
+
+'Note** The devices (PDA or desktop) Bluetooth must be turned ON 
+'before running the code.
+
+'For CE Device use the following
+AddObject "serialce.port.1","objPort" 'For CE Device
+AddObject "serialce.license","objlicense" 'For CE Device
+
+'For WindowsXP Device use the following
+AddObject "serialxp.port.1","objPort"
+AddObject "serialxp.license","objlicense"
+
+'For all devices
+objLicense.LicenseKey = "xxx Enter license key here xxx"
+
+Form1_Load
+
+Sub StartCommandButton_Click
+  objPort.BaudRate = 9600
+  objPort.ComPort = 8 'enter bluetooth outbound COM port number here
+  objPort.ByteSize = 8
+  objPort.Parity = 0
+  objPort.StopBits = 0 '0 means 1 stop bit
+  objPort.Enabled = True 'enable comm. port
+  objPort.NoEvents = True
+  objPort.DTR = True
+  objPort.RTS = True
+  Sleep 100 'delay to enable comm port to initialise
+End Sub
+
+Sub StopCommandButton_Click
+  objPort.Enabled = False 'disable comm port
+End Sub
+
+Sub WriteCommandButton_Click
+  objPort.Write "Enter String to Write here"+vbCr 'Send command to device. Add vbCr or vbLf as applicable
+  Finished=False
+  Str=""
+  Do until Finished=True
+    Size=objPort.Buffersize 'get number of bytes received from device
+    Newstr=objPort.Read(Size,1000) 'read response from device. Timeout if nothing received after 1000ms
+    If IsNull(Newstr) Then
+      Finished=True
+    Else
+      Str=Str&Newstr
+    End If
+  Loop
+  If IsNull(Str) Then Str="Device Timed out"
+  Msgbox Str
+End Sub
+
+
+Sub Form1_load
+  AddObject "CommandButton", "StartCommandButton", 75, 125, 100, 25
+  bStart.Caption = "Start Comms"
+  bStart.FontSize = 8.25
+
+  AddObject "CommandButton", "StopCommandButton", 75, 225, 100, 25
+  bStop.Caption = "Stop Comms"
+  bStop.FontSize = 8.25
+
+  AddObject "CommandButton", "WriteCommandButton", 75, 175, 100, 25
+  Write.Caption = "Write"
+  Write.FontSize = 8.25
+End Sub
+</pre>
+
+</BODY>
+</HTML>

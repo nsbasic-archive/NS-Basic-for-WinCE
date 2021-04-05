@@ -1,0 +1,450 @@
+VERSION 5.00
+Object = "{6556ED95-9838-11D1-80AE-00C04FAD5EFB}#1.0#0"; "MSCEListView.dll"
+Begin VB.Form backlight 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "Backlight Test"
+   ClientHeight    =   3615
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   3480
+   ControlBox      =   -1  'True
+   ForeColor       =   &H80000008&
+   ScaleHeight     =   3615
+   ScaleWidth      =   3480
+   Begin MSCELISTVIEWLibCtl.ListViewCtrl listprops 
+      Height          =   1815
+      Left            =   120
+      TabIndex        =   0
+      Top             =   120
+      Width           =   3255
+      FontBold        =   0   'False
+      FontItalic      =   0   'False
+      FontName        =   "Arial"
+      FontSize        =   8
+      FontStrikethrough=   0   'False
+      FontUnderline   =   0   'False
+      HideColumnHeaders=   0   'False
+      HideSelection   =   -1  'True
+      LabelEdit       =   0
+      LabelWrap       =   0   'False
+      MultiSelect     =   0   'False
+      Sorted          =   0   'False
+      SortKey         =   0
+      SortOrder       =   0
+      View            =   0
+   End
+   Begin VBCE.Label Label3 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   8
+      Top             =   2520
+      Width           =   855
+      _cx             =   1508
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Dim Time"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.Label Label2 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   7
+      Top             =   2880
+      Width           =   855
+      _cx             =   1508
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "D OnTime"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.Label Label1 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   6
+      Top             =   3240
+      Width           =   735
+      _cx             =   1296
+      _cy             =   450
+      AutoSize        =   0   'False
+      BackColor       =   -2147483643
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "K OnTime"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.ComboBox KTIMEONLIST 
+      Height          =   300
+      Left            =   1680
+      TabIndex        =   5
+      Top             =   3240
+      Width           =   1335
+      List            =   "backlight.frx":0000
+      ItemData        =   "backlight.frx":0028
+      _cx             =   2355
+      _cy             =   529
+      BackColor       =   -2147483643
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      IntegralHeight  =   -1  'True
+      Locked          =   0   'False
+      Sorted          =   0   'False
+      Style           =   0
+   End
+   Begin VBCE.ComboBox DTIMEONLIST 
+      Height          =   300
+      Left            =   1680
+      TabIndex        =   4
+      Top             =   2880
+      Width           =   1335
+      List            =   "backlight.frx":0050
+      ItemData        =   "backlight.frx":0078
+      _cx             =   2355
+      _cy             =   529
+      BackColor       =   -2147483643
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      IntegralHeight  =   -1  'True
+      Locked          =   0   'False
+      Sorted          =   0   'False
+      Style           =   0
+   End
+   Begin VBCE.ComboBox DIMTIMELIST 
+      Height          =   300
+      Left            =   1680
+      TabIndex        =   3
+      Top             =   2520
+      Width           =   1335
+      List            =   "backlight.frx":00A0
+      ItemData        =   "backlight.frx":00C8
+      _cx             =   2355
+      _cy             =   529
+      BackColor       =   -2147483643
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      IntegralHeight  =   -1  'True
+      Locked          =   0   'False
+      Sorted          =   0   'False
+      Style           =   0
+   End
+   Begin VBCE.CommandButton setNewValueButton 
+      Height          =   255
+      Left            =   1680
+      TabIndex        =   2
+      Top             =   2040
+      Width           =   1095
+      _cx             =   1931
+      _cy             =   450
+      BackColor       =   12632256
+      Caption         =   "Set"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.TextBox configVal 
+      Height          =   255
+      Left            =   120
+      TabIndex        =   1
+      Top             =   2040
+      Width           =   1335
+      _cx             =   2355
+      _cy             =   450
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   ""
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+End
+Attribute VB_Name = "backlight"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+Private Sub DIMTIMELIST_LostFocus()
+    configVal.Text = DIMTIMELIST.Text
+End Sub
+
+Private Sub DTIMEONLIST_LostFocus()
+    configVal.Text = DTIMEONLIST.Text
+End Sub
+
+Private Sub KTIMEONLIST_LostFocus()
+    configVal.Text = KTIMEONLIST.Text
+End Sub
+
+
+Private Sub Form_Load()
+    LoadBacklightConfiguration
+End Sub
+Private Sub LoadBacklightConfiguration()
+    listprops.View = lvwReport
+    listprops.ListItems.Clear
+    listprops.ColumnHeaders.Clear
+    
+    DIMTIMELIST.Clear
+    KTIMEONLIST.Clear
+    DTIMEONLIST.Clear
+    
+    
+    
+    
+    Dim counter As Integer
+   
+   ' Add headers
+    listprops.ColumnHeaders.Add , , "Config"
+    listprops.ColumnHeaders.Add , , "Value"
+       
+    Set BacklightObject = CreateObject("backlightX.backlight") ' create the control
+    
+    Dim ret As Variant
+    ret = BacklightObject.BacklightControlSupported
+    If ret = 1 Then
+        AddListItem "Supported", "TRUE"
+    Else
+        AddListItem "Supported", "FALSE"
+    End If
+    
+    ret = BacklightObject.DisplayBacklightAlwaysOnForAcPower
+    If ret = 1 Then
+        AddListItem "DisplayBacklightAlwaysOnForAcPower", "TRUE"
+    Else
+        AddListItem "DisplayBacklightAlwaysOnForAcPower", "FALSE"
+    End If
+    
+    ret = BacklightObject.DisplayBacklightDimTime
+    AddListItem "DisplayBacklightDimTime", ret
+    
+    ret = BacklightObject.DisplayBacklightIntensity
+    AddListItem "DisplayBacklightIntensity", ret
+    
+    ret = BacklightObject.DisplayBacklightOnTime
+    AddListItem "DisplayBacklightOnTime", ret
+    
+    ret = BacklightObject.DisplayBacklightThreshold
+    AddListItem "DisplayBacklightThreshold", ret
+    
+    ret = BacklightObject.KeyboardBacklightAlwaysOnForAcPower
+    If ret = 1 Then
+        AddListItem "KeyboardBacklightAlwaysOnForAcPower", "TRUE"
+    Else
+        AddListItem "KeyboardBacklightAlwaysOnForAcPower", "FALSE"
+    End If
+    
+    ret = BacklightObject.KeyboardBacklightIntensity
+    AddListItem "KeyboardBacklightIntensity", ret
+    
+    ret = BacklightObject.KeyboardBacklightOnTime
+    AddListItem "KeyboardBacklightOnTime", ret
+    
+    ret = BacklightObject.KeyboardBacklightThreshold
+    AddListItem "KeyboardBacklightThreshold", ret
+    
+    ret = BacklightObject.CountValidDisplayBacklightDimTimes
+    
+    
+    For counter = 1 To ret Step 1
+        DIMTIMELIST.AddItem BacklightObject.ValidDisplayBacklightDimTimes(counter)
+    Next
+    
+    ret = BacklightObject.CountValidKeyboardBacklightOnTimes
+    
+    
+    For counter = 1 To ret Step 1
+        KTIMEONLIST.AddItem BacklightObject.ValidKeyboardBacklightOnTimes(counter)
+    Next
+    
+    ret = BacklightObject.CountValidDisplayBacklightOnTimes
+    
+    For counter = 1 To ret Step 1
+        DTIMEONLIST.AddItem BacklightObject.ValidDisplayBacklightOnTimes(counter)
+    Next
+     
+End Sub
+
+Public Sub AddListItem(Config As String, value As String)
+    Dim MyItem As ListItem
+    
+    ' add the list item
+    Set MyItem = listprops.ListItems.Add(, , Config)
+    
+    ' set its subitems
+    MyItem.SubItems(1) = value
+    
+    
+End Sub
+
+
+
+
+
+Private Sub Label2_Click()
+
+End Sub
+
+Private Sub setNewValueButton_Click()
+    Dim MyItem As ListItem
+    
+    Dim value As String
+       
+    If listprops.SelectedItem = Null Then
+        MsgBox "Please select an item in the list"
+        Return
+    End If
+    
+    Set MyItem = listprops.SelectedItem
+    
+    value = configVal.Text
+        
+    If MyItem.Selected Then
+        If MyItem.Text = "Supported" Then
+            MsgBox "You can't set Supported value"
+        End If
+        
+        If MyItem.Text = "DisplayBacklightAlwaysOnForAcPower" Then
+            BacklightObject.SetDisplayBacklightAlwaysOnForAcPower (value)
+        End If
+        
+        If MyItem.Text = "DisplayBacklightDimTime" Then
+            BacklightObject.SetDisplayBacklightDimTime (value)
+        End If
+        
+        If MyItem.Text = "DisplayBacklightIntensity" Then
+            BacklightObject.SetDisplayBacklightIntensity (value)
+        End If
+        
+        If MyItem.Text = "DisplayBacklightThreshold" Then
+            BacklightObject.SetDisplayBacklightThreshold (value)
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightAlwaysOnForAcPower" Then
+            If 1 = BacklightObject.SetKeyboardBacklightAlwaysOnForAcPower(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightIntensity" Then
+            If 1 = BacklightObject.SetKeyboardBacklightIntensity(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightOnTime" Then
+            If 1 = BacklightObject.SetKeyboardBacklightOnTime(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        If MyItem.Text = "KeyboardBacklightThreshold" Then
+            If 1 = BacklightObject.SetKeyboardBacklightThreshold(value) Then
+                MsgBox "Operation failed"
+            End If
+        End If
+        
+        
+        LoadBacklightConfiguration
+    
+    End If
+    
+End Sub

@@ -1,0 +1,26 @@
+HKCR
+{
+	NSBasic.comctl.NSFont.1 = s 'NSBasic NSFont Class'
+	{
+		CLSID = s '{07679CF2-323B-46A7-87CB-A8DC600BC4BE}'
+	}
+	NSBasic.comctl.NSFont = s 'NSBasic NSFont Class'
+	{
+		CLSID = s '{07679CF2-323B-46A7-87CB-A8DC600BC4BE}'
+		CurVer = s 'NSBasic.comctl.NSFont.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {07679CF2-323B-46A7-87CB-A8DC600BC4BE} = s 'NSBasic NSFont Class'
+		{
+			ProgID = s 'NSBasic.comctl.NSFont.1'
+			VersionIndependentProgID = s 'NSBasic.comctl.NSFont'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{9152ECB3-952A-4F35-83F5-C35F8D42375D}'
+		}
+	}
+}

@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>Rich Ink Sample</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<IMG SRC="images/Inkpad.JPG" ALT="ScreenShot" WIDTH="640" HEIGHT="480">
+<pre>
+addobject "Dialog"
+addobject "CommandButton", "Clear", 0, 0, 40, 20
+addobject "CommandButton", "Copy", 40, 0, 40, 20
+addobject "CommandButton", "Paste", 80, 0, 50, 20
+addobject "CommandButton", "Save", 130, 0, 40, 20
+addobject "CommandButton", "Load", 170, 0, 40, 20
+addobject "CommandButton", "Mode", 210, 0, 40, 20
+
+addobject "MGCERichInk.RichInk", "ink", 0, 20, output.width, output.height - 20
+
+Dim aData                ' Used to hold data for Copy/Paste
+
+ink.Mode = 1            ' Set to graphical mode
+ink.Toolbar = 0          ' No toolbar
+
+Clear.BackColor = output.BackColor
+Clear.Caption = "Clear"
+Copy.BackColor = output.BackColor
+Copy.Caption = "Copy"
+Paste.BackColor = output.BackColor
+Paste.Caption = "Paste"
+Save.BackColor = output.BackColor
+Save.Caption = "Save"
+Load.BackColor = output.BackColor
+Load.Caption = "Load"
+Mode.BackColor = output.BackColor
+Mode.Caption = "Mode"
+
+sub Clear_Click                     ' Clear ink control
+   ink.Clear
+   ink.Mode = 1
+end sub
+
+sub Copy_Click                      ' Get byte array from control and save in variable
+   aData = ink.Data
+end sub
+
+sub Paste_Click                     ' Set control contents to saved byte array
+   ink.Data = aData
+end sub
+
+sub Save_Click                       ' Save control contents to file
+   Dialog.DialogTitle = "Save Ink File"
+   Dialog.InitDir = "\"
+   Dialog.Flags = 0
+   Dialog.Filter = "Ink Files|*.ink"
+   Dialog.DefaultExt = "ink"
+   Dialog.filename = "*.ink"
+   Dialog.CancelError = True
+   On Error Resume Next
+   Dialog.ShowSave
+   if Err.Number = 0 then
+      ink.SaveData Dialog.filename, 1
+   end if
+end sub
+
+sub Load_Click                    ' Load ink data from file into control
+   Dialog.DialogTitle = "Load Ink File"
+   Dialog.InitDir = "\"
+   Dialog.Filter = "Ink Files|*.ink|All Files|*.*"
+   Dialog.FilterIndex = 1
+   Dialog.Flags = &H1800
+   Dialog.filename = ""
+   Dialog.CancelError = True
+   On Error Resume Next
+   Dialog.ShowOpen
+   if Err.Number = 0 then
+      ink.LoadData CStr( Dialog.filename )
+   else
+      MsgBox Err.Description
+   end if
+end sub
+
+sub Mode_Click                  ' Change graphical / text mode
+   if ink.Mode = 0 then          ' If currently text, go to graphical
+      ink.Mode = 1
+   else
+      ink.Mode = 0                ' If graphical, go to text
+   end if
+end sub
+
