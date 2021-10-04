@@ -37,7 +37,7 @@ Use Basic.WinCE.exe to install only the IDE.
 
 1. Install the new IDE. The password is 'BE50368'.
 
-3. Enter your serial number under the Help menu. Use L55-400-93W as a serial number
+3. Enter your serial number under the Help menu. Use L55-400-93W as a serial number. (For really old versions, using 3000003).
 
 4. Read the ReadMe (on the Start Menu) for instructions on installing to your device.
 
